@@ -1,0 +1,16 @@
+{
+	"description": "This is a property management applet",
+	"setting": {
+		"urlCheck": true,
+		"es6": false,
+		"postcss": false,
+		"minified": false
+	},
+	"compileType": "miniprogram",
+	"appid": "wx809835df23710588",
+	"projectname": "%E6%88%BF%E7%AE%A1%E5%AE%B6",
+	"miniprogramRoot": "weapp/",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {}
+}
