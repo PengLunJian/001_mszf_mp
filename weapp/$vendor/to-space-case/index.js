@@ -1,5 +1,5 @@
 
-var clean = __wepy_require(41)
+var clean = __wepy_require(39)
 
 /**
  * Export.

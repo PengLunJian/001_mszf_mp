@@ -4,7 +4,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var $$observable = _interopDefault(__wepy_require(6));
+var $$observable = _interopDefault(__wepy_require(4));
 
 /**
  * These are private action types reserved by Redux.

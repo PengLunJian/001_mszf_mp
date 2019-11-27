@@ -1,11 +1,9 @@
 {
-    "navigationBarTitleText": "WePY 2.0 Feature Demo",
+    "navigationBarTitleText": "首页",
+    "navigationStyle": "custom",
+    "backgroundColor": "#fafafa",
     "component": true,
     "usingComponents": {
-        "list": "../components/wepy-list",
-        "group": "../components/group",
-        "panel": "../components/panel",
-        "counter": "../components/counter",
-        "slide-view": "../$vendor/miniprogram-slide-view/miniprogram_dist/index"
+        "nav-menu": "../components/nav-menu/nav-menu"
     }
 }

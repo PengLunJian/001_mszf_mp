@@ -3,7 +3,7 @@
 exports.__esModule = true;
 exports.default = void 0;
 
-var _justCurryIt = _interopRequireDefault(__wepy_require(37));
+var _justCurryIt = _interopRequireDefault(__wepy_require(31));
 
 var _createAction = _interopRequireDefault(__wepy_require(33));
 

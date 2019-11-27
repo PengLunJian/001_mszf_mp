@@ -1,6 +1,8 @@
-import { combineReducers } from 'redux';
-import counter from './counter';
+import {combineReducers} from 'redux';
+import HOME_REDUCER from './home';
+import CART_REDUCER from './cart';
 
 export default combineReducers({
-  counter
+  HOME_REDUCER,
+  CART_REDUCER
 });

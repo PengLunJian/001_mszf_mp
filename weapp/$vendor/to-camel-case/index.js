@@ -1,5 +1,5 @@
 
-var space = __wepy_require(42)
+var space = __wepy_require(40)
 
 /**
  * Export.

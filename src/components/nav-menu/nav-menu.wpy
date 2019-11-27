@@ -1,0 +1,73 @@
+<template>
+  <div class="nav-menu">
+    <div class="nav-col">
+      <div class="nav-item">
+        <img class="nav-img" src="../../assets/images/house.png" title="租房"/>
+        <span class="nav-title">租房</span>
+      </div>
+    </div>
+    <div class="nav-col">
+      <div class="nav-item">
+        <img class="nav-img" src="../../assets/images/house.png" title="租房"/>
+        <span class="nav-title">二手房</span>
+      </div>
+    </div>
+    <div class="nav-col">
+      <div class="nav-item">
+        <img class="nav-img" src="../../assets/images/house.png" title="租房"/>
+        <span class="nav-title">新房</span>
+      </div>
+    </div>
+    <div class="nav-col">
+      <div class="nav-item">
+        <img class="nav-img" src="../../assets/images/house.png" title="租房"/>
+        <span class="nav-title">算房贷</span>
+      </div>
+    </div>
+  </div>
+</template>
+<script type="text/ecmascript-6">
+  import wepy from '@wepy/core';
+
+  wepy.component({
+    data: {},
+    events: {},
+    methods: {},
+    onLoad() {
+    }
+  });
+</script>
+<style scoped lang="less">
+  @import "../../assets/less/variable";
+
+  .nav-menu {
+    display: flex;
+    flex-wrap: wrap;
+    padding: unit(40, rpx) unit(80, rpx);
+    .nav-col {
+      width: 50%;
+      padding: unit(40, rpx);
+      .nav-item {
+        width: unit(220, rpx);
+        height: unit(220, rpx);
+        margin: 0 auto;
+        padding: unit(40, rpx) 0;
+        border-radius: unit(8, rpx);
+        text-align: center;
+        box-shadow: 0 0 15px @boxShadow1;
+        .nav-img {
+          width: unit(80, rpx);
+          height: unit(80, rpx);
+          margin-bottom: unit(20, rpx);
+        }
+        .nav-title {
+          display: block;
+          height: unit(40, rpx);
+          line-height: unit(40, rpx);
+          font-size: unit(28, rpx);
+          color: @fontColor1;
+        }
+      }
+    }
+  }
+</style>

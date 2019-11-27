@@ -16,8 +16,11 @@
   "author": "peng",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.18.0",
+    "mockjs": "^1.0.1-beta3",
     "@wepy/redux": "^2.0.1",
     "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
     "redux-actions": "^2.6.5",
     "redux-promise": "^0.6.0",
     "@wepy/core": "^2.0.0-alpha.9",

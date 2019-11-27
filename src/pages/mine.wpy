@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <nav-menu></nav-menu>
+
   </div>
 </template>
 
@@ -11,9 +11,6 @@
 
   wepy.page({
     store,
-    config: {
-      navigationBarTitleText: 'test'
-    },
 
     mixins: [],
 
@@ -31,9 +28,8 @@
   {
   navigationBarTitleText: '首页',
   navigationStyle:'custom',
-  backgroundColor:'#fafafa',
   usingComponents: {
-  'nav-menu': '../components/nav-menu/nav-menu',
+  'top-bar': '../components/top-bar/top-bar',
   }
   }
 </config>

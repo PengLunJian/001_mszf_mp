@@ -5,9 +5,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = promiseMiddleware;
 
-var _isPromise = _interopRequireDefault(__wepy_require(4));
+var _isPromise = _interopRequireDefault(__wepy_require(2));
 
-var _fluxStandardAction = __wepy_require(31);
+var _fluxStandardAction = __wepy_require(29);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

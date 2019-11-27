@@ -3,21 +3,21 @@
 exports.__esModule = true;
 exports.default = handleActions;
 
-var _reduceReducers = _interopRequireDefault(__wepy_require(39));
+var _reduceReducers = _interopRequireDefault(__wepy_require(37));
 
 var _invariant = _interopRequireDefault(__wepy_require(35));
 
-var _isPlainObject = _interopRequireDefault(__wepy_require(16));
+var _isPlainObject = _interopRequireDefault(__wepy_require(15));
 
-var _isMap = _interopRequireDefault(__wepy_require(23));
+var _isMap = _interopRequireDefault(__wepy_require(21));
 
-var _ownKeys = _interopRequireDefault(__wepy_require(24));
+var _ownKeys = _interopRequireDefault(__wepy_require(22));
 
-var _flattenReducerMap = _interopRequireDefault(__wepy_require(29));
+var _flattenReducerMap = _interopRequireDefault(__wepy_require(27));
 
 var _handleAction = _interopRequireDefault(__wepy_require(34));
 
-var _get = _interopRequireDefault(__wepy_require(25));
+var _get = _interopRequireDefault(__wepy_require(23));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
