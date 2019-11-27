@@ -1,0 +1,8 @@
+
+<view class="top-bar">
+  <view class="top-inner">
+    <view class="top-icon iconfont icon-back"></view>
+    <view class="top-icon iconfont icon-home"></view>
+    <view class="top-title">首页</view>
+  </view>
+</view>

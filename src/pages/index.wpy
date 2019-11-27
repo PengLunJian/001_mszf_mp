@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <top-bar></top-bar>
     <nav-menu></nav-menu>
   </div>
 </template>
@@ -11,9 +12,6 @@
 
   wepy.page({
     store,
-    config: {
-      navigationBarTitleText: 'test'
-    },
 
     mixins: [],
 
@@ -27,12 +25,18 @@
     }
   });
 </script>
+
+<style scoped lang="less">
+  .container {
+    height: 100vh;
+    padding-top: unit(130, rpx);
+  }
+</style>
 <config>
   {
-  navigationBarTitleText: '首页',
   navigationStyle:'custom',
-  backgroundColor:'#fafafa',
   usingComponents: {
+  'top-bar': '../components/top-bar/top-bar',
   'nav-menu': '../components/nav-menu/nav-menu',
   }
   }

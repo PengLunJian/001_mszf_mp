@@ -1,0 +1,23 @@
+<template>
+  <div class="house">
+    <div class="inner"></div>
+  </div>
+</template>
+<script type="text/ecmascript-6">
+  import wepy from '@wepy/core';
+
+  wepy.component({
+    data: {},
+    events: {},
+    methods: {},
+    onLoad() {
+    }
+  });
+</script>
+<style scoped lang="less">
+  @import "../../assets/less/variable";
+
+  .house{
+
+  }
+</style>

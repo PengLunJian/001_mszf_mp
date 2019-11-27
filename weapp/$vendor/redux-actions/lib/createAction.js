@@ -3,7 +3,7 @@
 exports.__esModule = true;
 exports.default = createAction;
 
-var _invariant = _interopRequireDefault(__wepy_require(35));
+var _invariant = _interopRequireDefault(__wepy_require(33));
 
 var _isFunction = _interopRequireDefault(__wepy_require(7));
 

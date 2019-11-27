@@ -14,9 +14,13 @@ view {
   width: 100%;
   display: block;
 }
+image {
+  display: block;
+}
 page {
-  background-color: #fafafa;
+  font-size: 26rpx;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: #fafafa;
 }
 button {
   border: none;

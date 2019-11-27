@@ -53,18 +53,19 @@
         margin: 0 auto;
         padding: unit(40, rpx) 0;
         border-radius: unit(8, rpx);
-        text-align: center;
+        background-color: @white;
         box-shadow: 0 0 15px @boxShadow1;
         .nav-img {
           width: unit(80, rpx);
           height: unit(80, rpx);
-          margin-bottom: unit(20, rpx);
+          margin: 0 auto unit(20, rpx);
         }
         .nav-title {
           display: block;
           height: unit(40, rpx);
           line-height: unit(40, rpx);
           font-size: unit(28, rpx);
+          text-align: center;
           color: @fontColor1;
         }
       }

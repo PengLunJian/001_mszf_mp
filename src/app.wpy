@@ -1,5 +1,6 @@
 <style scoped lang="less">
   @import "./assets/less/common";
+
 </style>
 
 <script type="text/ecmascript-6">
@@ -25,10 +26,10 @@
   'pages/index'
   ],
   window: {
+  backgroundColor:'#fafafa',
   backgroundTextStyle: 'light',
-  navigationBarBackgroundColor: '#ffffff',
-  navigationBarTitleText: 'WeChat',
-  navigationBarTextStyle: 'black'
+  navigationBarTextStyle: 'black',
+  navigationBarBackgroundColor: '#ffffff'
   }
   }
 </config>
