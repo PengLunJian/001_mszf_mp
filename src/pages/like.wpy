@@ -1,0 +1,43 @@
+<template>
+  <div class="container">
+    <top-bar title="我的收藏"></top-bar>
+  </div>
+</template>
+
+<script type="text/ecmascript-6">
+  import wepy from '@wepy/core';
+  // import {mapState} from '@wepy/redux';
+  import store from '../store';
+
+  wepy.page({
+    store,
+
+    mixins: [],
+
+    data: {},
+
+    computed: {},
+
+    methods: {},
+
+    created() {
+    }
+  });
+</script>
+
+<style lang="less">
+  @import "../assets/less/variable";
+  @import "../assets/less/iconfont";
+
+  .container {
+
+  }
+</style>
+<config>
+  {
+  navigationStyle:'custom',
+  usingComponents: {
+  'top-bar': '../components/top-bar/top-bar',
+  }
+  }
+</config>

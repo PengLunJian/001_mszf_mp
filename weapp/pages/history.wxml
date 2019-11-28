@@ -1,0 +1,4 @@
+
+<view class="container">
+  <top-bar bind_init="_initComponent" title="历史浏览"></top-bar>
+</view>

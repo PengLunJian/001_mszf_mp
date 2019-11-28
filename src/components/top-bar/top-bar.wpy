@@ -1,9 +1,9 @@
 <template>
   <div class="top-bar">
     <div class="top-inner">
-      <div class="top-icon iconfont icon-back"></div>
-      <div class="top-icon iconfont icon-home"></div>
-      <div class="top-title">首页</div>
+      <div class="top-icon iconfont icon-back" @tap="onHandleBack"></div>
+      <div class="top-icon iconfont icon-home" @tap="onHandleHome"></div>
+      <div class="top-title">{{title}}</div>
     </div>
   </div>
 </template>
@@ -12,8 +12,19 @@
 
   wepy.component({
     data: {},
+    props: {
+      title: ''
+    },
     events: {},
-    methods: {},
+    methods: {
+      onHandleBack() {
+        wx.navigateBack({
+          delta: 1
+        });
+      },
+      onHandleHome() {
+      }
+    },
     onLoad() {
     }
   });

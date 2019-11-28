@@ -1,0 +1,4 @@
+
+<view class="container">
+  <top-bar bind_init="_initComponent" title="房源发布"></top-bar>
+</view>

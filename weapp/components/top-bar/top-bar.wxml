@@ -1,8 +1,8 @@
 
 <view class="top-bar">
   <view class="top-inner">
-    <view class="top-icon iconfont icon-back"></view>
-    <view class="top-icon iconfont icon-home"></view>
-    <view class="top-title">首页</view>
+    <view data-wpy-evt="59-0" bindtap="_proxy" class="top-icon iconfont icon-back"></view>
+    <view data-wpy-evt="59-1" bindtap="_proxy" class="top-icon iconfont icon-home"></view>
+    <view class="top-title">{{title}}</view>
   </view>
 </view>

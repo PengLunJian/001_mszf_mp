@@ -42,33 +42,58 @@
 .icon-history:before {
   content: "\e634";
 }
-.top-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-  padding-top: 40rpx;
+.container .user {
+  height: 400rpx;
+  margin-bottom: 20rpx;
   background-color: #ffffff;
 }
-.top-bar .top-inner {
-  position: relative;
-  height: 90rpx;
-  line-height: 90rpx;
-  text-align: center;
+.container .list {
+  background-color: #ffffff;
 }
-.top-bar .top-inner .top-icon {
-  width: 90rpx;
-  height: 90rpx;
+.container .list .list-item {
+  position: relative;
+  height: 110rpx;
+  line-height: 110rpx;
+  padding-left: 110rpx;
+}
+.container .list .list-item .list-icon,
+.container .list .list-item .list-next {
   position: absolute;
   top: 0;
+  width: 110rpx;
+  height: 110rpx;
+  text-align: center;
+}
+.container .list .list-item .list-icon.list-icon,
+.container .list .list-item .list-next.list-icon {
   left: 0;
-  font-size: 40rpx;
+  font-size: 46rpx;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
 }
-.top-bar .top-inner .top-icon.icon-home {
-  left: 90rpx;
+.container .list .list-item .list-icon.list-next,
+.container .list .list-item .list-next.list-next {
+  right: 0;
+  color: #dedede;
 }
-.top-bar .top-inner .top-title {
+.container .list .list-item .list-text {
+  height: 100%;
   font-size: 32rpx;
-  font-weight: bold;
+  border-bottom: 0.5px solid #dedede;
+}
+.container .list .list-item:last-child .list-text {
+  border: none;
+}
+.container .list .list-item:nth-child(1) .list-icon {
+  background-image: -webkit-linear-gradient(left, #FF2714, #FF841D);
+}
+.container .list .list-item:nth-child(2) .list-icon {
+  background-image: -webkit-linear-gradient(left, #FFFF00, #FFB421);
+}
+.container .list .list-item:nth-child(3) .list-icon {
+  background-image: -webkit-linear-gradient(left, #00FF00, #12B347);
+}
+.container .list .list-item:nth-child(4) .list-icon {
+  background-image: -webkit-linear-gradient(left, #060BFF, #17F2FF);
 }
 

@@ -42,33 +42,4 @@
 .icon-history:before {
   content: "\e634";
 }
-.top-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-  padding-top: 40rpx;
-  background-color: #ffffff;
-}
-.top-bar .top-inner {
-  position: relative;
-  height: 90rpx;
-  line-height: 90rpx;
-  text-align: center;
-}
-.top-bar .top-inner .top-icon {
-  width: 90rpx;
-  height: 90rpx;
-  position: absolute;
-  top: 0;
-  left: 0;
-  font-size: 40rpx;
-}
-.top-bar .top-inner .top-icon.icon-home {
-  left: 90rpx;
-}
-.top-bar .top-inner .top-title {
-  font-size: 32rpx;
-  font-weight: bold;
-}
 

@@ -9,7 +9,7 @@ var _isPlainObject = _interopRequireDefault(__wepy_require(14));
 
 var _isFunction = _interopRequireDefault(__wepy_require(7));
 
-var _identity = _interopRequireDefault(__wepy_require(12));
+var _identity = _interopRequireDefault(__wepy_require(13));
 
 var _isArray = _interopRequireDefault(__wepy_require(15));
 
@@ -25,7 +25,7 @@ var _arrayToObject = _interopRequireDefault(__wepy_require(18));
 
 var _flattenActionMap = _interopRequireDefault(__wepy_require(25));
 
-var _unflattenActionCreators = _interopRequireDefault(__wepy_require(21));
+var _unflattenActionCreators = _interopRequireDefault(__wepy_require(19));
 
 var _createAction = _interopRequireDefault(__wepy_require(31));
 

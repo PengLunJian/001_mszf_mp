@@ -1,6 +1,11 @@
 {
     "pages": [
-        "pages/index"
+        "pages/index",
+        "pages/mine",
+        "pages/like",
+        "pages/history",
+        "pages/release",
+        "pages/about"
     ],
     "window": {
         "backgroundColor": "#fafafa",
