@@ -1,4 +1,4 @@
-<style scoped lang="less">
+<style lang="less">
   @import "./assets/less/common";
 
 </style>

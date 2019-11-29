@@ -27,7 +27,6 @@
 
 <style lang="less">
   @import "../assets/less/variable";
-  @import "../assets/less/iconfont";
 
   .container {
 

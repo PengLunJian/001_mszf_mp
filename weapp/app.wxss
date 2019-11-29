@@ -1,3 +1,62 @@
+@font-face {
+  font-family: "iconfont";
+  src: url('data:application/x-font-woff2;charset=utf-8;base64,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') format('woff2');
+}
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-share4:before {
+  content: "\e68b";
+}
+.icon-back:before {
+  content: "\e602";
+}
+.icon-share:before {
+  content: "\e64e";
+}
+.icon-next:before {
+  content: "\e60b";
+}
+.icon-share3:before {
+  content: "\e618";
+}
+.icon-info:before {
+  content: "\e61f";
+}
+.icon-like:before {
+  content: "\e607";
+}
+.icon-address:before {
+  content: "\e722";
+}
+.icon-phone:before {
+  content: "\e603";
+}
+.icon-share1:before {
+  content: "\e674";
+}
+.icon-release:before {
+  content: "\e680";
+}
+.icon-share2:before {
+  content: "\e60d";
+}
+.icon-service:before {
+  content: "\e637";
+}
+.icon-mine:before {
+  content: "\e61b";
+}
+.icon-home:before {
+  content: "\e688";
+}
+.icon-history:before {
+  content: "\e634";
+}
 page,
 view,
 icon,
@@ -28,6 +87,12 @@ button {
 button:focus {
   outline: none;
 }
+.module {
+  margin-bottom: 20rpx;
+}
+.module:last-child {
+  margin: 0;
+}
 .btn {
   position: relative;
 }
@@ -45,6 +110,11 @@ button:focus {
 .btn:active:before {
   visibility: visible;
   background-color: rgba(0, 0, 0, 0.3);
+}
+.ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .fade {
   animation: fade 300ms ease-out;

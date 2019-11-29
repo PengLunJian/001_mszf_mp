@@ -3,7 +3,7 @@
   <top-bar bind_init="_initComponent" title="个人中心"></top-bar>
   <view class="user"></view>
   <view class="list">
-    <navigator wx:for="{{ items }}" wx:for-index="index" wx:for-item="item" wx:key="index" hover-class="none" url="{{item.path}}" class="btn list-item">
+    <navigator wx:for="{{ items }}" wx:for-index="index" wx:for-item="item" wx:key="index" hover-class="none" url="{{item.path}}" class="list-item btn">
       <view class="list-icon iconfont {{item.icon}}"></view>
       <view class="list-text">{{item.name}}</view>
       <view class="list-next iconfont icon-next"></view>

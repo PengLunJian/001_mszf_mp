@@ -2,14 +2,14 @@
 	"description": "This is a property management applet",
 	"setting": {
 		"urlCheck": false,
-		"es6": false,
+		"es6": true,
 		"enhance": false,
 		"postcss": true,
 		"minified": false,
 		"newFeature": true,
 		"coverView": true,
-		"nodeModules": true,
-		"autoAudits": true,
+		"nodeModules": false,
+		"autoAudits": false,
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
 		"uploadWithSourceMap": true,
@@ -52,6 +52,20 @@
 					"id": -1,
 					"name": "pages/mine",
 					"pathName": "pages/mine",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/about",
+					"pathName": "pages/about",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/history",
+					"pathName": "pages/history",
 					"scene": null
 				}
 			]

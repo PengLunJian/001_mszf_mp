@@ -13,7 +13,7 @@ var _isMap = _interopRequireDefault(__wepy_require(21));
 
 var _ownKeys = _interopRequireDefault(__wepy_require(22));
 
-var _flattenReducerMap = _interopRequireDefault(__wepy_require(27));
+var _flattenReducerMap = _interopRequireDefault(__wepy_require(25));
 
 var _handleAction = _interopRequireDefault(__wepy_require(32));
 
