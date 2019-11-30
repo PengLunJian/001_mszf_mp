@@ -1,55 +1,55 @@
-.container .user {
+.container .content .body .user {
   height: 400rpx;
   margin-bottom: 20rpx;
   background-color: #ffffff;
 }
-.container .list {
+.container .content .body .list {
   background-color: #ffffff;
 }
-.container .list .list-item {
+.container .content .body .list .list-item {
   height: 110rpx;
   line-height: 110rpx;
   padding-left: 110rpx;
 }
-.container .list .list-item .list-icon,
-.container .list .list-item .list-next {
+.container .content .body .list .list-item .list-icon,
+.container .content .body .list .list-item .list-next {
   position: absolute;
   top: 0;
   width: 110rpx;
   height: 110rpx;
   text-align: center;
 }
-.container .list .list-item .list-icon.list-icon,
-.container .list .list-item .list-next.list-icon {
+.container .content .body .list .list-item .list-icon.list-icon,
+.container .content .body .list .list-item .list-next.list-icon {
   left: 0;
   font-size: 46rpx;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
 }
-.container .list .list-item .list-icon.list-next,
-.container .list .list-item .list-next.list-next {
+.container .content .body .list .list-item .list-icon.list-next,
+.container .content .body .list .list-item .list-next.list-next {
   right: 0;
   color: #dedede;
 }
-.container .list .list-item .list-text {
+.container .content .body .list .list-item .list-text {
   height: 100%;
   letter-spacing: 1px;
   font-size: 32rpx;
   border-bottom: 0.5px solid #dedede;
 }
-.container .list .list-item:last-child .list-text {
+.container .content .body .list .list-item:last-child .list-text {
   border: none;
 }
-.container .list .list-item:nth-child(1) .list-icon {
+.container .content .body .list .list-item:nth-child(1) .list-icon {
   background-image: -webkit-linear-gradient(left, #FF2714, #FF841D);
 }
-.container .list .list-item:nth-child(2) .list-icon {
+.container .content .body .list .list-item:nth-child(2) .list-icon {
   background-image: -webkit-linear-gradient(left, #FFFF00, #FFB421);
 }
-.container .list .list-item:nth-child(3) .list-icon {
+.container .content .body .list .list-item:nth-child(3) .list-icon {
   background-image: -webkit-linear-gradient(left, #00FF00, #12B347);
 }
-.container .list .list-item:nth-child(4) .list-icon {
+.container .content .body .list .list-item:nth-child(4) .list-icon {
   background-image: -webkit-linear-gradient(left, #060BFF, #17F2FF);
 }
 

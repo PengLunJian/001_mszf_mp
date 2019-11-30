@@ -5,7 +5,7 @@
 		"es6": true,
 		"enhance": false,
 		"postcss": true,
-		"minified": false,
+		"minified": true,
 		"newFeature": true,
 		"coverView": true,
 		"nodeModules": false,
@@ -66,6 +66,20 @@
 					"id": -1,
 					"name": "pages/history",
 					"pathName": "pages/history",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/like",
+					"pathName": "pages/like",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/rent-house",
+					"pathName": "pages/rent-house",
 					"scene": null
 				}
 			]

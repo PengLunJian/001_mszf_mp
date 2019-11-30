@@ -1,0 +1,131 @@
+<template>
+  <div class="container">
+    <div class="content">
+      <div class="header">
+        <top-bar title="租房列表"></top-bar>
+        <div class="tab-bar">
+          <div class="tab-item">
+            <div class="tab-text">
+              <span class="tab-label">价格</span>
+              <span class="tab-triangle"></span>
+            </div>
+          </div>
+          <div class="tab-item">
+            <div class="tab-text">
+              <span class="tab-label">筛选</span>
+              <span class="tab-triangle"></span>
+            </div>
+          </div>
+          <div class="tab-item">
+            <div class="tab-text">
+              <span class="tab-label">排序</span>
+              <span class="tab-triangle"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="body"></div>
+    </div>
+  </div>
+</template>
+
+<script type="text/ecmascript-6">
+  import wepy from '@wepy/core';
+  // import {mapState} from '@wepy/redux';
+  import store from '../store';
+
+  wepy.page({
+    store,
+
+    mixins: [],
+
+    data: {},
+
+    computed: {},
+
+    methods: {},
+
+    created() {
+    }
+  });
+</script>
+
+<style scoped lang="less">
+  @import "../assets/less/variable";
+
+  .container {
+    .content {
+      height: 100vh;
+      padding-top: unit(210, rpx);
+      .header {
+        .tab-bar {
+          display: flex;
+          flex-wrap: wrap;
+          position: fixed;
+          top: unit(130, rpx);
+          left: 0;
+          z-index: 1000;
+          background-color: @white;
+          box-shadow: 0 5px 5px rgba(0, 0, 0, 0.03);
+          font-size: @fontSize3;
+          text-align: center;
+          color: @fontColor2;
+          .tab-item {
+            width: 33.333%;
+            position: relative;
+            padding: unit(20, rpx) 0;
+            .tab-text {
+              height: unit(40, rpx);
+              line-height: unit(40, rpx);
+              border-right: 0.5px solid @borderColor1;
+              font-size: 0;
+              .tab-label,
+              .tab-triangle {
+                display: inline-block;
+                vertical-align: middle;
+                &.tab-label {
+                  font-size: @fontSize3;
+                }
+                &.tab-triangle {
+                  margin-left:unit(20,rpx);
+                  border-top: unit(16, rpx) solid @fontColor2;
+                  border-left: unit(10, rpx) solid transparent;
+                  border-right: unit(10, rpx) solid transparent;
+                }
+              }
+            }
+            &.active {
+              color: @activeColor;
+              &:after {
+                content: '';
+                display: block;
+                position: absolute;
+                width: unit(120, rpx);
+                left: 50%;
+                bottom: 0;
+                margin-left: unit(-60, rpx);
+                border-top: unit(6, rpx) solid @activeColor;
+              }
+            }
+            &:last-child {
+              .tab-text {
+                border: none;
+              }
+            }
+          }
+        }
+      }
+      .body {
+      }
+    }
+  }
+</style>
+
+<config>
+  {
+  navigationStyle:'custom',
+  usingComponents: {
+  'top-bar': '../components/top-bar/top-bar',
+  }
+  }
+</config>

@@ -1,4 +1,4 @@
-<style lang="less">
+<style scoped lang="less">
   @import "./assets/less/common";
 
 </style>
@@ -20,6 +20,7 @@
     methods: {}
   });
 </script>
+
 <config>
   {
   pages: [
@@ -29,6 +30,7 @@
   'pages/history',
   'pages/release',
   'pages/about',
+  'pages/rent-house'
   ],
   window: {
   backgroundColor:'#fafafa',

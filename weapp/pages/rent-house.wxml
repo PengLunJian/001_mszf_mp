@@ -1,0 +1,29 @@
+
+<view class="container">
+  <view class="content">
+    <view class="header">
+      <top-bar bind_init="_initComponent" title="租房列表"></top-bar>
+      <view class="tab-bar">
+        <view class="tab-item">
+          <view class="tab-text">
+            <label class="tab-label">价格</label>
+            <label class="tab-triangle"></label>
+          </view>
+        </view>
+        <view class="tab-item">
+          <view class="tab-text">
+            <label class="tab-label">筛选</label>
+            <label class="tab-triangle"></label>
+          </view>
+        </view>
+        <view class="tab-item">
+          <view class="tab-text">
+            <label class="tab-label">排序</label>
+            <label class="tab-triangle"></label>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="body"></view>
+  </view>
+</view>

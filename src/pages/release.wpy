@@ -1,6 +1,11 @@
 <template>
   <div class="container">
-    <top-bar title="房源发布"></top-bar>
+    <div class="content">
+      <div class="header">
+        <top-bar title="房源发布"></top-bar>
+      </div>
+      <div class="body"></div>
+    </div>
   </div>
 </template>
 
@@ -25,13 +30,19 @@
   });
 </script>
 
-<style lang="less">
+<style scoped lang="less">
   @import "../assets/less/variable";
 
   .container {
-
+    .content {
+      .header {
+      }
+      .body {
+      }
+    }
   }
 </style>
+
 <config>
   {
   navigationStyle:'custom',
