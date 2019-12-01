@@ -11,7 +11,8 @@ _core["default"].page({
   store: _store["default"],
   mixins: [],
   data: {
-    autoplay: false
+    autoplay: false,
+    circular: true
   },
   computed: {},
   methods: {},

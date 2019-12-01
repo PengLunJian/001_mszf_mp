@@ -19,6 +19,27 @@ view {
   display: block;
 }
 
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col-3 {
+  width: 25%;
+}
+
+.col-4 {
+  width: 33.333%;
+}
+
+.col-6 {
+  width: 50%;
+}
+
+.col-12 {
+  width: 100%;
+}
+
 image {
   display: block;
 }
@@ -38,9 +59,6 @@ button {
 
 .module {
   margin-bottom: unit(20, rpx);
-  &:last-child {
-    margin: 0;
-  }
 }
 
 .btn {

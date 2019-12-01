@@ -6,23 +6,109 @@
     </view>
     <view class="body">
       <view class="module">
-        <swiper autoplay="{{autoplay}}" class="swiper">
-          <swiper-item>
-            <image src="../assets/images/banner01.jpg" class="item-img"></image>
-          </swiper-item>
-          <swiper-item>
-            <image src="../assets/images/banner02.jpg" class="item-img"></image>
-          </swiper-item>
-        </swiper>
-        <view class="code"><label class="text">1 / 2</label></view>
-        <view class="btn-favorite">
-          <view class="iconfont icon-favorite-off"></view>
-        </view>
-        <view class="btn-share">
-          <view class="iconfont icon-share"></view>
+        <view class="banner">
+          <swiper autoplay="{{autoplay}}" circular="{{circular}}" class="swiper">
+            <swiper-item>
+              <image src="../assets/images/banner01.jpg" class="swiper-img"></image>
+            </swiper-item>
+            <swiper-item>
+              <image src="../assets/images/banner02.jpg" class="swiper-img"></image>
+            </swiper-item>
+          </swiper>
+          <view class="swiper-code">
+            <label class="swiper-text">1 / 2</label>
+          </view>
+          <view class="btn-favorite">
+            <view class="iconfont icon-favorite-off"></view>
+          </view>
+          <view class="btn-share">
+            <view class="iconfont icon-share"></view>
+          </view>
         </view>
       </view>
-      <view class="module"></view>
+      <view class="module">
+        <view class="product">
+          <view class="row">
+            <view class="col-12">
+              <view class="product-title ellipsis"> 碧桂园 南向两居室 精装 拎包入住</view>
+            </view>
+          </view>
+          <view class="row">
+            <view class="col-4">
+              <view class="value">1800元/月</view>
+              <view class="label">租金</view>
+            </view>
+            <view class="col-4">
+              <view class="value">2室1厅1卫</view>
+              <view class="label">户型</view>
+            </view>
+            <view class="col-4">
+              <view class="value">70m²</view>
+              <view class="label">面积</view>
+            </view>
+          </view>
+          <view class="row">
+            <view class="col-6">
+              <label class="label">看房时间</label>
+              <text class="value">随时看房</text>
+            </view>
+            <view class="col-6">
+              <label class="label">支付</label>
+              <text class="value">押1付3</text>
+            </view>
+            <view class="col-6">
+              <label class="label">出租方式</label>
+              <text class="value">整租</text>
+            </view>
+            <view class="col-6">
+              <label class="label">朝向</label>
+              <text class="value">南</text>
+            </view>
+            <view class="col-6">
+              <label class="label">楼层</label>
+              <text class="value">16/20</text>
+            </view>
+            <view class="col-6">
+              <label class="label">装修</label>
+              <text class="value">精装修</text>
+            </view>
+            <view class="col-6">
+              <label class="label">小区</label>
+              <text class="value">碧桂园</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="module">
+        <view class="title">推荐经纪人</view>
+        <view class="context"></view>
+      </view>
+      <view class="module">
+        <view class="title">房源配置</view>
+        <view class="context"></view>
+      </view>
+      <view class="module">
+        <view class="title">周边信息</view>
+        <view class="context"></view>
+      </view>
+    </view>
+    <view class="footer">
+      <view class="pull-left">
+        <view class="agent">
+          <view class="agent-img"></view>
+          <view class="agent-name">大前端</view>
+        </view>
+      </view>
+      <view class="pull-right row">
+        <view class="btn btn-msg col-6">
+          <text class="btn-icon iconfont icon-msg2"></text>
+          <text class="btn-text">微聊</text>
+        </view>
+        <view class="btn btn-tel col-6">
+          <text class="btn-icon iconfont icon-tel"></text>
+          <text class="btn-text">电话</text>
+        </view>
+      </view>
     </view>
   </view>
 </view>
