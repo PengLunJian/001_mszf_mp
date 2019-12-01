@@ -3,7 +3,7 @@
 exports.__esModule = true;
 exports.default = void 0;
 
-var _isPlainObject = _interopRequireDefault(__wepy_require(15));
+var _isPlainObject = _interopRequireDefault(__wepy_require(14));
 
 var _isMap = _interopRequireDefault(__wepy_require(21));
 

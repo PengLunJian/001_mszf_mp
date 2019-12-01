@@ -7,7 +7,7 @@ var _reduceReducers = _interopRequireDefault(__wepy_require(37));
 
 var _invariant = _interopRequireDefault(__wepy_require(33));
 
-var _isPlainObject = _interopRequireDefault(__wepy_require(15));
+var _isPlainObject = _interopRequireDefault(__wepy_require(14));
 
 var _isMap = _interopRequireDefault(__wepy_require(21));
 

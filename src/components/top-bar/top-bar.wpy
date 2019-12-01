@@ -7,13 +7,14 @@
     </div>
   </div>
 </template>
+
 <script type="text/ecmascript-6">
   import wepy from '@wepy/core';
 
   wepy.component({
     data: {},
     props: {
-      title: ''
+      title: '标题'
     },
     events: {},
     methods: {
@@ -29,6 +30,7 @@
     }
   });
 </script>
+
 <style scoped lang="less">
   @import "../../assets/less/variable";
   @import "../../assets/less/iconfont";

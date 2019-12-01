@@ -1,0 +1,28 @@
+
+<view class="container">
+  <view class="content">
+    <view class="header">
+      <top-bar bind_init="_initComponent" title="房源详情"></top-bar>
+    </view>
+    <view class="body">
+      <view class="module">
+        <swiper autoplay="{{autoplay}}" class="swiper">
+          <swiper-item>
+            <image src="../assets/images/banner01.jpg" class="item-img"></image>
+          </swiper-item>
+          <swiper-item>
+            <image src="../assets/images/banner02.jpg" class="item-img"></image>
+          </swiper-item>
+        </swiper>
+        <view class="code"><label class="text">1 / 2</label></view>
+        <view class="btn-favorite">
+          <view class="iconfont icon-favorite-off"></view>
+        </view>
+        <view class="btn-share">
+          <view class="iconfont icon-share"></view>
+        </view>
+      </view>
+      <view class="module"></view>
+    </view>
+  </view>
+</view>

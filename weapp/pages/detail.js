@@ -10,7 +10,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 _core["default"].page({
   store: _store["default"],
   mixins: [],
-  data: {},
+  data: {
+    autoplay: false
+  },
   computed: {},
   methods: {},
   created: function created() {}

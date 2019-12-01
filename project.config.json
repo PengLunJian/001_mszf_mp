@@ -80,6 +80,13 @@
 					"id": -1,
 					"name": "pages/rent-house",
 					"pathName": "pages/rent-house",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/detail",
+					"pathName": "pages/detail",
 					"scene": null
 				}
 			]

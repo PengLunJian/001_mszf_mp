@@ -1,18 +1,18 @@
 {
-  "pages": [
-    "pages/index",
-    "pages/mine",
-    "pages/like",
-    "pages/history",
-    "pages/release",
-    "pages/about",
-    "pages/rent-house"
-  ],
-  "window": {
-    "backgroundColor": "#fafafa",
-    "backgroundTextStyle": "light",
-    "navigationBarTextStyle": "black",
-    "navigationBarBackgroundColor": "#ffffff"
-  },
-  "sitemapLocation": "sitemap9.json"
+    "pages": [
+        "pages/index",
+        "pages/mine",
+        "pages/like",
+        "pages/history",
+        "pages/release",
+        "pages/about",
+        "pages/detail",
+        "pages/rent-house"
+    ],
+    "window": {
+        "backgroundColor": "#fafafa",
+        "backgroundTextStyle": "light",
+        "navigationBarTextStyle": "black",
+        "navigationBarBackgroundColor": "#ffffff"
+    }
 }

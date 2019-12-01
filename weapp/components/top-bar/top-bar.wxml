@@ -1,8 +1,8 @@
 
 <view class="top-bar">
   <view class="top-inner">
-    <view data-wpy-evt="63-4" bindtap="_proxy" class="top-icon iconfont icon-back"></view>
-    <view data-wpy-evt="63-5" bindtap="_proxy" class="top-icon iconfont icon-home"></view>
+    <view data-wpy-evt="67-4" bindtap="_proxy" class="top-icon iconfont icon-back"></view>
+    <view data-wpy-evt="67-5" bindtap="_proxy" class="top-icon iconfont icon-home"></view>
     <view class="top-title">{{title}}</view>
   </view>
 </view>

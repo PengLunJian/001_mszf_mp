@@ -1,0 +1,136 @@
+<template>
+  <div class="container">
+    <div class="content">
+      <div class="header">
+        <top-bar title="房源详情"></top-bar>
+      </div>
+      <div class="body">
+        <div class="module">
+          <swiper class="swiper" autoplay="{{autoplay}}">
+            <swiper-item>
+              <img class="item-img" src="../assets/images/banner01.jpg"/>
+            </swiper-item>
+            <swiper-item>
+              <img class="item-img" src="../assets/images/banner02.jpg"/>
+            </swiper-item>
+          </swiper>
+          <div class="code"><span class="text">1 / 2</span></div>
+          <div class="btn-favorite">
+            <div class="iconfont icon-favorite-off"></div>
+          </div>
+          <div class="btn-share">
+            <div class="iconfont icon-share"></div>
+          </div>
+        </div>
+        <div class="module"></div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script type="text/ecmascript-6">
+  import wepy from '@wepy/core';
+  // import {mapState} from '@wepy/redux';
+  import store from '../store';
+
+  wepy.page({
+    store,
+
+    mixins: [],
+
+    data: {
+      autoplay: false
+    },
+
+    computed: {},
+
+    methods: {},
+
+    created() {
+    }
+  });
+</script>
+
+<style scoped lang="less">
+  @import "../assets/less/variable";
+
+  .container {
+    .content {
+      padding-top: unit(130, rpx);
+      .header {
+      }
+      .body {
+        .module {
+          position: relative;
+          background-color: @white;
+          &:first-child {
+            margin: 0;
+          }
+          .swiper {
+            height: unit(480, rpx);
+            .item-img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+          .code {
+            position: absolute;
+            left: 0;
+            bottom: unit(20, rpx);
+            text-align: center;
+            font-size: 0;
+            .text {
+              height: unit(40, rpx);
+              line-height: unit(40, rpx);
+              min-width: unit(100, rpx);
+              display: inline-block;
+              padding: 0 unit(20, rpx);
+              border-radius: unit(40, rpx);
+              background-color: rgba(0, 0, 0, .6);
+              font-size: @fontSize1;
+              color: @white;
+            }
+          }
+          .btn-favorite,
+          .btn-share {
+            width: unit(80, rpx);
+            height: unit(80, rpx);
+            border-radius: unit(80, rpx);
+            line-height: unit(80, rpx);
+            position: absolute;
+            bottom: unit(-30, rpx);
+            background-color: @white;
+            box-shadow: 0 0 15px @boxShadow1;
+            text-align: center;
+            &.btn-favorite {
+              right: unit(120, rpx);
+            }
+            &.btn-share {
+              right: unit(30, rpx);
+            }
+            .iconfont {
+              -webkit-text-fill-color: transparent;
+              -webkit-background-clip: text;
+              font-size: @fontSize6;
+              &.icon-favorite-off {
+                background-image: -webkit-linear-gradient(left, #FF2714, #FF841D);
+              }
+              &.icon-share {
+                background-image: -webkit-linear-gradient(left, #00FF00, #12B347);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+</style>
+
+<config>
+  {
+  navigationStyle:'custom',
+  usingComponents: {
+  'top-bar': '../components/top-bar/top-bar',
+  }
+  }
+</config>

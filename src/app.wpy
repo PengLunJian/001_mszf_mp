@@ -30,6 +30,7 @@
   'pages/history',
   'pages/release',
   'pages/about',
+  'pages/detail',
   'pages/rent-house'
   ],
   window: {

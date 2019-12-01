@@ -5,11 +5,11 @@
         <top-bar title="关于我们"></top-bar>
       </div>
       <div class="body">
-        <div class="card">
+        <div class="company">
           <div class="inner">
             <div class="title">码出未来</div>
-            <div class="btn-share iconfont icon-share1"></div>
-            <img class="image" src="../assets/images/card.jpeg"/>
+            <div class="btn-share iconfont icon-forward"></div>
+            <img class="image" src="../assets/images/company.jpg"/>
           </div>
         </div>
         <div class="list">
@@ -66,7 +66,7 @@
       .header {
       }
       .body {
-        .card {
+        .company {
           padding: unit(30, rpx);
           .inner {
             overflow: hidden;
@@ -168,6 +168,7 @@
     }
   }
 </style>
+
 <config>
   {
   navigationStyle:'custom',

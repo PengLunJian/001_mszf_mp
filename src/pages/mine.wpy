@@ -37,7 +37,7 @@
         {
           name: $routes.LIKE.name,
           path: $routes.LIKE.path,
-          icon: 'icon-like'
+          icon: 'icon-favorite'
         },
         {
           name: $routes.HISTORY.name,
