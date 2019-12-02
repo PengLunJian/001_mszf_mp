@@ -82,15 +82,83 @@
           </div>
         </div>
         <div class="module">
-          <div class="title">推荐经纪人</div>
+          <div class="title">
+            <span class="icon iconfont icon-agent"></span>
+            <span class="text">推荐经纪人</span>
+          </div>
           <div class="context"></div>
         </div>
         <div class="module">
-          <div class="title">房源配置</div>
-          <div class="context"></div>
+          <div class="title">
+            <span class="icon iconfont icon-config"></span>
+            <span class="text">房源配置</span>
+          </div>
+          <div class="context">
+            <div class="items row">
+              <div class="item col-2">
+                <div class="item-icon iconfont icon-item01"></div>
+                <span class="item-label">卫生间</span>
+              </div>
+              <div class="item col-2">
+                <div class="item-icon iconfont icon-item02"></div>
+                <span class="item-label">洗衣机</span>
+              </div>
+              <div class="item col-2">
+                <div class="item-icon iconfont icon-item03"></div>
+                <span class="item-label">可做饭</span>
+              </div>
+              <div class="item col-2">
+                <div class="item-icon iconfont icon-item04"></div>
+                <span class="item-label">热水器</span>
+              </div>
+              <div class="item col-2">
+                <div class="item-icon iconfont icon-item05"></div>
+                <span class="item-label">阳台</span>
+              </div>
+              <div class="item col-2">
+                <div class="item-icon iconfont icon-item06"></div>
+                <span class="item-label">冰箱</span>
+              </div>
+              <div class="item col-2">
+                <div class="item-icon iconfont icon-item07"></div>
+                <span class="item-label">电梯</span>
+              </div>
+              <div class="item col-2">
+                <div class="item-icon iconfont icon-item08"></div>
+                <span class="item-label">沙发</span>
+              </div>
+              <div class="item col-2">
+                <div class="item-icon iconfont icon-item09"></div>
+                <span class="item-label">宽带</span>
+              </div>
+              <div class="item col-2">
+                <div class="item-icon iconfont icon-item10"></div>
+                <span class="item-label">衣柜</span>
+              </div>
+              <div class="item col-2">
+                <div class="item-icon iconfont icon-item11"></div>
+                <span class="item-label">暖气</span>
+              </div>
+              <div class="item col-2">
+                <div class="item-icon iconfont icon-item12"></div>
+                <span class="item-label">床</span>
+              </div>
+              <div class="item col-2">
+                <div class="item-icon iconfont icon-item13"></div>
+                <span class="item-label">空调</span>
+              </div>
+              <div class="item col-2">
+                <div class="item-icon iconfont icon-item14"></div>
+                <span class="item-label">电视</span>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="module">
-          <div class="title">周边信息</div>
+          <div class="title">
+            <span class="icon iconfont icon-position"></span>
+            <span class="text">周边信息</span>
+          </div>
           <div class="context"></div>
         </div>
       </div>
@@ -103,7 +171,7 @@
         </div>
         <div class="pull-right row">
           <div class="btn btn-msg col-6">
-            <text class="btn-icon iconfont icon-msg2"></text>
+            <text class="btn-icon iconfont icon-msg"></text>
             <text class="btn-text">微聊</text>
           </div>
           <div class="btn btn-tel col-6">
@@ -258,11 +326,54 @@
             line-height: unit(90, rpx);
             border-bottom: 0.5px solid @borderColor2;
             padding: 0 unit(30, rpx);
-            font-size: @fontSize5;
-            font-weight: bold;
+            font-size: 0;
+            .icon {
+              display: inline-block;
+              vertical-align: middle;
+              -webkit-text-fill-color: transparent;
+              -webkit-background-clip: text;
+              font-size: unit(46, rpx);
+              &.icon-agent {
+                background-image: -webkit-linear-gradient(left, #FF841D, #FF2714);
+              }
+              &.icon-config {
+                background-image: -webkit-linear-gradient(left, #FFBA0B, #FFFF00);
+              }
+              &.icon-position {
+                background-image: -webkit-linear-gradient(left, #060BFF, #17F2FF);
+              }
+            }
+            .text {
+              display: inline-block;
+              vertical-align: middle;
+              padding-left: unit(16, rpx);
+              font-size: @fontSize5;
+              font-weight: bold;
+            }
           }
           .context {
             min-height: unit(400, rpx);
+            .items {
+              padding-bottom: unit(30, rpx);
+              text-align: center;
+              .item {
+                width: 20%;
+                padding-top: unit(30, rpx);
+                color: @fontColor1;
+                .item-icon {
+                  height: unit(60, rpx);
+                  line-height: unit(60, rpx);
+                  font-size: unit(60, rpx);
+                  margin-bottom: unit(10, rpx);
+                }
+                .item-label {
+                  display: block;
+                  height: unit(40, rpx);
+                  line-height: unit(40, rpx);
+                  font-size: @fontSize1;
+                }
+              }
+            }
           }
         }
       }
@@ -322,7 +433,7 @@
               height: unit(110, rpx);
               line-height: unit(110, rpx);
               margin-right: unit(10, rpx);
-              font-size: @fontSize6;
+              font-size: @fontSize7;
             }
             .btn-text {
               display: inline-block;

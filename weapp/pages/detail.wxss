@@ -112,11 +112,54 @@
   line-height: 90rpx;
   border-bottom: 0.5px solid #f0f0f0;
   padding: 0 30rpx;
+  font-size: 0;
+}
+.container .content .body .module .title .icon {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  font-size: 46rpx;
+}
+.container .content .body .module .title .icon.icon-agent {
+  background-image: -webkit-linear-gradient(left, #FF841D, #FF2714);
+}
+.container .content .body .module .title .icon.icon-config {
+  background-image: -webkit-linear-gradient(left, #FFBA0B, #FFFF00);
+}
+.container .content .body .module .title .icon.icon-position {
+  background-image: -webkit-linear-gradient(left, #060BFF, #17F2FF);
+}
+.container .content .body .module .title .text {
+  display: inline-block;
+  vertical-align: middle;
+  padding-left: 16rpx;
   font-size: 32rpx;
   font-weight: bold;
 }
 .container .content .body .module .context {
   min-height: 400rpx;
+}
+.container .content .body .module .context .items {
+  padding-bottom: 30rpx;
+  text-align: center;
+}
+.container .content .body .module .context .items .item {
+  width: 20%;
+  padding-top: 30rpx;
+  color: #333333;
+}
+.container .content .body .module .context .items .item .item-icon {
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 60rpx;
+  margin-bottom: 10rpx;
+}
+.container .content .body .module .context .items .item .item-label {
+  display: block;
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 24rpx;
 }
 .container .content .footer {
   display: flex;
@@ -177,7 +220,7 @@
   height: 110rpx;
   line-height: 110rpx;
   margin-right: 10rpx;
-  font-size: 36rpx;
+  font-size: 40rpx;
 }
 .container .content .footer .pull-right .btn .btn-text {
   display: inline-block;

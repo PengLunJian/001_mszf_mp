@@ -9,13 +9,13 @@ var _isFunction = _interopRequireDefault(__wepy_require(7));
 
 var _isPlainObject = _interopRequireDefault(__wepy_require(14));
 
-var _identity = _interopRequireDefault(__wepy_require(11));
+var _identity = _interopRequireDefault(__wepy_require(12));
 
 var _isNil = _interopRequireDefault(__wepy_require(16));
 
-var _isUndefined = _interopRequireDefault(__wepy_require(19));
+var _isUndefined = _interopRequireDefault(__wepy_require(20));
 
-var _toString = _interopRequireDefault(__wepy_require(9));
+var _toString = _interopRequireDefault(__wepy_require(10));
 
 var _constants = __wepy_require(6);
 

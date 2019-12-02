@@ -80,15 +80,83 @@
         </view>
       </view>
       <view class="module">
-        <view class="title">推荐经纪人</view>
+        <view class="title">
+          <label class="icon iconfont icon-agent"></label>
+          <label class="text">推荐经纪人</label>
+        </view>
         <view class="context"></view>
       </view>
       <view class="module">
-        <view class="title">房源配置</view>
-        <view class="context"></view>
+        <view class="title">
+          <label class="icon iconfont icon-config"></label>
+          <label class="text">房源配置</label>
+        </view>
+        <view class="context">
+          <view class="items row">
+            <view class="item col-2">
+              <view class="item-icon iconfont icon-item01"></view>
+              <label class="item-label">卫生间</label>
+            </view>
+            <view class="item col-2">
+              <view class="item-icon iconfont icon-item02"></view>
+              <label class="item-label">洗衣机</label>
+            </view>
+            <view class="item col-2">
+              <view class="item-icon iconfont icon-item03"></view>
+              <label class="item-label">可做饭</label>
+            </view>
+            <view class="item col-2">
+              <view class="item-icon iconfont icon-item04"></view>
+              <label class="item-label">热水器</label>
+            </view>
+            <view class="item col-2">
+              <view class="item-icon iconfont icon-item05"></view>
+              <label class="item-label">阳台</label>
+            </view>
+            <view class="item col-2">
+              <view class="item-icon iconfont icon-item06"></view>
+              <label class="item-label">冰箱</label>
+            </view>
+            <view class="item col-2">
+              <view class="item-icon iconfont icon-item07"></view>
+              <label class="item-label">电梯</label>
+            </view>
+            <view class="item col-2">
+              <view class="item-icon iconfont icon-item08"></view>
+              <label class="item-label">沙发</label>
+            </view>
+            <view class="item col-2">
+              <view class="item-icon iconfont icon-item09"></view>
+              <label class="item-label">宽带</label>
+            </view>
+            <view class="item col-2">
+              <view class="item-icon iconfont icon-item10"></view>
+              <label class="item-label">衣柜</label>
+            </view>
+            <view class="item col-2">
+              <view class="item-icon iconfont icon-item11"></view>
+              <label class="item-label">暖气</label>
+            </view>
+            <view class="item col-2">
+              <view class="item-icon iconfont icon-item12"></view>
+              <label class="item-label">床</label>
+            </view>
+            <view class="item col-2">
+              <view class="item-icon iconfont icon-item13"></view>
+              <label class="item-label">空调</label>
+            </view>
+            <view class="item col-2">
+              <view class="item-icon iconfont icon-item14"></view>
+              <label class="item-label">电视</label>
+            </view>
+          </view>
+        </view>
       </view>
       <view class="module">
-        <view class="title">周边信息</view>
+        <view class="title">
+          <label class="icon iconfont icon-position"></label>
+          <label class="text">周边信息</label>
+        </view>
         <view class="context"></view>
       </view>
     </view>
@@ -101,7 +169,7 @@
       </view>
       <view class="pull-right row">
         <view class="btn btn-msg col-6">
-          <text class="btn-icon iconfont icon-msg2"></text>
+          <text class="btn-icon iconfont icon-msg"></text>
           <text class="btn-text">微聊</text>
         </view>
         <view class="btn btn-tel col-6">
