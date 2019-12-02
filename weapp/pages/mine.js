@@ -40,4 +40,4 @@ _core["default"].page({
   computed: {},
   methods: {},
   created: function created() {}
-}, {info: {"components":{"top-bar":{"path":"..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {}, models: {} });
+}, {info: {"components":{"top-bar":{"path":"..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {}, models: {} });

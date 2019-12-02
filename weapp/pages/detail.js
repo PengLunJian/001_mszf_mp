@@ -12,9 +12,42 @@ _core["default"].page({
   mixins: [],
   data: {
     autoplay: false,
-    circular: true
+    circular: true,
+    longitude: 119.4235460000,
+    latitude: 30.8791290000,
+    enableZoom: false,
+    enableScroll: false,
+    markers: [{
+      id: 1,
+      longitude: 119.4235460000,
+      latitude: 30.8791290000,
+      iconPath: '../assets/images/position.png',
+      width: 30,
+      height: 30,
+      label: {
+        content: '怡红院',
+        padding: 10,
+        anchorX: 20,
+        anchorY: -35,
+        fontSize: 14,
+        borderRadius: 4,
+        bgColor: '#ffffff',
+        textAlign: 'center'
+      }
+    }]
   },
   computed: {},
-  methods: {},
+  methods: {
+    onHandleClickMap: function onHandleClickMap() {
+      console.log('别摸我,我会爆炸的！');
+    }
+  },
   created: function created() {}
-}, {info: {"components":{"top-bar":{"path":"..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {}, models: {} });
+}, {info: {"components":{"top-bar":{"path":"..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'9-89': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleClickMap($event)
+      })();
+    
+  }}}, models: {} });

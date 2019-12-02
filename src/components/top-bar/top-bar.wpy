@@ -14,7 +14,10 @@
   wepy.component({
     data: {},
     props: {
-      title: '标题'
+      title: {
+        type: 'String',
+        default: '标题'
+      }
     },
     events: {},
     methods: {

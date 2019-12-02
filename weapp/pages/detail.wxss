@@ -1,29 +1,75 @@
 .container .content {
+  height: 100vh;
   padding-top: 130rpx;
   padding-bottom: 110rpx;
 }
-.container .content .body .module {
-  position: relative;
-  background-color: #ffffff;
+.container .content .body {
+  height: 100%;
 }
-.container .content .body .module:first-child {
+.container .content .body .scroll-view {
+  height: 100%;
+}
+.container .content .body .scroll-view .module {
+  position: relative;
+}
+.container .content .body .scroll-view .module:first-child {
   margin: 0;
 }
-.container .content .body .module .banner .swiper {
+.container .content .body .scroll-view .module:last-child {
+  margin: 0;
+  padding-bottom: 20rpx;
+}
+.container .content .body .scroll-view .module .module-content {
+  background-color: #ffffff;
+}
+.container .content .body .scroll-view .module .module-content .module-header .module-title {
+  height: 90rpx;
+  line-height: 90rpx;
+  border-bottom: 0.5px solid #f0f0f0;
+  padding: 0 30rpx;
+  font-size: 0;
+}
+.container .content .body .scroll-view .module .module-content .module-header .module-title .icon {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  font-size: 50rpx;
+}
+.container .content .body .scroll-view .module .module-content .module-header .module-title .icon.icon-agent {
+  background-image: -webkit-linear-gradient(left, #FF841D, #FF2714);
+}
+.container .content .body .scroll-view .module .module-content .module-header .module-title .icon.icon-config {
+  background-image: -webkit-linear-gradient(left, #FFDB40, #FF9C09);
+}
+.container .content .body .scroll-view .module .module-content .module-header .module-title .icon.icon-position {
+  background-image: -webkit-linear-gradient(left, #5DFF71, #35DC04);
+}
+.container .content .body .scroll-view .module .module-content .module-header .module-title .text {
+  display: inline-block;
+  vertical-align: middle;
+  padding-left: 16rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.container .content .body .scroll-view .module .module-content .module-body .module-context {
+  min-height: 400rpx;
+}
+.container .content .body .scroll-view .module .module-content .module-body .module-context .banner .swiper {
   height: 480rpx;
 }
-.container .content .body .module .banner .swiper .swiper-img {
+.container .content .body .scroll-view .module .module-content .module-body .module-context .banner .swiper .swiper-img {
   width: 100%;
   height: 100%;
 }
-.container .content .body .module .banner .swiper-code {
+.container .content .body .scroll-view .module .module-content .module-body .module-context .banner .swiper-code {
   position: absolute;
   left: 0;
   bottom: 20rpx;
   text-align: center;
   font-size: 0;
 }
-.container .content .body .module .banner .swiper-code .swiper-text {
+.container .content .body .scroll-view .module .module-content .module-body .module-context .banner .swiper-code .swiper-text {
   height: 40rpx;
   line-height: 40rpx;
   min-width: 100rpx;
@@ -34,8 +80,8 @@
   font-size: 24rpx;
   color: #ffffff;
 }
-.container .content .body .module .banner .btn-favorite,
-.container .content .body .module .banner .btn-share {
+.container .content .body .scroll-view .module .module-content .module-body .module-context .banner .btn-favorite,
+.container .content .body .scroll-view .module .module-content .module-body .module-context .banner .btn-share {
   width: 80rpx;
   height: 80rpx;
   border-radius: 80rpx;
@@ -47,35 +93,35 @@
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
   text-align: center;
 }
-.container .content .body .module .banner .btn-favorite.btn-favorite,
-.container .content .body .module .banner .btn-share.btn-favorite {
+.container .content .body .scroll-view .module .module-content .module-body .module-context .banner .btn-favorite.btn-favorite,
+.container .content .body .scroll-view .module .module-content .module-body .module-context .banner .btn-share.btn-favorite {
   right: 120rpx;
 }
-.container .content .body .module .banner .btn-favorite.btn-share,
-.container .content .body .module .banner .btn-share.btn-share {
+.container .content .body .scroll-view .module .module-content .module-body .module-context .banner .btn-favorite.btn-share,
+.container .content .body .scroll-view .module .module-content .module-body .module-context .banner .btn-share.btn-share {
   right: 30rpx;
 }
-.container .content .body .module .banner .btn-favorite .iconfont,
-.container .content .body .module .banner .btn-share .iconfont {
+.container .content .body .scroll-view .module .module-content .module-body .module-context .banner .btn-favorite .iconfont,
+.container .content .body .scroll-view .module .module-content .module-body .module-context .banner .btn-share .iconfont {
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
   font-size: 40rpx;
 }
-.container .content .body .module .banner .btn-favorite .iconfont.icon-favorite-off,
-.container .content .body .module .banner .btn-share .iconfont.icon-favorite-off {
+.container .content .body .scroll-view .module .module-content .module-body .module-context .banner .btn-favorite .iconfont.icon-favorite-off,
+.container .content .body .scroll-view .module .module-content .module-body .module-context .banner .btn-share .iconfont.icon-favorite-off {
   background-image: -webkit-linear-gradient(left, #FF2714, #FF841D);
 }
-.container .content .body .module .banner .btn-favorite .iconfont.icon-share,
-.container .content .body .module .banner .btn-share .iconfont.icon-share {
+.container .content .body .scroll-view .module .module-content .module-body .module-context .banner .btn-favorite .iconfont.icon-share,
+.container .content .body .scroll-view .module .module-content .module-body .module-context .banner .btn-share .iconfont.icon-share {
   background-image: -webkit-linear-gradient(left, #00FF00, #12B347);
 }
-.container .content .body .module .product {
+.container .content .body .scroll-view .module .module-content .module-body .module-context .product {
   padding: 30rpx 0;
 }
-.container .content .body .module .product .row {
+.container .content .body .scroll-view .module .module-content .module-body .module-context .product .row {
   line-height: 40rpx;
 }
-.container .content .body .module .product .row .col-12 .product-title {
+.container .content .body .scroll-view .module .module-content .module-body .module-context .product .row .col-12 .product-title {
   line-height: 60rpx;
   padding: 0 30rpx;
   margin-bottom: 30rpx;
@@ -83,83 +129,123 @@
   font-weight: bold;
   color: #333333;
 }
-.container .content .body .module .product .row .col-4 {
+.container .content .body .scroll-view .module .module-content .module-body .module-context .product .row .col-4 {
   padding-bottom: 20rpx;
   text-align: center;
 }
-.container .content .body .module .product .row .col-4 .value {
+.container .content .body .scroll-view .module .module-content .module-body .module-context .product .row .col-4 .value {
   margin-bottom: 20rpx;
   font-size: 36rpx;
   font-weight: bold;
   color: #F40505;
 }
-.container .content .body .module .product .row .col-4 .label {
+.container .content .body .scroll-view .module .module-content .module-body .module-context .product .row .col-4 .label {
   font-size: 24rpx;
   color: #999999;
 }
-.container .content .body .module .product .row .col-6 {
+.container .content .body .scroll-view .module .module-content .module-body .module-context .product .row .col-6 {
   height: 60rpx;
   line-height: 60rpx;
   padding: 0 30rpx;
   font-size: 28rpx;
 }
-.container .content .body .module .product .row .col-6 .label {
+.container .content .body .scroll-view .module .module-content .module-body .module-context .product .row .col-6 .label {
   margin-right: 20rpx;
   color: #999999;
 }
-.container .content .body .module .title {
-  height: 90rpx;
-  line-height: 90rpx;
-  border-bottom: 0.5px solid #f0f0f0;
-  padding: 0 30rpx;
-  font-size: 0;
-}
-.container .content .body .module .title .icon {
-  display: inline-block;
-  vertical-align: middle;
-  -webkit-text-fill-color: transparent;
-  -webkit-background-clip: text;
-  font-size: 46rpx;
-}
-.container .content .body .module .title .icon.icon-agent {
-  background-image: -webkit-linear-gradient(left, #FF841D, #FF2714);
-}
-.container .content .body .module .title .icon.icon-config {
-  background-image: -webkit-linear-gradient(left, #FFBA0B, #FFFF00);
-}
-.container .content .body .module .title .icon.icon-position {
-  background-image: -webkit-linear-gradient(left, #060BFF, #17F2FF);
-}
-.container .content .body .module .title .text {
-  display: inline-block;
-  vertical-align: middle;
-  padding-left: 16rpx;
-  font-size: 32rpx;
-  font-weight: bold;
-}
-.container .content .body .module .context {
-  min-height: 400rpx;
-}
-.container .content .body .module .context .items {
+.container .content .body .scroll-view .module .module-content .module-body .module-context .items {
   padding-bottom: 30rpx;
   text-align: center;
 }
-.container .content .body .module .context .items .item {
+.container .content .body .scroll-view .module .module-content .module-body .module-context .items .item {
   width: 20%;
+  position: relative;
   padding-top: 30rpx;
   color: #333333;
 }
-.container .content .body .module .context .items .item .item-icon {
+.container .content .body .scroll-view .module .module-content .module-body .module-context .items .item .item-icon {
   height: 60rpx;
   line-height: 60rpx;
   font-size: 60rpx;
   margin-bottom: 10rpx;
 }
-.container .content .body .module .context .items .item .item-label {
+.container .content .body .scroll-view .module .module-content .module-body .module-context .items .item .item-label {
   display: block;
   height: 40rpx;
   line-height: 40rpx;
   font-size: 24rpx;
+}
+.container .content .body .scroll-view .module .module-content .module-body .module-context .map-container {
+  padding: 30rpx;
+}
+.container .content .body .scroll-view .module .module-content .module-body .module-context .map-container map {
+  width: 100%;
+  height: 400rpx;
+}
+.container .content .body .scroll-view .module .module-content .module-body .module-context .agent-box {
+  padding: 20rpx 0;
+}
+.container .content .body .scroll-view .module .module-content .module-body .module-context .agent-box .agent-item {
+  padding: 0 30rpx;
+  font-size: 0;
+}
+.container .content .body .scroll-view .module .module-content .module-body .module-context .agent-box .agent-item .agent-inner {
+  position: relative;
+  padding: 20rpx 0;
+}
+.container .content .body .scroll-view .module .module-content .module-body .module-context .agent-box .agent-item .agent-img {
+  width: auto;
+  display: inline-block;
+  vertical-align: middle;
+}
+.container .content .body .scroll-view .module .module-content .module-body .module-context .agent-box .agent-item .agent-img image {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 100%;
+  background-color: #ffffff;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+}
+.container .content .body .scroll-view .module .module-content .module-body .module-context .agent-box .agent-item .agent-info {
+  width: auto;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 40rpx;
+  padding-left: 30rpx;
+}
+.container .content .body .scroll-view .module .module-content .module-body .module-context .agent-box .agent-item .agent-info .agent-name {
+  font-size: 32rpx;
+  color: #333333;
+}
+.container .content .body .scroll-view .module .module-content .module-body .module-context .agent-box .agent-item .agent-info .agent-phone {
+  font-size: 28rpx;
+  color: #999999;
+}
+.container .content .body .scroll-view .module .module-content .module-body .module-context .agent-box .agent-item .agent-info .agent-btns {
+  width: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 30rpx 0;
+  font-size: 0;
+}
+.container .content .body .scroll-view .module .module-content .module-body .module-context .agent-box .agent-item .agent-info .agent-btns .btn-icon {
+  width: 80rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 30rpx;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  font-size: 46rpx;
+  text-align: center;
+}
+.container .content .body .scroll-view .module .module-content .module-body .module-context .agent-box .agent-item .agent-info .agent-btns .btn-icon.icon-msg {
+  background-image: -webkit-linear-gradient(left, #FFDB40, #FF9C09);
+}
+.container .content .body .scroll-view .module .module-content .module-body .module-context .agent-box .agent-item .agent-info .agent-btns .btn-icon.icon-tel {
+  margin: 0;
+  background-image: -webkit-linear-gradient(left, #5DFF71, #35DC04);
 }
 .container .content .footer {
   display: flex;
@@ -184,8 +270,11 @@
   height: 70rpx;
   display: inline-block;
   vertical-align: middle;
+}
+.container .content .footer .pull-left .agent .agent-img image {
+  width: 100%;
+  height: 100%;
   border-radius: 100%;
-  background-color: #cccccc;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
 }
 .container .content .footer .pull-left .agent .agent-name {
