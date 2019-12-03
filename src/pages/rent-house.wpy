@@ -2,251 +2,29 @@
   <div class="container">
     <div class="content">
       <div class="header">
-        <top-bar title="租房列表"></top-bar>
+        <top-bar title="房屋列表"></top-bar>
         <div class="tab-bar">
-          <div class="tab-item">
+          <div v-for="(tab,index) in tabs"
+               class="tab-item"
+               :class="{'active':tabIndex===index}"
+               @tap="onHandleTab(index)">
             <div class="tab-text">
-              <span class="tab-label">价格</span>
-              <span class="tab-triangle"></span>
-            </div>
-          </div>
-          <div class="tab-item">
-            <div class="tab-text">
-              <span class="tab-label">筛选</span>
-              <span class="tab-triangle"></span>
-            </div>
-          </div>
-          <div class="tab-item">
-            <div class="tab-text">
-              <span class="tab-label">排序</span>
+              <span class="tab-label">{{tab.label}}</span>
               <span class="tab-triangle"></span>
             </div>
           </div>
         </div>
       </div>
       <div class="body">
-        <scroll-view class="scroll-view" scroll-y="{{true}}">
-          <div class="item">
+        <scroll-view
+          class="scroll-view"
+          scroll-y="{{true}}">
+          <div class="item"
+               v-for="item in items"
+               @tap="onHandleDetail(item.id)">
             <div class="item-inner">
               <div class="item-img">
-                <img src="../assets/images/item2.jpg"/>
-              </div>
-              <div class="item-info">
-                <div class="item-row">
-                  <div class="item-title ellipsis">碧桂园 南向两居室 精装 拎包入住</div>
-                </div>
-                <div class="item-row">
-                  <span class="item-addr">广德城区</span>
-                  <span class="item-split"></span>
-                  <span class="item-addr">广德碧桂园</span>
-                </div>
-                <div class="item-row">
-                  <span class="item-normal item-price">
-                    <span class="item-value">1800</span>
-                    <span class="item-unit">元/月</span>
-                  </span>
-                  <span class="item-normal">2室1厅1卫</span>
-                  <span class="item-normal">整租</span>
-                  <span class="item-normal">70m²</span>
-                </div>
-                <div class="item-row">
-                  <span class="item-tag">南北通透</span>
-                  <span class="item-tag">精装修</span>
-                  <span class="item-tag">随时看房</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item-inner">
-              <div class="item-img">
-                <img src="../assets/images/item2.jpg"/>
-              </div>
-              <div class="item-info">
-                <div class="item-row">
-                  <div class="item-title ellipsis">碧桂园 南向两居室 精装 拎包入住</div>
-                </div>
-                <div class="item-row">
-                  <span class="item-addr">广德城区</span>
-                  <span class="item-split"></span>
-                  <span class="item-addr">广德碧桂园</span>
-                </div>
-                <div class="item-row">
-                  <span class="item-normal item-price">
-                    <span class="item-value">1800</span>
-                    <span class="item-unit">元/月</span>
-                  </span>
-                  <span class="item-normal">2室1厅1卫</span>
-                  <span class="item-normal">整租</span>
-                  <span class="item-normal">70m²</span>
-                </div>
-                <div class="item-row">
-                  <span class="item-tag">南北通透</span>
-                  <span class="item-tag">精装修</span>
-                  <span class="item-tag">随时看房</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item-inner">
-              <div class="item-img">
-                <img src="../assets/images/item2.jpg"/>
-              </div>
-              <div class="item-info">
-                <div class="item-row">
-                  <div class="item-title ellipsis">碧桂园 南向两居室 精装 拎包入住</div>
-                </div>
-                <div class="item-row">
-                  <span class="item-addr">广德城区</span>
-                  <span class="item-split"></span>
-                  <span class="item-addr">广德碧桂园</span>
-                </div>
-                <div class="item-row">
-                  <span class="item-normal item-price">
-                    <span class="item-value">1800</span>
-                    <span class="item-unit">元/月</span>
-                  </span>
-                  <span class="item-normal">2室1厅1卫</span>
-                  <span class="item-normal">整租</span>
-                  <span class="item-normal">70m²</span>
-                </div>
-                <div class="item-row">
-                  <span class="item-tag">南北通透</span>
-                  <span class="item-tag">精装修</span>
-                  <span class="item-tag">随时看房</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item-inner">
-              <div class="item-img">
-                <img src="../assets/images/item2.jpg"/>
-              </div>
-              <div class="item-info">
-                <div class="item-row">
-                  <div class="item-title ellipsis">碧桂园 南向两居室 精装 拎包入住</div>
-                </div>
-                <div class="item-row">
-                  <span class="item-addr">广德城区</span>
-                  <span class="item-split"></span>
-                  <span class="item-addr">广德碧桂园</span>
-                </div>
-                <div class="item-row">
-                  <span class="item-normal item-price">
-                    <span class="item-value">1800</span>
-                    <span class="item-unit">元/月</span>
-                  </span>
-                  <span class="item-normal">2室1厅1卫</span>
-                  <span class="item-normal">整租</span>
-                  <span class="item-normal">70m²</span>
-                </div>
-                <div class="item-row">
-                  <span class="item-tag">南北通透</span>
-                  <span class="item-tag">精装修</span>
-                  <span class="item-tag">随时看房</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item-inner">
-              <div class="item-img">
-                <img src="../assets/images/item2.jpg"/>
-              </div>
-              <div class="item-info">
-                <div class="item-row">
-                  <div class="item-title ellipsis">碧桂园 南向两居室 精装 拎包入住</div>
-                </div>
-                <div class="item-row">
-                  <span class="item-addr">广德城区</span>
-                  <span class="item-split"></span>
-                  <span class="item-addr">广德碧桂园</span>
-                </div>
-                <div class="item-row">
-                  <span class="item-normal item-price">
-                    <span class="item-value">1800</span>
-                    <span class="item-unit">元/月</span>
-                  </span>
-                  <span class="item-normal">2室1厅1卫</span>
-                  <span class="item-normal">整租</span>
-                  <span class="item-normal">70m²</span>
-                </div>
-                <div class="item-row">
-                  <span class="item-tag">南北通透</span>
-                  <span class="item-tag">精装修</span>
-                  <span class="item-tag">随时看房</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item-inner">
-              <div class="item-img">
-                <img src="../assets/images/item2.jpg"/>
-              </div>
-              <div class="item-info">
-                <div class="item-row">
-                  <div class="item-title ellipsis">碧桂园 南向两居室 精装 拎包入住</div>
-                </div>
-                <div class="item-row">
-                  <span class="item-addr">广德城区</span>
-                  <span class="item-split"></span>
-                  <span class="item-addr">广德碧桂园</span>
-                </div>
-                <div class="item-row">
-                  <span class="item-normal item-price">
-                    <span class="item-value">1800</span>
-                    <span class="item-unit">元/月</span>
-                  </span>
-                  <span class="item-normal">2室1厅1卫</span>
-                  <span class="item-normal">整租</span>
-                  <span class="item-normal">70m²</span>
-                </div>
-                <div class="item-row">
-                  <span class="item-tag">南北通透</span>
-                  <span class="item-tag">精装修</span>
-                  <span class="item-tag">随时看房</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item-inner">
-              <div class="item-img">
-                <img src="../assets/images/item2.jpg"/>
-              </div>
-              <div class="item-info">
-                <div class="item-row">
-                  <div class="item-title ellipsis">碧桂园 南向两居室 精装 拎包入住</div>
-                </div>
-                <div class="item-row">
-                  <span class="item-addr">广德城区</span>
-                  <span class="item-split"></span>
-                  <span class="item-addr">广德碧桂园</span>
-                </div>
-                <div class="item-row">
-                  <span class="item-normal item-price">
-                    <span class="item-value">1800</span>
-                    <span class="item-unit">元/月</span>
-                  </span>
-                  <span class="item-normal">2室1厅1卫</span>
-                  <span class="item-normal">整租</span>
-                  <span class="item-normal">70m²</span>
-                </div>
-                <div class="item-row">
-                  <span class="item-tag">南北通透</span>
-                  <span class="item-tag">精装修</span>
-                  <span class="item-tag">随时看房</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item-inner">
-              <div class="item-img">
-                <img src="../assets/images/item2.jpg"/>
+                <img src="{{item.url}}"/>
               </div>
               <div class="item-info">
                 <div class="item-row">
@@ -276,6 +54,17 @@
           </div>
         </scroll-view>
       </div>
+      <div class="modal" :class="{'hide':!isShow}">
+        <div class="modal-bg" @tap="onHandleModal"></div>
+        <div class="modal-content">
+          <div class="modal-header"></div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <div class="btn btn-clear">清空</div>
+            <div class="btn btn-confirm">确定</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -284,17 +73,87 @@
   import wepy from '@wepy/core';
   // import {mapState} from '@wepy/redux';
   import store from '../store';
+  import * as $routes from '../router';
 
   wepy.page({
     store,
 
     mixins: [],
 
-    data: {},
+    data: {
+      tabIndex: -1,
+      tabs: [
+        {
+          label: '价格'
+        },
+        {
+          label: '筛选'
+        },
+        {
+          label: '排序'
+        }
+      ],
+      isShow: false,
+      items: [
+        {
+          id: 1001,
+          url: '../assets/images/item2.jpg'
+        },
+        {
+          id: 1001,
+          url: '../assets/images/item2.jpg'
+        },
+        {
+          id: 1001,
+          url: '../assets/images/item2.jpg'
+        },
+        {
+          id: 1001,
+          url: '../assets/images/item2.jpg'
+        },
+        {
+          id: 1001,
+          url: '../assets/images/item2.jpg'
+        },
+        {
+          id: 1001,
+          url: '../assets/images/item2.jpg'
+        },
+        {
+          id: 1001,
+          url: '../assets/images/item2.jpg'
+        },
+        {
+          id: 1001,
+          url: '../assets/images/item2.jpg'
+        },
+        {
+          id: 1001,
+          url: '../assets/images/item2.jpg'
+        },
+        {
+          id: 1001,
+          url: '../assets/images/item2.jpg'
+        }
+      ]
+    },
 
     computed: {},
-
-    methods: {},
+    methods: {
+      onHandleTab(index) {
+        this.isShow = true;
+        this.tabIndex = index;
+      },
+      onHandleDetail(id) {
+        wx.navigateTo({
+          url: $routes.DETAIL.path
+        });
+      },
+      onHandleModal() {
+        this.isShow = false;
+        this.tabIndex = -1;
+      }
+    },
 
     created() {
     }
@@ -342,20 +201,15 @@
                   border-top: unit(12, rpx) solid @fontColor1;
                   border-left: unit(8, rpx) solid transparent;
                   border-right: unit(8, rpx) solid transparent;
+                  transition: all 300ms ease;
                 }
               }
             }
             &.active {
               color: @activeColor;
-              &:after {
-                content: '';
-                display: block;
-                position: absolute;
-                width: unit(120, rpx);
-                left: 50%;
-                bottom: 0;
-                margin-left: unit(-60, rpx);
-                border-top: unit(6, rpx) solid @activeColor;
+              .tab-triangle {
+                transform: rotate(180deg);
+                border-top-color: @activeColor !important;
               }
             }
             &:last-child {
@@ -484,6 +338,69 @@
             }
           }
         }
+      }
+    }
+  }
+
+  .modal {
+    .modal-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 998;
+      transition: all 300ms ease-out;
+      background-color: rgba(0, 0, 0, .5);
+    }
+    .modal-content {
+      position: fixed;
+      top: unit(210, rpx);
+      left: 0;
+      z-index: 999;
+      width: 100%;
+      height: unit(600, rpx);
+      background-color: @white;
+      transition: all 300ms ease-out;
+      box-shadow: 0 0 15px @boxShadow2;
+      .modal-header {
+      }
+      .modal-body {
+      }
+      .modal-footer {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        text-align: center;
+        .btn {
+          height: unit(100, rpx);
+          line-height: unit(100, rpx);
+          font-size: @fontSize5;
+          letter-spacing: 1px;
+          color: @white;
+          &.btn-clear {
+            width: 35%;
+            color: @fontColor2;
+            border-top: 0.5px solid @borderColor1;
+          }
+          &.btn-confirm {
+            width: 65%;
+            background: -webkit-linear-gradient(left, #FFBB1D, #F2890B);
+          }
+        }
+      }
+    }
+    &.hide {
+      .modal-bg {
+        opacity: 0;
+        visibility: hidden;
+      }
+      .modal-content {
+        visibility: hidden;
+        transform: translateY(unit(-600, rpx));
       }
     }
   }

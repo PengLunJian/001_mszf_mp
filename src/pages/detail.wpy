@@ -5,7 +5,9 @@
         <top-bar title="房源详情"></top-bar>
       </div>
       <div class="body">
-        <scroll-view class="scroll-view" scroll-y="{{true}}">
+        <scroll-view
+          class="scroll-view"
+          scroll-y="{{true}}">
           <div class="module">
             <div class="module-content">
               <div class="module-header"></div>
@@ -112,7 +114,7 @@
                     <div class="agent-item">
                       <div class="agent-inner">
                         <div class="agent-img">
-                          <img src="../assets/images/item1.jpg"/>
+                          <img src="../assets/images/agent.jpg"/>
                         </div>
                         <div class="agent-info">
                           <div class="agent-name">大前端</div>
@@ -127,7 +129,7 @@
                     <div class="agent-item">
                       <div class="agent-inner">
                         <div class="agent-img">
-                          <img src="../assets/images/item1.jpg"/>
+                          <img src="../assets/images/agent.jpg"/>
                         </div>
                         <div class="agent-info">
                           <div class="agent-name">大前端</div>
@@ -142,7 +144,7 @@
                     <div class="agent-item">
                       <div class="agent-inner">
                         <div class="agent-img">
-                          <img src="../assets/images/item1.jpg"/>
+                          <img src="../assets/images/agent.jpg"/>
                         </div>
                         <div class="agent-info">
                           <div class="agent-name">大前端</div>
@@ -263,9 +265,9 @@
         <div class="pull-left">
           <div class="agent">
             <div class="agent-img">
-              <img src="../assets/images/item1.jpg"/>
+              <img src="../assets/images/agent.jpg"/>
             </div>
-            <div class="agent-name">大前端</div>
+            <div class="agent-name">正经人</div>
           </div>
         </div>
         <div class="pull-right row">
@@ -309,7 +311,7 @@
           width: 30,
           height: 30,
           label: {
-            content: '怡红院',
+            content: 'I want to pa pa pa~',
             padding: 10,
             anchorX: 20,
             anchorY: -35,
@@ -380,7 +382,7 @@
                       background-image: -webkit-linear-gradient(left, #FFDB40, #FF9C09);
                     }
                     &.icon-position {
-                      background-image: -webkit-linear-gradient(left, #5DFF71, #35DC04);
+                      background-image: -webkit-linear-gradient(left, #17F2FF, #060BFF);
                     }
                   }
                   .text {
@@ -561,7 +563,7 @@
                           position: absolute;
                           top: 0;
                           right: 0;
-                          padding: unit(30, rpx) 0;
+                          padding: unit(20, rpx) 0;
                           font-size: 0;
                           .btn-icon {
                             width: unit(80, rpx);
@@ -643,10 +645,10 @@
             text-align: center;
             color: @white;
             &.btn-msg {
-              background-color: #FF8C00;
+              background: -webkit-linear-gradient(left, #FFBB1D, #F2890B);
             }
             &.btn-tel {
-              background-color: #009966;
+              background: -webkit-linear-gradient(left, #59D96D, #35D204);
             }
             .btn-icon {
               display: inline-block;

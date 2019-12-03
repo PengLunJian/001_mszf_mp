@@ -25,7 +25,7 @@ _core["default"].page({
       width: 30,
       height: 30,
       label: {
-        content: '怡红院',
+        content: 'I want to pa pa pa~',
         padding: 10,
         anchorX: 20,
         anchorY: -35,
@@ -43,7 +43,7 @@ _core["default"].page({
     }
   },
   created: function created() {}
-}, {info: {"components":{"top-bar":{"path":"..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'9-89': {"tap": function proxy () {
+}, {info: {"components":{"top-bar":{"path":"..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'9-25': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {

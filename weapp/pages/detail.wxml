@@ -110,7 +110,7 @@
                   <view class="agent-item">
                     <view class="agent-inner">
                       <view class="agent-img">
-                        <image src="../assets/images/item1.jpg"></image>
+                        <image src="../assets/images/agent.jpg"></image>
                       </view>
                       <view class="agent-info">
                         <view class="agent-name">大前端</view>
@@ -125,7 +125,7 @@
                   <view class="agent-item">
                     <view class="agent-inner">
                       <view class="agent-img">
-                        <image src="../assets/images/item1.jpg"></image>
+                        <image src="../assets/images/agent.jpg"></image>
                       </view>
                       <view class="agent-info">
                         <view class="agent-name">大前端</view>
@@ -140,7 +140,7 @@
                   <view class="agent-item">
                     <view class="agent-inner">
                       <view class="agent-img">
-                        <image src="../assets/images/item1.jpg"></image>
+                        <image src="../assets/images/agent.jpg"></image>
                       </view>
                       <view class="agent-info">
                         <view class="agent-name">大前端</view>
@@ -242,7 +242,7 @@
             <view class="module-body">
               <view class="module-context">
                 <view class="map-container">
-                  <map longitude="{{longitude}}" latitude="{{latitude}}" enable-zoom="{{enableZoom}}" enable-scroll="{{enableScroll}}" markers="{{markers}}" data-wpy-evt="9-89" bindtap="_proxy" class="map"></map>
+                  <map longitude="{{longitude}}" latitude="{{latitude}}" enable-zoom="{{enableZoom}}" enable-scroll="{{enableScroll}}" markers="{{markers}}" data-wpy-evt="9-25" bindtap="_proxy" class="map"></map>
                 </view>
               </view>
             </view>
@@ -255,9 +255,9 @@
       <view class="pull-left">
         <view class="agent">
           <view class="agent-img">
-            <image src="../assets/images/item1.jpg"></image>
+            <image src="../assets/images/agent.jpg"></image>
           </view>
-          <view class="agent-name">大前端</view>
+          <view class="agent-name">正经人</view>
         </view>
       </view>
       <view class="pull-right row">

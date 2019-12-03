@@ -3,31 +3,31 @@
 exports.__esModule = true;
 exports.default = createActions;
 
-var _invariant = _interopRequireDefault(__wepy_require(35));
+var _invariant = _interopRequireDefault(__wepy_require(33));
 
-var _isPlainObject = _interopRequireDefault(__wepy_require(12));
+var _isPlainObject = _interopRequireDefault(__wepy_require(14));
 
-var _isFunction = _interopRequireDefault(__wepy_require(9));
+var _isFunction = _interopRequireDefault(__wepy_require(8));
 
-var _identity = _interopRequireDefault(__wepy_require(13));
+var _identity = _interopRequireDefault(__wepy_require(12));
 
-var _isArray = _interopRequireDefault(__wepy_require(14));
+var _isArray = _interopRequireDefault(__wepy_require(15));
 
-var _isString = _interopRequireDefault(__wepy_require(10));
+var _isString = _interopRequireDefault(__wepy_require(11));
 
-var _isNil = _interopRequireDefault(__wepy_require(15));
+var _isNil = _interopRequireDefault(__wepy_require(16));
 
-var _getLastElement = _interopRequireDefault(__wepy_require(16));
+var _getLastElement = _interopRequireDefault(__wepy_require(17));
 
 var _camelCase = _interopRequireDefault(__wepy_require(42));
 
-var _arrayToObject = _interopRequireDefault(__wepy_require(17));
+var _arrayToObject = _interopRequireDefault(__wepy_require(18));
 
 var _flattenActionMap = _interopRequireDefault(__wepy_require(25));
 
-var _unflattenActionCreators = _interopRequireDefault(__wepy_require(18));
+var _unflattenActionCreators = _interopRequireDefault(__wepy_require(19));
 
-var _createAction = _interopRequireDefault(__wepy_require(34));
+var _createAction = _interopRequireDefault(__wepy_require(31));
 
 var _constants = __wepy_require(6);
 

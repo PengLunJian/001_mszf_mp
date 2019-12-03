@@ -43,7 +43,7 @@
   background-image: -webkit-linear-gradient(left, #FFDB40, #FF9C09);
 }
 .container .content .body .scroll-view .module .module-content .module-header .module-title .icon.icon-position {
-  background-image: -webkit-linear-gradient(left, #5DFF71, #35DC04);
+  background-image: -webkit-linear-gradient(left, #17F2FF, #060BFF);
 }
 .container .content .body .scroll-view .module .module-content .module-header .module-title .text {
   display: inline-block;
@@ -225,7 +225,7 @@
   position: absolute;
   top: 0;
   right: 0;
-  padding: 30rpx 0;
+  padding: 20rpx 0;
   font-size: 0;
 }
 .container .content .body .scroll-view .module .module-content .module-body .module-context .agent-box .agent-item .agent-info .agent-btns .btn-icon {
@@ -298,10 +298,10 @@
   color: #ffffff;
 }
 .container .content .footer .pull-right .btn.btn-msg {
-  background-color: #FF8C00;
+  background: -webkit-linear-gradient(left, #FFBB1D, #F2890B);
 }
 .container .content .footer .pull-right .btn.btn-tel {
-  background-color: #009966;
+  background: -webkit-linear-gradient(left, #59D96D, #35D204);
 }
 .container .content .footer .pull-right .btn .btn-icon {
   display: inline-block;

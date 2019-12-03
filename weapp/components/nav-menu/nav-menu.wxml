@@ -1,27 +1,27 @@
 
 <view class="nav-menu">
-  <view class="nav-col">
+  <navigator hover-class="none" url="/pages/rent-house" class="nav-col">
     <view class="nav-item">
       <image src="../../assets/images/house.png" title="租房" class="nav-img"></image>
       <label class="nav-title">租房</label>
     </view>
-  </view>
-  <view class="nav-col">
+  </navigator>
+  <navigator hover-class="none" url="/pages/rent-house" class="nav-col">
     <view class="nav-item">
       <image src="../../assets/images/house.png" title="租房" class="nav-img"></image>
       <label class="nav-title">二手房</label>
     </view>
-  </view>
-  <view class="nav-col">
+  </navigator>
+  <navigator hover-class="none" url="/pages/rent-house" class="nav-col">
     <view class="nav-item">
       <image src="../../assets/images/house.png" title="租房" class="nav-img"></image>
       <label class="nav-title">新房</label>
     </view>
-  </view>
-  <view class="nav-col">
+  </navigator>
+  <navigator hover-class="none" url="/pages/rent-house" class="nav-col">
     <view class="nav-item">
       <image src="../../assets/images/house.png" title="租房" class="nav-img"></image>
       <label class="nav-title">算房贷</label>
     </view>
-  </view>
+  </navigator>
 </view>

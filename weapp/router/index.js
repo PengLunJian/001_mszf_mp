@@ -3,7 +3,12 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ABOUT = exports.RELEASE = exports.HISTORY = exports.LIKE = exports.MINE = void 0;
+exports.DETAIL = exports.LIST = exports.ABOUT = exports.RELEASE = exports.HISTORY = exports.LIKE = exports.MINE = exports.INDEX = void 0;
+var INDEX = {
+  name: '首页',
+  path: '/pages/index'
+};
+exports.INDEX = INDEX;
 var MINE = {
   name: '个人中心',
   path: '/pages/mine'
@@ -29,3 +34,13 @@ var ABOUT = {
   path: '/pages/about'
 };
 exports.ABOUT = ABOUT;
+var LIST = {
+  name: '房屋列表',
+  path: '/pages/rent-house'
+};
+exports.LIST = LIST;
+var DETAIL = {
+  name: '房源详情',
+  path: '/pages/detail'
+};
+exports.DETAIL = DETAIL;

@@ -5,9 +5,9 @@ exports.default = handleActions;
 
 var _reduceReducers = _interopRequireDefault(__wepy_require(37));
 
-var _invariant = _interopRequireDefault(__wepy_require(35));
+var _invariant = _interopRequireDefault(__wepy_require(33));
 
-var _isPlainObject = _interopRequireDefault(__wepy_require(12));
+var _isPlainObject = _interopRequireDefault(__wepy_require(14));
 
 var _isMap = _interopRequireDefault(__wepy_require(22));
 
@@ -15,7 +15,7 @@ var _ownKeys = _interopRequireDefault(__wepy_require(21));
 
 var _flattenReducerMap = _interopRequireDefault(__wepy_require(27));
 
-var _handleAction = _interopRequireDefault(__wepy_require(33));
+var _handleAction = _interopRequireDefault(__wepy_require(32));
 
 var _get = _interopRequireDefault(__wepy_require(23));
 

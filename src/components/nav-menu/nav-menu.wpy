@@ -1,29 +1,37 @@
 <template>
   <div class="nav-menu">
-    <div class="nav-col">
+    <navigator class="nav-col"
+               hover-class="none"
+               url="/pages/rent-house">
       <div class="nav-item">
         <img class="nav-img" src="../../assets/images/house.png" title="租房"/>
         <span class="nav-title">租房</span>
       </div>
-    </div>
-    <div class="nav-col">
+    </navigator>
+    <navigator class="nav-col"
+               hover-class="none"
+               url="/pages/rent-house">
       <div class="nav-item">
         <img class="nav-img" src="../../assets/images/house.png" title="租房"/>
         <span class="nav-title">二手房</span>
       </div>
-    </div>
-    <div class="nav-col">
+    </navigator>
+    <navigator class="nav-col"
+               hover-class="none"
+               url="/pages/rent-house">
       <div class="nav-item">
         <img class="nav-img" src="../../assets/images/house.png" title="租房"/>
         <span class="nav-title">新房</span>
       </div>
-    </div>
-    <div class="nav-col">
+    </navigator>
+    <navigator class="nav-col"
+               hover-class="none"
+               url="/pages/rent-house">
       <div class="nav-item">
         <img class="nav-img" src="../../assets/images/house.png" title="租房"/>
         <span class="nav-title">算房贷</span>
       </div>
-    </div>
+    </navigator>
   </div>
 </template>
 <script type="text/ecmascript-6">
@@ -46,7 +54,7 @@
     padding: unit(40, rpx) unit(80, rpx);
     .nav-col {
       width: 50%;
-      padding: unit(40, rpx);
+      padding: unit(40, rpx) 0;
       .nav-item {
         width: unit(220, rpx);
         height: unit(220, rpx);

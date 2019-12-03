@@ -5,7 +5,7 @@
 }
 .nav-menu .nav-col {
   width: 50%;
-  padding: 40rpx;
+  padding: 40rpx 0;
 }
 .nav-menu .nav-col .nav-item {
   width: 220rpx;
