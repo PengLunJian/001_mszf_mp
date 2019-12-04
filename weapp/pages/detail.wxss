@@ -56,7 +56,7 @@
   min-height: 400rpx;
 }
 .container .content .body .scroll-view .module .module-content .module-body .module-context .banner .swiper {
-  height: 480rpx;
+  height: 520rpx;
 }
 .container .content .body .scroll-view .module .module-content .module-body .module-context .banner .swiper .swiper-img {
   width: 100%;

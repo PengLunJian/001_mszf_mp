@@ -7,7 +7,7 @@ exports.default = promiseMiddleware;
 
 var _isPromise = _interopRequireDefault(__wepy_require(2));
 
-var _fluxStandardAction = __wepy_require(29);
+var _fluxStandardAction = __wepy_require(25);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

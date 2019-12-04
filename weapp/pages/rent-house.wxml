@@ -4,7 +4,7 @@
     <view class="header">
       <top-bar bind_init="_initComponent" title="房屋列表"></top-bar>
       <view class="tab-bar">
-        <view wx:for="{{ tabs }}" wx:for-index="index" wx:for-item="tab" wx:key="index" data-wpy-evt="10-156" bindtap="_proxy" data-wpytap-a="{{ index }}" class="tab-item {{ [ tabIndex===index ? 'active' : '' ] }}">
+        <view wx:for="{{ tabs }}" wx:for-index="index" wx:for-item="tab" wx:key="index" data-wpy-evt="10-541" bindtap="_proxy" data-wpytap-a="{{ index }}" class="tab-item {{ [ tabIndex===index ? 'active' : '' ] }}">
           <view class="tab-text">
             <label class="tab-label">{{tab.label}}</label>
             <label class="tab-triangle"></label>
@@ -13,8 +13,8 @@
       </view>
     </view>
     <view class="body">
-      <scroll-view scroll-y="{{true}}" class="scroll-view">
-        <view wx:for="{{ items }}" wx:for-index="index" wx:for-item="item" wx:key="index" data-wpy-evt="10-157" bindtap="_proxy" data-wpytap-a="{{ item }}" class="item">
+      <scroll-view scroll-y="{{iSwitch}}" class="scroll-view">
+        <view wx:for="{{ items }}" wx:for-index="index" wx:for-item="item" wx:key="index" data-wpy-evt="10-542" bindtap="_proxy" data-wpytap-a="{{ item }}" class="item">
           <view class="item-inner">
             <view class="item-img">
               <image src="{{item.url}}"></image>
@@ -47,14 +47,92 @@
         </view>
       </scroll-view>
     </view>
-    <view class="modal {{ [ !isShow ? 'hide' : '' ] }}">
-      <view data-wpy-evt="10-158" bindtap="_proxy" class="modal-bg"></view>
-      <view class="modal-content">
-        <view class="modal-header"></view>
-        <view class="modal-body"></view>
-        <view class="modal-footer">
-          <view class="btn btn-clear">清空</view>
-          <view class="btn btn-confirm">确定</view>
+    <view class="footer">
+      <view class="modal {{ [ !tabs[0].isShow ? 'hide' : '' ] }}">
+        <view data-wpy-evt="10-543" bindtap="_proxy" class="modal-bg"></view>
+        <view class="modal-content">
+          <view class="modal-header"></view>
+          <view class="modal-body">
+            <scroll-view scroll-y="{{true}}" class="scroll-view">
+              <view class="modal-group">
+                <view class="modal-block border">
+                  <view class="modal-row row">
+                    <view class="modal-col col-4 active">
+                      <view class="btn-price">1000元以下</view>
+                    </view>
+                    <view class="modal-col col-4">
+                      <view class="btn-price">1000-2000元</view>
+                    </view>
+                    <view class="modal-col col-4">
+                      <view class="btn-price">2000-3000元</view>
+                    </view>
+                    <view class="modal-col col-4">
+                      <view class="btn-price">3000-4000元</view>
+                    </view>
+                    <view class="modal-col col-4">
+                      <view class="btn-price">4000-5000元</view>
+                    </view>
+                    <view class="modal-col col-4">
+                      <view class="btn-price">6000-7000元</view>
+                    </view>
+                    <view class="modal-col col-4">
+                      <view class="btn-price">7000-8000元</view>
+                    </view>
+                    <view class="modal-col col-4">
+                      <view class="btn-price">8000-9000元</view>
+                    </view>
+                    <view class="modal-col col-4">
+                      <view class="btn-price">9000-10000元</view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+              <view class="modal-group">
+                <view class="modal-block">
+                  <view class="modal-label row">
+                    <view class="min-price col-6">{{minLabel}}</view>
+                    <view class="max-price col-6">{{maxLabel}}</view>
+                  </view>
+                  <wux-slider bind_init="_initComponent" defaultValue="{{ [0, 10000] }}" min="0" step="10" max="10000" tipFormatter="" trackStyle="{{trackStyle}}" handleStyle="{{handleStyle}}" data-wpy-evt="10-544" bindchange="_proxy"></wux-slider>
+                </view>
+              </view>
+            </scroll-view>
+          </view>
+          <view class="modal-footer">
+            <view class="modal-button">
+              <view class="btn btn-clear">清空</view>
+              <view class="btn btn-confirm">确定</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="modal {{ [ !tabs[1].isShow ? 'hide' : '' ] }}">
+        <view data-wpy-evt="10-545" bindtap="_proxy" class="modal-bg"></view>
+        <view class="modal-content">
+          <view class="modal-header"></view>
+          <view class="modal-body">我是筛选弹窗</view>
+          <view class="modal-footer">
+            <view class="modal-button">
+              <view class="btn btn-clear">清空</view>
+              <view class="btn btn-confirm">确定</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="modal {{ [ !tabs[2].isShow ? 'hide' : '' ] }}">
+        <view data-wpy-evt="10-546" bindtap="_proxy" class="modal-bg"></view>
+        <view class="modal-content">
+          <view class="modal-header"></view>
+          <view class="modal-body">
+            <view class="modal-sort">
+              <view class="btn btn-sort">综合排序</view>
+              <view class="btn btn-sort">价格从低到高</view>
+              <view class="btn btn-sort">价格从高到底</view>
+              <view class="btn btn-sort">面积从小到大</view>
+              <view class="btn btn-sort">面积从大到小</view>
+            </view>
+          </view>
+          <view class="modal-footer"></view>
         </view>
       </view>
     </view>

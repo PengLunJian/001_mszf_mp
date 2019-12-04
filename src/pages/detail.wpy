@@ -399,7 +399,7 @@
                   min-height: unit(400, rpx);
                   .banner {
                     .swiper {
-                      height: unit(480, rpx);
+                      height: unit(520, rpx);
                       .swiper-img {
                         width: 100%;
                         height: 100%;

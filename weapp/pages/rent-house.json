@@ -1,7 +1,9 @@
 {
     "navigationStyle": "custom",
+    "disableScroll": true,
     "component": true,
     "usingComponents": {
-        "top-bar": "../components/top-bar/top-bar"
+        "top-bar": "../components/top-bar/top-bar",
+        "wux-slider": "../$vendor/wux-weapp/dist/slider/index"
     }
 }

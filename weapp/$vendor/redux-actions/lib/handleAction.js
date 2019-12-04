@@ -5,7 +5,7 @@ exports.default = handleAction;
 
 var _invariant = _interopRequireDefault(__wepy_require(33));
 
-var _isFunction = _interopRequireDefault(__wepy_require(8));
+var _isFunction = _interopRequireDefault(__wepy_require(7));
 
 var _isPlainObject = _interopRequireDefault(__wepy_require(14));
 
@@ -15,7 +15,7 @@ var _isNil = _interopRequireDefault(__wepy_require(16));
 
 var _isUndefined = _interopRequireDefault(__wepy_require(20));
 
-var _toString = _interopRequireDefault(__wepy_require(7));
+var _toString = _interopRequireDefault(__wepy_require(10));
 
 var _constants = __wepy_require(6);
 
