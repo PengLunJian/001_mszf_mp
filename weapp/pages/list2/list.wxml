@@ -1,0 +1,202 @@
+
+<view class="container">
+  <view class="content">
+    <view class="header">
+      <top-bar bind_init="_initComponent" title="房源列表"></top-bar>
+      <view class="tab-bar">
+        <view wx:for="{{ tabs }}" wx:for-index="index" wx:for-item="tab" wx:key="index" data-wpy-evt="6-8" bindtap="_proxy" data-wpytap-a="{{ index }}" class="tab-item {{ [ tabIndex===index ? 'active' : '' ] }}">
+          <view class="tab-text">
+            <label class="tab-label">{{tab.label}}</label>
+            <label class="tab-triangle"></label>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="body">
+      <scroll-view scroll-y="{{iSwitch}}" class="scroll-view">
+        <view wx:for="{{ items }}" wx:for-index="index" wx:for-item="item" wx:key="index" data-wpy-evt="6-9" bindtap="_proxy" data-wpytap-a="{{ item }}" class="item">
+          <view class="item-inner">
+            <view class="item-img">
+              <image src="{{item.url}}"></image>
+            </view>
+            <view class="item-info">
+              <view class="item-row">
+                <view class="item-title ellipsis">万象小区 南向两居室 精装 拎包入住</view>
+              </view>
+              <view class="item-row">
+                <label class="item-addr">广德城区</label>
+                <label class="item-split"></label>
+                <label class="item-addr">广德金峰万象小区</label>
+              </view>
+              <view class="item-row">
+                <label class="item-normal item-price">
+                  <label class="item-value">140</label>
+                  <label class="item-unit">万</label>
+                </label>
+                <label class="item-normal">2室1厅1卫</label>
+                <label class="item-normal">140m²</label>
+              </view>
+              <view class="item-row">
+                <label class="item-tag">南北通透</label>
+                <label class="item-tag">精装修</label>
+                <label class="item-tag">随时看房</label>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+    <view class="footer">
+      <view class="modal {{ [ !tabs[0].isShow ? 'hide' : '' ] }}">
+        <view data-wpy-evt="6-10" bindtap="_proxy" class="modal-bg"></view>
+        <view class="modal-content">
+          <view class="modal-header"></view>
+          <view class="modal-body">
+            <scroll-view scroll-y="{{true}}" class="scroll-view">
+              <view class="modal-group">
+                <view class="modal-block">
+                  <view class="modal-row row">
+                    <view wx:for="{{ btnPrice.items }}" wx:for-index="index" wx:for-item="item" wx:key="index" class="modal-col col-3 {{ [ index===btnPrice.initIndex ? 'active' : '' ] }}">
+                      <view data-wpy-evt="6-11" bindtap="_proxy" data-wpytap-a="{{ index }}" class="btn-item btn-price">{{item}}</view>
+                    </view>
+                  </view>
+                  <view class="modal-split"></view>
+                </view>
+              </view>
+              <view class="modal-group">
+                <view class="modal-block">
+                  <view class="modal-padding">
+                    <view class="modal-row row">
+                      <view class="min-label col-6">{{minPrice}}</view>
+                      <view class="max-label col-6">{{maxPrice}}</view>
+                    </view>
+                    <view class="modal-slider">
+                      <wux-slider bind_init="_initComponent" defaultValue="{{ [0, 1000] }}" min="0" step="10" max="1000" tipFormatter="" trackStyle="{{trackStylePrice}}" handleStyle="{{handleStylePrice}}" data-wpy-evt="6-12" bindchange="_proxy"></wux-slider>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </scroll-view>
+          </view>
+          <view class="modal-footer">
+            <view class="modal-button">
+              <view class="btn btn-clear">清空</view>
+              <view class="btn btn-confirm">确定</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="modal {{ [ !tabs[1].isShow ? 'hide' : '' ] }}">
+        <view data-wpy-evt="6-13" bindtap="_proxy" class="modal-bg"></view>
+        <view class="modal-content">
+          <view class="modal-header"></view>
+          <view class="modal-body">
+            <scroll-view scroll-y="{{true}}" class="scroll-view">
+              <view class="modal-group">
+                <view class="modal-block">
+                  <view class="modal-label">方式</view>
+                  <view class="modal-row row">
+                    <view class="modal-col col-3">
+                      <view class="btn-item btn-method">整租</view>
+                    </view>
+                    <view class="modal-col col-3">
+                      <view class="btn-item btn-method">合租</view>
+                    </view>
+                  </view>
+                  <view class="modal-split"></view>
+                </view>
+              </view>
+              <view class="modal-group">
+                <view class="modal-block">
+                  <view class="modal-label">户型</view>
+                  <view class="modal-row row">
+                    <view class="modal-col col-3">
+                      <view class="btn-item btn-layout">一室</view>
+                    </view>
+                    <view class="modal-col col-3">
+                      <view class="btn-item btn-layout">两室</view>
+                    </view>
+                    <view class="modal-col col-3">
+                      <view class="btn-item btn-layout">三室</view>
+                    </view>
+                    <view class="modal-col col-3">
+                      <view class="btn-item btn-layout">四室</view>
+                    </view>
+                    <view class="modal-col col-3">
+                      <view class="btn-item btn-layout">五室</view>
+                    </view>
+                    <view class="modal-col col-3">
+                      <view class="btn-item btn-layout">五室以上</view>
+                    </view>
+                  </view>
+                  <view class="modal-split"></view>
+                </view>
+              </view>
+              <view class="modal-group">
+                <view class="modal-block">
+                  <view class="modal-label">装修</view>
+                  <view class="modal-row row">
+                    <view class="modal-col col-3">
+                      <view class="btn-item btn-style">毛坯</view>
+                    </view>
+                    <view class="modal-col col-3">
+                      <view class="btn-item btn-style">简装</view>
+                    </view>
+                    <view class="modal-col col-3">
+                      <view class="btn-item btn-style">中装</view>
+                    </view>
+                    <view class="modal-col col-3">
+                      <view class="btn-item btn-style">精装</view>
+                    </view>
+                    <view class="modal-col col-3">
+                      <view class="btn-item btn-style">豪装</view>
+                    </view>
+                    <view class="modal-col col-3">
+                      <view class="btn-item btn-style">其他</view>
+                    </view>
+                  </view>
+                  <view class="modal-split"></view>
+                </view>
+              </view>
+              <view class="modal-group">
+                <view class="modal-block">
+                  <view class="modal-padding">
+                    <view class="modal-row row">
+                      <view class="min-label col-6">{{minArea}}</view>
+                      <view class="max-label col-6">{{maxArea}}</view>
+                    </view>
+                    <view class="modal-slider">
+                      <wux-slider bind_init="_initComponent" defaultValue="{{ [0, 300] }}" min="0" step="1" max="300" tipFormatter="" trackStyle="{{trackStyleArea}}" handleStyle="{{handleStyleArea}}" data-wpy-evt="6-14" bindchange="_proxy"></wux-slider>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </scroll-view>
+          </view>
+          <view class="modal-footer">
+            <view class="modal-button">
+              <view class="btn btn-clear">清空</view>
+              <view class="btn btn-confirm">确定</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="modal {{ [ !tabs[2].isShow ? 'hide' : '' ] }}">
+        <view data-wpy-evt="6-15" bindtap="_proxy" class="modal-bg"></view>
+        <view class="modal-content">
+          <view class="modal-header"></view>
+          <view class="modal-body">
+            <view class="modal-sort">
+              <view class="btn btn-sort">综合排序</view>
+              <view class="btn btn-sort">价格从低到高</view>
+              <view class="btn btn-sort">价格从高到底</view>
+              <view class="btn btn-sort">面积从小到大</view>
+              <view class="btn btn-sort">面积从大到小</view>
+            </view>
+          </view>
+          <view class="modal-footer"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

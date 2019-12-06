@@ -1,34 +1,32 @@
 <template>
   <div class="nav-menu">
-    <navigator class="nav-col"
-               hover-class="none"
-               url="/pages/rent-house">
+    <navigator class="nav-col" hover-class="none" url="/pages/list1/list">
       <div class="nav-item">
         <img class="nav-img" src="../../assets/images/house.png" title="租房"/>
         <span class="nav-title">租房</span>
       </div>
     </navigator>
-    <navigator class="nav-col"
-               hover-class="none"
-               url="/pages/rent-house">
+    <navigator class="nav-col" hover-class="none" url="/pages/list2/list">
       <div class="nav-item">
-        <img class="nav-img" src="../../assets/images/house.png" title="租房"/>
+        <img class="nav-img" src="../../assets/images/house.png" title="二手房"/>
         <span class="nav-title">二手房</span>
       </div>
     </navigator>
-    <navigator class="nav-col"
-               hover-class="none"
-               url="/pages/rent-house">
+    <navigator class="nav-col" hover-class="none" url="/pages/list3/list">
       <div class="nav-item">
-        <img class="nav-img" src="../../assets/images/house.png" title="租房"/>
+        <img class="nav-img" src="../../assets/images/house.png" title="新房"/>
         <span class="nav-title">新房</span>
       </div>
     </navigator>
-    <navigator class="nav-col"
-               hover-class="none"
-               url="/pages/rent-house">
+    <navigator class="nav-col" hover-class="none" url="/pages/mine/mine">
       <div class="nav-item">
-        <img class="nav-img" src="../../assets/images/house.png" title="租房"/>
+        <img class="nav-img" src="../../assets/images/house.png" title="个人中心"/>
+        <span class="nav-title">个人中心</span>
+      </div>
+    </navigator>
+    <navigator class="nav-col" hover-class="none" url="/pages/calc">
+      <div class="nav-item">
+        <img class="nav-img" src="../../assets/images/house.png" title="算房贷"/>
         <span class="nav-title">算房贷</span>
       </div>
     </navigator>

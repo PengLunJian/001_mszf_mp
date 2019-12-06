@@ -24,20 +24,95 @@
 <config>
   {
   pages: [
-  'pages/index',
-  'pages/mine',
-  'pages/like',
-  'pages/history',
-  'pages/release',
-  'pages/about',
-  'pages/detail',
-  'pages/rent-house'
+  'pages/index'
+  ],
+  subpackages: [
+  {
+  root: 'pages/list1',
+  pages: [
+  'list',
+  'detail'
+  ]
+  },
+  {
+  root: 'pages/list2',
+  pages: [
+  'list',
+  'detail'
+  ]
+  },
+  {
+  root: 'pages/list3',
+  pages: [
+  'list',
+  'detail'
+  ]
+  },
+  {
+  root: 'pages/mine/',
+  pages: [
+  'about',
+  'history',
+  'like',
+  'mine',
+  'suggest',
+  'release'
+  ]
+  }
   ],
   window: {
-  backgroundColor:'#fafafa',
+  backgroundColor: '#fafafa',
   backgroundTextStyle: 'light',
   navigationBarTextStyle: 'black',
   navigationBarBackgroundColor: '#ffffff'
   }
   }
 </config>
+
+<!--<script type="text/ecmascript-6">-->
+<!--const config =-->
+<!--{-->
+<!--pages: [-->
+<!--'pages/index'-->
+<!--],-->
+<!--subpackages: [-->
+<!--{-->
+<!--root: 'pages/list1',-->
+<!--pages: [-->
+<!--'list',-->
+<!--'detail'-->
+<!--]-->
+<!--},-->
+<!--{-->
+<!--root: 'pages/list2',-->
+<!--pages: [-->
+<!--'list',-->
+<!--'detail'-->
+<!--]-->
+<!--},-->
+<!--{-->
+<!--root: 'pages/list2',-->
+<!--pages: [-->
+<!--'list',-->
+<!--'detail'-->
+<!--]-->
+<!--},-->
+<!--{-->
+<!--root: 'pages/mine/',-->
+<!--pages: [-->
+<!--'about',-->
+<!--'history',-->
+<!--'like',-->
+<!--'mine',-->
+<!--'release'-->
+<!--]-->
+<!--}-->
+<!--],-->
+<!--window: {-->
+<!--backgroundColor: '#fafafa',-->
+<!--backgroundTextStyle: 'light',-->
+<!--navigationBarTextStyle: 'black',-->
+<!--navigationBarBackgroundColor: '#ffffff'-->
+<!--}-->
+<!--};-->
+<!--</script>-->

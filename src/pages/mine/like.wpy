@@ -1,0 +1,402 @@
+<template>
+  <div class="container">
+    <div class="content">
+      <div class="header">
+        <top-bar title="我的收藏"></top-bar>
+        <div class="tab-bar">
+          <div v-for="(item,index) in tabs" class="tab-item"
+               :class="{'active':index===tabIndex}"
+               @tap="onHandleTabChange(index)">
+            <div class="tab-text">{{item.label}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="body">
+        <swiper class="tab-swiper" current="{{current}}" @change="onHandleSwiperChange">
+          <swiper-item class="tab-content">
+            <scroll-view class="scroll-view" scroll-y="{{true}}">
+              <div class="item" v-for="(item,index) in items" :key="index">
+                <div class="item-inner">
+                  <div class="item-img">
+                    <img src="{{item.url}}"/>
+                  </div>
+                  <div class="item-info">
+                    <div class="item-row">
+                      <div class="item-title ellipsis">碧桂园 南向两居室 精装 拎包入住</div>
+                    </div>
+                    <div class="item-row">
+                      <span class="item-addr">广德城区</span>
+                      <span class="item-split"></span>
+                      <span class="item-addr">广德碧桂园</span>
+                    </div>
+                    <div class="item-row">
+                  <span class="item-normal item-price">
+                    <span class="item-value">1800</span>
+                    <span class="item-unit">元/月</span>
+                  </span>
+                      <span class="item-normal">2室1厅1卫</span>
+                      <span class="item-normal">整租</span>
+                      <span class="item-normal">70m²</span>
+                    </div>
+                    <div class="item-row">
+                      <span class="item-tag">南北通透</span>
+                      <span class="item-tag">精装修</span>
+                      <span class="item-tag">随时看房</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </scroll-view>
+          </swiper-item>
+          <swiper-item class="tab-content">
+            <scroll-view class="scroll-view" scroll-y="{{true}}">
+              <div class="item" v-for="(item,index) in items" :key="index">
+                <div class="item-inner">
+                  <div class="item-img">
+                    <img src="{{item.url}}"/>
+                  </div>
+                  <div class="item-info">
+                    <div class="item-row">
+                      <div class="item-title ellipsis">碧桂园 南向两居室 精装 拎包入住</div>
+                    </div>
+                    <div class="item-row">
+                      <span class="item-addr">广德城区</span>
+                      <span class="item-split"></span>
+                      <span class="item-addr">广德碧桂园</span>
+                    </div>
+                    <div class="item-row">
+                  <span class="item-normal item-price">
+                    <span class="item-value">1800</span>
+                    <span class="item-unit">元/月</span>
+                  </span>
+                      <span class="item-normal">2室1厅1卫</span>
+                      <span class="item-normal">整租</span>
+                      <span class="item-normal">70m²</span>
+                    </div>
+                    <div class="item-row">
+                      <span class="item-tag">南北通透</span>
+                      <span class="item-tag">精装修</span>
+                      <span class="item-tag">随时看房</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </scroll-view>
+          </swiper-item>
+          <swiper-item class="tab-content">
+            <scroll-view class="scroll-view" scroll-y="{{true}}">
+              <div class="item" v-for="(item,index) in items" :key="index">
+                <div class="item-inner">
+                  <div class="item-img">
+                    <img src="{{item.url}}"/>
+                  </div>
+                  <div class="item-info">
+                    <div class="item-row">
+                      <div class="item-title ellipsis">碧桂园 南向两居室 精装 拎包入住</div>
+                    </div>
+                    <div class="item-row">
+                      <span class="item-addr">广德城区</span>
+                      <span class="item-split"></span>
+                      <span class="item-addr">广德碧桂园</span>
+                    </div>
+                    <div class="item-row">
+                  <span class="item-normal item-price">
+                    <span class="item-value">1800</span>
+                    <span class="item-unit">元/月</span>
+                  </span>
+                      <span class="item-normal">2室1厅1卫</span>
+                      <span class="item-normal">整租</span>
+                      <span class="item-normal">70m²</span>
+                    </div>
+                    <div class="item-row">
+                      <span class="item-tag">南北通透</span>
+                      <span class="item-tag">精装修</span>
+                      <span class="item-tag">随时看房</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </scroll-view>
+          </swiper-item>
+        </swiper>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script type="text/ecmascript-6">
+  import wepy from '@wepy/core';
+  // import {mapState} from '@wepy/redux';
+  import store from '../../store/index';
+
+  wepy.page({
+    store,
+
+    mixins: [],
+
+    data: {
+      tabIndex: 0,
+      tabs: [
+        {
+          label: '租房'
+        },
+        {
+          label: '二手房'
+        },
+        {
+          label: '新房'
+        }
+      ],
+      items: [
+        {
+          url: '../../assets/images/item1.jpg'
+        },
+        {
+          url: '../../assets/images/item2.jpg'
+        },
+        {
+          url: '../../assets/images/item3.jpg'
+        },
+        {
+          url: '../../assets/images/item1.jpg'
+        },
+        {
+          url: '../../assets/images/item2.jpg'
+        },
+        {
+          url: '../../assets/images/item3.jpg'
+        },
+        {
+          url: '../../assets/images/item1.jpg'
+        },
+        {
+          url: '../../assets/images/item2.jpg'
+        },
+        {
+          url: '../../assets/images/item3.jpg'
+        },
+        {
+          url: '../../assets/images/item1.jpg'
+        },
+        {
+          url: '../../assets/images/item2.jpg'
+        },
+        {
+          url: '../../assets/images/item3.jpg'
+        }
+      ],
+      current: 0
+    },
+
+    computed: {},
+
+    methods: {
+      onHandleTabChange(index) {
+        this.tabIndex = index;
+        this.current = this.tabIndex;
+      },
+      onHandleSwiperChange(e) {
+        const current = e.$wx.detail.current;
+        this.tabIndex = current;
+        this.current = current;
+      }
+    },
+
+    created() {
+    }
+  });
+</script>
+
+<style scoped lang="less">
+  @import "../../assets/less/variable";
+
+  .container {
+    .content {
+      height: 100vh;
+      padding-top: unit(210, rpx);
+      .header {
+        .tab-bar {
+          display: flex;
+          flex-wrap: wrap;
+          position: fixed;
+          top: unit(130, rpx);
+          left: 0;
+          z-index: 1000;
+          background-color: @white;
+          box-shadow: 0 5px 5px rgba(0, 0, 0, 0.03);
+          font-size: @fontSize3;
+          text-align: center;
+          color: @fontColor2;
+          .tab-item {
+            width: 33.333%;
+            position: relative;
+            padding: unit(20, rpx) 0;
+            .tab-text {
+              height: unit(40, rpx);
+              line-height: unit(40, rpx);
+              transition: all 300ms ease;
+              border-right: 0.5px solid @borderColor1;
+            }
+            &:after {
+              content: '';
+              width: 0px;
+              display: block;
+              position: absolute;
+              left: 50%;
+              bottom: 0;
+              opacity: 0;
+              visibility: hidden;
+              transform: translateX(-50%);
+              transition: all 300ms ease;
+              border-top: unit(6, rpx) solid @activeColor;
+            }
+            &.active {
+              color: @activeColor;
+              &:after {
+                opacity: 1;
+                visibility: visible;
+                width: unit(120, rpx);
+              }
+            }
+            &:last-child {
+              .tab-text {
+                border: none;
+              }
+            }
+          }
+        }
+      }
+      .body {
+        height: 100%;
+        .tab-swiper {
+          height: 100%;
+          .scroll-view {
+            height: 100%;
+            .item {
+              padding: 0 unit(30, rpx);
+              background-color: @white;
+              .item-inner {
+                position: relative;
+                padding: unit(30, rpx) 0;
+                border-bottom: 0.5px solid @borderColor2;
+                .item-img {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  width: unit(220, rpx);
+                  height: unit(240, rpx);
+                  padding: unit(30, rpx) 0;
+                  image {
+                    width: 100%;
+                    height: 100%;
+                  }
+                }
+                .item-info {
+                  padding-left: unit(240, rpx);
+                  .item-row {
+                    margin-bottom: unit(8, rpx);
+                    font-size: 0;
+                    &:last-child {
+                      margin: 0;
+                      padding-top: unit(4, rpx);
+                    }
+                    .item-title {
+                      height: unit(40, rpx);
+                      line-height: unit(40, rpx);
+                      font-size: unit(28, rpx);
+                      font-weight: bold;
+                      color: @fontColor1;
+                    }
+                    .item-addr,
+                    .item-split,
+                    .item-size {
+                      height: unit(32, rpx);
+                      line-height: unit(32, rpx);
+                      display: inline-block;
+                      vertical-align: middle;
+                      font-size: unit(24, rpx);
+                      color: @fontColor2;
+                      &.item-split {
+                        padding: unit(6, rpx) unit(10, rpx);
+                        &:before {
+                          content: '';
+                          display: block;
+                          width: 0;
+                          height: 100%;
+                          border-left: 1px solid @borderColor1;
+                        }
+                      }
+                    }
+                    .item-value,
+                    .item-unit {
+                      height: 100%;
+                      display: inline-block;
+                      vertical-align: middle;
+                      &.item-value {
+                        font-size: unit(32, rpx);
+                        font-weight: bold;
+                      }
+                      &.item-unit {
+                        font-size: unit(24, rpx);
+                      }
+                    }
+                    .item-normal {
+                      height: unit(40, rpx);
+                      line-height: unit(40, rpx);
+                      display: inline-block;
+                      vertical-align: middle;
+                      margin-right: unit(10, rpx);
+                      font-size: unit(24, rpx);
+                      color: @fontColor3;
+                      &.item-price {
+                        color: @priceColor;
+                        font-size: 0;
+                      }
+                      &:last-child {
+                        margin: 0;
+                      }
+                    }
+                    .item-tag {
+                      height: unit(40, rpx);
+                      line-height: unit(36, rpx);
+                      display: inline-block;
+                      vertical-align: middle;
+                      padding: 0 unit(10, rpx);
+                      margin-right: unit(10, rpx);
+                      border: 1px solid @tagColor;
+                      font-size: unit(24, rpx);
+                      color: @tagColor;
+                      &.item-state {
+                        border: none;
+                        background-color: #009966;
+                        line-height: unit(40, rpx);
+                        color: @white;
+                      }
+                      &:last-child {
+                        margin: 0;
+                      }
+                    }
+                  }
+                }
+              }
+              &:last-child {
+                .item-inner {
+                  border: none;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+</style>
+
+<config>
+  {
+  navigationStyle:'custom',
+  usingComponents: {
+  'top-bar': '../../components/top-bar/top-bar',
+  }
+  }
+</config>

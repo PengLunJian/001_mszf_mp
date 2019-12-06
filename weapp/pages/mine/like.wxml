@@ -1,0 +1,122 @@
+
+<view class="container">
+  <view class="content">
+    <view class="header">
+      <top-bar bind_init="_initComponent" title="我的收藏"></top-bar>
+      <view class="tab-bar">
+        <view wx:for="{{ tabs }}" wx:for-index="index" wx:for-item="item" wx:key="index" data-wpy-evt="12-28" bindtap="_proxy" data-wpytap-a="{{ index }}" class="tab-item {{ [ index===tabIndex ? 'active' : '' ] }}">
+          <view class="tab-text">{{item.label}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="body">
+      <swiper current="{{current}}" data-wpy-evt="12-29" bindchange="_proxy" class="tab-swiper">
+        <swiper-item class="tab-content">
+          <scroll-view scroll-y="{{true}}" class="scroll-view">
+            <view wx:for="{{ items }}" wx:for-index="index" wx:for-item="item" wx:key="index" key="{{ index }}" class="item">
+              <view class="item-inner">
+                <view class="item-img">
+                  <image src="{{item.url}}"></image>
+                </view>
+                <view class="item-info">
+                  <view class="item-row">
+                    <view class="item-title ellipsis">碧桂园 南向两居室 精装 拎包入住</view>
+                  </view>
+                  <view class="item-row">
+                    <label class="item-addr">广德城区</label>
+                    <label class="item-split"></label>
+                    <label class="item-addr">广德碧桂园</label>
+                  </view>
+                  <view class="item-row">
+                <label class="item-normal item-price">
+                  <label class="item-value">1800</label>
+                  <label class="item-unit">元/月</label>
+                </label>
+                    <label class="item-normal">2室1厅1卫</label>
+                    <label class="item-normal">整租</label>
+                    <label class="item-normal">70m²</label>
+                  </view>
+                  <view class="item-row">
+                    <label class="item-tag">南北通透</label>
+                    <label class="item-tag">精装修</label>
+                    <label class="item-tag">随时看房</label>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </scroll-view>
+        </swiper-item>
+        <swiper-item class="tab-content">
+          <scroll-view scroll-y="{{true}}" class="scroll-view">
+            <view wx:for="{{ items }}" wx:for-index="index" wx:for-item="item" wx:key="index" key="{{ index }}" class="item">
+              <view class="item-inner">
+                <view class="item-img">
+                  <image src="{{item.url}}"></image>
+                </view>
+                <view class="item-info">
+                  <view class="item-row">
+                    <view class="item-title ellipsis">碧桂园 南向两居室 精装 拎包入住</view>
+                  </view>
+                  <view class="item-row">
+                    <label class="item-addr">广德城区</label>
+                    <label class="item-split"></label>
+                    <label class="item-addr">广德碧桂园</label>
+                  </view>
+                  <view class="item-row">
+                <label class="item-normal item-price">
+                  <label class="item-value">1800</label>
+                  <label class="item-unit">元/月</label>
+                </label>
+                    <label class="item-normal">2室1厅1卫</label>
+                    <label class="item-normal">整租</label>
+                    <label class="item-normal">70m²</label>
+                  </view>
+                  <view class="item-row">
+                    <label class="item-tag">南北通透</label>
+                    <label class="item-tag">精装修</label>
+                    <label class="item-tag">随时看房</label>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </scroll-view>
+        </swiper-item>
+        <swiper-item class="tab-content">
+          <scroll-view scroll-y="{{true}}" class="scroll-view">
+            <view wx:for="{{ items }}" wx:for-index="index" wx:for-item="item" wx:key="index" key="{{ index }}" class="item">
+              <view class="item-inner">
+                <view class="item-img">
+                  <image src="{{item.url}}"></image>
+                </view>
+                <view class="item-info">
+                  <view class="item-row">
+                    <view class="item-title ellipsis">碧桂园 南向两居室 精装 拎包入住</view>
+                  </view>
+                  <view class="item-row">
+                    <label class="item-addr">广德城区</label>
+                    <label class="item-split"></label>
+                    <label class="item-addr">广德碧桂园</label>
+                  </view>
+                  <view class="item-row">
+                <label class="item-normal item-price">
+                  <label class="item-value">1800</label>
+                  <label class="item-unit">元/月</label>
+                </label>
+                    <label class="item-normal">2室1厅1卫</label>
+                    <label class="item-normal">整租</label>
+                    <label class="item-normal">70m²</label>
+                  </view>
+                  <view class="item-row">
+                    <label class="item-tag">南北通透</label>
+                    <label class="item-tag">精装修</label>
+                    <label class="item-tag">随时看房</label>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </scroll-view>
+        </swiper-item>
+      </swiper>
+    </view>
+  </view>
+</view>

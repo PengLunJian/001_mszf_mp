@@ -7,7 +7,7 @@ exports["default"] = void 0;
 
 var _redux = require('../vendor.js')(5);
 
-var _reduxPromise = _interopRequireDefault(require('../vendor.js')(26));
+var _reduxPromise = _interopRequireDefault(require('../vendor.js')(30));
 
 var _reducers = _interopRequireDefault(require('reducers/index.js'));
 

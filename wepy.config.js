@@ -34,3 +34,25 @@ module.exports = {
     noPromiseAPI: ['createSelectorQuery']
   }
 };
+
+if (prod) {
+  // 压缩js
+  module.exports.plugins = {
+    uglifyjs: {
+      filter: /\.js$/,
+      config: {}
+    },
+    imagemin: {
+      filter: /\.(jpg|png|jpeg)$/,
+      config: {
+        jpg: {
+          quality: 80
+        },
+        png: {
+          quality: 80
+        }
+      }
+    },
+    axios: {}
+  };
+}

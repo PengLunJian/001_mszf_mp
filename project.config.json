@@ -51,50 +51,23 @@
 			"list": [
 				{
 					"id": -1,
-					"name": "pages/mine",
-					"pathName": "pages/mine",
+					"name": "pages/mine/like",
+					"pathName": "pages/mine/like",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": -1,
-					"name": "pages/about",
-					"pathName": "pages/about",
+					"name": "pages/mine/history",
+					"pathName": "pages/mine/history",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": -1,
-					"name": "pages/history",
-					"pathName": "pages/history",
+					"name": "pages/mine/mine",
+					"pathName": "pages/mine/mine",
 					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/like",
-					"pathName": "pages/like",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/rent-house",
-					"pathName": "pages/rent-house",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/detail",
-					"pathName": "pages/detail",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/index",
-					"pathName": "pages/index",
 					"scene": null
 				}
 			]
