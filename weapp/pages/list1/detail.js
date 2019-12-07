@@ -1,6 +1,6 @@
 "use strict";
 
-var _core = _interopRequireDefault(require('../../vendor.js')(1));
+var _core = _interopRequireDefault(require('../../vendor.js')(0));
 
 var _index = _interopRequireDefault(require('../../store/index.js'));
 
@@ -11,6 +11,16 @@ _core["default"].page({
   store: _index["default"],
   mixins: [],
   data: {
+    items: [{
+      url: '../../assets/images/banner01.jpg'
+    }, {
+      url: '../../assets/images/banner02.jpg'
+    }, {
+      url: '../../assets/images/banner01.jpg'
+    }, {
+      url: '../../assets/images/banner02.jpg'
+    }],
+    current: 1,
     autoplay: false,
     circular: true,
     longitude: 119.4235460000,
@@ -40,24 +50,21 @@ _core["default"].page({
   methods: {
     onHandleClickMap: function onHandleClickMap() {
       console.log('别摸我,我会爆炸的！');
+    },
+    onHandleSwiperChange: function onHandleSwiperChange(e) {
+      var current = e.$wx.detail.current;
+      this.current = current + 1;
     }
   },
   created: function created() {}
-}, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'5-5': {"tap": function proxy () {
+}, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'5-0': {"change": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
-        _vm.onHandleClickMap($event)
+        _vm.onHandleSwiperChange($event)
       })();
     
-  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'5-5': {"tap": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleClickMap($event)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'5-5': {"tap": function proxy () {
+  }},'5-1': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {

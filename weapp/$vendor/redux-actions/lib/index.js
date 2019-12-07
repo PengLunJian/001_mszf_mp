@@ -14,7 +14,7 @@ var _createActions = _interopRequireDefault(__wepy_require(43));
 
 exports.createActions = _createActions.default;
 
-var _createCurriedAction = _interopRequireDefault(__wepy_require(38));
+var _createCurriedAction = _interopRequireDefault(__wepy_require(36));
 
 exports.createCurriedAction = _createCurriedAction.default;
 
@@ -22,7 +22,7 @@ var _handleAction = _interopRequireDefault(__wepy_require(32));
 
 exports.handleAction = _handleAction.default;
 
-var _handleActions = _interopRequireDefault(__wepy_require(36));
+var _handleActions = _interopRequireDefault(__wepy_require(38));
 
 exports.handleActions = _handleActions.default;
 

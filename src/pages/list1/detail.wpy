@@ -16,16 +16,14 @@
                   <div class="banner">
                     <swiper class="swiper"
                             autoplay="{{autoplay}}"
-                            circular="{{circular}}">
-                      <swiper-item>
-                        <img class="swiper-img" src="../../assets/images/banner01.jpg"/>
-                      </swiper-item>
-                      <swiper-item>
-                        <img class="swiper-img" src="../../assets/images/banner02.jpg"/>
+                            circular="{{circular}}"
+                            @change="onHandleSwiperChange">
+                      <swiper-item v-for="(item,index) in items" :key="index">
+                        <img class="swiper-img" src="{{item.url}}"/>
                       </swiper-item>
                     </swiper>
                     <div class="swiper-code">
-                      <span class="swiper-text">1 / 2</span>
+                      <span class="swiper-text">{{current}} / {{items.length}}</span>
                     </div>
                     <div class="btn-favorite">
                       <div class="iconfont icon-favorite-off"></div>
@@ -296,6 +294,21 @@
     mixins: [],
 
     data: {
+      items: [
+        {
+          url: '../../assets/images/banner01.jpg'
+        },
+        {
+          url: '../../assets/images/banner02.jpg'
+        },
+        {
+          url: '../../assets/images/banner01.jpg'
+        },
+        {
+          url: '../../assets/images/banner02.jpg'
+        }
+      ],
+      current: 1,
       autoplay: false,
       circular: true,
       longitude: 119.4235460000,
@@ -329,6 +342,10 @@
     methods: {
       onHandleClickMap() {
         console.log('别摸我,我会爆炸的！');
+      },
+      onHandleSwiperChange(e) {
+        const current = e.$wx.detail.current;
+        this.current = current + 1;
       }
     },
 

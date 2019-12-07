@@ -11,17 +11,26 @@
 .container .content .body .scroll-view .date {
   height: 60rpx;
   line-height: 60rpx;
-  padding: 0 30rpx;
-  background-color: #f7f7f7;
   font-size: 24rpx;
   color: #999999;
+}
+.container .content .body .scroll-view .date .label {
+  height: 60rpx;
+  line-height: 60rpx;
+  padding: 0 30rpx;
+  background-color: #f7f7f7;
+}
+.container .content .body .scroll-view .date .label.fixed {
+  position: fixed;
+  top: 130rpx;
+  left: 0;
+  z-index: 1000;
 }
 .container .content .body .scroll-view .item {
   position: relative;
   overflow: hidden;
   padding: 30rpx;
   background-color: #ffffff;
-  border-bottom: 0.5px solid #f0f0f0;
 }
 .container .content .body .scroll-view .item .item-img {
   position: absolute;
@@ -151,7 +160,14 @@
 .container .content .body .scroll-view .item .item-type .color3 {
   background-color: #F5D31C;
 }
-.container .content .body .scroll-view .item:last-child {
-  border: none;
+.container .content .body .scroll-view .item:after {
+  content: '';
+  width: 100%;
+  display: block;
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  bottom: 0;
+  border-bottom: 0.5px solid #f0f0f0;
 }
 

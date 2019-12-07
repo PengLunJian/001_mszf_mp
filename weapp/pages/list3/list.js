@@ -2,7 +2,7 @@
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-var _core = _interopRequireDefault(require('../../vendor.js')(1));
+var _core = _interopRequireDefault(require('../../vendor.js')(0));
 
 var _index = _interopRequireDefault(require('../../store/index.js'));
 
@@ -156,224 +156,56 @@ _core["default"].page({
     }
   },
   created: function created() {}
-}, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"},"wux-slider":{"path":"..\\..\\$vendor\\wux-weapp\\dist\\slider\\index"}},"on":{"8-12":["change"],"8-14":["change"]}}, handlers: {'8-8': {"tap": function proxy (index) {
+}, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"},"wux-slider":{"path":"..\\..\\$vendor\\wux-weapp\\dist\\slider\\index"}},"on":{"8-4":["change"],"8-6":["change"]}}, handlers: {'8-0': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {
         _vm.onHandleTab(index)
       })();
     
-  }},'8-9': {"tap": function proxy (item) {
+  }},'8-1': {"tap": function proxy (item) {
     
     var _vm=this;
       return (function () {
         _vm.onHandleDetail(item.id)
       })();
     
-  }},'8-10': {"tap": function proxy () {
+  }},'8-2': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
         _vm.onHandleCloseModal(0)
       })();
     
-  }},'8-11': {"tap": function proxy (index) {
+  }},'8-3': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {
         _vm.onHandlePriceFilter(index)
       })();
     
-  }},'8-12': {"change": function proxy () {
+  }},'8-4': {"change": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleSliderChangePrice($event)
       })();
     
-  }},'8-13': {"tap": function proxy () {
+  }},'8-5': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
         _vm.onHandleCloseModal(1)
       })();
     
-  }},'8-14': {"change": function proxy () {
+  }},'8-6': {"change": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleSliderChangeArea($event)
       })();
     
-  }},'8-15': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleCloseModal(2)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"},"wux-slider":{"path":"..\\..\\$vendor\\wux-weapp\\dist\\slider\\index"}},"on":{"8-12":["change"],"8-14":["change"]}}, handlers: {'8-8': {"tap": function proxy (index) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleTab(index)
-      })();
-    
-  }},'8-9': {"tap": function proxy (item) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleDetail(item.id)
-      })();
-    
-  }},'8-10': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleCloseModal(0)
-      })();
-    
-  }},'8-11': {"tap": function proxy (index) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandlePriceFilter(index)
-      })();
-    
-  }},'8-12': {"change": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleSliderChangePrice($event)
-      })();
-    
-  }},'8-13': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleCloseModal(1)
-      })();
-    
-  }},'8-14': {"change": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleSliderChangeArea($event)
-      })();
-    
-  }},'8-15': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleCloseModal(2)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"},"wux-slider":{"path":"..\\..\\$vendor\\wux-weapp\\dist\\slider\\index"}},"on":{"8-12":["change"],"8-14":["change"]}}, handlers: {'8-8': {"tap": function proxy (index) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleTab(index)
-      })();
-    
-  }},'8-9': {"tap": function proxy (item) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleDetail(item.id)
-      })();
-    
-  }},'8-10': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleCloseModal(0)
-      })();
-    
-  }},'8-11': {"tap": function proxy (index) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandlePriceFilter(index)
-      })();
-    
-  }},'8-12': {"change": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleSliderChangePrice($event)
-      })();
-    
-  }},'8-13': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleCloseModal(1)
-      })();
-    
-  }},'8-14': {"change": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleSliderChangeArea($event)
-      })();
-    
-  }},'8-15': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleCloseModal(2)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"},"wux-slider":{"path":"..\\..\\$vendor\\wux-weapp\\dist\\slider\\index"}},"on":{"8-12":["change"],"8-14":["change"]}}, handlers: {'8-8': {"tap": function proxy (index) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleTab(index)
-      })();
-    
-  }},'8-9': {"tap": function proxy (item) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleDetail(item.id)
-      })();
-    
-  }},'8-10': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleCloseModal(0)
-      })();
-    
-  }},'8-11': {"tap": function proxy (index) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandlePriceFilter(index)
-      })();
-    
-  }},'8-12': {"change": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleSliderChangePrice($event)
-      })();
-    
-  }},'8-13': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleCloseModal(1)
-      })();
-    
-  }},'8-14': {"change": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleSliderChangeArea($event)
-      })();
-    
-  }},'8-15': {"tap": function proxy () {
+  }},'8-7': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {

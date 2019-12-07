@@ -49,17 +49,28 @@
   ]
   },
   {
-  root: 'pages/mine/',
+  root: 'pages/mine',
   pages: [
   'about',
   'history',
   'like',
   'mine',
-  'suggest',
-  'release'
+  'release',
+  'suggest'
   ]
   }
   ],
+  preloadRule: {
+  'pages/index': {
+  'network': 'all',
+  'packages': [
+  'pages/list1',
+  'pages/list2',
+  'pages/list3',
+  'pages/mine'
+  ]
+  }
+  },
   window: {
   backgroundColor: '#fafafa',
   backgroundTextStyle: 'light',
@@ -70,49 +81,61 @@
 </config>
 
 <!--<script type="text/ecmascript-6">-->
-<!--const config =-->
-<!--{-->
-<!--pages: [-->
-<!--'pages/index'-->
-<!--],-->
-<!--subpackages: [-->
-<!--{-->
-<!--root: 'pages/list1',-->
-<!--pages: [-->
-<!--'list',-->
-<!--'detail'-->
-<!--]-->
-<!--},-->
-<!--{-->
-<!--root: 'pages/list2',-->
-<!--pages: [-->
-<!--'list',-->
-<!--'detail'-->
-<!--]-->
-<!--},-->
-<!--{-->
-<!--root: 'pages/list2',-->
-<!--pages: [-->
-<!--'list',-->
-<!--'detail'-->
-<!--]-->
-<!--},-->
-<!--{-->
-<!--root: 'pages/mine/',-->
-<!--pages: [-->
-<!--'about',-->
-<!--'history',-->
-<!--'like',-->
-<!--'mine',-->
-<!--'release'-->
-<!--]-->
-<!--}-->
-<!--],-->
-<!--window: {-->
-<!--backgroundColor: '#fafafa',-->
-<!--backgroundTextStyle: 'light',-->
-<!--navigationBarTextStyle: 'black',-->
-<!--navigationBarBackgroundColor: '#ffffff'-->
-<!--}-->
-<!--};-->
+  <!--const config =-->
+    <!--{-->
+      <!--pages: [-->
+        <!--'pages/index'-->
+      <!--],-->
+      <!--subpackages: [-->
+        <!--{-->
+          <!--root: 'pages/list1',-->
+          <!--pages: [-->
+            <!--'list',-->
+            <!--'detail'-->
+          <!--]-->
+        <!--},-->
+        <!--{-->
+          <!--root: 'pages/list2',-->
+          <!--pages: [-->
+            <!--'list',-->
+            <!--'detail'-->
+          <!--]-->
+        <!--},-->
+        <!--{-->
+          <!--root: 'pages/list3',-->
+          <!--pages: [-->
+            <!--'list',-->
+            <!--'detail'-->
+          <!--]-->
+        <!--},-->
+        <!--{-->
+          <!--root: 'pages/mine',-->
+          <!--pages: [-->
+            <!--'about',-->
+            <!--'history',-->
+            <!--'like',-->
+            <!--'mine',-->
+            <!--'release',-->
+            <!--'suggest'-->
+          <!--]-->
+        <!--}-->
+      <!--],-->
+      <!--preloadRule: {-->
+        <!--'pages/index': {-->
+          <!--'network': 'all',-->
+          <!--'packages': [-->
+            <!--'pages/list1',-->
+            <!--'pages/list2',-->
+            <!--'pages/list3',-->
+            <!--'pages/mine'-->
+          <!--]-->
+        <!--}-->
+      <!--},-->
+      <!--window: {-->
+        <!--backgroundColor: '#fafafa',-->
+        <!--backgroundTextStyle: 'light',-->
+        <!--navigationBarTextStyle: 'black',-->
+        <!--navigationBarBackgroundColor: '#ffffff'-->
+      <!--}-->
+    <!--};-->
 <!--</script>-->

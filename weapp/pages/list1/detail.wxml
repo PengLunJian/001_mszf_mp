@@ -12,16 +12,13 @@
             <view class="module-body">
               <view class="module-context">
                 <view class="banner">
-                  <swiper autoplay="{{autoplay}}" circular="{{circular}}" class="swiper">
-                    <swiper-item>
-                      <image src="../../assets/images/banner01.jpg" class="swiper-img"></image>
-                    </swiper-item>
-                    <swiper-item>
-                      <image src="../../assets/images/banner02.jpg" class="swiper-img"></image>
+                  <swiper autoplay="{{autoplay}}" circular="{{circular}}" data-wpy-evt="5-0" bindchange="_proxy" class="swiper">
+                    <swiper-item wx:for="{{ items }}" wx:for-index="index" wx:for-item="item" wx:key="index" key="{{ index }}">
+                      <image src="{{item.url}}" class="swiper-img"></image>
                     </swiper-item>
                   </swiper>
                   <view class="swiper-code">
-                    <label class="swiper-text">1 / 2</label>
+                    <label class="swiper-text">{{current}} / {{items.length}}</label>
                   </view>
                   <view class="btn-favorite">
                     <view class="iconfont icon-favorite-off"></view>
@@ -242,7 +239,7 @@
             <view class="module-body">
               <view class="module-context">
                 <view class="map-container">
-                  <map longitude="{{longitude}}" latitude="{{latitude}}" enable-zoom="{{enableZoom}}" enable-scroll="{{enableScroll}}" markers="{{markers}}" data-wpy-evt="5-5" bindtap="_proxy" class="map"></map>
+                  <map longitude="{{longitude}}" latitude="{{latitude}}" enable-zoom="{{enableZoom}}" enable-scroll="{{enableScroll}}" markers="{{markers}}" data-wpy-evt="5-1" bindtap="_proxy" class="map"></map>
                 </view>
               </view>
             </view>
