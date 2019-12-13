@@ -4,8 +4,8 @@
 		"urlCheck": false,
 		"es6": true,
 		"enhance": true,
-		"postcss": true,
-		"minified": false,
+		"postcss": false,
+		"minified": true,
 		"newFeature": true,
 		"coverView": true,
 		"nodeModules": true,
@@ -22,7 +22,7 @@
 	},
 	"compileType": "miniprogram",
 	"appid": "wx809835df23710588",
-	"projectname": "%E6%88%BF%E7%AE%A1%E5%AE%B6",
+	"projectname": "%E7%A0%81%E4%B8%8A%E6%89%BE%E6%88%BF",
 	"miniprogramRoot": "weapp/",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
@@ -51,29 +51,22 @@
 			"list": [
 				{
 					"id": -1,
-					"name": "pages/mine/like",
-					"pathName": "pages/mine/like",
+					"name": "pages/rent-house-list/index",
+					"pathName": "pages/rent-house-list/index",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": -1,
-					"name": "pages/mine/history",
-					"pathName": "pages/mine/history",
+					"name": "pages/release/index",
+					"pathName": "pages/release/index",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": -1,
-					"name": "pages/mine/mine",
-					"pathName": "pages/mine/mine",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/index",
-					"pathName": "pages/index",
+					"name": "pages/index/index",
+					"pathName": "pages/index/index",
 					"scene": null
 				}
 			]

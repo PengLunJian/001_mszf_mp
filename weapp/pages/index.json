@@ -1,8 +1,0 @@
-{
-    "navigationStyle": "custom",
-    "component": true,
-    "usingComponents": {
-        "top-bar": "../components/top-bar/top-bar",
-        "nav-menu": "../components/nav-menu/nav-menu"
-    }
-}

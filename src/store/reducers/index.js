@@ -1,8 +1,6 @@
 import {combineReducers} from 'redux';
-import HOME_REDUCER from './home';
-import CART_REDUCER from './cart';
+import PRODUCT_REDUCER from './product';
 
 export default combineReducers({
-  HOME_REDUCER,
-  CART_REDUCER
+  PRODUCT_REDUCER
 });

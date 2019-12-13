@@ -1,5 +1,0 @@
-
-<view class="container">
-  <top-bar bind_init="_initComponent"></top-bar>
-  <nav-menu bind_init="_initComponent"></nav-menu>
-</view>

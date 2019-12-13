@@ -1,9 +1,0 @@
-
-<view class="container">
-  <view class="content">
-    <view class="header">
-      <top-bar bind_init="_initComponent" title="房源发布"></top-bar>
-    </view>
-    <view class="body"></view>
-  </view>
-</view>

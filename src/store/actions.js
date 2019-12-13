@@ -16,41 +16,14 @@ const commit = (type, data) => {
     data
   });
 };
-/**
- *
- * @returns {Promise<any>}
- */
-export const ajaxRequestSelectQRCode = createAction(
-  actionTypes.SELECT_QRCODE_REQUEST, () => {
-    return new Promise((resolve, reject) => {
-      axios.post(apis.selectQRCode)
-        .then((res) => {
-          res = resData.HOME;
-          res = res || {};
-          const {data, success} = res;
-          if (success) {
-            commit(actionTypes.SELECT_QRCODE_SUCCESS, data);
-          } else {
-            commit(actionTypes.SELECT_QRCODE_FAILURE);
-          }
-          resolve(res);
-        })
-        .catch((err) => {
-          commit(actionTypes.SELECT_QRCODE_FAILURE);
-          reject(err);
-        });
-    });
-  });
-/**
- *
- * @returns {Promise<any>}
- */
-export const ajaxRequestSelectProduct = createAction(
-  actionTypes.SELECT_PRODUCT_REQUEST, () => {
+
+export const ajaxRequestProduct = createAction(
+  'selectProduct', () => {
+    commit(actionTypes.SELECT_PRODUCT_REQUEST);
     return new Promise((resolve, reject) => {
       axios.post(apis.selectProduct)
         .then((res) => {
-          res = resData.CART;
+          res = resData.PRODUCT;
           res = res || {};
           const {data, success} = res;
           if (success) {

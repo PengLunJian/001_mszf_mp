@@ -20,9 +20,3 @@ export const isExist = (data) => {
     )
   );
 };
-
-export const dataFilterForHistory = (data) => {
-  data.filter(() => {
-
-  });
-};

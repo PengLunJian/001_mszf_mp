@@ -1,52 +1,56 @@
 export const INDEX = {
   name: '首页',
-  path: '/pages/index'
+  path: '/pages/index/index'
 };
 export const MINE = {
   name: '个人中心',
-  path: '/pages/mine/mine'
+  path: '/pages/mine/index'
 };
-export const LIKE = {
+export const FAVORITE = {
   name: '我的收藏',
-  path: '/pages/mine/like'
+  path: '/pages/favorite/index'
+};
+export const CALCULATOR = {
+  name: '我的收藏',
+  path: '/pages/calculator/index'
 };
 export const HISTORY = {
   name: '历史浏览',
-  path: '/pages/mine/history'
+  path: '/pages/history/index'
 };
 export const RELEASE = {
   name: '房源发布',
-  path: '/pages/mine/release'
+  path: '/pages/release/index'
 };
 export const SUGGEST = {
   name: '意见反馈',
-  path: '/pages/mine/suggest'
+  path: '/pages/suggest/index'
 };
 export const ABOUT = {
   name: '关于我们',
-  path: '/pages/mine/about'
+  path: '/pages/about/index'
 };
-export const LIST1 = {
+export const RENT_HOUSE_LIST = {
   name: '租房列表',
-  path: '/pages/list1/list'
+  path: '/pages/rent-house-list/index'
 };
-export const DETAIL1 = {
+export const RENT_HOUSE_DETAIL = {
   name: '租房详情',
-  path: '/pages/list1/detail'
+  path: '/pages/rent-house-detail/index'
 };
-export const LIST2 = {
+export const SECOND_HOUSE_LIST = {
   name: '二手房列表',
-  path: '/pages/list2/list'
+  path: '/pages/second-house-list/index'
 };
-export const DETAIL2 = {
+export const SECOND_HOUSE_DETAIL = {
   name: '二手房详情',
-  path: '/pages/list2/detail'
+  path: '/pages/second-house-detail/index'
 };
-export const LIST3 = {
+export const NEW_HOUSE_LIST = {
   name: '新房列表',
-  path: '/pages/list3/list'
+  path: '/pages/new-house-list/index'
 };
-export const DETAIL3 = {
+export const NEW_HOUSE_DETAIL = {
   name: '新房详情',
-  path: '/pages/list3/detail'
+  path: '/pages/new-house-detail/index'
 };

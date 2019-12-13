@@ -1,0 +1,26 @@
+
+<view class="container">
+  <view class="content">
+    <view class="header">
+      <view class="inline">
+        <view class="location">
+          <label class="icon iconfont icon-location"></label>
+          <label class="span">广德</label>
+        </view>
+        <view class="title">码上找房</view>
+      </view>
+    </view>
+    <view class="body">
+      <view class="row">
+        <view class="col-12">
+          <navigator hover-class="none" url="{{ url }}" class="user">
+            <image src="../../assets/images/user.png" alt="个人中心" class="img"></image>
+            <label class="name">个人中心</label>
+          </navigator>
+        </view>
+      </view>
+      <customer-navigator bind_init="_initComponent"></customer-navigator>
+    </view>
+    <view class="footer"></view>
+  </view>
+</view>

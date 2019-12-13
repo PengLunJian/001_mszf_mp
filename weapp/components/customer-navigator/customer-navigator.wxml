@@ -1,0 +1,27 @@
+
+<view class="nav row">
+  <view class="col-6">
+    <navigator hover-class="none" url="{{ items[0].path }}" class="nav-item">
+      <view class="nav-img"></view>
+      <label class="nav-title">{{items[0].title}}</label>
+    </navigator>
+    <navigator hover-class="none" url="{{ items[2].path }}" class="nav-item">
+      <view class="nav-img"></view>
+      <label class="nav-title">{{items[2].title}}</label>
+    </navigator>
+  </view>
+  <view class="col-6">
+    <navigator hover-class="none" url="{{ items[1].path }}" class="nav-item">
+      <view class="nav-img"></view>
+      <label class="nav-title">{{items[1].title}}</label>
+    </navigator>
+    <navigator hover-class="none" url="{{ items[3].path }}" class="nav-item">
+      <view class="nav-img"></view>
+      <label class="nav-title">{{items[3].title}}</label>
+    </navigator>
+    <navigator hover-class="none" url="{{ items[4].path }}" class="nav-item">
+      <view class="nav-img"></view>
+      <label class="nav-title">{{items[4].title}}</label>
+    </navigator>
+  </view>
+</view>

@@ -3,17 +3,8 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.CART_STATE = exports.HOME_STATE = void 0;
-var HOME_STATE = {
-  qrcode: {
-    isLoading: false,
-    isSuccess: false,
-    isFailure: false,
-    data: null
-  }
-};
-exports.HOME_STATE = HOME_STATE;
-var CART_STATE = {
+exports.PRODUCT_STATE = void 0;
+var PRODUCT_STATE = {
   product: {
     isLoading: false,
     isSuccess: false,
@@ -21,4 +12,4 @@ var CART_STATE = {
     data: null
   }
 };
-exports.CART_STATE = CART_STATE;
+exports.PRODUCT_STATE = PRODUCT_STATE;

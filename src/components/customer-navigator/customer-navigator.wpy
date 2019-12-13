@@ -1,0 +1,153 @@
+<template>
+  <div class="nav row">
+    <div class="col-6">
+      <navigator class="nav-item" hover-class="none" :url="items[0].path">
+        <div class="nav-img"></div>
+        <span class="nav-title">{{items[0].title}}</span>
+      </navigator>
+      <navigator class="nav-item" hover-class="none" :url="items[2].path">
+        <div class="nav-img"></div>
+        <span class="nav-title">{{items[2].title}}</span>
+      </navigator>
+    </div>
+    <div class="col-6">
+      <navigator class="nav-item" hover-class="none" :url="items[1].path">
+        <div class="nav-img"></div>
+        <span class="nav-title">{{items[1].title}}</span>
+      </navigator>
+      <navigator class="nav-item" hover-class="none" :url="items[3].path">
+        <div class="nav-img"></div>
+        <span class="nav-title">{{items[3].title}}</span>
+      </navigator>
+      <navigator class="nav-item" hover-class="none" :url="items[4].path">
+        <div class="nav-img"></div>
+        <span class="nav-title">{{items[4].title}}</span>
+      </navigator>
+    </div>
+  </div>
+</template>
+
+<script type="text/ecmascript-6">
+  import wepy from '@wepy/core';
+  import * as $routes from '../../router';
+
+  wepy.component({
+    data: {
+      items: [
+        {
+          title: '租房',
+          path: $routes.RENT_HOUSE_LIST.path
+        },
+        {
+          title: '二手房',
+          path: $routes.SECOND_HOUSE_LIST.path
+        },
+        {
+          title: '房贷计算器',
+          path: $routes.CALCULATOR.path
+        },
+        {
+          title: '新房',
+          path: $routes.NEW_HOUSE_LIST.path
+        },
+        {
+          title: '房源发布',
+          path: $routes.RELEASE.path
+        }
+      ]
+    },
+    events: {},
+    methods: {},
+    onLoad() {
+    }
+  });
+</script>
+
+<style scoped lang="less">
+  @import "../../assets/less/variable";
+  @import "../../assets/less/common";
+
+  .nav {
+    padding: unit(15, rpx);
+    .col-6 {
+      padding: unit(15, rpx);
+      .nav-item {
+        position: relative;
+        margin-bottom: unit(30, rpx);
+        border-radius: unit(20, rpx);
+        .nav-img {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          background-repeat: no-repeat;
+          background-position: center center;
+        }
+        .nav-title {
+          height: unit(40, rpx);
+          line-height: unit(40, rpx);
+          position: absolute;
+          top: unit(40, rpx);
+          left: unit(40, rpx);
+          font-size: unit(40, rpx);
+          color: @white;
+        }
+        &:last-child {
+          margin: 0;
+        }
+      }
+      &:nth-child(1) {
+        .nav-item {
+          &:nth-child(1) {
+            height: unit(430, rpx);
+            background-image: -webkit-linear-gradient(120deg, #567ded 1%, #63bced 100%);
+            .nav-img {
+              background-size: 100% auto;
+              background-image: url('http://sersms.com:8/static/images/nav01.png');
+            }
+          }
+          &:nth-child(2) {
+            height: unit(350, rpx);
+            background-image: -webkit-linear-gradient(120deg, #f1d253 1%, #fbe082 100%);
+            .nav-img {
+              background-size: 100% auto;
+              background-image: url('http://sersms.com:8/static/images/nav04.png');
+            }
+          }
+        }
+      }
+      &:nth-child(2) {
+        .nav-item {
+          &:nth-child(1) {
+            height: unit(210, rpx);
+            background-image: -webkit-linear-gradient(120deg, #e47b5f 1%, #f4bb8c 100%);
+            .nav-img {
+              background-size: auto 95%;
+              background-position: right center;
+              background-image: url('http://sersms.com:8/static/images/nav02.png');
+            }
+          }
+          &:nth-child(2) {
+            height: unit(330, rpx);
+            background-image: -webkit-linear-gradient(120deg, #9a61e2 1%, #b793f4 100%);
+            .nav-img {
+              background-size: 100% auto;
+              background-position: center unit(60, rpx);
+              background-image: url('http://sersms.com:8/static/images/nav03.png');
+            }
+          }
+          &:nth-child(3) {
+            height: unit(210, rpx);
+            background-image: -webkit-linear-gradient(120deg, #e85c5e 1%, #ed8d91 100%);
+            .nav-img {
+              background-size: auto 80%;
+              background-position: unit(110, rpx) center;
+              background-image: url('http://sersms.com:8/static/images/nav05.png');
+            }
+          }
+        }
+      }
+    }
+  }
+</style>

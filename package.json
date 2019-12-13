@@ -1,5 +1,5 @@
 {
-  "name": "001_fgj_app",
+  "name": "001_mszf_app",
   "version": "0.0.2",
   "description": "This is a property management applet",
   "main": "weapp/app.js",
@@ -25,6 +25,8 @@
     "redux-actions": "^2.6.5",
     "redux-promise": "^0.6.0",
     "redux-thunk": "^2.3.0",
+    "wepy-async-function": "^1.4.4",
+    "wepy-plugin-axios": "^0.1.8",
     "wux-weapp": "^3.8.2"
   },
   "devDependencies": {

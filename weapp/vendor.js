@@ -34,7 +34,7 @@ var process = { env: {} };
    return __wepy_require;
 })([
 /***** module 0 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_fgj_app\node_modules\@wepy\core\dist\wepy.js *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\@wepy\core\dist\wepy.js *****/
 function(module, exports, __wepy_require) {'use strict';
 
 // can we use __proto__?
@@ -2689,7 +2689,7 @@ module.exports = wepy;
 
 
 /***** module 1 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_fgj_app\node_modules\@wepy\redux\dist\index.js *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\@wepy\redux\dist\index.js *****/
 function(module, exports, __wepy_require) {'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -2798,18 +2798,824 @@ exports.mapActions = mapActions;
 
 
 /***** module 2 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_fgj_app\node_modules\is-promise\index.js *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\wepy-plugin-axios\dist\adapter.js *****/
+function(module, exports, __wepy_require) {'use strict';
+
+/** 请求队列 */
+var queue = [];
+
+/** 未完成的请求数 */
+var pendingRequests = 0;
+
+/** 最多同时发送的请求数 */
+var MAX_PENDING_REQUESTS = 5;
+
+/** 检查是否可以发送下一个请求. 如果可以，则发送 */
+function checkQueue () {
+  var loop = function () {
+    var item = queue.shift();
+    if (!item) { return 'break' }
+
+    pendingRequests++;
+    new Promise(item.promiseFunc).then(function (result) {
+      pendingRequests--;
+      item.resolve(result);
+      checkQueue();
+    }).catch(function (err) {
+      pendingRequests--;
+      item.reject(err);
+      checkQueue();
+    });
+  };
+
+  while (pendingRequests < MAX_PENDING_REQUESTS) {
+    var returned = loop();
+
+    if ( returned === 'break' ) break;
+  }
+}
+
+/**
+ * 将一个请求加入队列中. 如果当前没有正在排队的请求则立即发送
+ *
+ * @param {Function} promiseFunc 要入队的请求
+ */
+function enqueue (promiseFunc) {
+  return new Promise(function (resolve, reject) {
+    queue.push({ resolve: resolve, reject: reject, promiseFunc: promiseFunc });
+    checkQueue();
+  })
+}
+
+/**
+ * 将 headers 对象中的 key 都转为标准格式
+ *
+ * @param {object} headers 要转换的 headers 对象
+ */
+function normalizeHeaders (headers) {
+  if (headers == null) { return {} }
+
+  var result = {};
+  Object.keys(headers).forEach(function (key) {
+    if (headers[key] == null) { return }
+
+    var keyParts = key.split('-').map(function (part) {
+      return part[0].toUpperCase() + part.slice(1).toLowerCase()
+    });
+
+    result[keyParts.join('-')] = headers[key];
+  });
+
+  return result
+}
+
+/**
+ * 将 headers 对象中的 key 都转为小写
+ *
+ * @param {object} headers 要转换的 headers 对象
+ */
+function lowerCaseHeaders (headers) {
+  if (headers == null) { return {} }
+
+  var result = {};
+  Object.keys(headers).forEach(function (key) {
+    result[key.toLowerCase()] = headers[key];
+  });
+
+  return result
+}
+
+/**
+ * URL 编码
+ *
+ * @param {string} val 要编码的字符串
+ */
+function encode (val) {
+  return encodeURIComponent(val)
+    .replace(/%40/gi, '@')
+    .replace(/%3A/gi, ':')
+    .replace(/%24/g, '$')
+    .replace(/%2C/gi, ',')
+    .replace(/%20/g, '+')
+    .replace(/%5B/gi, '[')
+    .replace(/%5D/gi, ']')
+}
+
+/**
+ * 拼接 URL 与参数
+ *
+ * @param {string} url 原 URL
+ * @param {object} params 要拼接的参数
+ * @param {Function} paramsSerializer 参数序列化方法
+ */
+function buildURL (url, params, paramsSerializer) {
+  if (!params) { return url }
+
+  var serializedParams;
+  if (paramsSerializer) {
+    serializedParams = paramsSerializer(params);
+  } else {
+    var parts = [];
+
+    Object.keys(params).forEach(function (key) {
+      var val = params[key];
+      if (val == null) { return }
+
+      if (Array.isArray(val)) {
+        key = key + '[]';
+      } else {
+        val = [val];
+      }
+
+      Object.keys(val).forEach(function (valKey) {
+        var v = val[valKey];
+        if (Object.prototype.toString.call(v) === '[object Date]') {
+          v = v.toISOString();
+        } else if (v != null && typeof v === 'object') {
+          v = JSON.stringify(v);
+        }
+
+        parts.push(encode(key) + '=' + encode(v));
+      });
+    });
+
+    serializedParams = parts.join('&');
+  }
+
+  if (serializedParams) {
+    url += (url.indexOf('?') === -1 ? '?' : '&') + serializedParams;
+  }
+
+  return url
+}
+
+/**
+ * Update an Error with the specified config, error code, and response.
+ *
+ * @param {Error} error The error to update.
+ * @param {Object} config The config.
+ * @param {string} [code] The error code (for example, 'ECONNABORTED').
+ @ @param {Object} [response] The response.
+ * @returns {Error} The error.
+ */
+var enhanceError = function enhanceError(error, config, code, response) {
+  error.config = config;
+  if (code) {
+    error.code = code;
+  }
+  error.response = response;
+  return error;
+};
+
+/**
+ * Create an Error with the specified message, config, error code, and response.
+ *
+ * @param {string} message The error message.
+ * @param {Object} config The config.
+ * @param {string} [code] The error code (for example, 'ECONNABORTED').
+ @ @param {Object} [response] The response.
+ * @returns {Error} The created error.
+ */
+var createError = function createError(message, config, code, response) {
+  var error = new Error(message);
+  return enhanceError(error, config, code, response);
+};
+
+/**
+ * Resolve or reject a Promise based on response status.
+ *
+ * @param {Function} resolve A function that resolves the promise.
+ * @param {Function} reject A function that rejects the promise.
+ * @param {object} response The response.
+ */
+var settle = function settle(resolve, reject, response) {
+  var validateStatus = response.config.validateStatus;
+  // Note: status is not exposed by XDomainRequest
+  if (!response.status || !validateStatus || validateStatus(response.status)) {
+    resolve(response);
+  } else {
+    reject(createError(
+      'Request failed with status code ' + response.status,
+      response.config,
+      null,
+      response
+    ));
+  }
+};
+
+var supportedMethods = ['OPTIONS', 'GET', 'HEAD', 'POST', 'PUT', 'DELETE', 'TRACE', 'CONNECT'];
+var supportedResponseTypes = ['json', 'text', 'file'];
+
+/**
+ * 创建用于微信小程序的 axios adapter
+ *
+ * @param {AxiosInstance} axios 原始 axios 对象
+ * @returns {AxiosAdapter} 用于微信小程序的 axios adapter
+ */
+function wepyAxiosAdapterFactory (axios) {
+  // 不使用默认的 transformResponse
+  axios.defaults['transformResponse'] = [];
+
+  // 使用自定义的 transformRequest
+  axios.defaults['transformRequest'] = [function (data, headers) {
+    var contentTypeKey = Object.keys(headers).find(function (key) { return /content-type/i.test(key); });
+    if (contentTypeKey == null && data != null && typeof data === 'object') {
+      headers['Content-Type'] = 'application/json; charset=utf-8';
+    }
+
+    return data
+  }];
+
+  // 删除无法使用的 axios 选项
+  ['timeout', 'xsrfCookieName', 'xsrfHeaderName', 'maxContentLength'].forEach(function (item) {
+    delete axios.defaults[item];
+  });
+
+  /**
+   * 用于微信小程序的 axios adapter
+   *
+   * @type {AxiosAdapter}
+   */
+  return function wepyAxiosAdapter (config) {
+    return enqueue(function (resolve, reject) {
+      /** 发送普通请求或是上传、下载请求 */
+      var requestType = 'request';
+
+      /** 请求所使用的参数 */
+      var request = {
+        url: buildURL(config.url, config.params, config.paramsSerializer),
+        header: normalizeHeaders(config.headers)
+      };
+
+      // 必须在 URL 中指定是 http 还是 https 协议
+      if (!/https?:\/\//.test(request.url)) {
+        return reject(createError('Request protocol must be http or https', config))
+      }
+
+      // 处理调用上传文件接口的情况
+      if (config.data && config.data.$upload) {
+        var ref = config.data.$upload;
+        var filePath = ref.filePath;
+        var name = ref.name;
+        if (typeof filePath === 'string' && typeof name === 'string') {
+          if (config.method !== 'post') {
+            return reject(createError('HTTP methods must be POST when uploading file', config))
+          }
+
+          requestType = 'uploadFile';
+          config.responseType = 'file';
+
+          request.filePath = filePath;
+          request.name = name;
+          request.formData = config.data;
+          delete config.data.$upload;
+        } else {
+          return reject(createError('Invalid upload paramaters', config))
+        }
+      }
+
+      // 处理响应类型和下载接口类型
+      if (config.responseType && supportedResponseTypes.indexOf(config.responseType) === -1) {
+        // 只接受 json 或 text 的返回类型
+        return reject(createError('Unsupported responseType', config))
+      } else if (requestType === 'request') {
+        // 确认是否调用下载文件接口
+        if (config.responseType === 'file') {
+          if (config.method !== 'get') {
+            reject(createError('HTTP method must be GET when downloading file', config));
+          } else {
+            requestType = 'downloadFile';
+          }
+        } else {
+          // 普通请求必须使用 https
+          if (process.env.NODE_ENV === 'production' && config.url.slice(0, 5).toLowerCase() !== 'https') {
+            return reject(createError('Requesting an http URL is not allowed', config))
+          }
+
+          // 检查小程序是否支持所使用的 method
+          config.method = config.method.toUpperCase();
+          if (supportedMethods.indexOf(config.method) === -1) {
+            return reject(createError('Unsupported request method', config))
+          }
+
+          request.data = config.data;
+          request.method = config.method;
+
+          // 增加 Content-Type
+          if (!request.header['Content-Type'] && config.data && typeof config.data === 'object') {
+            request.header['Content-Type'] = 'application/json; charset=utf-8';
+          }
+        }
+      }
+
+      // 加入回调函数
+      request.success = function (response) {
+        // 按照 axios 的返回格式构造返回值
+        settle(resolve, reject, {
+          data: response.data || response.tempFilePath,
+          status: response.statusCode,
+          headers: lowerCaseHeaders(response.header),
+          config: config,
+          request: request
+        });
+      };
+
+      request.fail = function (response) { return reject(createError(response.errMsg, config)); };
+
+      // 发送请求
+      wx[requestType](request);
+    })
+  }
+}
+
+module.exports = wepyAxiosAdapterFactory;
+//# sourceMappingURL=adapter.js.map
+
+},/***** module 2 end *****/
+
+
+/***** module 3 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\constants.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.ACTION_TYPE_DELIMITER = exports.DEFAULT_NAMESPACE = void 0;
+var DEFAULT_NAMESPACE = '/';
+exports.DEFAULT_NAMESPACE = DEFAULT_NAMESPACE;
+var ACTION_TYPE_DELIMITER = '||';
+exports.ACTION_TYPE_DELIMITER = ACTION_TYPE_DELIMITER;
+},/***** module 3 end *****/
+
+
+/***** module 4 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\isFunction.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _default = function _default(value) {
+  return typeof value === 'function';
+};
+
+exports.default = _default;
+},/***** module 4 end *****/
+
+
+/***** module 5 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\isEmpty.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _default = function _default(value) {
+  return value.length === 0;
+};
+
+exports.default = _default;
+},/***** module 5 end *****/
+
+
+/***** module 6 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\isSymbol.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _default = function _default(value) {
+  return typeof value === 'symbol' || typeof value === 'object' && Object.prototype.toString.call(value) === '[object Symbol]';
+};
+
+exports.default = _default;
+},/***** module 6 end *****/
+
+
+/***** module 7 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\toString.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _default = function _default(value) {
+  return value.toString();
+};
+
+exports.default = _default;
+},/***** module 7 end *****/
+
+
+/***** module 8 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\identity.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _default = function _default(value) {
+  return value;
+};
+
+exports.default = _default;
+},/***** module 8 end *****/
+
+
+/***** module 9 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\isString.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _default = function _default(value) {
+  return typeof value === 'string';
+};
+
+exports.default = _default;
+},/***** module 9 end *****/
+
+
+/***** module 10 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\isNull.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _default = function _default(value) {
+  return value === null;
+};
+
+exports.default = _default;
+},/***** module 10 end *****/
+
+
+/***** module 11 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\isPlainObject.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _default = function _default(value) {
+  if (typeof value !== 'object' || value === null) return false;
+  var proto = value;
+
+  while (Object.getPrototypeOf(proto) !== null) {
+    proto = Object.getPrototypeOf(proto);
+  }
+
+  return Object.getPrototypeOf(value) === proto;
+};
+
+exports.default = _default;
+},/***** module 11 end *****/
+
+
+/***** module 12 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\isArray.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _default = function _default(value) {
+  return Array.isArray(value);
+};
+
+exports.default = _default;
+},/***** module 12 end *****/
+
+
+/***** module 13 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\isNil.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _default = function _default(value) {
+  return value === null || value === undefined;
+};
+
+exports.default = _default;
+},/***** module 13 end *****/
+
+
+/***** module 14 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\getLastElement.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _default = function _default(array) {
+  return array[array.length - 1];
+};
+
+exports.default = _default;
+},/***** module 14 end *****/
+
+
+/***** module 15 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\arrayToObject.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _default = function _default(array, callback) {
+  return array.reduce(function (partialObject, element) {
+    return callback(partialObject, element);
+  }, {});
+};
+
+exports.default = _default;
+},/***** module 15 end *****/
+
+
+/***** module 16 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\unflattenActionCreators.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.default = unflattenActionCreators;
+
+var _constants = __wepy_require(3);
+
+var _isEmpty = _interopRequireDefault(__wepy_require(5));
+
+var _camelCase = _interopRequireDefault(__wepy_require(43));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function unflattenActionCreators(flatActionCreators, _temp) {
+  var _ref = _temp === void 0 ? {} : _temp,
+      _ref$namespace = _ref.namespace,
+      namespace = _ref$namespace === void 0 ? _constants.DEFAULT_NAMESPACE : _ref$namespace,
+      prefix = _ref.prefix;
+
+  function unflatten(flatActionType, partialNestedActionCreators, partialFlatActionTypePath) {
+    var nextNamespace = (0, _camelCase.default)(partialFlatActionTypePath.shift());
+
+    if ((0, _isEmpty.default)(partialFlatActionTypePath)) {
+      partialNestedActionCreators[nextNamespace] = flatActionCreators[flatActionType];
+    } else {
+      if (!partialNestedActionCreators[nextNamespace]) {
+        partialNestedActionCreators[nextNamespace] = {};
+      }
+
+      unflatten(flatActionType, partialNestedActionCreators[nextNamespace], partialFlatActionTypePath);
+    }
+  }
+
+  var nestedActionCreators = {};
+  Object.getOwnPropertyNames(flatActionCreators).forEach(function (type) {
+    var unprefixedType = prefix ? type.replace("" + prefix + namespace, '') : type;
+    return unflatten(type, nestedActionCreators, unprefixedType.split(namespace));
+  });
+  return nestedActionCreators;
+}
+},/***** module 16 end *****/
+
+
+/***** module 17 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\isUndefined.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _default = function _default(value) {
+  return value === undefined;
+};
+
+exports.default = _default;
+},/***** module 17 end *****/
+
+
+/***** module 18 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\isMap.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _default = function _default(value) {
+  return typeof Map !== 'undefined' && value instanceof Map;
+};
+
+exports.default = _default;
+},/***** module 18 end *****/
+
+
+/***** module 19 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\ownKeys.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.default = ownKeys;
+
+var _isMap = _interopRequireDefault(__wepy_require(18));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function ownKeys(object) {
+  if ((0, _isMap.default)(object)) {
+    // We are using loose transforms in babel. Here we are trying to convert an
+    // interable to an array. Loose mode expects everything to already be an
+    // array. The problem is that our eslint rules encourage us to prefer
+    // spread over Array.from.
+    //
+    // Instead of disabling loose mode we simply disable the warning.
+    // eslint-disable-next-line unicorn/prefer-spread
+    return Array.from(object.keys());
+  }
+
+  if (typeof Reflect !== 'undefined' && typeof Reflect.ownKeys === 'function') {
+    return Reflect.ownKeys(object);
+  }
+
+  var keys = Object.getOwnPropertyNames(object);
+
+  if (typeof Object.getOwnPropertySymbols === 'function') {
+    keys = keys.concat(Object.getOwnPropertySymbols(object));
+  }
+
+  return keys;
+}
+},/***** module 19 end *****/
+
+
+/***** module 20 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\get.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.default = get;
+
+var _isMap = _interopRequireDefault(__wepy_require(18));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function get(key, x) {
+  return (0, _isMap.default)(x) ? x.get(key) : x[key];
+}
+},/***** module 20 end *****/
+
+
+/***** module 21 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\is-promise\index.js *****/
 function(module, exports, __wepy_require) {module.exports = isPromise;
 
 function isPromise(obj) {
   return !!obj && (typeof obj === 'object' || typeof obj === 'function') && typeof obj.then === 'function';
 }
 
-},/***** module 2 end *****/
+},/***** module 21 end *****/
 
 
-/***** module 3 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_fgj_app\node_modules\symbol-observable\lib\ponyfill.js *****/
+/***** module 22 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\flattenWhenNode.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _constants = __wepy_require(3);
+
+var _ownKeys = _interopRequireDefault(__wepy_require(19));
+
+var _get = _interopRequireDefault(__wepy_require(20));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = function _default(predicate) {
+  return function flatten(map, _temp, partialFlatMap, partialFlatActionType) {
+    var _ref = _temp === void 0 ? {} : _temp,
+        _ref$namespace = _ref.namespace,
+        namespace = _ref$namespace === void 0 ? _constants.DEFAULT_NAMESPACE : _ref$namespace,
+        prefix = _ref.prefix;
+
+    if (partialFlatMap === void 0) {
+      partialFlatMap = {};
+    }
+
+    if (partialFlatActionType === void 0) {
+      partialFlatActionType = '';
+    }
+
+    function connectNamespace(type) {
+      var _ref2;
+
+      if (!partialFlatActionType) return type;
+      var types = type.toString().split(_constants.ACTION_TYPE_DELIMITER);
+      var partials = partialFlatActionType.split(_constants.ACTION_TYPE_DELIMITER);
+      return (_ref2 = []).concat.apply(_ref2, partials.map(function (p) {
+        return types.map(function (t) {
+          return "" + p + namespace + t;
+        });
+      })).join(_constants.ACTION_TYPE_DELIMITER);
+    }
+
+    function connectPrefix(type) {
+      if (partialFlatActionType || !prefix || prefix && new RegExp("^" + prefix + namespace).test(type)) {
+        return type;
+      }
+
+      return "" + prefix + namespace + type;
+    }
+
+    (0, _ownKeys.default)(map).forEach(function (type) {
+      var nextNamespace = connectPrefix(connectNamespace(type));
+      var mapValue = (0, _get.default)(type, map);
+
+      if (predicate(mapValue)) {
+        flatten(mapValue, {
+          namespace: namespace,
+          prefix: prefix
+        }, partialFlatMap, nextNamespace);
+      } else {
+        partialFlatMap[nextNamespace] = mapValue;
+      }
+    });
+    return partialFlatMap;
+  };
+};
+
+exports.default = _default;
+},/***** module 22 end *****/
+
+
+/***** module 23 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\flattenActionMap.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _isPlainObject = _interopRequireDefault(__wepy_require(11));
+
+var _flattenWhenNode = _interopRequireDefault(__wepy_require(22));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = (0, _flattenWhenNode.default)(_isPlainObject.default);
+
+exports.default = _default;
+},/***** module 23 end *****/
+
+
+/***** module 24 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\hasGeneratorInterface.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.default = hasGeneratorInterface;
+
+var _ownKeys = _interopRequireDefault(__wepy_require(19));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function hasGeneratorInterface(handler) {
+  var keys = (0, _ownKeys.default)(handler);
+  var hasOnlyInterfaceNames = keys.every(function (ownKey) {
+    return ownKey === 'next' || ownKey === 'throw';
+  });
+  return keys.length && keys.length <= 2 && hasOnlyInterfaceNames;
+}
+},/***** module 24 end *****/
+
+
+/***** module 25 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\flattenReducerMap.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _isPlainObject = _interopRequireDefault(__wepy_require(11));
+
+var _isMap = _interopRequireDefault(__wepy_require(18));
+
+var _hasGeneratorInterface = _interopRequireDefault(__wepy_require(24));
+
+var _flattenWhenNode = _interopRequireDefault(__wepy_require(22));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = (0, _flattenWhenNode.default)(function (node) {
+  return ((0, _isPlainObject.default)(node) || (0, _isMap.default)(node)) && !(0, _hasGeneratorInterface.default)(node);
+});
+
+exports.default = _default;
+},/***** module 25 end *****/
+
+
+/***** module 26 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\symbol-observable\lib\ponyfill.js *****/
 function(module, exports, __wepy_require) {'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2833,18 +3639,18 @@ function symbolObservablePonyfill(root) {
 
 	return result;
 };
-},/***** module 3 end *****/
+},/***** module 26 end *****/
 
 
-/***** module 4 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_fgj_app\node_modules\symbol-observable\lib\index.js *****/
+/***** module 27 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\symbol-observable\lib\index.js *****/
 function(module, exports, __wepy_require) {'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _ponyfill = __wepy_require(3);
+var _ponyfill = __wepy_require(26);
 
 var _ponyfill2 = _interopRequireDefault(_ponyfill);
 
@@ -2867,18 +3673,18 @@ if (typeof self !== 'undefined') {
 
 var result = (0, _ponyfill2['default'])(root);
 exports['default'] = result;
-},/***** module 4 end *****/
+},/***** module 27 end *****/
 
 
-/***** module 5 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_fgj_app\node_modules\redux\lib\redux.js *****/
+/***** module 28 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux\lib\redux.js *****/
 function(module, exports, __wepy_require) {'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var $$observable = _interopDefault(__wepy_require(4));
+var $$observable = _interopDefault(__wepy_require(27));
 
 /**
  * These are private action types reserved by Redux.
@@ -3545,343 +4351,397 @@ exports.combineReducers = combineReducers;
 exports.compose = compose;
 exports.createStore = createStore;
 
-},/***** module 5 end *****/
+},/***** module 28 end *****/
 
 
-/***** module 6 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_fgj_app\node_modules\redux-actions\lib\constants.js *****/
-function(module, exports, __wepy_require) {"use strict";
+/***** module 29 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\just-curry-it\index.js *****/
+function(module, exports, __wepy_require) {module.exports = curry;
 
-exports.__esModule = true;
-exports.ACTION_TYPE_DELIMITER = exports.DEFAULT_NAMESPACE = void 0;
-var DEFAULT_NAMESPACE = '/';
-exports.DEFAULT_NAMESPACE = DEFAULT_NAMESPACE;
-var ACTION_TYPE_DELIMITER = '||';
-exports.ACTION_TYPE_DELIMITER = ACTION_TYPE_DELIMITER;
-},/***** module 6 end *****/
-
-
-/***** module 7 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_fgj_app\node_modules\redux-actions\lib\utils\isSymbol.js *****/
-function(module, exports, __wepy_require) {"use strict";
-
-exports.__esModule = true;
-exports.default = void 0;
-
-var _default = function _default(value) {
-  return typeof value === 'symbol' || typeof value === 'object' && Object.prototype.toString.call(value) === '[object Symbol]';
-};
-
-exports.default = _default;
-},/***** module 7 end *****/
-
-
-/***** module 8 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_fgj_app\node_modules\redux-actions\lib\utils\isFunction.js *****/
-function(module, exports, __wepy_require) {"use strict";
-
-exports.__esModule = true;
-exports.default = void 0;
-
-var _default = function _default(value) {
-  return typeof value === 'function';
-};
-
-exports.default = _default;
-},/***** module 8 end *****/
-
-
-/***** module 9 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_fgj_app\node_modules\redux-actions\lib\utils\isEmpty.js *****/
-function(module, exports, __wepy_require) {"use strict";
-
-exports.__esModule = true;
-exports.default = void 0;
-
-var _default = function _default(value) {
-  return value.length === 0;
-};
-
-exports.default = _default;
-},/***** module 9 end *****/
-
-
-/***** module 10 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_fgj_app\node_modules\redux-actions\lib\utils\toString.js *****/
-function(module, exports, __wepy_require) {"use strict";
-
-exports.__esModule = true;
-exports.default = void 0;
-
-var _default = function _default(value) {
-  return value.toString();
-};
-
-exports.default = _default;
-},/***** module 10 end *****/
-
-
-/***** module 11 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_fgj_app\node_modules\redux-actions\lib\utils\isString.js *****/
-function(module, exports, __wepy_require) {"use strict";
-
-exports.__esModule = true;
-exports.default = void 0;
-
-var _default = function _default(value) {
-  return typeof value === 'string';
-};
-
-exports.default = _default;
-},/***** module 11 end *****/
-
-
-/***** module 12 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_fgj_app\node_modules\redux-actions\lib\utils\isPlainObject.js *****/
-function(module, exports, __wepy_require) {"use strict";
-
-exports.__esModule = true;
-exports.default = void 0;
-
-var _default = function _default(value) {
-  if (typeof value !== 'object' || value === null) return false;
-  var proto = value;
-
-  while (Object.getPrototypeOf(proto) !== null) {
-    proto = Object.getPrototypeOf(proto);
+/*
+  function add(a, b, c) {
+    return a + b + c;
   }
+  curry(add)(1)(2)(3); // 6
+  curry(add)(1)(2)(2); // 5
+  curry(add)(2)(4, 3); // 9
 
-  return Object.getPrototypeOf(value) === proto;
-};
+  function add(...args) {
+    return args.reduce((sum, n) => sum + n, 0)
+  }
+  var curryAdd4 = curry(add, 4)
+  curryAdd4(1)(2, 3)(4); // 10
 
-exports.default = _default;
-},/***** module 12 end *****/
+  function converter(ratio, input) {
+    return (input*ratio).toFixed(1);
+  }
+  const curriedConverter = curry(converter)
+  const milesToKm = curriedConverter(1.62);
+  milesToKm(35); // 56.7
+  milesToKm(10); // 16.2
+*/
+
+function curry(fn, arity) {
+  return function curried() {
+    if (arity == null) {
+      arity = fn.length;
+    }
+    var args = [].slice.call(arguments);
+    if (args.length >= arity) {
+      return fn.apply(this, args);
+    } else {
+      return function() {
+        return curried.apply(this, args.concat([].slice.call(arguments)));
+      };
+    }
+  };
+}
+
+},/***** module 29 end *****/
 
 
-/***** module 13 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_fgj_app\node_modules\redux-actions\lib\utils\isArray.js *****/
+/***** module 30 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\createCurriedAction.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
 exports.__esModule = true;
 exports.default = void 0;
 
-var _default = function _default(value) {
-  return Array.isArray(value);
-};
+var _justCurryIt = _interopRequireDefault(__wepy_require(29));
 
-exports.default = _default;
-},/***** module 13 end *****/
-
-
-/***** module 14 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_fgj_app\node_modules\redux-actions\lib\utils\identity.js *****/
-function(module, exports, __wepy_require) {"use strict";
-
-exports.__esModule = true;
-exports.default = void 0;
-
-var _default = function _default(value) {
-  return value;
-};
-
-exports.default = _default;
-},/***** module 14 end *****/
-
-
-/***** module 15 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_fgj_app\node_modules\redux-actions\lib\utils\isNil.js *****/
-function(module, exports, __wepy_require) {"use strict";
-
-exports.__esModule = true;
-exports.default = void 0;
-
-var _default = function _default(value) {
-  return value === null || value === undefined;
-};
-
-exports.default = _default;
-},/***** module 15 end *****/
-
-
-/***** module 16 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_fgj_app\node_modules\redux-actions\lib\utils\arrayToObject.js *****/
-function(module, exports, __wepy_require) {"use strict";
-
-exports.__esModule = true;
-exports.default = void 0;
-
-var _default = function _default(array, callback) {
-  return array.reduce(function (partialObject, element) {
-    return callback(partialObject, element);
-  }, {});
-};
-
-exports.default = _default;
-},/***** module 16 end *****/
-
-
-/***** module 17 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_fgj_app\node_modules\redux-actions\lib\utils\getLastElement.js *****/
-function(module, exports, __wepy_require) {"use strict";
-
-exports.__esModule = true;
-exports.default = void 0;
-
-var _default = function _default(array) {
-  return array[array.length - 1];
-};
-
-exports.default = _default;
-},/***** module 17 end *****/
-
-
-/***** module 18 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_fgj_app\node_modules\redux-actions\lib\utils\unflattenActionCreators.js *****/
-function(module, exports, __wepy_require) {"use strict";
-
-exports.__esModule = true;
-exports.default = unflattenActionCreators;
-
-var _constants = __wepy_require(6);
-
-var _isEmpty = _interopRequireDefault(__wepy_require(9));
-
-var _camelCase = _interopRequireDefault(__wepy_require(42));
+var _createAction = _interopRequireDefault(__wepy_require(31));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function unflattenActionCreators(flatActionCreators, _temp) {
-  var _ref = _temp === void 0 ? {} : _temp,
-      _ref$namespace = _ref.namespace,
-      namespace = _ref$namespace === void 0 ? _constants.DEFAULT_NAMESPACE : _ref$namespace,
-      prefix = _ref.prefix;
+var _default = function _default(type, payloadCreator) {
+  return (0, _justCurryIt.default)((0, _createAction.default)(type, payloadCreator), payloadCreator.length);
+};
 
-  function unflatten(flatActionType, partialNestedActionCreators, partialFlatActionTypePath) {
-    var nextNamespace = (0, _camelCase.default)(partialFlatActionTypePath.shift());
+exports.default = _default;
+},/***** module 30 end *****/
 
-    if ((0, _isEmpty.default)(partialFlatActionTypePath)) {
-      partialNestedActionCreators[nextNamespace] = flatActionCreators[flatActionType];
-    } else {
-      if (!partialNestedActionCreators[nextNamespace]) {
-        partialNestedActionCreators[nextNamespace] = {};
-      }
 
-      unflatten(flatActionType, partialNestedActionCreators[nextNamespace], partialFlatActionTypePath);
+/***** module 31 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\createAction.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.default = createAction;
+
+var _invariant = _interopRequireDefault(__wepy_require(33));
+
+var _isFunction = _interopRequireDefault(__wepy_require(4));
+
+var _identity = _interopRequireDefault(__wepy_require(8));
+
+var _isNull = _interopRequireDefault(__wepy_require(10));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function createAction(type, payloadCreator, metaCreator) {
+  if (payloadCreator === void 0) {
+    payloadCreator = _identity.default;
+  }
+
+  (0, _invariant.default)((0, _isFunction.default)(payloadCreator) || (0, _isNull.default)(payloadCreator), 'Expected payloadCreator to be a function, undefined or null');
+  var finalPayloadCreator = (0, _isNull.default)(payloadCreator) || payloadCreator === _identity.default ? _identity.default : function (head) {
+    for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      args[_key - 1] = arguments[_key];
+    }
+
+    return head instanceof Error ? head : payloadCreator.apply(void 0, [head].concat(args));
+  };
+  var hasMeta = (0, _isFunction.default)(metaCreator);
+  var typeString = type.toString();
+
+  var actionCreator = function actionCreator() {
+    var payload = finalPayloadCreator.apply(void 0, arguments);
+    var action = {
+      type: type
+    };
+
+    if (payload instanceof Error) {
+      action.error = true;
+    }
+
+    if (payload !== undefined) {
+      action.payload = payload;
+    }
+
+    if (hasMeta) {
+      action.meta = metaCreator.apply(void 0, arguments);
+    }
+
+    return action;
+  };
+
+  actionCreator.toString = function () {
+    return typeString;
+  };
+
+  return actionCreator;
+}
+},/***** module 31 end *****/
+
+
+/***** module 32 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\handleAction.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.default = handleAction;
+
+var _invariant = _interopRequireDefault(__wepy_require(33));
+
+var _isFunction = _interopRequireDefault(__wepy_require(4));
+
+var _isPlainObject = _interopRequireDefault(__wepy_require(11));
+
+var _identity = _interopRequireDefault(__wepy_require(8));
+
+var _isNil = _interopRequireDefault(__wepy_require(13));
+
+var _isUndefined = _interopRequireDefault(__wepy_require(17));
+
+var _toString = _interopRequireDefault(__wepy_require(7));
+
+var _constants = __wepy_require(3);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function handleAction(type, reducer, defaultState) {
+  if (reducer === void 0) {
+    reducer = _identity.default;
+  }
+
+  var types = (0, _toString.default)(type).split(_constants.ACTION_TYPE_DELIMITER);
+  (0, _invariant.default)(!(0, _isUndefined.default)(defaultState), "defaultState for reducer handling " + types.join(', ') + " should be defined");
+  (0, _invariant.default)((0, _isFunction.default)(reducer) || (0, _isPlainObject.default)(reducer), 'Expected reducer to be a function or object with next and throw reducers');
+
+  var _ref = (0, _isFunction.default)(reducer) ? [reducer, reducer] : [reducer.next, reducer.throw].map(function (aReducer) {
+    return (0, _isNil.default)(aReducer) ? _identity.default : aReducer;
+  }),
+      nextReducer = _ref[0],
+      throwReducer = _ref[1];
+
+  return function (state, action) {
+    if (state === void 0) {
+      state = defaultState;
+    }
+
+    var actionType = action.type;
+
+    if (!actionType || types.indexOf((0, _toString.default)(actionType)) === -1) {
+      return state;
+    }
+
+    return (action.error === true ? throwReducer : nextReducer)(state, action);
+  };
+}
+},/***** module 32 end *****/
+
+
+/***** module 33 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\invariant\invariant.js *****/
+function(module, exports, __wepy_require) {/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+'use strict';
+
+/**
+ * Use invariant() to assert state which your program assumes to be true.
+ *
+ * Provide sprintf-style format (only %s is supported) and arguments
+ * to provide information about what broke and what you were
+ * expecting.
+ *
+ * The invariant message will be stripped in production, but the invariant
+ * will remain to ensure logic does not differ in production.
+ */
+
+var NODE_ENV = process.env.NODE_ENV;
+
+var invariant = function(condition, format, a, b, c, d, e, f) {
+  if (NODE_ENV !== 'production') {
+    if (format === undefined) {
+      throw new Error('invariant requires an error message argument');
     }
   }
 
-  var nestedActionCreators = {};
-  Object.getOwnPropertyNames(flatActionCreators).forEach(function (type) {
-    var unprefixedType = prefix ? type.replace("" + prefix + namespace, '') : type;
-    return unflatten(type, nestedActionCreators, unprefixedType.split(namespace));
+  if (!condition) {
+    var error;
+    if (format === undefined) {
+      error = new Error(
+        'Minified exception occurred; use the non-minified dev environment ' +
+        'for the full error message and additional helpful warnings.'
+      );
+    } else {
+      var args = [a, b, c, d, e, f];
+      var argIndex = 0;
+      error = new Error(
+        format.replace(/%s/g, function() { return args[argIndex++]; })
+      );
+      error.name = 'Invariant Violation';
+    }
+
+    error.framesToPop = 1; // we don't care about invariant's own frame
+    throw error;
+  }
+};
+
+module.exports = invariant;
+
+},/***** module 33 end *****/
+
+
+/***** module 34 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\combineActions.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.default = combineActions;
+
+var _invariant = _interopRequireDefault(__wepy_require(33));
+
+var _isFunction = _interopRequireDefault(__wepy_require(4));
+
+var _isSymbol = _interopRequireDefault(__wepy_require(6));
+
+var _isEmpty = _interopRequireDefault(__wepy_require(5));
+
+var _toString = _interopRequireDefault(__wepy_require(7));
+
+var _isString = _interopRequireDefault(__wepy_require(9));
+
+var _constants = __wepy_require(3);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function isValidActionType(type) {
+  return (0, _isString.default)(type) || (0, _isFunction.default)(type) || (0, _isSymbol.default)(type);
+}
+
+function isValidActionTypes(types) {
+  if ((0, _isEmpty.default)(types)) {
+    return false;
+  }
+
+  return types.every(isValidActionType);
+}
+
+function combineActions() {
+  for (var _len = arguments.length, actionsTypes = new Array(_len), _key = 0; _key < _len; _key++) {
+    actionsTypes[_key] = arguments[_key];
+  }
+
+  (0, _invariant.default)(isValidActionTypes(actionsTypes), 'Expected action types to be strings, symbols, or action creators');
+  var combinedActionType = actionsTypes.map(_toString.default).join(_constants.ACTION_TYPE_DELIMITER);
+  return {
+    toString: function toString() {
+      return combinedActionType;
+    }
+  };
+}
+},/***** module 34 end *****/
+
+
+/***** module 35 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\reduce-reducers\lib\index.js *****/
+function(module, exports, __wepy_require) {'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function () {
+  for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+    args[_key] = arguments[_key];
+  }
+
+  var initialState = typeof args[args.length - 1] !== 'function' && args.pop();
+  var reducers = args;
+
+  if (typeof initialState === 'undefined') {
+    throw new TypeError('The initial state may not be undefined. If you do not want to set a value for this reducer, you can use null instead of undefined.');
+  }
+
+  return function (prevState, value) {
+    for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
+      args[_key2 - 2] = arguments[_key2];
+    }
+
+    var prevStateIsUndefined = typeof prevState === 'undefined';
+    var valueIsUndefined = typeof value === 'undefined';
+
+    if (prevStateIsUndefined && valueIsUndefined && initialState) {
+      return initialState;
+    }
+
+    return reducers.reduce(function (newState, reducer) {
+      return reducer.apply(undefined, [newState, value].concat(args));
+    }, prevStateIsUndefined && !valueIsUndefined && initialState ? initialState : prevState);
+  };
+};
+
+module.exports = exports['default'];
+},/***** module 35 end *****/
+
+
+/***** module 36 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\handleActions.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.default = handleActions;
+
+var _reduceReducers = _interopRequireDefault(__wepy_require(35));
+
+var _invariant = _interopRequireDefault(__wepy_require(33));
+
+var _isPlainObject = _interopRequireDefault(__wepy_require(11));
+
+var _isMap = _interopRequireDefault(__wepy_require(18));
+
+var _ownKeys = _interopRequireDefault(__wepy_require(19));
+
+var _flattenReducerMap = _interopRequireDefault(__wepy_require(25));
+
+var _handleAction = _interopRequireDefault(__wepy_require(32));
+
+var _get = _interopRequireDefault(__wepy_require(20));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function handleActions(handlers, defaultState, options) {
+  if (options === void 0) {
+    options = {};
+  }
+
+  (0, _invariant.default)((0, _isPlainObject.default)(handlers) || (0, _isMap.default)(handlers), 'Expected handlers to be a plain object.');
+  var flattenedReducerMap = (0, _flattenReducerMap.default)(handlers, options);
+  var reducers = (0, _ownKeys.default)(flattenedReducerMap).map(function (type) {
+    return (0, _handleAction.default)(type, (0, _get.default)(type, flattenedReducerMap), defaultState);
   });
-  return nestedActionCreators;
+
+  var reducer = _reduceReducers.default.apply(void 0, reducers.concat([defaultState]));
+
+  return function (state, action) {
+    if (state === void 0) {
+      state = defaultState;
+    }
+
+    return reducer(state, action);
+  };
 }
-},/***** module 18 end *****/
+},/***** module 36 end *****/
 
 
-/***** module 19 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_fgj_app\node_modules\redux-actions\lib\utils\isNull.js *****/
-function(module, exports, __wepy_require) {"use strict";
-
-exports.__esModule = true;
-exports.default = void 0;
-
-var _default = function _default(value) {
-  return value === null;
-};
-
-exports.default = _default;
-},/***** module 19 end *****/
-
-
-/***** module 20 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_fgj_app\node_modules\redux-actions\lib\utils\isUndefined.js *****/
-function(module, exports, __wepy_require) {"use strict";
-
-exports.__esModule = true;
-exports.default = void 0;
-
-var _default = function _default(value) {
-  return value === undefined;
-};
-
-exports.default = _default;
-},/***** module 20 end *****/
-
-
-/***** module 21 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_fgj_app\node_modules\redux-actions\lib\utils\isMap.js *****/
-function(module, exports, __wepy_require) {"use strict";
-
-exports.__esModule = true;
-exports.default = void 0;
-
-var _default = function _default(value) {
-  return typeof Map !== 'undefined' && value instanceof Map;
-};
-
-exports.default = _default;
-},/***** module 21 end *****/
-
-
-/***** module 22 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_fgj_app\node_modules\redux-actions\lib\utils\ownKeys.js *****/
-function(module, exports, __wepy_require) {"use strict";
-
-exports.__esModule = true;
-exports.default = ownKeys;
-
-var _isMap = _interopRequireDefault(__wepy_require(21));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function ownKeys(object) {
-  if ((0, _isMap.default)(object)) {
-    // We are using loose transforms in babel. Here we are trying to convert an
-    // interable to an array. Loose mode expects everything to already be an
-    // array. The problem is that our eslint rules encourage us to prefer
-    // spread over Array.from.
-    //
-    // Instead of disabling loose mode we simply disable the warning.
-    // eslint-disable-next-line unicorn/prefer-spread
-    return Array.from(object.keys());
-  }
-
-  if (typeof Reflect !== 'undefined' && typeof Reflect.ownKeys === 'function') {
-    return Reflect.ownKeys(object);
-  }
-
-  var keys = Object.getOwnPropertyNames(object);
-
-  if (typeof Object.getOwnPropertySymbols === 'function') {
-    keys = keys.concat(Object.getOwnPropertySymbols(object));
-  }
-
-  return keys;
-}
-},/***** module 22 end *****/
-
-
-/***** module 23 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_fgj_app\node_modules\redux-actions\lib\utils\get.js *****/
-function(module, exports, __wepy_require) {"use strict";
-
-exports.__esModule = true;
-exports.default = get;
-
-var _isMap = _interopRequireDefault(__wepy_require(21));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function get(key, x) {
-  return (0, _isMap.default)(x) ? x.get(key) : x[key];
-}
-},/***** module 23 end *****/
-
-
-/***** module 24 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_fgj_app\node_modules\lodash\lodash.js *****/
+/***** module 37 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\lodash\lodash.js *****/
 function(module, exports, __wepy_require) {/**
  * @license
  * Lodash <https://lodash.com/>
@@ -20995,11 +21855,11 @@ function(module, exports, __wepy_require) {/**
   }
 }.call(this));
 
-},/***** module 24 end *****/
+},/***** module 37 end *****/
 
 
-/***** module 25 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_fgj_app\node_modules\flux-standard-action\lib\index.js *****/
+/***** module 38 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\flux-standard-action\lib\index.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -21008,7 +21868,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.isFSA = isFSA;
 exports.isError = isError;
 
-var _lodash = __wepy_require(24);
+var _lodash = __wepy_require(37);
 
 function isFSA(action) {
   return (0, _lodash.isPlainObject)(action) && (0, _lodash.isString)(action.type) && Object.keys(action).every(isValidKey);
@@ -21021,11 +21881,11 @@ function isError(action) {
 function isValidKey(key) {
   return ['type', 'payload', 'error', 'meta'].indexOf(key) > -1;
 }
-},/***** module 25 end *****/
+},/***** module 38 end *****/
 
 
-/***** module 26 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_fgj_app\node_modules\redux-promise\lib\index.js *****/
+/***** module 39 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-promise\lib\index.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -21033,9 +21893,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = promiseMiddleware;
 
-var _isPromise = _interopRequireDefault(__wepy_require(2));
+var _isPromise = _interopRequireDefault(__wepy_require(21));
 
-var _fluxStandardAction = __wepy_require(25);
+var _fluxStandardAction = __wepy_require(38);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21065,534 +21925,11 @@ function promiseMiddleware(_ref) {
     };
   };
 }
-},/***** module 26 end *****/
+},/***** module 39 end *****/
 
 
-/***** module 27 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_fgj_app\node_modules\redux-actions\lib\utils\flattenWhenNode.js *****/
-function(module, exports, __wepy_require) {"use strict";
-
-exports.__esModule = true;
-exports.default = void 0;
-
-var _constants = __wepy_require(6);
-
-var _ownKeys = _interopRequireDefault(__wepy_require(22));
-
-var _get = _interopRequireDefault(__wepy_require(23));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var _default = function _default(predicate) {
-  return function flatten(map, _temp, partialFlatMap, partialFlatActionType) {
-    var _ref = _temp === void 0 ? {} : _temp,
-        _ref$namespace = _ref.namespace,
-        namespace = _ref$namespace === void 0 ? _constants.DEFAULT_NAMESPACE : _ref$namespace,
-        prefix = _ref.prefix;
-
-    if (partialFlatMap === void 0) {
-      partialFlatMap = {};
-    }
-
-    if (partialFlatActionType === void 0) {
-      partialFlatActionType = '';
-    }
-
-    function connectNamespace(type) {
-      var _ref2;
-
-      if (!partialFlatActionType) return type;
-      var types = type.toString().split(_constants.ACTION_TYPE_DELIMITER);
-      var partials = partialFlatActionType.split(_constants.ACTION_TYPE_DELIMITER);
-      return (_ref2 = []).concat.apply(_ref2, partials.map(function (p) {
-        return types.map(function (t) {
-          return "" + p + namespace + t;
-        });
-      })).join(_constants.ACTION_TYPE_DELIMITER);
-    }
-
-    function connectPrefix(type) {
-      if (partialFlatActionType || !prefix || prefix && new RegExp("^" + prefix + namespace).test(type)) {
-        return type;
-      }
-
-      return "" + prefix + namespace + type;
-    }
-
-    (0, _ownKeys.default)(map).forEach(function (type) {
-      var nextNamespace = connectPrefix(connectNamespace(type));
-      var mapValue = (0, _get.default)(type, map);
-
-      if (predicate(mapValue)) {
-        flatten(mapValue, {
-          namespace: namespace,
-          prefix: prefix
-        }, partialFlatMap, nextNamespace);
-      } else {
-        partialFlatMap[nextNamespace] = mapValue;
-      }
-    });
-    return partialFlatMap;
-  };
-};
-
-exports.default = _default;
-},/***** module 27 end *****/
-
-
-/***** module 28 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_fgj_app\node_modules\redux-actions\lib\utils\flattenActionMap.js *****/
-function(module, exports, __wepy_require) {"use strict";
-
-exports.__esModule = true;
-exports.default = void 0;
-
-var _isPlainObject = _interopRequireDefault(__wepy_require(12));
-
-var _flattenWhenNode = _interopRequireDefault(__wepy_require(27));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var _default = (0, _flattenWhenNode.default)(_isPlainObject.default);
-
-exports.default = _default;
-},/***** module 28 end *****/
-
-
-/***** module 29 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_fgj_app\node_modules\redux-actions\lib\utils\hasGeneratorInterface.js *****/
-function(module, exports, __wepy_require) {"use strict";
-
-exports.__esModule = true;
-exports.default = hasGeneratorInterface;
-
-var _ownKeys = _interopRequireDefault(__wepy_require(22));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function hasGeneratorInterface(handler) {
-  var keys = (0, _ownKeys.default)(handler);
-  var hasOnlyInterfaceNames = keys.every(function (ownKey) {
-    return ownKey === 'next' || ownKey === 'throw';
-  });
-  return keys.length && keys.length <= 2 && hasOnlyInterfaceNames;
-}
-},/***** module 29 end *****/
-
-
-/***** module 30 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_fgj_app\node_modules\redux-actions\lib\utils\flattenReducerMap.js *****/
-function(module, exports, __wepy_require) {"use strict";
-
-exports.__esModule = true;
-exports.default = void 0;
-
-var _isPlainObject = _interopRequireDefault(__wepy_require(12));
-
-var _isMap = _interopRequireDefault(__wepy_require(21));
-
-var _hasGeneratorInterface = _interopRequireDefault(__wepy_require(29));
-
-var _flattenWhenNode = _interopRequireDefault(__wepy_require(27));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var _default = (0, _flattenWhenNode.default)(function (node) {
-  return ((0, _isPlainObject.default)(node) || (0, _isMap.default)(node)) && !(0, _hasGeneratorInterface.default)(node);
-});
-
-exports.default = _default;
-},/***** module 30 end *****/
-
-
-/***** module 31 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_fgj_app\node_modules\redux-actions\lib\createAction.js *****/
-function(module, exports, __wepy_require) {"use strict";
-
-exports.__esModule = true;
-exports.default = createAction;
-
-var _invariant = _interopRequireDefault(__wepy_require(33));
-
-var _isFunction = _interopRequireDefault(__wepy_require(8));
-
-var _identity = _interopRequireDefault(__wepy_require(14));
-
-var _isNull = _interopRequireDefault(__wepy_require(19));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function createAction(type, payloadCreator, metaCreator) {
-  if (payloadCreator === void 0) {
-    payloadCreator = _identity.default;
-  }
-
-  (0, _invariant.default)((0, _isFunction.default)(payloadCreator) || (0, _isNull.default)(payloadCreator), 'Expected payloadCreator to be a function, undefined or null');
-  var finalPayloadCreator = (0, _isNull.default)(payloadCreator) || payloadCreator === _identity.default ? _identity.default : function (head) {
-    for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      args[_key - 1] = arguments[_key];
-    }
-
-    return head instanceof Error ? head : payloadCreator.apply(void 0, [head].concat(args));
-  };
-  var hasMeta = (0, _isFunction.default)(metaCreator);
-  var typeString = type.toString();
-
-  var actionCreator = function actionCreator() {
-    var payload = finalPayloadCreator.apply(void 0, arguments);
-    var action = {
-      type: type
-    };
-
-    if (payload instanceof Error) {
-      action.error = true;
-    }
-
-    if (payload !== undefined) {
-      action.payload = payload;
-    }
-
-    if (hasMeta) {
-      action.meta = metaCreator.apply(void 0, arguments);
-    }
-
-    return action;
-  };
-
-  actionCreator.toString = function () {
-    return typeString;
-  };
-
-  return actionCreator;
-}
-},/***** module 31 end *****/
-
-
-/***** module 32 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_fgj_app\node_modules\redux-actions\lib\handleAction.js *****/
-function(module, exports, __wepy_require) {"use strict";
-
-exports.__esModule = true;
-exports.default = handleAction;
-
-var _invariant = _interopRequireDefault(__wepy_require(33));
-
-var _isFunction = _interopRequireDefault(__wepy_require(8));
-
-var _isPlainObject = _interopRequireDefault(__wepy_require(12));
-
-var _identity = _interopRequireDefault(__wepy_require(14));
-
-var _isNil = _interopRequireDefault(__wepy_require(15));
-
-var _isUndefined = _interopRequireDefault(__wepy_require(20));
-
-var _toString = _interopRequireDefault(__wepy_require(10));
-
-var _constants = __wepy_require(6);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function handleAction(type, reducer, defaultState) {
-  if (reducer === void 0) {
-    reducer = _identity.default;
-  }
-
-  var types = (0, _toString.default)(type).split(_constants.ACTION_TYPE_DELIMITER);
-  (0, _invariant.default)(!(0, _isUndefined.default)(defaultState), "defaultState for reducer handling " + types.join(', ') + " should be defined");
-  (0, _invariant.default)((0, _isFunction.default)(reducer) || (0, _isPlainObject.default)(reducer), 'Expected reducer to be a function or object with next and throw reducers');
-
-  var _ref = (0, _isFunction.default)(reducer) ? [reducer, reducer] : [reducer.next, reducer.throw].map(function (aReducer) {
-    return (0, _isNil.default)(aReducer) ? _identity.default : aReducer;
-  }),
-      nextReducer = _ref[0],
-      throwReducer = _ref[1];
-
-  return function (state, action) {
-    if (state === void 0) {
-      state = defaultState;
-    }
-
-    var actionType = action.type;
-
-    if (!actionType || types.indexOf((0, _toString.default)(actionType)) === -1) {
-      return state;
-    }
-
-    return (action.error === true ? throwReducer : nextReducer)(state, action);
-  };
-}
-},/***** module 32 end *****/
-
-
-/***** module 33 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_fgj_app\node_modules\invariant\invariant.js *****/
-function(module, exports, __wepy_require) {/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-'use strict';
-
-/**
- * Use invariant() to assert state which your program assumes to be true.
- *
- * Provide sprintf-style format (only %s is supported) and arguments
- * to provide information about what broke and what you were
- * expecting.
- *
- * The invariant message will be stripped in production, but the invariant
- * will remain to ensure logic does not differ in production.
- */
-
-var NODE_ENV = process.env.NODE_ENV;
-
-var invariant = function(condition, format, a, b, c, d, e, f) {
-  if (NODE_ENV !== 'production') {
-    if (format === undefined) {
-      throw new Error('invariant requires an error message argument');
-    }
-  }
-
-  if (!condition) {
-    var error;
-    if (format === undefined) {
-      error = new Error(
-        'Minified exception occurred; use the non-minified dev environment ' +
-        'for the full error message and additional helpful warnings.'
-      );
-    } else {
-      var args = [a, b, c, d, e, f];
-      var argIndex = 0;
-      error = new Error(
-        format.replace(/%s/g, function() { return args[argIndex++]; })
-      );
-      error.name = 'Invariant Violation';
-    }
-
-    error.framesToPop = 1; // we don't care about invariant's own frame
-    throw error;
-  }
-};
-
-module.exports = invariant;
-
-},/***** module 33 end *****/
-
-
-/***** module 34 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_fgj_app\node_modules\redux-actions\lib\combineActions.js *****/
-function(module, exports, __wepy_require) {"use strict";
-
-exports.__esModule = true;
-exports.default = combineActions;
-
-var _invariant = _interopRequireDefault(__wepy_require(33));
-
-var _isFunction = _interopRequireDefault(__wepy_require(8));
-
-var _isSymbol = _interopRequireDefault(__wepy_require(7));
-
-var _isEmpty = _interopRequireDefault(__wepy_require(9));
-
-var _toString = _interopRequireDefault(__wepy_require(10));
-
-var _isString = _interopRequireDefault(__wepy_require(11));
-
-var _constants = __wepy_require(6);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function isValidActionType(type) {
-  return (0, _isString.default)(type) || (0, _isFunction.default)(type) || (0, _isSymbol.default)(type);
-}
-
-function isValidActionTypes(types) {
-  if ((0, _isEmpty.default)(types)) {
-    return false;
-  }
-
-  return types.every(isValidActionType);
-}
-
-function combineActions() {
-  for (var _len = arguments.length, actionsTypes = new Array(_len), _key = 0; _key < _len; _key++) {
-    actionsTypes[_key] = arguments[_key];
-  }
-
-  (0, _invariant.default)(isValidActionTypes(actionsTypes), 'Expected action types to be strings, symbols, or action creators');
-  var combinedActionType = actionsTypes.map(_toString.default).join(_constants.ACTION_TYPE_DELIMITER);
-  return {
-    toString: function toString() {
-      return combinedActionType;
-    }
-  };
-}
-},/***** module 34 end *****/
-
-
-/***** module 35 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_fgj_app\node_modules\just-curry-it\index.js *****/
-function(module, exports, __wepy_require) {module.exports = curry;
-
-/*
-  function add(a, b, c) {
-    return a + b + c;
-  }
-  curry(add)(1)(2)(3); // 6
-  curry(add)(1)(2)(2); // 5
-  curry(add)(2)(4, 3); // 9
-
-  function add(...args) {
-    return args.reduce((sum, n) => sum + n, 0)
-  }
-  var curryAdd4 = curry(add, 4)
-  curryAdd4(1)(2, 3)(4); // 10
-
-  function converter(ratio, input) {
-    return (input*ratio).toFixed(1);
-  }
-  const curriedConverter = curry(converter)
-  const milesToKm = curriedConverter(1.62);
-  milesToKm(35); // 56.7
-  milesToKm(10); // 16.2
-*/
-
-function curry(fn, arity) {
-  return function curried() {
-    if (arity == null) {
-      arity = fn.length;
-    }
-    var args = [].slice.call(arguments);
-    if (args.length >= arity) {
-      return fn.apply(this, args);
-    } else {
-      return function() {
-        return curried.apply(this, args.concat([].slice.call(arguments)));
-      };
-    }
-  };
-}
-
-},/***** module 35 end *****/
-
-
-/***** module 36 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_fgj_app\node_modules\redux-actions\lib\createCurriedAction.js *****/
-function(module, exports, __wepy_require) {"use strict";
-
-exports.__esModule = true;
-exports.default = void 0;
-
-var _justCurryIt = _interopRequireDefault(__wepy_require(35));
-
-var _createAction = _interopRequireDefault(__wepy_require(31));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var _default = function _default(type, payloadCreator) {
-  return (0, _justCurryIt.default)((0, _createAction.default)(type, payloadCreator), payloadCreator.length);
-};
-
-exports.default = _default;
-},/***** module 36 end *****/
-
-
-/***** module 37 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_fgj_app\node_modules\reduce-reducers\lib\index.js *****/
-function(module, exports, __wepy_require) {'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-exports.default = function () {
-  for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-    args[_key] = arguments[_key];
-  }
-
-  var initialState = typeof args[args.length - 1] !== 'function' && args.pop();
-  var reducers = args;
-
-  if (typeof initialState === 'undefined') {
-    throw new TypeError('The initial state may not be undefined. If you do not want to set a value for this reducer, you can use null instead of undefined.');
-  }
-
-  return function (prevState, value) {
-    for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
-      args[_key2 - 2] = arguments[_key2];
-    }
-
-    var prevStateIsUndefined = typeof prevState === 'undefined';
-    var valueIsUndefined = typeof value === 'undefined';
-
-    if (prevStateIsUndefined && valueIsUndefined && initialState) {
-      return initialState;
-    }
-
-    return reducers.reduce(function (newState, reducer) {
-      return reducer.apply(undefined, [newState, value].concat(args));
-    }, prevStateIsUndefined && !valueIsUndefined && initialState ? initialState : prevState);
-  };
-};
-
-module.exports = exports['default'];
-},/***** module 37 end *****/
-
-
-/***** module 38 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_fgj_app\node_modules\redux-actions\lib\handleActions.js *****/
-function(module, exports, __wepy_require) {"use strict";
-
-exports.__esModule = true;
-exports.default = handleActions;
-
-var _reduceReducers = _interopRequireDefault(__wepy_require(37));
-
-var _invariant = _interopRequireDefault(__wepy_require(33));
-
-var _isPlainObject = _interopRequireDefault(__wepy_require(12));
-
-var _isMap = _interopRequireDefault(__wepy_require(21));
-
-var _ownKeys = _interopRequireDefault(__wepy_require(22));
-
-var _flattenReducerMap = _interopRequireDefault(__wepy_require(30));
-
-var _handleAction = _interopRequireDefault(__wepy_require(32));
-
-var _get = _interopRequireDefault(__wepy_require(23));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function handleActions(handlers, defaultState, options) {
-  if (options === void 0) {
-    options = {};
-  }
-
-  (0, _invariant.default)((0, _isPlainObject.default)(handlers) || (0, _isMap.default)(handlers), 'Expected handlers to be a plain object.');
-  var flattenedReducerMap = (0, _flattenReducerMap.default)(handlers, options);
-  var reducers = (0, _ownKeys.default)(flattenedReducerMap).map(function (type) {
-    return (0, _handleAction.default)(type, (0, _get.default)(type, flattenedReducerMap), defaultState);
-  });
-
-  var reducer = _reduceReducers.default.apply(void 0, reducers.concat([defaultState]));
-
-  return function (state, action) {
-    if (state === void 0) {
-      state = defaultState;
-    }
-
-    return reducer(state, action);
-  };
-}
-},/***** module 38 end *****/
-
-
-/***** module 39 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_fgj_app\node_modules\to-no-case\index.js *****/
+/***** module 40 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\to-no-case\index.js *****/
 function(module, exports, __wepy_require) {
 /**
  * Export.
@@ -21661,13 +21998,13 @@ function uncamelize(string) {
   })
 }
 
-},/***** module 39 end *****/
+},/***** module 40 end *****/
 
 
-/***** module 40 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_fgj_app\node_modules\to-space-case\index.js *****/
+/***** module 41 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\to-space-case\index.js *****/
 function(module, exports, __wepy_require) {
-var clean = __wepy_require(39)
+var clean = __wepy_require(40)
 
 /**
  * Export.
@@ -21688,13 +22025,13 @@ function toSpaceCase(string) {
   }).trim()
 }
 
-},/***** module 40 end *****/
+},/***** module 41 end *****/
 
 
-/***** module 41 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_fgj_app\node_modules\to-camel-case\index.js *****/
+/***** module 42 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\to-camel-case\index.js *****/
 function(module, exports, __wepy_require) {
-var space = __wepy_require(40)
+var space = __wepy_require(41)
 
 /**
  * Export.
@@ -21715,17 +22052,17 @@ function toCamelCase(string) {
   })
 }
 
-},/***** module 41 end *****/
+},/***** module 42 end *****/
 
 
-/***** module 42 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_fgj_app\node_modules\redux-actions\lib\utils\camelCase.js *****/
+/***** module 43 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\camelCase.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
 exports.__esModule = true;
 exports.default = void 0;
 
-var _toCamelCase = _interopRequireDefault(__wepy_require(41));
+var _toCamelCase = _interopRequireDefault(__wepy_require(42));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21736,11 +22073,11 @@ var _default = function _default(type) {
 };
 
 exports.default = _default;
-},/***** module 42 end *****/
+},/***** module 43 end *****/
 
 
-/***** module 43 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_fgj_app\node_modules\redux-actions\lib\createActions.js *****/
+/***** module 44 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\createActions.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
 exports.__esModule = true;
@@ -21748,31 +22085,31 @@ exports.default = createActions;
 
 var _invariant = _interopRequireDefault(__wepy_require(33));
 
-var _isPlainObject = _interopRequireDefault(__wepy_require(12));
+var _isPlainObject = _interopRequireDefault(__wepy_require(11));
 
-var _isFunction = _interopRequireDefault(__wepy_require(8));
+var _isFunction = _interopRequireDefault(__wepy_require(4));
 
-var _identity = _interopRequireDefault(__wepy_require(14));
+var _identity = _interopRequireDefault(__wepy_require(8));
 
-var _isArray = _interopRequireDefault(__wepy_require(13));
+var _isArray = _interopRequireDefault(__wepy_require(12));
 
-var _isString = _interopRequireDefault(__wepy_require(11));
+var _isString = _interopRequireDefault(__wepy_require(9));
 
-var _isNil = _interopRequireDefault(__wepy_require(15));
+var _isNil = _interopRequireDefault(__wepy_require(13));
 
-var _getLastElement = _interopRequireDefault(__wepy_require(17));
+var _getLastElement = _interopRequireDefault(__wepy_require(14));
 
-var _camelCase = _interopRequireDefault(__wepy_require(42));
+var _camelCase = _interopRequireDefault(__wepy_require(43));
 
-var _arrayToObject = _interopRequireDefault(__wepy_require(16));
+var _arrayToObject = _interopRequireDefault(__wepy_require(15));
 
-var _flattenActionMap = _interopRequireDefault(__wepy_require(28));
+var _flattenActionMap = _interopRequireDefault(__wepy_require(23));
 
-var _unflattenActionCreators = _interopRequireDefault(__wepy_require(18));
+var _unflattenActionCreators = _interopRequireDefault(__wepy_require(16));
 
 var _createAction = _interopRequireDefault(__wepy_require(31));
 
-var _constants = __wepy_require(6);
+var _constants = __wepy_require(3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21846,11 +22183,11 @@ function actionCreatorsFromIdentityActions(identityActions, options) {
     return _objectSpread({}, partialActionCreators, (_objectSpread4 = {}, _objectSpread4[(0, _camelCase.default)(type)] = actionCreators[type], _objectSpread4));
   });
 }
-},/***** module 43 end *****/
+},/***** module 44 end *****/
 
 
-/***** module 44 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_fgj_app\node_modules\redux-actions\lib\index.js *****/
+/***** module 45 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\index.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
 exports.__esModule = true;
@@ -21863,11 +22200,11 @@ var _createAction = _interopRequireDefault(__wepy_require(31));
 
 exports.createAction = _createAction.default;
 
-var _createActions = _interopRequireDefault(__wepy_require(43));
+var _createActions = _interopRequireDefault(__wepy_require(44));
 
 exports.createActions = _createActions.default;
 
-var _createCurriedAction = _interopRequireDefault(__wepy_require(36));
+var _createCurriedAction = _interopRequireDefault(__wepy_require(30));
 
 exports.createCurriedAction = _createCurriedAction.default;
 
@@ -21875,12 +22212,12 @@ var _handleAction = _interopRequireDefault(__wepy_require(32));
 
 exports.handleAction = _handleAction.default;
 
-var _handleActions = _interopRequireDefault(__wepy_require(38));
+var _handleActions = _interopRequireDefault(__wepy_require(36));
 
 exports.handleActions = _handleActions.default;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-}/***** module 44 end *****/
+}/***** module 45 end *****/
 
 
 ]);

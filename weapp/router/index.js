@@ -3,69 +3,74 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.DETAIL3 = exports.LIST3 = exports.DETAIL2 = exports.LIST2 = exports.DETAIL1 = exports.LIST1 = exports.ABOUT = exports.SUGGEST = exports.RELEASE = exports.HISTORY = exports.LIKE = exports.MINE = exports.INDEX = void 0;
+exports.NEW_HOUSE_DETAIL = exports.NEW_HOUSE_LIST = exports.SECOND_HOUSE_DETAIL = exports.SECOND_HOUSE_LIST = exports.RENT_HOUSE_DETAIL = exports.RENT_HOUSE_LIST = exports.ABOUT = exports.SUGGEST = exports.RELEASE = exports.HISTORY = exports.CALCULATOR = exports.FAVORITE = exports.MINE = exports.INDEX = void 0;
 var INDEX = {
   name: '首页',
-  path: '/pages/index'
+  path: '/pages/index/index'
 };
 exports.INDEX = INDEX;
 var MINE = {
   name: '个人中心',
-  path: '/pages/mine/mine'
+  path: '/pages/mine/index'
 };
 exports.MINE = MINE;
-var LIKE = {
+var FAVORITE = {
   name: '我的收藏',
-  path: '/pages/mine/like'
+  path: '/pages/favorite/index'
 };
-exports.LIKE = LIKE;
+exports.FAVORITE = FAVORITE;
+var CALCULATOR = {
+  name: '我的收藏',
+  path: '/pages/calculator/index'
+};
+exports.CALCULATOR = CALCULATOR;
 var HISTORY = {
   name: '历史浏览',
-  path: '/pages/mine/history'
+  path: '/pages/history/index'
 };
 exports.HISTORY = HISTORY;
 var RELEASE = {
   name: '房源发布',
-  path: '/pages/mine/release'
+  path: '/pages/release/index'
 };
 exports.RELEASE = RELEASE;
 var SUGGEST = {
   name: '意见反馈',
-  path: '/pages/mine/suggest'
+  path: '/pages/suggest/index'
 };
 exports.SUGGEST = SUGGEST;
 var ABOUT = {
   name: '关于我们',
-  path: '/pages/mine/about'
+  path: '/pages/about/index'
 };
 exports.ABOUT = ABOUT;
-var LIST1 = {
+var RENT_HOUSE_LIST = {
   name: '租房列表',
-  path: '/pages/list1/list'
+  path: '/pages/rent-house-list/index'
 };
-exports.LIST1 = LIST1;
-var DETAIL1 = {
+exports.RENT_HOUSE_LIST = RENT_HOUSE_LIST;
+var RENT_HOUSE_DETAIL = {
   name: '租房详情',
-  path: '/pages/list1/detail'
+  path: '/pages/rent-house-detail/index'
 };
-exports.DETAIL1 = DETAIL1;
-var LIST2 = {
+exports.RENT_HOUSE_DETAIL = RENT_HOUSE_DETAIL;
+var SECOND_HOUSE_LIST = {
   name: '二手房列表',
-  path: '/pages/list2/list'
+  path: '/pages/second-house-list/index'
 };
-exports.LIST2 = LIST2;
-var DETAIL2 = {
+exports.SECOND_HOUSE_LIST = SECOND_HOUSE_LIST;
+var SECOND_HOUSE_DETAIL = {
   name: '二手房详情',
-  path: '/pages/list2/detail'
+  path: '/pages/second-house-detail/index'
 };
-exports.DETAIL2 = DETAIL2;
-var LIST3 = {
+exports.SECOND_HOUSE_DETAIL = SECOND_HOUSE_DETAIL;
+var NEW_HOUSE_LIST = {
   name: '新房列表',
-  path: '/pages/list3/list'
+  path: '/pages/new-house-list/index'
 };
-exports.LIST3 = LIST3;
-var DETAIL3 = {
+exports.NEW_HOUSE_LIST = NEW_HOUSE_LIST;
+var NEW_HOUSE_DETAIL = {
   name: '新房详情',
-  path: '/pages/list3/detail'
+  path: '/pages/new-house-detail/index'
 };
-exports.DETAIL3 = DETAIL3;
+exports.NEW_HOUSE_DETAIL = NEW_HOUSE_DETAIL;

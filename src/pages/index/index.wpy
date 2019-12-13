@@ -1,0 +1,144 @@
+<template>
+  <div class="container">
+    <div class="content">
+      <div class="header">
+        <div class="inline">
+          <div class="location">
+            <span class="icon iconfont icon-location"></span>
+            <span class="span">广德</span>
+          </div>
+          <div class="title">码上找房</div>
+        </div>
+      </div>
+      <div class="body">
+        <div class="row">
+          <div class="col-12">
+            <navigator class="user" hover-class="none" :url="url">
+              <img class="img" src="../../assets/images/user.png" alt="个人中心"/>
+              <span class="name">个人中心</span>
+            </navigator>
+          </div>
+        </div>
+        <customer-navigator></customer-navigator>
+      </div>
+      <div class="footer"></div>
+    </div>
+  </div>
+</template>
+
+<script type="text/ecmascript-6">
+  import wepy from '@wepy/core';
+  import store from '../../store/index';
+  import * as $routes from '../../router';
+
+  wepy.page({
+    store,
+
+    mixins: [],
+
+    data: {
+      url: $routes.MINE.path
+    },
+
+    computed: {},
+
+    methods: {},
+
+    created() {
+    }
+  });
+</script>
+
+<style scoped lang="less">
+  @import "../../assets/less/variable";
+
+  .container {
+    .content {
+      height: 100vh;
+      padding-top: unit(130, rpx);
+      .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        padding-top: unit(40, rpx);
+        background-color: @white;
+        .inline {
+          position: relative;
+          .location {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: auto;
+            padding: 0 unit(20, rpx);
+            color: @fontColor1;
+            font-size: 0;
+            .icon {
+              height: unit(90, rpx);
+              line-height: unit(90, rpx);
+              display: inline-block;
+              vertical-align: middle;
+              font-size: @fontSize4;
+              letter-spacing: 1px;
+            }
+            .span {
+              height: unit(90, rpx);
+              line-height: unit(90, rpx);
+              display: inline-block;
+              vertical-align: middle;
+              margin-left: unit(4, rpx);
+              font-size: @fontSize2;
+            }
+          }
+          .title {
+            height: unit(90, rpx);
+            line-height: unit(90, rpx);
+            font-size: unit(32, rpx);
+            text-align: center;
+            font-weight: bold;
+          }
+        }
+      }
+      .body {
+        .row {
+          padding: unit(15, rpx);
+          padding-bottom: 0;
+          .col-12 {
+            padding: unit(15, rpx);
+            .user {
+              height: unit(200, rpx);
+              line-height: unit(200, rpx);
+              padding: 0 unit(30, rpx);
+              border-radius: unit(20, rpx);
+              background-image: -webkit-linear-gradient(120deg, #f3d45b 1%, #f3c93c 100%);
+              font-size: 0;
+              .img {
+                width: unit(80, rpx);
+                height: unit(80, rpx);
+                display: inline-block;
+                vertical-align: middle;
+              }
+              .name {
+                display: inline-block;
+                vertical-align: middle;
+                padding-left: unit(20, rpx);
+                font-size: unit(30, rpx);
+                color: @white;
+              }
+            }
+          }
+        }
+      }
+      .footer {
+      }
+    }
+  }
+</style>
+<config>
+  {
+  navigationStyle:'custom',
+  usingComponents: {
+  'customer-navigator': '../../components/customer-navigator/customer-navigator',
+  }
+  }
+</config>

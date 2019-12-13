@@ -1,0 +1,76 @@
+.container .content {
+  height: 100vh;
+  padding-top: 130rpx;
+}
+.container .content .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  padding-top: 40rpx;
+  background-color: #ffffff;
+}
+.container .content .header .inline {
+  position: relative;
+}
+.container .content .header .inline .location {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: auto;
+  padding: 0 20rpx;
+  color: #333333;
+  font-size: 0;
+}
+.container .content .header .inline .location .icon {
+  height: 90rpx;
+  line-height: 90rpx;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 30rpx;
+  letter-spacing: 1px;
+}
+.container .content .header .inline .location .span {
+  height: 90rpx;
+  line-height: 90rpx;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 4rpx;
+  font-size: 26rpx;
+}
+.container .content .header .inline .title {
+  height: 90rpx;
+  line-height: 90rpx;
+  font-size: 32rpx;
+  text-align: center;
+  font-weight: bold;
+}
+.container .content .body .row {
+  padding: 15rpx;
+  padding-bottom: 0;
+}
+.container .content .body .row .col-12 {
+  padding: 15rpx;
+}
+.container .content .body .row .col-12 .user {
+  height: 200rpx;
+  line-height: 200rpx;
+  padding: 0 30rpx;
+  border-radius: 20rpx;
+  background-image: -webkit-linear-gradient(120deg, #f3d45b 1%, #f3c93c 100%);
+  font-size: 0;
+}
+.container .content .body .row .col-12 .user .img {
+  width: 80rpx;
+  height: 80rpx;
+  display: inline-block;
+  vertical-align: middle;
+}
+.container .content .body .row .col-12 .user .name {
+  display: inline-block;
+  vertical-align: middle;
+  padding-left: 20rpx;
+  font-size: 30rpx;
+  color: #ffffff;
+}
+

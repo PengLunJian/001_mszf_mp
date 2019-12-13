@@ -5,17 +5,14 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
-var _redux = require('../../vendor.js')(5);
+var _redux = require('../../vendor.js')(28);
 
-var _home = _interopRequireDefault(require('home.js'));
-
-var _cart = _interopRequireDefault(require('cart.js'));
+var _product = _interopRequireDefault(require('product.js'));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var _default = (0, _redux.combineReducers)({
-  HOME_REDUCER: _home["default"],
-  CART_REDUCER: _cart["default"]
+  PRODUCT_REDUCER: _product["default"]
 });
 
 exports["default"] = _default;

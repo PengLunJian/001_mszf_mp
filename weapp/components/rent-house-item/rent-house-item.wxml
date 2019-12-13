@@ -1,0 +1,30 @@
+
+<view data-wpy-evt="87-2" bindtap="_proxy" class="item">
+  <view class="item-inner">
+    <view class="item-img">
+      <image src="{{item.img}}"></image>
+    </view>
+    <view class="item-info">
+      <view class="item-row">
+        <view class="item-title ellipsis">{{item.title}}</view>
+      </view>
+      <view class="item-row">
+        <label class="item-city">{{item.city}}</label>
+        <label class="item-split"></label>
+        <label class="item-addr">{{item.address}}</label>
+      </view>
+      <view class="item-row">
+                <label class="item-normal item-price">
+                  <label class="item-value">1800</label>
+                  <label class="item-unit">元/月</label>
+                </label>
+        <label class="item-normal">{{item.type}}</label>
+        <label class="item-normal">{{item.method}}</label>
+        <label class="item-normal">{{item.area}}m²</label>
+      </view>
+      <view class="item-row">
+                <label wx:for="{{ item.tags }}" wx:for-index="index" wx:for-item="tag" wx:key="index" key="{{ index }}" class="item-tag">{{tag}}</label>
+      </view>
+    </view>
+  </view>
+</view>
