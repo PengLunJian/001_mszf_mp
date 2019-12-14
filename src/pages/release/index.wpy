@@ -65,8 +65,8 @@
     data: {
       items: [
         {
-          name: $routes.LIKE.name,
-          path: $routes.LIKE.path,
+          name: $routes.FAVORITE.name,
+          path: $routes.FAVORITE.path,
           icon: 'icon-favorite'
         },
         {

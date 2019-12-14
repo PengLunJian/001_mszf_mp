@@ -126,7 +126,13 @@ _core["default"].page({
       this.maxArea = maxLabel;
     },
     onHandlePriceFilter: function onHandlePriceFilter(index) {
-      this.btnPrice.initIndex = index;
+      var btnIndex = this.btnPrice.initIndex;
+
+      if (btnIndex === index) {
+        this.btnPrice.initIndex = -1;
+      } else {
+        this.btnPrice.initIndex = index;
+      }
     }
   }),
   onLoad: function onLoad() {
@@ -136,245 +142,49 @@ _core["default"].page({
       console.log(err);
     });
   }
-}, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"},"rent-house-item":{"path":"..\\..\\components\\rent-house-item\\rent-house-item"},"wux-slider":{"path":"..\\..\\$vendor\\wux-weapp\\dist\\slider\\index"}},"on":{"5-3":["change"],"5-5":["change"]}}, handlers: {'5-0': {"tap": function proxy (index) {
+}, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"},"rent-house-item":{"path":"..\\..\\components\\rent-house-item\\rent-house-item"},"wux-slider":{"path":"..\\..\\$vendor\\wux-weapp\\dist\\slider\\index"}},"on":{"5-80":["change"],"5-82":["change"]}}, handlers: {'5-77': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {
         _vm.onHandleTabChange(index)
       })();
     
-  }},'5-1': {"tap": function proxy () {
+  }},'5-78': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
         _vm.onHandleCloseModal(0)
       })();
     
-  }},'5-2': {"tap": function proxy (index) {
+  }},'5-79': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {
         _vm.onHandlePriceFilter(index)
       })();
     
-  }},'5-3': {"change": function proxy () {
+  }},'5-80': {"change": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleSliderChangePrice($event)
       })();
     
-  }},'5-4': {"tap": function proxy () {
+  }},'5-81': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
         _vm.onHandleCloseModal(1)
       })();
     
-  }},'5-5': {"change": function proxy () {
+  }},'5-82': {"change": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleSliderChangeArea($event)
       })();
     
-  }},'5-6': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleCloseModal(2)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"},"rent-house-item":{"path":"..\\..\\components\\rent-house-item\\rent-house-item"},"wux-slider":{"path":"..\\..\\$vendor\\wux-weapp\\dist\\slider\\index"}},"on":{"5-3":["change"],"5-5":["change"]}}, handlers: {'5-0': {"tap": function proxy (index) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleTabChange(index)
-      })();
-    
-  }},'5-1': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleCloseModal(0)
-      })();
-    
-  }},'5-2': {"tap": function proxy (index) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandlePriceFilter(index)
-      })();
-    
-  }},'5-3': {"change": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleSliderChangePrice($event)
-      })();
-    
-  }},'5-4': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleCloseModal(1)
-      })();
-    
-  }},'5-5': {"change": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleSliderChangeArea($event)
-      })();
-    
-  }},'5-6': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleCloseModal(2)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"},"rent-house-item":{"path":"..\\..\\components\\rent-house-item\\rent-house-item"},"wux-slider":{"path":"..\\..\\$vendor\\wux-weapp\\dist\\slider\\index"}},"on":{"5-3":["change"],"5-5":["change"]}}, handlers: {'5-0': {"tap": function proxy (index) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleTabChange(index)
-      })();
-    
-  }},'5-1': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleCloseModal(0)
-      })();
-    
-  }},'5-2': {"tap": function proxy (index) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandlePriceFilter(index)
-      })();
-    
-  }},'5-3': {"change": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleSliderChangePrice($event)
-      })();
-    
-  }},'5-4': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleCloseModal(1)
-      })();
-    
-  }},'5-5': {"change": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleSliderChangeArea($event)
-      })();
-    
-  }},'5-6': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleCloseModal(2)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"},"rent-house-item":{"path":"..\\..\\components\\rent-house-item\\rent-house-item"},"wux-slider":{"path":"..\\..\\$vendor\\wux-weapp\\dist\\slider\\index"}},"on":{"5-3":["change"],"5-5":["change"]}}, handlers: {'5-0': {"tap": function proxy (index) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleTabChange(index)
-      })();
-    
-  }},'5-1': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleCloseModal(0)
-      })();
-    
-  }},'5-2': {"tap": function proxy (index) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandlePriceFilter(index)
-      })();
-    
-  }},'5-3': {"change": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleSliderChangePrice($event)
-      })();
-    
-  }},'5-4': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleCloseModal(1)
-      })();
-    
-  }},'5-5': {"change": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleSliderChangeArea($event)
-      })();
-    
-  }},'5-6': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleCloseModal(2)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"},"rent-house-item":{"path":"..\\..\\components\\rent-house-item\\rent-house-item"},"wux-slider":{"path":"..\\..\\$vendor\\wux-weapp\\dist\\slider\\index"}},"on":{"5-3":["change"],"5-5":["change"]}}, handlers: {'5-0': {"tap": function proxy (index) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleTabChange(index)
-      })();
-    
-  }},'5-1': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleCloseModal(0)
-      })();
-    
-  }},'5-2': {"tap": function proxy (index) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandlePriceFilter(index)
-      })();
-    
-  }},'5-3': {"change": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleSliderChangePrice($event)
-      })();
-    
-  }},'5-4': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleCloseModal(1)
-      })();
-    
-  }},'5-5': {"change": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleSliderChangeArea($event)
-      })();
-    
-  }},'5-6': {"tap": function proxy () {
+  }},'5-83': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {

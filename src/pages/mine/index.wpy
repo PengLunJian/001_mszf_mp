@@ -2,13 +2,13 @@
   <div class="container">
     <div class="content">
       <div class="header">
-        <top-bar title="个人中心" styl="{{styl}}"></top-bar>
+        <top-bar title="个人中心"></top-bar>
       </div>
       <div class="body">
         <div class="user module">
           <div class="info">
             <img class="img" src="../../assets/images/agent.jpg"/>
-            <div class="name">俺们村唯一光棍儿</div>
+            <div class="name">WEB前端架构师</div>
           </div>
           <img class="bg" src="../../assets/images/mine_bg.jpg" mode="aspectFit"/>
         </div>
@@ -83,13 +83,14 @@
 
   .container {
     .content {
+      padding-top: unit(130, rpx);
       .header {
 
       }
       .body {
         .user {
           position: relative;
-          height: unit(400, rpx);
+          height: unit(280, rpx);
           .info {
             position: absolute;
             left: 0;
@@ -104,6 +105,7 @@
               vertical-align: middle;
               border-radius: 100%;
               border: 2px solid @white;
+              background-color: @white;
               box-shadow: 0 0 15px @boxShadow1;
             }
             .name {

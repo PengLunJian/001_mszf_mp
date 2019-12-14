@@ -59,70 +59,14 @@ _core["default"].page({
     }
   },
   created: function created() {}
-}, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'13-0': {"tap": function proxy (index) {
+}, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'13-10': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {
         _vm.onHandleTabChange(index)
       })();
     
-  }},'13-1': {"change": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleSwiperChange($event)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'13-0': {"tap": function proxy (index) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleTabChange(index)
-      })();
-    
-  }},'13-1': {"change": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleSwiperChange($event)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'13-0': {"tap": function proxy (index) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleTabChange(index)
-      })();
-    
-  }},'13-1': {"change": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleSwiperChange($event)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'13-0': {"tap": function proxy (index) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleTabChange(index)
-      })();
-    
-  }},'13-1': {"change": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleSwiperChange($event)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'13-0': {"tap": function proxy (index) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleTabChange(index)
-      })();
-    
-  }},'13-1': {"change": function proxy () {
+  }},'13-11': {"change": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {

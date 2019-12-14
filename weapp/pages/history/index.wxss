@@ -158,7 +158,7 @@
   background-color: #FFA403;
 }
 .container .content .body .scroll-view .item .item-type .color3 {
-  background-color: #FFEB01;
+  background-color: #FFDF05;
 }
 .container .content .body .scroll-view .item:after {
   content: '';

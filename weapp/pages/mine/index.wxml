@@ -2,13 +2,13 @@
 <view class="container">
   <view class="content">
     <view class="header">
-      <top-bar bind_init="_initComponent" title="个人中心" styl="{{styl}}"></top-bar>
+      <top-bar bind_init="_initComponent" title="个人中心"></top-bar>
     </view>
     <view class="body">
       <view class="user module">
         <view class="info">
           <image src="../../assets/images/agent.jpg" class="img"></image>
-          <view class="name">俺们村唯一光棍儿</view>
+          <view class="name">WEB前端架构师</view>
         </view>
         <image src="../../assets/images/mine_bg.jpg" mode="aspectFit" class="bg"></image>
       </view>

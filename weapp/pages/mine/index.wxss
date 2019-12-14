@@ -1,6 +1,9 @@
+.container .content {
+  padding-top: 130rpx;
+}
 .container .content .body .user {
   position: relative;
-  height: 400rpx;
+  height: 280rpx;
 }
 .container .content .body .user .info {
   position: absolute;
@@ -17,6 +20,7 @@
   vertical-align: middle;
   border-radius: 100%;
   border: 2px solid #ffffff;
+  background-color: #ffffff;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
 }
 .container .content .body .user .info .name {

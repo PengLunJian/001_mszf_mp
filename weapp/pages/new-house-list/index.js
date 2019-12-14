@@ -1,20 +1,11 @@
 "use strict";
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
 var _core = _interopRequireDefault(require('../../vendor.js')(0));
 
 var _index = _interopRequireDefault(require('../../store/index.js'));
 
-var $routes = _interopRequireWildcard(require('../../router/index.js'));
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-// import {mapState} from '@wepy/redux';
 _core["default"].page({
   store: _index["default"],
   mixins: [],
@@ -86,7 +77,7 @@ _core["default"].page({
   },
   computed: {},
   methods: {
-    onHandleTab: function onHandleTab(index) {
+    onHandleTabChange: function onHandleTabChange(index) {
       var _this = this;
 
       this.tabs.map(function (item) {
@@ -97,12 +88,6 @@ _core["default"].page({
       this.tabs[index].isShow = true;
       this.tabIndex = index;
       this.iSwitch = false;
-    },
-    onHandleDetail: function onHandleDetail(id) {
-      console.log(id);
-      wx.navigateTo({
-        url: $routes.DETAIL3.path
-      });
     },
     onHandleCloseModal: function onHandleCloseModal(index) {
       this.iSwitch = true;
@@ -156,280 +141,49 @@ _core["default"].page({
     }
   },
   created: function created() {}
-}, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"},"wux-slider":{"path":"..\\..\\$vendor\\wux-weapp\\dist\\slider\\index"}},"on":{"9-4":["change"],"9-6":["change"]}}, handlers: {'9-0': {"tap": function proxy (index) {
+}, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"},"new-house-item":{"path":"..\\..\\components\\new-house-item\\new-house-item"},"wux-slider":{"path":"..\\..\\$vendor\\wux-weapp\\dist\\slider\\index"}},"on":{"9-77":["change"],"9-79":["change"]}}, handlers: {'9-74': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {
-        _vm.onHandleTab(index)
+        _vm.onHandleTabChange(index)
       })();
     
-  }},'9-1': {"tap": function proxy (item) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleDetail(item.id)
-      })();
-    
-  }},'9-2': {"tap": function proxy () {
+  }},'9-75': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
         _vm.onHandleCloseModal(0)
       })();
     
-  }},'9-3': {"tap": function proxy (index) {
+  }},'9-76': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {
         _vm.onHandlePriceFilter(index)
       })();
     
-  }},'9-4': {"change": function proxy () {
+  }},'9-77': {"change": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleSliderChangePrice($event)
       })();
     
-  }},'9-5': {"tap": function proxy () {
+  }},'9-78': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
         _vm.onHandleCloseModal(1)
       })();
     
-  }},'9-6': {"change": function proxy () {
+  }},'9-79': {"change": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleSliderChangeArea($event)
       })();
     
-  }},'9-7': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleCloseModal(2)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"},"wux-slider":{"path":"..\\..\\$vendor\\wux-weapp\\dist\\slider\\index"}},"on":{"9-4":["change"],"9-6":["change"]}}, handlers: {'9-0': {"tap": function proxy (index) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleTab(index)
-      })();
-    
-  }},'9-1': {"tap": function proxy (item) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleDetail(item.id)
-      })();
-    
-  }},'9-2': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleCloseModal(0)
-      })();
-    
-  }},'9-3': {"tap": function proxy (index) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandlePriceFilter(index)
-      })();
-    
-  }},'9-4': {"change": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleSliderChangePrice($event)
-      })();
-    
-  }},'9-5': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleCloseModal(1)
-      })();
-    
-  }},'9-6': {"change": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleSliderChangeArea($event)
-      })();
-    
-  }},'9-7': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleCloseModal(2)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"},"wux-slider":{"path":"..\\..\\$vendor\\wux-weapp\\dist\\slider\\index"}},"on":{"9-4":["change"],"9-6":["change"]}}, handlers: {'9-0': {"tap": function proxy (index) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleTab(index)
-      })();
-    
-  }},'9-1': {"tap": function proxy (item) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleDetail(item.id)
-      })();
-    
-  }},'9-2': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleCloseModal(0)
-      })();
-    
-  }},'9-3': {"tap": function proxy (index) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandlePriceFilter(index)
-      })();
-    
-  }},'9-4': {"change": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleSliderChangePrice($event)
-      })();
-    
-  }},'9-5': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleCloseModal(1)
-      })();
-    
-  }},'9-6': {"change": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleSliderChangeArea($event)
-      })();
-    
-  }},'9-7': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleCloseModal(2)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"},"wux-slider":{"path":"..\\..\\$vendor\\wux-weapp\\dist\\slider\\index"}},"on":{"9-4":["change"],"9-6":["change"]}}, handlers: {'9-0': {"tap": function proxy (index) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleTab(index)
-      })();
-    
-  }},'9-1': {"tap": function proxy (item) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleDetail(item.id)
-      })();
-    
-  }},'9-2': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleCloseModal(0)
-      })();
-    
-  }},'9-3': {"tap": function proxy (index) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandlePriceFilter(index)
-      })();
-    
-  }},'9-4': {"change": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleSliderChangePrice($event)
-      })();
-    
-  }},'9-5': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleCloseModal(1)
-      })();
-    
-  }},'9-6': {"change": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleSliderChangeArea($event)
-      })();
-    
-  }},'9-7': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleCloseModal(2)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"},"wux-slider":{"path":"..\\..\\$vendor\\wux-weapp\\dist\\slider\\index"}},"on":{"9-4":["change"],"9-6":["change"]}}, handlers: {'9-0': {"tap": function proxy (index) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleTab(index)
-      })();
-    
-  }},'9-1': {"tap": function proxy (item) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleDetail(item.id)
-      })();
-    
-  }},'9-2': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleCloseModal(0)
-      })();
-    
-  }},'9-3': {"tap": function proxy (index) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandlePriceFilter(index)
-      })();
-    
-  }},'9-4': {"change": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleSliderChangePrice($event)
-      })();
-    
-  }},'9-5': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleCloseModal(1)
-      })();
-    
-  }},'9-6': {"change": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleSliderChangeArea($event)
-      })();
-    
-  }},'9-7': {"tap": function proxy () {
+  }},'9-80': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {

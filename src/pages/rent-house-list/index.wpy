@@ -329,7 +329,12 @@
         this.maxArea = maxLabel;
       },
       onHandlePriceFilter(index) {
-        this.btnPrice.initIndex = index;
+        const btnIndex = this.btnPrice.initIndex;
+        if (btnIndex === index) {
+          this.btnPrice.initIndex = -1;
+        } else {
+          this.btnPrice.initIndex = index;
+        }
       }
     },
 

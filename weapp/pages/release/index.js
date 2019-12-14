@@ -19,8 +19,8 @@ _core["default"].page({
   mixins: [],
   data: {
     items: [{
-      name: $routes.LIKE.name,
-      path: $routes.LIKE.path,
+      name: $routes.FAVORITE.name,
+      path: $routes.FAVORITE.path,
       icon: 'icon-favorite'
     }, {
       name: $routes.RELEASE.name,
@@ -39,4 +39,4 @@ _core["default"].page({
   computed: {},
   methods: {},
   created: function created() {}
-}, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {}, models: {} });
+}, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {}, models: {} });

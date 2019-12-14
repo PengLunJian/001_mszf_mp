@@ -4,6 +4,7 @@
     "component": true,
     "usingComponents": {
         "top-bar": "../../components/top-bar/top-bar",
+        "new-house-item": "../../components/new-house-item/new-house-item",
         "wux-slider": "../../$vendor/wux-weapp/dist/slider/index"
     }
 }

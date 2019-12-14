@@ -128,7 +128,7 @@
           date: '2019/11/24',
           url: '../../assets/images/item1.jpg',
           type: 1,
-          minScrollTop: 0,
+          minScrollTop: -1000,
           maxScrollTop: 390
         },
         {
@@ -375,13 +375,13 @@
               text-align: center;
               color: @white;
               .color1 {
-                background-color: @tagColor1;
+                background-color: @typeColor1;
               }
               .color2 {
-                background-color: @tagColor2;
+                background-color: @typeColor2;
               }
               .color3 {
-                background-color: @tagColor3;
+                background-color: @typeColor3;
               }
             }
             &:after {

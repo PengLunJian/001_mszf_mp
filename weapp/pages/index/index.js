@@ -23,4 +23,4 @@ _core["default"].page({
   computed: {},
   methods: {},
   created: function created() {}
-}, {info: {"components":{"customer-navigator":{"path":"..\\..\\components\\customer-navigator\\customer-navigator"}},"on":{}}, handlers: {}, models: {} }, {info: {"components":{"customer-navigator":{"path":"..\\..\\components\\customer-navigator\\customer-navigator"}},"on":{}}, handlers: {}, models: {} }, {info: {"components":{"customer-navigator":{"path":"..\\..\\components\\customer-navigator\\customer-navigator"}},"on":{}}, handlers: {}, models: {} }, {info: {"components":{"customer-navigator":{"path":"..\\..\\components\\customer-navigator\\customer-navigator"}},"on":{}}, handlers: {}, models: {} }, {info: {"components":{"customer-navigator":{"path":"..\\..\\components\\customer-navigator\\customer-navigator"}},"on":{}}, handlers: {}, models: {} });
+}, {info: {"components":{"customer-navigator":{"path":"..\\..\\components\\customer-navigator\\customer-navigator"}},"on":{}}, handlers: {}, models: {} });
