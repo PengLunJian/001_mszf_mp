@@ -6,8 +6,6 @@ var _core = _interopRequireDefault(require('../../vendor.js')(0));
 
 var _index = _interopRequireDefault(require('../../store/index.js'));
 
-var $routes = _interopRequireWildcard(require('../../router/index.js'));
-
 var _redux = require('../../vendor.js')(1);
 
 var controller = _interopRequireWildcard(require('controller.js'));
@@ -142,49 +140,49 @@ _core["default"].page({
       console.log(err);
     });
   }
-}, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"},"rent-house-item":{"path":"..\\..\\components\\rent-house-item\\rent-house-item"},"wux-slider":{"path":"..\\..\\$vendor\\wux-weapp\\dist\\slider\\index"}},"on":{"5-80":["change"],"5-82":["change"]}}, handlers: {'5-77': {"tap": function proxy (index) {
+}, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"},"rent-house-item":{"path":"..\\..\\components\\rent-house-item\\rent-house-item"},"wux-slider":{"path":"..\\..\\$vendor\\wux-weapp\\dist\\slider\\index"}},"on":{"5-17":["change"],"5-19":["change"]}}, handlers: {'5-14': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {
         _vm.onHandleTabChange(index)
       })();
     
-  }},'5-78': {"tap": function proxy () {
+  }},'5-15': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
         _vm.onHandleCloseModal(0)
       })();
     
-  }},'5-79': {"tap": function proxy (index) {
+  }},'5-16': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {
         _vm.onHandlePriceFilter(index)
       })();
     
-  }},'5-80': {"change": function proxy () {
+  }},'5-17': {"change": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleSliderChangePrice($event)
       })();
     
-  }},'5-81': {"tap": function proxy () {
+  }},'5-18': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
         _vm.onHandleCloseModal(1)
       })();
     
-  }},'5-82': {"change": function proxy () {
+  }},'5-19': {"change": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleSliderChangeArea($event)
       })();
     
-  }},'5-83': {"tap": function proxy () {
+  }},'5-20': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {

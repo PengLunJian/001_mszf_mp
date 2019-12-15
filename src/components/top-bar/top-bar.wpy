@@ -16,11 +16,11 @@
     data: {},
     props: {
       title: {
-        type: 'String',
+        type: String,
         default: '标题'
       },
       styl: {
-        type: 'String',
+        type: String,
         default: ''
       }
     },

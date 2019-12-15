@@ -16,11 +16,11 @@ _core["default"].component({
   data: {},
   props: {
     title: {
-      type: 'String',
+      type: String,
       "default": '标题'
     },
     styl: {
-      type: 'String',
+      type: String,
       "default": ''
     }
   },
@@ -38,280 +38,182 @@ _core["default"].component({
     }
   },
   onLoad: function onLoad() {}
-}, {info: {"components":{},"on":{}}, handlers: {'87-12': {"tap": function proxy () {
+}, {info: {"components":{},"on":{}}, handlers: {'87-4': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleBack($event)
       })();
     
-  }},'87-13': {"tap": function proxy () {
+  }},'87-5': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleHome($event)
       })();
     
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'87-12': {"tap": function proxy () {
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'87-4': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleBack($event)
       })();
     
-  }},'87-13': {"tap": function proxy () {
+  }},'87-5': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleHome($event)
       })();
     
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'87-12': {"tap": function proxy () {
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'87-4': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleBack($event)
       })();
     
-  }},'87-13': {"tap": function proxy () {
+  }},'87-5': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleHome($event)
       })();
     
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'87-12': {"tap": function proxy () {
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'87-4': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleBack($event)
       })();
     
-  }},'87-13': {"tap": function proxy () {
+  }},'87-5': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleHome($event)
       })();
     
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'87-12': {"tap": function proxy () {
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'87-4': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleBack($event)
       })();
     
-  }},'87-13': {"tap": function proxy () {
+  }},'87-5': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleHome($event)
       })();
     
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'87-12': {"tap": function proxy () {
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'87-4': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleBack($event)
       })();
     
-  }},'87-13': {"tap": function proxy () {
+  }},'87-5': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleHome($event)
       })();
     
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'87-12': {"tap": function proxy () {
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'87-4': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleBack($event)
       })();
     
-  }},'87-13': {"tap": function proxy () {
+  }},'87-5': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleHome($event)
       })();
     
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'87-12': {"tap": function proxy () {
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'87-4': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleBack($event)
       })();
     
-  }},'87-13': {"tap": function proxy () {
+  }},'87-5': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleHome($event)
       })();
     
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'87-12': {"tap": function proxy () {
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'87-4': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleBack($event)
       })();
     
-  }},'87-13': {"tap": function proxy () {
+  }},'87-5': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleHome($event)
       })();
     
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'87-12': {"tap": function proxy () {
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'87-4': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleBack($event)
       })();
     
-  }},'87-13': {"tap": function proxy () {
+  }},'87-5': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleHome($event)
       })();
     
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'87-12': {"tap": function proxy () {
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'87-4': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleBack($event)
       })();
     
-  }},'87-13': {"tap": function proxy () {
+  }},'87-5': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleHome($event)
       })();
     
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'87-12': {"tap": function proxy () {
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'87-4': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleBack($event)
       })();
     
-  }},'87-13': {"tap": function proxy () {
+  }},'87-5': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleHome($event)
       })();
     
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'87-12': {"tap": function proxy () {
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'87-4': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleBack($event)
       })();
     
-  }},'87-13': {"tap": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleHome($event)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'87-12': {"tap": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleBack($event)
-      })();
-    
-  }},'87-13': {"tap": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleHome($event)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'87-12': {"tap": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleBack($event)
-      })();
-    
-  }},'87-13': {"tap": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleHome($event)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'87-12': {"tap": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleBack($event)
-      })();
-    
-  }},'87-13': {"tap": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleHome($event)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'87-12': {"tap": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleBack($event)
-      })();
-    
-  }},'87-13': {"tap": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleHome($event)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'87-12': {"tap": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleBack($event)
-      })();
-    
-  }},'87-13': {"tap": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleHome($event)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'87-12': {"tap": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleBack($event)
-      })();
-    
-  }},'87-13': {"tap": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleHome($event)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'87-12': {"tap": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleBack($event)
-      })();
-    
-  }},'87-13': {"tap": function proxy () {
+  }},'87-5': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {

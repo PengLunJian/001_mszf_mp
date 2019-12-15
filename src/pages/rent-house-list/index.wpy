@@ -201,7 +201,6 @@
 <script type="text/ecmascript-6">
   import wepy from '@wepy/core';
   import store from '../../store/index';
-  import * as $routes from '../../router/index';
   import {mapState, mapActions} from '@wepy/redux';
   import * as controller from './controller';
 

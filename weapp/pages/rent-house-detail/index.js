@@ -56,14 +56,14 @@ _core["default"].page({
     }
   },
   created: function created() {}
-}, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'6-10': {"change": function proxy () {
+}, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'6-4': {"change": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleSwiperChange($event)
       })();
     
-  }},'6-11': {"tap": function proxy () {
+  }},'6-5': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {

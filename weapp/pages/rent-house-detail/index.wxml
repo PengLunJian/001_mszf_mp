@@ -12,7 +12,7 @@
             <view class="module-body">
               <view class="module-context">
                 <view class="banner">
-                  <swiper autoplay="{{autoplay}}" circular="{{circular}}" data-wpy-evt="6-10" bindchange="_proxy" class="swiper">
+                  <swiper autoplay="{{autoplay}}" circular="{{circular}}" data-wpy-evt="6-4" bindchange="_proxy" class="swiper">
                     <swiper-item wx:for="{{ items }}" wx:for-index="index" wx:for-item="item" wx:key="index" key="{{ index }}">
                       <image src="{{item.url}}" class="swiper-img"></image>
                     </swiper-item>
@@ -240,7 +240,7 @@
             <view class="module-body">
               <view class="module-context">
                 <view class="map-container">
-                  <map longitude="{{longitude}}" latitude="{{latitude}}" enable-zoom="{{enableZoom}}" enable-scroll="{{enableScroll}}" markers="{{markers}}" data-wpy-evt="6-11" bindtap="_proxy" class="map"></map>
+                  <map longitude="{{longitude}}" latitude="{{latitude}}" enable-zoom="{{enableZoom}}" enable-scroll="{{enableScroll}}" markers="{{markers}}" data-wpy-evt="6-5" bindtap="_proxy" class="map"></map>
                 </view>
               </view>
             </view>

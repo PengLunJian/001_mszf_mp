@@ -3,19 +3,24 @@
   <view class="content">
     <view class="header">
       <view class="inline">
-        <view class="location">
-          <label class="icon iconfont icon-location"></label>
-          <label class="span">广德</label>
+        <view class="title">LOGO</view>
+        <view class="search">
+          <view class="btn btn-search">
+            <view class="btn-icon iconfont icon-search"></view>
+            <view class="btn-text">请输入小区/商圈</view>
+          </view>
         </view>
-        <view class="title">码上找房</view>
       </view>
     </view>
     <view class="body">
       <view class="row">
         <view class="col-12">
           <navigator hover-class="none" url="{{ url }}" class="user">
-            <image src="../../assets/images/user.png" alt="个人中心" class="img"></image>
-            <label class="name">个人中心</label>
+            <image src="../../assets/images/mine_bg.jpg" class="user-bg"></image>
+            <view class="user-box">
+              <image src="../../assets/images/agent.jpg" mode="aspectFit" class="user-img"></image>
+              <label class="user-name">WEB前端架构师</label>
+            </view>
           </navigator>
         </view>
       </view>

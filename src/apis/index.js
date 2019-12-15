@@ -6,12 +6,6 @@ const apis = {
   headers: {
     'Content-Type': 'application/json; charset=UTF-8'
   },
-  selectBanner: {
-    url: 'select/banner'
-  },
-  selectEvaluate: {
-    url: 'select/evaluate'
-  },
   selectProduct: {
     url: 'select/product'
   }

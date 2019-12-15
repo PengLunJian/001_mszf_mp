@@ -16,7 +16,7 @@ _core["default"].component({
   data: {},
   props: {
     item: {
-      type: 'Object',
+      type: Object,
       "default": {}
     }
   },
@@ -30,7 +30,7 @@ _core["default"].component({
     }
   },
   onLoad: function onLoad() {}
-}, {info: {"components":{},"on":{}}, handlers: {'89-7': {"tap": function proxy () {
+}, {info: {"components":{},"on":{}}, handlers: {'89-2': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {

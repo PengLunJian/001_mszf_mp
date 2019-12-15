@@ -3,19 +3,24 @@
     <div class="content">
       <div class="header">
         <div class="inline">
-          <div class="location">
-            <span class="icon iconfont icon-location"></span>
-            <span class="span">广德</span>
+          <div class="title">LOGO</div>
+          <div class="search">
+            <div class="btn btn-search">
+              <div class="btn-icon iconfont icon-search"></div>
+              <div class="btn-text">请输入小区/商圈</div>
+            </div>
           </div>
-          <div class="title">码上找房</div>
         </div>
       </div>
       <div class="body">
         <div class="row">
           <div class="col-12">
             <navigator class="user" hover-class="none" :url="url">
-              <img class="img" src="../../assets/images/user.png" alt="个人中心"/>
-              <span class="name">个人中心</span>
+              <img class="user-bg" src="../../assets/images/mine_bg.jpg"/>
+              <div class="user-box">
+                <img class="user-img" src="../../assets/images/agent.jpg" mode="aspectFit"/>
+                <span class="user-name">WEB前端架构师</span>
+              </div>
             </navigator>
           </div>
         </div>
@@ -52,6 +57,8 @@
 <style scoped lang="less">
   @import "../../assets/less/variable";
 
+  @btnSearchHeight: unit(60, rpx);
+
   .container {
     .content {
       height: 100vh;
@@ -65,37 +72,49 @@
         background-color: @white;
         .inline {
           position: relative;
-          .location {
+          .title {
             position: absolute;
             top: 0;
             left: 0;
             width: auto;
-            padding: 0 unit(20, rpx);
-            color: @fontColor1;
-            font-size: 0;
-            .icon {
-              height: unit(90, rpx);
-              line-height: unit(90, rpx);
-              display: inline-block;
-              vertical-align: middle;
-              font-size: @fontSize4;
-              letter-spacing: 1px;
-            }
-            .span {
-              height: unit(90, rpx);
-              line-height: unit(90, rpx);
-              display: inline-block;
-              vertical-align: middle;
-              margin-left: unit(4, rpx);
-              font-size: @fontSize2;
-            }
-          }
-          .title {
             height: unit(90, rpx);
             line-height: unit(90, rpx);
+            padding: 0 unit(30, rpx);
             font-size: unit(32, rpx);
             text-align: center;
             font-weight: bold;
+          }
+          .search {
+            height: unit(90, rpx);
+            padding: unit(15, rpx) 0;
+            overflow: hidden;
+            text-align: center;
+            font-size: 0;
+            .btn-search {
+              width: unit(300, rpx);
+              height: @btnSearchHeight;
+              line-height: @btnSearchHeight;
+              display: inline-block;
+              overflow: hidden;
+              border-radius: @btnSearchHeight;
+              background-color: #f0f0f0;
+              color: @fontColor3;
+              .btn-icon {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: @btnSearchHeight;
+                height: @btnSearchHeight;
+                font-size: @fontSize3;
+              }
+              .btn-text {
+                height: @btnSearchHeight;
+                line-height: @btnSearchHeight;
+                padding-left: @btnSearchHeight;
+                font-size: @fontSize1;
+                text-align: left;
+              }
+            }
           }
         }
       }
@@ -106,24 +125,44 @@
           .col-12 {
             padding: unit(15, rpx);
             .user {
+              position: relative;
               height: unit(200, rpx);
               line-height: unit(200, rpx);
-              padding: 0 unit(30, rpx);
               border-radius: unit(20, rpx);
-              background-image: -webkit-linear-gradient(120deg, #f3d45b 1%, #f3c93c 100%);
+              overflow: hidden;
               font-size: 0;
-              .img {
-                width: unit(80, rpx);
-                height: unit(80, rpx);
-                display: inline-block;
-                vertical-align: middle;
+              .user-bg {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border-radius: @borderRadius2;
               }
-              .name {
-                display: inline-block;
-                vertical-align: middle;
-                padding-left: unit(20, rpx);
-                font-size: unit(30, rpx);
-                color: @white;
+              .user-box {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                padding: 0 unit(30, rpx);
+                .user-img {
+                  width: unit(80, rpx);
+                  height: unit(80, rpx);
+                  display: inline-block;
+                  vertical-align: middle;
+                  border: 1px solid @white;
+                  background-color: @white;
+                  border-radius: @borderRadius3;
+                }
+                .user-name {
+                  display: inline-block;
+                  vertical-align: middle;
+                  padding-left: unit(20, rpx);
+                  font-size: @fontSize5;
+                  letter-spacing: 1px;
+                  color: @white;
+                }
               }
             }
           }

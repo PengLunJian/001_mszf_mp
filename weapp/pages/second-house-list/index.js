@@ -141,49 +141,49 @@ _core["default"].page({
     }
   },
   created: function created() {}
-}, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"},"second-house-item":{"path":"..\\..\\components\\second-house-item\\second-house-item"},"wux-slider":{"path":"..\\..\\$vendor\\wux-weapp\\dist\\slider\\index"}},"on":{"7-38":["change"],"7-40":["change"]}}, handlers: {'7-35': {"tap": function proxy (index) {
+}, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"},"second-house-item":{"path":"..\\..\\components\\second-house-item\\second-house-item"},"wux-slider":{"path":"..\\..\\$vendor\\wux-weapp\\dist\\slider\\index"}},"on":{"7-17":["change"],"7-19":["change"]}}, handlers: {'7-14': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {
         _vm.onHandleTabChange(index)
       })();
     
-  }},'7-36': {"tap": function proxy () {
+  }},'7-15': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
         _vm.onHandleCloseModal(0)
       })();
     
-  }},'7-37': {"tap": function proxy (index) {
+  }},'7-16': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {
         _vm.onHandlePriceFilter(index)
       })();
     
-  }},'7-38': {"change": function proxy () {
+  }},'7-17': {"change": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleSliderChangePrice($event)
       })();
     
-  }},'7-39': {"tap": function proxy () {
+  }},'7-18': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
         _vm.onHandleCloseModal(1)
       })();
     
-  }},'7-40': {"change": function proxy () {
+  }},'7-19': {"change": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleSliderChangeArea($event)
       })();
     
-  }},'7-41': {"tap": function proxy () {
+  }},'7-20': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {

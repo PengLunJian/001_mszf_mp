@@ -13,37 +13,49 @@
 .container .content .header .inline {
   position: relative;
 }
-.container .content .header .inline .location {
+.container .content .header .inline .title {
   position: absolute;
   top: 0;
   left: 0;
   width: auto;
-  padding: 0 20rpx;
-  color: #333333;
-  font-size: 0;
-}
-.container .content .header .inline .location .icon {
   height: 90rpx;
   line-height: 90rpx;
-  display: inline-block;
-  vertical-align: middle;
-  font-size: 30rpx;
-  letter-spacing: 1px;
-}
-.container .content .header .inline .location .span {
-  height: 90rpx;
-  line-height: 90rpx;
-  display: inline-block;
-  vertical-align: middle;
-  margin-left: 4rpx;
-  font-size: 26rpx;
-}
-.container .content .header .inline .title {
-  height: 90rpx;
-  line-height: 90rpx;
+  padding: 0 30rpx;
   font-size: 32rpx;
   text-align: center;
   font-weight: bold;
+}
+.container .content .header .inline .search {
+  height: 90rpx;
+  padding: 15rpx 0;
+  overflow: hidden;
+  text-align: center;
+  font-size: 0;
+}
+.container .content .header .inline .search .btn-search {
+  width: 300rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  display: inline-block;
+  overflow: hidden;
+  border-radius: 60rpx;
+  background-color: #f0f0f0;
+  color: #999999;
+}
+.container .content .header .inline .search .btn-search .btn-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60rpx;
+  height: 60rpx;
+  font-size: 28rpx;
+}
+.container .content .header .inline .search .btn-search .btn-text {
+  height: 60rpx;
+  line-height: 60rpx;
+  padding-left: 60rpx;
+  font-size: 24rpx;
+  text-align: left;
 }
 .container .content .body .row {
   padding: 15rpx;
@@ -53,24 +65,44 @@
   padding: 15rpx;
 }
 .container .content .body .row .col-12 .user {
+  position: relative;
   height: 200rpx;
   line-height: 200rpx;
-  padding: 0 30rpx;
   border-radius: 20rpx;
-  background-image: -webkit-linear-gradient(120deg, #f3d45b 1%, #f3c93c 100%);
+  overflow: hidden;
   font-size: 0;
 }
-.container .content .body .row .col-12 .user .img {
+.container .content .body .row .col-12 .user .user-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 20rpx;
+}
+.container .content .body .row .col-12 .user .user-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0 30rpx;
+}
+.container .content .body .row .col-12 .user .user-box .user-img {
   width: 80rpx;
   height: 80rpx;
   display: inline-block;
   vertical-align: middle;
+  border: 1px solid #ffffff;
+  background-color: #ffffff;
+  border-radius: 100%;
 }
-.container .content .body .row .col-12 .user .name {
+.container .content .body .row .col-12 .user .user-box .user-name {
   display: inline-block;
   vertical-align: middle;
   padding-left: 20rpx;
-  font-size: 30rpx;
+  font-size: 32rpx;
+  letter-spacing: 1px;
   color: #ffffff;
 }
 
