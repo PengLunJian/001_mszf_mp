@@ -10,7 +10,8 @@ var apis = {
   timeout: 5000,
   dataType: 'json',
   headers: {
-    'Content-Type': 'application/json; charset=UTF-8'
+    'Content-Type': 'application/json; charset=UTF-8',
+    'Cache-Control': 'no-cache'
   },
   selectProduct: {
     url: 'select/product'

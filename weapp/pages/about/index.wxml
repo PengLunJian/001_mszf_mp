@@ -8,7 +8,7 @@
       <view class="company">
         <view class="inner">
           <view class="title">码上找房</view>
-          <view class="btn-share iconfont icon-forward"></view>
+          <view class="btn-share iconfont icon-share"></view>
           <image src="../../assets/images/company.jpg" class="image"></image>
         </view>
       </view>
@@ -35,7 +35,7 @@
     <view class="footer">
       <view class="company">
         <view class="company-text">技术支持</view>
-        <image src="../../assets/images/logo.png" mode="aspectFit" class="company-logo"></image>
+        <image src="../../assets/images/company_logo.png" mode="aspectFit" class="company-logo"></image>
       </view>
     </view>
   </view>

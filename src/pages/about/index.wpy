@@ -8,7 +8,7 @@
         <div class="company">
           <div class="inner">
             <div class="title">码上找房</div>
-            <div class="btn-share iconfont icon-forward"></div>
+            <div class="btn-share iconfont icon-share"></div>
             <img class="image" src="../../assets/images/company.jpg"/>
           </div>
         </div>
@@ -35,7 +35,7 @@
       <div class="footer">
         <div class="company">
           <div class="company-text">技术支持</div>
-          <img class="company-logo" src="../../assets/images/logo.png" mode="aspectFit"/>
+          <img class="company-logo" src="../../assets/images/company_logo.png" mode="aspectFit"/>
         </div>
       </div>
     </div>
@@ -81,6 +81,7 @@
             border-radius: @borderRadius;
             box-shadow: 0 0 15px @boxShadow1;
             .title {
+              display: none;
               width: 100%;
               height: unit(100, rpx);
               line-height: unit(100, rpx);
@@ -110,8 +111,6 @@
             .image {
               width: 100%;
               height: 100%;
-              filter: blur(3px);
-              transform: scale(1.1);
             }
           }
         }

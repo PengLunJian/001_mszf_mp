@@ -3,19 +3,21 @@
   <view class="content">
     <view class="header">
       <view class="inline">
-        <view class="title">LOGO</view>
+        <view class="logo">
+          <image src="../../assets/images/logo.png" mode="aspectFit"></image>
+        </view>
         <view class="search">
-          <view class="btn btn-search">
+          <navigator hover-class="none" url="{{ searchUrl }}" class="btn btn-search">
             <view class="btn-icon iconfont icon-search"></view>
             <view class="btn-text">请输入小区/商圈</view>
-          </view>
+          </navigator>
         </view>
       </view>
     </view>
     <view class="body">
       <view class="row">
         <view class="col-12">
-          <navigator hover-class="none" url="{{ url }}" class="user">
+          <navigator hover-class="none" url="{{ mineUrl }}" class="user">
             <image src="../../assets/images/mine_bg.jpg" class="user-bg"></image>
             <view class="user-box">
               <image src="../../assets/images/agent.jpg" mode="aspectFit" class="user-img"></image>

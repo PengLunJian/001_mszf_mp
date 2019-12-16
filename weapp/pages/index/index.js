@@ -18,7 +18,8 @@ _core["default"].page({
   store: _index["default"],
   mixins: [],
   data: {
-    url: $routes.MINE.path
+    mineUrl: $routes.MINE.path,
+    searchUrl: $routes.SEARCH.path
   },
   computed: {},
   methods: {},

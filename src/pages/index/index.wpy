@@ -3,19 +3,21 @@
     <div class="content">
       <div class="header">
         <div class="inline">
-          <div class="title">LOGO</div>
+          <div class="logo">
+            <img src="../../assets/images/logo.png" mode="aspectFit"/>
+          </div>
           <div class="search">
-            <div class="btn btn-search">
+            <navigator class="btn btn-search" hover-class="none" :url="searchUrl">
               <div class="btn-icon iconfont icon-search"></div>
               <div class="btn-text">请输入小区/商圈</div>
-            </div>
+            </navigator>
           </div>
         </div>
       </div>
       <div class="body">
         <div class="row">
           <div class="col-12">
-            <navigator class="user" hover-class="none" :url="url">
+            <navigator class="user" hover-class="none" :url="mineUrl">
               <img class="user-bg" src="../../assets/images/mine_bg.jpg"/>
               <div class="user-box">
                 <img class="user-img" src="../../assets/images/agent.jpg" mode="aspectFit"/>
@@ -42,7 +44,8 @@
     mixins: [],
 
     data: {
-      url: $routes.MINE.path
+      mineUrl: $routes.MINE.path,
+      searchUrl: $routes.SEARCH.path
     },
 
     computed: {},
@@ -57,8 +60,6 @@
 <style scoped lang="less">
   @import "../../assets/less/variable";
 
-  @btnSearchHeight: unit(60, rpx);
-
   .container {
     .content {
       height: 100vh;
@@ -68,49 +69,48 @@
         top: 0;
         left: 0;
         z-index: 1000;
-        padding-top: unit(40, rpx);
         background-color: @white;
+        padding: unit(48, rpx) 0 unit(18, rpx) 0;
         .inline {
           position: relative;
-          .title {
+          .logo {
             position: absolute;
             top: 0;
             left: 0;
-            width: auto;
-            height: unit(90, rpx);
-            line-height: unit(90, rpx);
-            padding: 0 unit(30, rpx);
-            font-size: unit(32, rpx);
-            text-align: center;
-            font-weight: bold;
+            width: unit(180, rpx);
+            height: unit(64, rpx);
+            padding-left: unit(20, rpx);
+            image {
+              width: 100%;
+              height: 100%;
+            }
           }
           .search {
-            height: unit(90, rpx);
-            padding: unit(15, rpx) 0;
+            height: unit(64, rpx);
             overflow: hidden;
             text-align: center;
             font-size: 0;
             .btn-search {
               width: unit(300, rpx);
-              height: @btnSearchHeight;
-              line-height: @btnSearchHeight;
+              height: @topBarHeight;
+              line-height: @topBarHeight;
               display: inline-block;
               overflow: hidden;
-              border-radius: @btnSearchHeight;
+              border-radius: @topBarHeight;
               background-color: #f0f0f0;
               color: @fontColor3;
               .btn-icon {
                 position: absolute;
                 top: 0;
                 left: 0;
-                width: @btnSearchHeight;
-                height: @btnSearchHeight;
+                width: @topBarHeight;
+                height: @topBarHeight;
                 font-size: @fontSize3;
               }
               .btn-text {
-                height: @btnSearchHeight;
-                line-height: @btnSearchHeight;
-                padding-left: @btnSearchHeight;
+                height: @topBarHeight;
+                line-height: @topBarHeight;
+                padding-left: @topBarHeight;
                 font-size: @fontSize1;
                 text-align: left;
               }

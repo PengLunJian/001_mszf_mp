@@ -5,7 +5,7 @@ exports.default = void 0;
 
 var _isPlainObject = _interopRequireDefault(__wepy_require(11));
 
-var _flattenWhenNode = _interopRequireDefault(__wepy_require(22));
+var _flattenWhenNode = _interopRequireDefault(__wepy_require(21));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

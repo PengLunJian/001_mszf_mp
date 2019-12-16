@@ -1,0 +1,10 @@
+
+<view class="container">
+  <view class="content">
+    <view class="header">
+      <top-bar bind_init="_initComponent" title="房源搜索"></top-bar>
+    </view>
+    <view class="body"></view>
+    <view class="footer"></view>
+  </view>
+</view>

@@ -91,7 +91,7 @@ _core["default"].page({
     }
   },
   created: function created() {}
-}, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'14-2': {"scroll": function proxy () {
+}, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'15-0': {"scroll": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {

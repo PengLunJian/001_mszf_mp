@@ -11,7 +11,7 @@ exports.isExist = exports.success = void 0;
  */
 var success = function success() {
   var nums = parseInt(Math.random() * 100);
-  return nums % 19 !== 0;
+  return nums % 2 !== 0;
 };
 /**
  *

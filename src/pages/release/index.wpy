@@ -45,7 +45,7 @@
       <div class="footer" v-if="false">
         <div class="company">
           <div class="company-text">技术支持</div>
-          <img class="company-logo" src="../../assets/images/logo.png" mode="aspectFit"/>
+          <img class="company-logo" src="../../assets/images/company_logo.png" mode="aspectFit"/>
         </div>
       </div>
     </div>

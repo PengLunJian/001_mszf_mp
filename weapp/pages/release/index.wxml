@@ -43,7 +43,7 @@
     <view wx:if="{{ false }}" class="footer">
       <view class="company">
         <view class="company-text">技术支持</view>
-        <image src="../../assets/images/logo.png" mode="aspectFit" class="company-logo"></image>
+        <image src="../../assets/images/company_logo.png" mode="aspectFit" class="company-logo"></image>
       </view>
     </view>
   </view>

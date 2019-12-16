@@ -51,16 +51,16 @@
     top: 0;
     left: 0;
     z-index: 1000;
-    padding-top: unit(40, rpx);
     background-color: @white;
+    padding: unit(48, rpx) 0 unit(18, rpx) 0;
     .top-inner {
       position: relative;
-      height: unit(90, rpx);
-      line-height: unit(90, rpx);
+      height: @topBarHeight;
+      line-height: @topBarHeight;
       text-align: center;
       .top-icon {
         width: unit(90, rpx);
-        height: unit(90, rpx);
+        height: @topBarHeight;
         position: absolute;
         top: 0;
         left: 0;

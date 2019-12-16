@@ -4,7 +4,7 @@
     <view class="header">
       <top-bar bind_init="_initComponent" title="房源列表"></top-bar>
       <view class="tab-bar">
-        <view wx:for="{{ tabs }}" wx:for-index="index" wx:for-item="tab" wx:key="index" data-wpy-evt="7-14" bindtap="_proxy" data-wpytap-a="{{ index }}" class="tab-item {{ [ tabIndex===index ? 'active' : '' ] }}">
+        <view wx:for="{{ tabs }}" wx:for-index="index" wx:for-item="tab" wx:key="index" data-wpy-evt="7-0" bindtap="_proxy" data-wpytap-a="{{ index }}" class="tab-item {{ [ tabIndex===index ? 'active' : '' ] }}">
           <view class="tab-text">
             <label class="tab-label">{{tab.label}}</label>
             <label class="tab-triangle"></label>
@@ -21,7 +21,7 @@
     </view>
     <view class="footer">
       <view class="modal {{ [ !tabs[0].isShow ? 'hide' : '' ] }}">
-        <view data-wpy-evt="7-15" bindtap="_proxy" class="modal-bg"></view>
+        <view data-wpy-evt="7-1" bindtap="_proxy" class="modal-bg"></view>
         <view class="modal-content">
           <view class="modal-header"></view>
           <view class="modal-body">
@@ -30,7 +30,7 @@
                 <view class="modal-block">
                   <view class="modal-row row">
                     <view wx:for="{{ btnPrice.items }}" wx:for-index="index" wx:for-item="item" wx:key="index" class="modal-col col-3 {{ [ index===btnPrice.initIndex ? 'active' : '' ] }}">
-                      <view data-wpy-evt="7-16" bindtap="_proxy" data-wpytap-a="{{ index }}" class="btn-item btn-price">{{item}}</view>
+                      <view data-wpy-evt="7-2" bindtap="_proxy" data-wpytap-a="{{ index }}" class="btn-item btn-price">{{item}}</view>
                     </view>
                   </view>
                   <view class="modal-split"></view>
@@ -44,7 +44,7 @@
                       <view class="max-label col-6">{{maxPrice}}</view>
                     </view>
                     <view class="modal-slider">
-                      <wux-slider bind_init="_initComponent" defaultValue="{{ [0, 1000] }}" min="0" step="10" max="1000" tipFormatter="" trackStyle="{{trackStylePrice}}" handleStyle="{{handleStylePrice}}" data-wpy-evt="7-17" bindchange="_proxy"></wux-slider>
+                      <wux-slider bind_init="_initComponent" defaultValue="{{ [0, 1000] }}" min="0" step="10" max="1000" tipFormatter="" trackStyle="{{trackStylePrice}}" handleStyle="{{handleStylePrice}}" data-wpy-evt="7-3" bindchange="_proxy"></wux-slider>
                     </view>
                   </view>
                 </view>
@@ -60,7 +60,7 @@
         </view>
       </view>
       <view class="modal {{ [ !tabs[1].isShow ? 'hide' : '' ] }}">
-        <view data-wpy-evt="7-18" bindtap="_proxy" class="modal-bg"></view>
+        <view data-wpy-evt="7-4" bindtap="_proxy" class="modal-bg"></view>
         <view class="modal-content">
           <view class="modal-header"></view>
           <view class="modal-body">
@@ -139,7 +139,7 @@
                       <view class="max-label col-6">{{maxArea}}</view>
                     </view>
                     <view class="modal-slider">
-                      <wux-slider bind_init="_initComponent" defaultValue="{{ [0, 300] }}" min="0" step="1" max="300" tipFormatter="" trackStyle="{{trackStyleArea}}" handleStyle="{{handleStyleArea}}" data-wpy-evt="7-19" bindchange="_proxy"></wux-slider>
+                      <wux-slider bind_init="_initComponent" defaultValue="{{ [0, 300] }}" min="0" step="1" max="300" tipFormatter="" trackStyle="{{trackStyleArea}}" handleStyle="{{handleStyleArea}}" data-wpy-evt="7-5" bindchange="_proxy"></wux-slider>
                     </view>
                   </view>
                 </view>
@@ -155,7 +155,7 @@
         </view>
       </view>
       <view class="modal {{ [ !tabs[2].isShow ? 'hide' : '' ] }}">
-        <view data-wpy-evt="7-20" bindtap="_proxy" class="modal-bg"></view>
+        <view data-wpy-evt="7-6" bindtap="_proxy" class="modal-bg"></view>
         <view class="modal-content">
           <view class="modal-header"></view>
           <view class="modal-body">

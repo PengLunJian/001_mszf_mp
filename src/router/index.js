@@ -2,6 +2,10 @@ export const INDEX = {
   name: '首页',
   path: '/pages/index/index'
 };
+export const SEARCH = {
+  name: '房源搜索',
+  path: '/pages/search/index'
+};
 export const MINE = {
   name: '个人中心',
   path: '/pages/mine/index'

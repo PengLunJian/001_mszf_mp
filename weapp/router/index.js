@@ -3,12 +3,17 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.NEW_HOUSE_DETAIL = exports.NEW_HOUSE_LIST = exports.SECOND_HOUSE_DETAIL = exports.SECOND_HOUSE_LIST = exports.RENT_HOUSE_DETAIL = exports.RENT_HOUSE_LIST = exports.ABOUT = exports.SUGGEST = exports.RELEASE = exports.HISTORY = exports.CALCULATOR = exports.FAVORITE = exports.MINE = exports.INDEX = void 0;
+exports.NEW_HOUSE_DETAIL = exports.NEW_HOUSE_LIST = exports.SECOND_HOUSE_DETAIL = exports.SECOND_HOUSE_LIST = exports.RENT_HOUSE_DETAIL = exports.RENT_HOUSE_LIST = exports.ABOUT = exports.SUGGEST = exports.RELEASE = exports.HISTORY = exports.CALCULATOR = exports.FAVORITE = exports.MINE = exports.SEARCH = exports.INDEX = void 0;
 var INDEX = {
   name: '首页',
   path: '/pages/index/index'
 };
 exports.INDEX = INDEX;
+var SEARCH = {
+  name: '房源搜索',
+  path: '/pages/search/index'
+};
+exports.SEARCH = SEARCH;
 var MINE = {
   name: '个人中心',
   path: '/pages/mine/index'

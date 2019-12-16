@@ -30,7 +30,7 @@ _core["default"].component({
     }
   },
   onLoad: function onLoad() {}
-}, {info: {"components":{},"on":{}}, handlers: {'88-2': {"tap": function proxy () {
+}, {info: {"components":{},"on":{}}, handlers: {'89-0': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {

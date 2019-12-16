@@ -1,0 +1,166 @@
+<template>
+  <div class="item"
+       @tap="onHandleDetail(item.id)">
+    <div class="item-inner">
+      <div class="item-img">
+        <img src="{{item.url}}"/>
+      </div>
+      <div class="item-info">
+        <div class="item-row">
+          <div class="item-title ellipsis">尚城江南府</div>
+        </div>
+        <div class="item-row">
+          <span class="item-addr">广德城区</span>
+          <span class="item-split"></span>
+          <span class="item-addr">广德金峰万象小区</span>
+        </div>
+        <div class="item-row">
+                  <span class="item-normal item-price">
+                    <span class="item-value">140</span>
+                    <span class="item-unit">万</span>
+                  </span>
+          <span class="item-normal">2室1厅1卫</span>
+          <span class="item-normal">140m²</span>
+        </div>
+        <div class="item-row">
+          <span class="item-tag">南北通透</span>
+          <span class="item-tag">精装修</span>
+          <span class="item-tag">随时看房</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script type="text/ecmascript-6">
+  import wepy from '@wepy/core';
+
+  wepy.component({
+    data: {},
+    props: {},
+    events: {},
+    methods: {},
+    onLoad() {
+    }
+  });
+</script>
+
+<style scoped lang="less">
+  @import "../../assets/less/variable";
+  @import "../../assets/less/iconfont";
+
+  .item {
+    padding: 0 unit(30, rpx);
+    background-color: @white;
+    .item-inner {
+      position: relative;
+      padding: unit(30, rpx) 0;
+      border-bottom: 0.5px solid @borderColor2;
+      .item-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: unit(220, rpx);
+        height: unit(240, rpx);
+        padding: unit(30, rpx) 0;
+        image {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .item-info {
+        padding-left: unit(240, rpx);
+        .item-row {
+          margin-bottom: unit(8, rpx);
+          font-size: 0;
+          &:last-child {
+            margin: 0;
+            padding-top: unit(4, rpx);
+          }
+          .item-title {
+            height: unit(40, rpx);
+            line-height: unit(40, rpx);
+            font-size: unit(28, rpx);
+            font-weight: bold;
+            color: @fontColor1;
+          }
+          .item-city,
+          .item-addr,
+          .item-split,
+          .item-size {
+            height: unit(32, rpx);
+            line-height: unit(32, rpx);
+            display: inline-block;
+            vertical-align: middle;
+            font-size: unit(24, rpx);
+            color: @fontColor2;
+            &.item-split {
+              padding: unit(6, rpx) unit(10, rpx);
+              &:before {
+                content: '';
+                display: block;
+                width: 0;
+                height: 100%;
+                border-left: 1px solid @borderColor1;
+              }
+            }
+          }
+          .item-value,
+          .item-unit {
+            height: 100%;
+            display: inline-block;
+            vertical-align: middle;
+            &.item-value {
+              font-size: unit(32, rpx);
+              font-weight: bold;
+            }
+            &.item-unit {
+              font-size: unit(24, rpx);
+            }
+          }
+          .item-normal {
+            height: unit(40, rpx);
+            line-height: unit(40, rpx);
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: unit(10, rpx);
+            font-size: unit(24, rpx);
+            color: @fontColor3;
+            &.item-price {
+              color: @priceColor;
+              font-size: 0;
+            }
+            &:last-child {
+              margin: 0;
+            }
+          }
+          .item-tag {
+            height: unit(40, rpx);
+            line-height: unit(36, rpx);
+            display: inline-block;
+            vertical-align: middle;
+            padding: 0 unit(10, rpx);
+            margin-right: unit(10, rpx);
+            border: 1px solid @tagColor;
+            font-size: unit(24, rpx);
+            color: @tagColor;
+            &.item-state {
+              border: none;
+              background-color: #009966;
+              line-height: unit(40, rpx);
+              color: @white;
+            }
+            &:last-child {
+              margin: 0;
+            }
+          }
+        }
+      }
+    }
+    &:last-child {
+      .item-inner {
+        border: none;
+      }
+    }
+  }
+</style>

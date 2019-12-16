@@ -12,6 +12,7 @@
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
 }
 .container .content .body .company .inner .title {
+  display: none;
   width: 100%;
   height: 100rpx;
   line-height: 100rpx;
@@ -41,8 +42,6 @@
 .container .content .body .company .inner .image {
   width: 100%;
   height: 100%;
-  filter: blur(3px);
-  transform: scale(1.1);
 }
 .container .content .body .list {
   padding: 0 30rpx 30rpx;
