@@ -1,31 +1,14 @@
 <template>
-  <div class="item"
-       @tap="onHandleDetail(item.id)">
-    <div class="item-inner">
-      <div class="item-img">
-        <img src="{{item.url}}"/>
-      </div>
-      <div class="item-info">
-        <div class="item-row">
-          <div class="item-title ellipsis">尚城江南府</div>
+  <div class="loading fade{{isLoading?'':' hide'}}" v-if="isShow">
+    <div class="loading-inner">
+      <div class="loading-bg"></div>
+      <div class="loading-content">
+        <div class="loading-left">
+          <img class="loading-m" src="../../assets/images/loading_m.png" mode="aspectFit"/>
+          <img class="loading-circle" src="../../assets/images/loading_circle.png" mode="aspectFit"/>
         </div>
-        <div class="item-row">
-          <span class="item-addr">广德城区</span>
-          <span class="item-split"></span>
-          <span class="item-addr">广德金峰万象小区</span>
-        </div>
-        <div class="item-row">
-                  <span class="item-normal item-price">
-                    <span class="item-value">140</span>
-                    <span class="item-unit">万</span>
-                  </span>
-          <span class="item-normal">2室1厅1卫</span>
-          <span class="item-normal">140m²</span>
-        </div>
-        <div class="item-row">
-          <span class="item-tag">南北通透</span>
-          <span class="item-tag">精装修</span>
-          <span class="item-tag">随时看房</span>
+        <div class="loading-right">
+          <img class="loading-house" src="../../assets/images/loading_house.png" mode="aspectFit"/>
         </div>
       </div>
     </div>
@@ -36,9 +19,27 @@
   import wepy from '@wepy/core';
 
   wepy.component({
-    data: {},
-    props: {},
+    data: {
+      isShow: false
+    },
+    props: {
+      isLoading: {
+        type: Boolean,
+        default: false
+      }
+    },
     events: {},
+    watch: {
+      isLoading() {
+        if (this.isLoading) {
+          this.isShow = this.isLoading;
+        } else {
+          setTimeout(() => {
+            this.isShow = this.isLoading;
+          }, 300);
+        }
+      }
+    },
     methods: {},
     onLoad() {
     }
@@ -46,120 +47,61 @@
 </script>
 
 <style scoped lang="less">
+  @import "../../assets/less/common";
   @import "../../assets/less/variable";
   @import "../../assets/less/iconfont";
 
-  .item {
-    padding: 0 unit(30, rpx);
-    background-color: @white;
-    .item-inner {
-      position: relative;
-      padding: unit(30, rpx) 0;
-      border-bottom: 0.5px solid @borderColor2;
-      .item-img {
-        position: absolute;
+  .loading {
+    .loading-inner {
+      .loading-bg {
+        position: fixed;
         top: 0;
         left: 0;
-        width: unit(220, rpx);
-        height: unit(240, rpx);
-        padding: unit(30, rpx) 0;
-        image {
-          width: 100%;
-          height: 100%;
-        }
+        width: 100%;
+        height: 100%;
+        z-index: 1001;
       }
-      .item-info {
-        padding-left: unit(240, rpx);
-        .item-row {
-          margin-bottom: unit(8, rpx);
-          font-size: 0;
-          &:last-child {
-            margin: 0;
-            padding-top: unit(4, rpx);
-          }
-          .item-title {
+      .loading-content {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: auto;
+        z-index: 1010;
+        overflow: hidden;
+        transform: translate3d(-50%, -50%, 0);
+        font-size: 0;
+        .loading-left {
+          width: unit(100, rpx);
+          height: unit(100, rpx);
+          padding: unit(10, rpx);
+          position: relative;
+          display: inline-block;
+          vertical-align: middle;
+          .loading-m {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: unit(40, rpx);
             height: unit(40, rpx);
-            line-height: unit(40, rpx);
-            font-size: unit(28, rpx);
-            font-weight: bold;
-            color: @fontColor1;
+            transform: translate3d(-50%, -55%, 0);
           }
-          .item-city,
-          .item-addr,
-          .item-split,
-          .item-size {
-            height: unit(32, rpx);
-            line-height: unit(32, rpx);
-            display: inline-block;
-            vertical-align: middle;
-            font-size: unit(24, rpx);
-            color: @fontColor2;
-            &.item-split {
-              padding: unit(6, rpx) unit(10, rpx);
-              &:before {
-                content: '';
-                display: block;
-                width: 0;
-                height: 100%;
-                border-left: 1px solid @borderColor1;
-              }
-            }
-          }
-          .item-value,
-          .item-unit {
+          .loading-circle {
+            width: 100%;
             height: 100%;
-            display: inline-block;
-            vertical-align: middle;
-            &.item-value {
-              font-size: unit(32, rpx);
-              font-weight: bold;
-            }
-            &.item-unit {
-              font-size: unit(24, rpx);
-            }
-          }
-          .item-normal {
-            height: unit(40, rpx);
-            line-height: unit(40, rpx);
-            display: inline-block;
-            vertical-align: middle;
-            margin-right: unit(10, rpx);
-            font-size: unit(24, rpx);
-            color: @fontColor3;
-            &.item-price {
-              color: @priceColor;
-              font-size: 0;
-            }
-            &:last-child {
-              margin: 0;
-            }
-          }
-          .item-tag {
-            height: unit(40, rpx);
-            line-height: unit(36, rpx);
-            display: inline-block;
-            vertical-align: middle;
-            padding: 0 unit(10, rpx);
-            margin-right: unit(10, rpx);
-            border: 1px solid @tagColor;
-            font-size: unit(24, rpx);
-            color: @tagColor;
-            &.item-state {
-              border: none;
-              background-color: #009966;
-              line-height: unit(40, rpx);
-              color: @white;
-            }
-            &:last-child {
-              margin: 0;
-            }
+            animation: rotate 3s linear infinite;
           }
         }
-      }
-    }
-    &:last-child {
-      .item-inner {
-        border: none;
+        .loading-right {
+          width: unit(200, rpx);
+          height: unit(100, rpx);
+          display: inline-block;
+          vertical-align: middle;
+          padding: 0 unit(10, rpx);
+          .loading-house {
+            width: 100%;
+            height: 100%;
+          }
+        }
       }
     }
   }

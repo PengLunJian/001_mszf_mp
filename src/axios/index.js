@@ -62,9 +62,7 @@ const getConfig = (config) => {
 
 Axios.interceptors.request.use(
   (config) => {
-    // config.cancelToken = source.token;
     const CONFIG = getConfig(config);
-    // stopRepeatRequest(reqList, config.url, source.cancel, `${config.url} 请求被中断`);
     return CONFIG;
   },
   (error) => {
@@ -75,7 +73,6 @@ Axios.interceptors.response.use(
   (response) => {
     return new Promise((resolve) => {
       setTimeout(() => {
-        // allowRequest(reqList, response.config.url);
         resolve(response.data);
       }, 1000);
     });
@@ -83,13 +80,6 @@ Axios.interceptors.response.use(
   (error) => {
     return new Promise((resolve) => {
       setTimeout(() => {
-        // if (Axios.isCancel()) {
-        //   console.log('错误取消');
-        // } else {
-        //   const {message} = error;
-        //   allowRequest(reqList, message.url);
-        // }
-        // console.log(reqList);
         resolve(error.response);
       }, 1000);
     });

@@ -9,7 +9,7 @@ var _invariant = _interopRequireDefault(__wepy_require(31));
 
 var _isPlainObject = _interopRequireDefault(__wepy_require(11));
 
-var _isMap = _interopRequireDefault(__wepy_require(18));
+var _isMap = _interopRequireDefault(__wepy_require(17));
 
 var _ownKeys = _interopRequireDefault(__wepy_require(19));
 

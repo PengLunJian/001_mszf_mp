@@ -1,0 +1,15 @@
+
+<view wx:if="{{ isShow }}" class="loading fade{{isLoading?'':' hide'}}">
+  <view class="loading-inner">
+    <view class="loading-bg"></view>
+    <view class="loading-content">
+      <view class="loading-left">
+        <image src="../../assets/images/loading_m.png" mode="aspectFit" class="loading-m"></image>
+        <image src="../../assets/images/loading_circle.png" mode="aspectFit" class="loading-circle"></image>
+      </view>
+      <view class="loading-right">
+        <image src="../../assets/images/loading_house.png" mode="aspectFit" class="loading-house"></image>
+      </view>
+    </view>
+  </view>
+</view>

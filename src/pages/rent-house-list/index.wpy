@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <loading :isLoading="isLoading"></loading>
     <div class="content">
       <div class="header">
         <top-bar title="房源列表"></top-bar>
@@ -15,13 +16,14 @@
           </div>
         </div>
       </div>
-      <div class="body">
+      <div class="body fade" v-if="isSuccess">
         <scroll-view
           class="scroll-view"
           scroll-y="{{iSwitch}}">
           <block v-for="(item,index) in isData" :key="index">
             <rent-house-item :item="item"></rent-house-item>
           </block>
+          <inline-loading></inline-loading>
         </scroll-view>
       </div>
       <div class="footer">
@@ -588,6 +590,8 @@
   usingComponents: {
   'wux-slider':'module:wux-weapp/dist/slider',
   'top-bar': '../../components/top-bar/top-bar',
+  'loading': '../../components/loading/loading',
+  'inline-loading': '../../components/inline-loading/inline-loading',
   'rent-house-item': '../../components/rent-house-item/rent-house-item'
   }
   }

@@ -135,17 +135,17 @@
   left: 0;
   z-index: 1000;
   background-color: #ffffff;
-  padding: 48rpx 0 18rpx 0;
+  padding-top: 30rpx;
 }
 .top-bar .top-inner {
   position: relative;
-  height: 64rpx;
-  line-height: 64rpx;
+  height: 100rpx;
+  line-height: 100rpx;
   text-align: center;
 }
 .top-bar .top-inner .top-icon {
   width: 90rpx;
-  height: 64rpx;
+  height: 100rpx;
   position: absolute;
   top: 0;
   left: 0;

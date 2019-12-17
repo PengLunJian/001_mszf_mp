@@ -85,9 +85,7 @@ var getConfig = function getConfig(config) {
 };
 
 _axios["default"].interceptors.request.use(function (config) {
-  // config.cancelToken = source.token;
-  var CONFIG = getConfig(config); // stopRepeatRequest(reqList, config.url, source.cancel, `${config.url} 请求被中断`);
-
+  var CONFIG = getConfig(config);
   return CONFIG;
 }, function (error) {
   return Promise.reject(error);
@@ -96,20 +94,12 @@ _axios["default"].interceptors.request.use(function (config) {
 _axios["default"].interceptors.response.use(function (response) {
   return new Promise(function (resolve) {
     setTimeout(function () {
-      // allowRequest(reqList, response.config.url);
       resolve(response.data);
     }, 1000);
   });
 }, function (error) {
   return new Promise(function (resolve) {
     setTimeout(function () {
-      // if (Axios.isCancel()) {
-      //   console.log('错误取消');
-      // } else {
-      //   const {message} = error;
-      //   allowRequest(reqList, message.url);
-      // }
-      // console.log(reqList);
       resolve(error.response);
     }, 1000);
   });

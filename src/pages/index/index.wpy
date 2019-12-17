@@ -60,6 +60,8 @@
 <style scoped lang="less">
   @import "../../assets/less/variable";
 
+  @height: unit(64, rpx);
+
   .container {
     .content {
       height: 100vh;
@@ -70,47 +72,48 @@
         left: 0;
         z-index: 1000;
         background-color: @white;
-        padding: unit(48, rpx) 0 unit(18, rpx) 0;
+        padding-top: unit(30, rpx);
         .inline {
           position: relative;
           .logo {
             position: absolute;
             top: 0;
             left: 0;
-            width: unit(180, rpx);
-            height: unit(64, rpx);
-            padding-left: unit(20, rpx);
+            width: unit(220, rpx);
+            height: @topBarHeight;
+            padding: 0 unit(30, rpx);
             image {
               width: 100%;
               height: 100%;
             }
           }
           .search {
-            height: unit(64, rpx);
             overflow: hidden;
+            height: @topBarHeight;
+            padding: unit(18, rpx) 0;
             text-align: center;
             font-size: 0;
             .btn-search {
               width: unit(300, rpx);
-              height: @topBarHeight;
-              line-height: @topBarHeight;
+              height: @height;
+              line-height: @height;
               display: inline-block;
               overflow: hidden;
-              border-radius: @topBarHeight;
+              border-radius: @height;
               background-color: #f0f0f0;
               color: @fontColor3;
               .btn-icon {
                 position: absolute;
                 top: 0;
                 left: 0;
-                width: @topBarHeight;
-                height: @topBarHeight;
+                width: @height;
+                height: @height;
                 font-size: @fontSize3;
               }
               .btn-text {
-                height: @topBarHeight;
-                line-height: @topBarHeight;
-                padding-left: @topBarHeight;
+                height: @height;
+                line-height: @height;
+                padding-left: @height;
                 font-size: @fontSize1;
                 text-align: left;
               }

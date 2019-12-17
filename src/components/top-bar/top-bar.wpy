@@ -52,7 +52,7 @@
     left: 0;
     z-index: 1000;
     background-color: @white;
-    padding: unit(48, rpx) 0 unit(18, rpx) 0;
+    padding-top: unit(30, rpx);
     .top-inner {
       position: relative;
       height: @topBarHeight;

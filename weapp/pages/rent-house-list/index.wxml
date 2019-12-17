@@ -1,10 +1,11 @@
 
 <view class="container">
+  <loading bind_init="_initComponent" isLoading="{{ isLoading }}"></loading>
   <view class="content">
     <view class="header">
       <top-bar bind_init="_initComponent" title="房源列表"></top-bar>
       <view class="tab-bar">
-        <view wx:for="{{ tabs }}" wx:for-index="index" wx:for-item="tab" wx:key="index" data-wpy-evt="5-0" bindtap="_proxy" data-wpytap-a="{{ index }}" class="tab-item {{ [ tabIndex===index ? 'active' : '' ] }}">
+        <view wx:for="{{ tabs }}" wx:for-index="index" wx:for-item="tab" wx:key="index" data-wpy-evt="5-35" bindtap="_proxy" data-wpytap-a="{{ index }}" class="tab-item {{ [ tabIndex===index ? 'active' : '' ] }}">
           <view class="tab-text">
             <label class="tab-label">{{tab.label}}</label>
             <label class="tab-triangle"></label>
@@ -12,16 +13,17 @@
         </view>
       </view>
     </view>
-    <view class="body">
+    <view wx:if="{{ isSuccess }}" class="body fade">
       <scroll-view scroll-y="{{iSwitch}}" class="scroll-view">
         <block wx:for="{{ isData }}" wx:for-index="index" wx:for-item="item" wx:key="index" key="{{ index }}">
           <rent-house-item bind_init="_initComponent" item="{{ item }}"></rent-house-item>
         </block>
+        <inline-loading bind_init="_initComponent"></inline-loading>
       </scroll-view>
     </view>
     <view class="footer">
       <view class="modal {{ [ !tabs[0].isShow ? 'hide' : '' ] }}">
-        <view data-wpy-evt="5-1" bindtap="_proxy" class="modal-bg"></view>
+        <view data-wpy-evt="5-36" bindtap="_proxy" class="modal-bg"></view>
         <view class="modal-content">
           <view class="modal-header"></view>
           <view class="modal-body">
@@ -30,7 +32,7 @@
                 <view class="modal-block">
                   <view class="modal-row row">
                     <view wx:for="{{ btnPrice.items }}" wx:for-index="index" wx:for-item="item" wx:key="index" class="modal-col col-3 {{ [ index===btnPrice.initIndex ? 'active' : '' ] }}">
-                      <view data-wpy-evt="5-2" bindtap="_proxy" data-wpytap-a="{{ index }}" class="btn-item btn-price">{{item}}</view>
+                      <view data-wpy-evt="5-37" bindtap="_proxy" data-wpytap-a="{{ index }}" class="btn-item btn-price">{{item}}</view>
                     </view>
                   </view>
                   <view class="modal-split"></view>
@@ -44,7 +46,7 @@
                       <view class="max-label col-6">{{maxPrice}}</view>
                     </view>
                     <view class="modal-slider">
-                      <wux-slider bind_init="_initComponent" defaultValue="{{ [0, 10000] }}" min="0" step="10" max="10000" tipFormatter="" trackStyle="{{trackStylePrice}}" handleStyle="{{handleStylePrice}}" data-wpy-evt="5-3" bindchange="_proxy"></wux-slider>
+                      <wux-slider bind_init="_initComponent" defaultValue="{{ [0, 10000] }}" min="0" step="10" max="10000" tipFormatter="" trackStyle="{{trackStylePrice}}" handleStyle="{{handleStylePrice}}" data-wpy-evt="5-38" bindchange="_proxy"></wux-slider>
                     </view>
                   </view>
                 </view>
@@ -60,7 +62,7 @@
         </view>
       </view>
       <view class="modal {{ [ !tabs[1].isShow ? 'hide' : '' ] }}">
-        <view data-wpy-evt="5-4" bindtap="_proxy" class="modal-bg"></view>
+        <view data-wpy-evt="5-39" bindtap="_proxy" class="modal-bg"></view>
         <view class="modal-content">
           <view class="modal-header"></view>
           <view class="modal-body">
@@ -139,7 +141,7 @@
                       <view class="max-label col-6">{{maxArea}}</view>
                     </view>
                     <view class="modal-slider">
-                      <wux-slider bind_init="_initComponent" defaultValue="{{ [0, 300] }}" min="0" step="1" max="300" tipFormatter="" trackStyle="{{trackStyleArea}}" handleStyle="{{handleStyleArea}}" data-wpy-evt="5-5" bindchange="_proxy"></wux-slider>
+                      <wux-slider bind_init="_initComponent" defaultValue="{{ [0, 300] }}" min="0" step="1" max="300" tipFormatter="" trackStyle="{{trackStyleArea}}" handleStyle="{{handleStyleArea}}" data-wpy-evt="5-40" bindchange="_proxy"></wux-slider>
                     </view>
                   </view>
                 </view>
@@ -155,7 +157,7 @@
         </view>
       </view>
       <view class="modal {{ [ !tabs[2].isShow ? 'hide' : '' ] }}">
-        <view data-wpy-evt="5-6" bindtap="_proxy" class="modal-bg"></view>
+        <view data-wpy-evt="5-41" bindtap="_proxy" class="modal-bg"></view>
         <view class="modal-content">
           <view class="modal-header"></view>
           <view class="modal-body">

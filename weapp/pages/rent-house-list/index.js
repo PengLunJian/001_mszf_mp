@@ -140,49 +140,98 @@ _core["default"].page({
       console.log(err);
     });
   }
-}, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"},"rent-house-item":{"path":"..\\..\\components\\rent-house-item\\rent-house-item"},"wux-slider":{"path":"..\\..\\$vendor\\wux-weapp\\dist\\slider\\index"}},"on":{"5-3":["change"],"5-5":["change"]}}, handlers: {'5-0': {"tap": function proxy (index) {
+}, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\components\\loading\\loading"},"inline-loading":{"path":"..\\..\\components\\inline-loading\\inline-loading"},"rent-house-item":{"path":"..\\..\\components\\rent-house-item\\rent-house-item"},"wux-slider":{"path":"..\\..\\$vendor\\wux-weapp\\dist\\slider\\index"}},"on":{"5-38":["change"],"5-40":["change"]}}, handlers: {'5-35': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {
         _vm.onHandleTabChange(index)
       })();
     
-  }},'5-1': {"tap": function proxy () {
+  }},'5-36': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
         _vm.onHandleCloseModal(0)
       })();
     
-  }},'5-2': {"tap": function proxy (index) {
+  }},'5-37': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {
         _vm.onHandlePriceFilter(index)
       })();
     
-  }},'5-3': {"change": function proxy () {
+  }},'5-38': {"change": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleSliderChangePrice($event)
       })();
     
-  }},'5-4': {"tap": function proxy () {
+  }},'5-39': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
         _vm.onHandleCloseModal(1)
       })();
     
-  }},'5-5': {"change": function proxy () {
+  }},'5-40': {"change": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleSliderChangeArea($event)
       })();
     
-  }},'5-6': {"tap": function proxy () {
+  }},'5-41': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleCloseModal(2)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\components\\loading\\loading"},"inline-loading":{"path":"..\\..\\components\\inline-loading\\inline-loading"},"rent-house-item":{"path":"..\\..\\components\\rent-house-item\\rent-house-item"},"wux-slider":{"path":"..\\..\\$vendor\\wux-weapp\\dist\\slider\\index"}},"on":{"5-38":["change"],"5-40":["change"]}}, handlers: {'5-35': {"tap": function proxy (index) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleTabChange(index)
+      })();
+    
+  }},'5-36': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleCloseModal(0)
+      })();
+    
+  }},'5-37': {"tap": function proxy (index) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandlePriceFilter(index)
+      })();
+    
+  }},'5-38': {"change": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleSliderChangePrice($event)
+      })();
+    
+  }},'5-39': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleCloseModal(1)
+      })();
+    
+  }},'5-40': {"change": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleSliderChangeArea($event)
+      })();
+    
+  }},'5-41': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {

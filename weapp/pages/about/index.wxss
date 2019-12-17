@@ -33,7 +33,7 @@
   line-height: 80rpx;
   position: absolute;
   right: 30rpx;
-  bottom: 30rpx;
+  bottom: 15rpx;
   z-index: 1;
   font-size: 44rpx;
   text-align: center;

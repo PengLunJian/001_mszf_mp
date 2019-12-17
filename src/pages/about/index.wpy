@@ -44,7 +44,6 @@
 
 <script type="text/ecmascript-6">
   import wepy from '@wepy/core';
-  // import {mapState} from '@wepy/redux';
   import store from '../../store/index';
 
   wepy.page({
@@ -102,7 +101,7 @@
               line-height: unit(80, rpx);
               position: absolute;
               right: unit(30, rpx);
-              bottom: unit(30, rpx);
+              bottom: unit(15, rpx);
               z-index: 1;
               font-size: unit(44, rpx);
               text-align: center;
