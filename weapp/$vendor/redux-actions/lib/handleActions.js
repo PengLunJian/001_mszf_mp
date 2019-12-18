@@ -7,15 +7,15 @@ var _reduceReducers = _interopRequireDefault(__wepy_require(35));
 
 var _invariant = _interopRequireDefault(__wepy_require(31));
 
-var _isPlainObject = _interopRequireDefault(__wepy_require(11));
+var _isPlainObject = _interopRequireDefault(__wepy_require(9));
 
-var _isMap = _interopRequireDefault(__wepy_require(17));
+var _isMap = _interopRequireDefault(__wepy_require(18));
 
 var _ownKeys = _interopRequireDefault(__wepy_require(19));
 
 var _flattenReducerMap = _interopRequireDefault(__wepy_require(25));
 
-var _handleAction = _interopRequireDefault(__wepy_require(30));
+var _handleAction = _interopRequireDefault(__wepy_require(29));
 
 var _get = _interopRequireDefault(__wepy_require(20));
 

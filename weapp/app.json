@@ -1,119 +1,118 @@
 {
-  "pages": [
-    "pages/index/index"
-  ],
-  "subpackages": [
-    {
-      "root": "pages/search",
-      "pages": [
-        "index"
-      ]
+    "pages": [
+        "pages/index/index"
+    ],
+    "subpackages": [
+        {
+            "root": "pages/search",
+            "pages": [
+                "index"
+            ]
+        },
+        {
+            "root": "pages/rent-house-list",
+            "pages": [
+                "index"
+            ]
+        },
+        {
+            "root": "pages/rent-house-detail",
+            "pages": [
+                "index"
+            ]
+        },
+        {
+            "root": "pages/second-house-list",
+            "pages": [
+                "index"
+            ]
+        },
+        {
+            "root": "pages/second-house-detail",
+            "pages": [
+                "index"
+            ]
+        },
+        {
+            "root": "pages/new-house-list",
+            "pages": [
+                "index"
+            ]
+        },
+        {
+            "root": "pages/new-house-detail",
+            "pages": [
+                "index"
+            ]
+        },
+        {
+            "root": "pages/mine",
+            "pages": [
+                "index"
+            ]
+        },
+        {
+            "root": "pages/about",
+            "pages": [
+                "index"
+            ]
+        },
+        {
+            "root": "pages/calculator",
+            "pages": [
+                "index"
+            ]
+        },
+        {
+            "root": "pages/favorite",
+            "pages": [
+                "index"
+            ]
+        },
+        {
+            "root": "pages/history",
+            "pages": [
+                "index"
+            ]
+        },
+        {
+            "root": "pages/suggest",
+            "pages": [
+                "index"
+            ]
+        },
+        {
+            "root": "pages/release",
+            "pages": [
+                "index"
+            ]
+        }
+    ],
+    "preloadRule": {
+        "pages/index/index": {
+            "network": "all",
+            "packages": [
+                "pages/search",
+                "pages/rent-house-list",
+                "pages/rent-house-detail",
+                "pages/second-house-list",
+                "pages/second-house-detail",
+                "pages/new-house-list",
+                "pages/new-house-detail",
+                "pages/mine",
+                "pages/about",
+                "pages/calculator",
+                "pages/favorite",
+                "pages/history",
+                "pages/release",
+                "pages/suggest"
+            ]
+        }
     },
-    {
-      "root": "pages/rent-house-list",
-      "pages": [
-        "index"
-      ]
-    },
-    {
-      "root": "pages/rent-house-detail",
-      "pages": [
-        "index"
-      ]
-    },
-    {
-      "root": "pages/second-house-list",
-      "pages": [
-        "index"
-      ]
-    },
-    {
-      "root": "pages/second-house-detail",
-      "pages": [
-        "index"
-      ]
-    },
-    {
-      "root": "pages/new-house-list",
-      "pages": [
-        "index"
-      ]
-    },
-    {
-      "root": "pages/new-house-detail",
-      "pages": [
-        "index"
-      ]
-    },
-    {
-      "root": "pages/mine",
-      "pages": [
-        "index"
-      ]
-    },
-    {
-      "root": "pages/about",
-      "pages": [
-        "index"
-      ]
-    },
-    {
-      "root": "pages/calculator",
-      "pages": [
-        "index"
-      ]
-    },
-    {
-      "root": "pages/favorite",
-      "pages": [
-        "index"
-      ]
-    },
-    {
-      "root": "pages/history",
-      "pages": [
-        "index"
-      ]
-    },
-    {
-      "root": "pages/suggest",
-      "pages": [
-        "index"
-      ]
-    },
-    {
-      "root": "pages/release",
-      "pages": [
-        "index"
-      ]
+    "window": {
+        "backgroundColor": "#fafafa",
+        "backgroundTextStyle": "light",
+        "navigationBarTextStyle": "black",
+        "navigationBarBackgroundColor": "#ffffff"
     }
-  ],
-  "preloadRule": {
-    "pages/index/index": {
-      "network": "all",
-      "packages": [
-        "pages/search",
-        "pages/rent-house-list",
-        "pages/rent-house-detail",
-        "pages/second-house-list",
-        "pages/second-house-detail",
-        "pages/new-house-list",
-        "pages/new-house-detail",
-        "pages/mine",
-        "pages/about",
-        "pages/calculator",
-        "pages/favorite",
-        "pages/history",
-        "pages/release",
-        "pages/suggest"
-      ]
-    }
-  },
-  "window": {
-    "backgroundColor": "#fafafa",
-    "backgroundTextStyle": "light",
-    "navigationBarTextStyle": "black",
-    "navigationBarBackgroundColor": "#ffffff"
-  },
-  "sitemapLocation": "sitemap96.json"
 }

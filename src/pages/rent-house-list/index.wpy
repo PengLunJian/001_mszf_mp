@@ -20,9 +20,11 @@
         <scroll-view
           class="scroll-view"
           scroll-y="{{iSwitch}}">
-          <block v-for="(item,index) in isData" :key="index">
-            <rent-house-item :item="item"></rent-house-item>
-          </block>
+          <div class="items">
+            <block v-for="(item,index) in isData" :key="index">
+              <rent-house-item :item="item"></rent-house-item>
+            </block>
+          </div>
           <inline-loading></inline-loading>
         </scroll-view>
       </div>
@@ -415,6 +417,13 @@
         height: 100%;
         > .scroll-view {
           height: 100%;
+          rent-house-item {
+            &:last-child {
+              .item-inner {
+                border: none !important;
+              }
+            }
+          }
         }
       }
       .footer {

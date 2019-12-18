@@ -157,7 +157,7 @@
               }
               &:nth-child(2) {
                 .list-item-icon {
-                  background-image: -webkit-linear-gradient(left, #FFBC09, #FF4A0B);
+                  background-image: -webkit-linear-gradient(left, #FFF207, #FFAD07);
                 }
               }
               &:nth-child(3) {

@@ -170,9 +170,12 @@
         }
       }
     }
+  }
+
+  new-house-item {
     &:last-child {
       .item-inner {
-        border: none;
+        border: none !important;
       }
     }
   }

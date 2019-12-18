@@ -59,6 +59,9 @@
 .container .content .body > .scroll-view {
   height: 100%;
 }
+.container .content .body > .scroll-view rent-house-item:last-child .item-inner {
+  border: none !important;
+}
 .container .content .footer .modal .modal-bg {
   position: fixed;
   top: 0;

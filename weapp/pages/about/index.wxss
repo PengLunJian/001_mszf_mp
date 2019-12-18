@@ -89,7 +89,7 @@
   background-image: -webkit-linear-gradient(left, #00FF00, #12B347);
 }
 .container .content .body .list .inner .list-item:nth-child(2) .list-item-icon {
-  background-image: -webkit-linear-gradient(left, #FFBC09, #FF4A0B);
+  background-image: -webkit-linear-gradient(left, #FFF207, #FFAD07);
 }
 .container .content .body .list .inner .list-item:nth-child(3) .list-item-icon {
   background-image: -webkit-linear-gradient(left, #060BFF, #17F2FF);
