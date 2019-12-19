@@ -4,7 +4,9 @@
       <div class="header">
         <top-bar title="房源搜索"></top-bar>
       </div>
-      <div class="body"></div>
+      <div class="body">
+        <empty></empty>
+      </div>
       <div class="footer"></div>
     </div>
   </div>
@@ -40,6 +42,7 @@
       .header {
       }
       .body {
+        height: 100%;
       }
       .footer {
       }
@@ -52,6 +55,7 @@
   navigationStyle:'custom',
   usingComponents: {
   'top-bar': '../../components/top-bar/top-bar',
+  'empty': '../../components/empty/empty'
   }
   }
 </config>

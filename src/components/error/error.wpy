@@ -1,0 +1,68 @@
+<template>
+  <div class="error fade">
+    <div class="error-inner">
+      <img class="img" src="../../assets/images/error.png" mode="aspectFit"/>
+      <div class="btn btn-refresh">重新加载</div>
+    </div>
+  </div>
+</template>
+
+<script type="text/ecmascript-6">
+  import wepy from '@wepy/core';
+
+  wepy.component({
+    data: {},
+    props: {},
+    events: {},
+    watch: {},
+    methods: {},
+    onLoad() {
+    }
+  });
+</script>
+
+<style scoped lang="less">
+  @import "../../assets/less/common";
+  @import "../../assets/less/variable";
+  @import "../../assets/less/iconfont";
+
+  @height: unit(60, rpx);
+
+  .error {
+    height: 100%;
+    text-align: center;
+    font-size: 0;
+    .error-inner {
+      width: auto;
+      height: auto;
+      display: inline-block;
+      vertical-align: middle;
+      transform: translateY(unit(-130, rpx));
+      font-size: 0;
+      .img {
+        margin: 0 auto;
+        width: unit(200, rpx);
+        height: unit(200, rpx);
+      }
+      .btn-refresh {
+        width: auto;
+        overflow: hidden;
+        line-height: @height;
+        display: inline-block;
+        border-radius: @height;
+        padding: 0 unit(30, rpx);
+        margin-top: unit(30, rpx);
+        border: 1px solid @fontColor3;
+        font-size: @fontSize3;
+        letter-spacing: 1px;
+        color: @fontColor3;
+      }
+    }
+    &:before {
+      content: '';
+      height: 100%;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+</style>

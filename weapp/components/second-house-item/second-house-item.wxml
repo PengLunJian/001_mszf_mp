@@ -1,5 +1,5 @@
 
-<view data-wpy-evt="92-1" bindtap="_proxy" class="item">
+<view data-wpy-evt="92-0" bindtap="_proxy" class="item">
   <view class="item-inner">
     <view class="item-img">
       <image src="{{item.url}}"></image>

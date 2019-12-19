@@ -51,9 +51,16 @@ page {
 }
 
 button {
+  padding: 0;
   border: none;
+  border-radius: 0;
+  padding-right: 0;
+  background-color: transparent;
   &:focus {
     outline: none;
+  }
+  &:after {
+    display: none;
   }
 }
 

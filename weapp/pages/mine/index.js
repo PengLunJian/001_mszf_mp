@@ -18,7 +18,6 @@ _core["default"].page({
   store: _index["default"],
   mixins: [],
   data: {
-    styl: 'background-color:transparent;color:#ffffff;',
     items: [{
       name: $routes.FAVORITE.name,
       path: $routes.FAVORITE.path,
@@ -42,6 +41,63 @@ _core["default"].page({
     }]
   },
   computed: {},
-  methods: {},
+  methods: {
+    onHandleClick: function onHandleClick(item) {
+      if (item.name !== '意见反馈') {
+        wx.navigateTo({
+          url: item.path
+        });
+      }
+    }
+  },
   created: function created() {}
-}, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {}, models: {} });
+}, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'11-5': {"tap": function proxy (item) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleClick(item)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'11-5': {"tap": function proxy (item) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleClick(item)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'11-5': {"tap": function proxy (item) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleClick(item)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'11-5': {"tap": function proxy (item) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleClick(item)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'11-5': {"tap": function proxy (item) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleClick(item)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'11-5': {"tap": function proxy (item) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleClick(item)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'11-5': {"tap": function proxy (item) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleClick(item)
+      })();
+    
+  }}}, models: {} });

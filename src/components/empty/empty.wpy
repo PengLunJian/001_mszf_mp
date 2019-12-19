@@ -1,0 +1,60 @@
+<template>
+  <div class="empty fade">
+    <div class="empty-inner">
+      <img class="img" src="../../assets/images/empty.png" mode="aspectFit"/>
+      <div class="text">暂无数据</div>
+    </div>
+  </div>
+</template>
+
+<script type="text/ecmascript-6">
+  import wepy from '@wepy/core';
+
+  wepy.component({
+    data: {},
+    props: {},
+    events: {},
+    watch: {},
+    methods: {},
+    onLoad() {
+    }
+  });
+</script>
+
+<style scoped lang="less">
+  @import "../../assets/less/common";
+  @import "../../assets/less/variable";
+  @import "../../assets/less/iconfont";
+
+  .empty {
+    height: 100%;
+    text-align: center;
+    font-size: 0;
+    .empty-inner {
+      width: auto;
+      height: auto;
+      display: inline-block;
+      vertical-align: middle;
+      transform: translateY(unit(-130, rpx));
+      .img {
+        margin: 0 auto;
+        width: unit(200, rpx);
+        height: unit(200, rpx);
+      }
+      .text {
+        height: unit(40, rpx);
+        line-height: unit(40, rpx);
+        margin-top: unit(30, rpx);
+        font-size: @fontSize3;
+        letter-spacing: 1px;
+        color: @fontColor3;
+      }
+    }
+    &:before {
+      content: '';
+      height: 100%;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+</style>

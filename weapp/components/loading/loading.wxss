@@ -39,10 +39,17 @@ page {
   background-color: #fafafa;
 }
 button {
+  padding: 0;
   border: none;
+  border-radius: 0;
+  padding-right: 0;
+  background-color: transparent;
 }
 button:focus {
   outline: none;
+}
+button:after {
+  display: none;
 }
 .module {
   margin-bottom: 20rpx;

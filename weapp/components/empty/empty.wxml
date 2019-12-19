@@ -1,0 +1,7 @@
+
+<view class="empty fade">
+  <view class="empty-inner">
+    <image src="../../assets/images/empty.png" mode="aspectFit" class="img"></image>
+    <view class="text">暂无数据</view>
+  </view>
+</view>

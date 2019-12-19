@@ -2,6 +2,7 @@
     "navigationStyle": "custom",
     "component": true,
     "usingComponents": {
-        "top-bar": "../../components/top-bar/top-bar"
+        "top-bar": "../../components/top-bar/top-bar",
+        "empty": "../../components/empty/empty"
     }
 }

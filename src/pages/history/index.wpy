@@ -9,7 +9,7 @@
         <scroll-view class="scroll-view" scroll-y="{{true}}" @scroll="onHandleScroll">
           <block v-for="(item,index) in items" :key="index">
             <div class="date" v-if="item.date!==items[index-1].date">
-              <div class="label" :class="{'fixed':scrollTop>=item.minScrollTop&&scrollTop<item.maxScrollTop}">
+              <div class="label" :class="{'fixed':scrollTop>item.minScrollTop&&scrollTop<=item.maxScrollTop}">
                 {{item.date}}
               </div>
             </div>
@@ -128,7 +128,7 @@
           date: '2019/11/24',
           url: '../../assets/images/item1.jpg',
           type: 1,
-          minScrollTop: -1000,
+          minScrollTop: 0,
           maxScrollTop: 390
         },
         {

@@ -243,4 +243,7 @@
 .item .item-inner .item-info .item-row .item-tag:last-child {
   margin: 0;
 }
+second-house-item:last-child .item-inner {
+  border: none !important;
+}
 

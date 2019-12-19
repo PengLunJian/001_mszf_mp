@@ -13,15 +13,16 @@
           <img class="bg" src="../../assets/images/mine_bg.jpg" mode="aspectFit"/>
         </div>
         <div class="list module">
-          <navigator v-for="(item,index) in items"
-                     class="list-item btn"
-                     hover-class="none"
-                     :key="index"
-                     url="{{item.path}}">
+          <button v-for="(item,index) in items"
+                  class="list-item btn"
+                  hover-class="none"
+                  :key="index"
+                  @tap="onHandleClick(item)"
+                  open-type="{{item.name==='意见反馈'?'feedback':''}}">
             <div class="list-item-icon iconfont {{item.icon}}"></div>
             <div class="list-item-text">{{item.name}}</div>
             <div class="list-item-next iconfont icon-next"></div>
-          </navigator>
+          </button>
         </div>
       </div>
     </div>
@@ -39,7 +40,6 @@
     mixins: [],
 
     data: {
-      styl: 'background-color:transparent;color:#ffffff;',
       items: [
         {
           name: $routes.FAVORITE.name,
@@ -71,7 +71,15 @@
 
     computed: {},
 
-    methods: {},
+    methods: {
+      onHandleClick(item) {
+        if (item.name !== '意见反馈') {
+          wx.navigateTo({
+            url: item.path
+          });
+        }
+      }
+    },
 
     created() {
     }
@@ -133,6 +141,7 @@
             height: unit(110, rpx);
             line-height: unit(110, rpx);
             padding-left: unit(110, rpx);
+            text-align: left;
             .list-item-icon,
             .list-item-next {
               position: absolute;

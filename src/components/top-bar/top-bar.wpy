@@ -32,8 +32,8 @@
         });
       },
       onHandleHome() {
-        wx.reLaunch({
-          url: $routes.INDEX.path
+        wx.navigateBack({
+          delta: 10
         });
       }
     },

@@ -2,4 +2,7 @@
   height: 100vh;
   padding-top: 130rpx;
 }
+.container .content .body {
+  height: 100%;
+}
 
