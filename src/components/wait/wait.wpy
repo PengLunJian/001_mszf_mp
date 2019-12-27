@@ -1,0 +1,52 @@
+<template>
+  <div class="wait fade">
+    <div class="inner">
+      <img class="image" src="../../assets/images/wait@2x.png" mode="aspectFit"/>
+      <div class="label">敬请期待</div>
+    </div>
+  </div>
+</template>
+
+<script type="text/ecmascript-6">
+  import wepy from '@wepy/core';
+
+  wepy.component({
+    data: {},
+    props: {},
+    events: {},
+    watch: {},
+    methods: {},
+    onLoad() {
+    }
+  });
+</script>
+
+<style scoped lang="less">
+  @import "../../assets/less/common";
+  @import "../../assets/less/variable";
+  @import "../../assets/less/iconfont";
+
+  .wait {
+    height: 100%;
+    text-align: center;
+    font-size: 0;
+    .inner {
+      display: inline-block;
+      vertical-align: middle;
+      .image {
+        width: unit(300, rpx);
+        height: unit(150, rpx);
+      }
+      .label {
+        font-size: @fontSize3;
+        color: @fontColor3;
+      }
+    }
+    &:before {
+      content: '';
+      height: 100%;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+</style>

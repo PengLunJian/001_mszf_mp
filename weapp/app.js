@@ -10,8 +10,11 @@ _core["default"].use(_redux["default"]);
 
 _core["default"].app({
   globalData: {
-    userInfo: null
+    userInfo: null,
+    company: {
+      phoneNumber: '13731887133'
+    }
   },
   onLaunch: function onLaunch() {},
   methods: {}
-}, {info: {"noPromiseAPI":["createSelectorQuery"]}, handlers: {}, models: {} }, {info: {"noPromiseAPI":["createSelectorQuery"]}, handlers: {}, models: {} });
+}, {info: {"noPromiseAPI":["createSelectorQuery"]}, handlers: {}, models: {} });

@@ -153,9 +153,9 @@
             vertical-align: middle;
             padding: 0 unit(10, rpx);
             margin-right: unit(10, rpx);
-            border: 1px solid @tagColor;
+            border: 1px solid @theme2;
             font-size: unit(24, rpx);
-            color: @tagColor;
+            color: @theme2;
             &.item-state {
               border: none;
               background-color: #009966;

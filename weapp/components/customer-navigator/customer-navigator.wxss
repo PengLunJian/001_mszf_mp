@@ -142,7 +142,6 @@ image {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 view {
-  width: 100%;
   display: block;
 }
 .row {

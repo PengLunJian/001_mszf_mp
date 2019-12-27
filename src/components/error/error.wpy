@@ -1,7 +1,7 @@
 <template>
   <div class="error fade">
-    <div class="error-inner">
-      <img class="img" src="../../assets/images/error.png" mode="aspectFit"/>
+    <div class="inner">
+      <img class="image" src="../../assets/images/error@2x.png" mode="aspectFit"/>
       <div class="btn btn-refresh">重新加载</div>
     </div>
   </div>
@@ -32,17 +32,12 @@
     height: 100%;
     text-align: center;
     font-size: 0;
-    .error-inner {
-      width: auto;
-      height: auto;
+    .inner {
       display: inline-block;
       vertical-align: middle;
-      transform: translateY(unit(-130, rpx));
-      font-size: 0;
-      .img {
-        margin: 0 auto;
-        width: unit(200, rpx);
-        height: unit(200, rpx);
+      .image {
+        width: unit(300, rpx);
+        height: unit(150, rpx);
       }
       .btn-refresh {
         width: auto;
@@ -52,7 +47,7 @@
         border-radius: @height;
         padding: 0 unit(30, rpx);
         margin-top: unit(30, rpx);
-        border: 1px solid @fontColor3;
+        border: 0.5px solid @borderColor3;
         font-size: @fontSize3;
         letter-spacing: 1px;
         color: @fontColor3;

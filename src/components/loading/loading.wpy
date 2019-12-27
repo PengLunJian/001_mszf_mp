@@ -3,13 +3,9 @@
     <div class="loading-inner">
       <div class="loading-bg"></div>
       <div class="loading-content">
-        <div class="loading-left">
-          <img class="loading-m" src="../../assets/images/loading_m.png" mode="aspectFit"/>
-          <img class="loading-circle" src="../../assets/images/loading_circle.png" mode="aspectFit"/>
-        </div>
-        <div class="loading-right">
-          <img class="loading-house" src="../../assets/images/loading_house.png" mode="aspectFit"/>
-        </div>
+        <img class="loading-image1" src="../../assets/images/logo-house@2x.png" mode="aspectFit"/>
+        <img class="loading-image2" src="../../assets/images/logo-clock@2x.png" mode="aspectFit"/>
+        <img class="loading-image3" src="../../assets/images/logo-label@2x.png" mode="aspectFit"/>
       </div>
     </div>
   </div>
@@ -70,37 +66,28 @@
         overflow: hidden;
         transform: translate3d(-50%, -50%, 0);
         font-size: 0;
-        .loading-left {
+        .loading-image1 {
+          position: absolute;
+          top: 0px;
+          left: 0px;
           width: unit(100, rpx);
           height: unit(100, rpx);
-          padding: unit(10, rpx);
-          position: relative;
+          padding: unit(35, rpx);
+        }
+        .loading-image2 {
+          width: unit(100, rpx);
+          height: unit(100, rpx);
           display: inline-block;
           vertical-align: middle;
-          .loading-m {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: unit(40, rpx);
-            height: unit(40, rpx);
-            transform: translate3d(-50%, -55%, 0);
-          }
-          .loading-circle {
-            width: 100%;
-            height: 100%;
-            animation: rotate 3s linear infinite;
-          }
+          padding: unit(10, rpx);
+          animation: rotate 3s linear infinite;
         }
-        .loading-right {
+        .loading-image3 {
           width: unit(200, rpx);
           height: unit(100, rpx);
           display: inline-block;
           vertical-align: middle;
-          padding: 0 unit(10, rpx);
-          .loading-house {
-            width: 100%;
-            height: 100%;
-          }
+          padding: unit(10, rpx);
         }
       }
     }

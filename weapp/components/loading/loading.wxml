@@ -3,13 +3,9 @@
   <view class="loading-inner">
     <view class="loading-bg"></view>
     <view class="loading-content">
-      <view class="loading-left">
-        <image src="../../assets/images/loading_m.png" mode="aspectFit" class="loading-m"></image>
-        <image src="../../assets/images/loading_circle.png" mode="aspectFit" class="loading-circle"></image>
-      </view>
-      <view class="loading-right">
-        <image src="../../assets/images/loading_house.png" mode="aspectFit" class="loading-house"></image>
-      </view>
+      <image src="../../assets/images/logo-house@2x.png" mode="aspectFit" class="loading-image1"></image>
+      <image src="../../assets/images/logo-clock@2x.png" mode="aspectFit" class="loading-image2"></image>
+      <image src="../../assets/images/logo-label@2x.png" mode="aspectFit" class="loading-image3"></image>
     </view>
   </view>
 </view>

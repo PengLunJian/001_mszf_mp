@@ -3,6 +3,7 @@
   padding-top: 130rpx;
 }
 .container .content .header {
+  width: 100%;
   position: fixed;
   top: 0;
   left: 0;

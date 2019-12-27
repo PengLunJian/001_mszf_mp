@@ -5,7 +5,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ajaxRequestProduct = void 0;
+exports.ajaxRequestRentHouseList = void 0;
 
 var _apis = _interopRequireDefault(require('../apis/index.js'));
 
@@ -13,11 +13,13 @@ var _index = _interopRequireDefault(require('index.js'));
 
 var _axios = _interopRequireDefault(require('../axios/index.js'));
 
-var resData = _interopRequireWildcard(require('../mock/data.js'));
+var _qs = _interopRequireDefault(require('../vendor.js')(10));
+
+var utils = _interopRequireWildcard(require('../utils/index.js'));
 
 var actionTypes = _interopRequireWildcard(require('actionTypes.js'));
 
-var _reduxActions = require('../vendor.js')(45);
+var _reduxActions = require('../vendor.js')(53);
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
 
@@ -37,27 +39,29 @@ var commit = function commit(type, data) {
   });
 };
 
-var ajaxRequestProduct = (0, _reduxActions.createAction)('selectProduct', function () {
-  commit(actionTypes.SELECT_PRODUCT_REQUEST);
+var ajaxRequestRentHouseList = (0, _reduxActions.createAction)('selectRentHouseList', function (params) {
+  commit(actionTypes.SELECT_RENTHOUSELIST_REQUEST);
   return new Promise(function (resolve, reject) {
-    _axios["default"].post(_apis["default"].selectProduct).then(function (res) {
-      res = resData.PRODUCT;
+    _axios["default"].get(_apis["default"].selectRentHouseList, {
+      params: params
+    }).then(function (res) {
       res = res || {};
       var _res = res,
           data = _res.data,
           success = _res.success;
+      data.rows = utils.dataFilter(data.rows);
 
       if (success) {
-        commit(actionTypes.SELECT_PRODUCT_SUCCESS, data);
+        commit(actionTypes.SELECT_RENTHOUSELIST_SUCCESS, data);
       } else {
-        commit(actionTypes.SELECT_PRODUCT_FAILURE);
+        commit(actionTypes.SELECT_RENTHOUSELIST_FAILURE);
       }
 
       resolve(res);
     })["catch"](function (err) {
-      commit(actionTypes.SELECT_PRODUCT_FAILURE);
+      commit(actionTypes.SELECT_RENTHOUSELIST_FAILURE);
       reject(err);
     });
   });
 });
-exports.ajaxRequestProduct = ajaxRequestProduct;
+exports.ajaxRequestRentHouseList = ajaxRequestRentHouseList;

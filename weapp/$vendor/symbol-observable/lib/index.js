@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _ponyfill = __wepy_require(26);
+var _ponyfill = __wepy_require(34);
 
 var _ponyfill2 = _interopRequireDefault(_ponyfill);
 

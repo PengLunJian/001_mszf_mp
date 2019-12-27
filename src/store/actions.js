@@ -1,7 +1,8 @@
 import apis from '../apis';
 import store from './index';
 import axios from '../axios';
-import * as resData from '../mock/data';
+import qs from 'qs';
+import * as utils from '../utils';
 import * as actionTypes from './actionTypes';
 import {createAction} from 'redux-actions';
 
@@ -17,24 +18,24 @@ const commit = (type, data) => {
   });
 };
 
-export const ajaxRequestProduct = createAction(
-  'selectProduct', () => {
-    commit(actionTypes.SELECT_PRODUCT_REQUEST);
+export const ajaxRequestRentHouseList = createAction(
+  'selectRentHouseList', (params) => {
+    commit(actionTypes.SELECT_RENTHOUSELIST_REQUEST);
     return new Promise((resolve, reject) => {
-      axios.post(apis.selectProduct)
+      axios.get(apis.selectRentHouseList, {params})
         .then((res) => {
-          res = resData.PRODUCT;
           res = res || {};
           const {data, success} = res;
+          data.rows = utils.dataFilter(data.rows);
           if (success) {
-            commit(actionTypes.SELECT_PRODUCT_SUCCESS, data);
+            commit(actionTypes.SELECT_RENTHOUSELIST_SUCCESS, data);
           } else {
-            commit(actionTypes.SELECT_PRODUCT_FAILURE);
+            commit(actionTypes.SELECT_RENTHOUSELIST_FAILURE);
           }
           resolve(res);
         })
         .catch((err) => {
-          commit(actionTypes.SELECT_PRODUCT_FAILURE);
+          commit(actionTypes.SELECT_RENTHOUSELIST_FAILURE);
           reject(err);
         });
     });

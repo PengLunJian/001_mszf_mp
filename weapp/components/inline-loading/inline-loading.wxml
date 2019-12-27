@@ -1,8 +1,8 @@
 
 <view class="inline-loading">
   <view class="inline-loading-content">
-    <image src="../../assets/images/loading_circle.png" mode="aspectFit" class="inline-loading-image1"></image>
-    <image src="../../assets/images/loading_house.png" mode="aspectFit" class="inline-loading-image2"></image>
-    <image src="../../assets/images/loading_m.png" mode="aspectFit" class="inline-loading-image3"></image>
+    <image src="../../assets/images/logo-clock@2x.png" mode="aspectFit" class="inline-loading-image1"></image>
+    <image src="../../assets/images/logo-label@2x.png" mode="aspectFit" class="inline-loading-image2"></image>
+    <image src="../../assets/images/logo-house@2x.png" mode="aspectFit" class="inline-loading-image3"></image>
   </view>
 </view>

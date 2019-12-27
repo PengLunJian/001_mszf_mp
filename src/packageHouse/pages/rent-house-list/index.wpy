@@ -1,0 +1,709 @@
+<template>
+  <div class="container">
+    <wux-toast id="wux-toast"></wux-toast>
+    <loading :isLoading="isLoading&&!isData"></loading>
+    <div class="content">
+      <div class="header">
+        <top-bar title="房源列表"></top-bar>
+        <div class="tab-bar">
+          <div v-for="(tab,index) in tabs"
+               class="tab-item"
+               :class="{'active':tabIndex===index}"
+               @tap="onHandleTabChange(index)">
+            <div class="tab-text">
+              <span class="tab-label">{{tab.label}}</span>
+              <span class="tab-triangle"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="body fade" v-if="isSuccess||isData.rows.length">
+        <scroll-view
+          class="scroll-view"
+          scroll-y="{{iSwitch}}"
+          @scrolltolower="onHandleScrollToLower">
+          <div class="items">
+            <block v-for="(item,index) in isData.rows" :key="index">
+              <rent-house-item :item="item"></rent-house-item>
+            </block>
+          </div>
+          <load-more :isMore="isData.rows.length<isData.totalCount"></load-more>
+        </scroll-view>
+      </div>
+      <div class="footer">
+        <div class="modal" :class="{'hide':!tabs[0].isShow}">
+          <div class="modal-bg" @tap="onHandleCloseModal(0)"></div>
+          <div class="modal-content">
+            <div class="modal-header"></div>
+            <div class="modal-body">
+              <scroll-view class="scroll-view" scroll-y="{{true}}">
+                <div class="modal-group">
+                  <div class="modal-block">
+                    <div class="modal-row row">
+                      <div v-for="(item,index) in btnPrice.items"
+                           class="modal-col col-3"
+                           :class="{'active':index===btnPrice.initIndex}">
+                        <div class="btn-item btn-price" @tap="onHandlePriceFilter(index)">{{item}}</div>
+                      </div>
+                    </div>
+                    <div class="modal-split"></div>
+                  </div>
+                </div>
+                <div class="modal-group">
+                  <div class="modal-block">
+                    <div class="modal-padding">
+                      <div class="modal-row row">
+                        <div class="min-label col-6">{{minPrice}}</div>
+                        <div class="max-label col-6">{{maxPrice}}</div>
+                      </div>
+                      <div class="modal-slider">
+                        <wux-slider
+                          min="0"
+                          step="10"
+                          max="10000"
+                          tipFormatter=""
+                          controlled="{{true}}"
+                          value="{{ sliderPriceValue }}"
+                          trackStyle="{{trackStylePrice}}"
+                          handleStyle="{{handleStylePrice}}"
+                          @change="onHandleSliderChangePrice"></wux-slider>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </scroll-view>
+            </div>
+            <div class="modal-footer">
+              <div class="modal-button">
+                <div class="btn btn-clear" @tap="onHandleClearModal1">清空</div>
+                <div class="btn btn-confirm">确定</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal" :class="{'hide':!tabs[1].isShow}">
+          <div class="modal-bg" @tap="onHandleCloseModal(1)"></div>
+          <div class="modal-content">
+            <div class="modal-header"></div>
+            <div class="modal-body">
+              <scroll-view class="scroll-view" scroll-y="{{true}}">
+                <div class="modal-group">
+                  <div class="modal-block">
+                    <div class="modal-label">方式</div>
+                    <div class="modal-row row">
+                      <div class="modal-col col-3"
+                           v-for="(item,index) in btnMethod.items"
+                           :class="{'active':index===btnMethod.initIndex}">
+                        <div class="btn-item btn-method" @tap="onHandleMethodFilter(index)">{{item}}</div>
+                      </div>
+                    </div>
+                    <div class="modal-split"></div>
+                  </div>
+                </div>
+                <div class="modal-group">
+                  <div class="modal-block">
+                    <div class="modal-label">户型</div>
+                    <div class="modal-row row">
+                      <div class="modal-col col-3"
+                           v-for="(item,index) in btnLayout.items"
+                           :class="{'active':index===btnLayout.initIndex}">
+                        <div class="btn-item btn-layout" @tap="onHandleLayoutFilter(index)">{{item}}</div>
+                      </div>
+                    </div>
+                    <div class="modal-split"></div>
+                  </div>
+                </div>
+                <div class="modal-group">
+                  <div class="modal-block">
+                    <div class="modal-label">装修</div>
+                    <div class="modal-row row">
+                      <div class="modal-col col-3"
+                           v-for="(item,index) in btnStyle.items"
+                           :class="{'active':index===btnStyle.initIndex}">
+                        <div class="btn-item btn-style" @tap="onHandleStyleFilter(index)">{{item}}</div>
+                      </div>
+                    </div>
+                    <div class="modal-split"></div>
+                  </div>
+                </div>
+                <div class="modal-group">
+                  <div class="modal-block">
+                    <div class="modal-padding">
+                      <div class="modal-row row">
+                        <div class="min-label col-6">{{minArea}}</div>
+                        <div class="max-label col-6">{{maxArea}}</div>
+                      </div>
+                      <div class="modal-slider">
+                        <wux-slider
+                          min="0"
+                          step="1"
+                          max="300"
+                          tipFormatter=""
+                          controlled="{{true}}"
+                          value="{{ sliderAreaValue }}"
+                          trackStyle="{{trackStyleArea}}"
+                          handleStyle="{{handleStyleArea}}"
+                          @change="onHandleSliderChangeArea"></wux-slider>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </scroll-view>
+            </div>
+            <div class="modal-footer">
+              <div class="modal-button">
+                <div class="btn btn-clear" @tap="onHandleClearModal2">清空</div>
+                <div class="btn btn-confirm">确定</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal" :class="{'hide':!tabs[2].isShow}">
+          <div class="modal-bg" @tap="onHandleCloseModal(2)"></div>
+          <div class="modal-content">
+            <div class="modal-header"></div>
+            <div class="modal-body">
+              <div class="modal-sort">
+                <div class="btn btn-sort"
+                     v-for="(item,index) in btnSort.items"
+                     :class="{'active':index===btnSort.initIndex}"
+                     @tap="onHandleSortFilter(index)">{{item}}
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script type="text/ecmascript-6">
+  import wepy from '@wepy/core';
+  import store from '../../../store/index';
+  import {mapState, mapActions} from '@wepy/redux';
+  import * as controller from './controller';
+  import Toast from '../../../mixins/toast';
+
+  wepy.page({
+    store,
+    mixins: [Toast],
+    data: {
+      isMore: false,
+      pageIndex: 1,
+      iSwitch: true,
+      tabIndex: -1,
+      tabs: [
+        {
+          index: 0,
+          label: '价格',
+          isShow: false
+        },
+        {
+          index: 1,
+          label: '筛选',
+          isShow: false
+        },
+        {
+          index: 2,
+          label: '排序',
+          isShow: false
+        }
+      ],
+      btnPrice: {
+        initIndex: -1,
+        items: [
+          '1000以下',
+          '1k-2k',
+          '2k-3k',
+          '3k-4k',
+          '4k-5k',
+          '5k-6k',
+          '6k-7k',
+          '7k-8k',
+          '8k-9k',
+          '9k-10k'
+        ]
+      },
+      btnMethod: {
+        initIndex: -1,
+        items: [
+          '整租',
+          '合租'
+        ]
+      },
+      btnLayout: {
+        initIndex: -1,
+        items: [
+          '一室',
+          '二室',
+          '三室',
+          '四室',
+          '五室',
+          '五室以上'
+        ]
+      },
+      btnStyle: {
+        initIndex: -1,
+        items: [
+          '毛坯',
+          '简装',
+          '中装',
+          '精装',
+          '豪装',
+          '其他'
+        ]
+      },
+      btnSort: {
+        initIndex: -1,
+        items: [
+          '综合排序',
+          '价格从低到高',
+          '价格从高到底',
+          '面积从小到大',
+          '面积从大到小'
+        ]
+      },
+      minPrice: '价格',
+      maxPrice: '不限',
+      sliderPriceValue: [0, 10000],
+      trackStylePrice: [
+        'background: -webkit-linear-gradient(left, #FFBB00, #FF9900);'
+      ],
+      handleStylePrice: [
+        'transform:translate3d(-50%,-50%,0) scale(1.0);box-shadow:0 0 15px rgba(0,0,0,.15)',
+        'transform:translate3d(-50%,-50%,0) scale(1.0);box-shadow:0 0 15px rgba(0,0,0,.15)'
+      ],
+      minArea: '面积',
+      maxArea: '不限',
+      sliderAreaValue: [0, 300],
+      trackStyleArea: [
+        'background: -webkit-linear-gradient(left, #FFBB00, #FF9900);'
+      ],
+      handleStyleArea: [
+        'transform:translate3d(-50%,-50%,0) scale(1.0);box-shadow:0 0 15px rgba(0,0,0,.15)',
+        'transform:translate3d(-50%,-50%,0) scale(1.0);box-shadow:0 0 15px rgba(0,0,0,.15)'
+      ]
+    },
+    computed: {
+      ...mapState(controller.STATES)
+    },
+    methods: {
+      ...mapActions(controller.ACTIONS),
+      onHandleTabChange(index) {
+        this.tabs.map((item) => {
+          if (index !== item.index) {
+            this.tabs[item.index].isShow = false;
+          } else {
+            if (this.tabs[index].isShow) {
+              this.tabs[index].isShow = false;
+              this.tabIndex = -1;
+              this.iSwitch = true;
+            } else {
+              this.tabs[index].isShow = true;
+              this.tabIndex = index;
+              this.iSwitch = false;
+            }
+          }
+        });
+      },
+      onHandleCloseModal(index) {
+        this.iSwitch = true;
+        this.tabs[index].isShow = false;
+        this.tabIndex = -1;
+      },
+      onHandleSliderChangePrice(e) {
+        let maxLabel = '';
+        const value = e.$wx.detail.value;
+        const minPrice = value[0];
+        const maxPrice = value[1];
+        if (!minPrice) {
+          if (maxPrice >= 10000) {
+            maxLabel = '不限';
+          } else {
+            maxLabel = maxPrice + '元以下';
+          }
+        } else {
+          if (maxPrice >= 10000) {
+            maxLabel = minPrice + '元以上';
+          } else {
+            maxLabel = minPrice + '-' + maxPrice + '元';
+          }
+        }
+        this.sliderPriceValue = value;
+        this.maxPrice = maxLabel;
+        this.btnPrice.initIndex = -1;
+      },
+      onHandleSliderChangeArea(e) {
+        let maxLabel = '';
+        const value = e.$wx.detail.value;
+        const minArea = value[0];
+        const maxArea = value[1];
+        if (!minArea) {
+          if (maxArea >= 300) {
+            maxLabel = '不限';
+          } else {
+            maxLabel = maxArea + 'm²';
+          }
+        } else {
+          if (maxArea >= 300) {
+            maxLabel = minArea + 'm²以上';
+          } else {
+            maxLabel = minArea + '-' + maxArea + 'm²';
+          }
+        }
+        this.sliderAreaValue = value;
+        this.maxArea = maxLabel;
+      },
+      onHandlePriceFilter(index) {
+        const btnIndex = this.btnPrice.initIndex;
+        if (btnIndex === index) {
+          this.btnPrice.initIndex = -1;
+        } else {
+          this.btnPrice.initIndex = index;
+        }
+        this.maxPrice = '不限';
+        this.sliderPriceValue = [0, 10000];
+      },
+      onHandleMethodFilter(index) {
+        const btnIndex = this.btnMethod.initIndex;
+        if (btnIndex === index) {
+          this.btnMethod.initIndex = -1;
+        } else {
+          this.btnMethod.initIndex = index;
+        }
+      },
+      onHandleLayoutFilter(index) {
+        const btnIndex = this.btnLayout.initIndex;
+        if (btnIndex === index) {
+          this.btnLayout.initIndex = -1;
+        } else {
+          this.btnLayout.initIndex = index;
+        }
+      },
+      onHandleStyleFilter(index) {
+        const btnIndex = this.btnStyle.initIndex;
+        if (btnIndex === index) {
+          this.btnStyle.initIndex = -1;
+        } else {
+          this.btnStyle.initIndex = index;
+        }
+      },
+      onHandleSortFilter(index) {
+        const btnIndex = this.btnSort.initIndex;
+        if (btnIndex === index) {
+          this.btnSort.initIndex = -1;
+        } else {
+          this.btnSort.initIndex = index;
+        }
+      },
+      onHandleClearModal1() {
+        this.maxPrice = '不限';
+        this.btnPrice.initIndex = -1;
+        this.sliderPriceValue = [0, 10000];
+      },
+      onHandleClearModal2() {
+        this.maxArea = '不限';
+        this.btnMethod.initIndex = -1;
+        this.btnLayout.initIndex = -1;
+        this.btnStyle.initIndex = -1;
+        this.sliderAreaValue = [0, 300];
+      },
+      onHandleScrollToLower() {
+        const {rows, totalCount} = this.isData;
+        if (rows.length < totalCount) {
+          this.pageIndex++;
+          const params = this.getParams();
+          this.ajaxRentHouseList(params);
+        }
+      },
+      getParams() {
+        const params = {
+          page: {
+            pageIndex: this.pageIndex,
+            pageSize: 10
+          }
+        };
+        return params;
+      }
+    },
+
+    onLoad() {
+      this.pageIndex = 1;
+      this.resetRentHouseList();
+      const params = this.getParams();
+      this.ajaxRentHouseList(params)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          if (this.isData.rows.length) {
+            this.showToast('cancel', '请求失败');
+          }
+          console.log(err);
+        });
+    }
+  });
+</script>
+
+<style scoped lang="less">
+  @import "../../../assets/less/variable";
+
+  .container {
+    .content {
+      height: 100vh;
+      padding-top: unit(210, rpx);
+      .header {
+        .tab-bar {
+          width: 100%;
+          display: flex;
+          flex-wrap: wrap;
+          position: fixed;
+          top: unit(130, rpx);
+          left: 0;
+          z-index: 1000;
+          background-color: @white;
+          box-shadow: 0 5px 5px rgba(0, 0, 0, 0.03);
+          font-size: @fontSize3;
+          text-align: center;
+          color: @fontColor1;
+          .tab-item {
+            width: 33.333%;
+            position: relative;
+            padding: unit(20, rpx) 0;
+            .tab-text {
+              height: unit(40, rpx);
+              line-height: unit(40, rpx);
+              border-right: 0.5px solid @borderColor1;
+              font-size: 0;
+              .tab-label,
+              .tab-triangle {
+                display: inline-block;
+                vertical-align: middle;
+                &.tab-label {
+                  font-size: @fontSize3;
+                }
+                &.tab-triangle {
+                  margin-left: unit(20, rpx);
+                  border-top: unit(12, rpx) solid @fontColor1;
+                  border-left: unit(8, rpx) solid transparent;
+                  border-right: unit(8, rpx) solid transparent;
+                  transition: all 300ms ease;
+                }
+              }
+            }
+            &.active {
+              color: @theme2;
+              .tab-triangle {
+                transform: rotate(180deg);
+                border-top-color: @theme2 !important;
+              }
+            }
+            &:last-child {
+              .tab-text {
+                border: none;
+              }
+            }
+          }
+        }
+      }
+      .body {
+        height: 100%;
+        > .scroll-view {
+          height: 100%;
+          rent-house-item {
+            &:last-child {
+              .item-inner {
+                border: none !important;
+              }
+            }
+          }
+        }
+      }
+      .footer {
+        .modal {
+          .modal-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 998;
+            transition: all 300ms ease-out;
+            background-color: rgba(0, 0, 0, .5);
+          }
+          .modal-content {
+            position: fixed;
+            top: unit(210, rpx);
+            left: 0;
+            z-index: 999;
+            width: 100%;
+            height: unit(640, rpx);
+            background-color: @white;
+            transition: all 400ms ease-out;
+            box-shadow: 0 0 15px @boxShadow2;
+            .modal-header {
+            }
+            .modal-body {
+              height: 100%;
+              > .scroll-view {
+                height: 100%;
+              }
+              .modal-group {
+                padding: 0 unit(15, rpx);
+                .modal-padding {
+                  padding: 0 unit(15, rpx);
+                }
+                .modal-split {
+                  width: unit(690, rpx);
+                  position: absolute;
+                  bottom: 0;
+                  left: unit(15, rpx);
+                  padding: 0 unit(15, rpx);
+                  border-bottom: 0.5px solid @borderColor1;
+                }
+                .modal-block {
+                  position: relative;
+                  padding: unit(30, rpx) 0;
+                }
+                .modal-slider {
+                  padding: 0 unit(28, rpx);
+                }
+                .min-label,
+                .max-label {
+                  height: unit(40, rpx);
+                  line-height: unit(40, rpx);
+                  margin-bottom: unit(20, rpx);
+                  font-size: @fontSize3;
+                  color: @fontColor2;
+                  &.max-label {
+                    text-align: right;
+                  }
+                }
+                .modal-col {
+                  padding: unit(15, rpx);
+                  .btn-item {
+                    overflow: hidden;
+                    height: unit(60, rpx);
+                    line-height: unit(56, rpx);
+                    border-radius: unit(60, rpx);
+                    border: 1px solid @borderColor1;
+                    font-size: @fontSize1;
+                    text-align: center;
+                    color: @fontColor3;
+                  }
+                  &.active {
+                    .btn-price,
+                    .btn-method,
+                    .btn-layout,
+                    .btn-style {
+                      border: none;
+                      line-height: unit(60, rpx);
+                      background: -webkit-linear-gradient(left, #FFBB00, #FF9900);
+                      color: @white;
+                    }
+                  }
+                }
+                .modal-label {
+                  height: unit(40, rpx);
+                  line-height: unit(40, rpx);
+                  margin-bottom: unit(10, rpx);
+                  padding: 0 unit(15, rpx);
+                  font-size: @fontSize3;
+                  color: @fontColor2;
+                }
+              }
+              .modal-sort {
+                .btn-sort {
+                  height: unit(100, rpx);
+                  line-height: unit(100, rpx);
+                  border-bottom: 0.5px solid @borderColor1;
+                  font-size: @fontSize3;
+                  text-align: center;
+                  color: @fontColor2;
+                  &.active {
+                    color: @theme2;
+                  }
+                  &:last-child {
+                    border: none;
+                  }
+                }
+              }
+            }
+            .modal-footer {
+              .modal-button {
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                z-index: 1000;
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                text-align: center;
+                .btn {
+                  height: unit(100, rpx);
+                  line-height: unit(100, rpx);
+                  font-size: @fontSize5;
+                  letter-spacing: 1px;
+                  color: @white;
+                  &.btn-clear {
+                    width: 35%;
+                    background-color: @white;
+                    border-top: 0.5px solid @borderColor1;
+                    color: @fontColor2;
+                  }
+                  &.btn-confirm {
+                    width: 65%;
+                    background: -webkit-linear-gradient(left, @theme1, @theme2);
+                  }
+                }
+              }
+            }
+          }
+          &:nth-child(1),
+          &:nth-child(2) {
+            .modal-content {
+              padding-bottom: unit(100, rpx);
+            }
+          }
+          &:nth-child(3) {
+            .modal-content {
+              height: unit(500, rpx);
+            }
+          }
+          &.hide {
+            .modal-bg {
+              opacity: 0;
+              visibility: hidden;
+            }
+            .modal-content {
+              visibility: hidden;
+              transform: translateY(unit(-850, rpx));
+            }
+            &:nth-child(3) {
+              .modal-content {
+                transform: translateY(unit(-710, rpx));
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+</style>
+
+<config>
+  {
+  navigationStyle:'custom',
+  disableScroll:true,
+  usingComponents: {
+  'wux-slider':'module:wux-weapp/dist/slider',
+  'wux-toast': 'module:wux-weapp/dist/toast',
+  'top-bar': '../../../components/top-bar/top-bar',
+  'loading': '../../../components/loading/loading',
+  'load-more': '../../../components/load-more/load-more',
+  'rent-house-item': '../../../components/rent-house-item/rent-house-item'
+  }
+  }
+</config>

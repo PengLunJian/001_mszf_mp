@@ -3,7 +3,7 @@
 exports.__esModule = true;
 exports.default = get;
 
-var _isMap = _interopRequireDefault(__wepy_require(18));
+var _isMap = _interopRequireDefault(__wepy_require(26));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

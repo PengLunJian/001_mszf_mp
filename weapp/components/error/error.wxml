@@ -1,7 +1,0 @@
-
-<view class="error fade">
-  <view class="error-inner">
-    <image src="../../assets/images/error.png" mode="aspectFit" class="img"></image>
-    <view class="btn btn-refresh">重新加载</view>
-  </view>
-</view>

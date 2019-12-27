@@ -1,5 +1,7 @@
 "use strict";
 
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -9,13 +11,20 @@ var _axios = _interopRequireDefault(require('axios.js'));
 
 var _apis = _interopRequireDefault(require('../apis/index.js'));
 
-var _adapter = _interopRequireDefault(require('../vendor.js')(2));
+var utils = _interopRequireWildcard(require('../utils/index.js'));
+
+var _adapter = _interopRequireDefault(require('../vendor.js')(5));
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var CancelToken = _axios["default"].CancelToken;
-var source = CancelToken.source();
-var reqList = [];
+// const CancelToken = Axios.CancelToken;
+// const source = CancelToken.source();
+// let reqList = [];
+
 /**
  *
  * @param reqList
@@ -23,64 +32,47 @@ var reqList = [];
  * @param cancel
  * @param errorMessage
  */
+// const stopRepeatRequest = (reqList, url, cancel, errorMessage) => {
+//   errorMessage = errorMessage || '';
+//   console.log(reqList + url);
+//   for (let i = 0; i < reqList.length; i++) {
+//     if (reqList[i] === url) {
+//       cancel({url, errorMessage});
+//       return;
+//     }
+//   }
+//   reqList.push(url);
+// };
 
-var stopRepeatRequest = function stopRepeatRequest(reqList, url, cancel, errorMessage) {
-  errorMessage = errorMessage || '';
-  console.log(reqList + url);
-
-  for (var i = 0; i < reqList.length; i++) {
-    if (reqList[i] === url) {
-      cancel({
-        url: url,
-        errorMessage: errorMessage
-      });
-      return;
-    }
-  }
-
-  reqList.push(url);
-};
 /**
  *
  * @param reqList
  * @param url
  */
+// const allowRequest = (reqList, url) => {
+//   for (let i = 0; i < reqList.length; i++) {
+//     if (reqList[i] === url) {
+//       reqList.splice(i, 1);
+//       break;
+//     }
+//   }
+// };
 
-
-var allowRequest = function allowRequest(reqList, url) {
-  for (var i = 0; i < reqList.length; i++) {
-    if (reqList[i] === url) {
-      reqList.splice(i, 1);
-      break;
-    }
-  }
-};
 /**
  *
  * @param config
  * @returns {*}
  */
-
-
 var getConfig = function getConfig(config) {
-  var adapter = (0, _adapter["default"])(_axios["default"]);
-  var data = config.data;
   var opts = config.url;
-  config.adapter = adapter;
-  config.method = _apis["default"].method;
+  var url = opts.url,
+      params = opts.params;
   config.timeout = _apis["default"].timeout;
   config.headers = _apis["default"].headers;
-
-  if (data) {
-    var url = opts.url,
-        params = opts.params;
-    config.url = _apis["default"].baseUrl + url;
-    config.data = Object.assign(params, data);
-  } else {
-    var _url = opts.url;
-    config.url = _apis["default"].baseUrl + _url;
-  }
-
+  config.adapter = (0, _adapter["default"])(_axios["default"]);
+  config.url = _apis["default"].baseUrl + url;
+  config.params = Object.assign(params, config.params);
+  config.params = utils.stringify(config.params);
   return config;
 };
 

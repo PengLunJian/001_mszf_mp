@@ -11,7 +11,6 @@ image {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 view {
-  width: 100%;
   display: block;
 }
 .row {
@@ -281,7 +280,7 @@ button:after {
   left: 0;
   width: 50rpx;
   height: 50rpx;
-  padding: 15rpx;
-  transform: translate3d(0%, -2%, 0);
+  padding: 16rpx;
+  transform: translate3d(0%, 0%, 0);
 }
 

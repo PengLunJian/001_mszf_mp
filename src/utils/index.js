@@ -20,3 +20,27 @@ export const isExist = (data) => {
     )
   );
 };
+/**
+ *
+ * @param params
+ * @returns {*}
+ */
+export const stringify = (params) => {
+  for (let key in params) {
+    if (params[key] instanceof Array) {
+      params[key] = JSON.stringify(params[key]);
+    }
+  }
+  return params;
+};
+/**
+ *
+ * @param data
+ * @returns {*}
+ */
+export const dataFilter = (data) => {
+  data.map((item) => {
+    item.tags = item.tags.split(' ');
+  });
+  return data;
+};

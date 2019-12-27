@@ -1,8 +1,6 @@
-export const PRODUCT_STATE = {
-  product: {
-    isLoading: false,
-    isSuccess: false,
-    isFailure: false,
-    data: null
-  }
+export const RENTHOUSELIST_STATE = {
+  isLoading: false,
+  isSuccess: false,
+  isFailure: false,
+  data: null
 };

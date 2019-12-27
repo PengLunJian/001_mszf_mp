@@ -4,7 +4,7 @@
       <div class="header">
         <div class="inline">
           <div class="logo">
-            <img src="../../assets/images/logo.png" mode="aspectFit"/>
+            <img src="../../assets/images/logo@2x.png" mode="aspectFit"/>
           </div>
           <div class="search">
             <navigator class="btn btn-search" hover-class="none" :url="searchUrl">
@@ -18,7 +18,7 @@
         <div class="row">
           <div class="col-12">
             <navigator class="user" hover-class="none" :url="mineUrl">
-              <img class="user-bg" src="../../assets/images/mine_bg.jpg"/>
+              <img class="user-bg" src="../../assets/images/mine-bg.jpg"/>
               <div class="user-box">
                 <img class="user-img" src="../../assets/images/agent.jpg" mode="aspectFit"/>
                 <span class="user-name">WEB前端架构师</span>
@@ -67,6 +67,7 @@
       height: 100vh;
       padding-top: unit(130, rpx);
       .header {
+        width: 100%;
         position: fixed;
         top: 0;
         left: 0;

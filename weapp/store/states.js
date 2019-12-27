@@ -3,13 +3,11 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.PRODUCT_STATE = void 0;
-var PRODUCT_STATE = {
-  product: {
-    isLoading: false,
-    isSuccess: false,
-    isFailure: false,
-    data: null
-  }
+exports.RENTHOUSELIST_STATE = void 0;
+var RENTHOUSELIST_STATE = {
+  isLoading: false,
+  isSuccess: false,
+  isFailure: false,
+  data: null
 };
-exports.PRODUCT_STATE = PRODUCT_STATE;
+exports.RENTHOUSELIST_STATE = RENTHOUSELIST_STATE;

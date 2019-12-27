@@ -1,8 +1,8 @@
 <template>
   <div class="empty fade">
-    <div class="empty-inner">
-      <img class="img" src="../../assets/images/empty.png" mode="aspectFit"/>
-      <div class="text">暂无数据</div>
+    <div class="inner">
+      <img class="image" src="../../assets/images/empty@2x.png" mode="aspectFit"/>
+      <div class="label">暂无数据</div>
     </div>
   </div>
 </template>
@@ -30,23 +30,15 @@
     height: 100%;
     text-align: center;
     font-size: 0;
-    .empty-inner {
-      width: auto;
-      height: auto;
+    .inner {
       display: inline-block;
       vertical-align: middle;
-      transform: translateY(unit(-130, rpx));
-      .img {
-        margin: 0 auto;
-        width: unit(200, rpx);
-        height: unit(200, rpx);
+      .image {
+        width: unit(300, rpx);
+        height: unit(150, rpx);
       }
-      .text {
-        height: unit(40, rpx);
-        line-height: unit(40, rpx);
-        margin-top: unit(30, rpx);
+      .label {
         font-size: @fontSize3;
-        letter-spacing: 1px;
         color: @fontColor3;
       }
     }

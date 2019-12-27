@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.isFSA = isFSA;
 exports.isError = isError;
 
-var _lodash = __wepy_require(37);
+var _lodash = __wepy_require(45);
 
 function isFSA(action) {
   return (0, _lodash.isPlainObject)(action) && (0, _lodash.isString)(action.type) && Object.keys(action).every(isValidKey);

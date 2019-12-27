@@ -1,0 +1,667 @@
+<template>
+  <div class="container">
+    <div class="content">
+      <div class="header">
+        <top-bar title="房源详情"></top-bar>
+      </div>
+      <div class="body">
+        <scroll-view
+          class="scroll-view"
+          scroll-y="{{true}}">
+          <div class="module">
+            <div class="module-content">
+              <div class="module-body">
+                <div class="module-context">
+                  <div class="banner">
+                    <swiper class="swiper"
+                            autoplay="{{autoplay}}"
+                            circular="{{circular}}"
+                            @change="onHandleSwiperChange">
+                      <swiper-item v-for="(item,index) in items" :key="index">
+                        <img class="swiper-img" src="{{item.url}}"/>
+                      </swiper-item>
+                    </swiper>
+                    <div class="swiper-code">
+                      <span class="swiper-text">{{current}} / {{items.length}}</span>
+                    </div>
+                    <div class="btn btn-favorite">
+                      <div class="iconfont icon-favorite-off"></div>
+                    </div>
+                    <div class="btn btn-share">
+                      <div class="iconfont icon-share"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="module">
+            <div class="module-content">
+              <div class="module-body">
+                <div class="module-context">
+                  <div class="product">
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="product-title ellipsis"> 碧桂园 南向两居室 精装 拎包入住</div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-4">
+                        <div class="value">1800元/月</div>
+                        <div class="label">租金</div>
+                      </div>
+                      <div class="col-4">
+                        <div class="value">2室1厅1卫</div>
+                        <div class="label">户型</div>
+                      </div>
+                      <div class="col-4">
+                        <div class="value">70m²</div>
+                        <div class="label">面积</div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-6">
+                        <span class="label">看房时间</span>
+                        <text class="value">随时看房</text>
+                      </div>
+                      <div class="col-6">
+                        <span class="label">支付</span>
+                        <text class="value">押1付3</text>
+                      </div>
+                      <div class="col-6">
+                        <span class="label">出租方式</span>
+                        <text class="value">整租</text>
+                      </div>
+                      <div class="col-6">
+                        <span class="label">朝向</span>
+                        <text class="value">南</text>
+                      </div>
+                      <div class="col-6">
+                        <span class="label">楼层</span>
+                        <text class="value">16/20</text>
+                      </div>
+                      <div class="col-6">
+                        <span class="label">装修</span>
+                        <text class="value">精装修</text>
+                      </div>
+                      <div class="col-6">
+                        <span class="label">小区</span>
+                        <text class="value">碧桂园</text>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="module">
+            <div class="module-content">
+              <div class="module-header">
+                <div class="module-title">推荐经纪人</div>
+              </div>
+              <div class="module-body">
+                <div class="module-context">
+                  <div class="agent-box">
+                    <div class="agent-item">
+                      <div class="agent-inner">
+                        <div class="agent-img">
+                          <img src="../../../assets/images/agent.jpg"/>
+                        </div>
+                        <div class="agent-info">
+                          <div class="agent-name">大前端</div>
+                          <div class="agent-phone">18130278679</div>
+                          <div class="agent-btns">
+                            <div class="btn-icon btn-msg iconfont icon-msg"></div>
+                            <div class="btn-icon btn-tel iconfont icon-tel"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="agent-item">
+                      <div class="agent-inner">
+                        <div class="agent-img">
+                          <img src="../../../assets/images/agent.jpg"/>
+                        </div>
+                        <div class="agent-info">
+                          <div class="agent-name">大前端</div>
+                          <div class="agent-phone">18130278679</div>
+                          <div class="agent-btns">
+                            <div class="btn-icon btn-msg iconfont icon-msg"></div>
+                            <div class="btn-icon btn-tel iconfont icon-tel"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="agent-item">
+                      <div class="agent-inner">
+                        <div class="agent-img">
+                          <img src="../../../assets/images/agent.jpg"/>
+                        </div>
+                        <div class="agent-info">
+                          <div class="agent-name">大前端</div>
+                          <div class="agent-phone">18130278679</div>
+                          <div class="agent-btns">
+                            <div class="btn-icon btn-msg iconfont icon-msg"></div>
+                            <div class="btn-icon btn-tel iconfont icon-tel"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="module-footer"></div>
+            </div>
+          </div>
+          <div class="module">
+            <div class="module-content">
+              <div class="module-header">
+                <div class="module-title">房源配置</div>
+              </div>
+              <div class="module-body">
+                <div class="module-context">
+                  <div class="items row">
+                    <div class="item col-2">
+                      <div class="item-icon iconfont icon-item01"></div>
+                      <span class="item-label">卫生间</span>
+                    </div>
+                    <div class="item col-2">
+                      <div class="item-icon iconfont icon-item02"></div>
+                      <span class="item-label">洗衣机</span>
+                    </div>
+                    <div class="item col-2">
+                      <div class="item-icon iconfont icon-item03"></div>
+                      <span class="item-label">可做饭</span>
+                    </div>
+                    <div class="item col-2">
+                      <div class="item-icon iconfont icon-item04"></div>
+                      <span class="item-label">热水器</span>
+                    </div>
+                    <div class="item col-2">
+                      <div class="item-icon iconfont icon-item05"></div>
+                      <span class="item-label">阳台</span>
+                    </div>
+                    <div class="item col-2">
+                      <div class="item-icon iconfont icon-item06"></div>
+                      <span class="item-label">冰箱</span>
+                    </div>
+                    <div class="item col-2">
+                      <div class="item-icon iconfont icon-item07"></div>
+                      <span class="item-label">电梯</span>
+                    </div>
+                    <div class="item col-2">
+                      <div class="item-icon iconfont icon-item08"></div>
+                      <span class="item-label">沙发</span>
+                    </div>
+                    <div class="item col-2">
+                      <div class="item-icon iconfont icon-item09"></div>
+                      <span class="item-label">宽带</span>
+                    </div>
+                    <div class="item col-2">
+                      <div class="item-icon iconfont icon-item10"></div>
+                      <span class="item-label">衣柜</span>
+                    </div>
+                    <div class="item col-2">
+                      <div class="item-icon iconfont icon-item11"></div>
+                      <span class="item-label">暖气</span>
+                    </div>
+                    <div class="item col-2">
+                      <div class="item-icon iconfont icon-item12"></div>
+                      <span class="item-label">床</span>
+                    </div>
+                    <div class="item col-2">
+                      <div class="item-icon iconfont icon-item13"></div>
+                      <span class="item-label">空调</span>
+                    </div>
+                    <div class="item col-2">
+                      <div class="item-icon iconfont icon-item14"></div>
+                      <span class="item-label">电视</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="module-footer"></div>
+            </div>
+          </div>
+          <div class="module">
+            <div class="module-content">
+              <div class="module-header">
+                <div class="module-title">周边信息</div>
+              </div>
+              <div class="module-body">
+                <div class="module-context">
+                  <div class="map-container">
+                    <map class="map"
+                         longitude="{{longitude}}"
+                         latitude="{{latitude}}"
+                         enable-zoom="{{enableZoom}}"
+                         enable-scroll="{{enableScroll}}"
+                         markers="{{markers}}"
+                         bindtap="onHandleClickMap"></map>
+                  </div>
+                </div>
+              </div>
+              <div class="module-footer"></div>
+            </div>
+          </div>
+        </scroll-view>
+      </div>
+      <div class="footer">
+        <div class="pull-left">
+          <div class="agent">
+            <div class="agent-img">
+              <img src="../../../assets/images/agent.jpg"/>
+              <img src="../../../assets/images/address.png" v-if="false"/>
+            </div>
+            <div class="agent-name">正经人</div>
+          </div>
+        </div>
+        <div class="pull-right row">
+          <div class="btn btn-msg col-6">
+            <text class="btn-icon iconfont icon-msg"></text>
+            <text class="btn-text">微聊</text>
+          </div>
+          <div class="btn btn-tel col-6">
+            <text class="btn-icon iconfont icon-tel"></text>
+            <text class="btn-text">电话</text>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script type="text/ecmascript-6">
+  import wepy from '@wepy/core';
+  import store from '../../../store/index';
+
+  wepy.page({
+    store,
+
+    mixins: [],
+
+    data: {
+      items: [
+        {
+          url: '../../images/banner01.jpg'
+        },
+        {
+          url: '../../images/banner02.jpg'
+        },
+        {
+          url: '../../images/banner01.jpg'
+        },
+        {
+          url: '../../images/banner02.jpg'
+        }
+      ],
+      current: 1,
+      autoplay: false,
+      circular: true,
+      longitude: 119.4235460000,
+      latitude: 30.8791290000,
+      enableZoom: false,
+      enableScroll: false,
+      markers: [
+        {
+          id: 1,
+          longitude: 119.4235460000,
+          latitude: 30.8791290000,
+          iconPath: '../../../assets/images/address.png',
+          width: 30,
+          height: 30,
+          label: {
+            content: 'INFINITY',
+            padding: 10,
+            anchorX: 20,
+            anchorY: -35,
+            fontSize: 14,
+            borderRadius: 4,
+            bgColor: '#ffffff',
+            textAlign: 'center'
+          }
+        }
+      ]
+    },
+
+    computed: {},
+
+    methods: {
+      onHandleClickMap() {
+        console.log('别摸我,我会爆炸的！');
+      },
+      onHandleSwiperChange(e) {
+        const current = e.$wx.detail.current;
+        this.current = current + 1;
+      }
+    },
+
+    created() {
+    }
+  });
+</script>
+
+<style scoped lang="less">
+  @import "../../../assets/less/variable";
+
+  .container {
+    .content {
+      height: 100vh;
+      padding-top: unit(130, rpx);
+      padding-bottom: unit(110, rpx);
+      .header {
+      }
+      .body {
+        height: 100%;
+        .scroll-view {
+          height: 100%;
+          .module {
+            position: relative;
+            background-color: transparent;
+            &:first-child {
+              margin: 0;
+            }
+            &:last-child {
+              margin: 0;
+              padding-bottom: unit(20, rpx);
+            }
+            .module-content {
+              background-color: @white;
+              .module-header {
+                padding: unit(30, rpx);
+                border-bottom: 0.5px solid @borderColor2;
+                .module-title {
+                  height: unit(30, rpx);
+                  line-height: unit(30, rpx);
+                  padding-left: unit(20, rpx);
+                  border-left: 4px solid @theme2;
+                  font-size: @fontSize5;
+                  font-weight: bold;
+                }
+              }
+              .module-body {
+                .module-context {
+                  min-height: unit(400, rpx);
+                  .banner {
+                    .swiper {
+                      height: unit(520, rpx);
+                      .swiper-img {
+                        width: 100%;
+                        height: 100%;
+                      }
+                    }
+                    .swiper-code {
+                      width: 100%;
+                      position: absolute;
+                      left: 0;
+                      bottom: unit(20, rpx);
+                      text-align: center;
+                      font-size: 0;
+                      .swiper-text {
+                        height: unit(40, rpx);
+                        line-height: unit(40, rpx);
+                        min-width: unit(100, rpx);
+                        display: inline-block;
+                        padding: 0 unit(20, rpx);
+                        border-radius: unit(40, rpx);
+                        background-color: rgba(0, 0, 0, .6);
+                        font-size: @fontSize1;
+                        color: @white;
+                      }
+                    }
+                    .btn-favorite,
+                    .btn-share {
+                      width: unit(80, rpx);
+                      height: unit(80, rpx);
+                      overflow: hidden;
+                      border-radius: unit(80, rpx);
+                      line-height: unit(80, rpx);
+                      position: absolute;
+                      bottom: unit(-30, rpx);
+                      z-index: 1;
+                      background-color: @white;
+                      box-shadow: 0 0 15px @boxShadow1;
+                      text-align: center;
+                      &.btn-favorite {
+                        right: unit(125, rpx);
+                      }
+                      &.btn-share {
+                        right: unit(30, rpx);
+                      }
+                      .iconfont {
+                        font-size: unit(40, rpx);
+                        &.icon-favorite-off {
+                          color: @theme2;
+                        }
+                        &.icon-share {
+                          color: #00EE00;
+                        }
+                      }
+                    }
+                  }
+                  .product {
+                    padding: unit(30, rpx) 0;
+                    .row {
+                      line-height: unit(40, rpx);
+                      .col-12 {
+                        .product-title {
+                          line-height: unit(60, rpx);
+                          padding: 0 unit(30, rpx);
+                          margin-bottom: unit(30, rpx);
+                          font-size: @fontSize6;
+                          font-weight: bold;
+                          color: @fontColor1;
+                        }
+                      }
+                      .col-4 {
+                        padding-bottom: unit(20, rpx);
+                        text-align: center;
+                        .value {
+                          margin-bottom: unit(20, rpx);
+                          font-size: @fontSize6;
+                          font-weight: bold;
+                          color: @priceColor;
+                        }
+                        .label {
+                          font-size: @fontSize1;
+                          color: @fontColor3;
+                        }
+                      }
+                      .col-6 {
+                        height: unit(60, rpx);
+                        line-height: unit(60, rpx);
+                        padding: 0 unit(30, rpx);
+                        font-size: @fontSize3;
+                        .label {
+                          margin-right: unit(20, rpx);
+                          color: @fontColor3;
+                        }
+                      }
+                    }
+                  }
+                  .items {
+                    padding-bottom: unit(30, rpx);
+                    text-align: center;
+                    .item {
+                      width: 20%;
+                      position: relative;
+                      padding-top: unit(30, rpx);
+                      color: @fontColor1;
+                      .item-icon {
+                        height: unit(60, rpx);
+                        line-height: unit(60, rpx);
+                        font-size: unit(60, rpx);
+                        margin-bottom: unit(10, rpx);
+                      }
+                      .item-label {
+                        display: block;
+                        height: unit(40, rpx);
+                        line-height: unit(40, rpx);
+                        font-size: @fontSize1;
+                      }
+                    }
+                  }
+                  .map-container {
+                    padding: unit(30, rpx);
+                    map {
+                      width: 100%;
+                      height: unit(400, rpx);
+                    }
+                  }
+                  .agent-box {
+                    padding: unit(20, rpx) 0;
+                    .agent-item {
+                      padding: 0 unit(30, rpx);
+                      font-size: 0;
+                      .agent-inner {
+                        position: relative;
+                        padding: unit(20, rpx) 0;
+                      }
+                      .agent-img {
+                        width: auto;
+                        display: inline-block;
+                        vertical-align: middle;
+                        image {
+                          width: unit(80, rpx);
+                          height: unit(80, rpx);
+                          border-radius: 100%;
+                          background-color: @white;
+                          box-shadow: 0 0 15px @boxShadow1;
+                        }
+                      }
+                      .agent-info {
+                        width: auto;
+                        display: inline-block;
+                        vertical-align: middle;
+                        line-height: unit(40, rpx);
+                        padding-left: unit(30, rpx);
+                        .agent-name {
+                          font-size: @fontSize5;
+                          color: @fontColor1;
+                        }
+                        .agent-phone {
+                          font-size: @fontSize3;
+                          color: @fontColor3;
+                        }
+                        .agent-btns {
+                          width: auto;
+                          position: absolute;
+                          top: 0;
+                          right: 0;
+                          padding: unit(20, rpx) 0;
+                          font-size: 0;
+                          .btn-icon {
+                            width: unit(80, rpx);
+                            height: unit(80, rpx);
+                            line-height: unit(80, rpx);
+                            display: inline-block;
+                            vertical-align: middle;
+                            margin-right: unit(30, rpx);
+                            font-size: @fontSize8;
+                            text-align: center;
+                            &.icon-msg {
+                              color: @theme1;
+                            }
+                            &.icon-tel {
+                              margin: 0;
+                              color: #00EE00;
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              .module-footer {
+
+              }
+            }
+          }
+        }
+      }
+      .footer {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        z-index: 1000;
+        background-color: @white;
+        box-shadow: 0 0 15px @boxShadow1;
+        .pull-left {
+          width: 36%;
+          .agent {
+            padding-left: unit(30, rpx);
+            text-align: left;
+            font-size: 0;
+            .agent-img {
+              width: unit(70, rpx);
+              height: unit(70, rpx);
+              display: inline-block;
+              vertical-align: middle;
+              image {
+                width: 100%;
+                height: 100%;
+                border-radius: 100%;
+                box-shadow: 0 0 15px @boxShadow1;
+              }
+            }
+            .agent-name {
+              width: auto;
+              height: unit(110, rpx);
+              line-height: unit(110, rpx);
+              display: inline-block;
+              vertical-align: middle;
+              margin-left: unit(10, rpx);
+              font-size: @fontSize3;
+              color: @fontColor1;
+            }
+          }
+        }
+        .pull-right {
+          width: 64%;
+          font-size: 0;
+          .btn {
+            height: unit(110, rpx);
+            line-height: unit(110, rpx);
+            text-align: center;
+            color: @white;
+            &.btn-msg {
+              background: -webkit-linear-gradient(left, #FFBB00, #FF9900);
+            }
+            &.btn-tel {
+              background: -webkit-linear-gradient(left, #00EE00, #00DD00);
+            }
+            .btn-icon {
+              display: inline-block;
+              vertical-align: middle;
+              height: unit(110, rpx);
+              line-height: unit(110, rpx);
+              margin-right: unit(10, rpx);
+              font-size: @fontSize7;
+            }
+            .btn-text {
+              display: inline-block;
+              vertical-align: middle;
+              height: unit(110, rpx);
+              line-height: unit(110, rpx);
+              font-size: @fontSize6;
+              letter-spacing: 1px;
+            }
+          }
+        }
+      }
+    }
+  }
+</style>
+
+<config>
+  {
+  navigationStyle:'custom',
+  usingComponents: {
+  'top-bar': '../../../components/top-bar/top-bar',
+  }
+  }
+</config>

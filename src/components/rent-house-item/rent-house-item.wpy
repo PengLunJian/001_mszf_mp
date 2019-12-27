@@ -3,30 +3,30 @@
        @tap="onHandleDetail(item.id)">
     <div class="item-inner">
       <div class="item-img">
-        <img src="{{item.img}}"/>
+        <img src="../../assets/images/item1.jpg"/>
       </div>
       <div class="item-info">
         <div class="item-row">
           <div class="item-title ellipsis">{{item.title}}</div>
         </div>
         <div class="item-row">
-          <span class="item-city">{{item.city}}</span>
+          <span class="item-city">{{item.addr_qu}}</span>
           <span class="item-split"></span>
-          <span class="item-addr">{{item.address}}</span>
+          <span class="item-addr">{{item.addr}}</span>
         </div>
         <div class="item-row">
                   <span class="item-normal item-price">
-                    <span class="item-value">1800</span>
+                    <span class="item-value">{{item.price}}</span>
                     <span class="item-unit">元/月</span>
                   </span>
-          <span class="item-normal">{{item.type}}</span>
-          <span class="item-normal">{{item.method}}</span>
-          <span class="item-normal">{{item.area}}m²</span>
+          <span class="item-normal">{{item.huxing}}</span>
+          <span class="item-normal">{{item.chuzufangshi}}</span>
+          <span class="item-normal">{{item.mianji}}m²</span>
         </div>
         <div class="item-row">
-                  <span class="item-tag"
-                        v-for="(tag,index) in item.tags"
-                        :key="index">{{tag}}</span>
+          <span class="item-tag"
+                v-for="(tag,index) in item.tags"
+                :key="index">{{tag}}</span>
         </div>
       </div>
     </div>
@@ -155,9 +155,9 @@
             vertical-align: middle;
             padding: 0 unit(10, rpx);
             margin-right: unit(10, rpx);
-            border: 1px solid @tagColor;
+            border: 1px solid @theme2;
             font-size: unit(24, rpx);
-            color: @tagColor;
+            color: @theme2;
             &.item-state {
               border: none;
               background-color: #009966;

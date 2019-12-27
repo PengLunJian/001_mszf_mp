@@ -1,0 +1,60 @@
+<template>
+  <div class="container">
+    <div class="content">
+      <div class="header">
+        <top-bar title="房源发布"></top-bar>
+      </div>
+      <div class="body">
+        <wait></wait>
+      </div>
+      <div class="footer"></div>
+    </div>
+  </div>
+</template>
+
+<script type="text/ecmascript-6">
+  import wepy from '@wepy/core';
+  import store from '../../../store/index';
+
+  wepy.page({
+    store,
+
+    mixins: [],
+
+    data: {},
+
+    computed: {},
+
+    methods: {},
+
+    created() {
+    }
+  });
+</script>
+
+<style scoped lang="less">
+  @import "../../../assets/less/variable";
+
+  .container {
+    .content {
+      height: 100vh;
+      .header {
+      }
+      .body {
+        height: 100%;
+      }
+      .footer {
+      }
+    }
+  }
+</style>
+
+<config>
+  {
+  navigationStyle:'custom',
+  usingComponents: {
+  'top-bar': '../../../components/top-bar/top-bar',
+  'wait':'../../../components/wait/wait'
+  }
+  }
+</config>

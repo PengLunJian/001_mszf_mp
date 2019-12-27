@@ -1,5 +1,3 @@
-
-
 export default {
   data: {
     mixin: 'MixinText'
@@ -16,4 +14,4 @@ export default {
   created () {
     console.log('created in mixin');
   }
-}
+};

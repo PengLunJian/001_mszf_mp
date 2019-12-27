@@ -1,0 +1,96 @@
+<template>
+  <div class="load-more">
+    <div class="load-more-content">
+      <div class="load-more-true" v-if="isMore">
+        <img class="load-more-image1" src="../../assets/images/logo-clock@2x.png" mode="aspectFit"/>
+        <img class="load-more-image2" src="../../assets/images/logo-label@2x.png" mode="aspectFit"/>
+        <img class="load-more-image3" src="../../assets/images/logo-house@2x.png" mode="aspectFit"/>
+      </div>
+      <div class="load-more-false" v-if="!isMore">
+        <div class="load-more-label">我是有底线的</div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script type="text/ecmascript-6">
+  import wepy from '@wepy/core';
+
+  wepy.component({
+    data: {},
+    props: {
+      isMore: {
+        type: Boolean,
+        default: false
+      }
+    },
+    events: {},
+    watch: {},
+    methods: {},
+    onLoad() {
+    }
+  });
+</script>
+
+<style scoped lang="less">
+  @import "../../assets/less/common";
+  @import "../../assets/less/variable";
+  @import "../../assets/less/iconfont";
+
+  .load-more {
+    padding: unit(10, rpx) 0;
+    text-align: center;
+    font-size: 0;
+    .load-more-content {
+      width: auto;
+      position: relative;
+      display: inline-block;
+      font-size: 0;
+      .load-more-true {
+        .load-more-image1 {
+          width: unit(50, rpx);
+          height: unit(50, rpx);
+          padding: unit(5, rpx);
+          display: inline-block;
+          vertical-align: middle;
+          animation: rotate 3s linear infinite;
+        }
+        .load-more-image2 {
+          width: unit(100, rpx);
+          height: unit(50, rpx);
+          display: inline-block;
+          vertical-align: middle;
+          padding: 0 unit(5, rpx);
+        }
+        .load-more-image3 {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: unit(50, rpx);
+          height: unit(50, rpx);
+          padding: unit(16, rpx);
+          transform: translate3d(0%, 0%, 0);
+        }
+      }
+      .load-more-false {
+        .load-more-label {
+          height: unit(50, rpx);
+          line-height: unit(50, rpx);
+          display: inline-block;
+          vertical-align: middle;
+          padding: 0 unit(10, rpx);
+          font-size: @fontSize3;
+          color: @fontColor3;
+        }
+        &:before,
+        &:after {
+          content: '';
+          width: unit(50, rpx);
+          display: inline-block;
+          vertical-align: middle;
+          border-top: 1px solid @borderColor1;
+        }
+      }
+    }
+  }
+</style>

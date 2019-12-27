@@ -1,0 +1,13 @@
+
+<view class="load-more">
+  <view class="load-more-content">
+    <view wx:if="{{ isMore }}" class="load-more-true">
+      <image src="../../assets/images/logo-clock@2x.png" mode="aspectFit" class="load-more-image1"></image>
+      <image src="../../assets/images/logo-label@2x.png" mode="aspectFit" class="load-more-image2"></image>
+      <image src="../../assets/images/logo-house@2x.png" mode="aspectFit" class="load-more-image3"></image>
+    </view>
+    <view wx:if="{{ !isMore }}" class="load-more-false">
+      <view class="load-more-label">我是有底线的</view>
+    </view>
+  </view>
+</view>

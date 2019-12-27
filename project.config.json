@@ -18,7 +18,8 @@
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
-		}
+		},
+		"bundle": false
 	},
 	"compileType": "miniprogram",
 	"appid": "wx809835df23710588",
@@ -51,15 +52,8 @@
 			"list": [
 				{
 					"id": -1,
-					"name": "pages/rent-house-list/index",
-					"pathName": "pages/rent-house-list/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/release/index",
-					"pathName": "pages/release/index",
+					"name": "packageMine/pages/mine/index",
+					"pathName": "packageMine/pages/mine/index",
 					"query": "",
 					"scene": null
 				},
