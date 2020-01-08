@@ -1,8 +1,8 @@
 'use strict';
 
-var stringify = __wepy_require(9);
-var parse = __wepy_require(7);
-var formats = __wepy_require(6);
+var stringify = __wepy_require(7);
+var parse = __wepy_require(10);
+var formats = __wepy_require(8);
 
 module.exports = {
     formats: formats,

@@ -22,6 +22,12 @@ const apis = {
         }
       ]
     }
+  },
+  selectHouseDetail: {
+    url: 'house/v1/houser/house/detail',
+    params: {
+      house_id: 1
+    }
   }
 };
 

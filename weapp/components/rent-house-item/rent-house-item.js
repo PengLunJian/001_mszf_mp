@@ -2,7 +2,7 @@
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-var _core = _interopRequireDefault(require('../../vendor.js')(0));
+var _core = _interopRequireDefault(require('../../vendor.js')(1));
 
 var $routes = _interopRequireWildcard(require('../../router/index.js'));
 
@@ -23,147 +23,13 @@ _core["default"].component({
   events: {},
   methods: {
     onHandleDetail: function onHandleDetail(id) {
-      console.log(id);
       wx.navigateTo({
-        url: $routes.RENT_HOUSE_DETAIL.path
+        url: $routes.RENT_HOUSE_DETAIL.path + '?house_id=' + id
       });
     }
   },
   onLoad: function onLoad() {}
-}, {info: {"components":{},"on":{}}, handlers: {'101-0': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleDetail(_vm.item.id)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'101-0': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleDetail(_vm.item.id)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'101-0': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleDetail(_vm.item.id)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'101-0': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleDetail(_vm.item.id)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'101-0': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleDetail(_vm.item.id)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'101-0': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleDetail(_vm.item.id)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'101-0': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleDetail(_vm.item.id)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'101-0': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleDetail(_vm.item.id)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'101-0': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleDetail(_vm.item.id)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'101-0': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleDetail(_vm.item.id)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'101-0': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleDetail(_vm.item.id)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'101-0': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleDetail(_vm.item.id)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'101-0': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleDetail(_vm.item.id)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'101-0': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleDetail(_vm.item.id)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'101-0': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleDetail(_vm.item.id)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'101-0': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleDetail(_vm.item.id)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'101-0': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleDetail(_vm.item.id)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'101-0': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleDetail(_vm.item.id)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'101-0': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleDetail(_vm.item.id)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'101-0': {"tap": function proxy () {
+}, {info: {"components":{},"on":{}}, handlers: {'103-0': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {

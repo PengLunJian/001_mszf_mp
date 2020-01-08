@@ -1,3 +1,7 @@
+.container {
+  position: relative;
+  min-height: 100vh;
+}
 .container .content {
   height: 100vh;
   padding-top: 210rpx;
@@ -63,7 +67,7 @@
 .container .content .body > .scroll-view rent-house-item:last-child .item-inner {
   border: none !important;
 }
-.container .content .footer .modal .modal-bg {
+.container .content .modal .modal-bg {
   position: fixed;
   top: 0;
   left: 0;
@@ -73,7 +77,7 @@
   transition: all 300ms ease-out;
   background-color: rgba(0, 0, 0, 0.5);
 }
-.container .content .footer .modal .modal-content {
+.container .content .modal .modal-content {
   position: fixed;
   top: 210rpx;
   left: 0;
@@ -84,19 +88,19 @@
   transition: all 400ms ease-out;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
 }
-.container .content .footer .modal .modal-content .modal-body {
+.container .content .modal .modal-content .modal-body {
   height: 100%;
 }
-.container .content .footer .modal .modal-content .modal-body > .scroll-view {
+.container .content .modal .modal-content .modal-body > .scroll-view {
   height: 100%;
 }
-.container .content .footer .modal .modal-content .modal-body .modal-group {
+.container .content .modal .modal-content .modal-body .modal-group {
   padding: 0 15rpx;
 }
-.container .content .footer .modal .modal-content .modal-body .modal-group .modal-padding {
+.container .content .modal .modal-content .modal-body .modal-group .modal-padding {
   padding: 0 15rpx;
 }
-.container .content .footer .modal .modal-content .modal-body .modal-group .modal-split {
+.container .content .modal .modal-content .modal-body .modal-group .modal-split {
   width: 690rpx;
   position: absolute;
   bottom: 0;
@@ -104,29 +108,29 @@
   padding: 0 15rpx;
   border-bottom: 0.5px solid #DEDEDE;
 }
-.container .content .footer .modal .modal-content .modal-body .modal-group .modal-block {
+.container .content .modal .modal-content .modal-body .modal-group .modal-block {
   position: relative;
   padding: 30rpx 0;
 }
-.container .content .footer .modal .modal-content .modal-body .modal-group .modal-slider {
+.container .content .modal .modal-content .modal-body .modal-group .modal-slider {
   padding: 0 28rpx;
 }
-.container .content .footer .modal .modal-content .modal-body .modal-group .min-label,
-.container .content .footer .modal .modal-content .modal-body .modal-group .max-label {
+.container .content .modal .modal-content .modal-body .modal-group .min-label,
+.container .content .modal .modal-content .modal-body .modal-group .max-label {
   height: 40rpx;
   line-height: 40rpx;
   margin-bottom: 20rpx;
   font-size: 28rpx;
   color: #666666;
 }
-.container .content .footer .modal .modal-content .modal-body .modal-group .min-label.max-label,
-.container .content .footer .modal .modal-content .modal-body .modal-group .max-label.max-label {
+.container .content .modal .modal-content .modal-body .modal-group .min-label.max-label,
+.container .content .modal .modal-content .modal-body .modal-group .max-label.max-label {
   text-align: right;
 }
-.container .content .footer .modal .modal-content .modal-body .modal-group .modal-col {
+.container .content .modal .modal-content .modal-body .modal-group .modal-col {
   padding: 15rpx;
 }
-.container .content .footer .modal .modal-content .modal-body .modal-group .modal-col .btn-item {
+.container .content .modal .modal-content .modal-body .modal-group .modal-col .btn-item {
   overflow: hidden;
   height: 60rpx;
   line-height: 56rpx;
@@ -136,16 +140,16 @@
   text-align: center;
   color: #999999;
 }
-.container .content .footer .modal .modal-content .modal-body .modal-group .modal-col.active .btn-price,
-.container .content .footer .modal .modal-content .modal-body .modal-group .modal-col.active .btn-method,
-.container .content .footer .modal .modal-content .modal-body .modal-group .modal-col.active .btn-layout,
-.container .content .footer .modal .modal-content .modal-body .modal-group .modal-col.active .btn-style {
+.container .content .modal .modal-content .modal-body .modal-group .modal-col.active .btn-price,
+.container .content .modal .modal-content .modal-body .modal-group .modal-col.active .btn-method,
+.container .content .modal .modal-content .modal-body .modal-group .modal-col.active .btn-layout,
+.container .content .modal .modal-content .modal-body .modal-group .modal-col.active .btn-style {
   border: none;
   line-height: 60rpx;
   background: -webkit-linear-gradient(left, #FFBB00, #FF9900);
   color: #ffffff;
 }
-.container .content .footer .modal .modal-content .modal-body .modal-group .modal-label {
+.container .content .modal .modal-content .modal-body .modal-group .modal-label {
   height: 40rpx;
   line-height: 40rpx;
   margin-bottom: 10rpx;
@@ -153,7 +157,7 @@
   font-size: 28rpx;
   color: #666666;
 }
-.container .content .footer .modal .modal-content .modal-body .modal-sort .btn-sort {
+.container .content .modal .modal-content .modal-body .modal-sort .btn-sort {
   height: 100rpx;
   line-height: 100rpx;
   border-bottom: 0.5px solid #DEDEDE;
@@ -161,13 +165,13 @@
   text-align: center;
   color: #666666;
 }
-.container .content .footer .modal .modal-content .modal-body .modal-sort .btn-sort.active {
+.container .content .modal .modal-content .modal-body .modal-sort .btn-sort.active {
   color: #FF9900;
 }
-.container .content .footer .modal .modal-content .modal-body .modal-sort .btn-sort:last-child {
+.container .content .modal .modal-content .modal-body .modal-sort .btn-sort:last-child {
   border: none;
 }
-.container .content .footer .modal .modal-content .modal-footer .modal-button {
+.container .content .modal .modal-content .modal-footer .modal-button {
   position: absolute;
   left: 0;
   bottom: 0;
@@ -177,39 +181,39 @@
   flex-wrap: wrap;
   text-align: center;
 }
-.container .content .footer .modal .modal-content .modal-footer .modal-button .btn {
+.container .content .modal .modal-content .modal-footer .modal-button .btn {
   height: 100rpx;
   line-height: 100rpx;
   font-size: 32rpx;
   letter-spacing: 1px;
   color: #ffffff;
 }
-.container .content .footer .modal .modal-content .modal-footer .modal-button .btn.btn-clear {
+.container .content .modal .modal-content .modal-footer .modal-button .btn.btn-clear {
   width: 35%;
   background-color: #ffffff;
   border-top: 0.5px solid #DEDEDE;
   color: #666666;
 }
-.container .content .footer .modal .modal-content .modal-footer .modal-button .btn.btn-confirm {
+.container .content .modal .modal-content .modal-footer .modal-button .btn.btn-confirm {
   width: 65%;
   background: -webkit-linear-gradient(left, #FFBB00, #FF9900);
 }
-.container .content .footer .modal:nth-child(1) .modal-content,
-.container .content .footer .modal:nth-child(2) .modal-content {
+.container .content .modal:nth-child(4) .modal-content,
+.container .content .modal:nth-child(5) .modal-content {
   padding-bottom: 100rpx;
 }
-.container .content .footer .modal:nth-child(3) .modal-content {
+.container .content .modal:nth-child(6) .modal-content {
   height: 500rpx;
 }
-.container .content .footer .modal.hide .modal-bg {
+.container .content .modal.hide .modal-bg {
   opacity: 0;
   visibility: hidden;
 }
-.container .content .footer .modal.hide .modal-content {
+.container .content .modal.hide .modal-content {
   visibility: hidden;
   transform: translateY(-850rpx);
 }
-.container .content .footer .modal.hide:nth-child(3) .modal-content {
+.container .content .modal.hide:nth-child(3) .modal-content {
   transform: translateY(-710rpx);
 }
 

@@ -2,11 +2,11 @@
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-var _core = _interopRequireDefault(require('../../../vendor.js')(0));
+var _core = _interopRequireDefault(require('../../../vendor.js')(1));
 
 var _index = _interopRequireDefault(require('../../../store/index.js'));
 
-var _redux = require('../../../vendor.js')(1);
+var _redux = require('../../../vendor.js')(0);
 
 var controller = _interopRequireWildcard(require('controller.js'));
 
@@ -30,6 +30,7 @@ _core["default"].page({
   data: {
     isMore: false,
     pageIndex: 1,
+    pageSize: 10,
     iSwitch: true,
     tabIndex: -1,
     tabs: [{
@@ -216,128 +217,154 @@ _core["default"].page({
 
       if (rows.length < totalCount) {
         this.pageIndex++;
-        var params = this.getParams();
-        this.ajaxRentHouseList(params);
+        this.exeAjaxHouseList();
       }
+    },
+    resetParams: function resetParams() {
+      this.pageSize = 10;
+      this.pageIndex = 1;
     },
     getParams: function getParams() {
       var params = {
         page: {
-          pageIndex: this.pageIndex,
-          pageSize: 10
+          pageSize: this.pageSize,
+          pageIndex: this.pageIndex
         }
       };
       return params;
+    },
+    exeAjaxHouseList: function exeAjaxHouseList() {
+      var _this2 = this;
+
+      var data = this.isData || {};
+      var rows = data.rows || [];
+      var params = this.getParams();
+      this.ajaxRentHouseList(params).then(function (res) {
+        var success = res.payload.success;
+
+        if (!success) {
+          if (rows.length) {
+            _this2.showToast('cancel', '请求失败');
+          }
+        }
+
+        console.log(res);
+      })["catch"](function (err) {
+        if (rows.length) {
+          _this2.showToast('cancel', '请求失败');
+        }
+
+        console.log(err);
+      });
+    },
+    onRefresh: function onRefresh() {
+      this.exeAjaxHouseList();
     }
   }),
   onLoad: function onLoad() {
-    var _this2 = this;
-
-    this.pageIndex = 1;
+    this.resetParams();
     this.resetRentHouseList();
-    var params = this.getParams();
-    this.ajaxRentHouseList(params).then(function (res) {
-      console.log(res);
-    })["catch"](function (err) {
-      if (_this2.isData.rows.length) {
-        _this2.showToast('cancel', '请求失败');
-      }
-
-      console.log(err);
-    });
+    this.exeAjaxHouseList();
   }
-}, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\..\\components\\loading\\loading"},"load-more":{"path":"..\\..\\..\\components\\load-more\\load-more"},"rent-house-item":{"path":"..\\..\\..\\components\\rent-house-item\\rent-house-item"},"wux-slider":{"path":"..\\..\\..\\$vendor\\wux-weapp\\dist\\slider\\index"},"wux-toast":{"path":"..\\..\\..\\$vendor\\wux-weapp\\dist\\toast\\index"}},"on":{"7-298":["change"],"7-304":["change"]}}, handlers: {'7-294': {"tap": function proxy (index) {
+}, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\..\\components\\error\\error"},"empty":{"path":"..\\..\\..\\components\\empty\\empty"},"load-more":{"path":"..\\..\\..\\components\\load-more\\load-more"},"rent-house-item":{"path":"..\\..\\..\\components\\rent-house-item\\rent-house-item"},"wux-toast":{"path":"..\\..\\..\\$vendor\\wux-weapp\\dist\\toast\\index"},"wux-slider":{"path":"..\\..\\..\\$vendor\\wux-weapp\\dist\\slider\\index"}},"on":{"7-0":["refresh"],"7-5":["change"],"7-11":["change"]}}, handlers: {'7-0': {"refresh": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onRefresh($event)
+      })();
+    
+  }},'7-1': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {
         _vm.onHandleTabChange(index)
       })();
     
-  }},'7-295': {"scrolltolower": function proxy () {
+  }},'7-2': {"scrolltolower": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleScrollToLower($event)
       })();
     
-  }},'7-296': {"tap": function proxy () {
+  }},'7-3': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
         _vm.onHandleCloseModal(0)
       })();
     
-  }},'7-297': {"tap": function proxy (index) {
+  }},'7-4': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {
         _vm.onHandlePriceFilter(index)
       })();
     
-  }},'7-298': {"change": function proxy () {
+  }},'7-5': {"change": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleSliderChangePrice($event)
       })();
     
-  }},'7-299': {"tap": function proxy () {
+  }},'7-6': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleClearModal1($event)
       })();
     
-  }},'7-300': {"tap": function proxy () {
+  }},'7-7': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
         _vm.onHandleCloseModal(1)
       })();
     
-  }},'7-301': {"tap": function proxy (index) {
+  }},'7-8': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {
         _vm.onHandleMethodFilter(index)
       })();
     
-  }},'7-302': {"tap": function proxy (index) {
+  }},'7-9': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {
         _vm.onHandleLayoutFilter(index)
       })();
     
-  }},'7-303': {"tap": function proxy (index) {
+  }},'7-10': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {
         _vm.onHandleStyleFilter(index)
       })();
     
-  }},'7-304': {"change": function proxy () {
+  }},'7-11': {"change": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleSliderChangeArea($event)
       })();
     
-  }},'7-305': {"tap": function proxy () {
+  }},'7-12': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleClearModal2($event)
       })();
     
-  }},'7-306': {"tap": function proxy () {
+  }},'7-13': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
         _vm.onHandleCloseModal(2)
       })();
     
-  }},'7-307': {"tap": function proxy (index) {
+  }},'7-14': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {

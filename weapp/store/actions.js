@@ -5,7 +5,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ajaxRequestRentHouseList = void 0;
+exports.ajaxRequestHouseDetail = exports.ajaxRequestRentHouseList = void 0;
 
 var _apis = _interopRequireDefault(require('../apis/index.js'));
 
@@ -13,13 +13,11 @@ var _index = _interopRequireDefault(require('index.js'));
 
 var _axios = _interopRequireDefault(require('../axios/index.js'));
 
-var _qs = _interopRequireDefault(require('../vendor.js')(10));
-
 var utils = _interopRequireWildcard(require('../utils/index.js'));
 
 var actionTypes = _interopRequireWildcard(require('actionTypes.js'));
 
-var _reduxActions = require('../vendor.js')(53);
+var _reduxActions = require('../vendor.js')(48);
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
 
@@ -49,9 +47,9 @@ var ajaxRequestRentHouseList = (0, _reduxActions.createAction)('selectRentHouseL
       var _res = res,
           data = _res.data,
           success = _res.success;
-      data.rows = utils.dataFilter(data.rows);
 
       if (success) {
+        data.rows = utils.dataFilter(data.rows);
         commit(actionTypes.SELECT_RENTHOUSELIST_SUCCESS, data);
       } else {
         commit(actionTypes.SELECT_RENTHOUSELIST_FAILURE);
@@ -65,3 +63,28 @@ var ajaxRequestRentHouseList = (0, _reduxActions.createAction)('selectRentHouseL
   });
 });
 exports.ajaxRequestRentHouseList = ajaxRequestRentHouseList;
+var ajaxRequestHouseDetail = (0, _reduxActions.createAction)('selectHouseDetail', function (params) {
+  commit(actionTypes.SELECT_HOUSEDETAIL_REQUEST);
+  return new Promise(function (resolve, reject) {
+    _axios["default"].get(_apis["default"].selectHouseDetail, {
+      params: params
+    }).then(function (res) {
+      res = res || {};
+      var _res2 = res,
+          data = _res2.data,
+          success = _res2.success;
+
+      if (success) {
+        commit(actionTypes.SELECT_HOUSEDETAIL_SUCCESS, data);
+      } else {
+        commit(actionTypes.SELECT_HOUSEDETAIL_FAILURE);
+      }
+
+      resolve(res);
+    })["catch"](function (err) {
+      commit(actionTypes.SELECT_HOUSEDETAIL_FAILURE);
+      reject(err);
+    });
+  });
+});
+exports.ajaxRequestHouseDetail = ajaxRequestHouseDetail;

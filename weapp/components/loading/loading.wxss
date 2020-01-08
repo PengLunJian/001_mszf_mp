@@ -256,7 +256,7 @@ button:after {
   height: 100%;
   z-index: 1001;
 }
-.loading .loading-inner .loading-content {
+.loading .loading-inner .loading-image {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -266,7 +266,7 @@ button:after {
   transform: translate3d(-50%, -50%, 0);
   font-size: 0;
 }
-.loading .loading-inner .loading-content .loading-image1 {
+.loading .loading-inner .loading-image .loading-icon {
   position: absolute;
   top: 0px;
   left: 0px;
@@ -274,7 +274,7 @@ button:after {
   height: 100rpx;
   padding: 35rpx;
 }
-.loading .loading-inner .loading-content .loading-image2 {
+.loading .loading-inner .loading-image .loading-clock {
   width: 100rpx;
   height: 100rpx;
   display: inline-block;
@@ -282,7 +282,7 @@ button:after {
   padding: 10rpx;
   animation: rotate 3s linear infinite;
 }
-.loading .loading-inner .loading-content .loading-image3 {
+.loading .loading-inner .loading-image .loading-label {
   width: 200rpx;
   height: 100rpx;
   display: inline-block;

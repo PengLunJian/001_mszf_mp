@@ -1,0 +1,11 @@
+
+<view wx:if="{{ isShow }}" class="login fade">
+  <view class="login-inner">
+    <view class="login-image">
+      <image src="images/login-icon@2x.png" mode="aspectFit" class="login-icon"></image>
+      <image src="images/login-clock@2x.png" mode="aspectFit" class="login-clock"></image>
+      <image src="images/login-label@2x.png" mode="aspectFit" class="login-label"></image>
+    </view>
+    <view data-wpy-evt="106-0" bindtap="_proxy" class="btn btn-login">点击登录</view>
+  </view>
+</view>

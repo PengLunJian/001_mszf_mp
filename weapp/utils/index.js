@@ -11,7 +11,7 @@ exports.dataFilter = exports.stringify = exports.isExist = exports.success = voi
  */
 var success = function success() {
   var nums = parseInt(Math.random() * 100);
-  return nums % 19 !== 0;
+  return nums % 10 !== 0;
 };
 /**
  *

@@ -2,10 +2,10 @@
 <view wx:if="{{ isShow }}" class="loading fade{{isLoading?'':' hide'}}">
   <view class="loading-inner">
     <view class="loading-bg"></view>
-    <view class="loading-content">
-      <image src="../../assets/images/logo-house@2x.png" mode="aspectFit" class="loading-image1"></image>
-      <image src="../../assets/images/logo-clock@2x.png" mode="aspectFit" class="loading-image2"></image>
-      <image src="../../assets/images/logo-label@2x.png" mode="aspectFit" class="loading-image3"></image>
+    <view class="loading-image">
+      <image src="images/loading-icon@2x.png" mode="aspectFit" class="loading-icon"></image>
+      <image src="images/loading-clock@2x.png" mode="aspectFit" class="loading-clock"></image>
+      <image src="images/loading-label@2x.png" mode="aspectFit" class="loading-label"></image>
     </view>
   </view>
 </view>

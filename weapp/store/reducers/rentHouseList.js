@@ -7,7 +7,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
-var _reduxActions = require('../../vendor.js')(53);
+var _reduxActions = require('../../vendor.js')(48);
 
 var actionTypes = _interopRequireWildcard(require('../actionTypes.js'));
 

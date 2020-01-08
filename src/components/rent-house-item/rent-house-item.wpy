@@ -48,9 +48,8 @@
     events: {},
     methods: {
       onHandleDetail(id) {
-        console.log(id);
         wx.navigateTo({
-          url: $routes.RENT_HOUSE_DETAIL.path
+          url: $routes.RENT_HOUSE_DETAIL.path + '?house_id=' + id
         });
       }
     },

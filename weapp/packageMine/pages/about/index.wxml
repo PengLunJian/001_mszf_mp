@@ -5,16 +5,17 @@
       <top-bar bind_init="_initComponent" title="关于我们"></top-bar>
     </view>
     <view class="body">
-      <view class="company">
+      <view class="banner">
         <view class="inner">
-          <view class="title">码上找房</view>
-          <view data-wpy-evt="10-0" bindtap="_proxy" class="btn-share iconfont icon-share"></view>
-          <image src="../../../assets/images/company.jpg" class="image"></image>
+          <image src="../../images/banner.png" mode="aspectFit"></image>
+          <view class="footer-btn">
+            <view data-wpy-evt="10-18" bindtap="_proxy" class="btn-share iconfont icon-share"></view>
+          </view>
         </view>
       </view>
       <view class="list">
         <view class="inner">
-          <button data-wpy-evt="10-1" bindtap="_proxy" class="list-item btn">
+          <button data-wpy-evt="10-19" bindtap="_proxy" class="list-item btn">
             <view class="list-item-icon iconfont icon-phone"></view>
             <view class="list-item-text">联系电话</view>
             <view class="list-item-next iconfont icon-next"></view>
@@ -24,7 +25,7 @@
             <view class="list-item-text">在线客服</view>
             <view class="list-item-next iconfont icon-next"></view>
           </button>
-          <button data-wpy-evt="10-2" bindtap="_proxy" class="list-item btn">
+          <button data-wpy-evt="10-20" bindtap="_proxy" class="list-item btn">
             <view class="list-item-icon iconfont icon-address"></view>
             <view class="list-item-text">地址导航</view>
             <view class="list-item-next iconfont icon-next"></view>
@@ -35,19 +36,23 @@
     <view class="footer">
       <view class="company">
         <view class="company-text">技术支持</view>
-        <image src="../../../assets/images/company-logo.png" mode="aspectFit" class="company-logo"></image>
+        <image src="../../images/company-logo.png" mode="aspectFit" class="company-logo"></image>
       </view>
     </view>
     <view class="modal{{isShow?' enter':''}}{{isHide?' leave':''}}">
-      <view data-wpy-evt="10-3" bindtap="_proxy" class="modal-bg"></view>
+      <view data-wpy-evt="10-21" bindtap="_proxy" class="modal-bg"></view>
       <view class="modal-content">
-        <view class="modal-header"></view>
+        <view class="modal-header">
+          <image src="../../images/logo-white@2x.png" mode="aspectFit"></image>
+        </view>
         <view class="modal-body">
-          <image src="../../../assets/images/agent.jpg" mode="aspectFit"></image>
-          <view class="code"></view>
+          <image src="../../images/code.png" mode="aspectFit" class="code"></image>
+          <view class="large">长按识别小程序</view>
+          <view class="small">Long press recognition applet</view>
         </view>
         <view class="modal-footer">
-          <button data-wpy-evt="10-4" bindtap="_proxy" class="btn btn-save">保存</button>
+          <view data-wpy-evt="10-22" bindtap="_proxy" class="btn btn-cancel">取消</view>
+          <view data-wpy-evt="10-23" bindtap="_proxy" class="btn btn-confirm">保存</view>
         </view>
       </view>
     </view>

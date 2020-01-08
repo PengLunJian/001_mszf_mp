@@ -1,7 +1,7 @@
 'use strict';
 
-var utils = __wepy_require(8);
-var formats = __wepy_require(6);
+var utils = __wepy_require(9);
+var formats = __wepy_require(8);
 var has = Object.prototype.hasOwnProperty;
 
 var arrayPrefixGenerators = {

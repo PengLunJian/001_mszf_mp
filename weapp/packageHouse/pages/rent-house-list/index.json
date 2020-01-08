@@ -5,9 +5,11 @@
     "usingComponents": {
         "top-bar": "../../../components/top-bar/top-bar",
         "loading": "../../../components/loading/loading",
+        "error": "../../../components/error/error",
+        "empty": "../../../components/empty/empty",
         "load-more": "../../../components/load-more/load-more",
         "rent-house-item": "../../../components/rent-house-item/rent-house-item",
-        "wux-slider": "../../../$vendor/wux-weapp/dist/slider/index",
-        "wux-toast": "../../../$vendor/wux-weapp/dist/toast/index"
+        "wux-toast": "../../../$vendor/wux-weapp/dist/toast/index",
+        "wux-slider": "../../../$vendor/wux-weapp/dist/slider/index"
     }
 }

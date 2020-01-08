@@ -3,7 +3,7 @@
 var replace = String.prototype.replace;
 var percentTwenties = /%20/g;
 
-var util = __wepy_require(8);
+var util = __wepy_require(9);
 
 var Format = {
     RFC1738: 'RFC1738',

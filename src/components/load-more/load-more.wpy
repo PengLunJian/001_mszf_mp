@@ -2,9 +2,9 @@
   <div class="load-more">
     <div class="load-more-content">
       <div class="load-more-true" v-if="isMore">
-        <img class="load-more-image1" src="../../assets/images/logo-clock@2x.png" mode="aspectFit"/>
-        <img class="load-more-image2" src="../../assets/images/logo-label@2x.png" mode="aspectFit"/>
-        <img class="load-more-image3" src="../../assets/images/logo-house@2x.png" mode="aspectFit"/>
+        <img class="load-more-icon" src="./images/loading-icon@2x.png" mode="aspectFit"/>
+        <img class="load-more-clock" src="./images/loading-clock@2x.png" mode="aspectFit"/>
+        <img class="load-more-label" src="./images/loading-label@2x.png" mode="aspectFit"/>
       </div>
       <div class="load-more-false" v-if="!isMore">
         <div class="load-more-label">我是有底线的</div>
@@ -27,7 +27,8 @@
     events: {},
     watch: {},
     methods: {},
-    onLoad() {
+    created() {
+      console.log(this);
     }
   });
 </script>
@@ -47,22 +48,7 @@
       display: inline-block;
       font-size: 0;
       .load-more-true {
-        .load-more-image1 {
-          width: unit(50, rpx);
-          height: unit(50, rpx);
-          padding: unit(5, rpx);
-          display: inline-block;
-          vertical-align: middle;
-          animation: rotate 3s linear infinite;
-        }
-        .load-more-image2 {
-          width: unit(100, rpx);
-          height: unit(50, rpx);
-          display: inline-block;
-          vertical-align: middle;
-          padding: 0 unit(5, rpx);
-        }
-        .load-more-image3 {
+        .load-more-icon {
           position: absolute;
           top: 0;
           left: 0;
@@ -70,6 +56,21 @@
           height: unit(50, rpx);
           padding: unit(16, rpx);
           transform: translate3d(0%, 0%, 0);
+        }
+        .load-more-clock {
+          width: unit(50, rpx);
+          height: unit(50, rpx);
+          padding: unit(5, rpx);
+          display: inline-block;
+          vertical-align: middle;
+          animation: rotate 3s linear infinite;
+        }
+        .load-more-label {
+          width: unit(100, rpx);
+          height: unit(50, rpx);
+          display: inline-block;
+          vertical-align: middle;
+          padding: 0 unit(5, rpx);
         }
       }
       .load-more-false {

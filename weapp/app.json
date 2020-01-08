@@ -1,43 +1,42 @@
 {
-  "pages": [
-    "pages/index/index"
-  ],
-  "subpackages": [
-    {
-      "root": "packageHouse",
-      "pages": [
-        "pages/new-house-detail/index",
-        "pages/new-house-list/index",
-        "pages/rent-house-detail/index",
-        "pages/rent-house-list/index",
-        "pages/second-house-detail/index",
-        "pages/second-house-list/index"
-      ]
-    },
-    {
-      "root": "packageMine",
-      "pages": [
-        "pages/about/index",
-        "pages/favorite/index",
-        "pages/history/index",
-        "pages/mine/index",
-        "pages/release/index",
-        "pages/suggest/index"
-      ]
-    },
-    {
-      "root": "packageOther",
-      "pages": [
-        "pages/calculator/index",
-        "pages/search/index"
-      ]
+    "pages": [
+        "pages/index/index"
+    ],
+    "subpackages": [
+        {
+            "root": "packageHouse",
+            "pages": [
+                "pages/new-house-detail/index",
+                "pages/new-house-list/index",
+                "pages/rent-house-detail/index",
+                "pages/rent-house-list/index",
+                "pages/second-house-detail/index",
+                "pages/second-house-list/index"
+            ]
+        },
+        {
+            "root": "packageMine",
+            "pages": [
+                "pages/about/index",
+                "pages/favorite/index",
+                "pages/history/index",
+                "pages/mine/index",
+                "pages/release/index",
+                "pages/suggest/index"
+            ]
+        },
+        {
+            "root": "packageOther",
+            "pages": [
+                "pages/calculator/index",
+                "pages/search/index"
+            ]
+        }
+    ],
+    "window": {
+        "backgroundColor": "#fafafa",
+        "backgroundTextStyle": "light",
+        "navigationBarTextStyle": "black",
+        "navigationBarBackgroundColor": "#ffffff"
     }
-  ],
-  "window": {
-    "backgroundColor": "#fafafa",
-    "backgroundTextStyle": "light",
-    "navigationBarTextStyle": "black",
-    "navigationBarBackgroundColor": "#ffffff"
-  },
-  "sitemapLocation": "sitemap.json"
 }

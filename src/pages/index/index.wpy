@@ -18,7 +18,7 @@
         <div class="row">
           <div class="col-12">
             <navigator class="user" hover-class="none" :url="mineUrl">
-              <img class="user-bg" src="../../assets/images/mine-bg.jpg"/>
+              <img class="user-bg" src="../../assets/images/mine.jpg"/>
               <div class="user-box">
                 <img class="user-img" src="../../assets/images/agent.jpg" mode="aspectFit"/>
                 <span class="user-name">WEB前端架构师</span>
@@ -66,6 +66,7 @@
     .content {
       height: 100vh;
       padding-top: unit(130, rpx);
+      background-color: @white;
       .header {
         width: 100%;
         position: fixed;
@@ -155,7 +156,7 @@
                   height: unit(80, rpx);
                   display: inline-block;
                   vertical-align: middle;
-                  border: 1px solid @white;
+                  border: 1.5px solid @white;
                   background-color: @white;
                   border-radius: @borderRadius3;
                 }
@@ -180,6 +181,7 @@
 <config>
   {
   navigationStyle:'custom',
+  backgroundColor:'#ffffff',
   usingComponents: {
   'customer-navigator': '../../components/customer-navigator/customer-navigator',
   }

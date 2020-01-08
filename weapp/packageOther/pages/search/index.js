@@ -1,6 +1,6 @@
 "use strict";
 
-var _core = _interopRequireDefault(require('../../../vendor.js')(0));
+var _core = _interopRequireDefault(require('../../../vendor.js')(1));
 
 var _index = _interopRequireDefault(require('../../../store/index.js'));
 
@@ -13,4 +13,4 @@ _core["default"].page({
   computed: {},
   methods: {},
   created: function created() {}
-}, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"wait":{"path":"..\\..\\..\\components\\wait\\wait"}},"on":{}}, handlers: {}, models: {} });
+}, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"wait":{"path":"..\\..\\..\\components\\login\\login"}},"on":{}}, handlers: {}, models: {} });

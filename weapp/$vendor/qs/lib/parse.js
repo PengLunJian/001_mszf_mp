@@ -1,6 +1,6 @@
 'use strict';
 
-var utils = __wepy_require(8);
+var utils = __wepy_require(9);
 
 var has = Object.prototype.hasOwnProperty;
 var isArray = Array.isArray;

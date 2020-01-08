@@ -1,17 +1,19 @@
 
 <view class="container">
+  <loading bind_init="_initComponent" isLoading="{{ isLoading }}"></loading>
+  <error bind_init="_initComponent" isFailure="{{ isFailure }}" data-wpy-evt="6-0" bindrefresh="_proxy"></error>
   <view class="content">
     <view class="header">
       <top-bar bind_init="_initComponent" title="房源详情"></top-bar>
     </view>
-    <view class="body">
+    <view wx:if="{{ isSuccess&&isData }}" class="body fade">
       <scroll-view scroll-y="{{true}}" class="scroll-view">
         <view class="module">
           <view class="module-content">
             <view class="module-body">
               <view class="module-context">
                 <view class="banner">
-                  <swiper autoplay="{{autoplay}}" circular="{{circular}}" data-wpy-evt="6-0" bindchange="_proxy" class="swiper">
+                  <swiper autoplay="{{autoplay}}" circular="{{circular}}" data-wpy-evt="6-1" bindchange="_proxy" class="swiper">
                     <swiper-item wx:for="{{ items }}" wx:for-index="index" wx:for-item="item" wx:key="index" key="{{ index }}">
                       <image src="{{item.url}}" class="swiper-img"></image>
                     </swiper-item>
@@ -19,10 +21,10 @@
                   <view class="swiper-code">
                     <label class="swiper-text">{{current}} / {{items.length}}</label>
                   </view>
-                  <view class="btn btn-favorite">
+                  <view class="btn-favorite">
                     <view class="iconfont icon-favorite-off"></view>
                   </view>
-                  <view class="btn btn-share">
+                  <view class="btn-share">
                     <view class="iconfont icon-share"></view>
                   </view>
                 </view>
@@ -226,7 +228,7 @@
             <view class="module-body">
               <view class="module-context">
                 <view class="map-container">
-                  <map longitude="{{longitude}}" latitude="{{latitude}}" enable-zoom="{{enableZoom}}" enable-scroll="{{enableScroll}}" markers="{{markers}}" data-wpy-evt="6-1" bindtap="_proxy" class="map"></map>
+                  <map longitude="{{longitude}}" latitude="{{latitude}}" enable-zoom="{{enableZoom}}" enable-scroll="{{enableScroll}}" markers="{{markers}}" data-wpy-evt="6-2" bindtap="_proxy" class="map"></map>
                 </view>
               </view>
             </view>
@@ -234,9 +236,7 @@
           </view>
         </view>
       </scroll-view>
-    </view>
-    <view class="footer">
-      <view class="pull-left">
+      <view class="fixed-bar">
         <view class="agent">
           <view class="agent-img">
             <image src="../../../assets/images/agent.jpg"></image>
@@ -244,17 +244,18 @@
           </view>
           <view class="agent-name">正经人</view>
         </view>
-      </view>
-      <view class="pull-right row">
-        <view class="btn btn-msg col-6">
-          <text class="btn-icon iconfont icon-msg"></text>
-          <text class="btn-text">微聊</text>
-        </view>
-        <view class="btn btn-tel col-6">
-          <text class="btn-icon iconfont icon-tel"></text>
-          <text class="btn-text">电话</text>
+        <view class="btns">
+          <view class="btn btn-msg col-6">
+            <text class="btn-icon iconfont icon-msg"></text>
+            <text class="btn-text">微聊</text>
+          </view>
+          <view class="btn btn-tel col-6">
+            <text class="btn-icon iconfont icon-tel"></text>
+            <text class="btn-text">电话</text>
+          </view>
         </view>
       </view>
     </view>
+    <view class="footer"></view>
   </view>
 </view>

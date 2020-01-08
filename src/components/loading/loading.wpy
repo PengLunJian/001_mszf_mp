@@ -2,10 +2,10 @@
   <div class="loading fade{{isLoading?'':' hide'}}" v-if="isShow">
     <div class="loading-inner">
       <div class="loading-bg"></div>
-      <div class="loading-content">
-        <img class="loading-image1" src="../../assets/images/logo-house@2x.png" mode="aspectFit"/>
-        <img class="loading-image2" src="../../assets/images/logo-clock@2x.png" mode="aspectFit"/>
-        <img class="loading-image3" src="../../assets/images/logo-label@2x.png" mode="aspectFit"/>
+      <div class="loading-image">
+        <img class="loading-icon" src="./images/loading-icon@2x.png" mode="aspectFit"/>
+        <img class="loading-clock" src="./images/loading-clock@2x.png" mode="aspectFit"/>
+        <img class="loading-label" src="./images/loading-label@2x.png" mode="aspectFit"/>
       </div>
     </div>
   </div>
@@ -57,7 +57,7 @@
         height: 100%;
         z-index: 1001;
       }
-      .loading-content {
+      .loading-image {
         position: fixed;
         top: 50%;
         left: 50%;
@@ -66,7 +66,7 @@
         overflow: hidden;
         transform: translate3d(-50%, -50%, 0);
         font-size: 0;
-        .loading-image1 {
+        .loading-icon {
           position: absolute;
           top: 0px;
           left: 0px;
@@ -74,7 +74,7 @@
           height: unit(100, rpx);
           padding: unit(35, rpx);
         }
-        .loading-image2 {
+        .loading-clock {
           width: unit(100, rpx);
           height: unit(100, rpx);
           display: inline-block;
@@ -82,7 +82,7 @@
           padding: unit(10, rpx);
           animation: rotate 3s linear infinite;
         }
-        .loading-image3 {
+        .loading-label {
           width: unit(200, rpx);
           height: unit(100, rpx);
           display: inline-block;

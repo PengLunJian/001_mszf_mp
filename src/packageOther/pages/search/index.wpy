@@ -54,7 +54,7 @@
   navigationStyle:'custom',
   usingComponents: {
   'top-bar': '../../../components/top-bar/top-bar',
-  'wait': '../../../components/wait/wait'
+  'wait': '../../../components/login/login'
   }
   }
 </config>

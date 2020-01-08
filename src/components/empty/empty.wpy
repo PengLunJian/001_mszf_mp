@@ -1,8 +1,11 @@
 <template>
-  <div class="empty fade">
-    <div class="inner">
-      <img class="image" src="../../assets/images/empty@2x.png" mode="aspectFit"/>
-      <div class="label">暂无数据</div>
+  <div class="empty fade" v-if="isShow">
+    <div class="empty-inner">
+      <div class="empty-image">
+        <img class="empty-icon" src="./images/empty-icon@2x.png" mode="aspectFit"/>
+        <img class="empty-clock" src="./images/empty-clock@2x.png" mode="aspectFit"/>
+        <img class="empty-label" src="./images/empty-label@2x.png" mode="aspectFit"/>
+      </div>
     </div>
   </div>
 </template>
@@ -11,12 +14,25 @@
   import wepy from '@wepy/core';
 
   wepy.component({
-    data: {},
-    props: {},
+    data: {
+      isShow: false
+    },
+    props: {
+      isSuccess: {
+        type: Boolean,
+        default: false
+      }
+    },
     events: {},
-    watch: {},
+    watch: {
+      isSuccess() {
+        if (this.isSuccess) {
+          this.isShow = this.isSuccess;
+        }
+      }
+    },
     methods: {},
-    onLoad() {
+    created() {
     }
   });
 </script>
@@ -26,20 +42,44 @@
   @import "../../assets/less/variable";
   @import "../../assets/less/iconfont";
 
+  @height: unit(60, rpx);
+
   .empty {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 100%;
     text-align: center;
     font-size: 0;
-    .inner {
+    .empty-inner {
       display: inline-block;
       vertical-align: middle;
-      .image {
-        width: unit(300, rpx);
-        height: unit(150, rpx);
-      }
-      .label {
-        font-size: @fontSize3;
-        color: @fontColor3;
+      .empty-image {
+        position: relative;
+        font-size: 0;
+        .empty-icon {
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          width: unit(100, rpx);
+          height: unit(100, rpx);
+          padding: unit(35, rpx);
+        }
+        .empty-clock {
+          width: unit(100, rpx);
+          height: unit(100, rpx);
+          display: inline-block;
+          vertical-align: middle;
+          padding: unit(10, rpx);
+        }
+        .empty-label {
+          width: unit(180, rpx);
+          height: unit(100, rpx);
+          display: inline-block;
+          vertical-align: middle;
+          padding: unit(10, rpx);
+        }
       }
     }
     &:before {

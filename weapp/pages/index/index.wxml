@@ -18,7 +18,7 @@
       <view class="row">
         <view class="col-12">
           <navigator hover-class="none" url="{{ mineUrl }}" class="user">
-            <image src="../../assets/images/mine-bg.jpg" class="user-bg"></image>
+            <image src="../../assets/images/mine.jpg" class="user-bg"></image>
             <view class="user-box">
               <image src="../../assets/images/agent.jpg" mode="aspectFit" class="user-img"></image>
               <label class="user-name">WEB前端架构师</label>

@@ -5,11 +5,12 @@
         <top-bar title="关于我们"></top-bar>
       </div>
       <div class="body">
-        <div class="company">
+        <div class="banner">
           <div class="inner">
-            <div class="title">码上找房</div>
-            <div class="btn-share iconfont icon-share" @tap="onHandleShowModal"></div>
-            <img class="image" src="../../../assets/images/company.jpg"/>
+            <img src="../../images/banner.png" mode="aspectFit"/>
+            <div class="footer-btn">
+              <div class="btn-share iconfont icon-share" @tap="onHandleShowModal"></div>
+            </div>
           </div>
         </div>
         <div class="list">
@@ -35,19 +36,23 @@
       <div class="footer">
         <div class="company">
           <div class="company-text">技术支持</div>
-          <img class="company-logo" src="../../../assets/images/company-logo.png" mode="aspectFit"/>
+          <img class="company-logo" src="../../images/company-logo.png" mode="aspectFit"/>
         </div>
       </div>
       <div class="modal{{isShow?' enter':''}}{{isHide?' leave':''}}">
         <div class="modal-bg" @tap="onHandleHideModal"></div>
         <div class="modal-content">
-          <div class="modal-header"></div>
+          <div class="modal-header">
+            <img src="../../images/logo-white@2x.png" mode="aspectFit"/>
+          </div>
           <div class="modal-body">
-            <img src="../../../assets/images/agent.jpg" mode="aspectFit"/>
-            <div class="code"></div>
+            <img class="code" src="../../images/code.png" mode="aspectFit"/>
+            <div class="large">长按识别小程序</div>
+            <div class="small">Long press recognition applet</div>
           </div>
           <div class="modal-footer">
-            <button class="btn btn-save" @tap="onHandleSave">保存</button>
+            <div class="btn btn-cancel" @tap="onHandleCancel">取消</div>
+            <div class="btn btn-confirm" @tap="onHandleConfirm">保存</div>
           </div>
         </div>
       </div>
@@ -114,7 +119,10 @@
         this.isShow = false;
         this.isHide = true;
       },
-      onHandleSave() {
+      onHandleCancel() {
+        this.onHandleHideModal();
+      },
+      onHandleConfirm() {
       }
     },
 
@@ -126,53 +134,48 @@
 <style scoped lang="less">
   @import "../../../assets/less/variable";
 
-  @height: unit(70, rpx);
+  @height: unit(100, rpx);
 
   .container {
     .content {
+      height: 100vh;
       padding-top: unit(130, rpx);
       .header {
       }
       .body {
-        .company {
+        height: 100%;
+        .banner {
           padding: unit(30, rpx);
           .inner {
             overflow: hidden;
             position: relative;
             height: unit(360, rpx);
-            border-radius: @borderRadius;
+            border-radius: @borderRadius2;
             box-shadow: 0 0 15px @boxShadow1;
-            .title {
-              display: none;
+            background-color: @white;
+            image {
               width: 100%;
-              height: unit(100, rpx);
-              line-height: unit(100, rpx);
+              height: 100%;
+              border-radius: @borderRadius2;
+            }
+            .footer-btn {
+              width: 100%;
               position: absolute;
-              top: 40%;
               left: 0;
-              z-index: 1;
-              transform: translateY(-50%);
-              font-size: unit(70, rpx);
-              font-weight: bold;
-              letter-spacing: 4px;
-              text-align: center;
-              color: @white;
+              bottom: 0;
+              padding: 0 unit(30, rpx);
+              border-top: 2.5px solid rgba(255, 153, 0, .6);
+              text-align: right;
+              font-size: 0;
             }
             .btn-share {
               width: unit(80, rpx);
               height: unit(80, rpx);
+              display: inline-block;
               line-height: unit(80, rpx);
-              position: absolute;
-              right: unit(30, rpx);
-              bottom: unit(15, rpx);
-              z-index: 1;
               font-size: unit(44, rpx);
               text-align: center;
-              color: @white;
-            }
-            .image {
-              width: 100%;
-              height: 100%;
+              color: @fontColor1;
             }
           }
         }
@@ -181,7 +184,7 @@
           .inner {
             overflow: hidden;
             background-color: @white;
-            border-radius: @borderRadius;
+            border-radius: @borderRadius2;
             box-shadow: 0 0 15px @boxShadow1;
             .list-item {
               height: unit(110, rpx);
@@ -280,43 +283,64 @@
           left: 50%;
           z-index: 1001;
           opacity: 0;
+          overflow: hidden;
           visibility: hidden;
           width: unit(560, rpx);
-          margin-top: unit(-70, rpx);
+          padding-top: unit(170, rpx);
+          border-radius: unit(40, rpx);
+          box-shadow: 0 0 15px @boxShadow1;
           transform: translate3d(-50%, -50%, 0) scale(1.0);
-          .modal-body {
-            overflow: hidden;
-            border-radius: unit(20, rpx);
-            box-shadow: 0 0 15px @boxShadow1;
+          background-color: #ECEAE9;
+          .modal-header {
+            position: absolute;
+            top: unit(70, rpx);
+            left: 0;
+            width: 100%;
+            background-color: @theme2;
             image {
-              width: 100%;
-              height: unit(560, rpx);
+              width: unit(230, rpx);
+              height: unit(72, rpx);
+              margin: unit(14, rpx) auto;
             }
+          }
+          .modal-body {
+            padding: unit(60, rpx) 0 unit(100, rpx);
             .code {
-              height: unit(240, rpx);
-              background-color: @white;
+              width: unit(300, rpx);
+              height: unit(300, rpx);
+              margin: 0 auto unit(30, rpx);
+            }
+            .large, .small {
+              height: unit(40, rpx);
+              line-height: unit(40, rpx);
+              letter-spacing: 0.5px;
+              text-align: center;
+              &.large {
+                font-size: @fontSize1;
+                color: @fontColor2;
+              }
+              &.small {
+                font-size: @fontSize0;
+                color: @fontColor3;
+              }
             }
           }
           .modal-footer {
-            position: relative;
+            display: flex;
+            height: @height;
+            line-height: @height;
+            border-top: 0.5px solid @borderColor1;
+            font-size: @fontSize5;
+            letter-spacing: 1px;
             text-align: center;
-            font-size: 0;
-            .btn-save {
-              width: auto;
-              min-width: unit(200, rpx);
-              height: @height;
-              position: absolute;
-              left: 50%;
-              top: unit(70, rpx);
-              transform: translateX(-50%);
-              display: inline-block;
-              line-height: @height;
-              padding: 0 unit(30, rpx);
-              border-radius: @height;
-              background: -webkit-linear-gradient(left, @theme1, @theme2);
-              font-size: @fontSize5;
-              letter-spacing: 1px;
-              color: @white;
+            .btn-cancel {
+              width: 50%;
+              color: @fontColor2;
+            }
+            .btn-confirm {
+              width: 50%;
+              border-left: 0.5px solid @borderColor1;
+              color: @fontColor2;
             }
           }
         }

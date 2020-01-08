@@ -26,6 +26,12 @@ var apis = {
         value: 3
       }]
     }
+  },
+  selectHouseDetail: {
+    url: 'house/v1/houser/house/detail',
+    params: {
+      house_id: 1
+    }
   }
 };
 var _default = apis;

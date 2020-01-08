@@ -1,6 +1,6 @@
 "use strict";
 
-var _core = _interopRequireDefault(require('../../../vendor.js')(0));
+var _core = _interopRequireDefault(require('../../../vendor.js')(1));
 
 var _index = _interopRequireDefault(require('../../../store/index.js'));
 
@@ -59,42 +59,52 @@ _core["default"].page({
       this.isShow = false;
       this.isHide = true;
     },
-    onHandleSave: function onHandleSave() {}
+    onHandleCancel: function onHandleCancel() {
+      this.onHandleHideModal();
+    },
+    onHandleConfirm: function onHandleConfirm() {}
   },
   created: function created() {}
-}, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'10-0': {"tap": function proxy () {
+}, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'10-18': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleShowModal($event)
       })();
     
-  }},'10-1': {"tap": function proxy () {
+  }},'10-19': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandlePhone($event)
       })();
     
-  }},'10-2': {"tap": function proxy () {
+  }},'10-20': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleLocation($event)
       })();
     
-  }},'10-3': {"tap": function proxy () {
+  }},'10-21': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleHideModal($event)
       })();
     
-  }},'10-4': {"tap": function proxy () {
+  }},'10-22': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
-        _vm.onHandleSave($event)
+        _vm.onHandleCancel($event)
+      })();
+    
+  }},'10-23': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleConfirm($event)
       })();
     
   }}}, models: {} });

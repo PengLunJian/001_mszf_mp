@@ -10,7 +10,7 @@
             <img class="img" src="../../../assets/images/agent.jpg"/>
             <div class="name">WEB前端架构师</div>
           </div>
-          <img class="bg" src="../../../assets/images/mine-bg.jpg" mode="aspectFit"/>
+          <img class="bg" src="../../images/mine-bg.jpg" mode="aspectFit"/>
         </div>
         <div class="list module">
           <button v-for="(item,index) in items"

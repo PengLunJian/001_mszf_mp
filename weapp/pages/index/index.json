@@ -1,5 +1,6 @@
 {
     "navigationStyle": "custom",
+    "backgroundColor": "#ffffff",
     "component": true,
     "usingComponents": {
         "customer-navigator": "../../components/customer-navigator/customer-navigator"

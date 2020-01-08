@@ -1,6 +1,7 @@
 .container .content {
   height: 100vh;
   padding-top: 130rpx;
+  background-color: #ffffff;
 }
 .container .content .header {
   width: 100%;
@@ -94,7 +95,7 @@
   height: 80rpx;
   display: inline-block;
   vertical-align: middle;
-  border: 1px solid #ffffff;
+  border: 1.5px solid #ffffff;
   background-color: #ffffff;
   border-radius: 100%;
 }

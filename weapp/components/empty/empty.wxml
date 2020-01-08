@@ -1,0 +1,10 @@
+
+<view wx:if="{{ isShow }}" class="empty fade">
+  <view class="empty-inner">
+    <view class="empty-image">
+      <image src="images/empty-icon@2x.png" mode="aspectFit" class="empty-icon"></image>
+      <image src="images/empty-clock@2x.png" mode="aspectFit" class="empty-clock"></image>
+      <image src="images/empty-label@2x.png" mode="aspectFit" class="empty-label"></image>
+    </view>
+  </view>
+</view>

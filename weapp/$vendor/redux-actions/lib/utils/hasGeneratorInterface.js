@@ -3,7 +3,7 @@
 exports.__esModule = true;
 exports.default = hasGeneratorInterface;
 
-var _ownKeys = _interopRequireDefault(__wepy_require(27));
+var _ownKeys = _interopRequireDefault(__wepy_require(22));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

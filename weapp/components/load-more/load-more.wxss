@@ -259,22 +259,7 @@ button:after {
   display: inline-block;
   font-size: 0;
 }
-.load-more .load-more-content .load-more-true .load-more-image1 {
-  width: 50rpx;
-  height: 50rpx;
-  padding: 5rpx;
-  display: inline-block;
-  vertical-align: middle;
-  animation: rotate 3s linear infinite;
-}
-.load-more .load-more-content .load-more-true .load-more-image2 {
-  width: 100rpx;
-  height: 50rpx;
-  display: inline-block;
-  vertical-align: middle;
-  padding: 0 5rpx;
-}
-.load-more .load-more-content .load-more-true .load-more-image3 {
+.load-more .load-more-content .load-more-true .load-more-icon {
   position: absolute;
   top: 0;
   left: 0;
@@ -282,6 +267,21 @@ button:after {
   height: 50rpx;
   padding: 16rpx;
   transform: translate3d(0%, 0%, 0);
+}
+.load-more .load-more-content .load-more-true .load-more-clock {
+  width: 50rpx;
+  height: 50rpx;
+  padding: 5rpx;
+  display: inline-block;
+  vertical-align: middle;
+  animation: rotate 3s linear infinite;
+}
+.load-more .load-more-content .load-more-true .load-more-label {
+  width: 100rpx;
+  height: 50rpx;
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0 5rpx;
 }
 .load-more .load-more-content .load-more-false .load-more-label {
   height: 50rpx;

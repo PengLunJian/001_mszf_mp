@@ -1,7 +1,9 @@
 <template>
   <div class="container">
     <wux-toast id="wux-toast"></wux-toast>
-    <loading :isLoading="isLoading&&!isData"></loading>
+    <loading :isLoading="isLoading&&!isData.rows.length"></loading>
+    <error :isFailure="isFailure&&!isData.rows.length" @refresh="onRefresh"></error>
+    <empty :isSuccess="isSuccess&&!isData.rows.length"></empty>
     <div class="content">
       <div class="header">
         <top-bar title="房源列表"></top-bar>
@@ -17,7 +19,7 @@
           </div>
         </div>
       </div>
-      <div class="body fade" v-if="isSuccess||isData.rows.length">
+      <div class="body fade" v-if="isData.rows.length">
         <scroll-view
           class="scroll-view"
           scroll-y="{{iSwitch}}"
@@ -30,149 +32,148 @@
           <load-more :isMore="isData.rows.length<isData.totalCount"></load-more>
         </scroll-view>
       </div>
-      <div class="footer">
-        <div class="modal" :class="{'hide':!tabs[0].isShow}">
-          <div class="modal-bg" @tap="onHandleCloseModal(0)"></div>
-          <div class="modal-content">
-            <div class="modal-header"></div>
-            <div class="modal-body">
-              <scroll-view class="scroll-view" scroll-y="{{true}}">
-                <div class="modal-group">
-                  <div class="modal-block">
-                    <div class="modal-row row">
-                      <div v-for="(item,index) in btnPrice.items"
-                           class="modal-col col-3"
-                           :class="{'active':index===btnPrice.initIndex}">
-                        <div class="btn-item btn-price" @tap="onHandlePriceFilter(index)">{{item}}</div>
-                      </div>
-                    </div>
-                    <div class="modal-split"></div>
-                  </div>
-                </div>
-                <div class="modal-group">
-                  <div class="modal-block">
-                    <div class="modal-padding">
-                      <div class="modal-row row">
-                        <div class="min-label col-6">{{minPrice}}</div>
-                        <div class="max-label col-6">{{maxPrice}}</div>
-                      </div>
-                      <div class="modal-slider">
-                        <wux-slider
-                          min="0"
-                          step="10"
-                          max="10000"
-                          tipFormatter=""
-                          controlled="{{true}}"
-                          value="{{ sliderPriceValue }}"
-                          trackStyle="{{trackStylePrice}}"
-                          handleStyle="{{handleStylePrice}}"
-                          @change="onHandleSliderChangePrice"></wux-slider>
-                      </div>
+      <div class="footer"></div>
+      <div class="modal" :class="{'hide':!tabs[0].isShow}">
+        <div class="modal-bg" @tap="onHandleCloseModal(0)"></div>
+        <div class="modal-content">
+          <div class="modal-header"></div>
+          <div class="modal-body">
+            <scroll-view class="scroll-view" scroll-y="{{true}}">
+              <div class="modal-group">
+                <div class="modal-block">
+                  <div class="modal-row row">
+                    <div v-for="(item,index) in btnPrice.items"
+                         class="modal-col col-3"
+                         :class="{'active':index===btnPrice.initIndex}">
+                      <div class="btn-item btn-price" @tap="onHandlePriceFilter(index)">{{item}}</div>
                     </div>
                   </div>
+                  <div class="modal-split"></div>
                 </div>
-              </scroll-view>
-            </div>
-            <div class="modal-footer">
-              <div class="modal-button">
-                <div class="btn btn-clear" @tap="onHandleClearModal1">清空</div>
-                <div class="btn btn-confirm">确定</div>
               </div>
+              <div class="modal-group">
+                <div class="modal-block">
+                  <div class="modal-padding">
+                    <div class="modal-row row">
+                      <div class="min-label col-6">{{minPrice}}</div>
+                      <div class="max-label col-6">{{maxPrice}}</div>
+                    </div>
+                    <div class="modal-slider">
+                      <wux-slider
+                        min="0"
+                        step="10"
+                        max="10000"
+                        tipFormatter=""
+                        controlled="{{true}}"
+                        value="{{ sliderPriceValue }}"
+                        trackStyle="{{trackStylePrice}}"
+                        handleStyle="{{handleStylePrice}}"
+                        @change="onHandleSliderChangePrice"></wux-slider>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </scroll-view>
+          </div>
+          <div class="modal-footer">
+            <div class="modal-button">
+              <div class="btn btn-clear" @tap="onHandleClearModal1">清空</div>
+              <div class="btn btn-confirm">确定</div>
             </div>
           </div>
         </div>
-        <div class="modal" :class="{'hide':!tabs[1].isShow}">
-          <div class="modal-bg" @tap="onHandleCloseModal(1)"></div>
-          <div class="modal-content">
-            <div class="modal-header"></div>
-            <div class="modal-body">
-              <scroll-view class="scroll-view" scroll-y="{{true}}">
-                <div class="modal-group">
-                  <div class="modal-block">
-                    <div class="modal-label">方式</div>
-                    <div class="modal-row row">
-                      <div class="modal-col col-3"
-                           v-for="(item,index) in btnMethod.items"
-                           :class="{'active':index===btnMethod.initIndex}">
-                        <div class="btn-item btn-method" @tap="onHandleMethodFilter(index)">{{item}}</div>
-                      </div>
-                    </div>
-                    <div class="modal-split"></div>
-                  </div>
-                </div>
-                <div class="modal-group">
-                  <div class="modal-block">
-                    <div class="modal-label">户型</div>
-                    <div class="modal-row row">
-                      <div class="modal-col col-3"
-                           v-for="(item,index) in btnLayout.items"
-                           :class="{'active':index===btnLayout.initIndex}">
-                        <div class="btn-item btn-layout" @tap="onHandleLayoutFilter(index)">{{item}}</div>
-                      </div>
-                    </div>
-                    <div class="modal-split"></div>
-                  </div>
-                </div>
-                <div class="modal-group">
-                  <div class="modal-block">
-                    <div class="modal-label">装修</div>
-                    <div class="modal-row row">
-                      <div class="modal-col col-3"
-                           v-for="(item,index) in btnStyle.items"
-                           :class="{'active':index===btnStyle.initIndex}">
-                        <div class="btn-item btn-style" @tap="onHandleStyleFilter(index)">{{item}}</div>
-                      </div>
-                    </div>
-                    <div class="modal-split"></div>
-                  </div>
-                </div>
-                <div class="modal-group">
-                  <div class="modal-block">
-                    <div class="modal-padding">
-                      <div class="modal-row row">
-                        <div class="min-label col-6">{{minArea}}</div>
-                        <div class="max-label col-6">{{maxArea}}</div>
-                      </div>
-                      <div class="modal-slider">
-                        <wux-slider
-                          min="0"
-                          step="1"
-                          max="300"
-                          tipFormatter=""
-                          controlled="{{true}}"
-                          value="{{ sliderAreaValue }}"
-                          trackStyle="{{trackStyleArea}}"
-                          handleStyle="{{handleStyleArea}}"
-                          @change="onHandleSliderChangeArea"></wux-slider>
-                      </div>
+      </div>
+      <div class="modal" :class="{'hide':!tabs[1].isShow}">
+        <div class="modal-bg" @tap="onHandleCloseModal(1)"></div>
+        <div class="modal-content">
+          <div class="modal-header"></div>
+          <div class="modal-body">
+            <scroll-view class="scroll-view" scroll-y="{{true}}">
+              <div class="modal-group">
+                <div class="modal-block">
+                  <div class="modal-label">方式</div>
+                  <div class="modal-row row">
+                    <div class="modal-col col-3"
+                         v-for="(item,index) in btnMethod.items"
+                         :class="{'active':index===btnMethod.initIndex}">
+                      <div class="btn-item btn-method" @tap="onHandleMethodFilter(index)">{{item}}</div>
                     </div>
                   </div>
+                  <div class="modal-split"></div>
                 </div>
-              </scroll-view>
-            </div>
-            <div class="modal-footer">
-              <div class="modal-button">
-                <div class="btn btn-clear" @tap="onHandleClearModal2">清空</div>
-                <div class="btn btn-confirm">确定</div>
               </div>
+              <div class="modal-group">
+                <div class="modal-block">
+                  <div class="modal-label">户型</div>
+                  <div class="modal-row row">
+                    <div class="modal-col col-3"
+                         v-for="(item,index) in btnLayout.items"
+                         :class="{'active':index===btnLayout.initIndex}">
+                      <div class="btn-item btn-layout" @tap="onHandleLayoutFilter(index)">{{item}}</div>
+                    </div>
+                  </div>
+                  <div class="modal-split"></div>
+                </div>
+              </div>
+              <div class="modal-group">
+                <div class="modal-block">
+                  <div class="modal-label">装修</div>
+                  <div class="modal-row row">
+                    <div class="modal-col col-3"
+                         v-for="(item,index) in btnStyle.items"
+                         :class="{'active':index===btnStyle.initIndex}">
+                      <div class="btn-item btn-style" @tap="onHandleStyleFilter(index)">{{item}}</div>
+                    </div>
+                  </div>
+                  <div class="modal-split"></div>
+                </div>
+              </div>
+              <div class="modal-group">
+                <div class="modal-block">
+                  <div class="modal-padding">
+                    <div class="modal-row row">
+                      <div class="min-label col-6">{{minArea}}</div>
+                      <div class="max-label col-6">{{maxArea}}</div>
+                    </div>
+                    <div class="modal-slider">
+                      <wux-slider
+                        min="0"
+                        step="1"
+                        max="300"
+                        tipFormatter=""
+                        controlled="{{true}}"
+                        value="{{ sliderAreaValue }}"
+                        trackStyle="{{trackStyleArea}}"
+                        handleStyle="{{handleStyleArea}}"
+                        @change="onHandleSliderChangeArea"></wux-slider>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </scroll-view>
+          </div>
+          <div class="modal-footer">
+            <div class="modal-button">
+              <div class="btn btn-clear" @tap="onHandleClearModal2">清空</div>
+              <div class="btn btn-confirm">确定</div>
             </div>
           </div>
         </div>
-        <div class="modal" :class="{'hide':!tabs[2].isShow}">
-          <div class="modal-bg" @tap="onHandleCloseModal(2)"></div>
-          <div class="modal-content">
-            <div class="modal-header"></div>
-            <div class="modal-body">
-              <div class="modal-sort">
-                <div class="btn btn-sort"
-                     v-for="(item,index) in btnSort.items"
-                     :class="{'active':index===btnSort.initIndex}"
-                     @tap="onHandleSortFilter(index)">{{item}}
-                </div>
+      </div>
+      <div class="modal" :class="{'hide':!tabs[2].isShow}">
+        <div class="modal-bg" @tap="onHandleCloseModal(2)"></div>
+        <div class="modal-content">
+          <div class="modal-header"></div>
+          <div class="modal-body">
+            <div class="modal-sort">
+              <div class="btn btn-sort"
+                   v-for="(item,index) in btnSort.items"
+                   :class="{'active':index===btnSort.initIndex}"
+                   @tap="onHandleSortFilter(index)">{{item}}
               </div>
             </div>
-            <div class="modal-footer"></div>
           </div>
+          <div class="modal-footer"></div>
         </div>
       </div>
     </div>
@@ -192,6 +193,7 @@
     data: {
       isMore: false,
       pageIndex: 1,
+      pageSize: 10,
       iSwitch: true,
       tabIndex: -1,
       tabs: [
@@ -414,35 +416,52 @@
         const {rows, totalCount} = this.isData;
         if (rows.length < totalCount) {
           this.pageIndex++;
-          const params = this.getParams();
-          this.ajaxRentHouseList(params);
+          this.exeAjaxHouseList();
         }
+      },
+      resetParams() {
+        this.pageSize = 10;
+        this.pageIndex = 1;
       },
       getParams() {
         const params = {
           page: {
-            pageIndex: this.pageIndex,
-            pageSize: 10
+            pageSize: this.pageSize,
+            pageIndex: this.pageIndex
           }
         };
         return params;
+      },
+      exeAjaxHouseList() {
+        const data = this.isData || {};
+        const rows = data.rows || [];
+        const params = this.getParams();
+        this.ajaxRentHouseList(params)
+          .then((res) => {
+            const {success} = res.payload;
+            if (!success) {
+              if (rows.length) {
+                this.showToast('cancel', '请求失败');
+              }
+            }
+            console.log(res);
+          })
+          .catch((err) => {
+            if (rows.length) {
+              this.showToast('cancel', '请求失败');
+            }
+            console.log(err);
+          });
+      },
+      onRefresh() {
+        this.exeAjaxHouseList();
       }
     },
 
     onLoad() {
-      this.pageIndex = 1;
+      this.resetParams();
       this.resetRentHouseList();
-      const params = this.getParams();
-      this.ajaxRentHouseList(params)
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((err) => {
-          if (this.isData.rows.length) {
-            this.showToast('cancel', '请求失败');
-          }
-          console.log(err);
-        });
+      this.exeAjaxHouseList();
     }
   });
 </script>
@@ -451,6 +470,8 @@
   @import "../../../assets/less/variable";
 
   .container {
+    position: relative;
+    min-height: 100vh;
     .content {
       height: 100vh;
       padding-top: unit(210, rpx);
@@ -522,169 +543,169 @@
         }
       }
       .footer {
-        .modal {
-          .modal-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
+      }
+      .modal {
+        .modal-bg {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 998;
+          transition: all 300ms ease-out;
+          background-color: rgba(0, 0, 0, .5);
+        }
+        .modal-content {
+          position: fixed;
+          top: unit(210, rpx);
+          left: 0;
+          z-index: 999;
+          width: 100%;
+          height: unit(640, rpx);
+          background-color: @white;
+          transition: all 400ms ease-out;
+          box-shadow: 0 0 15px @boxShadow2;
+          .modal-header {
+          }
+          .modal-body {
             height: 100%;
-            z-index: 998;
-            transition: all 300ms ease-out;
-            background-color: rgba(0, 0, 0, .5);
+            > .scroll-view {
+              height: 100%;
+            }
+            .modal-group {
+              padding: 0 unit(15, rpx);
+              .modal-padding {
+                padding: 0 unit(15, rpx);
+              }
+              .modal-split {
+                width: unit(690, rpx);
+                position: absolute;
+                bottom: 0;
+                left: unit(15, rpx);
+                padding: 0 unit(15, rpx);
+                border-bottom: 0.5px solid @borderColor1;
+              }
+              .modal-block {
+                position: relative;
+                padding: unit(30, rpx) 0;
+              }
+              .modal-slider {
+                padding: 0 unit(28, rpx);
+              }
+              .min-label,
+              .max-label {
+                height: unit(40, rpx);
+                line-height: unit(40, rpx);
+                margin-bottom: unit(20, rpx);
+                font-size: @fontSize3;
+                color: @fontColor2;
+                &.max-label {
+                  text-align: right;
+                }
+              }
+              .modal-col {
+                padding: unit(15, rpx);
+                .btn-item {
+                  overflow: hidden;
+                  height: unit(60, rpx);
+                  line-height: unit(56, rpx);
+                  border-radius: unit(60, rpx);
+                  border: 1px solid @borderColor1;
+                  font-size: @fontSize1;
+                  text-align: center;
+                  color: @fontColor3;
+                }
+                &.active {
+                  .btn-price,
+                  .btn-method,
+                  .btn-layout,
+                  .btn-style {
+                    border: none;
+                    line-height: unit(60, rpx);
+                    background: -webkit-linear-gradient(left, #FFBB00, #FF9900);
+                    color: @white;
+                  }
+                }
+              }
+              .modal-label {
+                height: unit(40, rpx);
+                line-height: unit(40, rpx);
+                margin-bottom: unit(10, rpx);
+                padding: 0 unit(15, rpx);
+                font-size: @fontSize3;
+                color: @fontColor2;
+              }
+            }
+            .modal-sort {
+              .btn-sort {
+                height: unit(100, rpx);
+                line-height: unit(100, rpx);
+                border-bottom: 0.5px solid @borderColor1;
+                font-size: @fontSize3;
+                text-align: center;
+                color: @fontColor2;
+                &.active {
+                  color: @theme2;
+                }
+                &:last-child {
+                  border: none;
+                }
+              }
+            }
+          }
+          .modal-footer {
+            .modal-button {
+              position: absolute;
+              left: 0;
+              bottom: 0;
+              z-index: 1000;
+              width: 100%;
+              display: flex;
+              flex-wrap: wrap;
+              text-align: center;
+              .btn {
+                height: unit(100, rpx);
+                line-height: unit(100, rpx);
+                font-size: @fontSize5;
+                letter-spacing: 1px;
+                color: @white;
+                &.btn-clear {
+                  width: 35%;
+                  background-color: @white;
+                  border-top: 0.5px solid @borderColor1;
+                  color: @fontColor2;
+                }
+                &.btn-confirm {
+                  width: 65%;
+                  background: -webkit-linear-gradient(left, @theme1, @theme2);
+                }
+              }
+            }
+          }
+        }
+        &:nth-child(4),
+        &:nth-child(5) {
+          .modal-content {
+            padding-bottom: unit(100, rpx);
+          }
+        }
+        &:nth-child(6) {
+          .modal-content {
+            height: unit(500, rpx);
+          }
+        }
+        &.hide {
+          .modal-bg {
+            opacity: 0;
+            visibility: hidden;
           }
           .modal-content {
-            position: fixed;
-            top: unit(210, rpx);
-            left: 0;
-            z-index: 999;
-            width: 100%;
-            height: unit(640, rpx);
-            background-color: @white;
-            transition: all 400ms ease-out;
-            box-shadow: 0 0 15px @boxShadow2;
-            .modal-header {
-            }
-            .modal-body {
-              height: 100%;
-              > .scroll-view {
-                height: 100%;
-              }
-              .modal-group {
-                padding: 0 unit(15, rpx);
-                .modal-padding {
-                  padding: 0 unit(15, rpx);
-                }
-                .modal-split {
-                  width: unit(690, rpx);
-                  position: absolute;
-                  bottom: 0;
-                  left: unit(15, rpx);
-                  padding: 0 unit(15, rpx);
-                  border-bottom: 0.5px solid @borderColor1;
-                }
-                .modal-block {
-                  position: relative;
-                  padding: unit(30, rpx) 0;
-                }
-                .modal-slider {
-                  padding: 0 unit(28, rpx);
-                }
-                .min-label,
-                .max-label {
-                  height: unit(40, rpx);
-                  line-height: unit(40, rpx);
-                  margin-bottom: unit(20, rpx);
-                  font-size: @fontSize3;
-                  color: @fontColor2;
-                  &.max-label {
-                    text-align: right;
-                  }
-                }
-                .modal-col {
-                  padding: unit(15, rpx);
-                  .btn-item {
-                    overflow: hidden;
-                    height: unit(60, rpx);
-                    line-height: unit(56, rpx);
-                    border-radius: unit(60, rpx);
-                    border: 1px solid @borderColor1;
-                    font-size: @fontSize1;
-                    text-align: center;
-                    color: @fontColor3;
-                  }
-                  &.active {
-                    .btn-price,
-                    .btn-method,
-                    .btn-layout,
-                    .btn-style {
-                      border: none;
-                      line-height: unit(60, rpx);
-                      background: -webkit-linear-gradient(left, #FFBB00, #FF9900);
-                      color: @white;
-                    }
-                  }
-                }
-                .modal-label {
-                  height: unit(40, rpx);
-                  line-height: unit(40, rpx);
-                  margin-bottom: unit(10, rpx);
-                  padding: 0 unit(15, rpx);
-                  font-size: @fontSize3;
-                  color: @fontColor2;
-                }
-              }
-              .modal-sort {
-                .btn-sort {
-                  height: unit(100, rpx);
-                  line-height: unit(100, rpx);
-                  border-bottom: 0.5px solid @borderColor1;
-                  font-size: @fontSize3;
-                  text-align: center;
-                  color: @fontColor2;
-                  &.active {
-                    color: @theme2;
-                  }
-                  &:last-child {
-                    border: none;
-                  }
-                }
-              }
-            }
-            .modal-footer {
-              .modal-button {
-                position: absolute;
-                left: 0;
-                bottom: 0;
-                z-index: 1000;
-                width: 100%;
-                display: flex;
-                flex-wrap: wrap;
-                text-align: center;
-                .btn {
-                  height: unit(100, rpx);
-                  line-height: unit(100, rpx);
-                  font-size: @fontSize5;
-                  letter-spacing: 1px;
-                  color: @white;
-                  &.btn-clear {
-                    width: 35%;
-                    background-color: @white;
-                    border-top: 0.5px solid @borderColor1;
-                    color: @fontColor2;
-                  }
-                  &.btn-confirm {
-                    width: 65%;
-                    background: -webkit-linear-gradient(left, @theme1, @theme2);
-                  }
-                }
-              }
-            }
-          }
-          &:nth-child(1),
-          &:nth-child(2) {
-            .modal-content {
-              padding-bottom: unit(100, rpx);
-            }
+            visibility: hidden;
+            transform: translateY(unit(-850, rpx));
           }
           &:nth-child(3) {
             .modal-content {
-              height: unit(500, rpx);
-            }
-          }
-          &.hide {
-            .modal-bg {
-              opacity: 0;
-              visibility: hidden;
-            }
-            .modal-content {
-              visibility: hidden;
-              transform: translateY(unit(-850, rpx));
-            }
-            &:nth-child(3) {
-              .modal-content {
-                transform: translateY(unit(-710, rpx));
-              }
+              transform: translateY(unit(-710, rpx));
             }
           }
         }
@@ -698,10 +719,12 @@
   navigationStyle:'custom',
   disableScroll:true,
   usingComponents: {
-  'wux-slider':'module:wux-weapp/dist/slider',
   'wux-toast': 'module:wux-weapp/dist/toast',
+  'wux-slider':'module:wux-weapp/dist/slider',
   'top-bar': '../../../components/top-bar/top-bar',
   'loading': '../../../components/loading/loading',
+  'error': '../../../components/error/error',
+  'empty': '../../../components/empty/empty',
   'load-more': '../../../components/load-more/load-more',
   'rent-house-item': '../../../components/rent-house-item/rent-house-item'
   }

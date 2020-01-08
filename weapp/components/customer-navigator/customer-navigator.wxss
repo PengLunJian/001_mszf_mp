@@ -257,70 +257,28 @@ button:after {
 .nav .col-6 .nav-item {
   position: relative;
   margin-bottom: 30rpx;
-  border-radius: 20rpx;
 }
-.nav .col-6 .nav-item .nav-img {
+.nav .col-6 .nav-item .item-img {
   width: 100%;
   height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-repeat: no-repeat;
-  background-position: center center;
-}
-.nav .col-6 .nav-item .nav-title {
-  height: 40rpx;
-  line-height: 40rpx;
-  position: absolute;
-  top: 40rpx;
-  left: 40rpx;
-  font-size: 40rpx;
-  color: #ffffff;
+  border-radius: 20rpx;
 }
 .nav .col-6 .nav-item:last-child {
   margin: 0;
 }
 .nav .col-6:nth-child(1) .nav-item:nth-child(1) {
   height: 430rpx;
-  background-image: -webkit-linear-gradient(120deg, #567ded 1%, #63bced 100%);
-}
-.nav .col-6:nth-child(1) .nav-item:nth-child(1) .nav-img {
-  background-size: 100% auto;
-  background-image: url('http://sersms.com:8/static/images/nav01.png');
 }
 .nav .col-6:nth-child(1) .nav-item:nth-child(2) {
   height: 350rpx;
-  background-image: -webkit-linear-gradient(120deg, #f1d253 1%, #fbe082 100%);
-}
-.nav .col-6:nth-child(1) .nav-item:nth-child(2) .nav-img {
-  background-size: 100% auto;
-  background-image: url('http://sersms.com:8/static/images/nav04.png');
 }
 .nav .col-6:nth-child(2) .nav-item:nth-child(1) {
   height: 210rpx;
-  background-image: -webkit-linear-gradient(120deg, #e47b5f 1%, #f4bb8c 100%);
-}
-.nav .col-6:nth-child(2) .nav-item:nth-child(1) .nav-img {
-  background-size: auto 95%;
-  background-position: right center;
-  background-image: url('http://sersms.com:8/static/images/nav02.png');
 }
 .nav .col-6:nth-child(2) .nav-item:nth-child(2) {
   height: 330rpx;
-  background-image: -webkit-linear-gradient(120deg, #9a61e2 1%, #b793f4 100%);
-}
-.nav .col-6:nth-child(2) .nav-item:nth-child(2) .nav-img {
-  background-size: 100% auto;
-  background-position: center 60rpx;
-  background-image: url('http://sersms.com:8/static/images/nav03.png');
 }
 .nav .col-6:nth-child(2) .nav-item:nth-child(3) {
   height: 210rpx;
-  background-image: -webkit-linear-gradient(120deg, #e85c5e 1%, #ed8d91 100%);
-}
-.nav .col-6:nth-child(2) .nav-item:nth-child(3) .nav-img {
-  background-size: auto 80%;
-  background-position: 110rpx center;
-  background-image: url('http://sersms.com:8/static/images/nav05.png');
 }
 

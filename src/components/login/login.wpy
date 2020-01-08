@@ -1,0 +1,99 @@
+<template>
+  <div class="login fade" v-if="isShow">
+    <div class="login-inner">
+      <div class="login-image">
+        <img class="login-icon" src="./images/login-icon@2x.png" mode="aspectFit"/>
+        <img class="login-clock" src="./images/login-clock@2x.png" mode="aspectFit"/>
+        <img class="login-label" src="./images/login-label@2x.png" mode="aspectFit"/>
+      </div>
+      <div class="btn btn-login" @tap="onHandleLogin">点击登录</div>
+    </div>
+  </div>
+</template>
+
+<script type="text/ecmascript-6">
+  import wepy from '@wepy/core';
+
+  wepy.component({
+    data: {
+      isShow: true
+    },
+    props: {},
+    events: {},
+    watch: {},
+    methods: {
+      onHandleLogin() {
+        console.log(1);
+      }
+    },
+    created() {
+    }
+  });
+</script>
+
+<style scoped lang="less">
+  @import "../../assets/less/common";
+  @import "../../assets/less/variable";
+  @import "../../assets/less/iconfont";
+
+  @height: unit(60, rpx);
+
+  .login {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: 0;
+    .login-inner {
+      display: inline-block;
+      vertical-align: middle;
+      .login-image {
+        position: relative;
+        font-size: 0;
+        .login-icon {
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          width: unit(100, rpx);
+          height: unit(100, rpx);
+          padding: unit(35, rpx);
+        }
+        .login-clock {
+          width: unit(100, rpx);
+          height: unit(100, rpx);
+          display: inline-block;
+          vertical-align: middle;
+          padding: unit(10, rpx);
+        }
+        .login-label {
+          width: unit(180, rpx);
+          height: unit(100, rpx);
+          display: inline-block;
+          vertical-align: middle;
+          padding: unit(10, rpx);
+        }
+      }
+      .btn-login {
+        width: auto;
+        overflow: hidden;
+        line-height: @height;
+        display: inline-block;
+        border-radius: @height;
+        padding: 0 unit(30, rpx);
+        margin-top: unit(20, rpx);
+        border: 0.5px solid @borderColor3;
+        font-size: @fontSize3;
+        letter-spacing: 1px;
+        color: @fontColor3;
+      }
+    }
+    &:before {
+      content: '';
+      height: 100%;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+</style>
