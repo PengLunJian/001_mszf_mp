@@ -11,3 +11,10 @@ export const HOUSEDETAIL_STATE = {
   isFailure: false,
   data: null
 };
+
+export const HOUSEFOLLOW_STATE = {
+  isLoading: true,
+  isSuccess: false,
+  isFailure: false,
+  data: null
+};

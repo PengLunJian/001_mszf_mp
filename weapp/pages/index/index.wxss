@@ -21,7 +21,7 @@
   left: 0;
   width: 220rpx;
   height: 100rpx;
-  padding: 0 30rpx;
+  padding: 0 20rpx;
 }
 .container .content .header .inline .logo image {
   width: 100%;

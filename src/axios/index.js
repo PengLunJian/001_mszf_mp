@@ -43,14 +43,19 @@ import wepyAxiosAdapter from 'wepy-plugin-axios/dist/adapter';
  * @returns {*}
  */
 const getConfig = (config) => {
+  console.log(config);
+  const {method} = config;
+  console.log(method);
   const opts = config.url;
   const {url, params} = opts;
   config.timeout = apis.timeout;
   config.headers = apis.headers;
   config.adapter = wepyAxiosAdapter(Axios);
   config.url = apis.baseUrl + url;
-  config.params = Object.assign(params, config.params);
-  config.params = utils.stringify(config.params);
+  if (method === 'get') {
+    config.params = Object.assign(params, config.params);
+    config.params = utils.stringify(config.params);
+  }
   return config;
 };
 

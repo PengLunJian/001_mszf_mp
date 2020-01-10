@@ -5,7 +5,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ajaxRequestHouseDetail = exports.ajaxRequestRentHouseList = void 0;
+exports.ajaxRequestHouseFollow = exports.ajaxRequestHouseDetail = exports.ajaxRequestRentHouseList = void 0;
 
 var _apis = _interopRequireDefault(require('../apis/index.js'));
 
@@ -88,3 +88,26 @@ var ajaxRequestHouseDetail = (0, _reduxActions.createAction)('selectHouseDetail'
   });
 });
 exports.ajaxRequestHouseDetail = ajaxRequestHouseDetail;
+var ajaxRequestHouseFollow = (0, _reduxActions.createAction)('insertHouseFollow', function (params) {
+  commit(actionTypes.INSERT_HOUSEFOLLOW_REQUEST);
+  return new Promise(function (resolve, reject) {
+    _axios["default"].post(_apis["default"].insertHouseFollow, params).then(function (res) {
+      res = res || {};
+      var _res3 = res,
+          data = _res3.data,
+          success = _res3.success;
+
+      if (success) {
+        commit(actionTypes.INSERT_HOUSEFOLLOW_SUCCESS, data);
+      } else {
+        commit(actionTypes.INSERT_HOUSEFOLLOW_FAILURE);
+      }
+
+      resolve(res);
+    })["catch"](function (err) {
+      commit(actionTypes.INSERT_HOUSEFOLLOW_FAILURE);
+      reject(err);
+    });
+  });
+});
+exports.ajaxRequestHouseFollow = ajaxRequestHouseFollow;

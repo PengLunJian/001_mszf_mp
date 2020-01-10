@@ -33,7 +33,7 @@
         </scroll-view>
       </div>
       <div class="footer"></div>
-      <div class="modal" :class="{'hide':!tabs[0].isShow}">
+      <div class="modal" id="price" :class="{'hide':!tabs[0].isShow}">
         <div class="modal-bg" @tap="onHandleCloseModal(0)"></div>
         <div class="modal-content">
           <div class="modal-header"></div>
@@ -83,7 +83,7 @@
           </div>
         </div>
       </div>
-      <div class="modal" :class="{'hide':!tabs[1].isShow}">
+      <div class="modal" id="filter" :class="{'hide':!tabs[1].isShow}">
         <div class="modal-bg" @tap="onHandleCloseModal(1)"></div>
         <div class="modal-content">
           <div class="modal-header"></div>
@@ -160,7 +160,7 @@
           </div>
         </div>
       </div>
-      <div class="modal" :class="{'hide':!tabs[2].isShow}">
+      <div class="modal" id="sort" :class="{'hide':!tabs[2].isShow}">
         <div class="modal-bg" @tap="onHandleCloseModal(2)"></div>
         <div class="modal-content">
           <div class="modal-header"></div>
@@ -683,13 +683,13 @@
             }
           }
         }
-        &:nth-child(4),
-        &:nth-child(5) {
+        &#price,
+        &#filter {
           .modal-content {
             padding-bottom: unit(100, rpx);
           }
         }
-        &:nth-child(6) {
+        &#sort {
           .modal-content {
             height: unit(500, rpx);
           }

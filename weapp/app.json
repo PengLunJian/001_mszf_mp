@@ -29,6 +29,7 @@
             "root": "packageOther",
             "pages": [
                 "pages/calculator/index",
+                "pages/message/index",
                 "pages/search/index"
             ]
         }

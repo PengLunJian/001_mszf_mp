@@ -3,7 +3,7 @@
 exports.__esModule = true;
 exports.default = handleAction;
 
-var _invariant = _interopRequireDefault(__wepy_require(34));
+var _invariant = _interopRequireDefault(__wepy_require(38));
 
 var _isFunction = _interopRequireDefault(__wepy_require(7));
 
@@ -11,9 +11,9 @@ var _isPlainObject = _interopRequireDefault(__wepy_require(14));
 
 var _identity = _interopRequireDefault(__wepy_require(12));
 
-var _isNil = _interopRequireDefault(__wepy_require(17));
+var _isNil = _interopRequireDefault(__wepy_require(16));
 
-var _isUndefined = _interopRequireDefault(__wepy_require(21));
+var _isUndefined = _interopRequireDefault(__wepy_require(20));
 
 var _toString = _interopRequireDefault(__wepy_require(10));
 

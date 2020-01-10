@@ -83,7 +83,7 @@
             left: 0;
             width: unit(220, rpx);
             height: @topBarHeight;
-            padding: 0 unit(30, rpx);
+            padding: 0 unit(20, rpx);
             image {
               width: 100%;
               height: 100%;

@@ -6,6 +6,6 @@
       <image src="images/login-clock@2x.png" mode="aspectFit" class="login-clock"></image>
       <image src="images/login-label@2x.png" mode="aspectFit" class="login-label"></image>
     </view>
-    <view data-wpy-evt="106-0" bindtap="_proxy" class="btn btn-login">点击登录</view>
+    <view data-wpy-evt="107-0" bindtap="_proxy" class="btn btn-login">点击登录</view>
   </view>
 </view>

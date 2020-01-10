@@ -61,3 +61,25 @@ export const ajaxRequestHouseDetail = createAction(
         });
     });
   });
+
+export const ajaxRequestHouseFollow = createAction(
+  'insertHouseFollow', (params) => {
+    commit(actionTypes.INSERT_HOUSEFOLLOW_REQUEST);
+    return new Promise((resolve, reject) => {
+      axios.post(apis.insertHouseFollow, params)
+        .then((res) => {
+          res = res || {};
+          const {data, success} = res;
+          if (success) {
+            commit(actionTypes.INSERT_HOUSEFOLLOW_SUCCESS, data);
+          } else {
+            commit(actionTypes.INSERT_HOUSEFOLLOW_FAILURE);
+          }
+          resolve(res);
+        })
+        .catch((err) => {
+          commit(actionTypes.INSERT_HOUSEFOLLOW_FAILURE);
+          reject(err);
+        });
+    });
+  });

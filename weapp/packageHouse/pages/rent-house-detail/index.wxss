@@ -40,7 +40,7 @@
   font-weight: bold;
 }
 .container .content .body .scroll-view .module .module-content .module-body .module-context {
-  min-height: 400rpx;
+  /*min-height: unit(400, rpx);*/
 }
 .container .content .body .scroll-view .module .module-content .module-body .module-context .banner .swiper {
   height: 520rpx;
@@ -155,6 +155,9 @@
   height: 40rpx;
   line-height: 40rpx;
   font-size: 24rpx;
+}
+.container .content .body .scroll-view .module .module-content .module-body .module-context .items .item.on {
+  color: #00EE00;
 }
 .container .content .body .scroll-view .module .module-content .module-body .module-context .map-container {
   padding: 30rpx;

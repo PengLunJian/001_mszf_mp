@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.HOUSEDETAIL_STATE = exports.RENTHOUSELIST_STATE = void 0;
+exports.HOUSEFOLLOW_STATE = exports.HOUSEDETAIL_STATE = exports.RENTHOUSELIST_STATE = void 0;
 var RENTHOUSELIST_STATE = {
   isLoading: true,
   isSuccess: false,
@@ -18,3 +18,10 @@ var HOUSEDETAIL_STATE = {
   data: null
 };
 exports.HOUSEDETAIL_STATE = HOUSEDETAIL_STATE;
+var HOUSEFOLLOW_STATE = {
+  isLoading: true,
+  isSuccess: false,
+  isFailure: false,
+  data: null
+};
+exports.HOUSEFOLLOW_STATE = HOUSEFOLLOW_STATE;

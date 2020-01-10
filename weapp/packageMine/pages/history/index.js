@@ -1,6 +1,6 @@
 "use strict";
 
-var _core = _interopRequireDefault(require('../../../vendor.js')(1));
+var _core = _interopRequireDefault(require('../../../vendor.js')(0));
 
 var _index = _interopRequireDefault(require('../../../store/index.js'));
 

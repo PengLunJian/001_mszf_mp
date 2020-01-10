@@ -64,6 +64,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
  * @returns {*}
  */
 var getConfig = function getConfig(config) {
+  console.log(config);
+  var method = config.method;
+  console.log(method);
   var opts = config.url;
   var url = opts.url,
       params = opts.params;
@@ -71,8 +74,12 @@ var getConfig = function getConfig(config) {
   config.headers = _apis["default"].headers;
   config.adapter = (0, _adapter["default"])(_axios["default"]);
   config.url = _apis["default"].baseUrl + url;
-  config.params = Object.assign(params, config.params);
-  config.params = utils.stringify(config.params);
+
+  if (method === 'get') {
+    config.params = Object.assign(params, config.params);
+    config.params = utils.stringify(config.params);
+  }
+
   return config;
 };
 

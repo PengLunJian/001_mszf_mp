@@ -31,6 +31,9 @@ exports.STATES = STATES;
 var ACTIONS = {
   ajaxHouseDetail: function ajaxHouseDetail(params) {
     return actions.ajaxRequestHouseDetail(params);
+  },
+  ajaxHouseFollow: function ajaxHouseFollow(params) {
+    return actions.ajaxRequestHouseFollow(params);
   }
 };
 exports.ACTIONS = ACTIONS;

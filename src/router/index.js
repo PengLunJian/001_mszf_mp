@@ -58,3 +58,7 @@ export const NEW_HOUSE_DETAIL = {
   name: '新房详情',
   path: '/packageHouse/pages/new-house-detail/index'
 };
+export const MESSAGE = {
+  name: '在线咨询',
+  path: '/packageOther/pages/message/index'
+};

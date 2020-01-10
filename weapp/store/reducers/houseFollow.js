@@ -25,96 +25,26 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var actions = (_actions = {}, _defineProperty(_actions, actionTypes.SELECT_HOUSEDETAIL_REQUEST, function (state) {
+var actions = (_actions = {}, _defineProperty(_actions, actionTypes.INSERT_HOUSEFOLLOW_REQUEST, function (state) {
   return _objectSpread({}, state, {
     isLoading: true,
     isSuccess: false,
     isFailure: false
   });
-}), _defineProperty(_actions, actionTypes.SELECT_HOUSEDETAIL_SUCCESS, function (state, action) {
-  var configs = [{
-    icon: 'icon-item01',
-    label: '卫生间',
-    isCan: false
-  }, {
-    icon: 'icon-item02',
-    label: '洗衣机',
-    isCan: false
-  }, {
-    icon: 'icon-item03',
-    label: '可做饭',
-    isCan: false
-  }, {
-    icon: 'icon-item04',
-    label: '热水器',
-    isCan: false
-  }, {
-    icon: 'icon-item05',
-    label: '阳台',
-    isCan: false
-  }, {
-    icon: 'icon-item06',
-    label: '冰箱',
-    isCan: false
-  }, {
-    icon: 'icon-item07',
-    label: '电梯',
-    isCan: false
-  }, {
-    icon: 'icon-item08',
-    label: '沙发',
-    isCan: false
-  }, {
-    icon: 'icon-item09',
-    label: '宽带',
-    isCan: false
-  }, {
-    icon: 'icon-item10',
-    label: '衣柜',
-    isCan: false
-  }, {
-    icon: 'icon-item11',
-    label: '暖气',
-    isCan: false
-  }, {
-    icon: 'icon-item12',
-    label: '床',
-    isCan: false
-  }, {
-    icon: 'icon-item13',
-    label: '空调',
-    isCan: false
-  }, {
-    icon: 'icon-item14',
-    label: '电视',
-    isCan: false
-  }];
-
-  var _ref = action.data || {},
-      fagnwupeizhi = _ref.fagnwupeizhi;
-
-  if (fagnwupeizhi) {
-    configs.map(function (item) {
-      if (fagnwupeizhi.indexOf(item.label) !== -1) {
-        item.isCan = true;
-      }
-    });
-  }
-
-  action.data.configs = configs;
+}), _defineProperty(_actions, actionTypes.INSERT_HOUSEFOLLOW_SUCCESS, function (state, action) {
   return _objectSpread({}, state, {
     isLoading: false,
     isSuccess: true,
     isFailure: false,
     data: action.data
   });
-}), _defineProperty(_actions, actionTypes.SELECT_HOUSEDETAIL_FAILURE, function (state) {
+}), _defineProperty(_actions, actionTypes.INSERT_HOUSEFOLLOW_FAILURE, function (state) {
   return _objectSpread({}, state, {
     isLoading: false,
     isSuccess: false,
     isFailure: true
   });
 }), _actions);
-var HOUSEDETAIL_REDUCER = (0, _reduxActions.handleActions)(actions, states.HOUSEDETAIL_STATE);
-var _default = HOUSEDETAIL_REDUCER;
+var HOUSEFOLLOW_REDUCER = (0, _reduxActions.handleActions)(actions, states.HOUSEFOLLOW_STATE);
+var _default = HOUSEFOLLOW_REDUCER;
 exports["default"] = _default;

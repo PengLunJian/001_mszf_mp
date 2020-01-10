@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <wux-toast id="wux-toast"></wux-toast>
     <loading :isLoading="isLoading"></loading>
     <error :isFailure="isFailure" @refresh="onRefresh"></error>
     <div class="content">
@@ -18,7 +19,8 @@
                     <swiper class="swiper"
                             autoplay="{{autoplay}}"
                             circular="{{circular}}"
-                            @change="onHandleSwiperChange">
+                            @change="onHandleSwiperChange"
+                            @tap="onHandleLargeImage">
                       <swiper-item v-for="(item,index) in items" :key="index">
                         <img class="swiper-img" src="{{item.url}}"/>
                       </swiper-item>
@@ -26,12 +28,12 @@
                     <div class="swiper-code">
                       <span class="swiper-text">{{current}} / {{items.length}}</span>
                     </div>
-                    <div class="btn-favorite">
+                    <div class="btn-favorite" @tap="exeAjaxHouseFollow">
                       <div class="iconfont icon-favorite-off"></div>
                     </div>
-                    <div class="btn-share">
+                    <button class="btn-share" open-type="share">
                       <div class="iconfont icon-share"></div>
-                    </div>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -44,51 +46,51 @@
                   <div class="product">
                     <div class="row">
                       <div class="col-12">
-                        <div class="product-title ellipsis"> 碧桂园 南向两居室 精装 拎包入住</div>
+                        <div class="product-title ellipsis">{{isData.title}}</div>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-4">
-                        <div class="value">1800元/月</div>
+                        <div class="value">{{isData.price}}元/月</div>
                         <div class="label">租金</div>
                       </div>
                       <div class="col-4">
-                        <div class="value">2室1厅1卫</div>
+                        <div class="value">{{isData.huxing}}</div>
                         <div class="label">户型</div>
                       </div>
                       <div class="col-4">
-                        <div class="value">70m²</div>
+                        <div class="value">{{isData.mianji}}m²</div>
                         <div class="label">面积</div>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-6">
                         <span class="label">看房时间</span>
-                        <text class="value">随时看房</text>
+                        <text class="value">{{isData.kanfangshijian}}</text>
                       </div>
                       <div class="col-6">
                         <span class="label">支付</span>
-                        <text class="value">押1付3</text>
+                        <text class="value">{{isData.zhifufangshi}}</text>
                       </div>
                       <div class="col-6">
                         <span class="label">出租方式</span>
-                        <text class="value">整租</text>
+                        <text class="value">{{isData.chuzufangshi}}</text>
                       </div>
                       <div class="col-6">
                         <span class="label">朝向</span>
-                        <text class="value">南</text>
+                        <text class="value">{{isData.chaoxiang}}</text>
                       </div>
                       <div class="col-6">
                         <span class="label">楼层</span>
-                        <text class="value">16/20</text>
+                        <text class="value">{{isData.louceng}}</text>
                       </div>
                       <div class="col-6">
                         <span class="label">装修</span>
-                        <text class="value">精装修</text>
+                        <text class="value">{{isData.zhaungxiu}}</text>
                       </div>
                       <div class="col-6">
                         <span class="label">小区</span>
-                        <text class="value">碧桂园</text>
+                        <text class="value">{{isData.xiaoqu}}</text>
                       </div>
                     </div>
                   </div>
@@ -104,47 +106,17 @@
               <div class="module-body">
                 <div class="module-context">
                   <div class="agent-box">
-                    <div class="agent-item">
+                    <div class="agent-item" v-for="(item,index) in isData.agency" :key="index">
                       <div class="agent-inner">
                         <div class="agent-img">
                           <img src="../../../assets/images/agent.jpg"/>
                         </div>
                         <div class="agent-info">
-                          <div class="agent-name">大前端</div>
-                          <div class="agent-phone">18130278679</div>
+                          <div class="agent-name">{{item.name}}</div>
+                          <div class="agent-phone">{{item.tel||'暂无数据'}}</div>
                           <div class="agent-btns">
-                            <div class="btn-icon btn-msg iconfont icon-msg"></div>
-                            <div class="btn-icon btn-tel iconfont icon-tel"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="agent-item">
-                      <div class="agent-inner">
-                        <div class="agent-img">
-                          <img src="../../../assets/images/agent.jpg"/>
-                        </div>
-                        <div class="agent-info">
-                          <div class="agent-name">大前端</div>
-                          <div class="agent-phone">18130278679</div>
-                          <div class="agent-btns">
-                            <div class="btn-icon btn-msg iconfont icon-msg"></div>
-                            <div class="btn-icon btn-tel iconfont icon-tel"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="agent-item">
-                      <div class="agent-inner">
-                        <div class="agent-img">
-                          <img src="../../../assets/images/agent.jpg"/>
-                        </div>
-                        <div class="agent-info">
-                          <div class="agent-name">大前端</div>
-                          <div class="agent-phone">18130278679</div>
-                          <div class="agent-btns">
-                            <div class="btn-icon btn-msg iconfont icon-msg"></div>
-                            <div class="btn-icon btn-tel iconfont icon-tel"></div>
+                            <div class="btn-icon btn-msg iconfont icon-msg" @tap="onHandleMessage(item.id)"></div>
+                            <div class="btn-icon btn-tel iconfont icon-tel" @tap="onHandlePhone(item.tel)"></div>
                           </div>
                         </div>
                       </div>
@@ -163,61 +135,10 @@
               <div class="module-body">
                 <div class="module-context">
                   <div class="items row">
-                    <div class="item col-2">
-                      <div class="item-icon iconfont icon-item01"></div>
-                      <span class="item-label">卫生间</span>
-                    </div>
-                    <div class="item col-2">
-                      <div class="item-icon iconfont icon-item02"></div>
-                      <span class="item-label">洗衣机</span>
-                    </div>
-                    <div class="item col-2">
-                      <div class="item-icon iconfont icon-item03"></div>
-                      <span class="item-label">可做饭</span>
-                    </div>
-                    <div class="item col-2">
-                      <div class="item-icon iconfont icon-item04"></div>
-                      <span class="item-label">热水器</span>
-                    </div>
-                    <div class="item col-2">
-                      <div class="item-icon iconfont icon-item05"></div>
-                      <span class="item-label">阳台</span>
-                    </div>
-                    <div class="item col-2">
-                      <div class="item-icon iconfont icon-item06"></div>
-                      <span class="item-label">冰箱</span>
-                    </div>
-                    <div class="item col-2">
-                      <div class="item-icon iconfont icon-item07"></div>
-                      <span class="item-label">电梯</span>
-                    </div>
-                    <div class="item col-2">
-                      <div class="item-icon iconfont icon-item08"></div>
-                      <span class="item-label">沙发</span>
-                    </div>
-                    <div class="item col-2">
-                      <div class="item-icon iconfont icon-item09"></div>
-                      <span class="item-label">宽带</span>
-                    </div>
-                    <div class="item col-2">
-                      <div class="item-icon iconfont icon-item10"></div>
-                      <span class="item-label">衣柜</span>
-                    </div>
-                    <div class="item col-2">
-                      <div class="item-icon iconfont icon-item11"></div>
-                      <span class="item-label">暖气</span>
-                    </div>
-                    <div class="item col-2">
-                      <div class="item-icon iconfont icon-item12"></div>
-                      <span class="item-label">床</span>
-                    </div>
-                    <div class="item col-2">
-                      <div class="item-icon iconfont icon-item13"></div>
-                      <span class="item-label">空调</span>
-                    </div>
-                    <div class="item col-2">
-                      <div class="item-icon iconfont icon-item14"></div>
-                      <span class="item-label">电视</span>
+                    <div class="item col-2{{item.isCan?' on':''}}"
+                         v-for="(item,index) in isData.configs" :key="index">
+                      <div class="item-icon iconfont {{item.icon}}"></div>
+                      <span class="item-label">{{item.label}}</span>
                     </div>
                   </div>
                 </div>
@@ -253,14 +174,14 @@
               <img src="../../../assets/images/agent.jpg"/>
               <img src="../../../assets/images/address.png" v-if="false"/>
             </div>
-            <div class="agent-name">正经人</div>
+            <div class="agent-name">{{isData.agency[0].name}}</div>
           </div>
           <div class="btns">
-            <div class="btn btn-msg col-6">
+            <div class="btn btn-msg col-6" @tap="onHandleMessage(isData.agency[0].id)">
               <text class="btn-icon iconfont icon-msg"></text>
               <text class="btn-text">微聊</text>
             </div>
-            <div class="btn btn-tel col-6">
+            <div class="btn btn-tel col-6" @tap="onHandlePhone(isData.agency[0].tel)">
               <text class="btn-icon iconfont icon-tel"></text>
               <text class="btn-text">电话</text>
             </div>
@@ -277,12 +198,13 @@
   import store from '../../../store/index';
   import {mapState, mapActions} from '@wepy/redux';
   import * as controller from './controller';
-  // import Toast from '../../../mixins/toast';
+  import * as $routes from '../../../router';
+  import Toast from '../../../mixins/toast';
 
   wepy.page({
     store,
 
-    mixins: [],
+    mixins: [Toast],
 
     data: {
       items: [
@@ -344,12 +266,55 @@
             console.log(err);
           });
       },
+      exeAjaxHouseFollow() {
+        const {house_id} = this.$wx.options;
+        this.ajaxHouseFollow({house_id})
+          .then((res) => {
+            const {success} = res.payload;
+            if (!success) {
+              this.showToast('cancel', '操作失败');
+            }
+            console.log(res);
+          })
+          .catch((err) => {
+            this.showToast('cancel', '操作失败');
+            console.log(err);
+          });
+      },
+      onHandleLargeImage() {
+        wx.previewImage({
+          current: 'http://192.168.5.4/packageHouse/images/banner01.jpg',
+          urls: [
+            'http://192.168.5.4/packageHouse/images/banner01.jpg',
+            'http://192.168.5.4/packageHouse/images/banner02.jpg'
+          ]
+        });
+      },
       onHandleClickMap() {
         console.log('别摸我,我会爆炸的！');
       },
       onHandleSwiperChange(e) {
         const current = e.$wx.detail.current;
         this.current = current + 1;
+      },
+      onHandlePhone(phoneNumber) {
+        wx.makePhoneCall({
+          phoneNumber: phoneNumber,
+          success: (res) => {
+            console.log(res);
+          },
+          fail: (err) => {
+            console.log(err);
+          },
+          complete: (res) => {
+            console.log(res);
+          }
+        });
+      },
+      onHandleMessage(id) {
+        wx.navigateTo({
+          url: $routes.MESSAGE.path + '?id=' + id
+        });
       },
       onRefresh() {
         this.exeAjaxHouseDetail();
@@ -404,7 +369,7 @@
               }
               .module-body {
                 .module-context {
-                  min-height: unit(400, rpx);
+                  /*min-height: unit(400, rpx);*/
                   .banner {
                     .swiper {
                       height: unit(520, rpx);
@@ -517,6 +482,9 @@
                         height: unit(40, rpx);
                         line-height: unit(40, rpx);
                         font-size: @fontSize1;
+                      }
+                      &.on {
+                        color: #00EE00;
                       }
                     }
                   }
@@ -681,6 +649,7 @@
   {
   navigationStyle:'custom',
   usingComponents: {
+  'wux-toast': 'module:wux-weapp/dist/toast',
   'top-bar': '../../../components/top-bar/top-bar',
   'loading': '../../../components/loading/loading',
   'error': '../../../components/error/error'

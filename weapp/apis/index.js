@@ -32,6 +32,12 @@ var apis = {
     params: {
       house_id: 1
     }
+  },
+  insertHouseFollow: {
+    url: 'house/v1/houser/house/follow',
+    params: {
+      house_id: 1
+    }
   }
 };
 var _default = apis;

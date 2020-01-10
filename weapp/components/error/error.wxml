@@ -6,6 +6,6 @@
       <image src="images/error-clock@2x.png" mode="aspectFit" class="error-clock"></image>
       <image src="images/error-label@2x.png" mode="aspectFit" class="error-label"></image>
     </view>
-    <view data-wpy-evt="100-0" bindtap="_proxy" class="btn btn-refresh">重新加载</view>
+    <view data-wpy-evt="101-0" bindtap="_proxy" class="btn btn-refresh">重新加载</view>
   </view>
 </view>

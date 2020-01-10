@@ -8,14 +8,12 @@
       <view class="banner">
         <view class="inner">
           <image src="../../images/banner.png" mode="aspectFit"></image>
-          <view class="footer-btn">
-            <view data-wpy-evt="10-18" bindtap="_proxy" class="btn-share iconfont icon-share"></view>
-          </view>
+          <view data-wpy-evt="10-0" bindtap="_proxy" class="btn-share iconfont icon-share"></view>
         </view>
       </view>
       <view class="list">
         <view class="inner">
-          <button data-wpy-evt="10-19" bindtap="_proxy" class="list-item btn">
+          <button data-wpy-evt="10-1" bindtap="_proxy" class="list-item btn">
             <view class="list-item-icon iconfont icon-phone"></view>
             <view class="list-item-text">联系电话</view>
             <view class="list-item-next iconfont icon-next"></view>
@@ -25,7 +23,7 @@
             <view class="list-item-text">在线客服</view>
             <view class="list-item-next iconfont icon-next"></view>
           </button>
-          <button data-wpy-evt="10-20" bindtap="_proxy" class="list-item btn">
+          <button data-wpy-evt="10-2" bindtap="_proxy" class="list-item btn">
             <view class="list-item-icon iconfont icon-address"></view>
             <view class="list-item-text">地址导航</view>
             <view class="list-item-next iconfont icon-next"></view>
@@ -40,7 +38,7 @@
       </view>
     </view>
     <view class="modal{{isShow?' enter':''}}{{isHide?' leave':''}}">
-      <view data-wpy-evt="10-21" bindtap="_proxy" class="modal-bg"></view>
+      <view data-wpy-evt="10-3" bindtap="_proxy" class="modal-bg"></view>
       <view class="modal-content">
         <view class="modal-header">
           <image src="../../images/logo-white@2x.png" mode="aspectFit"></image>
@@ -48,11 +46,11 @@
         <view class="modal-body">
           <image src="../../images/code.png" mode="aspectFit" class="code"></image>
           <view class="large">长按识别小程序</view>
-          <view class="small">Long press recognition applet</view>
+          <view class="small">优质好房 尽在码上找房</view>
         </view>
         <view class="modal-footer">
-          <view data-wpy-evt="10-22" bindtap="_proxy" class="btn btn-cancel">取消</view>
-          <view data-wpy-evt="10-23" bindtap="_proxy" class="btn btn-confirm">保存</view>
+          <view data-wpy-evt="10-4" bindtap="_proxy" class="btn btn-cancel">取消</view>
+          <view data-wpy-evt="10-5" bindtap="_proxy" class="btn btn-confirm">保存</view>
         </view>
       </view>
     </view>

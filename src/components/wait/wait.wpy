@@ -61,7 +61,7 @@
           padding: unit(10, rpx);
         }
         .wait-label {
-          width: unit(180, rpx);
+          width: unit(200, rpx);
           height: unit(100, rpx);
           display: inline-block;
           vertical-align: middle;

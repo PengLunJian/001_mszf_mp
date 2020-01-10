@@ -8,9 +8,7 @@
         <div class="banner">
           <div class="inner">
             <img src="../../images/banner.png" mode="aspectFit"/>
-            <div class="footer-btn">
-              <div class="btn-share iconfont icon-share" @tap="onHandleShowModal"></div>
-            </div>
+            <div class="btn-share iconfont icon-share" @tap="onHandleShowModal"></div>
           </div>
         </div>
         <div class="list">
@@ -48,7 +46,7 @@
           <div class="modal-body">
             <img class="code" src="../../images/code.png" mode="aspectFit"/>
             <div class="large">长按识别小程序</div>
-            <div class="small">Long press recognition applet</div>
+            <div class="small">优质好房 尽在码上找房</div>
           </div>
           <div class="modal-footer">
             <div class="btn btn-cancel" @tap="onHandleCancel">取消</div>
@@ -158,20 +156,12 @@
               height: 100%;
               border-radius: @borderRadius2;
             }
-            .footer-btn {
-              width: 100%;
-              position: absolute;
-              left: 0;
-              bottom: 0;
-              padding: 0 unit(30, rpx);
-              border-top: 2.5px solid rgba(255, 153, 0, .6);
-              text-align: right;
-              font-size: 0;
-            }
             .btn-share {
+              position: absolute;
+              right: unit(20, rpx);
+              bottom: unit(10, rpx);
               width: unit(80, rpx);
               height: unit(80, rpx);
-              display: inline-block;
               line-height: unit(80, rpx);
               font-size: unit(44, rpx);
               text-align: center;
@@ -298,17 +288,17 @@
             width: 100%;
             background-color: @theme2;
             image {
-              width: unit(230, rpx);
-              height: unit(72, rpx);
-              margin: unit(14, rpx) auto;
+              width: unit(200, rpx);
+              height: unit(60, rpx);
+              margin: unit(20, rpx) auto;
             }
           }
           .modal-body {
-            padding: unit(60, rpx) 0 unit(100, rpx);
+            padding: unit(60, rpx) 0 unit(70, rpx);
             .code {
-              width: unit(300, rpx);
-              height: unit(300, rpx);
-              margin: 0 auto unit(30, rpx);
+              width: unit(260, rpx);
+              height: unit(260, rpx);
+              margin: 0 auto unit(60, rpx);
             }
             .large, .small {
               height: unit(40, rpx);
@@ -316,11 +306,11 @@
               letter-spacing: 0.5px;
               text-align: center;
               &.large {
-                font-size: @fontSize1;
+                font-size: @fontSize2;
                 color: @fontColor2;
               }
               &.small {
-                font-size: @fontSize0;
+                font-size: @fontSize1;
                 color: @fontColor3;
               }
             }
@@ -329,7 +319,7 @@
             display: flex;
             height: @height;
             line-height: @height;
-            border-top: 0.5px solid @borderColor1;
+            border-top: 0.5px solid @borderColor3;
             font-size: @fontSize5;
             letter-spacing: 1px;
             text-align: center;
@@ -339,7 +329,7 @@
             }
             .btn-confirm {
               width: 50%;
-              border-left: 0.5px solid @borderColor1;
+              border-left: 0.5px solid @borderColor3;
               color: @fontColor2;
             }
           }

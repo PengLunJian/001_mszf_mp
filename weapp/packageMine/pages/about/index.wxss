@@ -21,20 +21,12 @@
   height: 100%;
   border-radius: 20rpx;
 }
-.container .content .body .banner .inner .footer-btn {
-  width: 100%;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  padding: 0 30rpx;
-  border-top: 2.5px solid rgba(255, 153, 0, 0.6);
-  text-align: right;
-  font-size: 0;
-}
 .container .content .body .banner .inner .btn-share {
+  position: absolute;
+  right: 20rpx;
+  bottom: 10rpx;
   width: 80rpx;
   height: 80rpx;
-  display: inline-block;
   line-height: 80rpx;
   font-size: 44rpx;
   text-align: center;
@@ -155,17 +147,17 @@
   background-color: #FF9900;
 }
 .container .content .modal .modal-content .modal-header image {
-  width: 230rpx;
-  height: 72rpx;
-  margin: 14rpx auto;
+  width: 200rpx;
+  height: 60rpx;
+  margin: 20rpx auto;
 }
 .container .content .modal .modal-content .modal-body {
-  padding: 60rpx 0 100rpx;
+  padding: 60rpx 0 70rpx;
 }
 .container .content .modal .modal-content .modal-body .code {
-  width: 300rpx;
-  height: 300rpx;
-  margin: 0 auto 30rpx;
+  width: 260rpx;
+  height: 260rpx;
+  margin: 0 auto 60rpx;
 }
 .container .content .modal .modal-content .modal-body .large,
 .container .content .modal .modal-content .modal-body .small {
@@ -176,19 +168,19 @@
 }
 .container .content .modal .modal-content .modal-body .large.large,
 .container .content .modal .modal-content .modal-body .small.large {
-  font-size: 24rpx;
+  font-size: 26rpx;
   color: #666666;
 }
 .container .content .modal .modal-content .modal-body .large.small,
 .container .content .modal .modal-content .modal-body .small.small {
-  font-size: 20rpx;
+  font-size: 24rpx;
   color: #999999;
 }
 .container .content .modal .modal-content .modal-footer {
   display: flex;
   height: 100rpx;
   line-height: 100rpx;
-  border-top: 0.5px solid #DEDEDE;
+  border-top: 0.5px solid #CCCCCC;
   font-size: 32rpx;
   letter-spacing: 1px;
   text-align: center;
@@ -199,7 +191,7 @@
 }
 .container .content .modal .modal-content .modal-footer .btn-confirm {
   width: 50%;
-  border-left: 0.5px solid #DEDEDE;
+  border-left: 0.5px solid #CCCCCC;
   color: #666666;
 }
 .container .content .modal.enter .modal-bg {

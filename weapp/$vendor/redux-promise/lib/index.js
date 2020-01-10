@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = promiseMiddleware;
 
-var _isPromise = _interopRequireDefault(__wepy_require(26));
+var _isPromise = _interopRequireDefault(__wepy_require(24));
 
 var _fluxStandardAction = __wepy_require(41);
 

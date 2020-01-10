@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.NEW_HOUSE_DETAIL = exports.NEW_HOUSE_LIST = exports.SECOND_HOUSE_DETAIL = exports.SECOND_HOUSE_LIST = exports.RENT_HOUSE_DETAIL = exports.RENT_HOUSE_LIST = exports.ABOUT = exports.SUGGEST = exports.RELEASE = exports.HISTORY = exports.FAVORITE = exports.MINE = exports.CALCULATOR = exports.SEARCH = exports.INDEX = void 0;
+exports.MESSAGE = exports.NEW_HOUSE_DETAIL = exports.NEW_HOUSE_LIST = exports.SECOND_HOUSE_DETAIL = exports.SECOND_HOUSE_LIST = exports.RENT_HOUSE_DETAIL = exports.RENT_HOUSE_LIST = exports.ABOUT = exports.SUGGEST = exports.RELEASE = exports.HISTORY = exports.FAVORITE = exports.MINE = exports.CALCULATOR = exports.SEARCH = exports.INDEX = void 0;
 var INDEX = {
   name: '首页',
   path: '/pages/index/index'
@@ -79,3 +79,8 @@ var NEW_HOUSE_DETAIL = {
   path: '/packageHouse/pages/new-house-detail/index'
 };
 exports.NEW_HOUSE_DETAIL = NEW_HOUSE_DETAIL;
+var MESSAGE = {
+  name: '在线咨询',
+  path: '/packageOther/pages/message/index'
+};
+exports.MESSAGE = MESSAGE;

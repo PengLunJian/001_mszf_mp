@@ -2,20 +2,25 @@
   <div class="nav row">
     <div class="col-6">
       <navigator class="nav-item" hover-class="none" :url="items[0].path">
+        <div class="item-title">{{items[0].title}}</div>
         <img class="item-img" src="../../assets/images/nav01.jpg"/>
       </navigator>
       <navigator class="nav-item" hover-class="none" :url="items[2].path">
+        <div class="item-title">{{items[2].title}}</div>
         <img class="item-img" src="../../assets/images/nav04.jpg"/>
       </navigator>
     </div>
     <div class="col-6">
       <navigator class="nav-item" hover-class="none" :url="items[1].path">
+        <div class="item-title">{{items[1].title}}</div>
         <img class="item-img" src="../../assets/images/nav02.jpg"/>
       </navigator>
       <navigator class="nav-item" hover-class="none" :url="items[3].path">
+        <div class="item-title">{{items[3].title}}</div>
         <img class="item-img" src="../../assets/images/nav03.jpg"/>
       </navigator>
       <navigator class="nav-item" hover-class="none" :url="items[4].path">
+        <div class="item-title">{{items[4].title}}</div>
         <img class="item-img" src="../../assets/images/nav05.jpg"/>
       </navigator>
     </div>
@@ -69,6 +74,14 @@
       .nav-item {
         position: relative;
         margin-bottom: unit(30, rpx);
+        .item-title {
+          position: absolute;
+          top: unit(30, rpx);
+          left: unit(30, rpx);
+          font-size: @fontSize6;
+          letter-spacing: 1px;
+          color: @white;
+        }
         .item-img {
           width: 100%;
           height: 100%;

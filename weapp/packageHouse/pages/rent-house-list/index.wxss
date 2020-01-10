@@ -198,11 +198,11 @@
   width: 65%;
   background: -webkit-linear-gradient(left, #FFBB00, #FF9900);
 }
-.container .content .modal:nth-child(4) .modal-content,
-.container .content .modal:nth-child(5) .modal-content {
+.container .content .modal#price .modal-content,
+.container .content .modal#filter .modal-content {
   padding-bottom: 100rpx;
 }
-.container .content .modal:nth-child(6) .modal-content {
+.container .content .modal#sort .modal-content {
   height: 500rpx;
 }
 .container .content .modal.hide .modal-bg {
