@@ -4,7 +4,6 @@
     "usingComponents": {
         "top-bar": "../../../components/top-bar/top-bar",
         "loading": "../../../components/loading/loading",
-        "error": "../../../components/error/error",
-        "wux-toast": "../../../$vendor/wux-weapp/dist/toast/index"
+        "error": "../../../components/error/error"
     }
 }

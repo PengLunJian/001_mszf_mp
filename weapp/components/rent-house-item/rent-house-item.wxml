@@ -1,8 +1,8 @@
 
-<view data-wpy-evt="104-0" bindtap="_proxy" class="item">
+<view data-wpy-evt="94-0" bindtap="_proxy" class="item">
   <view class="item-inner">
     <view class="item-img">
-      <image src="../../assets/images/item1.jpg"></image>
+      <image src="http://sersms.com:7000/house/v1/file/static/userfile/202001/15/1217303264084398080.jpg"></image>
     </view>
     <view class="item-info">
       <view class="item-row">

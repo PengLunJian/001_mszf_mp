@@ -1,0 +1,13 @@
+
+<view class="banner">
+  <view class="banner-swiper">
+    <swiper autoplay="{{autoplay}}" circular="{{circular}}" data-wpy-evt="92-12" bindchange="_proxy" class="swiper">
+      <swiper-item wx:for="{{ items }}" wx:for-index="index" wx:for-item="item" wx:key="index" key="{{ index }}" data-wpy-evt="92-13" bindtap="_proxy" data-wpytap-a="{{ index }}">
+        <image src="{{item.url}}" class="swiper-img"></image>
+      </swiper-item>
+    </swiper>
+  </view>
+  <view class="banner-code">
+    <view wx:for="{{ items }}" wx:for-index="index" wx:for-item="item" wx:key="index" key="{{ index }}" class="swiper-code{{index===current?' active':''}}"></view>
+  </view>
+</view>

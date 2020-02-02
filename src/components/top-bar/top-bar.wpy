@@ -32,8 +32,8 @@
         });
       },
       onHandleHome() {
-        wx.navigateBack({
-          delta: 10
+        wx.reLaunch({
+          url: $routes.INDEX.path
         });
       }
     },
@@ -62,15 +62,16 @@
       .top-icon {
         width: unit(90, rpx);
         height: @topBarHeight;
+        position: relative;
+        z-index: 1;
+        float: left;
+        font-size: unit(40, rpx);
+      }
+      .top-title {
         position: absolute;
         top: 0;
         left: 0;
-        font-size: unit(40, rpx);
-        &.icon-home {
-          left: unit(90, rpx);
-        }
-      }
-      .top-title {
+        width: 100%;
         font-size: unit(32, rpx);
         font-weight: bold;
       }

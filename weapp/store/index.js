@@ -5,9 +5,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
-var _redux = require('../vendor.js')(31);
+var _redux = require('../vendor.js')(30);
 
-var _reduxPromise = _interopRequireDefault(require('../vendor.js')(42));
+var _reduxPromise = _interopRequireDefault(require('../vendor.js')(41));
 
 var _reducers = _interopRequireDefault(require('reducers/index.js'));
 

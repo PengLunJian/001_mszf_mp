@@ -14,10 +14,10 @@
                 <view class="banner">
                   <swiper autoplay="{{autoplay}}" circular="{{circular}}" class="swiper">
                     <swiper-item>
-                      <image src="../../images/banner01.jpg" class="swiper-img"></image>
+                      <image src="http://sersms.com:7000/house/v1/file/static/userfile/202001/13/1216582503799492608.jpg" class="swiper-img"></image>
                     </swiper-item>
                     <swiper-item>
-                      <image src="../../images/banner02.jpg" class="swiper-img"></image>
+                      <image src="http://sersms.com:7000/house/v1/file/static/userfile/202001/13/1216581838603849728.jpg" class="swiper-img"></image>
                     </swiper-item>
                   </swiper>
                   <view class="swiper-code">
@@ -242,7 +242,7 @@
             <view class="module-body">
               <view class="module-context">
                 <view class="map-container">
-                  <map longitude="{{longitude}}" latitude="{{latitude}}" enable-zoom="{{enableZoom}}" enable-scroll="{{enableScroll}}" markers="{{markers}}" data-wpy-evt="4-0" bindtap="_proxy" class="map"></map>
+                  <map longitude="{{longitude}}" latitude="{{latitude}}" enable-zoom="{{enableZoom}}" enable-scroll="{{enableScroll}}" markers="{{markers}}" data-wpy-evt="6-0" bindtap="_proxy" class="map"></map>
                 </view>
               </view>
             </view>

@@ -2,31 +2,71 @@
   <div class="container">
     <div class="content">
       <div class="header">
-        <div class="inline">
-          <div class="logo">
-            <img src="../../assets/images/logo@2x.png" mode="aspectFit"/>
-          </div>
-          <div class="search">
-            <navigator class="btn btn-search" hover-class="none" :url="searchUrl">
-              <div class="btn-icon iconfont icon-search"></div>
-              <div class="btn-text">请输入小区/商圈</div>
-            </navigator>
-          </div>
+        <div class="location">
+          <span class="location-icon iconfont icon-location"></span>
+          <span class="location-text">宣城</span>
+        </div>
+        <div class="search">
+          <navigator class="btn btn-search" hover-class="none" :url="searchUrl">
+            <div class="btn-icon iconfont icon-search"></div>
+            <div class="btn-text">请输入小区/商圈</div>
+          </navigator>
         </div>
       </div>
       <div class="body">
-        <div class="row">
-          <div class="col-12">
-            <navigator class="user" hover-class="none" :url="mineUrl">
-              <img class="user-bg" src="../../assets/images/mine.jpg"/>
-              <div class="user-box">
-                <img class="user-img" src="../../assets/images/agent.jpg" mode="aspectFit"/>
-                <span class="user-name">WEB前端架构师</span>
+        <div class="context">
+          <scroll-view
+            class="scroll-view"
+            scroll-y="{{true}}">
+            <banner></banner>
+            <customer-navigator></customer-navigator>
+            <div class="module">
+              <div class="module-content">
+                <div class="module-header">
+                  <div class="module-title">租房推荐</div>
+                </div>
+                <div class="module-body">
+                  <div class="module-context">
+                    <block v-for="(item,index) in items" :key="index">
+                      <rent-house-item :item="item"></rent-house-item>
+                    </block>
+                  </div>
+                </div>
+                <div class="module-footer"></div>
               </div>
-            </navigator>
-          </div>
+            </div>
+            <div class="module">
+              <div class="module-content">
+                <div class="module-header">
+                  <div class="module-title">二手房推荐</div>
+                </div>
+                <div class="module-body">
+                  <div class="module-context">
+                    <block v-for="(item,index) in items" :key="index">
+                      <second-house-item :item="item"></second-house-item>
+                    </block>
+                  </div>
+                </div>
+                <div class="module-footer"></div>
+              </div>
+            </div>
+            <div class="module">
+              <div class="module-content">
+                <div class="module-header">
+                  <div class="module-title">新房推荐</div>
+                </div>
+                <div class="module-body">
+                  <div class="module-context">
+                    <block v-for="(item,index) in items" :key="index">
+                      <new-house-item :item="item"></new-house-item>
+                    </block>
+                  </div>
+                </div>
+                <div class="module-footer"></div>
+              </div>
+            </div>
+          </scroll-view>
         </div>
-        <customer-navigator></customer-navigator>
       </div>
       <div class="footer"></div>
     </div>
@@ -44,7 +84,116 @@
     mixins: [],
 
     data: {
-      mineUrl: $routes.MINE.path,
+      items: [
+        {
+          add_userid: 1,
+          addr: '广德路与万贵山路交叉口',
+          addr_qu: '徐汇区',
+          addr_sheng: '江苏省',
+          addr_shi: '苏州省',
+          agency_com_name: '中一房产',
+          agency_phone: '15011110001',
+          chaoxiang: '朝南',
+          chuzufangshi: '整租',
+          ext: {备注: 3},
+          fagnwupeizhi: '床 衣柜 沙发 电视 洗衣机',
+          followed: null,
+          huxing: '2室一厅1卫',
+          id: 139,
+          jiaofang: '2021-05-11 00:00:00',
+          kaipan: '2019-05-11 00:00:00',
+          kanfangshijian: '随时看房',
+          leixing: '小区',
+          louceng: '16/20',
+          mianji: 140,
+          nianai: '2014年',
+          phone: '150****0001',
+          pic_url: ['/pic/a.jpg', '/pic/a.jpg'],
+          price: 10000,
+          release_time: '2019-11-29 22:27:00',
+          status: 1,
+          tags: ['南北通透', '精装修', '随时看房'],
+          title: '万象小区 南向两居式 精装 拎包入住',
+          total_price: 1400000,
+          type: 3,
+          xiaoqu: '金峰万象小区',
+          zhaungxiu: '精装修',
+          zhifufangshi: '押一付三',
+          zhulihuxing: null
+        },
+        {
+          add_userid: 1,
+          addr: '广德路与万贵山路交叉口',
+          addr_qu: '徐汇区',
+          addr_sheng: '江苏省',
+          addr_shi: '苏州省',
+          agency_com_name: '中一房产',
+          agency_phone: '15011110001',
+          chaoxiang: '朝南',
+          chuzufangshi: '整租',
+          ext: {备注: 3},
+          fagnwupeizhi: '床 衣柜 沙发 电视 洗衣机',
+          followed: null,
+          huxing: '2室一厅1卫',
+          id: 139,
+          jiaofang: '2021-05-11 00:00:00',
+          kaipan: '2019-05-11 00:00:00',
+          kanfangshijian: '随时看房',
+          leixing: '小区',
+          louceng: '16/20',
+          mianji: 140,
+          nianai: '2014年',
+          phone: '150****0001',
+          pic_url: ['/pic/a.jpg', '/pic/a.jpg'],
+          price: 10000,
+          release_time: '2019-11-29 22:27:00',
+          status: 1,
+          tags: ['南北通透', '精装修', '随时看房'],
+          title: '万象小区 南向两居式 精装 拎包入住',
+          total_price: 1400000,
+          type: 3,
+          xiaoqu: '金峰万象小区',
+          zhaungxiu: '精装修',
+          zhifufangshi: '押一付三',
+          zhulihuxing: null
+        },
+        {
+          add_userid: 1,
+          addr: '广德路与万贵山路交叉口',
+          addr_qu: '徐汇区',
+          addr_sheng: '江苏省',
+          addr_shi: '苏州省',
+          agency_com_name: '中一房产',
+          agency_phone: '15011110001',
+          chaoxiang: '朝南',
+          chuzufangshi: '整租',
+          ext: {备注: 3},
+          fagnwupeizhi: '床 衣柜 沙发 电视 洗衣机',
+          followed: null,
+          huxing: '2室一厅1卫',
+          id: 139,
+          jiaofang: '2021-05-11 00:00:00',
+          kaipan: '2019-05-11 00:00:00',
+          kanfangshijian: '随时看房',
+          leixing: '小区',
+          louceng: '16/20',
+          mianji: 140,
+          nianai: '2014年',
+          phone: '150****0001',
+          pic_url: ['/pic/a.jpg', '/pic/a.jpg'],
+          price: 10000,
+          release_time: '2019-11-29 22:27:00',
+          status: 1,
+          tags: ['南北通透', '精装修', '随时看房'],
+          title: '万象小区 南向两居式 精装 拎包入住',
+          total_price: 1400000,
+          type: 3,
+          xiaoqu: '金峰万象小区',
+          zhaungxiu: '精装修',
+          zhifufangshi: '押一付三',
+          zhulihuxing: null
+        }
+      ],
       searchUrl: $routes.SEARCH.path
     },
 
@@ -63,111 +212,112 @@
   @height: unit(64, rpx);
 
   .container {
+    min-height: 100vh;
     .content {
       height: 100vh;
-      padding-top: unit(130, rpx);
-      background-color: @white;
       .header {
         width: 100%;
         position: fixed;
         top: 0;
         left: 0;
         z-index: 1000;
+        overflow: hidden;
         background-color: @white;
         padding-top: unit(30, rpx);
-        .inline {
-          position: relative;
-          .logo {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: unit(220, rpx);
-            height: @topBarHeight;
-            padding: 0 unit(20, rpx);
-            image {
-              width: 100%;
-              height: 100%;
-            }
+        font-size: 0;
+        .location {
+          display: inline-block;
+          vertical-align: middle;
+          height: @topBarHeight;
+          line-height: @topBarHeight;
+          padding: 0 unit(20, rpx);
+          color: @fontColor1;
+          font-size: 0;
+          .location-icon {
+            display: inline-block;
+            vertical-align: middle;
+            font-size: @fontSize8;
           }
-          .search {
+          .location-text {
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: unit(4, rpx);
+            font-size: @fontSize5;
+          }
+        }
+        .search {
+          display: inline-block;
+          vertical-align: middle;
+          height: @topBarHeight;
+          padding: unit(18, rpx) 0;
+          margin-left: unit(30, rpx);
+          text-align: center;
+          font-size: 0;
+          .btn-search {
+            width: unit(320, rpx);
+            height: @height;
+            line-height: @height;
+            display: inline-block;
             overflow: hidden;
-            height: @topBarHeight;
-            padding: unit(18, rpx) 0;
-            text-align: center;
-            font-size: 0;
-            .btn-search {
-              width: unit(300, rpx);
+            border-radius: @height;
+            background-color: #f0f0f0;
+            color: @fontColor3;
+            .btn-icon {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: @height;
+              height: @height;
+              font-size: @fontSize5;
+            }
+            .btn-text {
               height: @height;
               line-height: @height;
-              display: inline-block;
-              overflow: hidden;
-              border-radius: @height;
-              background-color: #f0f0f0;
-              color: @fontColor3;
-              .btn-icon {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: @height;
-                height: @height;
-                font-size: @fontSize3;
-              }
-              .btn-text {
-                height: @height;
-                line-height: @height;
-                padding-left: @height;
-                font-size: @fontSize1;
-                text-align: left;
-              }
+              padding-left: unit(55, rpx);
+              font-size: @fontSize1;
+              text-align: left;
             }
           }
         }
       }
       .body {
-        .row {
-          padding: unit(15, rpx);
-          padding-bottom: 0;
-          .col-12 {
-            padding: unit(15, rpx);
-            .user {
+        height: 100%;
+        position: relative;
+        .context {
+          height: 100%;
+          padding-top: unit(130, rpx);
+          .scroll-view {
+            height: 100%;
+            .module {
               position: relative;
-              height: unit(200, rpx);
-              line-height: unit(200, rpx);
-              border-radius: unit(20, rpx);
-              overflow: hidden;
-              font-size: 0;
-              .user-bg {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                border-radius: @borderRadius2;
+              margin: unit(20, rpx) 0 0 0;
+              background-color: transparent;
+              .module-content {
+                background-color: @white;
+                .module-header {
+                  padding: unit(30, rpx) unit(30, rpx) 0;
+                  .module-title {
+                    height: unit(32, rpx);
+                    line-height: unit(32, rpx);
+                    padding-left: unit(20, rpx);
+                    border-left: 4px solid @theme2;
+                    font-size: @fontSize5;
+                    letter-spacing: 0.5px;
+                    font-weight: bold;
+                    color: @fontColor1;
+                  }
+                }
+                .module-body {
+                  .module-context {
+                    min-height: unit(400, rpx);
+                  }
+                }
+                .module-footer {
+
+                }
               }
-              .user-box {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                padding: 0 unit(30, rpx);
-                .user-img {
-                  width: unit(80, rpx);
-                  height: unit(80, rpx);
-                  display: inline-block;
-                  vertical-align: middle;
-                  border: 1.5px solid @white;
-                  background-color: @white;
-                  border-radius: @borderRadius3;
-                }
-                .user-name {
-                  display: inline-block;
-                  vertical-align: middle;
-                  padding-left: unit(20, rpx);
-                  font-size: @fontSize5;
-                  letter-spacing: 1px;
-                  color: @white;
-                }
+              &:last-child {
+                padding-bottom: unit(20, rpx);
               }
             }
           }
@@ -181,9 +331,12 @@
 <config>
   {
   navigationStyle:'custom',
-  backgroundColor:'#ffffff',
   usingComponents: {
+  'banner': '../../components/banner/banner',
   'customer-navigator': '../../components/customer-navigator/customer-navigator',
+  'rent-house-item': '../../components/rent-house-item/rent-house-item',
+  'second-house-item': '../../components/second-house-item/second-house-item',
+  'new-house-item': '../../components/new-house-item/new-house-item'
   }
   }
 </config>

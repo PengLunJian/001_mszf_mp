@@ -7,15 +7,17 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 _core["default"].component({
   data: {},
   props: {
-    isMore: {
-      type: Boolean,
-      "default": false
+    length: {
+      type: Number,
+      "default": 0
+    },
+    totalCount: {
+      type: Number,
+      "default": 0
     }
   },
   events: {},
   watch: {},
   methods: {},
-  created: function created() {
-    console.log(this);
-  }
-}, {info: {"components":{},"on":{}}, handlers: {}, models: {} });
+  created: function created() {}
+}, {info: {"components":{},"on":{}}, handlers: {}, models: {} }, {info: {"components":{},"on":{}}, handlers: {}, models: {} }, {info: {"components":{},"on":{}}, handlers: {}, models: {} }, {info: {"components":{},"on":{}}, handlers: {}, models: {} }, {info: {"components":{},"on":{}}, handlers: {}, models: {} }, {info: {"components":{},"on":{}}, handlers: {}, models: {} }, {info: {"components":{},"on":{}}, handlers: {}, models: {} }, {info: {"components":{},"on":{}}, handlers: {}, models: {} }, {info: {"components":{},"on":{}}, handlers: {}, models: {} }, {info: {"components":{},"on":{}}, handlers: {}, models: {} }, {info: {"components":{},"on":{}}, handlers: {}, models: {} }, {info: {"components":{},"on":{}}, handlers: {}, models: {} });

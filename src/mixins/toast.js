@@ -1,15 +1,12 @@
-import {$wuxToast} from 'wux-weapp/dist/index';
-
 export default {
   data: {
     mixin: 'MixinText'
   },
   methods: {
-    showToast(type, text) {
-      $wuxToast().show({
-        type,
-        text,
-        mask: false
+    showToast(title, icon) {
+      wx.showToast({
+        title,
+        icon: icon || 'none'
       });
     }
   },

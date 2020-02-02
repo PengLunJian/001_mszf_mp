@@ -1,0 +1,91 @@
+<template>
+  <div class="banner">
+    <div class="banner-swiper">
+      <swiper class="swiper"
+              autoplay="{{autoplay}}"
+              circular="{{circular}}"
+              @change="onHandleSwiperChange">
+        <swiper-item v-for="(item,index) in items" :key="index"
+                     @tap="onHandleBanner(index)">
+          <img class="swiper-img" src="{{item.url}}"/>
+        </swiper-item>
+      </swiper>
+    </div>
+    <div class="banner-code">
+      <div class="swiper-code{{index===current?' active':''}}"
+           v-for="(item,index) in items" :key="index"></div>
+    </div>
+  </div>
+</template>
+
+<script type="text/ecmascript-6">
+  import wepy from '@wepy/core';
+
+  wepy.component({
+    data: {
+      items: [
+        {
+          url: 'http://sersms.com:7000/house/v1/file/static/userfile/202002/02/1223847355544387584.jpg'
+        },
+        {
+          url: 'http://sersms.com:7000/house/v1/file/static/userfile/202002/02/1223847540358004736.jpg'
+        }
+      ],
+      current: 0,
+      autoplay: true,
+      circular: true
+    },
+    events: {},
+    methods: {
+      onHandleSwiperChange(e) {
+        this.current = e.$wx.detail.current;
+      },
+      onHandleBanner(index) {
+        console.log(index);
+      }
+    },
+    onLoad() {
+    }
+  });
+</script>
+
+<style scoped lang="less">
+  @import "../../assets/less/variable";
+  @import "../../assets/less/common";
+
+  .banner {
+    position: relative;
+    .banner-swiper {
+      .swiper {
+        height: unit(280, rpx);
+      }
+      .swiper-img {
+        width: 100%;
+        height: unit(280, rpx);
+      }
+    }
+    .banner-code {
+      width: 100%;
+      position: absolute;
+      left: 0;
+      bottom: unit(20, rpx);
+      text-align: center;
+      font-size: 0;
+      .swiper-code {
+        width: 20px;
+        height: 3px;
+        margin-right: 6px;
+        display: inline-block;
+        vertical-align: middle;
+        background-color: @white;
+        transition: all 300ms ease-out;
+        &:last-child {
+          margin: 0;
+        }
+        &.active {
+          background-color: @theme2;
+        }
+      }
+    }
+  }
+</style>

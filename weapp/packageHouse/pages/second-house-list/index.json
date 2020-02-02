@@ -4,6 +4,10 @@
     "component": true,
     "usingComponents": {
         "top-bar": "../../../components/top-bar/top-bar",
+        "loading": "../../../components/loading/loading",
+        "error": "../../../components/error/error",
+        "empty": "../../../components/empty/empty",
+        "load-more": "../../../components/load-more/load-more",
         "second-house-item": "../../../components/second-house-item/second-house-item",
         "wux-slider": "../../../$vendor/wux-weapp/dist/slider/index"
     }

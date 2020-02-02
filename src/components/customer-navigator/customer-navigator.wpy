@@ -1,29 +1,9 @@
 <template>
   <div class="nav row">
-    <div class="col-6">
-      <navigator class="nav-item" hover-class="none" :url="items[0].path">
-        <div class="item-title">{{items[0].title}}</div>
-        <img class="item-img" src="../../assets/images/nav01.jpg"/>
-      </navigator>
-      <navigator class="nav-item" hover-class="none" :url="items[2].path">
-        <div class="item-title">{{items[2].title}}</div>
-        <img class="item-img" src="../../assets/images/nav04.jpg"/>
-      </navigator>
-    </div>
-    <div class="col-6">
-      <navigator class="nav-item" hover-class="none" :url="items[1].path">
-        <div class="item-title">{{items[1].title}}</div>
-        <img class="item-img" src="../../assets/images/nav02.jpg"/>
-      </navigator>
-      <navigator class="nav-item" hover-class="none" :url="items[3].path">
-        <div class="item-title">{{items[3].title}}</div>
-        <img class="item-img" src="../../assets/images/nav03.jpg"/>
-      </navigator>
-      <navigator class="nav-item" hover-class="none" :url="items[4].path">
-        <div class="item-title">{{items[4].title}}</div>
-        <img class="item-img" src="../../assets/images/nav05.jpg"/>
-      </navigator>
-    </div>
+    <navigator v-for="(item,index) in items" class="nav-item" hover-class="none" :url="item.path" :key="index">
+      <div class="nav-icon iconfont {{item.icon}}"></div>
+      <div class="nav-text">{{item.text}}</div>
+    </navigator>
   </div>
 </template>
 
@@ -35,23 +15,28 @@
     data: {
       items: [
         {
-          title: '租房',
+          text: '租房',
+          icon: 'icon-nav01',
           path: $routes.RENT_HOUSE_LIST.path
         },
         {
-          title: '二手房',
+          text: '二手房',
+          icon: 'icon-nav02',
           path: $routes.SECOND_HOUSE_LIST.path
         },
         {
-          title: '房贷计算器',
-          path: $routes.CALCULATOR.path
-        },
-        {
-          title: '新房',
+          text: '新房',
+          icon: 'icon-nav03',
           path: $routes.NEW_HOUSE_LIST.path
         },
         {
-          title: '房源发布',
+          text: '房贷计算',
+          icon: 'icon-nav04',
+          path: $routes.CALCULATOR.path
+        },
+        {
+          text: '房源发布',
+          icon: 'icon-nav05',
           path: $routes.RELEASE.path
         }
       ]
@@ -68,50 +53,49 @@
   @import "../../assets/less/common";
 
   .nav {
-    padding: unit(15, rpx);
-    .col-6 {
-      padding: unit(15, rpx);
-      .nav-item {
-        position: relative;
-        margin-bottom: unit(30, rpx);
-        .item-title {
-          position: absolute;
-          top: unit(30, rpx);
-          left: unit(30, rpx);
-          font-size: @fontSize6;
-          letter-spacing: 1px;
-          color: @white;
-        }
-        .item-img {
-          width: 100%;
-          height: 100%;
-          border-radius: unit(20, rpx);
-        }
-        &:last-child {
-          margin: 0;
-        }
+    padding: unit(30, rpx) 0;
+    background-color: @white;
+    .nav-item {
+      width: 20%;
+      text-align: center;
+      .nav-icon {
+        width: unit(90, rpx);
+        height: unit(90, rpx);
+        line-height: unit(90, rpx);
+        margin: 0 auto unit(20, rpx);
+        border-radius: 100%;
+        font-size: @fontSize9;
+        color: @white;
+      }
+      .nav-text {
+        height: unit(40, rpx);
+        line-height: unit(40, rpx);
+        font-size: @fontSize2;
+        color: @fontColor1;
       }
       &:nth-child(1) {
-        .nav-item {
-          &:nth-child(1) {
-            height: unit(430, rpx);
-          }
-          &:nth-child(2) {
-            height: unit(350, rpx);
-          }
+        .nav-icon {
+          background: -webkit-linear-gradient(-45deg, #ffd800, #ffa200);
         }
       }
       &:nth-child(2) {
-        .nav-item {
-          &:nth-child(1) {
-            height: unit(210, rpx);
-          }
-          &:nth-child(2) {
-            height: unit(330, rpx);
-          }
-          &:nth-child(3) {
-            height: unit(210, rpx);
-          }
+        .nav-icon {
+          background: -webkit-linear-gradient(-45deg, #8bffdd, #00c289);
+        }
+      }
+      &:nth-child(3) {
+        .nav-icon {
+          background: -webkit-linear-gradient(-45deg, #00ccff, #0078ff);
+        }
+      }
+      &:nth-child(4) {
+        .nav-icon {
+          background: -webkit-linear-gradient(-45deg, #fff9b3, #ffcb3e);
+        }
+      }
+      &:nth-child(5) {
+        .nav-icon {
+          background: -webkit-linear-gradient(-45deg, #ffb49a, #ff4800);
         }
       }
     }

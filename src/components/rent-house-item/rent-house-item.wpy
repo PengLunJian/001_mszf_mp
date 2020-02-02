@@ -3,7 +3,7 @@
        @tap="onHandleDetail(item.id)">
     <div class="item-inner">
       <div class="item-img">
-        <img src="../../assets/images/item1.jpg"/>
+        <img src="http://sersms.com:7000/house/v1/file/static/userfile/202001/15/1217303264084398080.jpg"/>
       </div>
       <div class="item-info">
         <div class="item-row">
@@ -74,7 +74,7 @@
         top: 0;
         left: 0;
         width: unit(220, rpx);
-        height: unit(240, rpx);
+        height: 100%;
         padding: unit(30, rpx) 0;
         image {
           width: 100%;

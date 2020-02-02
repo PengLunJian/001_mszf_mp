@@ -1,27 +1,7 @@
 
 <view class="nav row">
-  <view class="col-6">
-    <navigator hover-class="none" url="{{ items[0].path }}" class="nav-item">
-      <view class="item-title">{{items[0].title}}</view>
-      <image src="../../assets/images/nav01.jpg" class="item-img"></image>
-    </navigator>
-    <navigator hover-class="none" url="{{ items[2].path }}" class="nav-item">
-      <view class="item-title">{{items[2].title}}</view>
-      <image src="../../assets/images/nav04.jpg" class="item-img"></image>
-    </navigator>
-  </view>
-  <view class="col-6">
-    <navigator hover-class="none" url="{{ items[1].path }}" class="nav-item">
-      <view class="item-title">{{items[1].title}}</view>
-      <image src="../../assets/images/nav02.jpg" class="item-img"></image>
-    </navigator>
-    <navigator hover-class="none" url="{{ items[3].path }}" class="nav-item">
-      <view class="item-title">{{items[3].title}}</view>
-      <image src="../../assets/images/nav03.jpg" class="item-img"></image>
-    </navigator>
-    <navigator hover-class="none" url="{{ items[4].path }}" class="nav-item">
-      <view class="item-title">{{items[4].title}}</view>
-      <image src="../../assets/images/nav05.jpg" class="item-img"></image>
-    </navigator>
-  </view>
+  <navigator wx:for="{{ items }}" wx:for-index="index" wx:for-item="item" wx:key="index" hover-class="none" url="{{ item.path }}" key="{{ index }}" class="nav-item">
+    <view class="nav-icon iconfont {{item.icon}}"></view>
+    <view class="nav-text">{{item.text}}</view>
+  </navigator>
 </view>

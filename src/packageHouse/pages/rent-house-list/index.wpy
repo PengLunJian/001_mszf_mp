@@ -1,9 +1,5 @@
 <template>
   <div class="container">
-    <wux-toast id="wux-toast"></wux-toast>
-    <loading :isLoading="isLoading&&!isData.rows.length"></loading>
-    <error :isFailure="isFailure&&!isData.rows.length" @refresh="onRefresh"></error>
-    <empty :isSuccess="isSuccess&&!isData.rows.length"></empty>
     <div class="content">
       <div class="header">
         <top-bar title="房源列表"></top-bar>
@@ -19,18 +15,22 @@
           </div>
         </div>
       </div>
-      <div class="body fade" v-if="isData.rows.length">
-        <scroll-view
-          class="scroll-view"
-          scroll-y="{{iSwitch}}"
-          @scrolltolower="onHandleScrollToLower">
-          <div class="items">
-            <block v-for="(item,index) in isData.rows" :key="index">
-              <rent-house-item :item="item"></rent-house-item>
-            </block>
-          </div>
-          <load-more :isMore="isData.rows.length<isData.totalCount"></load-more>
-        </scroll-view>
+      <div class="body">
+        <loading :isLoading="isLoading&&!isData.rows.length"></loading>
+        <error :isFailure="isFailure&&!isData.rows.length" @refresh="onRefresh"></error>
+        <empty :isSuccess="isSuccess&&!isData.rows.length"></empty>
+        <div class="context fade" v-if="isData.rows.length">
+          <scroll-view class="scroll-view"
+                       scroll-y="{{iSwitch}}"
+                       @scrolltolower="onHandleScrollToLower">
+            <div class="items">
+              <block v-for="(item,index) in isData.rows" :key="index">
+                <rent-house-item :item="item"></rent-house-item>
+              </block>
+            </div>
+            <load-more :length="isData.rows.length" :totalCount="isData.totalCount"></load-more>
+          </scroll-view>
+        </div>
       </div>
       <div class="footer"></div>
       <div class="modal" id="price" :class="{'hide':!tabs[0].isShow}">
@@ -191,7 +191,7 @@
     store,
     mixins: [Toast],
     data: {
-      isMore: false,
+      timer: null,
       pageIndex: 1,
       pageSize: 10,
       iSwitch: true,
@@ -271,7 +271,7 @@
       maxPrice: '不限',
       sliderPriceValue: [0, 10000],
       trackStylePrice: [
-        'background: -webkit-linear-gradient(left, #FFBB00, #FF9900);'
+        'background: -webkit-linear-gradient(left, #FFCC00, #FF9900);'
       ],
       handleStylePrice: [
         'transform:translate3d(-50%,-50%,0) scale(1.0);box-shadow:0 0 15px rgba(0,0,0,.15)',
@@ -281,7 +281,7 @@
       maxArea: '不限',
       sliderAreaValue: [0, 300],
       trackStyleArea: [
-        'background: -webkit-linear-gradient(left, #FFBB00, #FF9900);'
+        'background: -webkit-linear-gradient(left, #FFCC00, #FF9900);'
       ],
       handleStyleArea: [
         'transform:translate3d(-50%,-50%,0) scale(1.0);box-shadow:0 0 15px rgba(0,0,0,.15)',
@@ -413,11 +413,13 @@
         this.sliderAreaValue = [0, 300];
       },
       onHandleScrollToLower() {
-        const {rows, totalCount} = this.isData;
-        if (rows.length < totalCount) {
-          this.pageIndex++;
-          this.exeAjaxHouseList();
-        }
+        if (this.timer) return;
+        this.timer = setTimeout(() => {
+          const {rows, totalCount} = this.isData;
+          if (rows.length < totalCount) {
+            this.exeAjaxHouseList();
+          }
+        }, 500);
       },
       resetParams() {
         this.pageSize = 10;
@@ -428,7 +430,20 @@
           page: {
             pageSize: this.pageSize,
             pageIndex: this.pageIndex
-          }
+          },
+          filter: [
+            {
+              field: 'type',
+              opt: '=',
+              value: 3
+            }
+          ],
+          sort: [
+            {
+              field: 'id',
+              asc: false
+            }
+          ]
         };
         return params;
       },
@@ -436,20 +451,24 @@
         const data = this.isData || {};
         const rows = data.rows || [];
         const params = this.getParams();
-        this.ajaxRentHouseList(params)
+        this.ajaxHouseList(params)
           .then((res) => {
             const {success} = res.payload;
-            if (!success) {
+            if (success) {
+              this.pageIndex++;
+            } else {
               if (rows.length) {
-                this.showToast('cancel', '请求失败');
+                this.showToast('请求失败');
               }
             }
+            this.timer = null;
             console.log(res);
           })
           .catch((err) => {
             if (rows.length) {
-              this.showToast('cancel', '请求失败');
+              this.showToast('请求失败');
             }
+            this.timer = null;
             console.log(err);
           });
       },
@@ -460,7 +479,7 @@
 
     onLoad() {
       this.resetParams();
-      this.resetRentHouseList();
+      this.resetHouseList();
       this.exeAjaxHouseList();
     }
   });
@@ -470,11 +489,9 @@
   @import "../../../assets/less/variable";
 
   .container {
-    position: relative;
     min-height: 100vh;
     .content {
       height: 100vh;
-      padding-top: unit(210, rpx);
       .header {
         .tab-bar {
           width: 100%;
@@ -531,14 +548,12 @@
       }
       .body {
         height: 100%;
-        > .scroll-view {
+        position: relative;
+        .context {
           height: 100%;
-          rent-house-item {
-            &:last-child {
-              .item-inner {
-                border: none !important;
-              }
-            }
+          padding-top: unit(210, rpx);
+          > .scroll-view {
+            height: 100%;
           }
         }
       }
@@ -557,13 +572,14 @@
         }
         .modal-content {
           position: fixed;
-          top: unit(210, rpx);
+          top: 0;
           left: 0;
           z-index: 999;
           width: 100%;
-          height: unit(640, rpx);
+          height: unit(850, rpx);
           background-color: @white;
-          transition: all 400ms ease-out;
+          padding-top: unit(210, rpx);
+          transition: all 450ms ease-out;
           box-shadow: 0 0 15px @boxShadow2;
           .modal-header {
           }
@@ -691,7 +707,7 @@
         }
         &#sort {
           .modal-content {
-            height: unit(500, rpx);
+            height: unit(710, rpx);
           }
         }
         &.hide {
@@ -719,7 +735,6 @@
   navigationStyle:'custom',
   disableScroll:true,
   usingComponents: {
-  'wux-toast': 'module:wux-weapp/dist/toast',
   'wux-slider':'module:wux-weapp/dist/slider',
   'top-bar': '../../../components/top-bar/top-bar',
   'loading': '../../../components/loading/loading',

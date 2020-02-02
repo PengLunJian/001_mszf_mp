@@ -1,12 +1,12 @@
 <template>
-  <div class="load-more">
+  <div class="load-more" v-if="totalCount>10">
     <div class="load-more-content">
-      <div class="load-more-true" v-if="isMore">
+      <div class="load-more-true" v-if="length<totalCount">
         <img class="load-more-icon" src="./images/loading-icon@2x.png" mode="aspectFit"/>
         <img class="load-more-clock" src="./images/loading-clock@2x.png" mode="aspectFit"/>
         <img class="load-more-label" src="./images/loading-label@2x.png" mode="aspectFit"/>
       </div>
-      <div class="load-more-false" v-if="!isMore">
+      <div class="load-more-false" v-if="length>=totalCount">
         <div class="load-more-label">我是有底线的</div>
       </div>
     </div>
@@ -19,16 +19,19 @@
   wepy.component({
     data: {},
     props: {
-      isMore: {
-        type: Boolean,
-        default: false
+      length: {
+        type: Number,
+        default: 0
+      },
+      totalCount: {
+        type: Number,
+        default: 0
       }
     },
     events: {},
     watch: {},
     methods: {},
     created() {
-      console.log(this);
     }
   });
 </script>
@@ -66,7 +69,7 @@
           animation: rotate 3s linear infinite;
         }
         .load-more-label {
-          width: unit(100, rpx);
+          width: unit(90, rpx);
           height: unit(50, rpx);
           display: inline-block;
           vertical-align: middle;

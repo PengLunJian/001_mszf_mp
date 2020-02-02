@@ -3,29 +3,29 @@
        @tap="onHandleDetail(item.id)">
     <div class="item-inner">
       <div class="item-img">
-        <img src="{{item.url}}"/>
+        <img src="http://sersms.com:7000/house/v1/file/static/userfile/202001/15/1217306190710345728.jpg"/>
       </div>
       <div class="item-info">
         <div class="item-row">
-          <div class="item-title ellipsis">万象小区 南向两居室 精装 拎包入住</div>
+          <div class="item-title ellipsis">{{item.title}}</div>
         </div>
         <div class="item-row">
-          <span class="item-addr">广德城区</span>
+          <span class="item-addr">{{item.addr_qu}}</span>
           <span class="item-split"></span>
-          <span class="item-addr">广德金峰万象小区</span>
+          <span class="item-addr">{{item.addr}}</span>
         </div>
         <div class="item-row">
                   <span class="item-normal item-price">
-                    <span class="item-value">140</span>
+                    <span class="item-value">{{item.total_price/10000}}</span>
                     <span class="item-unit">万</span>
                   </span>
-          <span class="item-normal">2室1厅1卫</span>
-          <span class="item-normal">140m²</span>
+          <span class="item-normal">{{item.huxing}}</span>
+          <span class="item-normal">{{item.mianji}}m²</span>
         </div>
         <div class="item-row">
-          <span class="item-tag">南北通透</span>
-          <span class="item-tag">精装修</span>
-          <span class="item-tag">随时看房</span>
+          <span class="item-tag"
+                v-for="(tag,index) in item.tags"
+                :key="index">{{tag}}</span>
         </div>
       </div>
     </div>
@@ -74,7 +74,7 @@
         top: 0;
         left: 0;
         width: unit(220, rpx);
-        height: unit(240, rpx);
+        height: 100%;
         padding: unit(30, rpx) 0;
         image {
           width: 100%;

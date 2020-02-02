@@ -18,10 +18,10 @@
                             autoplay="{{autoplay}}"
                             circular="{{circular}}">
                       <swiper-item>
-                        <img class="swiper-img" src="../../images/banner01.jpg"/>
+                        <img class="swiper-img" src="http://sersms.com:7000/house/v1/file/static/userfile/202001/13/1216582503799492608.jpg"/>
                       </swiper-item>
                       <swiper-item>
-                        <img class="swiper-img" src="../../images/banner02.jpg"/>
+                        <img class="swiper-img" src="http://sersms.com:7000/house/v1/file/static/userfile/202001/13/1216581838603849728.jpg"/>
                       </swiper-item>
                     </swiper>
                     <div class="swiper-code">

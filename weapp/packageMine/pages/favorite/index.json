@@ -2,6 +2,13 @@
     "navigationStyle": "custom",
     "component": true,
     "usingComponents": {
-        "top-bar": "../../../components/top-bar/top-bar"
+        "top-bar": "../../../components/top-bar/top-bar",
+        "loading": "../../../components/loading/loading",
+        "error": "../../../components/error/error",
+        "empty": "../../../components/empty/empty",
+        "load-more": "../../../components/load-more/load-more",
+        "rent-house-item": "../../../components/rent-house-item/rent-house-item",
+        "new-house-item": "../../../components/new-house-item/new-house-item",
+        "second-house-item": "../../../components/second-house-item/second-house-item"
     }
 }

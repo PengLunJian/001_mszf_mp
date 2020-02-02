@@ -14,6 +14,8 @@ var $routes = _interopRequireWildcard(require('../../../router/index.js'));
 
 var _toast = _interopRequireDefault(require('../../../mixins/toast.js'));
 
+var _wxQqmapJssdk = _interopRequireDefault(require('../../../vendor.js')(2));
+
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -31,38 +33,23 @@ _core["default"].page({
   mixins: [_toast["default"]],
   data: {
     items: [{
-      url: '../../images/banner01.jpg'
+      url: 'http://sersms.com:7000/house/v1/file/static/userfile/202001/13/1216582503799492608.jpg'
     }, {
-      url: '../../images/banner02.jpg'
-    }, {
-      url: '../../images/banner01.jpg'
-    }, {
-      url: '../../images/banner02.jpg'
+      url: 'http://sersms.com:7000/house/v1/file/static/userfile/202001/13/1216581838603849728.jpg'
     }],
     current: 1,
     autoplay: false,
     circular: true,
-    longitude: 119.4235460000,
-    latitude: 30.8791290000,
+    longitude: 0,
+    latitude: 0,
     enableZoom: false,
     enableScroll: false,
     markers: [{
       id: 1,
-      longitude: 119.4235460000,
-      latitude: 30.8791290000,
-      iconPath: '../../../assets/images/address.png',
+      longitude: 0,
+      latitude: 0,
       width: 30,
-      height: 30,
-      label: {
-        content: 'INFINITY',
-        padding: 10,
-        anchorX: 20,
-        anchorY: -35,
-        fontSize: 14,
-        borderRadius: 4,
-        bgColor: '#ffffff',
-        textAlign: 'center'
-      }
+      height: 30
     }]
   },
   computed: _objectSpread({}, (0, _redux.mapState)(controller.STATES)),
@@ -86,21 +73,48 @@ _core["default"].page({
       }).then(function (res) {
         var success = res.payload.success;
 
-        if (!success) {
-          _this.showToast('cancel', '操作失败');
+        if (success) {
+          _this.showToast('收藏成功');
+        } else {
+          _this.showToast('收藏失败');
         }
 
         console.log(res);
       })["catch"](function (err) {
-        _this.showToast('cancel', '操作失败');
+        _this.showToast('收藏失败');
 
         console.log(err);
       });
     },
-    onHandleLargeImage: function onHandleLargeImage() {
+    exeAjaxHouseUnfollow: function exeAjaxHouseUnfollow() {
+      var _this2 = this;
+
+      var house_id = this.$wx.options.house_id;
+      this.ajaxHouseUnfollow({
+        house_id: house_id
+      }).then(function (res) {
+        var success = res.payload.success;
+
+        if (success) {
+          _this2.showToast('取消收藏');
+        } else {
+          _this2.showToast('取消失败');
+        }
+
+        console.log(res);
+      })["catch"](function (err) {
+        _this2.showToast('取消失败');
+
+        console.log(err);
+      });
+    },
+    onHandleFollow: function onHandleFollow() {
+      this.exeAjaxHouseFollow();
+    },
+    onHandleLargeImage: function onHandleLargeImage(index) {
       wx.previewImage({
-        current: 'http://192.168.5.4/packageHouse/images/banner01.jpg',
-        urls: ['http://192.168.5.4/packageHouse/images/banner01.jpg', 'http://192.168.5.4/packageHouse/images/banner02.jpg']
+        current: this.items[index].url,
+        urls: [this.items[0].url, this.items[1].url]
       });
     },
     onHandleClickMap: function onHandleClickMap() {
@@ -131,68 +145,102 @@ _core["default"].page({
     },
     onRefresh: function onRefresh() {
       this.exeAjaxHouseDetail();
+    },
+    onHandleInitQQMap: function onHandleInitQQMap() {
+      var _this3 = this;
+
+      var qqmapsdk = new _wxQqmapJssdk["default"]({
+        key: 'CQABZ-RINL4-5MAU4-DBWDV-D2UXZ-5GBEU'
+      });
+      qqmapsdk.geocoder({
+        address: '安徽省宣城市广德市桃州镇水岸阳光城一区13栋',
+        success: function success(res) {
+          _this3.onUpdateLocation(res);
+        },
+        complete: function complete(res) {
+          console.log(res);
+        }
+      });
+    },
+    onUpdateLocation: function onUpdateLocation(res) {
+      if (res) {
+        var _ref = res || {},
+            result = _ref.result;
+
+        var _ref2 = result || {},
+            location = _ref2.location;
+
+        var _ref3 = location || {},
+            lat = _ref3.lat,
+            lng = _ref3.lng;
+
+        this.longitude = lng;
+        this.latitude = lat;
+        console.log('东经=' + lng + '|北纬=' + lat);
+      }
     }
   }),
   onLoad: function onLoad() {
+    this.onHandleInitQQMap();
     this.exeAjaxHouseDetail();
   }
-}, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\..\\components\\error\\error"},"wux-toast":{"path":"..\\..\\..\\$vendor\\wux-weapp\\dist\\toast\\index"}},"on":{"6-209":["refresh"]}}, handlers: {'6-209': {"refresh": function proxy () {
+}, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\..\\components\\error\\error"}},"on":{"8-36":["refresh"]}}, handlers: {'8-36': {"refresh": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onRefresh($event)
       })();
     
-  }},'6-210': {"change": function proxy () {
+  }},'8-37': {"change": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleSwiperChange($event)
       })();
     
-  }, "tap": function proxy () {
+  }},'8-38': {"tap": function proxy (index) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleLargeImage(index)
+      })();
+    
+  }},'8-39': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
-        _vm.onHandleLargeImage($event)
+        _vm.onHandleFollow($event)
       })();
     
-  }},'6-212': {"tap": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.exeAjaxHouseFollow($event)
-      })();
-    
-  }},'6-213': {"tap": function proxy (item) {
+  }},'8-40': {"tap": function proxy (item) {
     
     var _vm=this;
       return (function () {
         _vm.onHandleMessage(item.id)
       })();
     
-  }},'6-214': {"tap": function proxy (item) {
+  }},'8-41': {"tap": function proxy (item) {
     
     var _vm=this;
       return (function () {
         _vm.onHandlePhone(item.tel)
       })();
     
-  }},'6-215': {"tap": function proxy () {
+  }},'8-42': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleClickMap($event)
       })();
     
-  }},'6-216': {"tap": function proxy () {
+  }},'8-43': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
         _vm.onHandleMessage(_vm.isData.agency[0].id)
       })();
     
-  }},'6-217': {"tap": function proxy () {
+  }},'8-44': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {

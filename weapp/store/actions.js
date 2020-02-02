@@ -5,7 +5,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ajaxRequestHouseFollow = exports.ajaxRequestHouseDetail = exports.ajaxRequestRentHouseList = void 0;
+exports.ajaxRequestHouseFavorite = exports.ajaxRequestHouseUnfollow = exports.ajaxRequestHouseFollow = exports.ajaxRequestHouseDetail = exports.ajaxRequestHouseList = void 0;
 
 var _apis = _interopRequireDefault(require('../apis/index.js'));
 
@@ -17,7 +17,7 @@ var utils = _interopRequireWildcard(require('../utils/index.js'));
 
 var actionTypes = _interopRequireWildcard(require('actionTypes.js'));
 
-var _reduxActions = require('../vendor.js')(48);
+var _reduxActions = require('../vendor.js')(47);
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
 
@@ -37,10 +37,10 @@ var commit = function commit(type, data) {
   });
 };
 
-var ajaxRequestRentHouseList = (0, _reduxActions.createAction)('selectRentHouseList', function (params) {
-  commit(actionTypes.SELECT_RENTHOUSELIST_REQUEST);
+var ajaxRequestHouseList = (0, _reduxActions.createAction)('selectHouseList', function (params) {
+  commit(actionTypes.SELECT_HOUSELIST_REQUEST);
   return new Promise(function (resolve, reject) {
-    _axios["default"].get(_apis["default"].selectRentHouseList, {
+    _axios["default"].get(_apis["default"].selectHouseList, {
       params: params
     }).then(function (res) {
       res = res || {};
@@ -50,19 +50,19 @@ var ajaxRequestRentHouseList = (0, _reduxActions.createAction)('selectRentHouseL
 
       if (success) {
         data.rows = utils.dataFilter(data.rows);
-        commit(actionTypes.SELECT_RENTHOUSELIST_SUCCESS, data);
+        commit(actionTypes.SELECT_HOUSELIST_SUCCESS, data);
       } else {
-        commit(actionTypes.SELECT_RENTHOUSELIST_FAILURE);
+        commit(actionTypes.SELECT_HOUSELIST_FAILURE);
       }
 
       resolve(res);
     })["catch"](function (err) {
-      commit(actionTypes.SELECT_RENTHOUSELIST_FAILURE);
+      commit(actionTypes.SELECT_HOUSELIST_FAILURE);
       reject(err);
     });
   });
 });
-exports.ajaxRequestRentHouseList = ajaxRequestRentHouseList;
+exports.ajaxRequestHouseList = ajaxRequestHouseList;
 var ajaxRequestHouseDetail = (0, _reduxActions.createAction)('selectHouseDetail', function (params) {
   commit(actionTypes.SELECT_HOUSEDETAIL_REQUEST);
   return new Promise(function (resolve, reject) {
@@ -88,26 +88,128 @@ var ajaxRequestHouseDetail = (0, _reduxActions.createAction)('selectHouseDetail'
   });
 });
 exports.ajaxRequestHouseDetail = ajaxRequestHouseDetail;
-var ajaxRequestHouseFollow = (0, _reduxActions.createAction)('insertHouseFollow', function (params) {
-  commit(actionTypes.INSERT_HOUSEFOLLOW_REQUEST);
+var ajaxRequestHouseFollow = (0, _reduxActions.createAction)('updateHouseFollow', function (params) {
+  commit(actionTypes.UPDATE_HOUSEFOLLOW_REQUEST);
   return new Promise(function (resolve, reject) {
-    _axios["default"].post(_apis["default"].insertHouseFollow, params).then(function (res) {
+    _axios["default"].post(_apis["default"].updateHouseFollow, params).then(function (res) {
       res = res || {};
       var _res3 = res,
           data = _res3.data,
           success = _res3.success;
 
       if (success) {
-        commit(actionTypes.INSERT_HOUSEFOLLOW_SUCCESS, data);
+        commit(actionTypes.UPDATE_HOUSEFOLLOW_SUCCESS, data);
       } else {
-        commit(actionTypes.INSERT_HOUSEFOLLOW_FAILURE);
+        commit(actionTypes.UPDATE_HOUSEFOLLOW_FAILURE);
       }
 
       resolve(res);
     })["catch"](function (err) {
-      commit(actionTypes.INSERT_HOUSEFOLLOW_FAILURE);
+      commit(actionTypes.UPDATE_HOUSEFOLLOW_FAILURE);
       reject(err);
     });
   });
 });
 exports.ajaxRequestHouseFollow = ajaxRequestHouseFollow;
+var ajaxRequestHouseUnfollow = (0, _reduxActions.createAction)('updateHouseUnfollow', function (params) {
+  commit(actionTypes.UPDATE_HOUSEUNFOLLOW_REQUEST);
+  return new Promise(function (resolve, reject) {
+    _axios["default"].post(_apis["default"].updateHouseUnfollow, params).then(function (res) {
+      res = res || {};
+      var _res4 = res,
+          data = _res4.data,
+          success = _res4.success;
+
+      if (success) {
+        commit(actionTypes.UPDATE_HOUSEUNFOLLOW_SUCCESS, data);
+      } else {
+        commit(actionTypes.UPDATE_HOUSEUNFOLLOW_FAILURE);
+      }
+
+      resolve(res);
+    })["catch"](function (err) {
+      commit(actionTypes.UPDATE_HOUSEUNFOLLOW_FAILURE);
+      reject(err);
+    });
+  });
+});
+exports.ajaxRequestHouseUnfollow = ajaxRequestHouseUnfollow;
+var ajaxRequestHouseFavorite = (0, _reduxActions.createAction)('selectHouseFavorite', function (params) {
+  var houseType = params.filter[0].value;
+
+  switch (houseType) {
+    case 1:
+      commit(actionTypes.SELECT_HOUSEFAVORITENEW_REQUEST);
+      break;
+
+    case 2:
+      commit(actionTypes.SELECT_HOUSEFAVORITESECOND_REQUEST);
+      break;
+
+    case 3:
+      commit(actionTypes.SELECT_HOUSEFAVORITERENT_REQUEST);
+      break;
+  }
+
+  return new Promise(function (resolve, reject) {
+    _axios["default"].get(_apis["default"].selectHouseFavorite, {
+      params: params
+    }).then(function (res) {
+      res = res || {};
+      var _res5 = res,
+          data = _res5.data,
+          success = _res5.success;
+
+      if (success) {
+        data.rows = utils.dataFilter(data.rows);
+
+        switch (houseType) {
+          case 1:
+            commit(actionTypes.SELECT_HOUSEFAVORITENEW_SUCCESS, data);
+            break;
+
+          case 2:
+            commit(actionTypes.SELECT_HOUSEFAVORITESECOND_SUCCESS, data);
+            break;
+
+          case 3:
+            commit(actionTypes.SELECT_HOUSEFAVORITERENT_SUCCESS, data);
+            break;
+        }
+      } else {
+        switch (houseType) {
+          case 1:
+            commit(actionTypes.SELECT_HOUSEFAVORITENEW_FAILURE);
+            break;
+
+          case 2:
+            commit(actionTypes.SELECT_HOUSEFAVORITESECOND_FAILURE);
+            break;
+
+          case 3:
+            commit(actionTypes.SELECT_HOUSEFAVORITERENT_FAILURE);
+            break;
+        }
+      }
+
+      resolve(res);
+    })["catch"](function (err) {
+      switch (houseType) {
+        case 1:
+          commit(actionTypes.SELECT_HOUSEFAVORITENEW_FAILURE);
+          break;
+
+        case 2:
+          commit(actionTypes.SELECT_HOUSEFAVORITESECOND_FAILURE);
+          break;
+
+        case 3:
+          commit(actionTypes.SELECT_HOUSEFAVORITERENT_FAILURE);
+          break;
+      }
+
+      reject(err);
+    });
+  });
+});
+exports.ajaxRequestHouseFavorite = ajaxRequestHouseFavorite;

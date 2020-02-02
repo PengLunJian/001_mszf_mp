@@ -1,14 +1,10 @@
 
 <view class="container">
-  <wux-toast bind_init="_initComponent" id="wux-toast"></wux-toast>
-  <loading bind_init="_initComponent" isLoading="{{ isLoading&&!isData.rows.length }}"></loading>
-  <error bind_init="_initComponent" isFailure="{{ isFailure&&!isData.rows.length }}" data-wpy-evt="7-0" bindrefresh="_proxy"></error>
-  <empty bind_init="_initComponent" isSuccess="{{ isSuccess&&!isData.rows.length }}"></empty>
   <view class="content">
     <view class="header">
       <top-bar bind_init="_initComponent" title="房源列表"></top-bar>
       <view class="tab-bar">
-        <view wx:for="{{ tabs }}" wx:for-index="index" wx:for-item="tab" wx:key="index" data-wpy-evt="7-1" bindtap="_proxy" data-wpytap-a="{{ index }}" class="tab-item {{ [ tabIndex===index ? 'active' : '' ] }}">
+        <view wx:for="{{ tabs }}" wx:for-index="index" wx:for-item="tab" wx:key="index" data-wpy-evt="9-0" bindtap="_proxy" data-wpytap-a="{{ index }}" class="tab-item {{ [ tabIndex===index ? 'active' : '' ] }}">
           <view class="tab-text">
             <label class="tab-label">{{tab.label}}</label>
             <label class="tab-triangle"></label>
@@ -16,19 +12,24 @@
         </view>
       </view>
     </view>
-    <view wx:if="{{ isData.rows.length }}" class="body fade">
-      <scroll-view scroll-y="{{iSwitch}}" data-wpy-evt="7-2" bindscrolltolower="_proxy" class="scroll-view">
-        <view class="items">
-          <block wx:for="{{ isData.rows }}" wx:for-index="index" wx:for-item="item" wx:key="index" key="{{ index }}">
-            <rent-house-item bind_init="_initComponent" item="{{ item }}"></rent-house-item>
-          </block>
-        </view>
-        <load-more bind_init="_initComponent" isMore="{{ isData.rows.length<isData.totalCount }}"></load-more>
-      </scroll-view>
+    <view class="body">
+      <loading bind_init="_initComponent" isLoading="{{ isLoading&&!isData.rows.length }}"></loading>
+      <error bind_init="_initComponent" isFailure="{{ isFailure&&!isData.rows.length }}" data-wpy-evt="9-1" bindrefresh="_proxy"></error>
+      <empty bind_init="_initComponent" isSuccess="{{ isSuccess&&!isData.rows.length }}"></empty>
+      <view wx:if="{{ isData.rows.length }}" class="context fade">
+        <scroll-view scroll-y="{{iSwitch}}" data-wpy-evt="9-2" bindscrolltolower="_proxy" class="scroll-view">
+          <view class="items">
+            <block wx:for="{{ isData.rows }}" wx:for-index="index" wx:for-item="item" wx:key="index" key="{{ index }}">
+              <rent-house-item bind_init="_initComponent" item="{{ item }}"></rent-house-item>
+            </block>
+          </view>
+          <load-more bind_init="_initComponent" length="{{ isData.rows.length }}" totalCount="{{ isData.totalCount }}"></load-more>
+        </scroll-view>
+      </view>
     </view>
     <view class="footer"></view>
     <view id="price" class="modal {{ [ !tabs[0].isShow ? 'hide' : '' ] }}">
-      <view data-wpy-evt="7-3" bindtap="_proxy" class="modal-bg"></view>
+      <view data-wpy-evt="9-3" bindtap="_proxy" class="modal-bg"></view>
       <view class="modal-content">
         <view class="modal-header"></view>
         <view class="modal-body">
@@ -37,7 +38,7 @@
               <view class="modal-block">
                 <view class="modal-row row">
                   <view wx:for="{{ btnPrice.items }}" wx:for-index="index" wx:for-item="item" wx:key="index" class="modal-col col-3 {{ [ index===btnPrice.initIndex ? 'active' : '' ] }}">
-                    <view data-wpy-evt="7-4" bindtap="_proxy" data-wpytap-a="{{ index }}" class="btn-item btn-price">{{item}}</view>
+                    <view data-wpy-evt="9-4" bindtap="_proxy" data-wpytap-a="{{ index }}" class="btn-item btn-price">{{item}}</view>
                   </view>
                 </view>
                 <view class="modal-split"></view>
@@ -51,7 +52,7 @@
                     <view class="max-label col-6">{{maxPrice}}</view>
                   </view>
                   <view class="modal-slider">
-                    <wux-slider bind_init="_initComponent" min="0" step="10" max="10000" tipFormatter="" controlled="{{true}}" value="{{ sliderPriceValue }}" trackStyle="{{trackStylePrice}}" handleStyle="{{handleStylePrice}}" data-wpy-evt="7-5" bindchange="_proxy"></wux-slider>
+                    <wux-slider bind_init="_initComponent" min="0" step="10" max="10000" tipFormatter="" controlled="{{true}}" value="{{ sliderPriceValue }}" trackStyle="{{trackStylePrice}}" handleStyle="{{handleStylePrice}}" data-wpy-evt="9-5" bindchange="_proxy"></wux-slider>
                   </view>
                 </view>
               </view>
@@ -60,14 +61,14 @@
         </view>
         <view class="modal-footer">
           <view class="modal-button">
-            <view data-wpy-evt="7-6" bindtap="_proxy" class="btn btn-clear">清空</view>
+            <view data-wpy-evt="9-6" bindtap="_proxy" class="btn btn-clear">清空</view>
             <view class="btn btn-confirm">确定</view>
           </view>
         </view>
       </view>
     </view>
     <view id="filter" class="modal {{ [ !tabs[1].isShow ? 'hide' : '' ] }}">
-      <view data-wpy-evt="7-7" bindtap="_proxy" class="modal-bg"></view>
+      <view data-wpy-evt="9-7" bindtap="_proxy" class="modal-bg"></view>
       <view class="modal-content">
         <view class="modal-header"></view>
         <view class="modal-body">
@@ -77,7 +78,7 @@
                 <view class="modal-label">方式</view>
                 <view class="modal-row row">
                   <view wx:for="{{ btnMethod.items }}" wx:for-index="index" wx:for-item="item" wx:key="index" class="modal-col col-3 {{ [ index===btnMethod.initIndex ? 'active' : '' ] }}">
-                    <view data-wpy-evt="7-8" bindtap="_proxy" data-wpytap-a="{{ index }}" class="btn-item btn-method">{{item}}</view>
+                    <view data-wpy-evt="9-8" bindtap="_proxy" data-wpytap-a="{{ index }}" class="btn-item btn-method">{{item}}</view>
                   </view>
                 </view>
                 <view class="modal-split"></view>
@@ -88,7 +89,7 @@
                 <view class="modal-label">户型</view>
                 <view class="modal-row row">
                   <view wx:for="{{ btnLayout.items }}" wx:for-index="index" wx:for-item="item" wx:key="index" class="modal-col col-3 {{ [ index===btnLayout.initIndex ? 'active' : '' ] }}">
-                    <view data-wpy-evt="7-9" bindtap="_proxy" data-wpytap-a="{{ index }}" class="btn-item btn-layout">{{item}}</view>
+                    <view data-wpy-evt="9-9" bindtap="_proxy" data-wpytap-a="{{ index }}" class="btn-item btn-layout">{{item}}</view>
                   </view>
                 </view>
                 <view class="modal-split"></view>
@@ -99,7 +100,7 @@
                 <view class="modal-label">装修</view>
                 <view class="modal-row row">
                   <view wx:for="{{ btnStyle.items }}" wx:for-index="index" wx:for-item="item" wx:key="index" class="modal-col col-3 {{ [ index===btnStyle.initIndex ? 'active' : '' ] }}">
-                    <view data-wpy-evt="7-10" bindtap="_proxy" data-wpytap-a="{{ index }}" class="btn-item btn-style">{{item}}</view>
+                    <view data-wpy-evt="9-10" bindtap="_proxy" data-wpytap-a="{{ index }}" class="btn-item btn-style">{{item}}</view>
                   </view>
                 </view>
                 <view class="modal-split"></view>
@@ -113,7 +114,7 @@
                     <view class="max-label col-6">{{maxArea}}</view>
                   </view>
                   <view class="modal-slider">
-                    <wux-slider bind_init="_initComponent" min="0" step="1" max="300" tipFormatter="" controlled="{{true}}" value="{{ sliderAreaValue }}" trackStyle="{{trackStyleArea}}" handleStyle="{{handleStyleArea}}" data-wpy-evt="7-11" bindchange="_proxy"></wux-slider>
+                    <wux-slider bind_init="_initComponent" min="0" step="1" max="300" tipFormatter="" controlled="{{true}}" value="{{ sliderAreaValue }}" trackStyle="{{trackStyleArea}}" handleStyle="{{handleStyleArea}}" data-wpy-evt="9-11" bindchange="_proxy"></wux-slider>
                   </view>
                 </view>
               </view>
@@ -122,19 +123,19 @@
         </view>
         <view class="modal-footer">
           <view class="modal-button">
-            <view data-wpy-evt="7-12" bindtap="_proxy" class="btn btn-clear">清空</view>
+            <view data-wpy-evt="9-12" bindtap="_proxy" class="btn btn-clear">清空</view>
             <view class="btn btn-confirm">确定</view>
           </view>
         </view>
       </view>
     </view>
     <view id="sort" class="modal {{ [ !tabs[2].isShow ? 'hide' : '' ] }}">
-      <view data-wpy-evt="7-13" bindtap="_proxy" class="modal-bg"></view>
+      <view data-wpy-evt="9-13" bindtap="_proxy" class="modal-bg"></view>
       <view class="modal-content">
         <view class="modal-header"></view>
         <view class="modal-body">
           <view class="modal-sort">
-            <view wx:for="{{ btnSort.items }}" wx:for-index="index" wx:for-item="item" wx:key="index" data-wpy-evt="7-14" bindtap="_proxy" data-wpytap-a="{{ index }}" class="btn btn-sort {{ [ index===btnSort.initIndex ? 'active' : '' ] }}">{{item}}
+            <view wx:for="{{ btnSort.items }}" wx:for-index="index" wx:for-item="item" wx:key="index" data-wpy-evt="9-14" bindtap="_proxy" data-wpytap-a="{{ index }}" class="btn btn-sort {{ [ index===btnSort.initIndex ? 'active' : '' ] }}">{{item}}
             </view>
           </view>
         </view>

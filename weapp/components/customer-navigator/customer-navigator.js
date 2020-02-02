@@ -15,23 +15,28 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 _core["default"].component({
   data: {
     items: [{
-      title: '租房',
+      text: '租房',
+      icon: 'icon-nav01',
       path: $routes.RENT_HOUSE_LIST.path
     }, {
-      title: '二手房',
+      text: '二手房',
+      icon: 'icon-nav02',
       path: $routes.SECOND_HOUSE_LIST.path
     }, {
-      title: '房贷计算器',
-      path: $routes.CALCULATOR.path
-    }, {
-      title: '新房',
+      text: '新房',
+      icon: 'icon-nav03',
       path: $routes.NEW_HOUSE_LIST.path
     }, {
-      title: '房源发布',
+      text: '房贷计算',
+      icon: 'icon-nav04',
+      path: $routes.CALCULATOR.path
+    }, {
+      text: '房源发布',
+      icon: 'icon-nav05',
       path: $routes.RELEASE.path
     }]
   },
   events: {},
   methods: {},
   onLoad: function onLoad() {}
-}, {info: {"components":{},"on":{}}, handlers: {}, models: {} });
+}, {info: {"components":{},"on":{}}, handlers: {}, models: {} }, {info: {"components":{},"on":{}}, handlers: {}, models: {} }, {info: {"components":{},"on":{}}, handlers: {}, models: {} });

@@ -2,31 +2,69 @@
 <view class="container">
   <view class="content">
     <view class="header">
-      <view class="inline">
-        <view class="logo">
-          <image src="../../assets/images/logo@2x.png" mode="aspectFit"></image>
-        </view>
-        <view class="search">
-          <navigator hover-class="none" url="{{ searchUrl }}" class="btn btn-search">
-            <view class="btn-icon iconfont icon-search"></view>
-            <view class="btn-text">请输入小区/商圈</view>
-          </navigator>
-        </view>
+      <view class="location">
+        <label class="location-icon iconfont icon-location"></label>
+        <label class="location-text">宣城</label>
+      </view>
+      <view class="search">
+        <navigator hover-class="none" url="{{ searchUrl }}" class="btn btn-search">
+          <view class="btn-icon iconfont icon-search"></view>
+          <view class="btn-text">请输入小区/商圈</view>
+        </navigator>
       </view>
     </view>
     <view class="body">
-      <view class="row">
-        <view class="col-12">
-          <navigator hover-class="none" url="{{ mineUrl }}" class="user">
-            <image src="../../assets/images/mine.jpg" class="user-bg"></image>
-            <view class="user-box">
-              <image src="../../assets/images/agent.jpg" mode="aspectFit" class="user-img"></image>
-              <label class="user-name">WEB前端架构师</label>
+      <view class="context">
+        <scroll-view scroll-y="{{true}}" class="scroll-view">
+          <banner bind_init="_initComponent"></banner>
+          <customer-navigator bind_init="_initComponent"></customer-navigator>
+          <view class="module">
+            <view class="module-content">
+              <view class="module-header">
+                <view class="module-title">租房推荐</view>
+              </view>
+              <view class="module-body">
+                <view class="module-context">
+                  <block wx:for="{{ items }}" wx:for-index="index" wx:for-item="item" wx:key="index" key="{{ index }}">
+                    <rent-house-item bind_init="_initComponent" item="{{ item }}"></rent-house-item>
+                  </block>
+                </view>
+              </view>
+              <view class="module-footer"></view>
             </view>
-          </navigator>
-        </view>
+          </view>
+          <view class="module">
+            <view class="module-content">
+              <view class="module-header">
+                <view class="module-title">二手房推荐</view>
+              </view>
+              <view class="module-body">
+                <view class="module-context">
+                  <block wx:for="{{ items }}" wx:for-index="index" wx:for-item="item" wx:key="index" key="{{ index }}">
+                    <second-house-item bind_init="_initComponent" item="{{ item }}"></second-house-item>
+                  </block>
+                </view>
+              </view>
+              <view class="module-footer"></view>
+            </view>
+          </view>
+          <view class="module">
+            <view class="module-content">
+              <view class="module-header">
+                <view class="module-title">新房推荐</view>
+              </view>
+              <view class="module-body">
+                <view class="module-context">
+                  <block wx:for="{{ items }}" wx:for-index="index" wx:for-item="item" wx:key="index" key="{{ index }}">
+                    <new-house-item bind_init="_initComponent" item="{{ item }}"></new-house-item>
+                  </block>
+                </view>
+              </view>
+              <view class="module-footer"></view>
+            </view>
+          </view>
+        </scroll-view>
       </view>
-      <customer-navigator bind_init="_initComponent"></customer-navigator>
     </view>
     <view class="footer"></view>
   </view>

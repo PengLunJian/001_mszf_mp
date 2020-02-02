@@ -7,7 +7,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
-var _reduxActions = require('../../vendor.js')(48);
+var _reduxActions = require('../../vendor.js')(47);
 
 var actionTypes = _interopRequireWildcard(require('../actionTypes.js'));
 
@@ -25,20 +25,20 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var actions = (_actions = {}, _defineProperty(_actions, actionTypes.INSERT_HOUSEFOLLOW_REQUEST, function (state) {
+var actions = (_actions = {}, _defineProperty(_actions, actionTypes.UPDATE_HOUSEFOLLOW_REQUEST, function (state) {
   return _objectSpread({}, state, {
     isLoading: true,
     isSuccess: false,
     isFailure: false
   });
-}), _defineProperty(_actions, actionTypes.INSERT_HOUSEFOLLOW_SUCCESS, function (state, action) {
+}), _defineProperty(_actions, actionTypes.UPDATE_HOUSEFOLLOW_SUCCESS, function (state, action) {
   return _objectSpread({}, state, {
     isLoading: false,
     isSuccess: true,
     isFailure: false,
     data: action.data
   });
-}), _defineProperty(_actions, actionTypes.INSERT_HOUSEFOLLOW_FAILURE, function (state) {
+}), _defineProperty(_actions, actionTypes.UPDATE_HOUSEFOLLOW_FAILURE, function (state) {
   return _objectSpread({}, state, {
     isLoading: false,
     isSuccess: false,

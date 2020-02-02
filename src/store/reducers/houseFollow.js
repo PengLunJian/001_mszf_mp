@@ -3,7 +3,7 @@ import * as actionTypes from '../actionTypes';
 import * as states from '../states';
 
 const actions = {
-  [actionTypes.INSERT_HOUSEFOLLOW_REQUEST](state) {
+  [actionTypes.UPDATE_HOUSEFOLLOW_REQUEST](state) {
     return {
       ...state,
       isLoading: true,
@@ -11,7 +11,7 @@ const actions = {
       isFailure: false
     };
   },
-  [actionTypes.INSERT_HOUSEFOLLOW_SUCCESS](state, action) {
+  [actionTypes.UPDATE_HOUSEFOLLOW_SUCCESS](state, action) {
     return {
       ...state,
       isLoading: false,
@@ -20,7 +20,7 @@ const actions = {
       data: action.data
     };
   },
-  [actionTypes.INSERT_HOUSEFOLLOW_FAILURE](state) {
+  [actionTypes.UPDATE_HOUSEFOLLOW_FAILURE](state) {
     return {
       ...state,
       isLoading: false,

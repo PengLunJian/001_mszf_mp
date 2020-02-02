@@ -15,7 +15,7 @@
             </div>
             <div v-if="item.type===1" class="item">
               <div class="item-img">
-                <img src="../../../assets/images/item1.jpg"/>
+                <img src="http://sersms.com:7000/house/v1/file/static/userfile/202001/15/1217303536806432768.jpg"/>
               </div>
               <div class="item-info">
                 <div class="item-row">
@@ -44,7 +44,7 @@
             </div>
             <div v-if="item.type===2" class="item">
               <div class="item-img">
-                <img src="../../../assets/images/item2.jpg"/>
+                <img src="http://sersms.com:7000/house/v1/file/static/userfile/202001/15/1217306190710345728.jpg"/>
               </div>
               <div class="item-info">
                 <div class="item-row">
@@ -76,7 +76,7 @@
             </div>
             <div v-if="item.type===3" class="item">
               <div class="item-img">
-                <img src="../../../assets/images/item3.jpg"/>
+                <img src="http://sersms.com:7000/house/v1/file/static/userfile/202001/15/1217303264084398080.jpg"/>
               </div>
               <div class="item-info">
                 <div class="item-row">

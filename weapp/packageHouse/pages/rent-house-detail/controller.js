@@ -34,6 +34,9 @@ var ACTIONS = {
   },
   ajaxHouseFollow: function ajaxHouseFollow(params) {
     return actions.ajaxRequestHouseFollow(params);
+  },
+  ajaxHouseUnfollow: function ajaxHouseUnfollow(params) {
+    return actions.ajaxRequestHouseUnfollow(params);
   }
 };
 exports.ACTIONS = ACTIONS;

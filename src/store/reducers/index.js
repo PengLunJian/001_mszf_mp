@@ -1,10 +1,12 @@
 import {combineReducers} from 'redux';
-import RENTHOUSELIST_REDUCER from './rentHouseList';
+import HOUSELIST_REDUCER from './houseList';
 import HOUSEDETAIL_REDUCER from './houseDetail';
 import HOUSEFOLLOW_REDUCER from './houseFollow';
+import HOUSEFAVORITE_REDUCER from './houseFavorite';
 
 export default combineReducers({
-  RENTHOUSELIST_REDUCER,
+  HOUSELIST_REDUCER,
   HOUSEDETAIL_REDUCER,
-  HOUSEFOLLOW_REDUCER
+  HOUSEFOLLOW_REDUCER,
+  HOUSEFAVORITE_REDUCER
 });

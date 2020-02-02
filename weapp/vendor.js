@@ -2857,24 +2857,1620 @@ exports.mapActions = mapActions;
 
 
 /***** module 2 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\wux-weapp\dist\countdown\index.js *****/
-function(module, exports, __wepy_require) {"use strict";function _classCallCheck(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}function _defineProperties(t,e){for(var n=0;n<e.length;n++){var i=e[n];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(t,i.key,i)}}function _createClass(t,e,n){return e&&_defineProperties(t.prototype,e),n&&_defineProperties(t,n),t}Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=void 0;var Countdown=function(){function n(){var t=0<arguments.length&&void 0!==arguments[0]?arguments[0]:{},e=1<arguments.length&&void 0!==arguments[1]?arguments[1]:getCurrentPages()[getCurrentPages().length-1];_classCallCheck(this,n),Object.assign(this,{page:e,options:t}),this.__init()}return _createClass(n,[{key:"__init",value:function(){this.setData=this.page.setData.bind(this.page),this.restart(this.options)}},{key:"setDefaults",value:function(){return{date:"June 7, 2087 15:03:25",refresh:1e3,offset:0,onEnd:function(){},render:function(t){}}}},{key:"mergeOptions",value:function(t){var e=this.setDefaults();for(var n in e)e.hasOwnProperty(n)&&(this.options[n]=void 0!==t[n]?t[n]:e[n],"date"===n&&"object"!=typeof this.options.date&&(this.options.date=new Date(this.options.date)),"function"==typeof this.options[n]&&(this.options[n]=this.options[n].bind(this)));"object"!=typeof this.options.date&&(this.options.date=new Date(this.options.date))}},{key:"getDiffDate",value:function(){var t=(this.options.date.getTime()-Date.now()+this.options.offset)/1e3,e={years:0,days:0,hours:0,min:0,sec:0,millisec:0};return t<=0?this.interval&&(this.stop(),this.options.onEnd()):(31557600<=t&&(e.years=Math.floor(t/31557600),t-=365.25*e.years*86400),86400<=t&&(e.days=Math.floor(t/86400),t-=86400*e.days),3600<=t&&(e.hours=Math.floor(t/3600),t-=3600*e.hours),60<=t&&(e.min=Math.floor(t/60),t-=60*e.min),e.sec=Math.round(t),e.millisec=t%1*1e3),e}},{key:"leadingZeros",value:function(t,e){var n=1<arguments.length&&void 0!==e?e:2;return(t=String(t)).length>n?t:(Array(n+1).join("0")+t).substr(-n)}},{key:"update",value:function(t){return this.options.date="object"!=typeof t?new Date(t):t,this.render(),this}},{key:"stop",value:function(){return this.interval&&(clearInterval(this.interval),this.interval=!1),this}},{key:"render",value:function(){return this.options.render(this.getDiffDate()),this}},{key:"start",value:function(){var t=this;return!this.interval&&(this.render(),this.options.refresh&&(this.interval=setInterval(function(){t.render()},this.options.refresh)),this)}},{key:"updateOffset",value:function(t){return this.options.offset=t,this}},{key:"restart",value:function(t){var e=0<arguments.length&&void 0!==t?t:{};return this.mergeOptions(e),this.interval=!1,this.start(),this}}]),n}(),_default=Countdown;exports.default=_default;
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\wx-qqmap-jssdk\qqmap-wx-jssdk.min.js *****/
+function(module, exports, __wepy_require) {var ERROR_CONF = { KEY_ERR: 311, KEY_ERR_MSG: 'key格式错误', PARAM_ERR: 310, PARAM_ERR_MSG: '请求参数信息有误', SYSTEM_ERR: 600, SYSTEM_ERR_MSG: '系统错误', WX_ERR_CODE: 1000, WX_OK_CODE: 200 }; var BASE_URL = 'https://apis.map.qq.com/ws/'; var URL_SEARCH = BASE_URL + 'place/v1/search'; var URL_SUGGESTION = BASE_URL + 'place/v1/suggestion'; var URL_GET_GEOCODER = BASE_URL + 'geocoder/v1/'; var URL_CITY_LIST = BASE_URL + 'district/v1/list'; var URL_AREA_LIST = BASE_URL + 'district/v1/getchildren'; var URL_DISTANCE = BASE_URL + 'distance/v1/'; var URL_DIRECTION = BASE_URL + 'direction/v1/'; var MODE = { driving: 'driving', transit: 'transit' }; var EARTH_RADIUS = 6378136.49; var Utils = { safeAdd(x, y) { var lsw = (x & 0xffff) + (y & 0xffff); var msw = (x >> 16) + (y >> 16) + (lsw >> 16); return (msw << 16) | (lsw & 0xffff) }, bitRotateLeft(num, cnt) { return (num << cnt) | (num >>> (32 - cnt)) }, md5cmn(q, a, b, x, s, t) { return this.safeAdd(this.bitRotateLeft(this.safeAdd(this.safeAdd(a, q), this.safeAdd(x, t)), s), b) }, md5ff(a, b, c, d, x, s, t) { return this.md5cmn((b & c) | (~b & d), a, b, x, s, t) }, md5gg(a, b, c, d, x, s, t) { return this.md5cmn((b & d) | (c & ~d), a, b, x, s, t) }, md5hh(a, b, c, d, x, s, t) { return this.md5cmn(b ^ c ^ d, a, b, x, s, t) }, md5ii(a, b, c, d, x, s, t) { return this.md5cmn(c ^ (b | ~d), a, b, x, s, t) }, binlMD5(x, len) { x[len >> 5] |= 0x80 << (len % 32); x[((len + 64) >>> 9 << 4) + 14] = len; var i; var olda; var oldb; var oldc; var oldd; var a = 1732584193; var b = -271733879; var c = -1732584194; var d = 271733878; for (i = 0; i < x.length; i += 16) { olda = a; oldb = b; oldc = c; oldd = d; a = this.md5ff(a, b, c, d, x[i], 7, -680876936); d = this.md5ff(d, a, b, c, x[i + 1], 12, -389564586); c = this.md5ff(c, d, a, b, x[i + 2], 17, 606105819); b = this.md5ff(b, c, d, a, x[i + 3], 22, -1044525330); a = this.md5ff(a, b, c, d, x[i + 4], 7, -176418897); d = this.md5ff(d, a, b, c, x[i + 5], 12, 1200080426); c = this.md5ff(c, d, a, b, x[i + 6], 17, -1473231341); b = this.md5ff(b, c, d, a, x[i + 7], 22, -45705983); a = this.md5ff(a, b, c, d, x[i + 8], 7, 1770035416); d = this.md5ff(d, a, b, c, x[i + 9], 12, -1958414417); c = this.md5ff(c, d, a, b, x[i + 10], 17, -42063); b = this.md5ff(b, c, d, a, x[i + 11], 22, -1990404162); a = this.md5ff(a, b, c, d, x[i + 12], 7, 1804603682); d = this.md5ff(d, a, b, c, x[i + 13], 12, -40341101); c = this.md5ff(c, d, a, b, x[i + 14], 17, -1502002290); b = this.md5ff(b, c, d, a, x[i + 15], 22, 1236535329); a = this.md5gg(a, b, c, d, x[i + 1], 5, -165796510); d = this.md5gg(d, a, b, c, x[i + 6], 9, -1069501632); c = this.md5gg(c, d, a, b, x[i + 11], 14, 643717713); b = this.md5gg(b, c, d, a, x[i], 20, -373897302); a = this.md5gg(a, b, c, d, x[i + 5], 5, -701558691); d = this.md5gg(d, a, b, c, x[i + 10], 9, 38016083); c = this.md5gg(c, d, a, b, x[i + 15], 14, -660478335); b = this.md5gg(b, c, d, a, x[i + 4], 20, -405537848); a = this.md5gg(a, b, c, d, x[i + 9], 5, 568446438); d = this.md5gg(d, a, b, c, x[i + 14], 9, -1019803690); c = this.md5gg(c, d, a, b, x[i + 3], 14, -187363961); b = this.md5gg(b, c, d, a, x[i + 8], 20, 1163531501); a = this.md5gg(a, b, c, d, x[i + 13], 5, -1444681467); d = this.md5gg(d, a, b, c, x[i + 2], 9, -51403784); c = this.md5gg(c, d, a, b, x[i + 7], 14, 1735328473); b = this.md5gg(b, c, d, a, x[i + 12], 20, -1926607734); a = this.md5hh(a, b, c, d, x[i + 5], 4, -378558); d = this.md5hh(d, a, b, c, x[i + 8], 11, -2022574463); c = this.md5hh(c, d, a, b, x[i + 11], 16, 1839030562); b = this.md5hh(b, c, d, a, x[i + 14], 23, -35309556); a = this.md5hh(a, b, c, d, x[i + 1], 4, -1530992060); d = this.md5hh(d, a, b, c, x[i + 4], 11, 1272893353); c = this.md5hh(c, d, a, b, x[i + 7], 16, -155497632); b = this.md5hh(b, c, d, a, x[i + 10], 23, -1094730640); a = this.md5hh(a, b, c, d, x[i + 13], 4, 681279174); d = this.md5hh(d, a, b, c, x[i], 11, -358537222); c = this.md5hh(c, d, a, b, x[i + 3], 16, -722521979); b = this.md5hh(b, c, d, a, x[i + 6], 23, 76029189); a = this.md5hh(a, b, c, d, x[i + 9], 4, -640364487); d = this.md5hh(d, a, b, c, x[i + 12], 11, -421815835); c = this.md5hh(c, d, a, b, x[i + 15], 16, 530742520); b = this.md5hh(b, c, d, a, x[i + 2], 23, -995338651); a = this.md5ii(a, b, c, d, x[i], 6, -198630844); d = this.md5ii(d, a, b, c, x[i + 7], 10, 1126891415); c = this.md5ii(c, d, a, b, x[i + 14], 15, -1416354905); b = this.md5ii(b, c, d, a, x[i + 5], 21, -57434055); a = this.md5ii(a, b, c, d, x[i + 12], 6, 1700485571); d = this.md5ii(d, a, b, c, x[i + 3], 10, -1894986606); c = this.md5ii(c, d, a, b, x[i + 10], 15, -1051523); b = this.md5ii(b, c, d, a, x[i + 1], 21, -2054922799); a = this.md5ii(a, b, c, d, x[i + 8], 6, 1873313359); d = this.md5ii(d, a, b, c, x[i + 15], 10, -30611744); c = this.md5ii(c, d, a, b, x[i + 6], 15, -1560198380); b = this.md5ii(b, c, d, a, x[i + 13], 21, 1309151649); a = this.md5ii(a, b, c, d, x[i + 4], 6, -145523070); d = this.md5ii(d, a, b, c, x[i + 11], 10, -1120210379); c = this.md5ii(c, d, a, b, x[i + 2], 15, 718787259); b = this.md5ii(b, c, d, a, x[i + 9], 21, -343485551); a = this.safeAdd(a, olda); b = this.safeAdd(b, oldb); c = this.safeAdd(c, oldc); d = this.safeAdd(d, oldd) } return [a, b, c, d] }, binl2rstr(input) { var i; var output = ''; var length32 = input.length * 32; for (i = 0; i < length32; i += 8) { output += String.fromCharCode((input[i >> 5] >>> (i % 32)) & 0xff) } return output }, rstr2binl(input) { var i; var output = []; output[(input.length >> 2) - 1] = undefined; for (i = 0; i < output.length; i += 1) { output[i] = 0 } var length8 = input.length * 8; for (i = 0; i < length8; i += 8) { output[i >> 5] |= (input.charCodeAt(i / 8) & 0xff) << (i % 32) } return output }, rstrMD5(s) { return this.binl2rstr(this.binlMD5(this.rstr2binl(s), s.length * 8)) }, rstrHMACMD5(key, data) { var i; var bkey = this.rstr2binl(key); var ipad = []; var opad = []; var hash; ipad[15] = opad[15] = undefined; if (bkey.length > 16) { bkey = this.binlMD5(bkey, key.length * 8) } for (i = 0; i < 16; i += 1) { ipad[i] = bkey[i] ^ 0x36363636; opad[i] = bkey[i] ^ 0x5c5c5c5c } hash = this.binlMD5(ipad.concat(this.rstr2binl(data)), 512 + data.length * 8); return this.binl2rstr(this.binlMD5(opad.concat(hash), 512 + 128)) }, rstr2hex(input) { var hexTab = '0123456789abcdef'; var output = ''; var x; var i; for (i = 0; i < input.length; i += 1) { x = input.charCodeAt(i); output += hexTab.charAt((x >>> 4) & 0x0f) + hexTab.charAt(x & 0x0f) } return output }, str2rstrUTF8(input) { return unescape(encodeURIComponent(input)) }, rawMD5(s) { return this.rstrMD5(this.str2rstrUTF8(s)) }, hexMD5(s) { return this.rstr2hex(this.rawMD5(s)) }, rawHMACMD5(k, d) { return this.rstrHMACMD5(this.str2rstrUTF8(k), str2rstrUTF8(d)) }, hexHMACMD5(k, d) { return this.rstr2hex(this.rawHMACMD5(k, d)) }, md5(string, key, raw) { if (!key) { if (!raw) { return this.hexMD5(string) } return this.rawMD5(string) } if (!raw) { return this.hexHMACMD5(key, string) } return this.rawHMACMD5(key, string) }, getSig(requestParam, sk, feature, mode) { var sig = null; var requestArr = []; Object.keys(requestParam).sort().forEach(function (key) { requestArr.push(key + '=' + requestParam[key]) }); if (feature == 'search') { sig = '/ws/place/v1/search?' + requestArr.join('&') + sk } if (feature == 'suggest') { sig = '/ws/place/v1/suggestion?' + requestArr.join('&') + sk } if (feature == 'reverseGeocoder') { sig = '/ws/geocoder/v1/?' + requestArr.join('&') + sk } if (feature == 'geocoder') { sig = '/ws/geocoder/v1/?' + requestArr.join('&') + sk } if (feature == 'getCityList') { sig = '/ws/district/v1/list?' + requestArr.join('&') + sk } if (feature == 'getDistrictByCityId') { sig = '/ws/district/v1/getchildren?' + requestArr.join('&') + sk } if (feature == 'calculateDistance') { sig = '/ws/distance/v1/?' + requestArr.join('&') + sk } if (feature == 'direction') { sig = '/ws/direction/v1/' + mode + '?' + requestArr.join('&') + sk } sig = this.md5(sig); return sig }, location2query(data) { if (typeof data == 'string') { return data } var query = ''; for (var i = 0; i < data.length; i++) { var d = data[i]; if (!!query) { query += ';' } if (d.location) { query = query + d.location.lat + ',' + d.location.lng } if (d.latitude && d.longitude) { query = query + d.latitude + ',' + d.longitude } } return query }, rad(d) { return d * Math.PI / 180.0 }, getEndLocation(location) { var to = location.split(';'); var endLocation = []; for (var i = 0; i < to.length; i++) { endLocation.push({ lat: parseFloat(to[i].split(',')[0]), lng: parseFloat(to[i].split(',')[1]) }) } return endLocation }, getDistance(latFrom, lngFrom, latTo, lngTo) { var radLatFrom = this.rad(latFrom); var radLatTo = this.rad(latTo); var a = radLatFrom - radLatTo; var b = this.rad(lngFrom) - this.rad(lngTo); var distance = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(radLatFrom) * Math.cos(radLatTo) * Math.pow(Math.sin(b / 2), 2))); distance = distance * EARTH_RADIUS; distance = Math.round(distance * 10000) / 10000; return parseFloat(distance.toFixed(0)) }, getWXLocation(success, fail, complete) { wx.getLocation({ type: 'gcj02', success: success, fail: fail, complete: complete }) }, getLocationParam(location) { if (typeof location == 'string') { var locationArr = location.split(','); if (locationArr.length === 2) { location = { latitude: location.split(',')[0], longitude: location.split(',')[1] } } else { location = {} } } return location }, polyfillParam(param) { param.success = param.success || function () { }; param.fail = param.fail || function () { }; param.complete = param.complete || function () { } }, checkParamKeyEmpty(param, key) { if (!param[key]) { var errconf = this.buildErrorConfig(ERROR_CONF.PARAM_ERR, ERROR_CONF.PARAM_ERR_MSG + key + '参数格式有误'); param.fail(errconf); param.complete(errconf); return true } return false }, checkKeyword(param) { return !this.checkParamKeyEmpty(param, 'keyword') }, checkLocation(param) { var location = this.getLocationParam(param.location); if (!location || !location.latitude || !location.longitude) { var errconf = this.buildErrorConfig(ERROR_CONF.PARAM_ERR, ERROR_CONF.PARAM_ERR_MSG + ' location参数格式有误'); param.fail(errconf); param.complete(errconf); return false } return true }, buildErrorConfig(errCode, errMsg) { return { status: errCode, message: errMsg } }, handleData(param, data, feature) { if (feature == 'search') { var searchResult = data.data; var searchSimplify = []; for (var i = 0; i < searchResult.length; i++) { searchSimplify.push({ id: searchResult[i].id || null, title: searchResult[i].title || null, latitude: searchResult[i].location && searchResult[i].location.lat || null, longitude: searchResult[i].location && searchResult[i].location.lng || null, address: searchResult[i].address || null, category: searchResult[i].category || null, tel: searchResult[i].tel || null, adcode: searchResult[i].ad_info && searchResult[i].ad_info.adcode || null, city: searchResult[i].ad_info && searchResult[i].ad_info.city || null, district: searchResult[i].ad_info && searchResult[i].ad_info.district || null, province: searchResult[i].ad_info && searchResult[i].ad_info.province || null }) } param.success(data, { searchResult: searchResult, searchSimplify: searchSimplify }) } else if (feature == 'suggest') { var suggestResult = data.data; var suggestSimplify = []; for (var i = 0; i < suggestResult.length; i++) { suggestSimplify.push({ adcode: suggestResult[i].adcode || null, address: suggestResult[i].address || null, category: suggestResult[i].category || null, city: suggestResult[i].city || null, district: suggestResult[i].district || null, id: suggestResult[i].id || null, latitude: suggestResult[i].location && suggestResult[i].location.lat || null, longitude: suggestResult[i].location && suggestResult[i].location.lng || null, province: suggestResult[i].province || null, title: suggestResult[i].title || null, type: suggestResult[i].type || null }) } param.success(data, { suggestResult: suggestResult, suggestSimplify: suggestSimplify }) } else if (feature == 'reverseGeocoder') { var reverseGeocoderResult = data.result; var reverseGeocoderSimplify = { address: reverseGeocoderResult.address || null, latitude: reverseGeocoderResult.location && reverseGeocoderResult.location.lat || null, longitude: reverseGeocoderResult.location && reverseGeocoderResult.location.lng || null, adcode: reverseGeocoderResult.ad_info && reverseGeocoderResult.ad_info.adcode || null, city: reverseGeocoderResult.address_component && reverseGeocoderResult.address_component.city || null, district: reverseGeocoderResult.address_component && reverseGeocoderResult.address_component.district || null, nation: reverseGeocoderResult.address_component && reverseGeocoderResult.address_component.nation || null, province: reverseGeocoderResult.address_component && reverseGeocoderResult.address_component.province || null, street: reverseGeocoderResult.address_component && reverseGeocoderResult.address_component.street || null, street_number: reverseGeocoderResult.address_component && reverseGeocoderResult.address_component.street_number || null, recommend: reverseGeocoderResult.formatted_addresses && reverseGeocoderResult.formatted_addresses.recommend || null, rough: reverseGeocoderResult.formatted_addresses && reverseGeocoderResult.formatted_addresses.rough || null }; if (reverseGeocoderResult.pois) { var pois = reverseGeocoderResult.pois; var poisSimplify = []; for (var i = 0; i < pois.length; i++) { poisSimplify.push({ id: pois[i].id || null, title: pois[i].title || null, latitude: pois[i].location && pois[i].location.lat || null, longitude: pois[i].location && pois[i].location.lng || null, address: pois[i].address || null, category: pois[i].category || null, adcode: pois[i].ad_info && pois[i].ad_info.adcode || null, city: pois[i].ad_info && pois[i].ad_info.city || null, district: pois[i].ad_info && pois[i].ad_info.district || null, province: pois[i].ad_info && pois[i].ad_info.province || null }) } param.success(data, { reverseGeocoderResult: reverseGeocoderResult, reverseGeocoderSimplify: reverseGeocoderSimplify, pois: pois, poisSimplify: poisSimplify }) } else { param.success(data, { reverseGeocoderResult: reverseGeocoderResult, reverseGeocoderSimplify: reverseGeocoderSimplify }) } } else if (feature == 'geocoder') { var geocoderResult = data.result; var geocoderSimplify = { title: geocoderResult.title || null, latitude: geocoderResult.location && geocoderResult.location.lat || null, longitude: geocoderResult.location && geocoderResult.location.lng || null, adcode: geocoderResult.ad_info && geocoderResult.ad_info.adcode || null, province: geocoderResult.address_components && geocoderResult.address_components.province || null, city: geocoderResult.address_components && geocoderResult.address_components.city || null, district: geocoderResult.address_components && geocoderResult.address_components.district || null, street: geocoderResult.address_components && geocoderResult.address_components.street || null, street_number: geocoderResult.address_components && geocoderResult.address_components.street_number || null, level: geocoderResult.level || null }; param.success(data, { geocoderResult: geocoderResult, geocoderSimplify: geocoderSimplify }) } else if (feature == 'getCityList') { var provinceResult = data.result[0]; var cityResult = data.result[1]; var districtResult = data.result[2]; param.success(data, { provinceResult: provinceResult, cityResult: cityResult, districtResult: districtResult }) } else if (feature == 'getDistrictByCityId') { var districtByCity = data.result[0]; param.success(data, districtByCity) } else if (feature == 'calculateDistance') { var calculateDistanceResult = data.result.elements; var distance = []; for (var i = 0; i < calculateDistanceResult.length; i++) { distance.push(calculateDistanceResult[i].distance) } param.success(data, { calculateDistanceResult: calculateDistanceResult, distance: distance }) } else if (feature == 'direction') { var direction = data.result.routes; param.success(data, direction) } else { param.success(data) } }, buildWxRequestConfig(param, options, feature) { var that = this; options.header = { "content-type": "application/json" }; options.method = 'GET'; options.success = function (res) { var data = res.data; if (data.status === 0) { that.handleData(param, data, feature) } else { param.fail(data) } }; options.fail = function (res) { res.statusCode = ERROR_CONF.WX_ERR_CODE; param.fail(that.buildErrorConfig(ERROR_CONF.WX_ERR_CODE, res.errMsg)) }; options.complete = function (res) { var statusCode = +res.statusCode; switch (statusCode) { case ERROR_CONF.WX_ERR_CODE: { param.complete(that.buildErrorConfig(ERROR_CONF.WX_ERR_CODE, res.errMsg)); break } case ERROR_CONF.WX_OK_CODE: { var data = res.data; if (data.status === 0) { param.complete(data) } else { param.complete(that.buildErrorConfig(data.status, data.message)) } break } default: { param.complete(that.buildErrorConfig(ERROR_CONF.SYSTEM_ERR, ERROR_CONF.SYSTEM_ERR_MSG)) } } }; return options }, locationProcess(param, locationsuccess, locationfail, locationcomplete) { var that = this; locationfail = locationfail || function (res) { res.statusCode = ERROR_CONF.WX_ERR_CODE; param.fail(that.buildErrorConfig(ERROR_CONF.WX_ERR_CODE, res.errMsg)) }; locationcomplete = locationcomplete || function (res) { if (res.statusCode == ERROR_CONF.WX_ERR_CODE) { param.complete(that.buildErrorConfig(ERROR_CONF.WX_ERR_CODE, res.errMsg)) } }; if (!param.location) { that.getWXLocation(locationsuccess, locationfail, locationcomplete) } else if (that.checkLocation(param)) { var location = Utils.getLocationParam(param.location); locationsuccess(location) } } }; class QQMapWX { constructor(options) { if (!options.key) { throw Error('key值不能为空') } this.key = options.key }; search(options) { var that = this; options = options || {}; Utils.polyfillParam(options); if (!Utils.checkKeyword(options)) { return } var requestParam = { keyword: options.keyword, orderby: options.orderby || '_distance', page_size: options.page_size || 10, page_index: options.page_index || 1, output: 'json', key: that.key }; if (options.address_format) { requestParam.address_format = options.address_format } if (options.filter) { requestParam.filter = options.filter } var distance = options.distance || "1000"; var auto_extend = options.auto_extend || 1; var region = null; var rectangle = null; if (options.region) { region = options.region } if (options.rectangle) { rectangle = options.rectangle } var locationsuccess = function (result) { if (region && !rectangle) { requestParam.boundary = "region(" + region + "," + auto_extend + "," + result.latitude + "," + result.longitude + ")"; if (options.sig) { requestParam.sig = Utils.getSig(requestParam, options.sig, 'search') } } else if (rectangle && !region) { requestParam.boundary = "rectangle(" + rectangle + ")"; if (options.sig) { requestParam.sig = Utils.getSig(requestParam, options.sig, 'search') } } else { requestParam.boundary = "nearby(" + result.latitude + "," + result.longitude + "," + distance + "," + auto_extend + ")"; if (options.sig) { requestParam.sig = Utils.getSig(requestParam, options.sig, 'search') } } wx.request(Utils.buildWxRequestConfig(options, { url: URL_SEARCH, data: requestParam }, 'search')) }; Utils.locationProcess(options, locationsuccess) }; getSuggestion(options) { var that = this; options = options || {}; Utils.polyfillParam(options); if (!Utils.checkKeyword(options)) { return } var requestParam = { keyword: options.keyword, region: options.region || '全国', region_fix: options.region_fix || 0, policy: options.policy || 0, page_size: options.page_size || 10, page_index: options.page_index || 1, get_subpois: options.get_subpois || 0, output: 'json', key: that.key }; if (options.address_format) { requestParam.address_format = options.address_format } if (options.filter) { requestParam.filter = options.filter } if (options.location) { var locationsuccess = function (result) { requestParam.location = result.latitude + ',' + result.longitude; if (options.sig) { requestParam.sig = Utils.getSig(requestParam, options.sig, 'suggest') } wx.request(Utils.buildWxRequestConfig(options, { url: URL_SUGGESTION, data: requestParam }, "suggest")) }; Utils.locationProcess(options, locationsuccess) } else { if (options.sig) { requestParam.sig = Utils.getSig(requestParam, options.sig, 'suggest') } wx.request(Utils.buildWxRequestConfig(options, { url: URL_SUGGESTION, data: requestParam }, "suggest")) } }; reverseGeocoder(options) { var that = this; options = options || {}; Utils.polyfillParam(options); var requestParam = { coord_type: options.coord_type || 5, get_poi: options.get_poi || 0, output: 'json', key: that.key }; if (options.poi_options) { requestParam.poi_options = options.poi_options } var locationsuccess = function (result) { requestParam.location = result.latitude + ',' + result.longitude; if (options.sig) { requestParam.sig = Utils.getSig(requestParam, options.sig, 'reverseGeocoder') } wx.request(Utils.buildWxRequestConfig(options, { url: URL_GET_GEOCODER, data: requestParam }, 'reverseGeocoder')) }; Utils.locationProcess(options, locationsuccess) }; geocoder(options) { var that = this; options = options || {}; Utils.polyfillParam(options); if (Utils.checkParamKeyEmpty(options, 'address')) { return } var requestParam = { address: options.address, output: 'json', key: that.key }; if (options.region) { requestParam.region = options.region } if (options.sig) { requestParam.sig = Utils.getSig(requestParam, options.sig, 'geocoder') } wx.request(Utils.buildWxRequestConfig(options, { url: URL_GET_GEOCODER, data: requestParam }, 'geocoder')) }; getCityList(options) { var that = this; options = options || {}; Utils.polyfillParam(options); var requestParam = { output: 'json', key: that.key }; if (options.sig) { requestParam.sig = Utils.getSig(requestParam, options.sig, 'getCityList') } wx.request(Utils.buildWxRequestConfig(options, { url: URL_CITY_LIST, data: requestParam }, 'getCityList')) }; getDistrictByCityId(options) { var that = this; options = options || {}; Utils.polyfillParam(options); if (Utils.checkParamKeyEmpty(options, 'id')) { return } var requestParam = { id: options.id || '', output: 'json', key: that.key }; if (options.sig) { requestParam.sig = Utils.getSig(requestParam, options.sig, 'getDistrictByCityId') } wx.request(Utils.buildWxRequestConfig(options, { url: URL_AREA_LIST, data: requestParam }, 'getDistrictByCityId')) }; calculateDistance(options) { var that = this; options = options || {}; Utils.polyfillParam(options); if (Utils.checkParamKeyEmpty(options, 'to')) { return } var requestParam = { mode: options.mode || 'walking', to: Utils.location2query(options.to), output: 'json', key: that.key }; if (options.from) { options.location = options.from } if (requestParam.mode == 'straight') { var locationsuccess = function (result) { var locationTo = Utils.getEndLocation(requestParam.to); var data = { message: "query ok", result: { elements: [] }, status: 0 }; for (var i = 0; i < locationTo.length; i++) { data.result.elements.push({ distance: Utils.getDistance(result.latitude, result.longitude, locationTo[i].lat, locationTo[i].lng), duration: 0, from: { lat: result.latitude, lng: result.longitude }, to: { lat: locationTo[i].lat, lng: locationTo[i].lng } }) } var calculateResult = data.result.elements; var distanceResult = []; for (var i = 0; i < calculateResult.length; i++) { distanceResult.push(calculateResult[i].distance) } return options.success(data, { calculateResult: calculateResult, distanceResult: distanceResult }) }; Utils.locationProcess(options, locationsuccess) } else { var locationsuccess = function (result) { requestParam.from = result.latitude + ',' + result.longitude; if (options.sig) { requestParam.sig = Utils.getSig(requestParam, options.sig, 'calculateDistance') } wx.request(Utils.buildWxRequestConfig(options, { url: URL_DISTANCE, data: requestParam }, 'calculateDistance')) }; Utils.locationProcess(options, locationsuccess) } }; direction(options) { var that = this; options = options || {}; Utils.polyfillParam(options); if (Utils.checkParamKeyEmpty(options, 'to')) { return } var requestParam = { output: 'json', key: that.key }; if (typeof options.to == 'string') { requestParam.to = options.to } else { requestParam.to = options.to.latitude + ',' + options.to.longitude } var SET_URL_DIRECTION = null; options.mode = options.mode || MODE.driving; SET_URL_DIRECTION = URL_DIRECTION + options.mode; if (options.from) { options.location = options.from } if (options.mode == MODE.driving) { if (options.from_poi) { requestParam.from_poi = options.from_poi } if (options.heading) { requestParam.heading = options.heading } if (options.speed) { requestParam.speed = options.speed } if (options.accuracy) { requestParam.accuracy = options.accuracy } if (options.road_type) { requestParam.road_type = options.road_type } if (options.to_poi) { requestParam.to_poi = options.to_poi } if (options.from_track) { requestParam.from_track = options.from_track } if (options.waypoints) { requestParam.waypoints = options.waypoints } if (options.policy) { requestParam.policy = options.policy } if (options.plate_number) { requestParam.plate_number = options.plate_number } } if (options.mode == MODE.transit) { if (options.departure_time) { requestParam.departure_time = options.departure_time } if (options.policy) { requestParam.policy = options.policy } } var locationsuccess = function (result) { requestParam.from = result.latitude + ',' + result.longitude; if (options.sig) { requestParam.sig = Utils.getSig(requestParam, options.sig, 'direction', options.mode) } wx.request(Utils.buildWxRequestConfig(options, { url: SET_URL_DIRECTION, data: requestParam }, 'direction')) }; Utils.locationProcess(options, locationsuccess) } }; module.exports = QQMapWX;
 },/***** module 2 end *****/
 
 
 /***** module 3 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\wux-weapp\dist\countup\index.js *****/
-function(module, exports, __wepy_require) {"use strict";function _classCallCheck(t,i){if(!(t instanceof i))throw new TypeError("Cannot call a class as a function")}function _defineProperties(t,i){for(var s=0;s<i.length;s++){var a=i[s];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(t,a.key,a)}}function _createClass(t,i,s){return i&&_defineProperties(t.prototype,i),s&&_defineProperties(t,s),t}Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=void 0;var CountUp=function(){function r(t,i,s,a){var e=4<arguments.length&&void 0!==arguments[4]?arguments[4]:{},n=5<arguments.length&&void 0!==arguments[5]?arguments[5]:getCurrentPages()[getCurrentPages().length-1];_classCallCheck(this,r),Object.assign(this,{page:n,startVal:t,endVal:i,decimals:s,duration:a,options:e}),this.__init()}return _createClass(r,[{key:"__init",value:function(){this.setData=this.page.setData.bind(this.page),this.lastTime=0,this.mergeOptions(this.options),this.startVal=Number(this.startVal),this.cacheVal=this.startVal,this.endVal=Number(this.endVal),this.countDown=this.startVal>this.endVal,this.frameVal=this.startVal,this.decimals=Math.max(0,this.decimals||0),this.dec=Math.pow(10,this.decimals),this.duration=1e3*Number(this.duration)||2e3,this.printValue(this.formattingFn(this.startVal))}},{key:"setDefaultOptions",value:function(){return{useEasing:!0,useGrouping:!0,separator:",",decimal:".",easingFn:null,formattingFn:null,printValue:function(t){}}}},{key:"mergeOptions",value:function(t){var i=this.setDefaultOptions();for(var s in i)i.hasOwnProperty(s)&&(this.options[s]=void 0!==t[s]?t[s]:i[s],"function"==typeof this.options[s]&&(this.options[s]=this.options[s].bind(this)));""===this.options.separator&&(this.options.useGrouping=!1),this.options.prefix||(this.options.prefix=""),this.options.suffix||(this.options.suffix=""),this.easingFn=this.options.easingFn?this.options.easingFn:this.easeOutExpo,this.formattingFn=this.options.formattingFn?this.options.formattingFn:this.formatNumber,this.printValue=this.options.printValue?this.options.printValue:function(){}}},{key:"requestAnimationFrame",value:function(t){var i=this,s=(new Date).getTime(),a=Math.max(0,16-(s-this.lastTime)),e=setTimeout(function(){t.bind(i)(s+a)},a);return this.lastTime=s+a,e}},{key:"cancelAnimationFrame",value:function(t){clearTimeout(t)}},{key:"formatNumber",value:function(t){var i,s,a,e;if(t=t.toFixed(this.decimals),s=(i=(t+="").split("."))[0],a=1<i.length?this.options.decimal+i[1]:"",e=/(\d+)(\d{3})/,this.options.useGrouping)for(;e.test(s);)s=s.replace(e,"$1"+this.options.separator+"$2");return this.options.prefix+s+a+this.options.suffix}},{key:"easeOutExpo",value:function(t,i,s,a){return s*(1-Math.pow(2,-10*t/a))*1024/1023+i}},{key:"count",value:function(t){this.startTime||(this.startTime=t);var i=(this.timestamp=t)-this.startTime;this.remaining=this.duration-i,this.options.useEasing?this.countDown?this.frameVal=this.startVal-this.easingFn(i,0,this.startVal-this.endVal,this.duration):this.frameVal=this.easingFn(i,this.startVal,this.endVal-this.startVal,this.duration):this.countDown?this.frameVal=this.startVal-(this.startVal-this.endVal)*(i/this.duration):this.frameVal=this.startVal+(this.endVal-this.startVal)*(i/this.duration),this.countDown?this.frameVal=this.frameVal<this.endVal?this.endVal:this.frameVal:this.frameVal=this.frameVal>this.endVal?this.endVal:this.frameVal,this.frameVal=Math.round(this.frameVal*this.dec)/this.dec,this.printValue(this.formattingFn(this.frameVal)),i<this.duration?this.rAF=this.requestAnimationFrame(this.count):this.callback&&this.callback()}},{key:"start",value:function(t){return this.callback=t,this.rAF=this.requestAnimationFrame(this.count),!1}},{key:"pauseResume",value:function(){this.paused?(this.paused=!1,delete this.startTime,this.duration=this.remaining,this.startVal=this.frameVal,this.requestAnimationFrame(this.count)):(this.paused=!0,this.cancelAnimationFrame(this.rAF))}},{key:"reset",value:function(){this.paused=!1,delete this.startTime,this.startVal=this.cacheVal,this.cancelAnimationFrame(this.rAF),this.printValue(this.formattingFn(this.startVal))}},{key:"update",value:function(t){this.cancelAnimationFrame(this.rAF),this.paused=!1,delete this.startTime,this.startVal=this.frameVal,this.endVal=Number(t),this.countDown=this.startVal>this.endVal,this.rAF=this.requestAnimationFrame(this.count)}}]),r}(),_default=CountUp;exports.default=_default;
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\axios\dist\axios.js *****/
+function(module, exports, __wepy_require) {/* axios v0.18.0 | (c) 2018 by Matt Zabriskie */
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else if(typeof exports === 'object')
+		exports["axios"] = factory();
+	else
+		root["axios"] = factory();
+})(this, function() {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId])
+/******/ 			return installedModules[moduleId].exports;
+/******/
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			exports: {},
+/******/ 			id: moduleId,
+/******/ 			loaded: false
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(1);
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var utils = __webpack_require__(2);
+	var bind = __webpack_require__(3);
+	var Axios = __webpack_require__(5);
+	var defaults = __webpack_require__(6);
+	
+	/**
+	 * Create an instance of Axios
+	 *
+	 * @param {Object} defaultConfig The default config for the instance
+	 * @return {Axios} A new instance of Axios
+	 */
+	function createInstance(defaultConfig) {
+	  var context = new Axios(defaultConfig);
+	  var instance = bind(Axios.prototype.request, context);
+	
+	  // Copy axios.prototype to instance
+	  utils.extend(instance, Axios.prototype, context);
+	
+	  // Copy context to instance
+	  utils.extend(instance, context);
+	
+	  return instance;
+	}
+	
+	// Create the default instance to be exported
+	var axios = createInstance(defaults);
+	
+	// Expose Axios class to allow class inheritance
+	axios.Axios = Axios;
+	
+	// Factory for creating new instances
+	axios.create = function create(instanceConfig) {
+	  return createInstance(utils.merge(defaults, instanceConfig));
+	};
+	
+	// Expose Cancel & CancelToken
+	axios.Cancel = __webpack_require__(23);
+	axios.CancelToken = __webpack_require__(24);
+	axios.isCancel = __webpack_require__(20);
+	
+	// Expose all/spread
+	axios.all = function all(promises) {
+	  return Promise.all(promises);
+	};
+	axios.spread = __webpack_require__(25);
+	
+	module.exports = axios;
+	
+	// Allow use of default import syntax in TypeScript
+	module.exports.default = axios;
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var bind = __webpack_require__(3);
+	var isBuffer = __webpack_require__(4);
+	
+	/*global toString:true*/
+	
+	// utils is a library of generic helper functions non-specific to axios
+	
+	var toString = Object.prototype.toString;
+	
+	/**
+	 * Determine if a value is an Array
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is an Array, otherwise false
+	 */
+	function isArray(val) {
+	  return toString.call(val) === '[object Array]';
+	}
+	
+	/**
+	 * Determine if a value is an ArrayBuffer
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is an ArrayBuffer, otherwise false
+	 */
+	function isArrayBuffer(val) {
+	  return toString.call(val) === '[object ArrayBuffer]';
+	}
+	
+	/**
+	 * Determine if a value is a FormData
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is an FormData, otherwise false
+	 */
+	function isFormData(val) {
+	  return (typeof FormData !== 'undefined') && (val instanceof FormData);
+	}
+	
+	/**
+	 * Determine if a value is a view on an ArrayBuffer
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is a view on an ArrayBuffer, otherwise false
+	 */
+	function isArrayBufferView(val) {
+	  var result;
+	  if ((typeof ArrayBuffer !== 'undefined') && (ArrayBuffer.isView)) {
+	    result = ArrayBuffer.isView(val);
+	  } else {
+	    result = (val) && (val.buffer) && (val.buffer instanceof ArrayBuffer);
+	  }
+	  return result;
+	}
+	
+	/**
+	 * Determine if a value is a String
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is a String, otherwise false
+	 */
+	function isString(val) {
+	  return typeof val === 'string';
+	}
+	
+	/**
+	 * Determine if a value is a Number
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is a Number, otherwise false
+	 */
+	function isNumber(val) {
+	  return typeof val === 'number';
+	}
+	
+	/**
+	 * Determine if a value is undefined
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if the value is undefined, otherwise false
+	 */
+	function isUndefined(val) {
+	  return typeof val === 'undefined';
+	}
+	
+	/**
+	 * Determine if a value is an Object
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is an Object, otherwise false
+	 */
+	function isObject(val) {
+	  return val !== null && typeof val === 'object';
+	}
+	
+	/**
+	 * Determine if a value is a Date
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is a Date, otherwise false
+	 */
+	function isDate(val) {
+	  return toString.call(val) === '[object Date]';
+	}
+	
+	/**
+	 * Determine if a value is a File
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is a File, otherwise false
+	 */
+	function isFile(val) {
+	  return toString.call(val) === '[object File]';
+	}
+	
+	/**
+	 * Determine if a value is a Blob
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is a Blob, otherwise false
+	 */
+	function isBlob(val) {
+	  return toString.call(val) === '[object Blob]';
+	}
+	
+	/**
+	 * Determine if a value is a Function
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is a Function, otherwise false
+	 */
+	function isFunction(val) {
+	  return toString.call(val) === '[object Function]';
+	}
+	
+	/**
+	 * Determine if a value is a Stream
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is a Stream, otherwise false
+	 */
+	function isStream(val) {
+	  return isObject(val) && isFunction(val.pipe);
+	}
+	
+	/**
+	 * Determine if a value is a URLSearchParams object
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is a URLSearchParams object, otherwise false
+	 */
+	function isURLSearchParams(val) {
+	  return typeof URLSearchParams !== 'undefined' && val instanceof URLSearchParams;
+	}
+	
+	/**
+	 * Trim excess whitespace off the beginning and end of a string
+	 *
+	 * @param {String} str The String to trim
+	 * @returns {String} The String freed of excess whitespace
+	 */
+	function trim(str) {
+	  return str.replace(/^\s*/, '').replace(/\s*$/, '');
+	}
+	
+	/**
+	 * Determine if we're running in a standard browser environment
+	 *
+	 * This allows axios to run in a web worker, and react-native.
+	 * Both environments support XMLHttpRequest, but not fully standard globals.
+	 *
+	 * web workers:
+	 *  typeof window -> undefined
+	 *  typeof document -> undefined
+	 *
+	 * react-native:
+	 *  navigator.product -> 'ReactNative'
+	 */
+	function isStandardBrowserEnv() {
+	  if (typeof navigator !== 'undefined' && navigator.product === 'ReactNative') {
+	    return false;
+	  }
+	  return (
+	    typeof window !== 'undefined' &&
+	    typeof document !== 'undefined'
+	  );
+	}
+	
+	/**
+	 * Iterate over an Array or an Object invoking a function for each item.
+	 *
+	 * If `obj` is an Array callback will be called passing
+	 * the value, index, and complete array for each item.
+	 *
+	 * If 'obj' is an Object callback will be called passing
+	 * the value, key, and complete object for each property.
+	 *
+	 * @param {Object|Array} obj The object to iterate
+	 * @param {Function} fn The callback to invoke for each item
+	 */
+	function forEach(obj, fn) {
+	  // Don't bother if no value provided
+	  if (obj === null || typeof obj === 'undefined') {
+	    return;
+	  }
+	
+	  // Force an array if not already something iterable
+	  if (typeof obj !== 'object') {
+	    /*eslint no-param-reassign:0*/
+	    obj = [obj];
+	  }
+	
+	  if (isArray(obj)) {
+	    // Iterate over array values
+	    for (var i = 0, l = obj.length; i < l; i++) {
+	      fn.call(null, obj[i], i, obj);
+	    }
+	  } else {
+	    // Iterate over object keys
+	    for (var key in obj) {
+	      if (Object.prototype.hasOwnProperty.call(obj, key)) {
+	        fn.call(null, obj[key], key, obj);
+	      }
+	    }
+	  }
+	}
+	
+	/**
+	 * Accepts varargs expecting each argument to be an object, then
+	 * immutably merges the properties of each object and returns result.
+	 *
+	 * When multiple objects contain the same key the later object in
+	 * the arguments list will take precedence.
+	 *
+	 * Example:
+	 *
+	 * ```js
+	 * var result = merge({foo: 123}, {foo: 456});
+	 * console.log(result.foo); // outputs 456
+	 * ```
+	 *
+	 * @param {Object} obj1 Object to merge
+	 * @returns {Object} Result of all merge properties
+	 */
+	function merge(/* obj1, obj2, obj3, ... */) {
+	  var result = {};
+	  function assignValue(val, key) {
+	    if (typeof result[key] === 'object' && typeof val === 'object') {
+	      result[key] = merge(result[key], val);
+	    } else {
+	      result[key] = val;
+	    }
+	  }
+	
+	  for (var i = 0, l = arguments.length; i < l; i++) {
+	    forEach(arguments[i], assignValue);
+	  }
+	  return result;
+	}
+	
+	/**
+	 * Extends object a by mutably adding to it the properties of object b.
+	 *
+	 * @param {Object} a The object to be extended
+	 * @param {Object} b The object to copy properties from
+	 * @param {Object} thisArg The object to bind function to
+	 * @return {Object} The resulting value of object a
+	 */
+	function extend(a, b, thisArg) {
+	  forEach(b, function assignValue(val, key) {
+	    if (thisArg && typeof val === 'function') {
+	      a[key] = bind(val, thisArg);
+	    } else {
+	      a[key] = val;
+	    }
+	  });
+	  return a;
+	}
+	
+	module.exports = {
+	  isArray: isArray,
+	  isArrayBuffer: isArrayBuffer,
+	  isBuffer: isBuffer,
+	  isFormData: isFormData,
+	  isArrayBufferView: isArrayBufferView,
+	  isString: isString,
+	  isNumber: isNumber,
+	  isObject: isObject,
+	  isUndefined: isUndefined,
+	  isDate: isDate,
+	  isFile: isFile,
+	  isBlob: isBlob,
+	  isFunction: isFunction,
+	  isStream: isStream,
+	  isURLSearchParams: isURLSearchParams,
+	  isStandardBrowserEnv: isStandardBrowserEnv,
+	  forEach: forEach,
+	  merge: merge,
+	  extend: extend,
+	  trim: trim
+	};
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+	'use strict';
+	
+	module.exports = function bind(fn, thisArg) {
+	  return function wrap() {
+	    var args = new Array(arguments.length);
+	    for (var i = 0; i < args.length; i++) {
+	      args[i] = arguments[i];
+	    }
+	    return fn.apply(thisArg, args);
+	  };
+	};
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports) {
+
+	/*!
+	 * Determine if an object is a Buffer
+	 *
+	 * @author   Feross Aboukhadijeh <https://feross.org>
+	 * @license  MIT
+	 */
+	
+	// The _isBuffer check is for Safari 5-7 support, because it's missing
+	// Object.prototype.constructor. Remove this eventually
+	module.exports = function (obj) {
+	  return obj != null && (isBuffer(obj) || isSlowBuffer(obj) || !!obj._isBuffer)
+	}
+	
+	function isBuffer (obj) {
+	  return !!obj.constructor && typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj)
+	}
+	
+	// For Node v0.10 support. Remove this eventually.
+	function isSlowBuffer (obj) {
+	  return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0))
+	}
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var defaults = __webpack_require__(6);
+	var utils = __webpack_require__(2);
+	var InterceptorManager = __webpack_require__(17);
+	var dispatchRequest = __webpack_require__(18);
+	
+	/**
+	 * Create a new instance of Axios
+	 *
+	 * @param {Object} instanceConfig The default config for the instance
+	 */
+	function Axios(instanceConfig) {
+	  this.defaults = instanceConfig;
+	  this.interceptors = {
+	    request: new InterceptorManager(),
+	    response: new InterceptorManager()
+	  };
+	}
+	
+	/**
+	 * Dispatch a request
+	 *
+	 * @param {Object} config The config specific for this request (merged with this.defaults)
+	 */
+	Axios.prototype.request = function request(config) {
+	  /*eslint no-param-reassign:0*/
+	  // Allow for axios('example/url'[, config]) a la fetch API
+	  if (typeof config === 'string') {
+	    config = utils.merge({
+	      url: arguments[0]
+	    }, arguments[1]);
+	  }
+	
+	  config = utils.merge(defaults, {method: 'get'}, this.defaults, config);
+	  config.method = config.method.toLowerCase();
+	
+	  // Hook up interceptors middleware
+	  var chain = [dispatchRequest, undefined];
+	  var promise = Promise.resolve(config);
+	
+	  this.interceptors.request.forEach(function unshiftRequestInterceptors(interceptor) {
+	    chain.unshift(interceptor.fulfilled, interceptor.rejected);
+	  });
+	
+	  this.interceptors.response.forEach(function pushResponseInterceptors(interceptor) {
+	    chain.push(interceptor.fulfilled, interceptor.rejected);
+	  });
+	
+	  while (chain.length) {
+	    promise = promise.then(chain.shift(), chain.shift());
+	  }
+	
+	  return promise;
+	};
+	
+	// Provide aliases for supported request methods
+	utils.forEach(['delete', 'get', 'head', 'options'], function forEachMethodNoData(method) {
+	  /*eslint func-names:0*/
+	  Axios.prototype[method] = function(url, config) {
+	    return this.request(utils.merge(config || {}, {
+	      method: method,
+	      url: url
+	    }));
+	  };
+	});
+	
+	utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
+	  /*eslint func-names:0*/
+	  Axios.prototype[method] = function(url, data, config) {
+	    return this.request(utils.merge(config || {}, {
+	      method: method,
+	      url: url,
+	      data: data
+	    }));
+	  };
+	});
+	
+	module.exports = Axios;
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var utils = __webpack_require__(2);
+	var normalizeHeaderName = __webpack_require__(7);
+	
+	var DEFAULT_CONTENT_TYPE = {
+	  'Content-Type': 'application/x-www-form-urlencoded'
+	};
+	
+	function setContentTypeIfUnset(headers, value) {
+	  if (!utils.isUndefined(headers) && utils.isUndefined(headers['Content-Type'])) {
+	    headers['Content-Type'] = value;
+	  }
+	}
+	
+	function getDefaultAdapter() {
+	  var adapter;
+	  if (typeof XMLHttpRequest !== 'undefined') {
+	    // For browsers use XHR adapter
+	    adapter = __webpack_require__(8);
+	  } else if (typeof process !== 'undefined') {
+	    // For node use HTTP adapter
+	    adapter = __webpack_require__(8);
+	  }
+	  return adapter;
+	}
+	
+	var defaults = {
+	  adapter: getDefaultAdapter(),
+	
+	  transformRequest: [function transformRequest(data, headers) {
+	    normalizeHeaderName(headers, 'Content-Type');
+	    if (utils.isFormData(data) ||
+	      utils.isArrayBuffer(data) ||
+	      utils.isBuffer(data) ||
+	      utils.isStream(data) ||
+	      utils.isFile(data) ||
+	      utils.isBlob(data)
+	    ) {
+	      return data;
+	    }
+	    if (utils.isArrayBufferView(data)) {
+	      return data.buffer;
+	    }
+	    if (utils.isURLSearchParams(data)) {
+	      setContentTypeIfUnset(headers, 'application/x-www-form-urlencoded;charset=utf-8');
+	      return data.toString();
+	    }
+	    if (utils.isObject(data)) {
+	      setContentTypeIfUnset(headers, 'application/json;charset=utf-8');
+	      return JSON.stringify(data);
+	    }
+	    return data;
+	  }],
+	
+	  transformResponse: [function transformResponse(data) {
+	    /*eslint no-param-reassign:0*/
+	    if (typeof data === 'string') {
+	      try {
+	        data = JSON.parse(data);
+	      } catch (e) { /* Ignore */ }
+	    }
+	    return data;
+	  }],
+	
+	  /**
+	   * A timeout in milliseconds to abort a request. If set to 0 (default) a
+	   * timeout is not created.
+	   */
+	  timeout: 0,
+	
+	  xsrfCookieName: 'XSRF-TOKEN',
+	  xsrfHeaderName: 'X-XSRF-TOKEN',
+	
+	  maxContentLength: -1,
+	
+	  validateStatus: function validateStatus(status) {
+	    return status >= 200 && status < 300;
+	  }
+	};
+	
+	defaults.headers = {
+	  common: {
+	    'Accept': 'application/json, text/plain, */*'
+	  }
+	};
+	
+	utils.forEach(['delete', 'get', 'head'], function forEachMethodNoData(method) {
+	  defaults.headers[method] = {};
+	});
+	
+	utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
+	  defaults.headers[method] = utils.merge(DEFAULT_CONTENT_TYPE);
+	});
+	
+	module.exports = defaults;
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var utils = __webpack_require__(2);
+	
+	module.exports = function normalizeHeaderName(headers, normalizedName) {
+	  utils.forEach(headers, function processHeader(value, name) {
+	    if (name !== normalizedName && name.toUpperCase() === normalizedName.toUpperCase()) {
+	      headers[normalizedName] = value;
+	      delete headers[name];
+	    }
+	  });
+	};
+
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var utils = __webpack_require__(2);
+	var settle = __webpack_require__(9);
+	var buildURL = __webpack_require__(12);
+	var parseHeaders = __webpack_require__(13);
+	var isURLSameOrigin = __webpack_require__(14);
+	var createError = __webpack_require__(10);
+	var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(15);
+	
+	module.exports = function xhrAdapter(config) {
+	  return new Promise(function dispatchXhrRequest(resolve, reject) {
+	    var requestData = config.data;
+	    var requestHeaders = config.headers;
+	
+	    if (utils.isFormData(requestData)) {
+	      delete requestHeaders['Content-Type']; // Let the browser set it
+	    }
+	
+	    var request = new XMLHttpRequest();
+	    var loadEvent = 'onreadystatechange';
+	    var xDomain = false;
+	
+	    // For IE 8/9 CORS support
+	    // Only supports POST and GET calls and doesn't returns the response headers.
+	    // DON'T do this for testing b/c XMLHttpRequest is mocked, not XDomainRequest.
+	    if (("production") !== 'test' &&
+	        typeof window !== 'undefined' &&
+	        window.XDomainRequest && !('withCredentials' in request) &&
+	        !isURLSameOrigin(config.url)) {
+	      request = new window.XDomainRequest();
+	      loadEvent = 'onload';
+	      xDomain = true;
+	      request.onprogress = function handleProgress() {};
+	      request.ontimeout = function handleTimeout() {};
+	    }
+	
+	    // HTTP basic authentication
+	    if (config.auth) {
+	      var username = config.auth.username || '';
+	      var password = config.auth.password || '';
+	      requestHeaders.Authorization = 'Basic ' + btoa(username + ':' + password);
+	    }
+	
+	    request.open(config.method.toUpperCase(), buildURL(config.url, config.params, config.paramsSerializer), true);
+	
+	    // Set the request timeout in MS
+	    request.timeout = config.timeout;
+	
+	    // Listen for ready state
+	    request[loadEvent] = function handleLoad() {
+	      if (!request || (request.readyState !== 4 && !xDomain)) {
+	        return;
+	      }
+	
+	      // The request errored out and we didn't get a response, this will be
+	      // handled by onerror instead
+	      // With one exception: request that using file: protocol, most browsers
+	      // will return status as 0 even though it's a successful request
+	      if (request.status === 0 && !(request.responseURL && request.responseURL.indexOf('file:') === 0)) {
+	        return;
+	      }
+	
+	      // Prepare the response
+	      var responseHeaders = 'getAllResponseHeaders' in request ? parseHeaders(request.getAllResponseHeaders()) : null;
+	      var responseData = !config.responseType || config.responseType === 'text' ? request.responseText : request.response;
+	      var response = {
+	        data: responseData,
+	        // IE sends 1223 instead of 204 (https://github.com/axios/axios/issues/201)
+	        status: request.status === 1223 ? 204 : request.status,
+	        statusText: request.status === 1223 ? 'No Content' : request.statusText,
+	        headers: responseHeaders,
+	        config: config,
+	        request: request
+	      };
+	
+	      settle(resolve, reject, response);
+	
+	      // Clean up request
+	      request = null;
+	    };
+	
+	    // Handle low level network errors
+	    request.onerror = function handleError() {
+	      // Real errors are hidden from us by the browser
+	      // onerror should only fire if it's a network error
+	      reject(createError('Network Error', config, null, request));
+	
+	      // Clean up request
+	      request = null;
+	    };
+	
+	    // Handle timeout
+	    request.ontimeout = function handleTimeout() {
+	      reject(createError('timeout of ' + config.timeout + 'ms exceeded', config, 'ECONNABORTED',
+	        request));
+	
+	      // Clean up request
+	      request = null;
+	    };
+	
+	    // Add xsrf header
+	    // This is only done if running in a standard browser environment.
+	    // Specifically not if we're in a web worker, or react-native.
+	    if (utils.isStandardBrowserEnv()) {
+	      var cookies = __webpack_require__(16);
+	
+	      // Add xsrf header
+	      var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
+	          cookies.read(config.xsrfCookieName) :
+	          undefined;
+	
+	      if (xsrfValue) {
+	        requestHeaders[config.xsrfHeaderName] = xsrfValue;
+	      }
+	    }
+	
+	    // Add headers to the request
+	    if ('setRequestHeader' in request) {
+	      utils.forEach(requestHeaders, function setRequestHeader(val, key) {
+	        if (typeof requestData === 'undefined' && key.toLowerCase() === 'content-type') {
+	          // Remove Content-Type if data is undefined
+	          delete requestHeaders[key];
+	        } else {
+	          // Otherwise add header to the request
+	          request.setRequestHeader(key, val);
+	        }
+	      });
+	    }
+	
+	    // Add withCredentials to request if needed
+	    if (config.withCredentials) {
+	      request.withCredentials = true;
+	    }
+	
+	    // Add responseType to request if needed
+	    if (config.responseType) {
+	      try {
+	        request.responseType = config.responseType;
+	      } catch (e) {
+	        // Expected DOMException thrown by browsers not compatible XMLHttpRequest Level 2.
+	        // But, this can be suppressed for 'json' type as it can be parsed by default 'transformResponse' function.
+	        if (config.responseType !== 'json') {
+	          throw e;
+	        }
+	      }
+	    }
+	
+	    // Handle progress if needed
+	    if (typeof config.onDownloadProgress === 'function') {
+	      request.addEventListener('progress', config.onDownloadProgress);
+	    }
+	
+	    // Not all browsers support upload events
+	    if (typeof config.onUploadProgress === 'function' && request.upload) {
+	      request.upload.addEventListener('progress', config.onUploadProgress);
+	    }
+	
+	    if (config.cancelToken) {
+	      // Handle cancellation
+	      config.cancelToken.promise.then(function onCanceled(cancel) {
+	        if (!request) {
+	          return;
+	        }
+	
+	        request.abort();
+	        reject(cancel);
+	        // Clean up request
+	        request = null;
+	      });
+	    }
+	
+	    if (requestData === undefined) {
+	      requestData = null;
+	    }
+	
+	    // Send the request
+	    request.send(requestData);
+	  });
+	};
+
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var createError = __webpack_require__(10);
+	
+	/**
+	 * Resolve or reject a Promise based on response status.
+	 *
+	 * @param {Function} resolve A function that resolves the promise.
+	 * @param {Function} reject A function that rejects the promise.
+	 * @param {object} response The response.
+	 */
+	module.exports = function settle(resolve, reject, response) {
+	  var validateStatus = response.config.validateStatus;
+	  // Note: status is not exposed by XDomainRequest
+	  if (!response.status || !validateStatus || validateStatus(response.status)) {
+	    resolve(response);
+	  } else {
+	    reject(createError(
+	      'Request failed with status code ' + response.status,
+	      response.config,
+	      null,
+	      response.request,
+	      response
+	    ));
+	  }
+	};
+
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var enhanceError = __webpack_require__(11);
+	
+	/**
+	 * Create an Error with the specified message, config, error code, request and response.
+	 *
+	 * @param {string} message The error message.
+	 * @param {Object} config The config.
+	 * @param {string} [code] The error code (for example, 'ECONNABORTED').
+	 * @param {Object} [request] The request.
+	 * @param {Object} [response] The response.
+	 * @returns {Error} The created error.
+	 */
+	module.exports = function createError(message, config, code, request, response) {
+	  var error = new Error(message);
+	  return enhanceError(error, config, code, request, response);
+	};
+
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports) {
+
+	'use strict';
+	
+	/**
+	 * Update an Error with the specified config, error code, and response.
+	 *
+	 * @param {Error} error The error to update.
+	 * @param {Object} config The config.
+	 * @param {string} [code] The error code (for example, 'ECONNABORTED').
+	 * @param {Object} [request] The request.
+	 * @param {Object} [response] The response.
+	 * @returns {Error} The error.
+	 */
+	module.exports = function enhanceError(error, config, code, request, response) {
+	  error.config = config;
+	  if (code) {
+	    error.code = code;
+	  }
+	  error.request = request;
+	  error.response = response;
+	  return error;
+	};
+
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var utils = __webpack_require__(2);
+	
+	function encode(val) {
+	  return encodeURIComponent(val).
+	    replace(/%40/gi, '@').
+	    replace(/%3A/gi, ':').
+	    replace(/%24/g, '$').
+	    replace(/%2C/gi, ',').
+	    replace(/%20/g, '+').
+	    replace(/%5B/gi, '[').
+	    replace(/%5D/gi, ']');
+	}
+	
+	/**
+	 * Build a URL by appending params to the end
+	 *
+	 * @param {string} url The base of the url (e.g., http://www.google.com)
+	 * @param {object} [params] The params to be appended
+	 * @returns {string} The formatted url
+	 */
+	module.exports = function buildURL(url, params, paramsSerializer) {
+	  /*eslint no-param-reassign:0*/
+	  if (!params) {
+	    return url;
+	  }
+	
+	  var serializedParams;
+	  if (paramsSerializer) {
+	    serializedParams = paramsSerializer(params);
+	  } else if (utils.isURLSearchParams(params)) {
+	    serializedParams = params.toString();
+	  } else {
+	    var parts = [];
+	
+	    utils.forEach(params, function serialize(val, key) {
+	      if (val === null || typeof val === 'undefined') {
+	        return;
+	      }
+	
+	      if (utils.isArray(val)) {
+	        key = key + '[]';
+	      } else {
+	        val = [val];
+	      }
+	
+	      utils.forEach(val, function parseValue(v) {
+	        if (utils.isDate(v)) {
+	          v = v.toISOString();
+	        } else if (utils.isObject(v)) {
+	          v = JSON.stringify(v);
+	        }
+	        parts.push(encode(key) + '=' + encode(v));
+	      });
+	    });
+	
+	    serializedParams = parts.join('&');
+	  }
+	
+	  if (serializedParams) {
+	    url += (url.indexOf('?') === -1 ? '?' : '&') + serializedParams;
+	  }
+	
+	  return url;
+	};
+
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var utils = __webpack_require__(2);
+	
+	// Headers whose duplicates are ignored by node
+	// c.f. https://nodejs.org/api/http.html#http_message_headers
+	var ignoreDuplicateOf = [
+	  'age', 'authorization', 'content-length', 'content-type', 'etag',
+	  'expires', 'from', 'host', 'if-modified-since', 'if-unmodified-since',
+	  'last-modified', 'location', 'max-forwards', 'proxy-authorization',
+	  'referer', 'retry-after', 'user-agent'
+	];
+	
+	/**
+	 * Parse headers into an object
+	 *
+	 * ```
+	 * Date: Wed, 27 Aug 2014 08:58:49 GMT
+	 * Content-Type: application/json
+	 * Connection: keep-alive
+	 * Transfer-Encoding: chunked
+	 * ```
+	 *
+	 * @param {String} headers Headers needing to be parsed
+	 * @returns {Object} Headers parsed into an object
+	 */
+	module.exports = function parseHeaders(headers) {
+	  var parsed = {};
+	  var key;
+	  var val;
+	  var i;
+	
+	  if (!headers) { return parsed; }
+	
+	  utils.forEach(headers.split('\n'), function parser(line) {
+	    i = line.indexOf(':');
+	    key = utils.trim(line.substr(0, i)).toLowerCase();
+	    val = utils.trim(line.substr(i + 1));
+	
+	    if (key) {
+	      if (parsed[key] && ignoreDuplicateOf.indexOf(key) >= 0) {
+	        return;
+	      }
+	      if (key === 'set-cookie') {
+	        parsed[key] = (parsed[key] ? parsed[key] : []).concat([val]);
+	      } else {
+	        parsed[key] = parsed[key] ? parsed[key] + ', ' + val : val;
+	      }
+	    }
+	  });
+	
+	  return parsed;
+	};
+
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var utils = __webpack_require__(2);
+	
+	module.exports = (
+	  utils.isStandardBrowserEnv() ?
+	
+	  // Standard browser envs have full support of the APIs needed to test
+	  // whether the request URL is of the same origin as current location.
+	  (function standardBrowserEnv() {
+	    var msie = /(msie|trident)/i.test(navigator.userAgent);
+	    var urlParsingNode = document.createElement('a');
+	    var originURL;
+	
+	    /**
+	    * Parse a URL to discover it's components
+	    *
+	    * @param {String} url The URL to be parsed
+	    * @returns {Object}
+	    */
+	    function resolveURL(url) {
+	      var href = url;
+	
+	      if (msie) {
+	        // IE needs attribute set twice to normalize properties
+	        urlParsingNode.setAttribute('href', href);
+	        href = urlParsingNode.href;
+	      }
+	
+	      urlParsingNode.setAttribute('href', href);
+	
+	      // urlParsingNode provides the UrlUtils interface - http://url.spec.whatwg.org/#urlutils
+	      return {
+	        href: urlParsingNode.href,
+	        protocol: urlParsingNode.protocol ? urlParsingNode.protocol.replace(/:$/, '') : '',
+	        host: urlParsingNode.host,
+	        search: urlParsingNode.search ? urlParsingNode.search.replace(/^\?/, '') : '',
+	        hash: urlParsingNode.hash ? urlParsingNode.hash.replace(/^#/, '') : '',
+	        hostname: urlParsingNode.hostname,
+	        port: urlParsingNode.port,
+	        pathname: (urlParsingNode.pathname.charAt(0) === '/') ?
+	                  urlParsingNode.pathname :
+	                  '/' + urlParsingNode.pathname
+	      };
+	    }
+	
+	    originURL = resolveURL(window.location.href);
+	
+	    /**
+	    * Determine if a URL shares the same origin as the current location
+	    *
+	    * @param {String} requestURL The URL to test
+	    * @returns {boolean} True if URL shares the same origin, otherwise false
+	    */
+	    return function isURLSameOrigin(requestURL) {
+	      var parsed = (utils.isString(requestURL)) ? resolveURL(requestURL) : requestURL;
+	      return (parsed.protocol === originURL.protocol &&
+	            parsed.host === originURL.host);
+	    };
+	  })() :
+	
+	  // Non standard browser envs (web workers, react-native) lack needed support.
+	  (function nonStandardBrowserEnv() {
+	    return function isURLSameOrigin() {
+	      return true;
+	    };
+	  })()
+	);
+
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports) {
+
+	'use strict';
+	
+	// btoa polyfill for IE<10 courtesy https://github.com/davidchambers/Base64.js
+	
+	var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+	
+	function E() {
+	  this.message = 'String contains an invalid character';
+	}
+	E.prototype = new Error;
+	E.prototype.code = 5;
+	E.prototype.name = 'InvalidCharacterError';
+	
+	function btoa(input) {
+	  var str = String(input);
+	  var output = '';
+	  for (
+	    // initialize result and counter
+	    var block, charCode, idx = 0, map = chars;
+	    // if the next str index does not exist:
+	    //   change the mapping table to "="
+	    //   check if d has no fractional digits
+	    str.charAt(idx | 0) || (map = '=', idx % 1);
+	    // "8 - idx % 1 * 8" generates the sequence 2, 4, 6, 8
+	    output += map.charAt(63 & block >> 8 - idx % 1 * 8)
+	  ) {
+	    charCode = str.charCodeAt(idx += 3 / 4);
+	    if (charCode > 0xFF) {
+	      throw new E();
+	    }
+	    block = block << 8 | charCode;
+	  }
+	  return output;
+	}
+	
+	module.exports = btoa;
+
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var utils = __webpack_require__(2);
+	
+	module.exports = (
+	  utils.isStandardBrowserEnv() ?
+	
+	  // Standard browser envs support document.cookie
+	  (function standardBrowserEnv() {
+	    return {
+	      write: function write(name, value, expires, path, domain, secure) {
+	        var cookie = [];
+	        cookie.push(name + '=' + encodeURIComponent(value));
+	
+	        if (utils.isNumber(expires)) {
+	          cookie.push('expires=' + new Date(expires).toGMTString());
+	        }
+	
+	        if (utils.isString(path)) {
+	          cookie.push('path=' + path);
+	        }
+	
+	        if (utils.isString(domain)) {
+	          cookie.push('domain=' + domain);
+	        }
+	
+	        if (secure === true) {
+	          cookie.push('secure');
+	        }
+	
+	        document.cookie = cookie.join('; ');
+	      },
+	
+	      read: function read(name) {
+	        var match = document.cookie.match(new RegExp('(^|;\\s*)(' + name + ')=([^;]*)'));
+	        return (match ? decodeURIComponent(match[3]) : null);
+	      },
+	
+	      remove: function remove(name) {
+	        this.write(name, '', Date.now() - 86400000);
+	      }
+	    };
+	  })() :
+	
+	  // Non standard browser env (web workers, react-native) lack needed support.
+	  (function nonStandardBrowserEnv() {
+	    return {
+	      write: function write() {},
+	      read: function read() { return null; },
+	      remove: function remove() {}
+	    };
+	  })()
+	);
+
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var utils = __webpack_require__(2);
+	
+	function InterceptorManager() {
+	  this.handlers = [];
+	}
+	
+	/**
+	 * Add a new interceptor to the stack
+	 *
+	 * @param {Function} fulfilled The function to handle `then` for a `Promise`
+	 * @param {Function} rejected The function to handle `reject` for a `Promise`
+	 *
+	 * @return {Number} An ID used to remove interceptor later
+	 */
+	InterceptorManager.prototype.use = function use(fulfilled, rejected) {
+	  this.handlers.push({
+	    fulfilled: fulfilled,
+	    rejected: rejected
+	  });
+	  return this.handlers.length - 1;
+	};
+	
+	/**
+	 * Remove an interceptor from the stack
+	 *
+	 * @param {Number} id The ID that was returned by `use`
+	 */
+	InterceptorManager.prototype.eject = function eject(id) {
+	  if (this.handlers[id]) {
+	    this.handlers[id] = null;
+	  }
+	};
+	
+	/**
+	 * Iterate over all the registered interceptors
+	 *
+	 * This method is particularly useful for skipping over any
+	 * interceptors that may have become `null` calling `eject`.
+	 *
+	 * @param {Function} fn The function to call for each interceptor
+	 */
+	InterceptorManager.prototype.forEach = function forEach(fn) {
+	  utils.forEach(this.handlers, function forEachHandler(h) {
+	    if (h !== null) {
+	      fn(h);
+	    }
+	  });
+	};
+	
+	module.exports = InterceptorManager;
+
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var utils = __webpack_require__(2);
+	var transformData = __webpack_require__(19);
+	var isCancel = __webpack_require__(20);
+	var defaults = __webpack_require__(6);
+	var isAbsoluteURL = __webpack_require__(21);
+	var combineURLs = __webpack_require__(22);
+	
+	/**
+	 * Throws a `Cancel` if cancellation has been requested.
+	 */
+	function throwIfCancellationRequested(config) {
+	  if (config.cancelToken) {
+	    config.cancelToken.throwIfRequested();
+	  }
+	}
+	
+	/**
+	 * Dispatch a request to the server using the configured adapter.
+	 *
+	 * @param {object} config The config that is to be used for the request
+	 * @returns {Promise} The Promise to be fulfilled
+	 */
+	module.exports = function dispatchRequest(config) {
+	  throwIfCancellationRequested(config);
+	
+	  // Support baseURL config
+	  if (config.baseURL && !isAbsoluteURL(config.url)) {
+	    config.url = combineURLs(config.baseURL, config.url);
+	  }
+	
+	  // Ensure headers exist
+	  config.headers = config.headers || {};
+	
+	  // Transform request data
+	  config.data = transformData(
+	    config.data,
+	    config.headers,
+	    config.transformRequest
+	  );
+	
+	  // Flatten headers
+	  config.headers = utils.merge(
+	    config.headers.common || {},
+	    config.headers[config.method] || {},
+	    config.headers || {}
+	  );
+	
+	  utils.forEach(
+	    ['delete', 'get', 'head', 'post', 'put', 'patch', 'common'],
+	    function cleanHeaderConfig(method) {
+	      delete config.headers[method];
+	    }
+	  );
+	
+	  var adapter = config.adapter || defaults.adapter;
+	
+	  return adapter(config).then(function onAdapterResolution(response) {
+	    throwIfCancellationRequested(config);
+	
+	    // Transform response data
+	    response.data = transformData(
+	      response.data,
+	      response.headers,
+	      config.transformResponse
+	    );
+	
+	    return response;
+	  }, function onAdapterRejection(reason) {
+	    if (!isCancel(reason)) {
+	      throwIfCancellationRequested(config);
+	
+	      // Transform response data
+	      if (reason && reason.response) {
+	        reason.response.data = transformData(
+	          reason.response.data,
+	          reason.response.headers,
+	          config.transformResponse
+	        );
+	      }
+	    }
+	
+	    return Promise.reject(reason);
+	  });
+	};
+
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var utils = __webpack_require__(2);
+	
+	/**
+	 * Transform the data for a request or a response
+	 *
+	 * @param {Object|String} data The data to be transformed
+	 * @param {Array} headers The headers for the request or response
+	 * @param {Array|Function} fns A single function or Array of functions
+	 * @returns {*} The resulting transformed data
+	 */
+	module.exports = function transformData(data, headers, fns) {
+	  /*eslint no-param-reassign:0*/
+	  utils.forEach(fns, function transform(fn) {
+	    data = fn(data, headers);
+	  });
+	
+	  return data;
+	};
+
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports) {
+
+	'use strict';
+	
+	module.exports = function isCancel(value) {
+	  return !!(value && value.__CANCEL__);
+	};
+
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports) {
+
+	'use strict';
+	
+	/**
+	 * Determines whether the specified URL is absolute
+	 *
+	 * @param {string} url The URL to test
+	 * @returns {boolean} True if the specified URL is absolute, otherwise false
+	 */
+	module.exports = function isAbsoluteURL(url) {
+	  // A URL is considered absolute if it begins with "<scheme>://" or "//" (protocol-relative URL).
+	  // RFC 3986 defines scheme name as a sequence of characters beginning with a letter and followed
+	  // by any combination of letters, digits, plus, period, or hyphen.
+	  return /^([a-z][a-z\d\+\-\.]*:)?\/\//i.test(url);
+	};
+
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports) {
+
+	'use strict';
+	
+	/**
+	 * Creates a new URL by combining the specified URLs
+	 *
+	 * @param {string} baseURL The base URL
+	 * @param {string} relativeURL The relative URL
+	 * @returns {string} The combined URL
+	 */
+	module.exports = function combineURLs(baseURL, relativeURL) {
+	  return relativeURL
+	    ? baseURL.replace(/\/+$/, '') + '/' + relativeURL.replace(/^\/+/, '')
+	    : baseURL;
+	};
+
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports) {
+
+	'use strict';
+	
+	/**
+	 * A `Cancel` is an object that is thrown when an operation is canceled.
+	 *
+	 * @class
+	 * @param {string=} message The message.
+	 */
+	function Cancel(message) {
+	  this.message = message;
+	}
+	
+	Cancel.prototype.toString = function toString() {
+	  return 'Cancel' + (this.message ? ': ' + this.message : '');
+	};
+	
+	Cancel.prototype.__CANCEL__ = true;
+	
+	module.exports = Cancel;
+
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var Cancel = __webpack_require__(23);
+	
+	/**
+	 * A `CancelToken` is an object that can be used to request cancellation of an operation.
+	 *
+	 * @class
+	 * @param {Function} executor The executor function.
+	 */
+	function CancelToken(executor) {
+	  if (typeof executor !== 'function') {
+	    throw new TypeError('executor must be a function.');
+	  }
+	
+	  var resolvePromise;
+	  this.promise = new Promise(function promiseExecutor(resolve) {
+	    resolvePromise = resolve;
+	  });
+	
+	  var token = this;
+	  executor(function cancel(message) {
+	    if (token.reason) {
+	      // Cancellation has already been requested
+	      return;
+	    }
+	
+	    token.reason = new Cancel(message);
+	    resolvePromise(token.reason);
+	  });
+	}
+	
+	/**
+	 * Throws a `Cancel` if cancellation has been requested.
+	 */
+	CancelToken.prototype.throwIfRequested = function throwIfRequested() {
+	  if (this.reason) {
+	    throw this.reason;
+	  }
+	};
+	
+	/**
+	 * Returns an object that contains a new `CancelToken` and a function that, when called,
+	 * cancels the `CancelToken`.
+	 */
+	CancelToken.source = function source() {
+	  var cancel;
+	  var token = new CancelToken(function executor(c) {
+	    cancel = c;
+	  });
+	  return {
+	    token: token,
+	    cancel: cancel
+	  };
+	};
+	
+	module.exports = CancelToken;
+
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports) {
+
+	'use strict';
+	
+	/**
+	 * Syntactic sugar for invoking a function and expanding an array for arguments.
+	 *
+	 * Common use case would be to use `Function.prototype.apply`.
+	 *
+	 *  ```js
+	 *  function f(x, y, z) {}
+	 *  var args = [1, 2, 3];
+	 *  f.apply(null, args);
+	 *  ```
+	 *
+	 * With `spread` this example can be re-written.
+	 *
+	 *  ```js
+	 *  spread(function(x, y, z) {})([1, 2, 3]);
+	 *  ```
+	 *
+	 * @param {Function} callback
+	 * @returns {Function}
+	 */
+	module.exports = function spread(callback) {
+	  return function wrap(arr) {
+	    return callback.apply(null, arr);
+	  };
+	};
+
+
+/***/ })
+/******/ ])
+});
+;
+//# sourceMappingURL=axios.map
 },/***** module 3 end *****/
 
 
 /***** module 4 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\wux-weapp\dist\index.js *****/
-function(module, exports, __wepy_require) {"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),Object.defineProperty(exports,"$wuxCountDown",{enumerable:!0,get:function(){return _index.default}}),Object.defineProperty(exports,"$wuxCountUp",{enumerable:!0,get:function(){return _index2.default}}),exports.$stopWuxLoader=exports.$stopWuxRefresher=exports.$startWuxRefresher=exports.$wuxCalendar=exports.$wuxSelect=exports.$wuxKeyBoard=exports.$wuxNotification=exports.$wuxGallery=exports.$wuxToptips=exports.$wuxForm=exports.$wuxDialog=exports.$wuxLoading=exports.$wuxToast=exports.$wuxBackdrop=exports.$wuxActionSheet=void 0;var _index=_interopRequireDefault(__wepy_require(2)),_index2=_interopRequireDefault(__wepy_require(3));function _interopRequireDefault(e){return e&&e.__esModule?e:{default:e}}var getCtx=function(e,t){var r=(1<arguments.length&&void 0!==t?t:getCurrentPages()[getCurrentPages().length-1]).selectComponent(e);if(!r)throw new Error("无法找到对应的组件，请按文档说明使用组件");return r},$wuxActionSheet=function(e,t){return getCtx(0<arguments.length&&void 0!==e?e:"#wux-actionsheet",1<arguments.length?t:void 0)};exports.$wuxActionSheet=$wuxActionSheet;var $wuxBackdrop=function(e,t){return getCtx(0<arguments.length&&void 0!==e?e:"#wux-backdrop",1<arguments.length?t:void 0)};exports.$wuxBackdrop=$wuxBackdrop;var $wuxToast=function(e,t){return getCtx(0<arguments.length&&void 0!==e?e:"#wux-toast",1<arguments.length?t:void 0)};exports.$wuxToast=$wuxToast;var $wuxLoading=function(e,t){return getCtx(0<arguments.length&&void 0!==e?e:"#wux-loading",1<arguments.length?t:void 0)};exports.$wuxLoading=$wuxLoading;var $wuxDialog=function(e,t){return getCtx(0<arguments.length&&void 0!==e?e:"#wux-dialog",1<arguments.length?t:void 0)};exports.$wuxDialog=$wuxDialog;var $wuxForm=function(e,t){return getCtx(0<arguments.length&&void 0!==e?e:"#wux-form",1<arguments.length?t:void 0)};exports.$wuxForm=$wuxForm;var $wuxToptips=function(e,t){return getCtx(0<arguments.length&&void 0!==e?e:"#wux-toptips",1<arguments.length?t:void 0)};exports.$wuxToptips=$wuxToptips;var $wuxGallery=function(e,t){return getCtx(0<arguments.length&&void 0!==e?e:"#wux-gallery",1<arguments.length?t:void 0)};exports.$wuxGallery=$wuxGallery;var $wuxNotification=function(e,t){return getCtx(0<arguments.length&&void 0!==e?e:"#wux-notification",1<arguments.length?t:void 0)};exports.$wuxNotification=$wuxNotification;var $wuxKeyBoard=function(e,t){return getCtx(0<arguments.length&&void 0!==e?e:"#wux-keyboard",1<arguments.length?t:void 0)};exports.$wuxKeyBoard=$wuxKeyBoard;var $wuxSelect=function(e,t){return getCtx(0<arguments.length&&void 0!==e?e:"#wux-select",1<arguments.length?t:void 0)};exports.$wuxSelect=$wuxSelect;var $wuxCalendar=function(e,t){return getCtx(0<arguments.length&&void 0!==e?e:"#wux-calendar",1<arguments.length?t:void 0)};exports.$wuxCalendar=$wuxCalendar;var $startWuxRefresher=function(e,t){return getCtx(0<arguments.length&&void 0!==e?e:"#wux-refresher",1<arguments.length?t:void 0).triggerRefresh()};exports.$startWuxRefresher=$startWuxRefresher;var $stopWuxRefresher=function(e,t){return getCtx(0<arguments.length&&void 0!==e?e:"#wux-refresher",1<arguments.length?t:void 0).finishPullToRefresh()};exports.$stopWuxRefresher=$stopWuxRefresher;var $stopWuxLoader=function(e,t,r){var o=2<arguments.length?r:void 0;return getCtx(0<arguments.length&&void 0!==e?e:"#wux-refresher",1<arguments.length?t:void 0).finishLoadmore(o)};exports.$stopWuxLoader=$stopWuxLoader;
-},/***** module 4 end *****/
-
-
-/***** module 5 start *****/
 /***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\wepy-plugin-axios\dist\adapter.js *****/
 function(module, exports, __wepy_require) {'use strict';
 
@@ -3208,10 +4804,10 @@ function wepyAxiosAdapterFactory (axios) {
 module.exports = wepyAxiosAdapterFactory;
 //# sourceMappingURL=adapter.js.map
 
-},/***** module 5 end *****/
+},/***** module 4 end *****/
 
 
-/***** module 6 start *****/
+/***** module 5 start *****/
 /***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\constants.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
@@ -3221,10 +4817,10 @@ var DEFAULT_NAMESPACE = '/';
 exports.DEFAULT_NAMESPACE = DEFAULT_NAMESPACE;
 var ACTION_TYPE_DELIMITER = '||';
 exports.ACTION_TYPE_DELIMITER = ACTION_TYPE_DELIMITER;
-},/***** module 6 end *****/
+},/***** module 5 end *****/
 
 
-/***** module 7 start *****/
+/***** module 6 start *****/
 /***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\isFunction.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
@@ -3233,6 +4829,21 @@ exports.default = void 0;
 
 var _default = function _default(value) {
   return typeof value === 'function';
+};
+
+exports.default = _default;
+},/***** module 6 end *****/
+
+
+/***** module 7 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\toString.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _default = function _default(value) {
+  return value.toString();
 };
 
 exports.default = _default;
@@ -3270,14 +4881,14 @@ exports.default = _default;
 
 
 /***** module 10 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\toString.js *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\isMap.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
 exports.__esModule = true;
 exports.default = void 0;
 
 var _default = function _default(value) {
-  return value.toString();
+  return typeof Map !== 'undefined' && value instanceof Map;
 };
 
 exports.default = _default;
@@ -3300,36 +4911,44 @@ exports.default = _default;
 
 
 /***** module 12 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\identity.js *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\ownKeys.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
 exports.__esModule = true;
-exports.default = void 0;
+exports.default = ownKeys;
 
-var _default = function _default(value) {
-  return value;
-};
+var _isMap = _interopRequireDefault(__wepy_require(10));
 
-exports.default = _default;
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function ownKeys(object) {
+  if ((0, _isMap.default)(object)) {
+    // We are using loose transforms in babel. Here we are trying to convert an
+    // interable to an array. Loose mode expects everything to already be an
+    // array. The problem is that our eslint rules encourage us to prefer
+    // spread over Array.from.
+    //
+    // Instead of disabling loose mode we simply disable the warning.
+    // eslint-disable-next-line unicorn/prefer-spread
+    return Array.from(object.keys());
+  }
+
+  if (typeof Reflect !== 'undefined' && typeof Reflect.ownKeys === 'function') {
+    return Reflect.ownKeys(object);
+  }
+
+  var keys = Object.getOwnPropertyNames(object);
+
+  if (typeof Object.getOwnPropertySymbols === 'function') {
+    keys = keys.concat(Object.getOwnPropertySymbols(object));
+  }
+
+  return keys;
+}
 },/***** module 12 end *****/
 
 
 /***** module 13 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\isNull.js *****/
-function(module, exports, __wepy_require) {"use strict";
-
-exports.__esModule = true;
-exports.default = void 0;
-
-var _default = function _default(value) {
-  return value === null;
-};
-
-exports.default = _default;
-},/***** module 13 end *****/
-
-
-/***** module 14 start *****/
 /***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\isPlainObject.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
@@ -3348,10 +4967,57 @@ var _default = function _default(value) {
 };
 
 exports.default = _default;
+},/***** module 13 end *****/
+
+
+/***** module 14 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\identity.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _default = function _default(value) {
+  return value;
+};
+
+exports.default = _default;
 },/***** module 14 end *****/
 
 
 /***** module 15 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\get.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.default = get;
+
+var _isMap = _interopRequireDefault(__wepy_require(10));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function get(key, x) {
+  return (0, _isMap.default)(x) ? x.get(key) : x[key];
+}
+},/***** module 15 end *****/
+
+
+/***** module 16 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\isNull.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _default = function _default(value) {
+  return value === null;
+};
+
+exports.default = _default;
+},/***** module 16 end *****/
+
+
+/***** module 17 start *****/
 /***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\isArray.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
@@ -3363,10 +5029,10 @@ var _default = function _default(value) {
 };
 
 exports.default = _default;
-},/***** module 15 end *****/
+},/***** module 17 end *****/
 
 
-/***** module 16 start *****/
+/***** module 18 start *****/
 /***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\isNil.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
@@ -3378,10 +5044,10 @@ var _default = function _default(value) {
 };
 
 exports.default = _default;
-},/***** module 16 end *****/
+},/***** module 18 end *****/
 
 
-/***** module 17 start *****/
+/***** module 19 start *****/
 /***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\getLastElement.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
@@ -3393,10 +5059,10 @@ var _default = function _default(array) {
 };
 
 exports.default = _default;
-},/***** module 17 end *****/
+},/***** module 19 end *****/
 
 
-/***** module 18 start *****/
+/***** module 20 start *****/
 /***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\arrayToObject.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
@@ -3410,21 +5076,21 @@ var _default = function _default(array, callback) {
 };
 
 exports.default = _default;
-},/***** module 18 end *****/
+},/***** module 20 end *****/
 
 
-/***** module 19 start *****/
+/***** module 21 start *****/
 /***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\unflattenActionCreators.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
 exports.__esModule = true;
 exports.default = unflattenActionCreators;
 
-var _constants = __wepy_require(6);
+var _constants = __wepy_require(5);
 
 var _isEmpty = _interopRequireDefault(__wepy_require(9));
 
-var _camelCase = _interopRequireDefault(__wepy_require(46));
+var _camelCase = _interopRequireDefault(__wepy_require(45));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3455,10 +5121,10 @@ function unflattenActionCreators(flatActionCreators, _temp) {
   });
   return nestedActionCreators;
 }
-},/***** module 19 end *****/
+},/***** module 21 end *****/
 
 
-/***** module 20 start *****/
+/***** module 22 start *****/
 /***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\isUndefined.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
@@ -3470,148 +5136,40 @@ var _default = function _default(value) {
 };
 
 exports.default = _default;
-},/***** module 20 end *****/
-
-
-/***** module 21 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\isMap.js *****/
-function(module, exports, __wepy_require) {"use strict";
-
-exports.__esModule = true;
-exports.default = void 0;
-
-var _default = function _default(value) {
-  return typeof Map !== 'undefined' && value instanceof Map;
-};
-
-exports.default = _default;
-},/***** module 21 end *****/
-
-
-/***** module 22 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\ownKeys.js *****/
-function(module, exports, __wepy_require) {"use strict";
-
-exports.__esModule = true;
-exports.default = ownKeys;
-
-var _isMap = _interopRequireDefault(__wepy_require(21));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function ownKeys(object) {
-  if ((0, _isMap.default)(object)) {
-    // We are using loose transforms in babel. Here we are trying to convert an
-    // interable to an array. Loose mode expects everything to already be an
-    // array. The problem is that our eslint rules encourage us to prefer
-    // spread over Array.from.
-    //
-    // Instead of disabling loose mode we simply disable the warning.
-    // eslint-disable-next-line unicorn/prefer-spread
-    return Array.from(object.keys());
-  }
-
-  if (typeof Reflect !== 'undefined' && typeof Reflect.ownKeys === 'function') {
-    return Reflect.ownKeys(object);
-  }
-
-  var keys = Object.getOwnPropertyNames(object);
-
-  if (typeof Object.getOwnPropertySymbols === 'function') {
-    keys = keys.concat(Object.getOwnPropertySymbols(object));
-  }
-
-  return keys;
-}
 },/***** module 22 end *****/
 
 
 /***** module 23 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\get.js *****/
-function(module, exports, __wepy_require) {"use strict";
-
-exports.__esModule = true;
-exports.default = get;
-
-var _isMap = _interopRequireDefault(__wepy_require(21));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function get(key, x) {
-  return (0, _isMap.default)(x) ? x.get(key) : x[key];
-}
-},/***** module 23 end *****/
-
-
-/***** module 24 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\is-promise\index.js *****/
-function(module, exports, __wepy_require) {module.exports = isPromise;
-
-function isPromise(obj) {
-  return !!obj && (typeof obj === 'object' || typeof obj === 'function') && typeof obj.then === 'function';
-}
-
-},/***** module 24 end *****/
-
-
-/***** module 25 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\hasGeneratorInterface.js *****/
-function(module, exports, __wepy_require) {"use strict";
-
-exports.__esModule = true;
-exports.default = hasGeneratorInterface;
-
-var _ownKeys = _interopRequireDefault(__wepy_require(22));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function hasGeneratorInterface(handler) {
-  var keys = (0, _ownKeys.default)(handler);
-  var hasOnlyInterfaceNames = keys.every(function (ownKey) {
-    return ownKey === 'next' || ownKey === 'throw';
-  });
-  return keys.length && keys.length <= 2 && hasOnlyInterfaceNames;
-}
-},/***** module 25 end *****/
-
-
-/***** module 26 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\flattenReducerMap.js *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\flattenActionMap.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
 exports.__esModule = true;
 exports.default = void 0;
 
-var _isPlainObject = _interopRequireDefault(__wepy_require(14));
+var _isPlainObject = _interopRequireDefault(__wepy_require(13));
 
-var _isMap = _interopRequireDefault(__wepy_require(21));
-
-var _hasGeneratorInterface = _interopRequireDefault(__wepy_require(25));
-
-var _flattenWhenNode = _interopRequireDefault(__wepy_require(27));
+var _flattenWhenNode = _interopRequireDefault(__wepy_require(24));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _default = (0, _flattenWhenNode.default)(function (node) {
-  return ((0, _isPlainObject.default)(node) || (0, _isMap.default)(node)) && !(0, _hasGeneratorInterface.default)(node);
-});
+var _default = (0, _flattenWhenNode.default)(_isPlainObject.default);
 
 exports.default = _default;
-},/***** module 26 end *****/
+},/***** module 23 end *****/
 
 
-/***** module 27 start *****/
+/***** module 24 start *****/
 /***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\flattenWhenNode.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
 exports.__esModule = true;
 exports.default = void 0;
 
-var _constants = __wepy_require(6);
+var _constants = __wepy_require(5);
 
-var _ownKeys = _interopRequireDefault(__wepy_require(22));
+var _ownKeys = _interopRequireDefault(__wepy_require(12));
 
-var _get = _interopRequireDefault(__wepy_require(23));
+var _get = _interopRequireDefault(__wepy_require(15));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3669,29 +5227,67 @@ var _default = function _default(predicate) {
 };
 
 exports.default = _default;
-},/***** module 27 end *****/
+},/***** module 24 end *****/
 
 
-/***** module 28 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\flattenActionMap.js *****/
+/***** module 25 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\is-promise\index.js *****/
+function(module, exports, __wepy_require) {module.exports = isPromise;
+
+function isPromise(obj) {
+  return !!obj && (typeof obj === 'object' || typeof obj === 'function') && typeof obj.then === 'function';
+}
+
+},/***** module 25 end *****/
+
+
+/***** module 26 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\hasGeneratorInterface.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.default = hasGeneratorInterface;
+
+var _ownKeys = _interopRequireDefault(__wepy_require(12));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function hasGeneratorInterface(handler) {
+  var keys = (0, _ownKeys.default)(handler);
+  var hasOnlyInterfaceNames = keys.every(function (ownKey) {
+    return ownKey === 'next' || ownKey === 'throw';
+  });
+  return keys.length && keys.length <= 2 && hasOnlyInterfaceNames;
+}
+},/***** module 26 end *****/
+
+
+/***** module 27 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\flattenReducerMap.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
 exports.__esModule = true;
 exports.default = void 0;
 
-var _isPlainObject = _interopRequireDefault(__wepy_require(14));
+var _isPlainObject = _interopRequireDefault(__wepy_require(13));
 
-var _flattenWhenNode = _interopRequireDefault(__wepy_require(27));
+var _isMap = _interopRequireDefault(__wepy_require(10));
+
+var _hasGeneratorInterface = _interopRequireDefault(__wepy_require(26));
+
+var _flattenWhenNode = _interopRequireDefault(__wepy_require(24));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _default = (0, _flattenWhenNode.default)(_isPlainObject.default);
+var _default = (0, _flattenWhenNode.default)(function (node) {
+  return ((0, _isPlainObject.default)(node) || (0, _isMap.default)(node)) && !(0, _hasGeneratorInterface.default)(node);
+});
 
 exports.default = _default;
-},/***** module 28 end *****/
+},/***** module 27 end *****/
 
 
-/***** module 29 start *****/
+/***** module 28 start *****/
 /***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\symbol-observable\lib\ponyfill.js *****/
 function(module, exports, __wepy_require) {'use strict';
 
@@ -3716,10 +5312,10 @@ function symbolObservablePonyfill(root) {
 
 	return result;
 };
-},/***** module 29 end *****/
+},/***** module 28 end *****/
 
 
-/***** module 30 start *****/
+/***** module 29 start *****/
 /***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\symbol-observable\lib\index.js *****/
 function(module, exports, __wepy_require) {'use strict';
 
@@ -3727,7 +5323,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _ponyfill = __wepy_require(29);
+var _ponyfill = __wepy_require(28);
 
 var _ponyfill2 = _interopRequireDefault(_ponyfill);
 
@@ -3750,10 +5346,10 @@ if (typeof self !== 'undefined') {
 
 var result = (0, _ponyfill2['default'])(root);
 exports['default'] = result;
-},/***** module 30 end *****/
+},/***** module 29 end *****/
 
 
-/***** module 31 start *****/
+/***** module 30 start *****/
 /***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux\lib\redux.js *****/
 function(module, exports, __wepy_require) {'use strict';
 
@@ -3761,7 +5357,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var $$observable = _interopDefault(__wepy_require(30));
+var $$observable = _interopDefault(__wepy_require(29));
 
 /**
  * These are private action types reserved by Redux.
@@ -4428,132 +6024,23 @@ exports.combineReducers = combineReducers;
 exports.compose = compose;
 exports.createStore = createStore;
 
-},/***** module 31 end *****/
+},/***** module 30 end *****/
 
 
-/***** module 32 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\just-curry-it\index.js *****/
-function(module, exports, __wepy_require) {module.exports = curry;
-
-/*
-  function add(a, b, c) {
-    return a + b + c;
-  }
-  curry(add)(1)(2)(3); // 6
-  curry(add)(1)(2)(2); // 5
-  curry(add)(2)(4, 3); // 9
-
-  function add(...args) {
-    return args.reduce((sum, n) => sum + n, 0)
-  }
-  var curryAdd4 = curry(add, 4)
-  curryAdd4(1)(2, 3)(4); // 10
-
-  function converter(ratio, input) {
-    return (input*ratio).toFixed(1);
-  }
-  const curriedConverter = curry(converter)
-  const milesToKm = curriedConverter(1.62);
-  milesToKm(35); // 56.7
-  milesToKm(10); // 16.2
-*/
-
-function curry(fn, arity) {
-  return function curried() {
-    if (arity == null) {
-      arity = fn.length;
-    }
-    var args = [].slice.call(arguments);
-    if (args.length >= arity) {
-      return fn.apply(this, args);
-    } else {
-      return function() {
-        return curried.apply(this, args.concat([].slice.call(arguments)));
-      };
-    }
-  };
-}
-
-},/***** module 32 end *****/
-
-
-/***** module 33 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\createCurriedAction.js *****/
-function(module, exports, __wepy_require) {"use strict";
-
-exports.__esModule = true;
-exports.default = void 0;
-
-var _justCurryIt = _interopRequireDefault(__wepy_require(32));
-
-var _createAction = _interopRequireDefault(__wepy_require(35));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var _default = function _default(type, payloadCreator) {
-  return (0, _justCurryIt.default)((0, _createAction.default)(type, payloadCreator), payloadCreator.length);
-};
-
-exports.default = _default;
-},/***** module 33 end *****/
-
-
-/***** module 34 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\reduce-reducers\lib\index.js *****/
-function(module, exports, __wepy_require) {'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-exports.default = function () {
-  for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-    args[_key] = arguments[_key];
-  }
-
-  var initialState = typeof args[args.length - 1] !== 'function' && args.pop();
-  var reducers = args;
-
-  if (typeof initialState === 'undefined') {
-    throw new TypeError('The initial state may not be undefined. If you do not want to set a value for this reducer, you can use null instead of undefined.');
-  }
-
-  return function (prevState, value) {
-    for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
-      args[_key2 - 2] = arguments[_key2];
-    }
-
-    var prevStateIsUndefined = typeof prevState === 'undefined';
-    var valueIsUndefined = typeof value === 'undefined';
-
-    if (prevStateIsUndefined && valueIsUndefined && initialState) {
-      return initialState;
-    }
-
-    return reducers.reduce(function (newState, reducer) {
-      return reducer.apply(undefined, [newState, value].concat(args));
-    }, prevStateIsUndefined && !valueIsUndefined && initialState ? initialState : prevState);
-  };
-};
-
-module.exports = exports['default'];
-},/***** module 34 end *****/
-
-
-/***** module 35 start *****/
+/***** module 31 start *****/
 /***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\createAction.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
 exports.__esModule = true;
 exports.default = createAction;
 
-var _invariant = _interopRequireDefault(__wepy_require(38));
+var _invariant = _interopRequireDefault(__wepy_require(33));
 
-var _isFunction = _interopRequireDefault(__wepy_require(7));
+var _isFunction = _interopRequireDefault(__wepy_require(6));
 
-var _identity = _interopRequireDefault(__wepy_require(12));
+var _identity = _interopRequireDefault(__wepy_require(14));
 
-var _isNull = _interopRequireDefault(__wepy_require(13));
+var _isNull = _interopRequireDefault(__wepy_require(16));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4600,31 +6087,31 @@ function createAction(type, payloadCreator, metaCreator) {
 
   return actionCreator;
 }
-},/***** module 35 end *****/
+},/***** module 31 end *****/
 
 
-/***** module 36 start *****/
+/***** module 32 start *****/
 /***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\handleAction.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
 exports.__esModule = true;
 exports.default = handleAction;
 
-var _invariant = _interopRequireDefault(__wepy_require(38));
+var _invariant = _interopRequireDefault(__wepy_require(33));
 
-var _isFunction = _interopRequireDefault(__wepy_require(7));
+var _isFunction = _interopRequireDefault(__wepy_require(6));
 
-var _isPlainObject = _interopRequireDefault(__wepy_require(14));
+var _isPlainObject = _interopRequireDefault(__wepy_require(13));
 
-var _identity = _interopRequireDefault(__wepy_require(12));
+var _identity = _interopRequireDefault(__wepy_require(14));
 
-var _isNil = _interopRequireDefault(__wepy_require(16));
+var _isNil = _interopRequireDefault(__wepy_require(18));
 
-var _isUndefined = _interopRequireDefault(__wepy_require(20));
+var _isUndefined = _interopRequireDefault(__wepy_require(22));
 
-var _toString = _interopRequireDefault(__wepy_require(10));
+var _toString = _interopRequireDefault(__wepy_require(7));
 
-var _constants = __wepy_require(6);
+var _constants = __wepy_require(5);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4657,59 +6144,10 @@ function handleAction(type, reducer, defaultState) {
     return (action.error === true ? throwReducer : nextReducer)(state, action);
   };
 }
-},/***** module 36 end *****/
+},/***** module 32 end *****/
 
 
-/***** module 37 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\handleActions.js *****/
-function(module, exports, __wepy_require) {"use strict";
-
-exports.__esModule = true;
-exports.default = handleActions;
-
-var _reduceReducers = _interopRequireDefault(__wepy_require(34));
-
-var _invariant = _interopRequireDefault(__wepy_require(38));
-
-var _isPlainObject = _interopRequireDefault(__wepy_require(14));
-
-var _isMap = _interopRequireDefault(__wepy_require(21));
-
-var _ownKeys = _interopRequireDefault(__wepy_require(22));
-
-var _flattenReducerMap = _interopRequireDefault(__wepy_require(26));
-
-var _handleAction = _interopRequireDefault(__wepy_require(36));
-
-var _get = _interopRequireDefault(__wepy_require(23));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function handleActions(handlers, defaultState, options) {
-  if (options === void 0) {
-    options = {};
-  }
-
-  (0, _invariant.default)((0, _isPlainObject.default)(handlers) || (0, _isMap.default)(handlers), 'Expected handlers to be a plain object.');
-  var flattenedReducerMap = (0, _flattenReducerMap.default)(handlers, options);
-  var reducers = (0, _ownKeys.default)(flattenedReducerMap).map(function (type) {
-    return (0, _handleAction.default)(type, (0, _get.default)(type, flattenedReducerMap), defaultState);
-  });
-
-  var reducer = _reduceReducers.default.apply(void 0, reducers.concat([defaultState]));
-
-  return function (state, action) {
-    if (state === void 0) {
-      state = defaultState;
-    }
-
-    return reducer(state, action);
-  };
-}
-},/***** module 37 end *****/
-
-
-/***** module 38 start *****/
+/***** module 33 start *****/
 /***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\invariant\invariant.js *****/
 function(module, exports, __wepy_require) {/**
  * Copyright (c) 2013-present, Facebook, Inc.
@@ -4763,29 +6201,29 @@ var invariant = function(condition, format, a, b, c, d, e, f) {
 
 module.exports = invariant;
 
-},/***** module 38 end *****/
+},/***** module 33 end *****/
 
 
-/***** module 39 start *****/
+/***** module 34 start *****/
 /***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\combineActions.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
 exports.__esModule = true;
 exports.default = combineActions;
 
-var _invariant = _interopRequireDefault(__wepy_require(38));
+var _invariant = _interopRequireDefault(__wepy_require(33));
 
-var _isFunction = _interopRequireDefault(__wepy_require(7));
+var _isFunction = _interopRequireDefault(__wepy_require(6));
 
 var _isSymbol = _interopRequireDefault(__wepy_require(8));
 
 var _isEmpty = _interopRequireDefault(__wepy_require(9));
 
-var _toString = _interopRequireDefault(__wepy_require(10));
+var _toString = _interopRequireDefault(__wepy_require(7));
 
 var _isString = _interopRequireDefault(__wepy_require(11));
 
-var _constants = __wepy_require(6);
+var _constants = __wepy_require(5);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4814,10 +6252,168 @@ function combineActions() {
     }
   };
 }
-},/***** module 39 end *****/
+},/***** module 34 end *****/
 
 
-/***** module 40 start *****/
+/***** module 35 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\just-curry-it\index.js *****/
+function(module, exports, __wepy_require) {module.exports = curry;
+
+/*
+  function add(a, b, c) {
+    return a + b + c;
+  }
+  curry(add)(1)(2)(3); // 6
+  curry(add)(1)(2)(2); // 5
+  curry(add)(2)(4, 3); // 9
+
+  function add(...args) {
+    return args.reduce((sum, n) => sum + n, 0)
+  }
+  var curryAdd4 = curry(add, 4)
+  curryAdd4(1)(2, 3)(4); // 10
+
+  function converter(ratio, input) {
+    return (input*ratio).toFixed(1);
+  }
+  const curriedConverter = curry(converter)
+  const milesToKm = curriedConverter(1.62);
+  milesToKm(35); // 56.7
+  milesToKm(10); // 16.2
+*/
+
+function curry(fn, arity) {
+  return function curried() {
+    if (arity == null) {
+      arity = fn.length;
+    }
+    var args = [].slice.call(arguments);
+    if (args.length >= arity) {
+      return fn.apply(this, args);
+    } else {
+      return function() {
+        return curried.apply(this, args.concat([].slice.call(arguments)));
+      };
+    }
+  };
+}
+
+},/***** module 35 end *****/
+
+
+/***** module 36 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\createCurriedAction.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _justCurryIt = _interopRequireDefault(__wepy_require(35));
+
+var _createAction = _interopRequireDefault(__wepy_require(31));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = function _default(type, payloadCreator) {
+  return (0, _justCurryIt.default)((0, _createAction.default)(type, payloadCreator), payloadCreator.length);
+};
+
+exports.default = _default;
+},/***** module 36 end *****/
+
+
+/***** module 37 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\reduce-reducers\lib\index.js *****/
+function(module, exports, __wepy_require) {'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function () {
+  for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+    args[_key] = arguments[_key];
+  }
+
+  var initialState = typeof args[args.length - 1] !== 'function' && args.pop();
+  var reducers = args;
+
+  if (typeof initialState === 'undefined') {
+    throw new TypeError('The initial state may not be undefined. If you do not want to set a value for this reducer, you can use null instead of undefined.');
+  }
+
+  return function (prevState, value) {
+    for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
+      args[_key2 - 2] = arguments[_key2];
+    }
+
+    var prevStateIsUndefined = typeof prevState === 'undefined';
+    var valueIsUndefined = typeof value === 'undefined';
+
+    if (prevStateIsUndefined && valueIsUndefined && initialState) {
+      return initialState;
+    }
+
+    return reducers.reduce(function (newState, reducer) {
+      return reducer.apply(undefined, [newState, value].concat(args));
+    }, prevStateIsUndefined && !valueIsUndefined && initialState ? initialState : prevState);
+  };
+};
+
+module.exports = exports['default'];
+},/***** module 37 end *****/
+
+
+/***** module 38 start *****/
+/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\handleActions.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.default = handleActions;
+
+var _reduceReducers = _interopRequireDefault(__wepy_require(37));
+
+var _invariant = _interopRequireDefault(__wepy_require(33));
+
+var _isPlainObject = _interopRequireDefault(__wepy_require(13));
+
+var _isMap = _interopRequireDefault(__wepy_require(10));
+
+var _ownKeys = _interopRequireDefault(__wepy_require(12));
+
+var _flattenReducerMap = _interopRequireDefault(__wepy_require(27));
+
+var _handleAction = _interopRequireDefault(__wepy_require(32));
+
+var _get = _interopRequireDefault(__wepy_require(15));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function handleActions(handlers, defaultState, options) {
+  if (options === void 0) {
+    options = {};
+  }
+
+  (0, _invariant.default)((0, _isPlainObject.default)(handlers) || (0, _isMap.default)(handlers), 'Expected handlers to be a plain object.');
+  var flattenedReducerMap = (0, _flattenReducerMap.default)(handlers, options);
+  var reducers = (0, _ownKeys.default)(flattenedReducerMap).map(function (type) {
+    return (0, _handleAction.default)(type, (0, _get.default)(type, flattenedReducerMap), defaultState);
+  });
+
+  var reducer = _reduceReducers.default.apply(void 0, reducers.concat([defaultState]));
+
+  return function (state, action) {
+    if (state === void 0) {
+      state = defaultState;
+    }
+
+    return reducer(state, action);
+  };
+}
+},/***** module 38 end *****/
+
+
+/***** module 39 start *****/
 /***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\lodash\lodash.js *****/
 function(module, exports, __wepy_require) {/**
  * @license
@@ -21932,10 +23528,10 @@ function(module, exports, __wepy_require) {/**
   }
 }.call(this));
 
-},/***** module 40 end *****/
+},/***** module 39 end *****/
 
 
-/***** module 41 start *****/
+/***** module 40 start *****/
 /***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\flux-standard-action\lib\index.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
@@ -21945,7 +23541,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.isFSA = isFSA;
 exports.isError = isError;
 
-var _lodash = __wepy_require(40);
+var _lodash = __wepy_require(39);
 
 function isFSA(action) {
   return (0, _lodash.isPlainObject)(action) && (0, _lodash.isString)(action.type) && Object.keys(action).every(isValidKey);
@@ -21958,10 +23554,10 @@ function isError(action) {
 function isValidKey(key) {
   return ['type', 'payload', 'error', 'meta'].indexOf(key) > -1;
 }
-},/***** module 41 end *****/
+},/***** module 40 end *****/
 
 
-/***** module 42 start *****/
+/***** module 41 start *****/
 /***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-promise\lib\index.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
@@ -21970,9 +23566,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = promiseMiddleware;
 
-var _isPromise = _interopRequireDefault(__wepy_require(24));
+var _isPromise = _interopRequireDefault(__wepy_require(25));
 
-var _fluxStandardAction = __wepy_require(41);
+var _fluxStandardAction = __wepy_require(40);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22002,10 +23598,10 @@ function promiseMiddleware(_ref) {
     };
   };
 }
-},/***** module 42 end *****/
+},/***** module 41 end *****/
 
 
-/***** module 43 start *****/
+/***** module 42 start *****/
 /***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\to-no-case\index.js *****/
 function(module, exports, __wepy_require) {
 /**
@@ -22075,13 +23671,13 @@ function uncamelize(string) {
   })
 }
 
-},/***** module 43 end *****/
+},/***** module 42 end *****/
 
 
-/***** module 44 start *****/
+/***** module 43 start *****/
 /***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\to-space-case\index.js *****/
 function(module, exports, __wepy_require) {
-var clean = __wepy_require(43)
+var clean = __wepy_require(42)
 
 /**
  * Export.
@@ -22102,13 +23698,13 @@ function toSpaceCase(string) {
   }).trim()
 }
 
-},/***** module 44 end *****/
+},/***** module 43 end *****/
 
 
-/***** module 45 start *****/
+/***** module 44 start *****/
 /***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\to-camel-case\index.js *****/
 function(module, exports, __wepy_require) {
-var space = __wepy_require(44)
+var space = __wepy_require(43)
 
 /**
  * Export.
@@ -22129,17 +23725,17 @@ function toCamelCase(string) {
   })
 }
 
-},/***** module 45 end *****/
+},/***** module 44 end *****/
 
 
-/***** module 46 start *****/
+/***** module 45 start *****/
 /***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\camelCase.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
 exports.__esModule = true;
 exports.default = void 0;
 
-var _toCamelCase = _interopRequireDefault(__wepy_require(45));
+var _toCamelCase = _interopRequireDefault(__wepy_require(44));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22150,43 +23746,43 @@ var _default = function _default(type) {
 };
 
 exports.default = _default;
-},/***** module 46 end *****/
+},/***** module 45 end *****/
 
 
-/***** module 47 start *****/
+/***** module 46 start *****/
 /***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\createActions.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
 exports.__esModule = true;
 exports.default = createActions;
 
-var _invariant = _interopRequireDefault(__wepy_require(38));
+var _invariant = _interopRequireDefault(__wepy_require(33));
 
-var _isPlainObject = _interopRequireDefault(__wepy_require(14));
+var _isPlainObject = _interopRequireDefault(__wepy_require(13));
 
-var _isFunction = _interopRequireDefault(__wepy_require(7));
+var _isFunction = _interopRequireDefault(__wepy_require(6));
 
-var _identity = _interopRequireDefault(__wepy_require(12));
+var _identity = _interopRequireDefault(__wepy_require(14));
 
-var _isArray = _interopRequireDefault(__wepy_require(15));
+var _isArray = _interopRequireDefault(__wepy_require(17));
 
 var _isString = _interopRequireDefault(__wepy_require(11));
 
-var _isNil = _interopRequireDefault(__wepy_require(16));
+var _isNil = _interopRequireDefault(__wepy_require(18));
 
-var _getLastElement = _interopRequireDefault(__wepy_require(17));
+var _getLastElement = _interopRequireDefault(__wepy_require(19));
 
-var _camelCase = _interopRequireDefault(__wepy_require(46));
+var _camelCase = _interopRequireDefault(__wepy_require(45));
 
-var _arrayToObject = _interopRequireDefault(__wepy_require(18));
+var _arrayToObject = _interopRequireDefault(__wepy_require(20));
 
-var _flattenActionMap = _interopRequireDefault(__wepy_require(28));
+var _flattenActionMap = _interopRequireDefault(__wepy_require(23));
 
-var _unflattenActionCreators = _interopRequireDefault(__wepy_require(19));
+var _unflattenActionCreators = _interopRequireDefault(__wepy_require(21));
 
-var _createAction = _interopRequireDefault(__wepy_require(35));
+var _createAction = _interopRequireDefault(__wepy_require(31));
 
-var _constants = __wepy_require(6);
+var _constants = __wepy_require(5);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22260,41 +23856,41 @@ function actionCreatorsFromIdentityActions(identityActions, options) {
     return _objectSpread({}, partialActionCreators, (_objectSpread4 = {}, _objectSpread4[(0, _camelCase.default)(type)] = actionCreators[type], _objectSpread4));
   });
 }
-},/***** module 47 end *****/
+},/***** module 46 end *****/
 
 
-/***** module 48 start *****/
+/***** module 47 start *****/
 /***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\index.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
 exports.__esModule = true;
 
-var _combineActions = _interopRequireDefault(__wepy_require(39));
+var _combineActions = _interopRequireDefault(__wepy_require(34));
 
 exports.combineActions = _combineActions.default;
 
-var _createAction = _interopRequireDefault(__wepy_require(35));
+var _createAction = _interopRequireDefault(__wepy_require(31));
 
 exports.createAction = _createAction.default;
 
-var _createActions = _interopRequireDefault(__wepy_require(47));
+var _createActions = _interopRequireDefault(__wepy_require(46));
 
 exports.createActions = _createActions.default;
 
-var _createCurriedAction = _interopRequireDefault(__wepy_require(33));
+var _createCurriedAction = _interopRequireDefault(__wepy_require(36));
 
 exports.createCurriedAction = _createCurriedAction.default;
 
-var _handleAction = _interopRequireDefault(__wepy_require(36));
+var _handleAction = _interopRequireDefault(__wepy_require(32));
 
 exports.handleAction = _handleAction.default;
 
-var _handleActions = _interopRequireDefault(__wepy_require(37));
+var _handleActions = _interopRequireDefault(__wepy_require(38));
 
 exports.handleActions = _handleActions.default;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-}/***** module 48 end *****/
+}/***** module 47 end *****/
 
 
 ]);

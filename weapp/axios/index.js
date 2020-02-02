@@ -7,13 +7,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
-var _axios = _interopRequireDefault(require('axios.js'));
+var _axios = _interopRequireDefault(require('../vendor.js')(3));
 
 var _apis = _interopRequireDefault(require('../apis/index.js'));
 
 var utils = _interopRequireWildcard(require('../utils/index.js'));
 
-var _adapter = _interopRequireDefault(require('../vendor.js')(5));
+var _adapter = _interopRequireDefault(require('../vendor.js')(4));
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
 
@@ -21,52 +21,13 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-// const CancelToken = Axios.CancelToken;
-// const source = CancelToken.source();
-// let reqList = [];
-
-/**
- *
- * @param reqList
- * @param url
- * @param cancel
- * @param errorMessage
- */
-// const stopRepeatRequest = (reqList, url, cancel, errorMessage) => {
-//   errorMessage = errorMessage || '';
-//   console.log(reqList + url);
-//   for (let i = 0; i < reqList.length; i++) {
-//     if (reqList[i] === url) {
-//       cancel({url, errorMessage});
-//       return;
-//     }
-//   }
-//   reqList.push(url);
-// };
-
-/**
- *
- * @param reqList
- * @param url
- */
-// const allowRequest = (reqList, url) => {
-//   for (let i = 0; i < reqList.length; i++) {
-//     if (reqList[i] === url) {
-//       reqList.splice(i, 1);
-//       break;
-//     }
-//   }
-// };
-
 /**
  *
  * @param config
  * @returns {*}
  */
 var getConfig = function getConfig(config) {
-  console.log(config);
   var method = config.method;
-  console.log(method);
   var opts = config.url;
   var url = opts.url,
       params = opts.params;

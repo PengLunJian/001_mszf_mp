@@ -10,10 +10,9 @@ var apis = {
   timeout: 5000,
   dataType: 'json',
   headers: {
-    'Cache-Control': 'no-cache',
     'Content-Type': 'application/json; charset=UTF-8'
   },
-  selectRentHouseList: {
+  selectHouseList: {
     url: 'house/v1/houser/house/list',
     params: {
       page: {
@@ -24,6 +23,10 @@ var apis = {
         field: 'type',
         opt: '=',
         value: 3
+      }],
+      sort: [{
+        field: 'id',
+        asc: false
       }]
     }
   },
@@ -33,10 +36,30 @@ var apis = {
       house_id: 1
     }
   },
-  insertHouseFollow: {
+  updateHouseFollow: {
     url: 'house/v1/houser/house/follow',
     params: {
       house_id: 1
+    }
+  },
+  updateHouseUnfollow: {
+    url: 'house/v1/houser/house/unfollow',
+    params: {
+      house_id: 1
+    }
+  },
+  selectHouseFavorite: {
+    url: 'house/v1/houser/house/followed',
+    params: {
+      page: {
+        pageSize: 10,
+        pageIndex: 1
+      },
+      filter: [{
+        field: 'id',
+        opt: '>=',
+        value: 2
+      }]
     }
   }
 };

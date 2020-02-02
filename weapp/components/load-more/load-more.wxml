@@ -1,12 +1,12 @@
 
-<view class="load-more">
+<view wx:if="{{ totalCount>10 }}" class="load-more">
   <view class="load-more-content">
-    <view wx:if="{{ isMore }}" class="load-more-true">
+    <view wx:if="{{ length<totalCount }}" class="load-more-true">
       <image src="images/loading-icon@2x.png" mode="aspectFit" class="load-more-icon"></image>
       <image src="images/loading-clock@2x.png" mode="aspectFit" class="load-more-clock"></image>
       <image src="images/loading-label@2x.png" mode="aspectFit" class="load-more-label"></image>
     </view>
-    <view wx:if="{{ !isMore }}" class="load-more-false">
+    <view wx:if="{{ length>=totalCount }}" class="load-more-false">
       <view class="load-more-label">我是有底线的</view>
     </view>
   </view>

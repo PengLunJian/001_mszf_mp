@@ -1,30 +1,28 @@
 
-<view data-wpy-evt="105-0" bindtap="_proxy" class="item">
+<view data-wpy-evt="95-0" bindtap="_proxy" class="item">
   <view class="item-inner">
     <view class="item-img">
-      <image src="{{item.url}}"></image>
+      <image src="http://sersms.com:7000/house/v1/file/static/userfile/202001/15/1217306190710345728.jpg"></image>
     </view>
     <view class="item-info">
       <view class="item-row">
-        <view class="item-title ellipsis">万象小区 南向两居室 精装 拎包入住</view>
+        <view class="item-title ellipsis">{{item.title}}</view>
       </view>
       <view class="item-row">
-        <label class="item-addr">广德城区</label>
+        <label class="item-addr">{{item.addr_qu}}</label>
         <label class="item-split"></label>
-        <label class="item-addr">广德金峰万象小区</label>
+        <label class="item-addr">{{item.addr}}</label>
       </view>
       <view class="item-row">
                 <label class="item-normal item-price">
-                  <label class="item-value">140</label>
+                  <label class="item-value">{{item.total_price/10000}}</label>
                   <label class="item-unit">万</label>
                 </label>
-        <label class="item-normal">2室1厅1卫</label>
-        <label class="item-normal">140m²</label>
+        <label class="item-normal">{{item.huxing}}</label>
+        <label class="item-normal">{{item.mianji}}m²</label>
       </view>
       <view class="item-row">
-        <label class="item-tag">南北通透</label>
-        <label class="item-tag">精装修</label>
-        <label class="item-tag">随时看房</label>
+        <label wx:for="{{ item.tags }}" wx:for-index="index" wx:for-item="tag" wx:key="index" key="{{ index }}" class="item-tag">{{tag}}</label>
       </view>
     </view>
   </view>

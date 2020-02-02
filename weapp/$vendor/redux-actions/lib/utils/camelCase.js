@@ -3,7 +3,7 @@
 exports.__esModule = true;
 exports.default = void 0;
 
-var _toCamelCase = _interopRequireDefault(__wepy_require(45));
+var _toCamelCase = _interopRequireDefault(__wepy_require(44));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

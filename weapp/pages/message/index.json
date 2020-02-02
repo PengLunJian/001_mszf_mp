@@ -1,0 +1,7 @@
+{
+    "navigationStyle": "custom",
+    "component": true,
+    "usingComponents": {
+        "top-logo": "../../components/top-logo/top-logo"
+    }
+}

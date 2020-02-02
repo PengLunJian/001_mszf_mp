@@ -4,117 +4,57 @@
     <view class="header">
       <top-bar bind_init="_initComponent" title="我的收藏"></top-bar>
       <view class="tab-bar">
-        <view wx:for="{{ tabs }}" wx:for-index="index" wx:for-item="item" wx:key="index" data-wpy-evt="11-0" bindtap="_proxy" data-wpytap-a="{{ index }}" class="tab-item {{ [ index===tabIndex ? 'active' : '' ] }}">
+        <view wx:for="{{ tabs }}" wx:for-index="index" wx:for-item="item" wx:key="index" key="{{ index }}" data-wpy-evt="13-0" bindtap="_proxy" data-wpytap-a="{{ index }}" class="tab-item {{ [ index===tabIndex ? 'active' : '' ] }}">
           <view class="tab-text">{{item.label}}</view>
         </view>
       </view>
     </view>
     <view class="body">
-      <swiper current="{{current}}" data-wpy-evt="11-1" bindchange="_proxy" class="tab-swiper">
+      <swiper current="{{current}}" data-wpy-evt="13-1" bindchange="_proxy" class="tab-swiper">
         <swiper-item class="tab-content">
-          <scroll-view scroll-y="{{true}}" class="scroll-view">
-            <view wx:for="{{ items }}" wx:for-index="index" wx:for-item="item" wx:key="index" key="{{ index }}" class="item">
-              <view class="item-inner">
-                <view class="item-img">
-                  <image src="{{item.url}}"></image>
-                </view>
-                <view class="item-info">
-                  <view class="item-row">
-                    <view class="item-title ellipsis">碧桂园 南向两居室 精装 拎包入住</view>
-                  </view>
-                  <view class="item-row">
-                    <label class="item-addr">广德城区</label>
-                    <label class="item-split"></label>
-                    <label class="item-addr">广德碧桂园</label>
-                  </view>
-                  <view class="item-row">
-                <label class="item-normal item-price">
-                  <label class="item-value">1800</label>
-                  <label class="item-unit">元/月</label>
-                </label>
-                    <label class="item-normal">2室1厅1卫</label>
-                    <label class="item-normal">整租</label>
-                    <label class="item-normal">70m²</label>
-                  </view>
-                  <view class="item-row">
-                    <label class="item-tag">南北通透</label>
-                    <label class="item-tag">精装修</label>
-                    <label class="item-tag">随时看房</label>
-                  </view>
-                </view>
+          <loading bind_init="_initComponent" isLoading="{{ isRentLoading&&!isRentData.rows.length }}"></loading>
+          <error bind_init="_initComponent" isFailure="{{ isRentFailure&&!isRentData.rows.length }}" data-wpy-evt="13-2" bindrefresh="_proxy"></error>
+          <empty bind_init="_initComponent" isSuccess="{{ isRentSuccess&&!isRentData.rows.length }}"></empty>
+          <view wx:if="{{ isRentData.rows.length }}" class="context fade">
+            <scroll-view scroll-y="{{true}}" data-wpy-evt="13-3" bindscrolltolower="_proxy" class="scroll-view">
+              <view class="items">
+                <block wx:for="{{ isRentData.rows }}" wx:for-index="index" wx:for-item="item" wx:key="index" key="{{ index }}">
+                  <rent-house-item bind_init="_initComponent" item="{{ item }}"></rent-house-item>
+                </block>
               </view>
-            </view>
-          </scroll-view>
+              <load-more bind_init="_initComponent" length="{{ isRentData.rows.length }}" totalCount="{{ isRentData.totalCount }}"></load-more>
+            </scroll-view>
+          </view>
         </swiper-item>
         <swiper-item class="tab-content">
-          <scroll-view scroll-y="{{true}}" class="scroll-view">
-            <view wx:for="{{ items }}" wx:for-index="index" wx:for-item="item" wx:key="index" key="{{ index }}" class="item">
-              <view class="item-inner">
-                <view class="item-img">
-                  <image src="{{item.url}}"></image>
-                </view>
-                <view class="item-info">
-                  <view class="item-row">
-                    <view class="item-title ellipsis">碧桂园 南向两居室 精装 拎包入住</view>
-                  </view>
-                  <view class="item-row">
-                    <label class="item-addr">广德城区</label>
-                    <label class="item-split"></label>
-                    <label class="item-addr">广德碧桂园</label>
-                  </view>
-                  <view class="item-row">
-                <label class="item-normal item-price">
-                  <label class="item-value">1800</label>
-                  <label class="item-unit">元/月</label>
-                </label>
-                    <label class="item-normal">2室1厅1卫</label>
-                    <label class="item-normal">整租</label>
-                    <label class="item-normal">70m²</label>
-                  </view>
-                  <view class="item-row">
-                    <label class="item-tag">南北通透</label>
-                    <label class="item-tag">精装修</label>
-                    <label class="item-tag">随时看房</label>
-                  </view>
-                </view>
+          <loading bind_init="_initComponent" isLoading="{{ isSecondLoading&&!isSecondData.rows.length }}"></loading>
+          <error bind_init="_initComponent" isFailure="{{ isSecondFailure&&!isSecondData.rows.length }}" data-wpy-evt="13-4" bindrefresh="_proxy"></error>
+          <empty bind_init="_initComponent" isSuccess="{{ isSecondSuccess&&!isSecondData.rows.length }}"></empty>
+          <view wx:if="{{ isSecondData.rows.length }}" class="context fade">
+            <scroll-view scroll-y="{{true}}" data-wpy-evt="13-5" bindscrolltolower="_proxy" class="scroll-view">
+              <view class="items">
+                <block wx:for="{{ isSecondData.rows }}" wx:for-index="index" wx:for-item="item" wx:key="index" key="{{ index }}">
+                  <second-house-item bind_init="_initComponent" item="{{ item }}"></second-house-item>
+                </block>
               </view>
-            </view>
-          </scroll-view>
+              <load-more bind_init="_initComponent" length="{{ isSecondData.rows.length }}" totalCount="{{ isSecondData.totalCount }}"></load-more>
+            </scroll-view>
+          </view>
         </swiper-item>
         <swiper-item class="tab-content">
-          <scroll-view scroll-y="{{true}}" class="scroll-view">
-            <view wx:for="{{ items }}" wx:for-index="index" wx:for-item="item" wx:key="index" key="{{ index }}" class="item">
-              <view class="item-inner">
-                <view class="item-img">
-                  <image src="{{item.url}}"></image>
-                </view>
-                <view class="item-info">
-                  <view class="item-row">
-                    <view class="item-title ellipsis">碧桂园 南向两居室 精装 拎包入住</view>
-                  </view>
-                  <view class="item-row">
-                    <label class="item-addr">广德城区</label>
-                    <label class="item-split"></label>
-                    <label class="item-addr">广德碧桂园</label>
-                  </view>
-                  <view class="item-row">
-                <label class="item-normal item-price">
-                  <label class="item-value">1800</label>
-                  <label class="item-unit">元/月</label>
-                </label>
-                    <label class="item-normal">2室1厅1卫</label>
-                    <label class="item-normal">整租</label>
-                    <label class="item-normal">70m²</label>
-                  </view>
-                  <view class="item-row">
-                    <label class="item-tag">南北通透</label>
-                    <label class="item-tag">精装修</label>
-                    <label class="item-tag">随时看房</label>
-                  </view>
-                </view>
+          <loading bind_init="_initComponent" isLoading="{{ isNewLoading&&!isNewData.rows.length }}"></loading>
+          <error bind_init="_initComponent" isFailure="{{ isNewFailure&&!isNewData.rows.length }}" data-wpy-evt="13-6" bindrefresh="_proxy"></error>
+          <empty bind_init="_initComponent" isSuccess="{{ isNewSuccess&&!isNewData.rows.length }}"></empty>
+          <view wx:if="{{ isNewData.rows.length }}" class="context fade">
+            <scroll-view scroll-y="{{true}}" data-wpy-evt="13-7" bindscrolltolower="_proxy" class="scroll-view">
+              <view class="items">
+                <block wx:for="{{ isNewData.rows }}" wx:for-index="index" wx:for-item="item" wx:key="index" key="{{ index }}">
+                  <new-house-item bind_init="_initComponent" item="{{ item }}"></new-house-item>
+                </block>
               </view>
-            </view>
-          </scroll-view>
+              <load-more bind_init="_initComponent" length="{{ isNewData.rows.length }}" totalCount="{{ isNewData.totalCount }}"></load-more>
+            </scroll-view>
+          </view>
         </swiper-item>
       </swiper>
     </view>

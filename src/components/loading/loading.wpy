@@ -1,7 +1,6 @@
 <template>
   <div class="loading fade{{isLoading?'':' hide'}}" v-if="isShow">
     <div class="loading-inner">
-      <div class="loading-bg"></div>
       <div class="loading-image">
         <img class="loading-icon" src="./images/loading-icon@2x.png" mode="aspectFit"/>
         <img class="loading-clock" src="./images/loading-clock@2x.png" mode="aspectFit"/>
@@ -48,23 +47,18 @@
   @import "../../assets/less/iconfont";
 
   .loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: 0;
     .loading-inner {
-      .loading-bg {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 1001;
-      }
+      display: inline-block;
+      vertical-align: middle;
       .loading-image {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        width: auto;
-        z-index: 1010;
-        overflow: hidden;
-        transform: translate3d(-50%, -50%, 0);
+        position: relative;
         font-size: 0;
         .loading-icon {
           position: absolute;
@@ -83,13 +77,19 @@
           animation: rotate 3s linear infinite;
         }
         .loading-label {
-          width: unit(200, rpx);
+          width: unit(180, rpx);
           height: unit(100, rpx);
           display: inline-block;
           vertical-align: middle;
           padding: unit(10, rpx);
         }
       }
+    }
+    &:before {
+      content: '';
+      height: 100%;
+      display: inline-block;
+      vertical-align: middle;
     }
   }
 </style>

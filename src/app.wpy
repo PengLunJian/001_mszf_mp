@@ -27,7 +27,9 @@
 <config>
   {
   pages: [
-  'pages/index/index'
+  'pages/index/index',
+  'pages/message/index',
+  'pages/mine/index',
   ],
   subpackages: [
   {
@@ -47,7 +49,6 @@
   'pages/about/index',
   'pages/favorite/index',
   'pages/history/index',
-  'pages/mine/index',
   'pages/release/index',
   'pages/suggest/index'
   ]
@@ -66,6 +67,32 @@
   backgroundTextStyle: 'light',
   navigationBarTextStyle: 'black',
   navigationBarBackgroundColor: '#ffffff'
+  },
+  tabBar:{
+  list:[
+  {
+  pagePath:'pages/index/index',
+  iconPath:'./assets/images/tab-item01.png',
+  selectedIconPath:'./assets/images/tab-item01-active.png',
+  text:'首页'
+  },
+  {
+  pagePath:'pages/message/index',
+  iconPath:'/assets/images/tab-item02.png',
+  selectedIconPath:'./assets/images/tab-item02-active.png',
+  text:'消息'
+  },
+  {
+  pagePath:'pages/mine/index',
+  iconPath:'./assets/images/tab-item03.png',
+  selectedIconPath:'./assets/images/tab-item03-active.png',
+  text:'我的'
+  }
+  ],
+  color:'#999999',
+  selectedColor:'#FF9900',
+  backgroundColor:'#FFFFFF',
+  borderStyle:'white'
   }
   }
 </config>
