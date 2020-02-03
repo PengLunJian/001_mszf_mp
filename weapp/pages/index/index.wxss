@@ -4,7 +4,7 @@
 .container .content {
   height: 100vh;
 }
-.container .content .header {
+.container .content .header .top-bar {
   width: 100%;
   position: fixed;
   top: 0;
@@ -12,39 +12,37 @@
   z-index: 1000;
   overflow: hidden;
   background-color: #ffffff;
-  padding-top: 30rpx;
+  padding-bottom: 5px;
   font-size: 0;
 }
-.container .content .header .location {
+.container .content .header .top-bar .top-location {
   display: inline-block;
   vertical-align: middle;
-  height: 100rpx;
-  line-height: 100rpx;
+  height: 40px;
+  line-height: 40px;
   padding: 0 20rpx;
   color: #333333;
   font-size: 0;
 }
-.container .content .header .location .location-icon {
+.container .content .header .top-bar .top-location .location-icon {
   display: inline-block;
   vertical-align: middle;
   font-size: 46rpx;
 }
-.container .content .header .location .location-text {
+.container .content .header .top-bar .top-location .location-text {
   display: inline-block;
   vertical-align: middle;
   margin-left: 4rpx;
   font-size: 32rpx;
 }
-.container .content .header .search {
+.container .content .header .top-bar .top-search {
   display: inline-block;
   vertical-align: middle;
-  height: 100rpx;
-  padding: 18rpx 0;
   margin-left: 30rpx;
   text-align: center;
   font-size: 0;
 }
-.container .content .header .search .btn-search {
+.container .content .header .top-bar .top-search .btn-search {
   width: 320rpx;
   height: 64rpx;
   line-height: 64rpx;
@@ -54,7 +52,7 @@
   background-color: #f0f0f0;
   color: #999999;
 }
-.container .content .header .search .btn-search .btn-icon {
+.container .content .header .top-bar .top-search .btn-search .btn-icon {
   position: absolute;
   top: 0;
   left: 0;
@@ -62,7 +60,7 @@
   height: 64rpx;
   font-size: 32rpx;
 }
-.container .content .header .search .btn-search .btn-text {
+.container .content .header .top-bar .top-search .btn-search .btn-text {
   height: 64rpx;
   line-height: 64rpx;
   padding-left: 55rpx;
@@ -75,7 +73,7 @@
 }
 .container .content .body .context {
   height: 100%;
-  padding-top: 130rpx;
+  padding-top: 65px;
 }
 .container .content .body .context .scroll-view {
   height: 100%;

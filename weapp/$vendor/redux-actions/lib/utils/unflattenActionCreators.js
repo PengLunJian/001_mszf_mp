@@ -5,7 +5,7 @@ exports.default = unflattenActionCreators;
 
 var _constants = __wepy_require(5);
 
-var _isEmpty = _interopRequireDefault(__wepy_require(9));
+var _isEmpty = _interopRequireDefault(__wepy_require(8));
 
 var _camelCase = _interopRequireDefault(__wepy_require(45));
 

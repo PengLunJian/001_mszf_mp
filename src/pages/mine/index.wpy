@@ -5,14 +5,12 @@
         <top-logo title="个人中心"></top-logo>
       </div>
       <div class="body">
-        <div class="context">
+        <div class="context" :style="{'paddingTop':topBarHeight}">
           <div class="module user">
             <div class="info">
               <img class="img" src="../../assets/images/agent.jpg"/>
               <div class="name">WEB前端架构师</div>
             </div>
-            <img class="bg" src="http://sersms.com:7000/house/v1/file/static/userfile/202002/02/1223909451292360704.jpg"
-                 mode="aspectFit"/>
           </div>
           <div class="module list">
             <button v-for="(item,index) in items"
@@ -43,6 +41,7 @@
     mixins: [],
 
     data: {
+      topBarHeight: '',
       items: [
         {
           name: $routes.FAVORITE.name,
@@ -84,7 +83,11 @@
       }
     },
 
-    created() {
+    onLoad() {
+      const system = wx.getSystemInfoSync();
+      const statusHeight = system.statusBarHeight;
+      const topBarHeight = statusHeight + 45;
+      this.topBarHeight = topBarHeight + 'px';
     }
   });
 </script>
@@ -96,16 +99,21 @@
     min-height: 100vh;
     .content {
       height: 100vh;
-      .header {}
+      .header {
+      }
       .body {
         height: 100%;
         position: relative;
         .context {
           height: 100%;
-          padding-top: unit(130, rpx);
+          padding-top: 65px;
           .user {
             position: relative;
             height: unit(280, rpx);
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-image: url("http://sersms.com:7000/house/v1/file/static/userfile/202002/02/1223909451292360704.jpg");
             .info {
               position: absolute;
               left: 0;
@@ -134,13 +142,6 @@
                 letter-spacing: 1px;
                 color: @white;
               }
-            }
-            .bg {
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 100%;
             }
           }
           .list {

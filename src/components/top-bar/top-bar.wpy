@@ -1,5 +1,5 @@
 <template>
-  <div class="top-bar" style="{{styl}}">
+  <div class="top-bar" :style="{'paddingTop':statusHeight}">
     <div class="top-inner">
       <div class="top-icon iconfont icon-back" @tap="onHandleBack"></div>
       <div class="top-icon iconfont icon-home" @tap="onHandleHome"></div>
@@ -13,15 +13,13 @@
   import * as $routes from '../../router';
 
   wepy.component({
-    data: {},
+    data: {
+      statusHeight: ''
+    },
     props: {
       title: {
         type: String,
         default: '标题'
-      },
-      styl: {
-        type: String,
-        default: ''
       }
     },
     events: {},
@@ -37,7 +35,10 @@
         });
       }
     },
-    onLoad() {
+    created() {
+      const system = wx.getSystemInfoSync();
+      const statusHeight = system.statusBarHeight;
+      this.statusHeight = statusHeight + 'px';
     }
   });
 </script>
@@ -53,7 +54,7 @@
     left: 0;
     z-index: 1000;
     background-color: @white;
-    padding-top: unit(30, rpx);
+    padding-bottom: 5px;
     .top-inner {
       position: relative;
       height: @topBarHeight;
@@ -72,6 +73,7 @@
         top: 0;
         left: 0;
         width: 100%;
+        height: 100%;
         font-size: unit(32, rpx);
         font-weight: bold;
       }

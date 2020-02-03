@@ -131,17 +131,17 @@
   left: 0;
   z-index: 1000;
   background-color: #ffffff;
-  padding-top: 30rpx;
+  padding-bottom: 5px;
 }
 .top-bar .top-inner {
   position: relative;
-  height: 100rpx;
-  line-height: 100rpx;
+  height: 40px;
+  line-height: 40px;
   text-align: center;
 }
 .top-bar .top-inner .top-icon {
   width: 90rpx;
-  height: 100rpx;
+  height: 40px;
   position: relative;
   z-index: 1;
   float: left;
@@ -152,6 +152,7 @@
   top: 0;
   left: 0;
   width: 100%;
+  height: 100%;
   font-size: 32rpx;
   font-weight: bold;
 }

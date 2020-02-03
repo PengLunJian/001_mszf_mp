@@ -29,63 +29,112 @@ _core["default"].component({
     }
   },
   onLoad: function onLoad() {}
-}, {info: {"components":{},"on":{}}, handlers: {'94-0': {"tap": function proxy () {
+}, {info: {"components":{},"on":{}}, handlers: {'94-6': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
         _vm.onHandleDetail(_vm.item.id)
       })();
     
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'94-0': {"tap": function proxy () {
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'94-6': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
         _vm.onHandleDetail(_vm.item.id)
       })();
     
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'94-0': {"tap": function proxy () {
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'94-6': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
         _vm.onHandleDetail(_vm.item.id)
       })();
     
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'94-0': {"tap": function proxy () {
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'94-6': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
         _vm.onHandleDetail(_vm.item.id)
       })();
     
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'94-0': {"tap": function proxy () {
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'94-6': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
         _vm.onHandleDetail(_vm.item.id)
       })();
     
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'94-0': {"tap": function proxy () {
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'94-6': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
         _vm.onHandleDetail(_vm.item.id)
       })();
     
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'94-0': {"tap": function proxy () {
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'94-6': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
         _vm.onHandleDetail(_vm.item.id)
       })();
     
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'94-0': {"tap": function proxy () {
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'94-6': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
         _vm.onHandleDetail(_vm.item.id)
       })();
     
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'94-0': {"tap": function proxy () {
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'94-6': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'94-6': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'94-6': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'94-6': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'94-6': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'94-6': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'94-6': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'94-6': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {

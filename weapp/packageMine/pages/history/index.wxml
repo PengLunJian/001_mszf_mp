@@ -6,7 +6,7 @@
       <top-bar bind_init="_initComponent" title="历史浏览"></top-bar>
     </view>
     <view class="body">
-      <scroll-view scroll-y="{{true}}" data-wpy-evt="14-0" bindscroll="_proxy" class="scroll-view">
+      <scroll-view scroll-y="{{true}}" data-wpy-evt="14-5" bindscroll="_proxy" class="scroll-view">
         <block wx:for="{{ items }}" wx:for-index="index" wx:for-item="item" wx:key="index" key="{{ index }}">
           <view wx:if="{{ item.date!==items[index-1].date }}" class="date">
             <view class="label {{ [ scrollTop>item.minScrollTop&&scrollTop<=item.maxScrollTop ? 'fixed' : '' ] }}">

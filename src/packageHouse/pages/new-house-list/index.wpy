@@ -193,6 +193,7 @@
     store,
     mixins: [Toast],
     data: {
+      topBarHeight: '',
       timer: null,
       pageIndex: 1,
       pageSize: 10,
@@ -480,6 +481,10 @@
     },
 
     onLoad() {
+      const system = wx.getSystemInfoSync();
+      const statusHeight = system.statusBarHeight;
+      const topBarHeight = statusHeight + 45;
+      this.topBarHeight = topBarHeight + 'px';
       this.resetParams();
       this.resetHouseList();
       this.exeAjaxHouseList();

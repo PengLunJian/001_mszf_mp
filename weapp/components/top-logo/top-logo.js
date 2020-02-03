@@ -5,7 +5,9 @@ var _core = _interopRequireDefault(require('../../vendor.js')(0));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 _core["default"].component({
-  data: {},
+  data: {
+    statusHeight: ''
+  },
   props: {
     title: {
       type: String,
@@ -14,5 +16,9 @@ _core["default"].component({
   },
   events: {},
   methods: {},
-  onLoad: function onLoad() {}
-}, {info: {"components":{},"on":{}}, handlers: {}, models: {} }, {info: {"components":{},"on":{}}, handlers: {}, models: {} }, {info: {"components":{},"on":{}}, handlers: {}, models: {} }, {info: {"components":{},"on":{}}, handlers: {}, models: {} }, {info: {"components":{},"on":{}}, handlers: {}, models: {} });
+  created: function created() {
+    var system = wx.getSystemInfoSync();
+    var statusHeight = system.statusBarHeight;
+    this.statusHeight = statusHeight + 'px';
+  }
+}, {info: {"components":{},"on":{}}, handlers: {}, models: {} }, {info: {"components":{},"on":{}}, handlers: {}, models: {} }, {info: {"components":{},"on":{}}, handlers: {}, models: {} }, {info: {"components":{},"on":{}}, handlers: {}, models: {} }, {info: {"components":{},"on":{}}, handlers: {}, models: {} }, {info: {"components":{},"on":{}}, handlers: {}, models: {} }, {info: {"components":{},"on":{}}, handlers: {}, models: {} });

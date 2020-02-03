@@ -2,19 +2,23 @@
   <div class="container">
     <div class="content">
       <div class="header">
-        <div class="location">
-          <span class="location-icon iconfont icon-location"></span>
-          <span class="location-text">宣城</span>
-        </div>
-        <div class="search">
-          <navigator class="btn btn-search" hover-class="none" :url="searchUrl">
-            <div class="btn-icon iconfont icon-search"></div>
-            <div class="btn-text">请输入小区/商圈</div>
-          </navigator>
+        <div class="top-bar" :style="{'paddingTop':statusHeight}">
+          <div class="top-inner">
+            <div class="top-location">
+              <span class="location-icon iconfont icon-location"></span>
+              <span class="location-text">宣城</span>
+            </div>
+            <div class="top-search">
+              <navigator class="btn btn-search" hover-class="none" :url="searchUrl">
+                <div class="btn-icon iconfont icon-search"></div>
+                <div class="btn-text">请输入小区/商圈</div>
+              </navigator>
+            </div>
+          </div>
         </div>
       </div>
       <div class="body">
-        <div class="context">
+        <div class="context" :style="{'paddingTop':topBarHeight}">
           <scroll-view
             class="scroll-view"
             scroll-y="{{true}}">
@@ -84,6 +88,8 @@
     mixins: [],
 
     data: {
+      statusHeight: '',
+      topBarHeight: '',
       items: [
         {
           add_userid: 1,
@@ -201,7 +207,12 @@
 
     methods: {},
 
-    created() {
+    onLoad() {
+      const system = wx.getSystemInfoSync();
+      const statusHeight = system.statusBarHeight;
+      const topBarHeight = statusHeight + 45;
+      this.statusHeight = statusHeight + 'px';
+      this.topBarHeight = topBarHeight + 'px';
     }
   });
 </script>
@@ -216,66 +227,66 @@
     .content {
       height: 100vh;
       .header {
-        width: 100%;
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 1000;
-        overflow: hidden;
-        background-color: @white;
-        padding-top: unit(30, rpx);
-        font-size: 0;
-        .location {
-          display: inline-block;
-          vertical-align: middle;
-          height: @topBarHeight;
-          line-height: @topBarHeight;
-          padding: 0 unit(20, rpx);
-          color: @fontColor1;
+        .top-bar {
+          width: 100%;
+          position: fixed;
+          top: 0;
+          left: 0;
+          z-index: 1000;
+          overflow: hidden;
+          background-color: @white;
+          padding-bottom: 5px;
           font-size: 0;
-          .location-icon {
+          .top-location {
             display: inline-block;
             vertical-align: middle;
-            font-size: @fontSize8;
-          }
-          .location-text {
-            display: inline-block;
-            vertical-align: middle;
-            margin-left: unit(4, rpx);
-            font-size: @fontSize5;
-          }
-        }
-        .search {
-          display: inline-block;
-          vertical-align: middle;
-          height: @topBarHeight;
-          padding: unit(18, rpx) 0;
-          margin-left: unit(30, rpx);
-          text-align: center;
-          font-size: 0;
-          .btn-search {
-            width: unit(320, rpx);
-            height: @height;
-            line-height: @height;
-            display: inline-block;
-            overflow: hidden;
-            border-radius: @height;
-            background-color: #f0f0f0;
-            color: @fontColor3;
-            .btn-icon {
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: @height;
-              height: @height;
+            height: @topBarHeight;
+            line-height: @topBarHeight;
+            padding: 0 unit(20, rpx);
+            color: @fontColor1;
+            font-size: 0;
+            .location-icon {
+              display: inline-block;
+              vertical-align: middle;
+              font-size: @fontSize8;
+            }
+            .location-text {
+              display: inline-block;
+              vertical-align: middle;
+              margin-left: unit(4, rpx);
               font-size: @fontSize5;
             }
-            .btn-text {
+          }
+          .top-search {
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: unit(30, rpx);
+            text-align: center;
+            font-size: 0;
+            .btn-search {
+              width: unit(320, rpx);
               height: @height;
               line-height: @height;
-              padding-left: unit(55, rpx);
-              font-size: @fontSize1;
-              text-align: left;
+              display: inline-block;
+              overflow: hidden;
+              border-radius: @height;
+              background-color: #f0f0f0;
+              color: @fontColor3;
+              .btn-icon {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: @height;
+                height: @height;
+                font-size: @fontSize5;
+              }
+              .btn-text {
+                height: @height;
+                line-height: @height;
+                padding-left: unit(55, rpx);
+                font-size: @fontSize1;
+                text-align: left;
+              }
             }
           }
         }
@@ -285,7 +296,7 @@
         position: relative;
         .context {
           height: 100%;
-          padding-top: unit(130, rpx);
+          padding-top: 65px;
           .scroll-view {
             height: 100%;
             .module {

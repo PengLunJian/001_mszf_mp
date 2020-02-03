@@ -10,6 +10,7 @@ _core["default"].page({
   store: _index["default"],
   mixins: [],
   data: {
+    topBarHeight: '',
     isShow: false,
     isHide: false
   },
@@ -38,7 +39,7 @@ _core["default"].page({
         // 纬度
         longitude: 119.4235460000,
         // 经度
-        name: '广德无穷大网路科技有限公司',
+        name: '广德码上找房',
         address: '安徽省宣城市广德市金鑫世贸广场北区块B栋五楼505-506',
         success: function success(res) {
           console.log(res);
@@ -64,127 +65,48 @@ _core["default"].page({
     },
     onHandleConfirm: function onHandleConfirm() {}
   },
-  created: function created() {}
-}, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'12-0': {"tap": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleShowModal($event)
-      })();
-    
-  }},'12-1': {"tap": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandlePhone($event)
-      })();
-    
-  }},'12-2': {"tap": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleLocation($event)
-      })();
-    
-  }},'12-3': {"tap": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleHideModal($event)
-      })();
-    
-  }},'12-4': {"tap": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleCancel($event)
-      })();
-    
-  }},'12-5': {"tap": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleConfirm($event)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'12-0': {"tap": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleShowModal($event)
-      })();
-    
-  }},'12-1': {"tap": function proxy () {
+  onLoad: function onLoad() {
+    var system = wx.getSystemInfoSync();
+    var statusHeight = system.statusBarHeight;
+    var topBarHeight = statusHeight + 45;
+    this.topBarHeight = topBarHeight + 'px';
+  }
+}, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'12-187': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandlePhone($event)
       })();
     
-  }},'12-2': {"tap": function proxy () {
+  }},'12-188': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleLocation($event)
       })();
     
-  }},'12-3': {"tap": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleHideModal($event)
-      })();
-    
-  }},'12-4': {"tap": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleCancel($event)
-      })();
-    
-  }},'12-5': {"tap": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleConfirm($event)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'12-0': {"tap": function proxy () {
+  }},'12-189': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleShowModal($event)
       })();
     
-  }},'12-1': {"tap": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandlePhone($event)
-      })();
-    
-  }},'12-2': {"tap": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleLocation($event)
-      })();
-    
-  }},'12-3': {"tap": function proxy () {
+  }},'12-190': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleHideModal($event)
       })();
     
-  }},'12-4': {"tap": function proxy () {
+  }},'12-191': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleCancel($event)
       })();
     
-  }},'12-5': {"tap": function proxy () {
+  }},'12-192': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {

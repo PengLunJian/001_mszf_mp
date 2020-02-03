@@ -2,19 +2,23 @@
 <view class="container">
   <view class="content">
     <view class="header">
-      <view class="location">
-        <label class="location-icon iconfont icon-location"></label>
-        <label class="location-text">宣城</label>
-      </view>
-      <view class="search">
-        <navigator hover-class="none" url="{{ searchUrl }}" class="btn btn-search">
-          <view class="btn-icon iconfont icon-search"></view>
-          <view class="btn-text">请输入小区/商圈</view>
-        </navigator>
+      <view style=" {{ 'padding-top:' + statusHeight + ';' }}" class="top-bar">
+        <view class="top-inner">
+          <view class="top-location">
+            <label class="location-icon iconfont icon-location"></label>
+            <label class="location-text">宣城</label>
+          </view>
+          <view class="top-search">
+            <navigator hover-class="none" url="{{ searchUrl }}" class="btn btn-search">
+              <view class="btn-icon iconfont icon-search"></view>
+              <view class="btn-text">请输入小区/商圈</view>
+            </navigator>
+          </view>
+        </view>
       </view>
     </view>
     <view class="body">
-      <view class="context">
+      <view style=" {{ 'padding-top:' + topBarHeight + ';' }}" class="context">
         <scroll-view scroll-y="{{true}}" class="scroll-view">
           <banner bind_init="_initComponent"></banner>
           <customer-navigator bind_init="_initComponent"></customer-navigator>

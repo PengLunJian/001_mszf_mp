@@ -32,6 +32,7 @@ _core["default"].page({
   store: _index["default"],
   mixins: [_toast["default"]],
   data: {
+    topBarHeight: '',
     items: [{
       url: 'http://sersms.com:7000/house/v1/file/static/userfile/202001/13/1216582503799492608.jpg'
     }, {
@@ -181,66 +182,70 @@ _core["default"].page({
     }
   }),
   onLoad: function onLoad() {
+    var system = wx.getSystemInfoSync();
+    var statusHeight = system.statusBarHeight;
+    var topBarHeight = statusHeight + 45;
+    this.topBarHeight = topBarHeight + 'px';
     this.onHandleInitQQMap();
     this.exeAjaxHouseDetail();
   }
-}, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\..\\components\\error\\error"}},"on":{"8-36":["refresh"]}}, handlers: {'8-36': {"refresh": function proxy () {
+}, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\..\\components\\error\\error"}},"on":{"8-126":["refresh"]}}, handlers: {'8-126': {"refresh": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onRefresh($event)
       })();
     
-  }},'8-37': {"change": function proxy () {
+  }},'8-127': {"change": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleSwiperChange($event)
       })();
     
-  }},'8-38': {"tap": function proxy (index) {
+  }},'8-128': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {
         _vm.onHandleLargeImage(index)
       })();
     
-  }},'8-39': {"tap": function proxy () {
+  }},'8-129': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleFollow($event)
       })();
     
-  }},'8-40': {"tap": function proxy (item) {
+  }},'8-130': {"tap": function proxy (item) {
     
     var _vm=this;
       return (function () {
         _vm.onHandleMessage(item.id)
       })();
     
-  }},'8-41': {"tap": function proxy (item) {
+  }},'8-131': {"tap": function proxy (item) {
     
     var _vm=this;
       return (function () {
         _vm.onHandlePhone(item.tel)
       })();
     
-  }},'8-42': {"tap": function proxy () {
+  }},'8-132': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleClickMap($event)
       })();
     
-  }},'8-43': {"tap": function proxy () {
+  }},'8-133': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
         _vm.onHandleMessage(_vm.isData.agency[0].id)
       })();
     
-  }},'8-44': {"tap": function proxy () {
+  }},'8-134': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {

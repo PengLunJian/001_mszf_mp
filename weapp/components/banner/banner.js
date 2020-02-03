@@ -39,4 +39,60 @@ _core["default"].component({
         _vm.onHandleBanner(index)
       })();
     
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'92-12': {"change": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleSwiperChange($event)
+      })();
+    
+  }},'92-13': {"tap": function proxy (index) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleBanner(index)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'92-12': {"change": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleSwiperChange($event)
+      })();
+    
+  }},'92-13': {"tap": function proxy (index) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleBanner(index)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'92-12': {"change": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleSwiperChange($event)
+      })();
+    
+  }},'92-13': {"tap": function proxy (index) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleBanner(index)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'92-12': {"change": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleSwiperChange($event)
+      })();
+    
+  }},'92-13': {"tap": function proxy (index) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleBanner(index)
+      })();
+    
   }}}, models: {} });

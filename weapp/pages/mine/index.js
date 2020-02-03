@@ -18,6 +18,7 @@ _core["default"].page({
   store: _index["default"],
   mixins: [],
   data: {
+    topBarHeight: '',
     items: [{
       name: $routes.FAVORITE.name,
       path: $routes.FAVORITE.path,
@@ -50,8 +51,13 @@ _core["default"].page({
       }
     }
   },
-  created: function created() {}
-}, {info: {"components":{"top-logo":{"path":"..\\..\\components\\top-logo\\top-logo"}},"on":{}}, handlers: {'5-31': {"tap": function proxy (item) {
+  onLoad: function onLoad() {
+    var system = wx.getSystemInfoSync();
+    var statusHeight = system.statusBarHeight;
+    var topBarHeight = statusHeight + 45;
+    this.topBarHeight = topBarHeight + 'px';
+  }
+}, {info: {"components":{"top-logo":{"path":"..\\..\\components\\top-logo\\top-logo"}},"on":{}}, handlers: {'5-10': {"tap": function proxy (item) {
     
     var _vm=this;
       return (function () {

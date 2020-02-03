@@ -21,11 +21,11 @@
 .container .content .header .tab-bar .tab-item {
   width: 33.333%;
   position: relative;
-  padding: 20rpx 0;
+  padding: 10px 0;
 }
 .container .content .header .tab-bar .tab-item .tab-text {
-  height: 40rpx;
-  line-height: 40rpx;
+  height: 20px;
+  line-height: 20px;
   border-right: 0.5px solid #DEDEDE;
   font-size: 0;
 }

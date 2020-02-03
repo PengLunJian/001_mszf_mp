@@ -18,6 +18,9 @@
     },
 
     onLaunch() {
+      const system = wx.getSystemInfoSync();
+      const statusHeight = system.statusBarHeight;
+      this.$options.globalData.statusHeight = statusHeight + 'px';
     },
 
     methods: {}

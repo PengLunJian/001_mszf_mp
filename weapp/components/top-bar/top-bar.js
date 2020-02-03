@@ -13,15 +13,13 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 _core["default"].component({
-  data: {},
+  data: {
+    statusHeight: ''
+  },
   props: {
     title: {
       type: String,
       "default": '标题'
-    },
-    styl: {
-      type: String,
-      "default": ''
     }
   },
   events: {},
@@ -37,15 +35,229 @@ _core["default"].component({
       });
     }
   },
-  onLoad: function onLoad() {}
-}, {info: {"components":{},"on":{}}, handlers: {'97-22': {"tap": function proxy () {
+  created: function created() {
+    var system = wx.getSystemInfoSync();
+    var statusHeight = system.statusBarHeight;
+    this.statusHeight = statusHeight + 'px';
+  }
+}, {info: {"components":{},"on":{}}, handlers: {'98-38': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleBack($event)
       })();
     
-  }},'97-23': {"tap": function proxy () {
+  }},'98-39': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleHome($event)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'98-38': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleBack($event)
+      })();
+    
+  }},'98-39': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleHome($event)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'98-38': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleBack($event)
+      })();
+    
+  }},'98-39': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleHome($event)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'98-38': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleBack($event)
+      })();
+    
+  }},'98-39': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleHome($event)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'98-38': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleBack($event)
+      })();
+    
+  }},'98-39': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleHome($event)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'98-38': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleBack($event)
+      })();
+    
+  }},'98-39': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleHome($event)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'98-38': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleBack($event)
+      })();
+    
+  }},'98-39': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleHome($event)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'98-38': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleBack($event)
+      })();
+    
+  }},'98-39': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleHome($event)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'98-38': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleBack($event)
+      })();
+    
+  }},'98-39': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleHome($event)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'98-38': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleBack($event)
+      })();
+    
+  }},'98-39': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleHome($event)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'98-38': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleBack($event)
+      })();
+    
+  }},'98-39': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleHome($event)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'98-38': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleBack($event)
+      })();
+    
+  }},'98-39': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleHome($event)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'98-38': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleBack($event)
+      })();
+    
+  }},'98-39': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleHome($event)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'98-38': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleBack($event)
+      })();
+    
+  }},'98-39': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleHome($event)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'98-38': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleBack($event)
+      })();
+    
+  }},'98-39': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleHome($event)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'98-38': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleBack($event)
+      })();
+    
+  }},'98-39': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {

@@ -10,11 +10,15 @@
 }
 .container .content .body .context {
   height: 100%;
-  padding-top: 130rpx;
+  padding-top: 65px;
 }
 .container .content .body .context .user {
   position: relative;
   height: 280rpx;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: url("http://sersms.com:7000/house/v1/file/static/userfile/202002/02/1223909451292360704.jpg");
 }
 .container .content .body .context .user .info {
   position: absolute;
@@ -44,13 +48,6 @@
   font-size: 36rpx;
   letter-spacing: 1px;
   color: #ffffff;
-}
-.container .content .body .context .user .bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
 }
 .container .content .body .context .list .list-item {
   height: 110rpx;

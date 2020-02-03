@@ -5,7 +5,7 @@
       <top-logo bind_init="_initComponent" title="消息列表"></top-logo>
     </view>
     <view class="body">
-      <view class="context"></view>
+      <view style=" {{ 'padding-top:' + topBarHeight + ';' }}" class="context"></view>
     </view>
     <view class="footer"></view>
   </view>

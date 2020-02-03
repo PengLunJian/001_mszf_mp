@@ -9,8 +9,15 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 _core["default"].page({
   store: _index["default"],
   mixins: [],
-  data: {},
+  data: {
+    topBarHeight: ''
+  },
   computed: {},
   methods: {},
-  created: function created() {}
+  onLoad: function onLoad() {
+    var system = wx.getSystemInfoSync();
+    var statusHeight = system.statusBarHeight;
+    var topBarHeight = statusHeight + 45;
+    this.topBarHeight = topBarHeight + 'px';
+  }
 }, {info: {"components":{"top-logo":{"path":"..\\..\\components\\top-logo\\top-logo"}},"on":{}}, handlers: {}, models: {} });

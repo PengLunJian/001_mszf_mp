@@ -7,7 +7,7 @@
       <div class="body">
         <loading :isLoading="isLoading"></loading>
         <error :isFailure="isFailure" @refresh="onRefresh"></error>
-        <div class="context fade" v-if="isSuccess&&isData">
+        <div class="context fade" :style="{'paddingTop':topBarHeight}" v-if="isSuccess&&isData">
           <scroll-view
             class="scroll-view"
             scroll-y="{{true}}">
@@ -223,6 +223,7 @@
     mixins: [Toast],
 
     data: {
+      topBarHeight: '',
       items: [
         {
           url: 'http://sersms.com:7000/house/v1/file/static/userfile/202001/13/1216582503799492608.jpg'
@@ -367,6 +368,10 @@
     },
 
     onLoad() {
+      const system = wx.getSystemInfoSync();
+      const statusHeight = system.statusBarHeight;
+      const topBarHeight = statusHeight + 45;
+      this.topBarHeight = topBarHeight + 'px';
       this.onHandleInitQQMap();
       this.exeAjaxHouseDetail();
     }
@@ -387,7 +392,7 @@
         position: relative;
         .context {
           height: 100%;
-          padding-top: unit(130, rpx);
+          padding-top: 65px;
           padding-bottom: unit(110, rpx);
           .scroll-view {
             height: 100%;
@@ -480,14 +485,14 @@
                       }
                       .btn-share {
                         position: absolute;
+                        top: unit(100, rpx);
                         right: unit(-30, rpx);
-                        bottom: unit(300, rpx);
                         z-index: 1;
                         overflow: hidden;
                         border-radius: unit(60, rpx);
-                        padding: 0 unit(40, rpx) 0 unit(20, rpx);
+                        padding: 0 unit(50, rpx) 0 unit(20, rpx);
                         background: -webkit-linear-gradient(left, rgba(255, 153, 0, .8), rgba(255, 204, 0, .8));
-                        box-shadow: 0 0 15px rgba(0, 0, 0, .15);
+                        box-shadow: 0 0 15px rgba(0, 0, 0, .05);
                         text-align: left;
                         font-size: 0;
                         color: @white;

@@ -1,88 +1,91 @@
+.container {
+  min-height: 100vh;
+}
 .container .content {
   height: 100vh;
-  padding-top: 130rpx;
 }
 .container .content .body {
   height: 100%;
+  position: relative;
 }
-.container .content .body .banner {
+.container .content .body .context {
+  height: 100%;
+  padding-top: 65px;
+}
+.container .content .body .context .banner {
   padding: 30rpx;
 }
-.container .content .body .banner .inner {
+.container .content .body .context .banner .inner {
   overflow: hidden;
   position: relative;
-  height: 360rpx;
+  height: 300rpx;
   border-radius: 20rpx;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
-  background-color: #ffffff;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: url("http://sersms.com:7000/house/v1/file/static/userfile/202002/03/1224240266060644352.jpg");
 }
-.container .content .body .banner .inner image {
-  width: 100%;
-  height: 100%;
-  border-radius: 20rpx;
-}
-.container .content .body .banner .inner .btn-share {
-  position: absolute;
-  right: 20rpx;
-  bottom: 10rpx;
-  width: 80rpx;
-  height: 80rpx;
-  line-height: 80rpx;
-  font-size: 44rpx;
-  text-align: center;
-  color: #333333;
-}
-.container .content .body .list {
+.container .content .body .context .list {
   padding: 0 30rpx 30rpx;
 }
-.container .content .body .list .inner {
+.container .content .body .context .list .inner {
   overflow: hidden;
   background-color: #ffffff;
   border-radius: 20rpx;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
 }
-.container .content .body .list .inner .list-item {
+.container .content .body .context .list .inner .list-item {
   height: 110rpx;
   line-height: 110rpx;
   padding: 0 110rpx;
   border-bottom: 0.5px solid #F0F0F0;
   text-align: left;
+  /*&:nth-child(1) {*/
+  /*.list-item-icon {*/
+  /*background-image: -webkit-linear-gradient(left, #00FF00, #12B347);*/
+  /*}*/
+  /*}*/
+  /*&:nth-child(2) {*/
+  /*.list-item-icon {*/
+  /*background-image: -webkit-linear-gradient(left, #FFF207, #FFAD07);*/
+  /*}*/
+  /*}*/
+  /*&:nth-child(3) {*/
+  /*.list-item-icon {*/
+  /*background-image: -webkit-linear-gradient(left, #060BFF, #17F2FF);*/
+  /*}*/
+  /*}*/
+  /*&:nth-child(4) {*/
+  /*.list-item-icon {*/
+  /*background-image: -webkit-linear-gradient(left, #060BFF, #17F2FF);*/
+  /*}*/
+  /*}*/
 }
-.container .content .body .list .inner .list-item .list-item-icon,
-.container .content .body .list .inner .list-item .list-item-next {
+.container .content .body .context .list .inner .list-item .list-item-icon,
+.container .content .body .context .list .inner .list-item .list-item-next {
   position: absolute;
   top: 0;
   width: 110rpx;
   height: 110rpx;
   text-align: center;
 }
-.container .content .body .list .inner .list-item .list-item-icon.list-item-icon,
-.container .content .body .list .inner .list-item .list-item-next.list-item-icon {
+.container .content .body .context .list .inner .list-item .list-item-icon.list-item-icon,
+.container .content .body .context .list .inner .list-item .list-item-next.list-item-icon {
   left: 0;
-  font-size: 46rpx;
-  -webkit-text-fill-color: transparent;
-  -webkit-background-clip: text;
+  font-size: 40rpx;
 }
-.container .content .body .list .inner .list-item .list-item-icon.list-item-next,
-.container .content .body .list .inner .list-item .list-item-next.list-item-next {
+.container .content .body .context .list .inner .list-item .list-item-icon.list-item-next,
+.container .content .body .context .list .inner .list-item .list-item-next.list-item-next {
   right: 0;
   color: #dedede;
 }
-.container .content .body .list .inner .list-item .list-item-text {
+.container .content .body .context .list .inner .list-item .list-item-text {
   height: 100%;
   font-size: 32rpx;
 }
-.container .content .body .list .inner .list-item:last-child {
+.container .content .body .context .list .inner .list-item:last-child {
   border: none;
-}
-.container .content .body .list .inner .list-item:nth-child(1) .list-item-icon {
-  background-image: -webkit-linear-gradient(left, #00FF00, #12B347);
-}
-.container .content .body .list .inner .list-item:nth-child(2) .list-item-icon {
-  background-image: -webkit-linear-gradient(left, #FFF207, #FFAD07);
-}
-.container .content .body .list .inner .list-item:nth-child(3) .list-item-icon {
-  background-image: -webkit-linear-gradient(left, #060BFF, #17F2FF);
 }
 .container .content .footer {
   width: 100%;

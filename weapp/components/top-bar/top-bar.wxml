@@ -1,8 +1,8 @@
 
-<view style="{{styl}}" class="top-bar">
+<view style=" {{ 'padding-top:' + statusHeight + ';' }}" class="top-bar">
   <view class="top-inner">
-    <view data-wpy-evt="97-22" bindtap="_proxy" class="top-icon iconfont icon-back"></view>
-    <view data-wpy-evt="97-23" bindtap="_proxy" class="top-icon iconfont icon-home"></view>
+    <view data-wpy-evt="98-38" bindtap="_proxy" class="top-icon iconfont icon-back"></view>
+    <view data-wpy-evt="98-39" bindtap="_proxy" class="top-icon iconfont icon-home"></view>
     <view class="top-title">{{title}}</view>
   </view>
 </view>
