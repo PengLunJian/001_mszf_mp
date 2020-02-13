@@ -2,10 +2,12 @@
 <view class="container">
   <view class="content">
     <view class="header">
-      <top-logo bind_init="_initComponent" title="消息列表"></top-logo>
+      <top-bar bind_init="_initComponent" title="消息列表" isIcon="{{false}}"></top-bar>
     </view>
     <view class="body">
-      <view style=" {{ 'padding-top:' + topBarHeight + ';' }}" class="context"></view>
+      <view class="context">
+        <wait bind_init="_initComponent"></wait>
+      </view>
     </view>
     <view class="footer"></view>
   </view>

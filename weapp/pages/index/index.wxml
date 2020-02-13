@@ -2,12 +2,12 @@
 <view class="container">
   <view class="content">
     <view class="header">
-      <view style=" {{ 'padding-top:' + statusHeight + ';' }}" class="top-bar">
+      <view class="top-bar">
         <view class="top-inner">
-          <view class="top-location">
+          <navigator hover-class="none" url="{{ addressUrl }}" class="top-location">
             <label class="location-icon iconfont icon-location"></label>
             <label class="location-text">宣城</label>
-          </view>
+          </navigator>
           <view class="top-search">
             <navigator hover-class="none" url="{{ searchUrl }}" class="btn btn-search">
               <view class="btn-icon iconfont icon-search"></view>
@@ -18,7 +18,7 @@
       </view>
     </view>
     <view class="body">
-      <view style=" {{ 'padding-top:' + topBarHeight + ';' }}" class="context">
+      <view class="context">
         <scroll-view scroll-y="{{true}}" class="scroll-view">
           <banner bind_init="_initComponent"></banner>
           <customer-navigator bind_init="_initComponent"></customer-navigator>

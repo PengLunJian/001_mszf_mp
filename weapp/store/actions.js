@@ -5,7 +5,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ajaxRequestHouseFavorite = exports.ajaxRequestHouseUnfollow = exports.ajaxRequestHouseFollow = exports.ajaxRequestHouseDetail = exports.ajaxRequestHouseList = void 0;
+exports.ajaxRequestHouseHistory = exports.ajaxRequestHouseFavorite = exports.ajaxRequestHouseUnfollow = exports.ajaxRequestHouseFollow = exports.ajaxRequestHouseDetail = exports.ajaxRequestHouseList = void 0;
 
 var _apis = _interopRequireDefault(require('../apis/index.js'));
 
@@ -49,7 +49,6 @@ var ajaxRequestHouseList = (0, _reduxActions.createAction)('selectHouseList', fu
           success = _res.success;
 
       if (success) {
-        data.rows = utils.dataFilter(data.rows);
         commit(actionTypes.SELECT_HOUSELIST_SUCCESS, data);
       } else {
         commit(actionTypes.SELECT_HOUSELIST_FAILURE);
@@ -213,3 +212,28 @@ var ajaxRequestHouseFavorite = (0, _reduxActions.createAction)('selectHouseFavor
   });
 });
 exports.ajaxRequestHouseFavorite = ajaxRequestHouseFavorite;
+var ajaxRequestHouseHistory = (0, _reduxActions.createAction)('selectHouseHistory', function (params) {
+  commit(actionTypes.SELECT_HOUSEHISTORY_REQUEST);
+  return new Promise(function (resolve, reject) {
+    _axios["default"].get(_apis["default"].selectHouseHistory, {
+      params: params
+    }).then(function (res) {
+      res = res || {};
+      var _res6 = res,
+          data = _res6.data,
+          success = _res6.success;
+
+      if (success) {
+        commit(actionTypes.SELECT_HOUSEHISTORY_SUCCESS, data);
+      } else {
+        commit(actionTypes.SELECT_HOUSEHISTORY_FAILURE);
+      }
+
+      resolve(res);
+    })["catch"](function (err) {
+      commit(actionTypes.SELECT_HOUSEHISTORY_FAILURE);
+      reject(err);
+    });
+  });
+});
+exports.ajaxRequestHouseHistory = ajaxRequestHouseHistory;

@@ -1,8 +1,12 @@
 
-<view style=" {{ 'padding-top:' + statusHeight + ';' }}" class="top-bar">
-  <view class="top-inner">
-    <view data-wpy-evt="98-38" bindtap="_proxy" class="top-icon iconfont icon-back"></view>
-    <view data-wpy-evt="98-39" bindtap="_proxy" class="top-icon iconfont icon-home"></view>
+<view class="top-bar">
+  <view wx:if="{{ isIcon }}" class="top-inner">
+    <view data-wpy-evt="101-0" bindtap="_proxy" class="top-icon iconfont icon-back"></view>
+    <view data-wpy-evt="101-1" bindtap="_proxy" class="top-icon iconfont icon-home"></view>
+    <view class="top-title">{{title}}</view>
+  </view>
+  <view wx:if="{{ !isIcon }}" class="top-inner">
+    <view class="top-image"></view>
     <view class="top-title">{{title}}</view>
   </view>
 </view>

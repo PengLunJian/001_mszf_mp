@@ -2,12 +2,12 @@
   <div class="container">
     <div class="content">
       <div class="header">
-        <div class="top-bar" :style="{'paddingTop':statusHeight}">
+        <div class="top-bar">
           <div class="top-inner">
-            <div class="top-location">
+            <navigator class="top-location" hover-class="none" :url="addressUrl">
               <span class="location-icon iconfont icon-location"></span>
               <span class="location-text">宣城</span>
-            </div>
+            </navigator>
             <div class="top-search">
               <navigator class="btn btn-search" hover-class="none" :url="searchUrl">
                 <div class="btn-icon iconfont icon-search"></div>
@@ -18,7 +18,7 @@
         </div>
       </div>
       <div class="body">
-        <div class="context" :style="{'paddingTop':topBarHeight}">
+        <div class="context">
           <scroll-view
             class="scroll-view"
             scroll-y="{{true}}">
@@ -88,8 +88,6 @@
     mixins: [],
 
     data: {
-      statusHeight: '',
-      topBarHeight: '',
       items: [
         {
           add_userid: 1,
@@ -200,6 +198,7 @@
           zhulihuxing: null
         }
       ],
+      addressUrl: $routes.ADDRESS.path,
       searchUrl: $routes.SEARCH.path
     },
 
@@ -208,17 +207,13 @@
     methods: {},
 
     onLoad() {
-      const system = wx.getSystemInfoSync();
-      const statusHeight = system.statusBarHeight;
-      const topBarHeight = statusHeight + 45;
-      this.statusHeight = statusHeight + 'px';
-      this.topBarHeight = topBarHeight + 'px';
     }
   });
 </script>
 
 <style scoped lang="less">
   @import "../../assets/less/variable";
+  @import "../../assets/less/@media";
 
   @height: unit(64, rpx);
 
@@ -235,6 +230,7 @@
           z-index: 1000;
           overflow: hidden;
           background-color: @white;
+          padding-top: 20px;
           padding-bottom: 5px;
           font-size: 0;
           .top-location {
@@ -338,6 +334,7 @@
       }
     }
   }
+
 </style>
 <config>
   {

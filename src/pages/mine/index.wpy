@@ -2,10 +2,10 @@
   <div class="container">
     <div class="content">
       <div class="header">
-        <top-logo title="个人中心"></top-logo>
+        <top-bar title="个人中心" isIcon="{{false}}"></top-bar>
       </div>
       <div class="body">
-        <div class="context" :style="{'paddingTop':topBarHeight}">
+        <div class="context">
           <div class="module user">
             <div class="info">
               <img class="img" src="../../assets/images/agent.jpg"/>
@@ -26,14 +26,15 @@
           </div>
         </div>
       </div>
+      <div class="footer"></div>
     </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
   import wepy from '@wepy/core';
-  import store from '../../store/index';
-  import * as $routes from '../../router/index';
+  import store from '../../store';
+  import * as $routes from '../../router';
 
   wepy.page({
     store,
@@ -41,7 +42,6 @@
     mixins: [],
 
     data: {
-      topBarHeight: '',
       items: [
         {
           name: $routes.FAVORITE.name,
@@ -84,16 +84,13 @@
     },
 
     onLoad() {
-      const system = wx.getSystemInfoSync();
-      const statusHeight = system.statusBarHeight;
-      const topBarHeight = statusHeight + 45;
-      this.topBarHeight = topBarHeight + 'px';
     }
   });
 </script>
 
 <style scoped lang="less">
   @import "../../assets/less/variable";
+  @import "../../assets/less/@media";
 
   .container {
     min-height: 100vh;
@@ -113,7 +110,7 @@
             background-size: 100% auto;
             background-repeat: no-repeat;
             background-position: center center;
-            background-image: url("http://sersms.com:7000/house/v1/file/static/userfile/202002/02/1223909451292360704.jpg");
+            background-image: url("http://sersms.com:7000/house/v1/file/static/userfile/202002/07/1225622956127174656.jpg");
             .info {
               position: absolute;
               left: 0;
@@ -208,6 +205,8 @@
           }
         }
       }
+      .footer {
+      }
     }
   }
 </style>
@@ -216,7 +215,7 @@
   {
   navigationStyle:'custom',
   usingComponents: {
-  'top-logo': '../../components/top-logo/top-logo',
+  'top-bar': '../../components/top-bar/top-bar',
   }
   }
 </config>

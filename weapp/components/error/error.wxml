@@ -1,11 +1,7 @@
 
 <view wx:if="{{ isShow }}" class="error fade{{isFailure?'':' hide'}}">
   <view class="error-inner">
-    <view class="error-image">
-      <image src="images/error-icon@2x.png" mode="aspectFit" class="error-icon"></image>
-      <image src="images/error-clock@2x.png" mode="aspectFit" class="error-clock"></image>
-      <image src="images/error-label@2x.png" mode="aspectFit" class="error-label"></image>
-    </view>
-    <view data-wpy-evt="100-5" bindtap="_proxy" class="btn btn-refresh">重新加载</view>
+    <image src="images/error@2x.png" mode="aspectFit" class="error-image"></image>
+    <view data-wpy-evt="104-0" bindtap="_proxy" class="btn btn-refresh">重新加载</view>
   </view>
 </view>

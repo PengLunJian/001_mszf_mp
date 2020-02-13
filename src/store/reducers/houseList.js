@@ -1,6 +1,7 @@
 import {handleActions} from 'redux-actions';
 import * as actionTypes from '../actionTypes';
 import * as states from '../states';
+import * as utils from '../../utils';
 
 const actions = {
   [actionTypes.SELECT_HOUSELIST_REQUEST](state) {
@@ -16,7 +17,7 @@ const actions = {
     const oldRows = oldData.rows || [];
     const newData = action.data || {};
     const newRows = newData.rows || [];
-    action.data.rows = oldRows.concat(newRows);
+    action.data.rows = oldRows.concat(utils.dataFilter(newRows));
     return {
       ...state,
       isLoading: false,

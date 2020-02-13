@@ -1,3 +1,47 @@
+/* iPhone X, iPhone XS */
+@media only screen and (device-width: 375px) and (max-device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+  .top-bar {
+    padding-top: 44px !important;
+  }
+  .context {
+    padding-top: 89px !important;
+  }
+}
+/* iPhone XR */
+@media only screen and (device-width: 414px) and (max-device-height: 896px) and (-webkit-device-pixel-ratio: 2) {
+  .top-bar {
+    padding-top: 44px !important;
+  }
+  .context {
+    padding-top: 89px !important;
+  }
+}
+/* iPhone XS Max */
+@media only screen and (device-width: 414px) and (max-device-height: 896px) and (-webkit-device-pixel-ratio: 3) {
+  .top-bar {
+    padding-top: 44px !important;
+  }
+  .context {
+    padding-top: 89px !important;
+  }
+}
+/* iPhone 6, iPhone XS */
+@media only screen and (device-width: 414px) and (max-device-height: 736px) and (-webkit-device-pixel-ratio: 3) {
+  .top-bar {
+    padding-top: 20px !important;
+  }
+  .context {
+    padding-top: 65px !important;
+  }
+}
+@media only screen and (device-width: 360px) and (max-device-height: 780px) and (-webkit-device-pixel-ratio: 3) {
+  .top-bar {
+    padding-top: 28px !important;
+  }
+  .context {
+    padding-top: 73px !important;
+  }
+}
 .container {
   min-height: 100vh;
 }
@@ -12,6 +56,7 @@
   z-index: 1000;
   overflow: hidden;
   background-color: #ffffff;
+  padding-top: 20px;
   padding-bottom: 5px;
   font-size: 0;
 }

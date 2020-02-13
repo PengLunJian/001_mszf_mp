@@ -7,9 +7,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 _core["default"].component({
   data: {
     items: [{
-      url: 'http://sersms.com:7000/house/v1/file/static/userfile/202002/02/1223847355544387584.jpg'
+      url: 'http://sersms.com:7000/house/v1/file/static/userfile/202002/06/1225297117435019264.jpg'
     }, {
-      url: 'http://sersms.com:7000/house/v1/file/static/userfile/202002/02/1223847540358004736.jpg'
+      url: 'http://sersms.com:7000/house/v1/file/static/userfile/202002/06/1225297515902287872.jpg'
+    }, {
+      url: 'http://sersms.com:7000/house/v1/file/static/userfile/202002/06/1225313315841261568.jpg'
     }],
     current: 0,
     autoplay: true,
@@ -25,70 +27,14 @@ _core["default"].component({
     }
   },
   onLoad: function onLoad() {}
-}, {info: {"components":{},"on":{}}, handlers: {'92-12': {"change": function proxy () {
+}, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'96-0': {"change": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleSwiperChange($event)
       })();
     
-  }},'92-13': {"tap": function proxy (index) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleBanner(index)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'92-12': {"change": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleSwiperChange($event)
-      })();
-    
-  }},'92-13': {"tap": function proxy (index) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleBanner(index)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'92-12': {"change": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleSwiperChange($event)
-      })();
-    
-  }},'92-13': {"tap": function proxy (index) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleBanner(index)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'92-12': {"change": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleSwiperChange($event)
-      })();
-    
-  }},'92-13': {"tap": function proxy (index) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleBanner(index)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'92-12': {"change": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleSwiperChange($event)
-      })();
-    
-  }},'92-13': {"tap": function proxy (index) {
+  }},'96-1': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {

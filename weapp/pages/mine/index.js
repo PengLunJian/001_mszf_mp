@@ -4,7 +4,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
 var _core = _interopRequireDefault(require('../../vendor.js')(0));
 
-var _index = _interopRequireDefault(require('../../store/index.js'));
+var _store = _interopRequireDefault(require('../../store/index.js'));
 
 var $routes = _interopRequireWildcard(require('../../router/index.js'));
 
@@ -15,10 +15,9 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 _core["default"].page({
-  store: _index["default"],
+  store: _store["default"],
   mixins: [],
   data: {
-    topBarHeight: '',
     items: [{
       name: $routes.FAVORITE.name,
       path: $routes.FAVORITE.path,
@@ -51,13 +50,8 @@ _core["default"].page({
       }
     }
   },
-  onLoad: function onLoad() {
-    var system = wx.getSystemInfoSync();
-    var statusHeight = system.statusBarHeight;
-    var topBarHeight = statusHeight + 45;
-    this.topBarHeight = topBarHeight + 'px';
-  }
-}, {info: {"components":{"top-logo":{"path":"..\\..\\components\\top-logo\\top-logo"}},"on":{}}, handlers: {'5-10': {"tap": function proxy (item) {
+  onLoad: function onLoad() {}
+}, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'5-0': {"tap": function proxy (item) {
     
     var _vm=this;
       return (function () {

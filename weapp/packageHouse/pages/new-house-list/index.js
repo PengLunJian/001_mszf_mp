@@ -28,7 +28,6 @@ _core["default"].page({
   store: _index["default"],
   mixins: [_toast["default"]],
   data: {
-    topBarHeight: '',
     timer: null,
     pageIndex: 1,
     pageSize: 10,
@@ -288,105 +287,105 @@ _core["default"].page({
     this.resetHouseList();
     this.exeAjaxHouseList();
   }
-}, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\..\\components\\error\\error"},"empty":{"path":"..\\..\\..\\components\\empty\\empty"},"load-more":{"path":"..\\..\\..\\components\\load-more\\load-more"},"new-house-item":{"path":"..\\..\\..\\components\\new-house-item\\new-house-item"},"wux-slider":{"path":"..\\..\\..\\$vendor\\wux-weapp\\dist\\slider\\index"}},"on":{"7-91":["refresh"],"7-95":["change"],"7-101":["change"]}}, handlers: {'7-90': {"tap": function proxy (index) {
+}, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\..\\components\\error\\error"},"empty":{"path":"..\\..\\..\\components\\empty\\empty"},"load-more":{"path":"..\\..\\..\\components\\load-more\\load-more"},"new-house-item":{"path":"..\\..\\..\\components\\new-house-item\\new-house-item"},"wux-slider":{"path":"..\\..\\..\\$vendor\\wux-weapp\\dist\\slider\\index"}},"on":{"7-1":["refresh"],"7-5":["change"],"7-11":["change"]}}, handlers: {'7-0': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {
         _vm.onHandleTabChange(index)
       })();
     
-  }},'7-91': {"refresh": function proxy () {
+  }},'7-1': {"refresh": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onRefresh($event)
       })();
     
-  }},'7-92': {"scrolltolower": function proxy () {
+  }},'7-2': {"scrolltolower": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleScrollToLower($event)
       })();
     
-  }},'7-93': {"tap": function proxy () {
+  }},'7-3': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
         _vm.onHandleCloseModal(0)
       })();
     
-  }},'7-94': {"tap": function proxy (index) {
+  }},'7-4': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {
         _vm.onHandlePriceFilter(index)
       })();
     
-  }},'7-95': {"change": function proxy () {
+  }},'7-5': {"change": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleSliderChangePrice($event)
       })();
     
-  }},'7-96': {"tap": function proxy () {
+  }},'7-6': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleClearModal1($event)
       })();
     
-  }},'7-97': {"tap": function proxy () {
+  }},'7-7': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
         _vm.onHandleCloseModal(1)
       })();
     
-  }},'7-98': {"tap": function proxy (index) {
+  }},'7-8': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {
         _vm.onHandleMethodFilter(index)
       })();
     
-  }},'7-99': {"tap": function proxy (index) {
+  }},'7-9': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {
         _vm.onHandleLayoutFilter(index)
       })();
     
-  }},'7-100': {"tap": function proxy (index) {
+  }},'7-10': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {
         _vm.onHandleStyleFilter(index)
       })();
     
-  }},'7-101': {"change": function proxy () {
+  }},'7-11': {"change": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleSliderChangeArea($event)
       })();
     
-  }},'7-102': {"tap": function proxy () {
+  }},'7-12': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleClearModal2($event)
       })();
     
-  }},'7-103': {"tap": function proxy () {
+  }},'7-13': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
         _vm.onHandleCloseModal(2)
       })();
     
-  }},'7-104': {"tap": function proxy (index) {
+  }},'7-14': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {

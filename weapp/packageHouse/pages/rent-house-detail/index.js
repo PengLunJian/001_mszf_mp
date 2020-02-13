@@ -189,63 +189,63 @@ _core["default"].page({
     this.onHandleInitQQMap();
     this.exeAjaxHouseDetail();
   }
-}, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\..\\components\\error\\error"}},"on":{"8-126":["refresh"]}}, handlers: {'8-126': {"refresh": function proxy () {
+}, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\..\\components\\error\\error"},"lazy-image":{"path":"..\\..\\..\\components\\lazy-image\\lazy-image"}},"on":{"8-0":["refresh"]}}, handlers: {'8-0': {"refresh": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onRefresh($event)
       })();
     
-  }},'8-127': {"change": function proxy () {
+  }},'8-1': {"change": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleSwiperChange($event)
       })();
     
-  }},'8-128': {"tap": function proxy (index) {
+  }},'8-2': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {
         _vm.onHandleLargeImage(index)
       })();
     
-  }},'8-129': {"tap": function proxy () {
+  }},'8-3': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleFollow($event)
       })();
     
-  }},'8-130': {"tap": function proxy (item) {
+  }},'8-4': {"tap": function proxy (item) {
     
     var _vm=this;
       return (function () {
         _vm.onHandleMessage(item.id)
       })();
     
-  }},'8-131': {"tap": function proxy (item) {
+  }},'8-5': {"tap": function proxy (item) {
     
     var _vm=this;
       return (function () {
         _vm.onHandlePhone(item.tel)
       })();
     
-  }},'8-132': {"tap": function proxy () {
+  }},'8-6': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleClickMap($event)
       })();
     
-  }},'8-133': {"tap": function proxy () {
+  }},'8-7': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
         _vm.onHandleMessage(_vm.isData.agency[0].id)
       })();
     
-  }},'8-134': {"tap": function proxy () {
+  }},'8-8': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {

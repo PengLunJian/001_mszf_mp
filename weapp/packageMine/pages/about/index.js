@@ -1,16 +1,23 @@
 "use strict";
 
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 var _core = _interopRequireDefault(require('../../../vendor.js')(0));
 
-var _index = _interopRequireDefault(require('../../../store/index.js'));
+var _store = _interopRequireDefault(require('../../../store/index.js'));
+
+var utils = _interopRequireWildcard(require('../../../utils/index.js'));
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 _core["default"].page({
-  store: _index["default"],
+  store: _store["default"],
   mixins: [],
   data: {
-    topBarHeight: '',
     isShow: false,
     isHide: false
   },
@@ -63,50 +70,48 @@ _core["default"].page({
     onHandleCancel: function onHandleCancel() {
       this.onHandleHideModal();
     },
-    onHandleConfirm: function onHandleConfirm() {}
+    onHandleConfirm: function onHandleConfirm() {
+      utils.saveImage();
+      this.onHandleHideModal();
+    }
   },
-  onLoad: function onLoad() {
-    var system = wx.getSystemInfoSync();
-    var statusHeight = system.statusBarHeight;
-    var topBarHeight = statusHeight + 45;
-    this.topBarHeight = topBarHeight + 'px';
-  }
-}, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'12-187': {"tap": function proxy () {
+  onLoad: function onLoad() {}
+}, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'12-0': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandlePhone($event)
       })();
     
-  }},'12-188': {"tap": function proxy () {
+  }},'12-1': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleLocation($event)
       })();
     
-  }},'12-189': {"tap": function proxy () {
+  }},'12-2': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleShowModal($event)
       })();
     
-  }},'12-190': {"tap": function proxy () {
+  }},'12-3': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleHideModal($event)
       })();
     
-  }},'12-191': {"tap": function proxy () {
+  }},'12-4': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleCancel($event)
       })();
     
-  }},'12-192': {"tap": function proxy () {
+  }},'12-5': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {

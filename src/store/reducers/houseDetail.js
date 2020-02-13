@@ -84,7 +84,7 @@ const actions = {
         isCan: false
       }
     ];
-    const {fagnwupeizhi} = action.data || {};
+    const {fagnwupeizhi, release_time} = action.data || {};
     if (fagnwupeizhi) {
       configs.map((item) => {
         if (fagnwupeizhi.indexOf(item.label) !== -1) {
@@ -93,6 +93,7 @@ const actions = {
       });
     }
     action.data.configs = configs;
+    action.data.release_time = release_time.substring(0, 10);
     return {
       ...state,
       isLoading: false,

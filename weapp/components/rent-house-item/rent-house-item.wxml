@@ -1,8 +1,8 @@
 
-<view data-wpy-evt="94-6" bindtap="_proxy" class="item">
+<view data-wpy-evt="98-0" bindtap="_proxy" class="item">
   <view class="item-inner">
     <view class="item-img">
-      <image src="http://sersms.com:7000/house/v1/file/static/userfile/202001/15/1217303264084398080.jpg"></image>
+      <lazy-image bind_init="_initComponent" src="http://sersms.com:7000/house/v1/file/static/userfile/202001/15/1217303264084398080.jpg"></lazy-image>
     </view>
     <view class="item-info">
       <view class="item-row">
@@ -26,5 +26,6 @@
         <label wx:for="{{ item.tags }}" wx:for-index="index" wx:for-item="tag" wx:key="index" key="{{ index }}" class="item-tag">{{tag}}</label>
       </view>
     </view>
+    <view wx:if="{{ isType }}" class="item-type">租房</view>
   </view>
 </view>

@@ -3,7 +3,7 @@
     <div class="content">
       <div class="header">
         <top-bar title="房源列表"></top-bar>
-        <div class="tab-bar" :style="{'top':topBarHeight}">
+        <div class="tab-bar">
           <div v-for="(tab,index) in tabs"
                class="tab-item"
                :class="{'active':tabIndex===index}"
@@ -19,7 +19,7 @@
         <loading :isLoading="isLoading&&!isData.rows.length"></loading>
         <error :isFailure="isFailure&&!isData.rows.length" @refresh="onRefresh"></error>
         <empty :isSuccess="isSuccess&&!isData.rows.length"></empty>
-        <div class="context fade" :style="{'paddingTop':totalHeight}" v-if="isData.rows.length">
+        <div class="context fade" v-if="isData.rows.length">
           <scroll-view class="scroll-view"
                        scroll-y="{{iSwitch}}"
                        @scrolltolower="onHandleScrollToLower">
@@ -35,7 +35,7 @@
       <div class="footer"></div>
       <div class="modal" id="price" :class="{'hide':!tabs[0].isShow}">
         <div class="modal-bg" @tap="onHandleCloseModal(0)"></div>
-        <div class="modal-content" :style="{'paddingTop':totalHeight}">
+        <div class="modal-content">
           <div class="modal-header"></div>
           <div class="modal-body">
             <scroll-view class="scroll-view" scroll-y="{{true}}">
@@ -77,7 +77,7 @@
           </div>
           <div class="modal-footer">
             <div class="modal-button">
-              <div class="btn btn-clear" @tap="onHandleClearModal1">清空</div>
+              <div class="btn btn-clear" @tap="onHandleClearModal1">重置</div>
               <div class="btn btn-confirm">确定</div>
             </div>
           </div>
@@ -85,7 +85,7 @@
       </div>
       <div class="modal" id="filter" :class="{'hide':!tabs[1].isShow}">
         <div class="modal-bg" @tap="onHandleCloseModal(1)"></div>
-        <div class="modal-content" :style="{'paddingTop':totalHeight}">
+        <div class="modal-content">
           <div class="modal-header"></div>
           <div class="modal-body">
             <scroll-view class="scroll-view" scroll-y="{{true}}">
@@ -154,7 +154,7 @@
           </div>
           <div class="modal-footer">
             <div class="modal-button">
-              <div class="btn btn-clear" @tap="onHandleClearModal2">清空</div>
+              <div class="btn btn-clear" @tap="onHandleClearModal2">重置</div>
               <div class="btn btn-confirm">确定</div>
             </div>
           </div>
@@ -162,7 +162,7 @@
       </div>
       <div class="modal" id="sort" :class="{'hide':!tabs[2].isShow}">
         <div class="modal-bg" @tap="onHandleCloseModal(2)"></div>
-        <div class="modal-content" :style="{'paddingTop':totalHeight}">
+        <div class="modal-content">
           <div class="modal-header"></div>
           <div class="modal-body">
             <div class="modal-sort">
@@ -191,8 +191,6 @@
     store,
     mixins: [Toast],
     data: {
-      topBarHeight: '',
-      totalHeight: '',
       timer: null,
       pageIndex: 1,
       pageSize: 10,
@@ -480,11 +478,6 @@
     },
 
     onLoad() {
-      const system = wx.getSystemInfoSync();
-      const statusHeight = system.statusBarHeight;
-      const topBarHeight = statusHeight + 45;
-      this.topBarHeight = topBarHeight + 'px';
-      this.totalHeight = (topBarHeight + 40) + 'px';
       this.resetParams();
       this.resetHouseList();
       this.exeAjaxHouseList();
@@ -505,7 +498,7 @@
           display: flex;
           flex-wrap: wrap;
           position: fixed;
-          top: unit(130, rpx);
+          top: 65px;
           left: 0;
           z-index: 1000;
           background-color: @white;
@@ -558,7 +551,7 @@
         position: relative;
         .context {
           height: 100%;
-          padding-top: unit(210, rpx);
+          padding-top: 105px;
           > .scroll-view {
             height: 100%;
           }
@@ -584,8 +577,8 @@
           z-index: 999;
           width: 100%;
           height: unit(850, rpx);
+          padding-top: 105px;
           background-color: @white;
-          padding-top: unit(210, rpx);
           transition: all 450ms ease-out;
           box-shadow: 0 0 15px @boxShadow2;
           .modal-header {
@@ -661,8 +654,8 @@
             }
             .modal-sort {
               .btn-sort {
-                height: unit(100, rpx);
-                line-height: unit(100, rpx);
+                height: 50px;
+                line-height: 50px;
                 border-bottom: 0.5px solid @borderColor1;
                 font-size: @fontSize3;
                 text-align: center;
@@ -714,7 +707,7 @@
         }
         &#sort {
           .modal-content {
-            height: unit(710, rpx);
+            height: 355px;
           }
         }
         &.hide {
@@ -726,15 +719,104 @@
             visibility: hidden;
             transform: translateY(unit(-850, rpx));
           }
-          &:nth-child(3) {
+          &#sort {
             .modal-content {
-              transform: translateY(unit(-710, rpx));
+              transform: translateY(-355px);
             }
           }
         }
       }
     }
   }
+
+  /* iPhone X, iPhone XS */
+  @media only screen and (device-width: 375px)and (max-device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+    .tab-bar {
+      top: 89px !important;
+    }
+
+    .context {
+      padding-top: 129px !important;
+    }
+
+    .modal-content {
+      height: unit(900, rpx) !important;
+      padding-top: 129px !important;
+    }
+
+    #sort {
+      .modal-content {
+        height: 379px !important;
+      }
+    }
+  }
+
+  /* iPhone XR */
+  @media only screen and (device-width: 414px)and (max-device-height: 896px) and (-webkit-device-pixel-ratio: 2) {
+    .tab-bar {
+      top: 89px !important;
+    }
+
+    .context {
+      padding-top: 129px !important;
+    }
+
+    .modal-content {
+      height: unit(900, rpx) !important;
+      padding-top: 129px !important;
+    }
+
+    #sort {
+      .modal-content {
+        height: 379px !important;
+      }
+    }
+  }
+
+  /* iPhone XS Max */
+  @media only screen and (device-width: 414px)and (max-device-height: 896px) and (-webkit-device-pixel-ratio: 3) {
+    .tab-bar {
+      top: 89px !important;
+    }
+
+    .context {
+      padding-top: 129px !important;
+    }
+
+    .modal-content {
+      height: unit(900, rpx) !important;
+      padding-top: 129px !important;
+    }
+
+    #sort {
+      .modal-content {
+        height: 379px !important;
+      }
+    }
+  }
+
+  /* iPhone 6/7/8 Plus */
+  @media only screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) {
+    .tab-bar {
+      top: 65px !important;
+    }
+
+    .context {
+      padding-top: 105px !important;
+    }
+
+    .modal-content {
+      height: unit(850, rpx) !important;
+      padding-top: 105px !important;
+    }
+
+    #sort {
+      .modal-content {
+        height: 355px !important;
+      }
+    }
+  }
+
 </style>
 
 <config>

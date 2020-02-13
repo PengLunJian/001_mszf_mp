@@ -242,7 +242,7 @@
             <view class="module-body">
               <view class="module-context">
                 <view class="map-container">
-                  <map longitude="{{longitude}}" latitude="{{latitude}}" enable-zoom="{{enableZoom}}" enable-scroll="{{enableScroll}}" markers="{{markers}}" data-wpy-evt="6-5" bindtap="_proxy" class="map"></map>
+                  <map longitude="{{longitude}}" latitude="{{latitude}}" enable-zoom="{{enableZoom}}" enable-scroll="{{enableScroll}}" markers="{{markers}}" data-wpy-evt="6-0" bindtap="_proxy" class="map"></map>
                 </view>
               </view>
             </view>

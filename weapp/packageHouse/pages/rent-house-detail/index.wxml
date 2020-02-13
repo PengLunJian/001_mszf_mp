@@ -6,28 +6,28 @@
     </view>
     <view class="body">
       <loading bind_init="_initComponent" isLoading="{{ isLoading }}"></loading>
-      <error bind_init="_initComponent" isFailure="{{ isFailure }}" data-wpy-evt="8-126" bindrefresh="_proxy"></error>
-      <view wx:if="{{ isSuccess&&isData }}" style=" {{ 'padding-top:' + topBarHeight + ';' }}" class="context fade">
+      <error bind_init="_initComponent" isFailure="{{ isFailure }}" data-wpy-evt="8-0" bindrefresh="_proxy"></error>
+      <view wx:if="{{ isSuccess&&isData }}" class="context fade">
         <scroll-view scroll-y="{{true}}" class="scroll-view">
           <view class="module">
             <view class="module-content">
               <view class="module-body">
                 <view class="module-context">
                   <view class="banner">
-                    <swiper autoplay="{{autoplay}}" circular="{{circular}}" data-wpy-evt="8-127" bindchange="_proxy" class="swiper">
-                      <swiper-item wx:for="{{ items }}" wx:for-index="index" wx:for-item="item" wx:key="index" key="{{ index }}" data-wpy-evt="8-128" bindtap="_proxy" data-wpytap-a="{{ index }}">
-                        <image src="{{item.url}}" class="swiper-img"></image>
+                    <swiper autoplay="{{autoplay}}" circular="{{circular}}" data-wpy-evt="8-1" bindchange="_proxy" class="swiper">
+                      <swiper-item wx:for="{{ items }}" wx:for-index="index" wx:for-item="item" wx:key="index" key="{{ index }}" data-wpy-evt="8-2" bindtap="_proxy" data-wpytap-a="{{ index }}">
+                        <lazy-image bind_init="_initComponent" src="{{item.url}}" lazyStyle="width:120px;height:60px;" class="swiper-img"></lazy-image>
                       </swiper-item>
                     </swiper>
                     <view class="swiper-code">
                       <label class="swiper-text">{{current}}/{{items.length}}</label>
                     </view>
-                    <view data-wpy-evt="8-129" bindtap="_proxy" class="btn-favorite">
+                    <view data-wpy-evt="8-3" bindtap="_proxy" class="btn-favorite">
                       <view class="btn-icon iconfont icon-favorite{{isData.isFollow?' active':''}}"></view>
                       <view class="btn-text">收藏</view>
                     </view>
-                    <button open-type="share" class="btn-share">
-                      <label class="btn-icon iconfont icon-share"></label>
+                    <button open-type="share" class="btn-forward">
+                      <label class="btn-icon iconfont icon-forward"></label>
                       <label class="btn-text">分享</label>
                     </button>
                   </view>
@@ -88,6 +88,10 @@
                         <label class="label">小区</label>
                         <text class="value">{{isData.xiaoqu}}</text>
                       </view>
+                      <view class="col-6">
+                        <label class="label">发布</label>
+                        <text class="value">{{isData.release_time}}</text>
+                      </view>
                     </view>
                   </view>
                 </view>
@@ -111,8 +115,8 @@
                           <view class="agent-name">{{item.name}}</view>
                           <view class="agent-phone">{{item.tel||'暂无数据'}}</view>
                           <view class="agent-btns">
-                            <view data-wpy-evt="8-130" bindtap="_proxy" data-wpytap-a="{{ item }}" class="btn-icon btn-msg iconfont icon-msg"></view>
-                            <view data-wpy-evt="8-131" bindtap="_proxy" data-wpytap-a="{{ item }}" class="btn-icon btn-tel iconfont icon-tel"></view>
+                            <view data-wpy-evt="8-4" bindtap="_proxy" data-wpytap-a="{{ item }}" class="btn-icon btn-msg iconfont icon-msg"></view>
+                            <view data-wpy-evt="8-5" bindtap="_proxy" data-wpytap-a="{{ item }}" class="btn-icon btn-tel iconfont icon-tel"></view>
                           </view>
                         </view>
                       </view>
@@ -150,7 +154,7 @@
                 <view class="module-context">
                   <view class="map-container">
                     <view class="map-content">
-                      <map longitude="{{longitude}}" latitude="{{latitude}}" enable-zoom="{{enableZoom}}" enable-scroll="{{enableScroll}}" markers="{{markers}}" data-wpy-evt="8-132" bindtap="_proxy" class="map-canvas">
+                      <map longitude="{{longitude}}" latitude="{{latitude}}" enable-zoom="{{enableZoom}}" enable-scroll="{{enableScroll}}" markers="{{markers}}" data-wpy-evt="8-6" bindtap="_proxy" class="map-canvas">
                       </map>
                       <view class="map-marker">
                         <view class="marker-container">
@@ -178,11 +182,11 @@
             <view class="agent-name">{{isData.agency[0].name}}</view>
           </view>
           <view class="btns">
-            <view data-wpy-evt="8-133" bindtap="_proxy" class="btn btn-msg col-6">
+            <view data-wpy-evt="8-7" bindtap="_proxy" class="btn btn-msg col-6">
               <text class="btn-icon iconfont icon-msg"></text>
               <text class="btn-text">微聊</text>
             </view>
-            <view data-wpy-evt="8-134" bindtap="_proxy" class="btn btn-tel col-6">
+            <view data-wpy-evt="8-8" bindtap="_proxy" class="btn btn-tel col-6">
               <text class="btn-icon iconfont icon-tel"></text>
               <text class="btn-text">电话</text>
             </view>

@@ -193,7 +193,6 @@
     store,
     mixins: [Toast],
     data: {
-      topBarHeight: '',
       timer: null,
       pageIndex: 1,
       pageSize: 10,

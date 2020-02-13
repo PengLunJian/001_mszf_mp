@@ -2,6 +2,14 @@ export const HOUSELIST_STATE = {
   isLoading: true,
   isSuccess: false,
   isFailure: false,
+  data: null,
+  totalRowsFilter: []
+};
+
+export const HOUSEHISTORY_STATE = {
+  isLoading: true,
+  isSuccess: false,
+  isFailure: false,
   data: null
 };
 

@@ -1,0 +1,9 @@
+
+<view class="lazy-image">
+  <view wx:if="{{ isShow }}" class="lazy-image-lazy{{isLazy?'':' lazy-image-leave'}}">
+    <image src="images/logo@2x.png" mode="aspectFit" style="{{lazyStyle}}"></image>
+  </view>
+  <view class="lazy-image-load{{isLazy?'':' lazy-image-enter'}}">
+    <image src="{{ src }}" data-wpy-evt="107-0" bindload="_proxy"></image>
+  </view>
+</view>

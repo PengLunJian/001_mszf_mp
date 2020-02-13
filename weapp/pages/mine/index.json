@@ -2,6 +2,6 @@
     "navigationStyle": "custom",
     "component": true,
     "usingComponents": {
-        "top-logo": "../../components/top-logo/top-logo"
+        "top-bar": "../../components/top-bar/top-bar"
     }
 }

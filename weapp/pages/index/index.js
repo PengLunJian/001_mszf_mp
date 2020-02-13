@@ -18,8 +18,6 @@ _core["default"].page({
   store: _index["default"],
   mixins: [],
   data: {
-    statusHeight: '',
-    topBarHeight: '',
     items: [{
       add_userid: 1,
       addr: '广德路与万贵山路交叉口',
@@ -132,15 +130,10 @@ _core["default"].page({
       zhifufangshi: '押一付三',
       zhulihuxing: null
     }],
+    addressUrl: $routes.ADDRESS.path,
     searchUrl: $routes.SEARCH.path
   },
   computed: {},
   methods: {},
-  onLoad: function onLoad() {
-    var system = wx.getSystemInfoSync();
-    var statusHeight = system.statusBarHeight;
-    var topBarHeight = statusHeight + 45;
-    this.statusHeight = statusHeight + 'px';
-    this.topBarHeight = topBarHeight + 'px';
-  }
+  onLoad: function onLoad() {}
 }, {info: {"components":{"banner":{"path":"..\\..\\components\\banner\\banner"},"customer-navigator":{"path":"..\\..\\components\\customer-navigator\\customer-navigator"},"rent-house-item":{"path":"..\\..\\components\\rent-house-item\\rent-house-item"},"second-house-item":{"path":"..\\..\\components\\second-house-item\\second-house-item"},"new-house-item":{"path":"..\\..\\components\\new-house-item\\new-house-item"}},"on":{}}, handlers: {}, models: {} });

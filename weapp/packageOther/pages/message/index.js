@@ -12,5 +12,5 @@ _core["default"].page({
   data: {},
   computed: {},
   methods: {},
-  created: function created() {}
+  onLoad: function onLoad() {}
 }, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"wait":{"path":"..\\..\\..\\components\\wait\\wait"}},"on":{}}, handlers: {}, models: {} });

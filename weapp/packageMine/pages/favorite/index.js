@@ -165,56 +165,56 @@ _core["default"].page({
     this.resetHouseFavorite();
     this.exeAjaxHouseFavorite();
   }
-}, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\..\\components\\error\\error"},"empty":{"path":"..\\..\\..\\components\\empty\\empty"},"load-more":{"path":"..\\..\\..\\components\\load-more\\load-more"},"rent-house-item":{"path":"..\\..\\..\\components\\rent-house-item\\rent-house-item"},"new-house-item":{"path":"..\\..\\..\\components\\new-house-item\\new-house-item"},"second-house-item":{"path":"..\\..\\..\\components\\second-house-item\\second-house-item"}},"on":{"13-42":["refresh"],"13-44":["refresh"],"13-46":["refresh"]}}, handlers: {'13-40': {"tap": function proxy (index) {
+}, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\..\\components\\error\\error"},"empty":{"path":"..\\..\\..\\components\\empty\\empty"},"load-more":{"path":"..\\..\\..\\components\\load-more\\load-more"},"rent-house-item":{"path":"..\\..\\..\\components\\rent-house-item\\rent-house-item"},"new-house-item":{"path":"..\\..\\..\\components\\new-house-item\\new-house-item"},"second-house-item":{"path":"..\\..\\..\\components\\second-house-item\\second-house-item"}},"on":{"13-2":["refresh"],"13-4":["refresh"],"13-6":["refresh"]}}, handlers: {'13-0': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {
         _vm.onHandleTabChange(index)
       })();
     
-  }},'13-41': {"change": function proxy () {
+  }},'13-1': {"change": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleSwiperChange($event)
       })();
     
-  }},'13-42': {"refresh": function proxy () {
+  }},'13-2': {"refresh": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onRefresh($event)
       })();
     
-  }},'13-43': {"scrolltolower": function proxy () {
+  }},'13-3': {"scrolltolower": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleScrollToLower($event)
       })();
     
-  }},'13-44': {"refresh": function proxy () {
+  }},'13-4': {"refresh": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onRefresh($event)
       })();
     
-  }},'13-45': {"scrolltolower": function proxy () {
+  }},'13-5': {"scrolltolower": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleScrollToLower($event)
       })();
     
-  }},'13-46': {"refresh": function proxy () {
+  }},'13-6': {"refresh": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onRefresh($event)
       })();
     
-  }},'13-47': {"scrolltolower": function proxy () {
+  }},'13-7': {"scrolltolower": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {

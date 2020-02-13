@@ -6,6 +6,10 @@ export const SEARCH = {
   name: '房源搜索',
   path: '/packageOther/pages/search/index'
 };
+export const ADDRESS = {
+  name: '选择城市',
+  path: '/packageOther/pages/address/index'
+};
 export const CALCULATOR = {
   name: '房贷计算',
   path: '/packageOther/pages/calculator/index'

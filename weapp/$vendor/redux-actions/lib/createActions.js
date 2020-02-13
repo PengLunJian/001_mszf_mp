@@ -11,13 +11,13 @@ var _isFunction = _interopRequireDefault(__wepy_require(6));
 
 var _identity = _interopRequireDefault(__wepy_require(11));
 
-var _isArray = _interopRequireDefault(__wepy_require(16));
+var _isArray = _interopRequireDefault(__wepy_require(14));
 
-var _isString = _interopRequireDefault(__wepy_require(9));
+var _isString = _interopRequireDefault(__wepy_require(10));
 
-var _isNil = _interopRequireDefault(__wepy_require(14));
+var _isNil = _interopRequireDefault(__wepy_require(15));
 
-var _getLastElement = _interopRequireDefault(__wepy_require(17));
+var _getLastElement = _interopRequireDefault(__wepy_require(16));
 
 var _camelCase = _interopRequireDefault(__wepy_require(45));
 
@@ -25,7 +25,7 @@ var _arrayToObject = _interopRequireDefault(__wepy_require(18));
 
 var _flattenActionMap = _interopRequireDefault(__wepy_require(25));
 
-var _unflattenActionCreators = _interopRequireDefault(__wepy_require(19));
+var _unflattenActionCreators = _interopRequireDefault(__wepy_require(17));
 
 var _createAction = _interopRequireDefault(__wepy_require(31));
 

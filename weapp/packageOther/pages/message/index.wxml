@@ -5,7 +5,9 @@
       <top-bar bind_init="_initComponent" title="在线咨询"></top-bar>
     </view>
     <view class="body">
-      <wait bind_init="_initComponent"></wait>
+      <view class="context">
+        <wait bind_init="_initComponent"></wait>
+      </view>
     </view>
     <view class="footer"></view>
   </view>

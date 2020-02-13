@@ -91,7 +91,8 @@ var actions = (_actions = {}, _defineProperty(_actions, actionTypes.SELECT_HOUSE
   }];
 
   var _ref = action.data || {},
-      fagnwupeizhi = _ref.fagnwupeizhi;
+      fagnwupeizhi = _ref.fagnwupeizhi,
+      release_time = _ref.release_time;
 
   if (fagnwupeizhi) {
     configs.map(function (item) {
@@ -102,6 +103,7 @@ var actions = (_actions = {}, _defineProperty(_actions, actionTypes.SELECT_HOUSE
   }
 
   action.data.configs = configs;
+  action.data.release_time = release_time.substring(0, 10);
   return _objectSpread({}, state, {
     isLoading: false,
     isSuccess: true,

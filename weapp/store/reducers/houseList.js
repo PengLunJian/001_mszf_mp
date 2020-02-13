@@ -13,6 +13,8 @@ var actionTypes = _interopRequireWildcard(require('../actionTypes.js'));
 
 var states = _interopRequireWildcard(require('../states.js'));
 
+var utils = _interopRequireWildcard(require('../../utils/index.js'));
+
 var _actions;
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
@@ -36,7 +38,7 @@ var actions = (_actions = {}, _defineProperty(_actions, actionTypes.SELECT_HOUSE
   var oldRows = oldData.rows || [];
   var newData = action.data || {};
   var newRows = newData.rows || [];
-  action.data.rows = oldRows.concat(newRows);
+  action.data.rows = oldRows.concat(utils.dataFilter(newRows));
   return _objectSpread({}, state, {
     isLoading: false,
     isSuccess: true,

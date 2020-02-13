@@ -1,3 +1,47 @@
+/* iPhone X, iPhone XS */
+@media only screen and (device-width: 375px) and (max-device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+  .top-bar {
+    padding-top: 44px !important;
+  }
+  .context {
+    padding-top: 89px !important;
+  }
+}
+/* iPhone XR */
+@media only screen and (device-width: 414px) and (max-device-height: 896px) and (-webkit-device-pixel-ratio: 2) {
+  .top-bar {
+    padding-top: 44px !important;
+  }
+  .context {
+    padding-top: 89px !important;
+  }
+}
+/* iPhone XS Max */
+@media only screen and (device-width: 414px) and (max-device-height: 896px) and (-webkit-device-pixel-ratio: 3) {
+  .top-bar {
+    padding-top: 44px !important;
+  }
+  .context {
+    padding-top: 89px !important;
+  }
+}
+/* iPhone 6, iPhone XS */
+@media only screen and (device-width: 414px) and (max-device-height: 736px) and (-webkit-device-pixel-ratio: 3) {
+  .top-bar {
+    padding-top: 20px !important;
+  }
+  .context {
+    padding-top: 65px !important;
+  }
+}
+@media only screen and (device-width: 360px) and (max-device-height: 780px) and (-webkit-device-pixel-ratio: 3) {
+  .top-bar {
+    padding-top: 28px !important;
+  }
+  .context {
+    padding-top: 73px !important;
+  }
+}
 .container {
   min-height: 100vh;
 }
@@ -24,7 +68,7 @@
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center center;
-  background-image: url("http://sersms.com:7000/house/v1/file/static/userfile/202002/03/1224240266060644352.jpg");
+  background-image: url("http://sersms.com:7000/house/v1/file/static/userfile/202002/10/1226759973292621824.jpg");
 }
 .container .content .body .context .list {
   padding: 0 30rpx 30rpx;
@@ -41,26 +85,6 @@
   padding: 0 110rpx;
   border-bottom: 0.5px solid #F0F0F0;
   text-align: left;
-  /*&:nth-child(1) {*/
-  /*.list-item-icon {*/
-  /*background-image: -webkit-linear-gradient(left, #00FF00, #12B347);*/
-  /*}*/
-  /*}*/
-  /*&:nth-child(2) {*/
-  /*.list-item-icon {*/
-  /*background-image: -webkit-linear-gradient(left, #FFF207, #FFAD07);*/
-  /*}*/
-  /*}*/
-  /*&:nth-child(3) {*/
-  /*.list-item-icon {*/
-  /*background-image: -webkit-linear-gradient(left, #060BFF, #17F2FF);*/
-  /*}*/
-  /*}*/
-  /*&:nth-child(4) {*/
-  /*.list-item-icon {*/
-  /*background-image: -webkit-linear-gradient(left, #060BFF, #17F2FF);*/
-  /*}*/
-  /*}*/
 }
 .container .content .body .context .list .inner .list-item .list-item-icon,
 .container .content .body .context .list .inner .list-item .list-item-next {
@@ -73,7 +97,9 @@
 .container .content .body .context .list .inner .list-item .list-item-icon.list-item-icon,
 .container .content .body .context .list .inner .list-item .list-item-next.list-item-icon {
   left: 0;
-  font-size: 40rpx;
+  font-size: 46rpx;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
 }
 .container .content .body .context .list .inner .list-item .list-item-icon.list-item-next,
 .container .content .body .context .list .inner .list-item .list-item-next.list-item-next {
@@ -86,6 +112,18 @@
 }
 .container .content .body .context .list .inner .list-item:last-child {
   border: none;
+}
+.container .content .body .context .list .inner .list-item:nth-child(1) .list-item-icon {
+  background-image: -webkit-linear-gradient(left, #00FF00, #12B347);
+}
+.container .content .body .context .list .inner .list-item:nth-child(2) .list-item-icon {
+  background-image: -webkit-linear-gradient(left, #FF8F8F, #DE7979);
+}
+.container .content .body .context .list .inner .list-item:nth-child(3) .list-item-icon {
+  background-image: -webkit-linear-gradient(left, #060BFF, #17F2FF);
+}
+.container .content .body .context .list .inner .list-item:nth-child(4) .list-item-icon {
+  background-image: -webkit-linear-gradient(left, #FFFF00, #FFB421);
 }
 .container .content .footer {
   width: 100%;

@@ -7,7 +7,7 @@
       <div class="body">
         <loading :isLoading="isLoading"></loading>
         <error :isFailure="isFailure" @refresh="onRefresh"></error>
-        <div class="context fade" :style="{'paddingTop':topBarHeight}" v-if="isSuccess&&isData">
+        <div class="context fade" v-if="isSuccess&&isData">
           <scroll-view
             class="scroll-view"
             scroll-y="{{true}}">
@@ -22,7 +22,7 @@
                               @change="onHandleSwiperChange">
                         <swiper-item v-for="(item,index) in items" :key="index"
                                      @tap="onHandleLargeImage(index)">
-                          <img class="swiper-img" src="{{item.url}}"/>
+                          <lazy-image class="swiper-img" src="{{item.url}}" lazyStyle="width:120px;height:60px;"/>
                         </swiper-item>
                       </swiper>
                       <div class="swiper-code">
@@ -32,8 +32,8 @@
                         <div class="btn-icon iconfont icon-favorite{{isData.isFollow?' active':''}}"></div>
                         <div class="btn-text">收藏</div>
                       </div>
-                      <button class="btn-share" open-type="share">
-                        <span class="btn-icon iconfont icon-share"></span>
+                      <button class="btn-forward" open-type="share">
+                        <span class="btn-icon iconfont icon-forward"></span>
                         <span class="btn-text">分享</span>
                       </button>
                     </div>
@@ -93,6 +93,10 @@
                         <div class="col-6">
                           <span class="label">小区</span>
                           <text class="value">{{isData.xiaoqu}}</text>
+                        </div>
+                        <div class="col-6">
+                          <span class="label">发布</span>
+                          <text class="value">{{isData.release_time}}</text>
                         </div>
                       </div>
                     </div>
@@ -380,6 +384,7 @@
 
 <style scoped lang="less">
   @import "../../../assets/less/variable";
+  @import "../../../assets/less/@media";
 
   .container {
     min-height: 100vh;
@@ -483,7 +488,7 @@
                           color: @fontColor3;
                         }
                       }
-                      .btn-share {
+                      .btn-forward {
                         position: absolute;
                         top: unit(100, rpx);
                         right: unit(-30, rpx);
@@ -791,7 +796,8 @@
   usingComponents: {
   'top-bar': '../../../components/top-bar/top-bar',
   'loading': '../../../components/loading/loading',
-  'error': '../../../components/error/error'
+  'error': '../../../components/error/error',
+  'lazy-image':'../../../components/lazy-image/lazy-image'
   }
   }
 </config>

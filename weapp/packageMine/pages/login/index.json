@@ -1,0 +1,8 @@
+{
+    "navigationStyle": "custom",
+    "disableScroll": true,
+    "component": true,
+    "usingComponents": {
+        "top-bar": "../../../components/top-bar/top-bar"
+    }
+}

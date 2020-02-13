@@ -9,15 +9,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 _core["default"].page({
   store: _index["default"],
   mixins: [],
-  data: {
-    topBarHeight: ''
-  },
+  data: {},
   computed: {},
   methods: {},
-  onLoad: function onLoad() {
-    var system = wx.getSystemInfoSync();
-    var statusHeight = system.statusBarHeight;
-    var topBarHeight = statusHeight + 45;
-    this.topBarHeight = topBarHeight + 'px';
-  }
-}, {info: {"components":{"top-logo":{"path":"..\\..\\components\\top-logo\\top-logo"}},"on":{}}, handlers: {}, models: {} });
+  onLoad: function onLoad() {}
+}, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"},"wait":{"path":"..\\..\\components\\wait\\wait"}},"on":{}}, handlers: {}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"},"wait":{"path":"..\\..\\components\\wait\\wait"}},"on":{}}, handlers: {}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"},"wait":{"path":"..\\..\\components\\wait\\wait"}},"on":{}}, handlers: {}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"},"wait":{"path":"..\\..\\components\\wait\\wait"}},"on":{}}, handlers: {}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"},"wait":{"path":"..\\..\\components\\wait\\wait"}},"on":{}}, handlers: {}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"},"wait":{"path":"..\\..\\components\\wait\\wait"}},"on":{}}, handlers: {}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"},"wait":{"path":"..\\..\\components\\wait\\wait"}},"on":{}}, handlers: {}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"},"wait":{"path":"..\\..\\components\\wait\\wait"}},"on":{}}, handlers: {}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"},"wait":{"path":"..\\..\\components\\wait\\wait"}},"on":{}}, handlers: {}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"},"wait":{"path":"..\\..\\components\\wait\\wait"}},"on":{}}, handlers: {}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"},"wait":{"path":"..\\..\\components\\wait\\wait"}},"on":{}}, handlers: {}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"},"wait":{"path":"..\\..\\components\\wait\\wait"}},"on":{}}, handlers: {}, models: {} });

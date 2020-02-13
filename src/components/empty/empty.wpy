@@ -1,11 +1,8 @@
 <template>
   <div class="empty fade" v-if="isShow">
     <div class="empty-inner">
-      <div class="empty-image">
-        <img class="empty-icon" src="./images/empty-icon@2x.png" mode="aspectFit"/>
-        <img class="empty-clock" src="./images/empty-clock@2x.png" mode="aspectFit"/>
-        <img class="empty-label" src="./images/empty-label@2x.png" mode="aspectFit"/>
-      </div>
+      <img class="empty-image" src="./images/empty@2x.png" mode="aspectFit"/>
+      <div class="empty-label">暂无数据</div>
     </div>
   </div>
 </template>
@@ -40,7 +37,6 @@
 <style scoped lang="less">
   @import "../../assets/less/common";
   @import "../../assets/less/variable";
-  @import "../../assets/less/iconfont";
 
   @height: unit(60, rpx);
 
@@ -56,30 +52,16 @@
       display: inline-block;
       vertical-align: middle;
       .empty-image {
-        position: relative;
-        font-size: 0;
-        .empty-icon {
-          position: absolute;
-          top: 0px;
-          left: 0px;
-          width: unit(100, rpx);
-          height: unit(100, rpx);
-          padding: unit(35, rpx);
-        }
-        .empty-clock {
-          width: unit(100, rpx);
-          height: unit(100, rpx);
-          display: inline-block;
-          vertical-align: middle;
-          padding: unit(10, rpx);
-        }
-        .empty-label {
-          width: unit(200, rpx);
-          height: unit(100, rpx);
-          display: inline-block;
-          vertical-align: middle;
-          padding: unit(10, rpx);
-        }
+        width: unit(200, rpx);
+        height: unit(200, rpx);
+      }
+      .empty-label {
+        height: unit(40, rpx);
+        line-height: unit(40, rpx);
+        margin-top: unit(10, rpx);
+        letter-spacing: 0.5px;
+        font-size: @fontSize4;
+        color: @fontColor3;
       }
     }
     &:before {

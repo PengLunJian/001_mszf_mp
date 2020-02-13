@@ -1,7 +1,0 @@
-
-<view style=" {{ 'padding-top:' + statusHeight + ';' }}" class="top-logo">
-  <view class="top-inner">
-    <view class="top-image"></view>
-    <view class="top-title">{{title}}</view>
-  </view>
-</view>

@@ -1,0 +1,158 @@
+<template>
+  <div class="container">
+    <div class="content">
+      <div class="header">
+        <top-bar title="用户登录"></top-bar>
+      </div>
+      <div class="body">
+        <div class="context">
+          <div class="login-container">
+            <div class="login-content">
+              <div class="login-header">
+                <img src="../../../assets/images/logo@2x.png" mode="aspectFit"/>
+              </div>
+              <div class="login-body">
+                <div class="btn btn-wechat">
+                  <div class="btn-icon iconfont icon-wechat"></div>
+                  <div class="btn-text">微信授权登录</div>
+                </div>
+                <div class="btn btn-mobile">
+                  <div class="btn-icon iconfont icon-mobile"></div>
+                  <div class="btn-text">手机快捷登录</div>
+                </div>
+              </div>
+              <div class="login-footer"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer"></div>
+    </div>
+  </div>
+</template>
+
+<script type="text/ecmascript-6">
+  import wepy from '@wepy/core';
+  import store from '../../../store';
+  // import * as utils from '../../../utils';
+
+  wepy.page({
+    store,
+
+    mixins: [],
+
+    data: {},
+
+    computed: {},
+
+    methods: {},
+
+    onLoad() {
+    }
+  });
+</script>
+
+<style scoped lang="less">
+  @import "../../../assets/less/variable";
+  @import "../../../assets/less/@media";
+
+  @height: unit(100, rpx);
+
+  .container {
+    min-height: 100vh;
+    .content {
+      height: 100vh;
+      .header {
+      }
+      .body {
+        height: 100%;
+        position: relative;
+        .context {
+          height: 100%;
+          padding-top: 65px;
+          .login-container {
+            height: 100%;
+            position: relative;
+            .login-content {
+              width: 100%;
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              padding: unit(60, rpx);
+              transform: translate3d(-50%, -50%, 0);
+              border-radius: @borderRadius2;
+              .login-header {
+                margin-bottom: unit(80, rpx);
+                image {
+                  width: unit(250, rpx);
+                  height: unit(80, rpx);
+                  margin: 0 auto;
+                }
+              }
+              .login-body {
+                padding-top: unit(130, rpx);
+                .btn {
+                  overflow: hidden;
+                  margin-bottom: unit(40, rpx);
+                  border-radius: @borderRadius1;
+                  text-align: center;
+                  color: @white;
+                  font-size: 0;
+                  .btn-icon {
+                    height: unit(100, rpx);
+                    line-height: unit(100, rpx);
+                    display: inline-block;
+                    vertical-align: middle;
+                    font-size: @fontSize8;
+                  }
+                  .btn-text {
+                    height: unit(100, rpx);
+                    line-height: unit(100, rpx);
+                    display: inline-block;
+                    vertical-align: middle;
+                    margin-left: unit(10, rpx);
+                    font-size: @fontSize6;
+                    letter-spacing: 1px;
+                  }
+                  &.btn-wechat {
+                    background-color: @theme2;
+                  }
+                  &.btn-mobile {
+                    border: 1px solid @theme2;
+                    color: @theme2;
+                    .btn-icon {
+                      height: unit(96, rpx);
+                      line-height: unit(96, rpx);
+                    }
+                    .btn-text {
+                      height: unit(96, rpx);
+                      line-height: unit(96, rpx);
+                    }
+                  }
+                  &:last-child {
+                    margin: 0;
+                  }
+                }
+              }
+              .login-footer {
+                height: unit(130, rpx);
+              }
+            }
+          }
+        }
+      }
+      .footer {
+      }
+    }
+  }
+</style>
+
+<config>
+  {
+  navigationStyle:'custom',
+  disableScroll:true,
+  usingComponents: {
+  'top-bar': '../../../components/top-bar/top-bar',
+  }
+  }
+</config>

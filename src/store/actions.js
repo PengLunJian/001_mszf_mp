@@ -26,7 +26,6 @@ export const ajaxRequestHouseList = createAction(
           res = res || {};
           const {data, success} = res;
           if (success) {
-            data.rows = utils.dataFilter(data.rows);
             commit(actionTypes.SELECT_HOUSELIST_SUCCESS, data);
           } else {
             commit(actionTypes.SELECT_HOUSELIST_FAILURE);
@@ -165,6 +164,28 @@ export const ajaxRequestHouseFavorite = createAction(
               commit(actionTypes.SELECT_HOUSEFAVORITERENT_FAILURE);
               break;
           }
+          reject(err);
+        });
+    });
+  });
+
+export const ajaxRequestHouseHistory = createAction(
+  'selectHouseHistory', (params) => {
+    commit(actionTypes.SELECT_HOUSEHISTORY_REQUEST);
+    return new Promise((resolve, reject) => {
+      axios.get(apis.selectHouseHistory, {params})
+        .then((res) => {
+          res = res || {};
+          const {data, success} = res;
+          if (success) {
+            commit(actionTypes.SELECT_HOUSEHISTORY_SUCCESS, data);
+          } else {
+            commit(actionTypes.SELECT_HOUSEHISTORY_FAILURE);
+          }
+          resolve(res);
+        })
+        .catch((err) => {
+          commit(actionTypes.SELECT_HOUSEHISTORY_FAILURE);
           reject(err);
         });
     });

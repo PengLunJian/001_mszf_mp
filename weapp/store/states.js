@@ -3,14 +3,22 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.HOUSEFAVORITE_STATE = exports.HOUSEUNFOLLOW_STATE = exports.HOUSEFOLLOW_STATE = exports.HOUSEDETAIL_STATE = exports.HOUSELIST_STATE = void 0;
+exports.HOUSEFAVORITE_STATE = exports.HOUSEUNFOLLOW_STATE = exports.HOUSEFOLLOW_STATE = exports.HOUSEDETAIL_STATE = exports.HOUSEHISTORY_STATE = exports.HOUSELIST_STATE = void 0;
 var HOUSELIST_STATE = {
+  isLoading: true,
+  isSuccess: false,
+  isFailure: false,
+  data: null,
+  totalRowsFilter: []
+};
+exports.HOUSELIST_STATE = HOUSELIST_STATE;
+var HOUSEHISTORY_STATE = {
   isLoading: true,
   isSuccess: false,
   isFailure: false,
   data: null
 };
-exports.HOUSELIST_STATE = HOUSELIST_STATE;
+exports.HOUSEHISTORY_STATE = HOUSEHISTORY_STATE;
 var HOUSEDETAIL_STATE = {
   isLoading: true,
   isSuccess: false,

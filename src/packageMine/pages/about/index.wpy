@@ -5,7 +5,7 @@
         <top-bar title="关于我们"></top-bar>
       </div>
       <div class="body">
-        <div class="context" :style="{'paddingTop':topBarHeight}">
+        <div class="context">
           <div class="banner">
             <div class="inner"></div>
           </div>
@@ -38,17 +38,17 @@
       <div class="footer">
         <div class="company">
           <div class="company-text">技术支持</div>
-          <img class="company-logo" src="../../images/company-logo.png" mode="aspectFit"/>
+          <img class="company-logo" src="../../images/company@2x.png" mode="aspectFit"/>
         </div>
       </div>
       <div class="modal{{isShow?' enter':''}}{{isHide?' leave':''}}">
         <div class="modal-bg" @tap="onHandleHideModal"></div>
         <div class="modal-content">
           <div class="modal-header">
-            <img src="../../images/logo-white@2x.png" mode="aspectFit"/>
+            <img src="../../images/logo@2x.png" mode="aspectFit"/>
           </div>
           <div class="modal-body">
-            <img class="code" src="../../images/code.png" mode="aspectFit"/>
+            <img class="code" src="../../images/code@2x.png" mode="aspectFit"/>
             <div class="large">长按识别小程序</div>
             <div class="small">优质好房 尽在码上找房</div>
           </div>
@@ -64,7 +64,8 @@
 
 <script type="text/ecmascript-6">
   import wepy from '@wepy/core';
-  import store from '../../../store/index';
+  import store from '../../../store';
+  import * as utils from '../../../utils';
 
   wepy.page({
     store,
@@ -72,7 +73,6 @@
     mixins: [],
 
     data: {
-      topBarHeight: '',
       isShow: false,
       isHide: false
     },
@@ -126,20 +126,18 @@
         this.onHandleHideModal();
       },
       onHandleConfirm() {
+        utils.saveImage();
+        this.onHandleHideModal();
       }
     },
 
-    onLoad() {
-      const system = wx.getSystemInfoSync();
-      const statusHeight = system.statusBarHeight;
-      const topBarHeight = statusHeight + 45;
-      this.topBarHeight = topBarHeight + 'px';
-    }
+    onLoad() {}
   });
 </script>
 
 <style scoped lang="less">
   @import "../../../assets/less/variable";
+  @import "../../../assets/less/@media";
 
   @height: unit(100, rpx);
 
@@ -166,7 +164,7 @@
               background-size: 100% 100%;
               background-repeat: no-repeat;
               background-position: center center;
-              background-image: url("http://sersms.com:7000/house/v1/file/static/userfile/202002/03/1224240266060644352.jpg");
+              background-image: url("http://sersms.com:7000/house/v1/file/static/userfile/202002/10/1226759973292621824.jpg");
             }
           }
           .list {
@@ -191,7 +189,9 @@
                   text-align: center;
                   &.list-item-icon {
                     left: 0;
-                    font-size: @fontSize7;
+                    font-size: @fontSize8;
+                    -webkit-text-fill-color: transparent;
+                    -webkit-background-clip: text;
                   }
                   &.list-item-next {
                     right: 0;
@@ -205,26 +205,26 @@
                 &:last-child {
                   border: none;
                 }
-                /*&:nth-child(1) {*/
-                /*.list-item-icon {*/
-                /*background-image: -webkit-linear-gradient(left, #00FF00, #12B347);*/
-                /*}*/
-                /*}*/
-                /*&:nth-child(2) {*/
-                /*.list-item-icon {*/
-                /*background-image: -webkit-linear-gradient(left, #FFF207, #FFAD07);*/
-                /*}*/
-                /*}*/
-                /*&:nth-child(3) {*/
-                /*.list-item-icon {*/
-                /*background-image: -webkit-linear-gradient(left, #060BFF, #17F2FF);*/
-                /*}*/
-                /*}*/
-                /*&:nth-child(4) {*/
-                /*.list-item-icon {*/
-                /*background-image: -webkit-linear-gradient(left, #060BFF, #17F2FF);*/
-                /*}*/
-                /*}*/
+                &:nth-child(1) {
+                  .list-item-icon {
+                    background-image: -webkit-linear-gradient(left, #00FF00, #12B347);
+                  }
+                }
+                &:nth-child(2) {
+                  .list-item-icon {
+                    background-image: -webkit-linear-gradient(left, #FF8F8F, #DE7979);
+                  }
+                }
+                &:nth-child(3) {
+                  .list-item-icon {
+                    background-image: -webkit-linear-gradient(left, #060BFF, #17F2FF);
+                  }
+                }
+                &:nth-child(4) {
+                  .list-item-icon {
+                    background-image: -webkit-linear-gradient(left, #FFFF00, #FFB421);
+                  }
+                }
               }
             }
           }

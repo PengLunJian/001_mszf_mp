@@ -5,7 +5,7 @@
       <top-bar bind_init="_initComponent" title="房源搜索"></top-bar>
     </view>
     <view class="body">
-      <wait bind_init="_initComponent" isLoading="{{ true }}"></wait>
+      <wait bind_init="_initComponent"></wait>
     </view>
     <view class="footer"></view>
   </view>

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.MESSAGE = exports.NEW_HOUSE_DETAIL = exports.NEW_HOUSE_LIST = exports.SECOND_HOUSE_DETAIL = exports.SECOND_HOUSE_LIST = exports.RENT_HOUSE_DETAIL = exports.RENT_HOUSE_LIST = exports.ABOUT = exports.SUGGEST = exports.RELEASE = exports.HISTORY = exports.FAVORITE = exports.MINE = exports.CALCULATOR = exports.SEARCH = exports.INDEX = void 0;
+exports.MESSAGE = exports.NEW_HOUSE_DETAIL = exports.NEW_HOUSE_LIST = exports.SECOND_HOUSE_DETAIL = exports.SECOND_HOUSE_LIST = exports.RENT_HOUSE_DETAIL = exports.RENT_HOUSE_LIST = exports.ABOUT = exports.SUGGEST = exports.RELEASE = exports.HISTORY = exports.FAVORITE = exports.MINE = exports.CALCULATOR = exports.ADDRESS = exports.SEARCH = exports.INDEX = void 0;
 var INDEX = {
   name: '首页',
   path: '/pages/index/index'
@@ -14,6 +14,11 @@ var SEARCH = {
   path: '/packageOther/pages/search/index'
 };
 exports.SEARCH = SEARCH;
+var ADDRESS = {
+  name: '选择城市',
+  path: '/packageOther/pages/address/index'
+};
+exports.ADDRESS = ADDRESS;
 var CALCULATOR = {
   name: '房贷计算',
   path: '/packageOther/pages/calculator/index'

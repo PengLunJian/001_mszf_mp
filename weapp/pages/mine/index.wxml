@@ -2,10 +2,10 @@
 <view class="container">
   <view class="content">
     <view class="header">
-      <top-logo bind_init="_initComponent" title="个人中心"></top-logo>
+      <top-bar bind_init="_initComponent" title="个人中心" isIcon="{{false}}"></top-bar>
     </view>
     <view class="body">
-      <view style=" {{ 'padding-top:' + topBarHeight + ';' }}" class="context">
+      <view class="context">
         <view class="module user">
           <view class="info">
             <image src="../../assets/images/agent.jpg" class="img"></image>
@@ -13,7 +13,7 @@
           </view>
         </view>
         <view class="module list">
-          <button wx:for="{{ items }}" wx:for-index="index" wx:for-item="item" wx:key="index" hover-class="none" key="{{ index }}" open-type="{{item.name==='意见反馈'?'feedback':''}}" data-wpy-evt="5-10" bindtap="_proxy" data-wpytap-a="{{ item }}" class="list-item btn">
+          <button wx:for="{{ items }}" wx:for-index="index" wx:for-item="item" wx:key="index" hover-class="none" key="{{ index }}" open-type="{{item.name==='意见反馈'?'feedback':''}}" data-wpy-evt="5-0" bindtap="_proxy" data-wpytap-a="{{ item }}" class="list-item btn">
             <view class="list-item-icon iconfont {{item.icon}}"></view>
             <view class="list-item-text">{{item.name}}</view>
             <view class="list-item-next iconfont icon-next"></view>
@@ -21,5 +21,6 @@
         </view>
       </view>
     </view>
+    <view class="footer"></view>
   </view>
 </view>

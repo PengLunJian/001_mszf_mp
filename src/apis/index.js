@@ -61,6 +61,22 @@ const apis = {
         }
       ]
     }
+  },
+  selectHouseHistory: {
+    url: 'house/v1/houser/house/history',
+    params: {
+      page: {
+        pageSize: 10,
+        pageIndex: 1
+      },
+      filter: [
+        {
+          field: '',
+          opt: '',
+          value: 0
+        }
+      ]
+    }
   }
 };
 

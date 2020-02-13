@@ -1,3 +1,47 @@
+/* iPhone X, iPhone XS */
+@media only screen and (device-width: 375px) and (max-device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+  .top-bar {
+    padding-top: 44px !important;
+  }
+  .context {
+    padding-top: 89px !important;
+  }
+}
+/* iPhone XR */
+@media only screen and (device-width: 414px) and (max-device-height: 896px) and (-webkit-device-pixel-ratio: 2) {
+  .top-bar {
+    padding-top: 44px !important;
+  }
+  .context {
+    padding-top: 89px !important;
+  }
+}
+/* iPhone XS Max */
+@media only screen and (device-width: 414px) and (max-device-height: 896px) and (-webkit-device-pixel-ratio: 3) {
+  .top-bar {
+    padding-top: 44px !important;
+  }
+  .context {
+    padding-top: 89px !important;
+  }
+}
+/* iPhone 6, iPhone XS */
+@media only screen and (device-width: 414px) and (max-device-height: 736px) and (-webkit-device-pixel-ratio: 3) {
+  .top-bar {
+    padding-top: 20px !important;
+  }
+  .context {
+    padding-top: 65px !important;
+  }
+}
+@media only screen and (device-width: 360px) and (max-device-height: 780px) and (-webkit-device-pixel-ratio: 3) {
+  .top-bar {
+    padding-top: 28px !important;
+  }
+  .context {
+    padding-top: 73px !important;
+  }
+}
 .container {
   min-height: 100vh;
 }
@@ -102,7 +146,7 @@
   font-size: 22rpx;
   color: #999999;
 }
-.container .content .body .context .scroll-view .module .module-content .module-body .module-context .banner .btn-share {
+.container .content .body .context .scroll-view .module .module-content .module-body .module-context .banner .btn-forward {
   position: absolute;
   top: 100rpx;
   right: -30rpx;
@@ -116,14 +160,14 @@
   font-size: 0;
   color: #ffffff;
 }
-.container .content .body .context .scroll-view .module .module-content .module-body .module-context .banner .btn-share .btn-icon {
+.container .content .body .context .scroll-view .module .module-content .module-body .module-context .banner .btn-forward .btn-icon {
   height: 60rpx;
   display: inline-block;
   vertical-align: middle;
   line-height: 60rpx;
   font-size: 32rpx;
 }
-.container .content .body .context .scroll-view .module .module-content .module-body .module-context .banner .btn-share .btn-text {
+.container .content .body .context .scroll-view .module .module-content .module-body .module-context .banner .btn-forward .btn-text {
   height: 60rpx;
   display: inline-block;
   vertical-align: middle;

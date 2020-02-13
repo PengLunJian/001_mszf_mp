@@ -1,11 +1,8 @@
 <template>
   <div class="wait fade">
     <div class="wait-inner">
-      <div class="wait-image">
-        <img class="wait-icon" src="./images/wait-icon@2x.png" mode="aspectFit"/>
-        <img class="wait-clock" src="./images/wait-clock@2x.png" mode="aspectFit"/>
-        <img class="wait-label" src="./images/wait-label@2x.png" mode="aspectFit"/>
-      </div>
+      <img class="wait-image" src="./images/wait@2x.png" mode="aspectFit"/>
+      <div class="wait-label">敬请期待</div>
     </div>
   </div>
 </template>
@@ -27,7 +24,6 @@
 <style scoped lang="less">
   @import "../../assets/less/common";
   @import "../../assets/less/variable";
-  @import "../../assets/less/iconfont";
 
   @height: unit(60, rpx);
 
@@ -43,30 +39,16 @@
       display: inline-block;
       vertical-align: middle;
       .wait-image {
-        position: relative;
-        font-size: 0;
-        .wait-icon {
-          position: absolute;
-          top: 0px;
-          left: 0px;
-          width: unit(100, rpx);
-          height: unit(100, rpx);
-          padding: unit(35, rpx);
-        }
-        .wait-clock {
-          width: unit(100, rpx);
-          height: unit(100, rpx);
-          display: inline-block;
-          vertical-align: middle;
-          padding: unit(10, rpx);
-        }
-        .wait-label {
-          width: unit(200, rpx);
-          height: unit(100, rpx);
-          display: inline-block;
-          vertical-align: middle;
-          padding: unit(10, rpx);
-        }
+        width: unit(200, rpx);
+        height: unit(200, rpx);
+      }
+      .wait-label {
+        height: unit(40, rpx);
+        line-height: unit(40, rpx);
+        margin-top: unit(10, rpx);
+        letter-spacing: 0.5px;
+        font-size: @fontSize4;
+        color: @fontColor3;
       }
     }
     &:before {

@@ -9,7 +9,7 @@
   display: flex;
   flex-wrap: wrap;
   position: fixed;
-  top: 130rpx;
+  top: 65px;
   left: 0;
   z-index: 1000;
   background-color: #ffffff;
@@ -62,7 +62,7 @@
 }
 .container .content .body .context {
   height: 100%;
-  padding-top: 210rpx;
+  padding-top: 105px;
 }
 .container .content .body .context > .scroll-view {
   height: 100%;
@@ -84,8 +84,8 @@
   z-index: 999;
   width: 100%;
   height: 850rpx;
+  padding-top: 105px;
   background-color: #ffffff;
-  padding-top: 210rpx;
   transition: all 450ms ease-out;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
 }
@@ -159,8 +159,8 @@
   color: #666666;
 }
 .container .content .modal .modal-content .modal-body .modal-sort .btn-sort {
-  height: 100rpx;
-  line-height: 100rpx;
+  height: 50px;
+  line-height: 50px;
   border-bottom: 0.5px solid #DEDEDE;
   font-size: 28rpx;
   text-align: center;
@@ -204,7 +204,7 @@
   padding-bottom: 100rpx;
 }
 .container .content .modal#sort .modal-content {
-  height: 710rpx;
+  height: 355px;
 }
 .container .content .modal.hide .modal-bg {
   opacity: 0;
@@ -214,7 +214,71 @@
   visibility: hidden;
   transform: translateY(-850rpx);
 }
-.container .content .modal.hide:nth-child(3) .modal-content {
-  transform: translateY(-710rpx);
+.container .content .modal.hide#sort .modal-content {
+  transform: translateY(-355px);
+}
+/* iPhone X, iPhone XS */
+@media only screen and (device-width: 375px) and (max-device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+  .tab-bar {
+    top: 89px !important;
+  }
+  .context {
+    padding-top: 129px !important;
+  }
+  .modal-content {
+    height: 900rpx !important;
+    padding-top: 129px !important;
+  }
+  #sort .modal-content {
+    height: 379px !important;
+  }
+}
+/* iPhone XR */
+@media only screen and (device-width: 414px) and (max-device-height: 896px) and (-webkit-device-pixel-ratio: 2) {
+  .tab-bar {
+    top: 89px !important;
+  }
+  .context {
+    padding-top: 129px !important;
+  }
+  .modal-content {
+    height: 900rpx !important;
+    padding-top: 129px !important;
+  }
+  #sort .modal-content {
+    height: 379px !important;
+  }
+}
+/* iPhone XS Max */
+@media only screen and (device-width: 414px) and (max-device-height: 896px) and (-webkit-device-pixel-ratio: 3) {
+  .tab-bar {
+    top: 89px !important;
+  }
+  .context {
+    padding-top: 129px !important;
+  }
+  .modal-content {
+    height: 900rpx !important;
+    padding-top: 129px !important;
+  }
+  #sort .modal-content {
+    height: 379px !important;
+  }
+}
+/* iPhone 6/7/8 Plus */
+@media only screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) {
+  .tab-bar {
+    top: 65px !important;
+  }
+  .context {
+    padding-top: 105px !important;
+  }
+  .modal-content {
+    height: 850rpx !important;
+    padding-top: 105px !important;
+  }
+  #sort .modal-content {
+    height: 355px !important;
+  }
 }
 

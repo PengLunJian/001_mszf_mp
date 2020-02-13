@@ -6,107 +6,30 @@
       <top-bar bind_init="_initComponent" title="历史浏览"></top-bar>
     </view>
     <view class="body">
-      <scroll-view scroll-y="{{true}}" data-wpy-evt="14-5" bindscroll="_proxy" class="scroll-view">
-        <block wx:for="{{ items }}" wx:for-index="index" wx:for-item="item" wx:key="index" key="{{ index }}">
-          <view wx:if="{{ item.date!==items[index-1].date }}" class="date">
-            <view class="label {{ [ scrollTop>item.minScrollTop&&scrollTop<=item.maxScrollTop ? 'fixed' : '' ] }}">
-              {{item.date}}
-            </view>
+      <loading bind_init="_initComponent" isLoading="{{ isLoading&&!isData.rows.length }}"></loading>
+      <error bind_init="_initComponent" isFailure="{{ isFailure&&!isData.rows.length }}" data-wpy-evt="14-0" bindrefresh="_proxy"></error>
+      <empty bind_init="_initComponent" isSuccess="{{ isSuccess&&!isData.rows.length }}"></empty>
+      <view wx:if="{{ isData.rows.length }}" class="context fade">
+        <scroll-view scroll-y="{{true}}" data-wpy-evt="14-1" bindscroll="_proxy" bindscrolltolower="_proxy" class="scroll-view">
+          <view class="groups">
+            <block wx:for="{{ isTotalRowsFilter }}" wx:for-index="itemIndex" wx:for-item="itemGroup" wx:key="itemIndex" key="{{ itemIndex }}">
+              <view class="group">
+                <view class="group-date">
+                  <view class="group-label">{{itemGroup.date}}</view>
+                </view>
+                <view class="group-items">
+                  <block wx:for="{{ itemGroup.items }}" wx:for-index="index" wx:for-item="item" wx:key="index" key="{{ index }}">
+                    <new-house-item bind_init="_initComponent" wx:if="{{ item.type===1 }}" item="{{ item }}" isType="{{ true }}"></new-house-item>
+                    <second-house-item bind_init="_initComponent" wx:if="{{ item.type===2 }}" item="{{ item }}" isType="{{ true }}"></second-house-item>
+                    <rent-house-item bind_init="_initComponent" wx:if="{{ item.type===3 }}" item="{{ item }}" isType="{{ true }}"></rent-house-item>
+                  </block>
+                </view>
+              </view>
+            </block>
           </view>
-          <view wx:if="{{ item.type===1 }}" class="item">
-            <view class="item-img">
-              <image src="http://sersms.com:7000/house/v1/file/static/userfile/202001/15/1217303536806432768.jpg"></image>
-            </view>
-            <view class="item-info">
-              <view class="item-row">
-                <view class="item-title ellipsis">尚城江南府</view>
-              </view>
-              <view class="item-row">
-                <label class="item-addr">广德城区</label>
-                <label class="item-split"></label>
-                <label class="item-size">建面109~158m²</label>
-              </view>
-              <view class="item-row">
-                <view class="item-normal item-price">
-                  <label class="item-value">9000</label>
-                  <label class="item-unit">元/m²</label></view>
-              </view>
-              <view class="item-row">
-                <label class="item-tag item-state">在售</label>
-                <label class="item-tag">住宅</label>
-                <label class="item-tag">南北通透</label>
-                <label class="item-tag">三房朝南</label>
-              </view>
-            </view>
-            <view class="item-type">
-              <view class="color1">新房</view>
-            </view>
-          </view>
-          <view wx:if="{{ item.type===2 }}" class="item">
-            <view class="item-img">
-              <image src="http://sersms.com:7000/house/v1/file/static/userfile/202001/15/1217306190710345728.jpg"></image>
-            </view>
-            <view class="item-info">
-              <view class="item-row">
-                <view class="item-title ellipsis">碧桂园 南向两居室 精装 拎包入住</view>
-              </view>
-              <view class="item-row">
-                <label class="item-addr">广德城区</label>
-                <label class="item-split"></label>
-                <label class="item-addr">广德碧桂园</label>
-              </view>
-              <view class="item-row">
-                <label class="item-normal item-price">
-                  <label class="item-value">1800</label>
-                  <label class="item-unit">元/月</label>
-                </label>
-                <label class="item-normal">2室1厅1卫</label>
-                <label class="item-normal">整租</label>
-                <label class="item-normal">70m²</label>
-              </view>
-              <view class="item-row">
-                <label class="item-tag">南北通透</label>
-                <label class="item-tag">精装修</label>
-                <label class="item-tag">随时看房</label>
-              </view>
-            </view>
-            <view class="item-type">
-              <view class="color2">租房</view>
-            </view>
-          </view>
-          <view wx:if="{{ item.type===3 }}" class="item">
-            <view class="item-img">
-              <image src="http://sersms.com:7000/house/v1/file/static/userfile/202001/15/1217303264084398080.jpg"></image>
-            </view>
-            <view class="item-info">
-              <view class="item-row">
-                <view class="item-title ellipsis">万象小区 南向两居室 精装 拎包入住</view>
-              </view>
-              <view class="item-row">
-                <label class="item-addr">广德城区</label>
-                <label class="item-split"></label>
-                <label class="item-addr">广德金峰万象小区</label>
-              </view>
-              <view class="item-row">
-                <label class="item-normal item-price">
-                  <label class="item-value">140</label>
-                  <label class="item-unit">万</label>
-                </label>
-                <label class="item-normal">2室1厅1卫</label>
-                <label class="item-normal">70m²</label>
-              </view>
-              <view class="item-row">
-                <label class="item-tag">南北通透</label>
-                <label class="item-tag">精装修</label>
-                <label class="item-tag">随时看房</label>
-              </view>
-            </view>
-            <view class="item-type">
-              <view class="color3">二手房</view>
-            </view>
-          </view>
-        </block>
-      </scroll-view>
+          <load-more bind_init="_initComponent" length="{{ isData.rows.length }}" totalCount="{{ isData.totalCount }}"></load-more>
+        </scroll-view>
+      </view>
     </view>
   </view>
 </view>

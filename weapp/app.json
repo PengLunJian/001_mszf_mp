@@ -1,7 +1,7 @@
 {
     "pages": [
         "pages/index/index",
-        "pages/message/index",
+        "pages/list/index",
         "pages/mine/index"
     ],
     "subpackages": [
@@ -23,13 +23,15 @@
                 "pages/favorite/index",
                 "pages/history/index",
                 "pages/release/index",
-                "pages/suggest/index"
+                "pages/suggest/index",
+                "pages/login/index"
             ]
         },
         {
             "root": "packageOther",
             "pages": [
                 "pages/calculator/index",
+                "pages/address/index",
                 "pages/message/index",
                 "pages/search/index"
             ]
@@ -50,7 +52,7 @@
                 "text": "首页"
             },
             {
-                "pagePath": "pages/message/index",
+                "pagePath": "pages/list/index",
                 "iconPath": "/assets/images/tab-item02.png",
                 "selectedIconPath": "./assets/images/tab-item02-active.png",
                 "text": "消息"

@@ -3,7 +3,7 @@
        @tap="onHandleDetail(item.id)">
     <div class="item-inner">
       <div class="item-img">
-        <img src="http://sersms.com:7000/house/v1/file/static/userfile/202001/15/1217303264084398080.jpg"/>
+        <lazy-image src="http://sersms.com:7000/house/v1/file/static/userfile/202001/15/1217303264084398080.jpg"/>
       </div>
       <div class="item-info">
         <div class="item-row">
@@ -29,6 +29,7 @@
                 :key="index">{{tag}}</span>
         </div>
       </div>
+      <div class="item-type" v-if="isType">租房</div>
     </div>
   </div>
 </template>
@@ -43,6 +44,10 @@
       item: {
         type: Object,
         default: {}
+      },
+      isType: {
+        type: Boolean,
+        default: false
       }
     },
     events: {},
@@ -61,28 +66,24 @@
 <style scoped lang="less">
   @import "../../assets/less/variable";
   @import "../../assets/less/iconfont";
+  @import "../../assets/less/common";
 
   .item {
+    position: relative;
+    overflow: hidden;
     padding: 0 unit(30, rpx);
     background-color: @white;
     .item-inner {
-      position: relative;
+      display: flex;
       padding: unit(30, rpx) 0;
       border-bottom: 0.5px solid @borderColor2;
       .item-img {
-        position: absolute;
-        top: 0;
-        left: 0;
         width: unit(220, rpx);
-        height: 100%;
-        padding: unit(30, rpx) 0;
-        image {
-          width: 100%;
-          height: 100%;
-        }
+        height: unit(180, rpx);
       }
       .item-info {
-        padding-left: unit(240, rpx);
+        width: calc(100% - unit(220, rpx));
+        padding-left: unit(20, rpx);
         .item-row {
           margin-bottom: unit(8, rpx);
           font-size: 0;
@@ -169,6 +170,21 @@
           }
         }
       }
+      .item-type {
+        position: absolute;
+        top: unit(8, rpx);
+        left: unit(-80, rpx);
+        z-index: 10;
+        width: unit(200, rpx);
+        height: unit(30, rpx);
+        line-height: unit(30, rpx);
+        transform: rotate(-45deg);
+        background-color: @typeColor3;
+        font-size: unit(16, rpx);
+        font-weight: bold;
+        text-align: center;
+        color: @white;
+      }
     }
   }
 
@@ -180,3 +196,11 @@
     }
   }
 </style>
+
+<config>
+  {
+  usingComponents: {
+  'lazy-image': '../lazy-image/lazy-image'
+  }
+  }
+</config>

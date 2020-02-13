@@ -1,4 +1,6 @@
 {
     "component": true,
-    "usingComponents": {}
+    "usingComponents": {
+        "lazy-image": "../lazy-image/lazy-image"
+    }
 }

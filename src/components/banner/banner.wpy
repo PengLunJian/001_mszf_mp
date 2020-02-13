@@ -7,13 +7,13 @@
               @change="onHandleSwiperChange">
         <swiper-item v-for="(item,index) in items" :key="index"
                      @tap="onHandleBanner(index)">
-          <img class="swiper-img" src="{{item.url}}"/>
+          <lazy-image class="swiper-img" src="{{item.url}}" lazyStyle="width:100px;height:60px;"/>
         </swiper-item>
       </swiper>
     </div>
     <div class="banner-code">
       <div class="swiper-code{{index===current?' active':''}}"
-           v-for="(item,index) in items" :key="index"></div>
+           v-for="(index) in items" :key="index"></div>
     </div>
   </div>
 </template>
@@ -25,10 +25,13 @@
     data: {
       items: [
         {
-          url: 'http://sersms.com:7000/house/v1/file/static/userfile/202002/02/1223847355544387584.jpg'
+          url: 'http://sersms.com:7000/house/v1/file/static/userfile/202002/06/1225297117435019264.jpg'
         },
         {
-          url: 'http://sersms.com:7000/house/v1/file/static/userfile/202002/02/1223847540358004736.jpg'
+          url: 'http://sersms.com:7000/house/v1/file/static/userfile/202002/06/1225297515902287872.jpg'
+        },
+        {
+          url: 'http://sersms.com:7000/house/v1/file/static/userfile/202002/06/1225313315841261568.jpg'
         }
       ],
       current: 0,
@@ -89,3 +92,11 @@
     }
   }
 </style>
+
+<config>
+  {
+  usingComponents: {
+  'lazy-image': '../lazy-image/lazy-image'
+  }
+  }
+</config>

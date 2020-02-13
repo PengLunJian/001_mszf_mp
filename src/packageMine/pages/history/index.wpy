@@ -6,107 +6,33 @@
         <top-bar title="历史浏览"></top-bar>
       </div>
       <div class="body">
-        <scroll-view class="scroll-view" scroll-y="{{true}}" @scroll="onHandleScroll">
-          <block v-for="(item,index) in items" :key="index">
-            <div class="date" v-if="item.date!==items[index-1].date">
-              <div class="label" :class="{'fixed':scrollTop>item.minScrollTop&&scrollTop<=item.maxScrollTop}">
-                {{item.date}}
-              </div>
+        <loading :isLoading="isLoading&&!isData.rows.length"></loading>
+        <error :isFailure="isFailure&&!isData.rows.length" @refresh="onRefresh"></error>
+        <empty :isSuccess="isSuccess&&!isData.rows.length"></empty>
+        <div class="context fade" v-if="isData.rows.length">
+          <scroll-view class="scroll-view"
+                       scroll-y="{{true}}"
+                       @scroll="onHandleScroll"
+                       @scrolltolower="onHandleScrollToLower">
+            <div class="groups">
+              <block v-for="(itemGroup,itemIndex) in isTotalRowsFilter" :key="itemIndex">
+                <div class="group">
+                  <div class="group-date">
+                    <div class="group-label">{{itemGroup.date}}</div>
+                  </div>
+                  <div class="group-items">
+                    <block v-for="(item,index) in itemGroup.items" :key="index">
+                      <new-house-item v-if="item.type===1" :item="item" :isType="true"></new-house-item>
+                      <second-house-item v-if="item.type===2" :item="item" :isType="true"></second-house-item>
+                      <rent-house-item v-if="item.type===3" :item="item" :isType="true"></rent-house-item>
+                    </block>
+                  </div>
+                </div>
+              </block>
             </div>
-            <div v-if="item.type===1" class="item">
-              <div class="item-img">
-                <img src="http://sersms.com:7000/house/v1/file/static/userfile/202001/15/1217303536806432768.jpg"/>
-              </div>
-              <div class="item-info">
-                <div class="item-row">
-                  <div class="item-title ellipsis">尚城江南府</div>
-                </div>
-                <div class="item-row">
-                  <span class="item-addr">广德城区</span>
-                  <span class="item-split"></span>
-                  <span class="item-size">建面109~158m²</span>
-                </div>
-                <div class="item-row">
-                  <div class="item-normal item-price">
-                    <span class="item-value">9000</span>
-                    <span class="item-unit">元/m²</span></div>
-                </div>
-                <div class="item-row">
-                  <span class="item-tag item-state">在售</span>
-                  <span class="item-tag">住宅</span>
-                  <span class="item-tag">南北通透</span>
-                  <span class="item-tag">三房朝南</span>
-                </div>
-              </div>
-              <div class="item-type">
-                <div class="color1">新房</div>
-              </div>
-            </div>
-            <div v-if="item.type===2" class="item">
-              <div class="item-img">
-                <img src="http://sersms.com:7000/house/v1/file/static/userfile/202001/15/1217306190710345728.jpg"/>
-              </div>
-              <div class="item-info">
-                <div class="item-row">
-                  <div class="item-title ellipsis">碧桂园 南向两居室 精装 拎包入住</div>
-                </div>
-                <div class="item-row">
-                  <span class="item-addr">广德城区</span>
-                  <span class="item-split"></span>
-                  <span class="item-addr">广德碧桂园</span>
-                </div>
-                <div class="item-row">
-                  <span class="item-normal item-price">
-                    <span class="item-value">1800</span>
-                    <span class="item-unit">元/月</span>
-                  </span>
-                  <span class="item-normal">2室1厅1卫</span>
-                  <span class="item-normal">整租</span>
-                  <span class="item-normal">70m²</span>
-                </div>
-                <div class="item-row">
-                  <span class="item-tag">南北通透</span>
-                  <span class="item-tag">精装修</span>
-                  <span class="item-tag">随时看房</span>
-                </div>
-              </div>
-              <div class="item-type">
-                <div class="color2">租房</div>
-              </div>
-            </div>
-            <div v-if="item.type===3" class="item">
-              <div class="item-img">
-                <img src="http://sersms.com:7000/house/v1/file/static/userfile/202001/15/1217303264084398080.jpg"/>
-              </div>
-              <div class="item-info">
-                <div class="item-row">
-                  <div class="item-title ellipsis">万象小区 南向两居室 精装 拎包入住</div>
-                </div>
-                <div class="item-row">
-                  <span class="item-addr">广德城区</span>
-                  <span class="item-split"></span>
-                  <span class="item-addr">广德金峰万象小区</span>
-                </div>
-                <div class="item-row">
-                  <span class="item-normal item-price">
-                    <span class="item-value">140</span>
-                    <span class="item-unit">万</span>
-                  </span>
-                  <span class="item-normal">2室1厅1卫</span>
-                  <span class="item-normal">70m²</span>
-                </div>
-                <div class="item-row">
-                  <span class="item-tag">南北通透</span>
-                  <span class="item-tag">精装修</span>
-                  <span class="item-tag">随时看房</span>
-                </div>
-              </div>
-              <div class="item-type">
-                <div class="color3">二手房</div>
-              </div>
-            </div>
-          </block>
-        </scroll-view>
+            <load-more :length="isData.rows.length" :totalCount="isData.totalCount"></load-more>
+          </scroll-view>
+        </div>
       </div>
     </div>
   </div>
@@ -115,298 +41,175 @@
 <script type="text/ecmascript-6">
   import wepy from '@wepy/core';
   import store from '../../../store/index';
+  import {mapState, mapActions} from '@wepy/redux';
+  import * as controller from './controller';
+  import Toast from '../../../mixins/toast';
 
   wepy.page({
     store,
 
-    mixins: [],
+    mixins: [Toast],
 
     data: {
+      timer: null,
       scrollTop: 0,
-      items: [
-        {
-          date: '2019/11/24',
-          url: '../../assets/images/item1.jpg',
-          type: 1,
-          minScrollTop: 0,
-          maxScrollTop: 390
-        },
-        {
-          date: '2019/11/24',
-          url: '../../assets/images/item2.jpg',
-          type: 2
-        },
-        {
-          date: '2019/11/24',
-          url: '../../assets/images/item3.jpg',
-          type: 3
-        },
-        {
-          date: '2019/11/23',
-          url: '../../assets/images/item1.jpg',
-          type: 1,
-          minScrollTop: 390,
-          maxScrollTop: 780
-        },
-        {
-          date: '2019/11/23',
-          url: '../../assets/images/item2.jpg',
-          type: 2
-        },
-        {
-          date: '2019/11/23',
-          url: '../../assets/images/item3.jpg',
-          type: 3
-        },
-        {
-          date: '2019/11/22',
-          url: '../../assets/images/item1.jpg',
-          type: 1,
-          minScrollTop: 780,
-          maxScrollTop: 1170
-        },
-        {
-          date: '2019/11/22',
-          url: '../../assets/images/item2.jpg',
-          type: 2
-        },
-        {
-          date: '2019/11/22',
-          url: '../../assets/images/item3.jpg',
-          type: 3
-        },
-        {
-          date: '2019/11/21',
-          url: '../../assets/images/item1.jpg',
-          type: 1,
-          minScrollTop: 1170,
-          maxScrollTop: 1560
-        },
-        {
-          date: '2019/11/21',
-          url: '../../assets/images/item2.jpg',
-          type: 2
-        },
-        {
-          date: '2019/11/21',
-          url: '../../assets/images/item3.jpg',
-          type: 3
-        },
-        {
-          date: '2019/11/20',
-          url: '../../assets/images/item1.jpg',
-          type: 1,
-          minScrollTop: 1560,
-          maxScrollTop: 1950
-        },
-        {
-          date: '2019/11/20',
-          url: '../../assets/images/item2.jpg',
-          type: 2
-        },
-        {
-          date: '2019/11/20',
-          url: '../../assets/images/item3.jpg',
-          type: 3
-        }
-      ]
+      pageSize: 10,
+      pageIndex: 1
     },
 
-    computed: {},
+    computed: {
+      ...mapState(controller.STATES)
+    },
 
     methods: {
+      ...mapActions(controller.ACTIONS),
       onHandleScroll(e) {
         const scrollTop = e.$wx.detail.scrollTop;
         this.scrollTop = parseInt(scrollTop);
+      },
+      onHandleScrollToLower() {
+        if (this.timer) return;
+        this.timer = setTimeout(() => {
+          const {rows, totalCount} = this.isData;
+          if (rows.length < totalCount) {
+            this.exeAjaxHouseHistory();
+          }
+        }, 500);
+      },
+      resetParams() {
+        this.pageSize = 10;
+        this.pageIndex = 1;
+      },
+      getParams() {
+        const params = {
+          page: {
+            pageSize: this.pageSize,
+            pageIndex: this.pageIndex
+          },
+          filter: [
+            {
+              field: '',
+              opt: '',
+              value: 0
+            }
+          ]
+        };
+        return params;
+      },
+      exeAjaxHouseHistory() {
+        const data = this.isData || {};
+        const rows = data.rows || [];
+        const params = this.getParams();
+        this.ajaxHouseHistory(params)
+          .then((res) => {
+            const {success} = res.payload;
+            if (success) {
+              this.pageIndex++;
+            } else {
+              if (rows.length) {
+                this.showToast('请求失败');
+              }
+            }
+            this.timer = null;
+            console.log(res);
+          })
+          .catch((err) => {
+            if (rows.length) {
+              this.showToast('请求失败');
+            }
+            this.timer = null;
+            console.log(err);
+          });
+      },
+      onRefresh() {
+        this.exeAjaxHouseHistory();
       }
     },
 
-    created() {
+    onLoad() {
+      this.resetParams();
+      this.resetHouseHistory();
+      this.exeAjaxHouseHistory();
     }
   });
 </script>
 
 <style scoped lang="less">
   @import "../../../assets/less/variable";
+  @import "../../../assets/less/@media";
 
   .container {
+    min-height: 100vh;
     .content {
       height: 100vh;
-      padding-top: unit(130, rpx);
       .header {
       }
       .body {
         height: 100%;
-        .scroll-view {
+        position: relative;
+        .context {
           height: 100%;
-          .date {
-            height: unit(60, rpx);
-            line-height: unit(60, rpx);
-            font-size: unit(24, rpx);
-            color: @fontColor3;
-            .label {
-              width: 100%;
-              height: unit(60, rpx);
-              line-height: unit(60, rpx);
-              padding: 0 unit(30, rpx);
-              background-color: #f7f7f7;
-              &.fixed {
-                position: fixed;
-                top: unit(130, rpx);
-                left: 0;
-                z-index: 1000;
-              }
-            }
-          }
-          .item {
-            position: relative;
-            overflow: hidden;
-            padding: unit(30, rpx);
-            background-color: @white;
-            .item-img {
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: unit(280, rpx);
-              height: unit(240, rpx);
-              padding: unit(30, rpx);
-              image {
-                width: 100%;
-                height: 100%;
-              }
-            }
-            .item-info {
-              padding-left: unit(240, rpx);
-              .item-row {
-                margin-bottom: unit(8, rpx);
-                font-size: 0;
-                &:last-child {
-                  margin: 0;
-                  padding-top: unit(4, rpx);
-                }
-                .item-title {
-                  height: unit(40, rpx);
-                  line-height: unit(40, rpx);
-                  font-size: unit(28, rpx);
-                  font-weight: bold;
-                  color: @fontColor1;
-                }
-                .item-addr,
-                .item-split,
-                .item-size {
-                  height: unit(32, rpx);
-                  line-height: unit(32, rpx);
-                  display: inline-block;
-                  vertical-align: middle;
-                  font-size: unit(24, rpx);
-                  color: @fontColor2;
-                  &.item-split {
-                    padding: unit(6, rpx) unit(10, rpx);
-                    &:before {
-                      content: '';
-                      display: block;
-                      width: 0;
-                      height: 100%;
-                      border-left: 1px solid @borderColor1;
-                    }
-                  }
-                }
-                .item-value,
-                .item-unit {
-                  height: 100%;
-                  display: inline-block;
-                  vertical-align: middle;
-                  &.item-value {
-                    font-size: unit(32, rpx);
-                    font-weight: bold;
-                  }
-                  &.item-unit {
-                    font-size: unit(24, rpx);
-                  }
-                }
-                .item-normal {
-                  height: unit(40, rpx);
-                  line-height: unit(40, rpx);
-                  display: inline-block;
-                  vertical-align: middle;
-                  margin-right: unit(10, rpx);
-                  font-size: unit(24, rpx);
-                  color: @fontColor3;
-                  &.item-price {
-                    color: @priceColor;
-                    font-size: 0;
-                  }
-                  &:last-child {
-                    margin: 0;
-                  }
-                }
-                .item-tag {
-                  height: unit(40, rpx);
-                  line-height: unit(36, rpx);
-                  display: inline-block;
-                  vertical-align: middle;
-                  padding: 0 unit(10, rpx);
-                  margin-right: unit(10, rpx);
-                  border: 1px solid @theme2;
-                  font-size: unit(24, rpx);
-                  color: @theme2;
-                  &.item-state {
-                    border: none;
-                    background-color: #009966;
-                    line-height: unit(40, rpx);
-                    color: @white;
-                  }
-                  &:last-child {
-                    margin: 0;
+          padding-top: 65px;
+          .scroll-view {
+            height: 100%;
+            .groups {
+              .group-date {
+                height: unit(60, rpx);
+                line-height: unit(60, rpx);
+                font-size: @fontSize1;
+                color: @fontColor3;
+                .group-label {
+                  width: 100%;
+                  height: unit(60, rpx);
+                  line-height: unit(60, rpx);
+                  padding: 0 unit(30, rpx);
+                  background-color: #F7F7F7;
+                  &.fixed {
+                    position: fixed;
+                    top: 65px;
+                    left: 0;
+                    width: 100%;
+                    z-index: 1000;
                   }
                 }
               }
-            }
-            .item-type {
-              position: absolute;
-              top: unit(8, rpx);
-              left: unit(-80, rpx);
-              z-index: 1;
-              width: unit(200, rpx);
-              height: unit(30, rpx);
-              line-height: unit(30, rpx);
-              transform: rotate(-45deg);
-              font-size: unit(16, rpx);
-              font-weight: bold;
-              text-align: center;
-              color: @white;
-              .color1 {
-                background-color: @typeColor1;
+              .group-items {
               }
-              .color2 {
-                background-color: @typeColor2;
-              }
-              .color3 {
-                background-color: @typeColor3;
-              }
-            }
-            &:after {
-              content: '';
-              width: 100%;
-              display: block;
-              position: absolute;
-              z-index: 1;
-              left: 0;
-              bottom: 0;
-              border-bottom: 0.5px solid @borderColor2;
             }
           }
         }
       }
     }
   }
+
+  .scroll-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 65px;
+    line-height: 65px;
+    background-color: #000;
+    color: @white;
+    font-size: 30px;
+    text-align: center;
+    z-index: 2000;
+  }
 </style>
 
 <config>
   {
   navigationStyle:'custom',
+  disableScroll:true,
   usingComponents: {
   'top-bar': '../../../components/top-bar/top-bar',
+  'loading': '../../../components/loading/loading',
+  'error': '../../../components/error/error',
+  'empty': '../../../components/empty/empty',
+  'load-more': '../../../components/load-more/load-more',
+  'rent-house-item': '../../../components/rent-house-item/rent-house-item',
+  'new-house-item': '../../../components/new-house-item/new-house-item',
+  'second-house-item': '../../../components/second-house-item/second-house-item'
   }
   }
 </config>

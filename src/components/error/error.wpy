@@ -1,11 +1,7 @@
 <template>
   <div class="error fade{{isFailure?'':' hide'}}" v-if="isShow">
     <div class="error-inner">
-      <div class="error-image">
-        <img class="error-icon" src="./images/error-icon@2x.png" mode="aspectFit"/>
-        <img class="error-clock" src="./images/error-clock@2x.png" mode="aspectFit"/>
-        <img class="error-label" src="./images/error-label@2x.png" mode="aspectFit"/>
-      </div>
+      <img class="error-image" src="./images/error@2x.png" mode="aspectFit"/>
       <div class="btn btn-refresh" @tap="refresh">重新加载</div>
     </div>
   </div>
@@ -49,7 +45,6 @@
 <style scoped lang="less">
   @import "../../assets/less/common";
   @import "../../assets/less/variable";
-  @import "../../assets/less/iconfont";
 
   @height: unit(60, rpx);
 
@@ -65,30 +60,8 @@
       display: inline-block;
       vertical-align: middle;
       .error-image {
-        position: relative;
-        font-size: 0;
-        .error-icon {
-          position: absolute;
-          top: 0px;
-          left: 0px;
-          width: unit(100, rpx);
-          height: unit(100, rpx);
-          padding: unit(35, rpx);
-        }
-        .error-clock {
-          width: unit(100, rpx);
-          height: unit(100, rpx);
-          display: inline-block;
-          vertical-align: middle;
-          padding: unit(10, rpx);
-        }
-        .error-label {
-          width: unit(200, rpx);
-          height: unit(100, rpx);
-          display: inline-block;
-          vertical-align: middle;
-          padding: unit(10, rpx);
-        }
+        width: unit(200, rpx);
+        height: unit(200, rpx);
       }
       .btn-refresh {
         width: auto;

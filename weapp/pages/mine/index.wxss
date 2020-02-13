@@ -1,3 +1,47 @@
+/* iPhone X, iPhone XS */
+@media only screen and (device-width: 375px) and (max-device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+  .top-bar {
+    padding-top: 44px !important;
+  }
+  .context {
+    padding-top: 89px !important;
+  }
+}
+/* iPhone XR */
+@media only screen and (device-width: 414px) and (max-device-height: 896px) and (-webkit-device-pixel-ratio: 2) {
+  .top-bar {
+    padding-top: 44px !important;
+  }
+  .context {
+    padding-top: 89px !important;
+  }
+}
+/* iPhone XS Max */
+@media only screen and (device-width: 414px) and (max-device-height: 896px) and (-webkit-device-pixel-ratio: 3) {
+  .top-bar {
+    padding-top: 44px !important;
+  }
+  .context {
+    padding-top: 89px !important;
+  }
+}
+/* iPhone 6, iPhone XS */
+@media only screen and (device-width: 414px) and (max-device-height: 736px) and (-webkit-device-pixel-ratio: 3) {
+  .top-bar {
+    padding-top: 20px !important;
+  }
+  .context {
+    padding-top: 65px !important;
+  }
+}
+@media only screen and (device-width: 360px) and (max-device-height: 780px) and (-webkit-device-pixel-ratio: 3) {
+  .top-bar {
+    padding-top: 28px !important;
+  }
+  .context {
+    padding-top: 73px !important;
+  }
+}
 .container {
   min-height: 100vh;
 }
@@ -18,7 +62,7 @@
   background-size: 100% auto;
   background-repeat: no-repeat;
   background-position: center center;
-  background-image: url("http://sersms.com:7000/house/v1/file/static/userfile/202002/02/1223909451292360704.jpg");
+  background-image: url("http://sersms.com:7000/house/v1/file/static/userfile/202002/07/1225622956127174656.jpg");
 }
 .container .content .body .context .user .info {
   position: absolute;

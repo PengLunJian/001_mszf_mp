@@ -1,8 +1,12 @@
 <template>
-  <div class="top-bar" :style="{'paddingTop':statusHeight}">
-    <div class="top-inner">
+  <div class="top-bar">
+    <div class="top-inner" v-if="isIcon">
       <div class="top-icon iconfont icon-back" @tap="onHandleBack"></div>
       <div class="top-icon iconfont icon-home" @tap="onHandleHome"></div>
+      <div class="top-title">{{title}}</div>
+    </div>
+    <div class="top-inner" v-if="!isIcon">
+      <div class="top-image"></div>
       <div class="top-title">{{title}}</div>
     </div>
   </div>
@@ -13,13 +17,15 @@
   import * as $routes from '../../router';
 
   wepy.component({
-    data: {
-      statusHeight: ''
-    },
+    data: {},
     props: {
       title: {
         type: String,
         default: '标题'
+      },
+      isIcon: {
+        type: Boolean,
+        default: true
       }
     },
     events: {},
@@ -36,9 +42,6 @@
       }
     },
     created() {
-      const system = wx.getSystemInfoSync();
-      const statusHeight = system.statusBarHeight;
-      this.statusHeight = statusHeight + 'px';
     }
   });
 </script>
@@ -46,6 +49,7 @@
 <style scoped lang="less">
   @import "../../assets/less/variable";
   @import "../../assets/less/iconfont";
+  @import "../../assets/less/@media";
 
   .top-bar {
     width: 100%;
@@ -54,6 +58,7 @@
     left: 0;
     z-index: 1000;
     background-color: @white;
+    padding-top: 20px;
     padding-bottom: 5px;
     .top-inner {
       position: relative;
@@ -67,6 +72,18 @@
         z-index: 1;
         float: left;
         font-size: unit(40, rpx);
+      }
+      .top-image {
+        width: unit(150, rpx);
+        height: @topBarHeight;
+        position: relative;
+        z-index: 1;
+        float: left;
+        margin-left: unit(20, rpx);
+        background-size: 100% auto;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-image: url('http://sersms.com:7000/house/v1/file/static/userfile/202002/02/1223882602650681344.png');
       }
       .top-title {
         position: absolute;

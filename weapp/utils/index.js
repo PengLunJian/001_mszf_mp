@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.dataFilter = exports.stringify = exports.isExist = exports.success = void 0;
+exports.saveImage = exports.dateFormat = exports.historyFilter = exports.dataFilter = exports.stringify = exports.isExist = exports.success = void 0;
 
 /**
  *
@@ -54,9 +54,124 @@ exports.stringify = stringify;
 
 var dataFilter = function dataFilter(data) {
   data.map(function (item) {
+    item.browsing_time = dateFormat(item.browsing_time, 'yyyy/mm/dd');
     item.tags = item.tags.split(' ');
   });
   return data;
 };
+/**
+ *
+ * @param oldData
+ * @param newData
+ * @param attr
+ * @returns {*}
+ */
+
 
 exports.dataFilter = dataFilter;
+
+var historyFilter = function historyFilter(data, attr) {
+  var obj = {};
+  var result = [];
+  data.forEach(function (item) {
+    obj[item[attr]] || (obj[item[attr]] = []);
+    obj[item[attr]] && obj[item[attr]].push(item);
+  });
+
+  for (var key in obj) {
+    result.push({
+      date: key,
+      items: obj[key]
+    });
+  }
+
+  return result;
+};
+/**
+ *
+ * @param date
+ * @param format
+ * @returns {string}
+ */
+
+
+exports.historyFilter = historyFilter;
+
+var dateFormat = function dateFormat(date, format) {
+  var dateStr = '';
+
+  if (date) {
+    var newDate = new Date(date.replace(/-/g, '/'));
+    var year = newDate.getFullYear();
+    var month = newDate.getMonth() + 1;
+    var day = newDate.getDate();
+    var hour = newDate.getHours();
+    var minute = newDate.getMinutes();
+    var second = newDate.getSeconds();
+    var monthStr = month > 9 ? '' + month : '0' + month;
+    var dayStr = day > 9 ? '' + day : '0' + day;
+    var hourStr = hour > 9 ? '' + hour : '0' + hour;
+    var minuteStr = minute > 9 ? '' + minute : '0' + minute;
+    var secondStr = second > 9 ? '' + second : '0' + second;
+
+    switch (format) {
+      case 'yyyy/mm/dd':
+        dateStr = year + '/' + monthStr + '/' + dayStr;
+        break;
+
+      case 'yyyy/mm/dd hh':
+        dateStr = year + '/' + monthStr + '/' + dayStr + ' ' + hourStr;
+        break;
+
+      case 'yyyy/mm/dd hh:mm':
+        dateStr = year + '/' + monthStr + '/' + dayStr + ' ' + hourStr + ':' + minuteStr;
+        break;
+
+      case 'yyyy/mm/dd hh:mm:ss':
+        dateStr = year + '/' + monthStr + '/' + dayStr + ' ' + hourStr + ':' + minuteStr + ':' + secondStr;
+        break;
+    }
+
+    newDate = null;
+  }
+
+  return dateStr;
+};
+/**
+ *
+ * @param element
+ */
+
+
+exports.dateFormat = dateFormat;
+
+var saveImage = function saveImage() {
+  setTimeout(function () {
+    var imgUrl = 'http://sersms.com:7000/house/v1/file/static/userfile/202002/09/1226431602998263808.png';
+    wx.downloadFile({
+      url: imgUrl,
+      success: function success(res) {
+        var _ref = res || {},
+            tempFilePath = _ref.tempFilePath;
+
+        wx.saveImageToPhotosAlbum({
+          filePath: tempFilePath,
+          success: function success() {
+            wx.showToast({
+              title: '图片已保存，快去分享给好友吧。',
+              icon: 'none'
+            });
+          },
+          fail: function fail(err) {
+            console.log(err);
+          }
+        });
+      },
+      fail: function fail(err) {
+        console.log(err);
+      }
+    });
+  }, 300);
+};
+
+exports.saveImage = saveImage;
