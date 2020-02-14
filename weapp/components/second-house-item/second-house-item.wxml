@@ -1,5 +1,5 @@
 
-<view data-wpy-evt="99-0" bindtap="_proxy" class="item">
+<view data-wpy-evt="100-0" bindtap="_proxy" class="item">
   <view class="item-inner">
     <view class="item-img">
       <lazy-image bind_init="_initComponent" src="http://sersms.com:7000/house/v1/file/static/userfile/202001/15/1217306190710345728.jpg"></lazy-image>

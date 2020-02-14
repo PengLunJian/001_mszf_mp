@@ -52,9 +52,8 @@
     events: {},
     methods: {
       onHandleDetail(id) {
-        console.log(id);
         wx.navigateTo({
-          url: $routes.SECOND_HOUSE_DETAIL.path
+          url: $routes.SECOND_HOUSE_DETAIL.path + '?house_id=' + id
         });
       }
     },

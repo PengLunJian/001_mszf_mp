@@ -5,588 +5,698 @@
         <top-bar title="房源详情"></top-bar>
       </div>
       <div class="body">
-        <scroll-view
-          class="scroll-view"
-          scroll-y="{{true}}">
-          <div class="module">
-            <div class="module-content">
-              <div class="module-header"></div>
-              <div class="module-body">
-                <div class="module-context">
-                  <div class="banner">
-                    <swiper class="swiper"
-                            autoplay="{{autoplay}}"
-                            circular="{{circular}}">
-                      <swiper-item>
-                        <img class="swiper-img" src="http://sersms.com:7000/house/v1/file/static/userfile/202001/13/1216582503799492608.jpg"/>
-                      </swiper-item>
-                      <swiper-item>
-                        <img class="swiper-img" src="http://sersms.com:7000/house/v1/file/static/userfile/202001/13/1216581838603849728.jpg"/>
-                      </swiper-item>
-                    </swiper>
-                    <div class="swiper-code">
-                      <span class="swiper-text">1 / 2</span>
-                    </div>
-                    <div class="btn-favorite">
-                      <div class="iconfont icon-favorite-off"></div>
-                    </div>
-                    <div class="btn-share">
-                      <div class="iconfont icon-share"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="module-footer"></div>
-            </div>
-          </div>
-          <div class="module">
-            <div class="module-content">
-              <div class="module-header"></div>
-              <div class="module-body">
-                <div class="module-context">
-                  <div class="product">
-                    <div class="row">
-                      <div class="col-12">
-                        <div class="product-title ellipsis">万象小区 南向两居室 精装 拎包入住</div>
+        <loading :isLoading="isLoading"></loading>
+        <error :isFailure="isFailure" @refresh="onRefresh"></error>
+        <div class="context fade" v-if="isSuccess&&isData">
+          <scroll-view
+            class="scroll-view"
+            scroll-y="{{true}}">
+            <div class="module">
+              <div class="module-content">
+                <div class="module-body">
+                  <div class="module-context">
+                    <div class="banner">
+                      <swiper class="swiper"
+                              autoplay="{{autoplay}}"
+                              circular="{{circular}}"
+                              @change="onHandleSwiperChange">
+                        <swiper-item v-for="(item,index) in items" :key="index"
+                                     @tap="onHandleLargeImage(index)">
+                          <lazy-image class="swiper-img" src="{{item.url}}" lazyStyle="width:120px;height:60px;"/>
+                        </swiper-item>
+                      </swiper>
+                      <div class="swiper-code">
+                        <span class="swiper-text">{{current}}/{{items.length}}</span>
                       </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-4">
-                        <div class="value">140万</div>
-                        <div class="label">总价</div>
+                      <div class="btn-favorite" @tap="onHandleFollow">
+                        <div class="btn-icon iconfont icon-favorite{{isData.isFollow?' active':''}}"></div>
+                        <div class="btn-text">收藏</div>
                       </div>
-                      <div class="col-4">
-                        <div class="value">3室2厅1卫</div>
-                        <div class="label">户型</div>
-                      </div>
-                      <div class="col-4">
-                        <div class="value">140m²</div>
-                        <div class="label">面积</div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-6">
-                        <span class="label">单价</span>
-                        <text class="value">10000元/m²</text>
-                      </div>
-                      <div class="col-6">
-                        <span class="label">朝向</span>
-                        <text class="value">南</text>
-                      </div>
-                      <div class="col-6">
-                        <span class="label">类型</span>
-                        <text class="value">小区</text>
-                      </div>
-                      <div class="col-6">
-                        <span class="label">装修</span>
-                        <text class="value">精装修</text>
-                      </div>
-                      <div class="col-6">
-                        <span class="label">楼层</span>
-                        <text class="value">16/20</text>
-                      </div>
-                      <div class="col-6">
-                        <span class="label">年代</span>
-                        <text class="value">2014年</text>
-                      </div>
-                      <div class="col-6">
-                        <span class="label">小区</span>
-                        <text class="value">金峰万象小区</text>
-                      </div>
-                      <div class="col-6">
-                        <span class="label">发布</span>
-                        <text class="value">2019/10/15</text>
-                      </div>
+                      <button class="btn-forward" open-type="share">
+                        <span class="btn-icon iconfont icon-forward"></span>
+                        <span class="btn-text">分享</span>
+                      </button>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="module-footer"></div>
             </div>
-          </div>
-          <div class="module">
-            <div class="module-content">
-              <div class="module-header">
-                <div class="module-title">
-                  <span class="icon iconfont icon-agent"></span>
-                  <span class="text">推荐经纪人</span>
+            <div class="module">
+              <div class="module-content">
+                <div class="module-body">
+                  <div class="module-context">
+                    <div class="product">
+                      <div class="row">
+                        <div class="col-12">
+                          <div class="product-title ellipsis">{{isData.title}}</div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-4">
+                          <div class="value">{{isData.total_price/10000}}万</div>
+                          <div class="label">总价</div>
+                        </div>
+                        <div class="col-4">
+                          <div class="value">{{isData.huxing}}</div>
+                          <div class="label">户型</div>
+                        </div>
+                        <div class="col-4">
+                          <div class="value">{{isData.mianji}}m²</div>
+                          <div class="label">面积</div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-6">
+                          <span class="label">单价</span>
+                          <text class="value">{{isData.price}}/元m²</text>
+                        </div>
+                        <div class="col-6">
+                          <span class="label">朝向</span>
+                          <text class="value">{{isData.chaoxiang}}</text>
+                        </div>
+                        <div class="col-6">
+                          <span class="label">类型</span>
+                          <text class="value">{{isData.leixing}}</text>
+                        </div>
+                        <div class="col-6">
+                          <span class="label">装修</span>
+                          <text class="value">{{isData.zhaungxiu}}</text>
+                        </div>
+                        <div class="col-6">
+                          <span class="label">楼层</span>
+                          <text class="value">{{isData.louceng}}</text>
+                        </div>
+                        <div class="col-6">
+                          <span class="label">年代</span>
+                          <text class="value">{{isData.nianai}}</text>
+                        </div>
+                        <div class="col-6">
+                          <span class="label">小区</span>
+                          <text class="value">{{isData.xiaoqu}}</text>
+                        </div>
+                        <div class="col-6">
+                          <span class="label">发布</span>
+                          <text class="value">{{isData.release_time}}</text>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="module-body">
-                <div class="module-context">
-                  <div class="agent-box">
-                    <div class="agent-item">
-                      <div class="agent-inner">
-                        <div class="agent-img">
-                          <img src="../../../assets/images/agent.jpg"/>
-                        </div>
-                        <div class="agent-info">
-                          <div class="agent-name">大前端</div>
-                          <div class="agent-phone">18130278679</div>
-                          <div class="agent-btns">
-                            <div class="btn-icon btn-msg iconfont icon-msg"></div>
-                            <div class="btn-icon btn-tel iconfont icon-tel"></div>
+            </div>
+            <div class="module">
+              <div class="module-content">
+                <div class="module-header">
+                  <div class="module-title">推荐经纪人</div>
+                </div>
+                <div class="module-body">
+                  <div class="module-context">
+                    <div class="agent-box">
+                      <div class="agent-item" v-for="(item,index) in isData.agency" :key="index">
+                        <div class="agent-inner">
+                          <div class="agent-img">
+                            <img src="../../../assets/images/agent.jpg"/>
                           </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="agent-item">
-                      <div class="agent-inner">
-                        <div class="agent-img">
-                          <img src="../../../assets/images/agent.jpg"/>
-                        </div>
-                        <div class="agent-info">
-                          <div class="agent-name">大前端</div>
-                          <div class="agent-phone">18130278679</div>
-                          <div class="agent-btns">
-                            <div class="btn-icon btn-msg iconfont icon-msg"></div>
-                            <div class="btn-icon btn-tel iconfont icon-tel"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="agent-item">
-                      <div class="agent-inner">
-                        <div class="agent-img">
-                          <img src="../../../assets/images/agent.jpg"/>
-                        </div>
-                        <div class="agent-info">
-                          <div class="agent-name">大前端</div>
-                          <div class="agent-phone">18130278679</div>
-                          <div class="agent-btns">
-                            <div class="btn-icon btn-msg iconfont icon-msg"></div>
-                            <div class="btn-icon btn-tel iconfont icon-tel"></div>
+                          <div class="agent-info">
+                            <div class="agent-name">{{item.name}}</div>
+                            <div class="agent-phone">{{item.tel||'暂无数据'}}</div>
+                            <div class="agent-btns">
+                              <div class="btn-icon btn-msg iconfont icon-msg" @tap="onHandleMessage(item.id)"></div>
+                              <div class="btn-icon btn-tel iconfont icon-tel" @tap="onHandlePhone(item.tel)"></div>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
+                <div class="module-footer"></div>
               </div>
-              <div class="module-footer"></div>
             </div>
-          </div>
-          <div class="module">
-            <div class="module-content">
-              <div class="module-header">
-                <div class="module-title">
-                  <span class="icon iconfont icon-config"></span>
-                  <span class="text">房源配置</span>
+            <div class="module">
+              <div class="module-content">
+                <div class="module-header">
+                  <div class="module-title">房源配置</div>
                 </div>
-              </div>
-              <div class="module-body">
-                <div class="module-context">
-                  <div class="items row">
-                    <div class="item col-2">
-                      <div class="item-icon iconfont icon-item01"></div>
-                      <span class="item-label">卫生间</span>
-                    </div>
-                    <div class="item col-2">
-                      <div class="item-icon iconfont icon-item02"></div>
-                      <span class="item-label">洗衣机</span>
-                    </div>
-                    <div class="item col-2">
-                      <div class="item-icon iconfont icon-item03"></div>
-                      <span class="item-label">可做饭</span>
-                    </div>
-                    <div class="item col-2">
-                      <div class="item-icon iconfont icon-item04"></div>
-                      <span class="item-label">热水器</span>
-                    </div>
-                    <div class="item col-2">
-                      <div class="item-icon iconfont icon-item05"></div>
-                      <span class="item-label">阳台</span>
-                    </div>
-                    <div class="item col-2">
-                      <div class="item-icon iconfont icon-item06"></div>
-                      <span class="item-label">冰箱</span>
-                    </div>
-                    <div class="item col-2">
-                      <div class="item-icon iconfont icon-item07"></div>
-                      <span class="item-label">电梯</span>
-                    </div>
-                    <div class="item col-2">
-                      <div class="item-icon iconfont icon-item08"></div>
-                      <span class="item-label">沙发</span>
-                    </div>
-                    <div class="item col-2">
-                      <div class="item-icon iconfont icon-item09"></div>
-                      <span class="item-label">宽带</span>
-                    </div>
-                    <div class="item col-2">
-                      <div class="item-icon iconfont icon-item10"></div>
-                      <span class="item-label">衣柜</span>
-                    </div>
-                    <div class="item col-2">
-                      <div class="item-icon iconfont icon-item11"></div>
-                      <span class="item-label">暖气</span>
-                    </div>
-                    <div class="item col-2">
-                      <div class="item-icon iconfont icon-item12"></div>
-                      <span class="item-label">床</span>
-                    </div>
-                    <div class="item col-2">
-                      <div class="item-icon iconfont icon-item13"></div>
-                      <span class="item-label">空调</span>
-                    </div>
-                    <div class="item col-2">
-                      <div class="item-icon iconfont icon-item14"></div>
-                      <span class="item-label">电视</span>
+                <div class="module-body">
+                  <div class="module-context">
+                    <div class="items row">
+                      <div class="item col-2{{item.isCan?' on':''}}"
+                           v-for="(item,index) in isData.configs" :key="index">
+                        <div class="item-icon iconfont {{item.icon}}"></div>
+                        <span class="item-label">{{item.label}}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
+                <div class="module-footer"></div>
               </div>
-              <div class="module-footer"></div>
             </div>
-          </div>
-          <div class="module">
-            <div class="module-content">
-              <div class="module-header">
-                <div class="module-title">
-                  <span class="icon iconfont icon-position"></span>
-                  <span class="text">周边信息</span>
+            <div class="module">
+              <div class="module-content">
+                <div class="module-header">
+                  <div class="module-title">周边信息</div>
                 </div>
-              </div>
-              <div class="module-body">
-                <div class="module-context">
-                  <div class="map-container">
-                    <map class="map"
-                         longitude="{{longitude}}"
-                         latitude="{{latitude}}"
-                         enable-zoom="{{enableZoom}}"
-                         enable-scroll="{{enableScroll}}"
-                         markers="{{markers}}"
-                         bindtap="onHandleClickMap"></map>
+                <div class="module-body">
+                  <div class="module-context">
+                    <div class="map-container">
+                      <div class="map-content">
+                        <map class="map-canvas"
+                             longitude="{{longitude}}"
+                             latitude="{{latitude}}"
+                             enable-zoom="{{enableZoom}}"
+                             enable-scroll="{{enableScroll}}"
+                             markers="{{markers}}"
+                             bindtap="onHandleClickMap">
+                        </map>
+                        <view class="map-marker">
+                          <view class="marker-container">
+                            <view class="marker-content">
+                              <view class="marker-text">{{isData.xiaoqu||'暂无数据'}}</view>
+                              <view class="marker-icon"></view>
+                              <view class="marker-circle"></view>
+                            </view>
+                          </view>
+                        </view>
+                      </div>
+                    </div>
                   </div>
                 </div>
+                <div class="module-footer"></div>
               </div>
-              <div class="module-footer"></div>
             </div>
-          </div>
-        </scroll-view>
-      </div>
-      <div class="footer">
-        <div class="pull-left">
-          <div class="agent">
-            <div class="agent-img">
-              <img src="../../../assets/images/agent.jpg"/>
+          </scroll-view>
+          <div class="fixed-bar">
+            <div class="agent">
+              <div class="agent-img">
+                <img src="../../../assets/images/agent.jpg"/>
+                <img src="../../images/address.png" v-if="false"/>
+              </div>
+              <div class="agent-name">{{isData.agency[0].name}}</div>
             </div>
-            <div class="agent-name">正经人</div>
-          </div>
-        </div>
-        <div class="pull-right row">
-          <div class="btn btn-msg col-6">
-            <text class="btn-icon iconfont icon-msg"></text>
-            <text class="btn-text">微聊</text>
-          </div>
-          <div class="btn btn-tel col-6">
-            <text class="btn-icon iconfont icon-tel"></text>
-            <text class="btn-text">电话</text>
+            <div class="btns">
+              <div class="btn btn-msg col-6" @tap="onHandleMessage(isData.agency[0].id)">
+                <text class="btn-icon iconfont icon-msg"></text>
+                <text class="btn-text">微聊</text>
+              </div>
+              <div class="btn btn-tel col-6" @tap="onHandlePhone(isData.agency[0].tel)">
+                <text class="btn-icon iconfont icon-tel"></text>
+                <text class="btn-text">电话</text>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+      <div class="footer"></div>
     </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
   import wepy from '@wepy/core';
-  // import {mapState} from '@wepy/redux';
   import store from '../../../store/index';
+  import {mapState, mapActions} from '@wepy/redux';
+  import * as controller from './controller';
+  import * as $routes from '../../../router';
+  import Toast from '../../../mixins/toast';
+  import QQMapWX from 'wx-qqmap-jssdk';
 
   wepy.page({
     store,
 
-    mixins: [],
+    mixins: [Toast],
 
     data: {
+      topBarHeight: '',
+      items: [
+        {
+          url: 'http://sersms.com:7000/house/v1/file/static/userfile/202001/13/1216582503799492608.jpg'
+        },
+        {
+          url: 'http://sersms.com:7000/house/v1/file/static/userfile/202001/13/1216581838603849728.jpg'
+        }
+      ],
+      current: 1,
       autoplay: false,
       circular: true,
-      longitude: 119.4235460000,
-      latitude: 30.8791290000,
+      longitude: 0,
+      latitude: 0,
       enableZoom: false,
       enableScroll: false,
       markers: [
         {
           id: 1,
-          longitude: 119.4235460000,
-          latitude: 30.8791290000,
-          iconPath: '../../assets/images/address.png',
+          longitude: 0,
+          latitude: 0,
           width: 30,
-          height: 30,
-          label: {
-            content: 'INFINITY',
-            padding: 10,
-            anchorX: 20,
-            anchorY: -35,
-            fontSize: 14,
-            borderRadius: 4,
-            bgColor: '#ffffff',
-            textAlign: 'center'
-          }
+          height: 30
         }
       ]
     },
 
-    computed: {},
+    computed: {
+      ...mapState(controller.STATES)
+    },
 
     methods: {
+      ...mapActions(controller.ACTIONS),
+      exeAjaxHouseDetail() {
+        const {house_id} = this.$wx.options;
+        this.ajaxHouseDetail({house_id})
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
+      exeAjaxHouseFollow() {
+        const {house_id} = this.$wx.options;
+        this.ajaxHouseFollow({house_id})
+          .then((res) => {
+            const {success} = res.payload;
+            if (success) {
+              this.showToast('收藏成功');
+            } else {
+              this.showToast('收藏失败');
+            }
+            console.log(res);
+          })
+          .catch((err) => {
+            this.showToast('收藏失败');
+            console.log(err);
+          });
+      },
+      exeAjaxHouseUnfollow() {
+        const {house_id} = this.$wx.options;
+        this.ajaxHouseUnfollow({house_id})
+          .then((res) => {
+            const {success} = res.payload;
+            if (success) {
+              this.showToast('取消收藏');
+            } else {
+              this.showToast('取消失败');
+            }
+            console.log(res);
+          })
+          .catch((err) => {
+            this.showToast('取消失败');
+            console.log(err);
+          });
+      },
+      onHandleFollow() {
+        this.exeAjaxHouseFollow();
+      },
+      onHandleLargeImage(index) {
+        wx.previewImage({
+          current: this.items[index].url,
+          urls: [
+            this.items[0].url,
+            this.items[1].url
+          ]
+        });
+      },
       onHandleClickMap() {
         console.log('别摸我,我会爆炸的！');
+      },
+      onHandleSwiperChange(e) {
+        const current = e.$wx.detail.current;
+        this.current = current + 1;
+      },
+      onHandlePhone(phoneNumber) {
+        wx.makePhoneCall({
+          phoneNumber: phoneNumber,
+          success: (res) => {
+            console.log(res);
+          },
+          fail: (err) => {
+            console.log(err);
+          },
+          complete: (res) => {
+            console.log(res);
+          }
+        });
+      },
+      onHandleMessage(id) {
+        wx.navigateTo({
+          url: $routes.MESSAGE.path + '?id=' + id
+        });
+      },
+      onRefresh() {
+        this.exeAjaxHouseDetail();
+      },
+      onHandleInitQQMap() {
+        const qqmapsdk = new QQMapWX({
+          key: 'CQABZ-RINL4-5MAU4-DBWDV-D2UXZ-5GBEU'
+        });
+        qqmapsdk.geocoder({
+          address: '安徽省宣城市广德市桃州镇水岸阳光城一区13栋',
+          success: (res) => {
+            this.onUpdateLocation(res);
+          },
+          complete: res => {
+            console.log(res);
+          }
+        });
+      },
+      onUpdateLocation(res) {
+        if (res) {
+          const {result} = res || {};
+          const {location} = result || {};
+          const {lat, lng} = location || {};
+          this.longitude = lng;
+          this.latitude = lat;
+          console.log('东经=' + lng + '|北纬=' + lat);
+        }
       }
     },
 
-    created() {
+    onLoad() {
+      const system = wx.getSystemInfoSync();
+      const statusHeight = system.statusBarHeight;
+      const topBarHeight = statusHeight + 45;
+      this.topBarHeight = topBarHeight + 'px';
+      this.onHandleInitQQMap();
+      this.exeAjaxHouseDetail();
     }
   });
 </script>
 
 <style scoped lang="less">
   @import "../../../assets/less/variable";
+  @import "../../../assets/less/@media";
 
   .container {
+    min-height: 100vh;
     .content {
       height: 100vh;
-      padding-top: unit(130, rpx);
-      padding-bottom: unit(110, rpx);
       .header {
       }
       .body {
         height: 100%;
-        .scroll-view {
+        position: relative;
+        .context {
           height: 100%;
-          .module {
-            position: relative;
-            background-color: transparent;
-            &:first-child {
-              margin: 0;
-            }
-            &:last-child {
-              margin: 0;
-              padding-bottom: unit(20, rpx);
-            }
-            .module-content {
-              background-color: @white;
-              .module-header {
-                .module-title {
-                  height: unit(90, rpx);
-                  line-height: unit(90, rpx);
-                  border-bottom: 0.5px solid @borderColor2;
-                  padding: 0 unit(30, rpx);
-                  font-size: 0;
-                  .icon {
-                    display: inline-block;
-                    vertical-align: middle;
-                    -webkit-text-fill-color: transparent;
-                    -webkit-background-clip: text;
-                    font-size: unit(50, rpx);
-                    &.icon-agent {
-                      background-image: -webkit-linear-gradient(left, #FF841D, #FF2714);
-                    }
-                    &.icon-config {
-                      background-image: -webkit-linear-gradient(left, #FFDB40, #FF9C09);
-                    }
-                    &.icon-position {
-                      background-image: -webkit-linear-gradient(left, #17F2FF, #060BFF);
-                    }
-                  }
-                  .text {
-                    display: inline-block;
-                    vertical-align: middle;
-                    padding-left: unit(16, rpx);
+          padding-top: 65px;
+          padding-bottom: unit(110, rpx);
+          .scroll-view {
+            height: 100%;
+            .module {
+              position: relative;
+              background-color: transparent;
+              &:first-child {
+                margin: 0;
+              }
+              &:last-child {
+                margin: 0;
+                padding-bottom: unit(20, rpx);
+              }
+              .module-content {
+                background-color: @white;
+                .module-header {
+                  padding: unit(30, rpx) unit(30, rpx) 0;
+                  .module-title {
+                    height: unit(32, rpx);
+                    line-height: unit(32, rpx);
+                    padding-left: unit(20, rpx);
+                    border-left: 4px solid @theme2;
                     font-size: @fontSize5;
+                    letter-spacing: 0.5px;
                     font-weight: bold;
+                    color: @fontColor1;
                   }
                 }
-              }
-              .module-body {
-                .module-context {
-                  min-height: unit(400, rpx);
-                  .banner {
-                    .swiper {
-                      height: unit(520, rpx);
-                      .swiper-img {
+                .module-body {
+                  .module-context {
+                    /*min-height: unit(400, rpx);*/
+                    .banner {
+                      .swiper {
+                        height: unit(520, rpx);
+                        .swiper-img {
+                          width: 100%;
+                          height: 100%;
+                        }
+                      }
+                      .swiper-code {
                         width: 100%;
-                        height: 100%;
+                        position: absolute;
+                        left: 0;
+                        bottom: unit(30, rpx);
+                        text-align: center;
+                        font-size: 0;
+                        .swiper-text {
+                          height: unit(44, rpx);
+                          line-height: unit(44, rpx);
+                          min-width: unit(90, rpx);
+                          display: inline-block;
+                          padding: 0 unit(20, rpx);
+                          border-radius: unit(44, rpx);
+                          background-color: rgba(0, 0, 0, .5);
+                          font-size: @fontSize1;
+                          color: @white;
+                        }
                       }
-                    }
-                    .swiper-code {
-                      position: absolute;
-                      left: 0;
-                      bottom: unit(20, rpx);
-                      text-align: center;
-                      font-size: 0;
-                      .swiper-text {
-                        height: unit(40, rpx);
-                        line-height: unit(40, rpx);
-                        min-width: unit(100, rpx);
-                        display: inline-block;
-                        padding: 0 unit(20, rpx);
-                        border-radius: unit(40, rpx);
-                        background-color: rgba(0, 0, 0, .6);
-                        font-size: @fontSize1;
+                      .btn-favorite {
+                        width: unit(90, rpx);
+                        height: unit(90, rpx);
+                        border-radius: 100%;
+                        position: absolute;
+                        right: unit(40, rpx);
+                        bottom: unit(-60, rpx);
+                        z-index: 1;
+                        overflow: hidden;
+                        background-color: @white;
+                        text-align: center;
+                        .btn-icon {
+                          height: unit(60, rpx);
+                          line-height: unit(70, rpx);
+                          font-size: @fontSize7;
+                          color: #F40505;
+                          &:before {
+                            content: '\e633';
+                          }
+                          &.active {
+                            &:before {
+                              content: '\e63c';
+                            }
+                          }
+                        }
+                        .btn-text {
+                          height: unit(30, rpx);
+                          line-height: unit(30, rpx);
+                          font-size: unit(22, rpx);
+                          color: @fontColor3;
+                        }
+                      }
+                      .btn-forward {
+                        position: absolute;
+                        top: unit(100, rpx);
+                        right: unit(-30, rpx);
+                        z-index: 1;
+                        overflow: hidden;
+                        border-radius: unit(60, rpx);
+                        padding: 0 unit(50, rpx) 0 unit(20, rpx);
+                        background: -webkit-linear-gradient(left, rgba(255, 153, 0, .8), rgba(255, 204, 0, .8));
+                        box-shadow: 0 0 15px rgba(0, 0, 0, .05);
+                        text-align: left;
+                        font-size: 0;
                         color: @white;
-                      }
-                    }
-                    .btn-favorite,
-                    .btn-share {
-                      width: unit(80, rpx);
-                      height: unit(80, rpx);
-                      border-radius: unit(80, rpx);
-                      line-height: unit(80, rpx);
-                      position: absolute;
-                      bottom: unit(-30, rpx);
-                      z-index: 1;
-                      background-color: rgba(255, 255, 255, 1);
-                      box-shadow: 0 0 15px @boxShadow1;
-                      text-align: center;
-                      &.btn-favorite {
-                        right: unit(120, rpx);
-                      }
-                      &.btn-share {
-                        right: unit(30, rpx);
-                      }
-                      .iconfont {
-                        -webkit-text-fill-color: transparent;
-                        -webkit-background-clip: text;
-                        font-size: unit(40, rpx);
-                        &.icon-favorite-off {
-                          background-image: -webkit-linear-gradient(left, #FF2714, #FF841D);
+                        .btn-icon {
+                          height: unit(60, rpx);
+                          display: inline-block;
+                          vertical-align: middle;
+                          line-height: unit(60, rpx);
+                          font-size: @fontSize5;
                         }
-                        &.icon-share {
-                          background-image: -webkit-linear-gradient(left, #00FF00, #12B347);
+                        .btn-text {
+                          height: unit(60, rpx);
+                          display: inline-block;
+                          vertical-align: middle;
+                          padding-left: unit(4, rpx);
+                          line-height: unit(60, rpx);
+                          font-size: @fontSize2;
                         }
                       }
                     }
-                  }
-                  .product {
-                    padding: unit(30, rpx) 0;
-                    .row {
-                      line-height: unit(40, rpx);
-                      .col-12 {
-                        .product-title {
+                    .product {
+                      padding: unit(30, rpx) 0;
+                      .row {
+                        line-height: unit(40, rpx);
+                        .col-12 {
+                          .product-title {
+                            line-height: unit(60, rpx);
+                            padding: 0 unit(30, rpx);
+                            margin-bottom: unit(30, rpx);
+                            font-size: @fontSize6;
+                            font-weight: bold;
+                            color: @fontColor1;
+                          }
+                        }
+                        .col-4 {
+                          padding-bottom: unit(20, rpx);
+                          text-align: center;
+                          .value {
+                            margin-bottom: unit(20, rpx);
+                            font-size: @fontSize6;
+                            font-weight: bold;
+                            color: @priceColor;
+                          }
+                          .label {
+                            font-size: @fontSize1;
+                            color: @fontColor3;
+                          }
+                        }
+                        .col-6 {
+                          height: unit(60, rpx);
                           line-height: unit(60, rpx);
                           padding: 0 unit(30, rpx);
-                          margin-bottom: unit(30, rpx);
-                          font-size: @fontSize6;
-                          font-weight: bold;
-                          color: @fontColor1;
-                        }
-                      }
-                      .col-4 {
-                        padding-bottom: unit(20, rpx);
-                        text-align: center;
-                        .value {
-                          margin-bottom: unit(20, rpx);
-                          font-size: @fontSize6;
-                          font-weight: bold;
-                          color: @priceColor;
-                        }
-                        .label {
-                          font-size: @fontSize1;
-                          color: @fontColor3;
-                        }
-                      }
-                      .col-6 {
-                        height: unit(60, rpx);
-                        line-height: unit(60, rpx);
-                        padding: 0 unit(30, rpx);
-                        font-size: @fontSize3;
-                        .label {
-                          margin-right: unit(20, rpx);
-                          color: @fontColor3;
-                        }
-                      }
-                    }
-                  }
-                  .items {
-                    padding-bottom: unit(30, rpx);
-                    text-align: center;
-                    .item {
-                      width: 20%;
-                      position: relative;
-                      padding-top: unit(30, rpx);
-                      color: @fontColor1;
-                      .item-icon {
-                        height: unit(60, rpx);
-                        line-height: unit(60, rpx);
-                        font-size: unit(60, rpx);
-                        margin-bottom: unit(10, rpx);
-                      }
-                      .item-label {
-                        display: block;
-                        height: unit(40, rpx);
-                        line-height: unit(40, rpx);
-                        font-size: @fontSize1;
-                      }
-                    }
-                  }
-                  .map-container {
-                    padding: unit(30, rpx);
-                    map {
-                      width: 100%;
-                      height: unit(400, rpx);
-                    }
-                  }
-                  .agent-box {
-                    padding: unit(20, rpx) 0;
-                    .agent-item {
-                      padding: 0 unit(30, rpx);
-                      font-size: 0;
-                      .agent-inner {
-                        position: relative;
-                        padding: unit(20, rpx) 0;
-                      }
-                      .agent-img {
-                        width: auto;
-                        display: inline-block;
-                        vertical-align: middle;
-                        image {
-                          width: unit(80, rpx);
-                          height: unit(80, rpx);
-                          border-radius: 100%;
-                          background-color: @white;
-                          box-shadow: 0 0 15px @boxShadow1;
-                        }
-                      }
-                      .agent-info {
-                        width: auto;
-                        display: inline-block;
-                        vertical-align: middle;
-                        line-height: unit(40, rpx);
-                        padding-left: unit(30, rpx);
-                        .agent-name {
-                          font-size: @fontSize5;
-                          color: @fontColor1;
-                        }
-                        .agent-phone {
                           font-size: @fontSize3;
-                          color: @fontColor3;
+                          .label {
+                            margin-right: unit(20, rpx);
+                            color: @fontColor3;
+                          }
                         }
-                        .agent-btns {
-                          width: auto;
+                      }
+                    }
+                    .items {
+                      padding-bottom: unit(30, rpx);
+                      text-align: center;
+                      .item {
+                        width: 20%;
+                        position: relative;
+                        padding-top: unit(30, rpx);
+                        color: @fontColor1;
+                        .item-icon {
+                          height: unit(60, rpx);
+                          line-height: unit(60, rpx);
+                          font-size: unit(60, rpx);
+                          margin-bottom: unit(10, rpx);
+                        }
+                        .item-label {
+                          display: block;
+                          height: unit(40, rpx);
+                          line-height: unit(40, rpx);
+                          text-decoration: line-through;
+                          font-size: @fontSize1;
+                        }
+                        &.on {
+                          .item-label {
+                            text-decoration: none;
+                          }
+                        }
+                      }
+                    }
+                    .map-container {
+                      padding: unit(30, rpx);
+                      .map-content {
+                        position: relative;
+                        .map-canvas {
+                          width: 100%;
+                          height: unit(400, rpx);
+                        }
+                        .map-marker {
                           position: absolute;
-                          top: 0;
-                          right: 0;
+                          top: calc(50% - unit(40, rpx));
+                          left: 50%;
+                          transform: translate3d(-50%, -50%, 0);
+                          .marker-container {
+                            .marker-content {
+                              position: relative;
+                              .marker-text {
+                                position: relative;
+                                z-index: 2;
+                                height: unit(90, rpx);
+                                line-height: unit(90, rpx);
+                                padding: 0 unit(30, rpx);
+                                background-color: @white;
+                                border-radius: @borderRadius1;
+                                box-shadow: 0 0 15px rgba(0, 0, 0, .05);
+                                letter-spacing: 0.5px;
+                                font-size: @fontSize3;
+                                color: @fontColor1;
+                              }
+                              .marker-icon {
+                                width: 0;
+                                height: 0;
+                                position: absolute;
+                                left: 50%;
+                                bottom: unit(-20, rpx);
+                                z-index: 2;
+                                transform: translateX(-50%);
+                                border-top: unit(20, rpx) solid @white;
+                                border-left: unit(20, rpx) solid transparent;
+                                border-right: unit(20, rpx) solid transparent;
+                              }
+                              .marker-circle {
+                                width: unit(40, rpx);
+                                height: unit(40, rpx);
+                                position: absolute;
+                                left: 50%;
+                                bottom: unit(-40, rpx);
+                                transform: translateX(-50%);
+                                border-radius: @borderRadius3;
+                                border: 1px solid rgba(255, 153, 0, 1);
+                                background-color: rgba(255, 153, 0, 0.5);
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                    .agent-box {
+                      padding: unit(20, rpx) 0;
+                      .agent-item {
+                        padding: 0 unit(30, rpx);
+                        font-size: 0;
+                        .agent-inner {
+                          position: relative;
                           padding: unit(20, rpx) 0;
-                          font-size: 0;
-                          .btn-icon {
+                        }
+                        .agent-img {
+                          width: auto;
+                          display: inline-block;
+                          vertical-align: middle;
+                          image {
                             width: unit(80, rpx);
                             height: unit(80, rpx);
-                            line-height: unit(80, rpx);
-                            display: inline-block;
-                            vertical-align: middle;
-                            margin-right: unit(30, rpx);
-                            -webkit-text-fill-color: transparent;
-                            -webkit-background-clip: text;
-                            font-size: @fontSize8;
-                            text-align: center;
-                            &.icon-msg {
-                              background-image: -webkit-linear-gradient(left, #FFDB40, #FF9C09);
-                            }
-                            &.icon-tel {
-                              margin: 0;
-                              background-image: -webkit-linear-gradient(left, #5DFF71, #35DC04);
+                            border-radius: 100%;
+                            background-color: @white;
+                            box-shadow: 0 0 15px @boxShadow1;
+                          }
+                        }
+                        .agent-info {
+                          width: auto;
+                          display: inline-block;
+                          vertical-align: middle;
+                          line-height: unit(40, rpx);
+                          padding-left: unit(30, rpx);
+                          .agent-name {
+                            font-size: @fontSize5;
+                            color: @fontColor1;
+                          }
+                          .agent-phone {
+                            font-size: @fontSize3;
+                            color: @fontColor3;
+                          }
+                          .agent-btns {
+                            width: auto;
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                            padding: unit(20, rpx) 0;
+                            font-size: 0;
+                            .btn-icon {
+                              width: unit(80, rpx);
+                              height: unit(80, rpx);
+                              line-height: unit(80, rpx);
+                              display: inline-block;
+                              vertical-align: middle;
+                              border-radius: 100%;
+                              margin-left: unit(40, rpx);
+                              background-color: rgba(255, 153, 0, .05);
+                              font-size: @fontSize7;
+                              text-align: center;
+                              color: @theme2;
                             }
                           }
                         }
@@ -594,86 +704,87 @@
                     }
                   }
                 }
-              }
-              .module-footer {
+                .module-footer {
 
+                }
+              }
+            }
+          }
+          .fixed-bar {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            z-index: 1000;
+            background-color: @white;
+            box-shadow: 0 0 15px @boxShadow1;
+            .agent {
+              width: 36%;
+              padding-left: unit(30, rpx);
+              text-align: left;
+              font-size: 0;
+              .agent-img {
+                width: unit(70, rpx);
+                height: unit(70, rpx);
+                display: inline-block;
+                vertical-align: middle;
+                image {
+                  width: 100%;
+                  height: 100%;
+                  border-radius: 100%;
+                  box-shadow: 0 0 15px @boxShadow1;
+                }
+              }
+              .agent-name {
+                width: auto;
+                height: unit(110, rpx);
+                line-height: unit(110, rpx);
+                display: inline-block;
+                vertical-align: middle;
+                margin-left: unit(10, rpx);
+                font-size: @fontSize3;
+                color: @fontColor1;
+              }
+            }
+            .btns {
+              width: 64%;
+              display: flex;
+              font-size: 0;
+              .btn {
+                height: unit(110, rpx);
+                line-height: unit(110, rpx);
+                text-align: center;
+                color: @white;
+                &.btn-msg {
+                  background-color: @theme1;
+                }
+                &.btn-tel {
+                  background-color: @theme2;
+                }
+                .btn-icon {
+                  display: inline-block;
+                  vertical-align: middle;
+                  height: unit(110, rpx);
+                  line-height: unit(110, rpx);
+                  margin-right: unit(10, rpx);
+                  font-size: @fontSize8;
+                }
+                .btn-text {
+                  display: inline-block;
+                  vertical-align: middle;
+                  height: unit(110, rpx);
+                  line-height: unit(110, rpx);
+                  font-size: @fontSize6;
+                  letter-spacing: 1px;
+                }
               }
             }
           }
         }
       }
       .footer {
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        z-index: 1000;
-        background-color: @white;
-        box-shadow: 0 0 15px @boxShadow1;
-        .pull-left {
-          width: 36%;
-          .agent {
-            padding-left: unit(30, rpx);
-            text-align: left;
-            font-size: 0;
-            .agent-img {
-              width: unit(70, rpx);
-              height: unit(70, rpx);
-              display: inline-block;
-              vertical-align: middle;
-              image {
-                width: 100%;
-                height: 100%;
-                border-radius: 100%;
-                box-shadow: 0 0 15px @boxShadow1;
-              }
-            }
-            .agent-name {
-              width: auto;
-              height: unit(110, rpx);
-              line-height: unit(110, rpx);
-              display: inline-block;
-              vertical-align: middle;
-              margin-left: unit(10, rpx);
-              font-size: @fontSize3;
-              color: @fontColor1;
-            }
-          }
-        }
-        .pull-right {
-          width: 64%;
-          font-size: 0;
-          .btn {
-            height: unit(110, rpx);
-            line-height: unit(110, rpx);
-            text-align: center;
-            color: @white;
-            &.btn-msg {
-              background: -webkit-linear-gradient(left, #FFBB1D, #F2890B);
-            }
-            &.btn-tel {
-              background: -webkit-linear-gradient(left, #59D96D, #35D204);
-            }
-            .btn-icon {
-              display: inline-block;
-              vertical-align: middle;
-              height: unit(110, rpx);
-              line-height: unit(110, rpx);
-              margin-right: unit(10, rpx);
-              font-size: @fontSize7;
-            }
-            .btn-text {
-              display: inline-block;
-              vertical-align: middle;
-              height: unit(110, rpx);
-              line-height: unit(110, rpx);
-              font-size: @fontSize6;
-              letter-spacing: 1px;
-            }
-          }
-        }
       }
     }
   }
@@ -684,6 +795,9 @@
   navigationStyle:'custom',
   usingComponents: {
   'top-bar': '../../../components/top-bar/top-bar',
+  'loading': '../../../components/loading/loading',
+  'error': '../../../components/error/error',
+  'lazy-image':'../../../components/lazy-image/lazy-image'
   }
   }
 </config>

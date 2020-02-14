@@ -27,35 +27,34 @@ _core["default"].component({
   events: {},
   methods: {
     onHandleDetail: function onHandleDetail(id) {
-      console.log(id);
       wx.navigateTo({
-        url: $routes.SECOND_HOUSE_DETAIL.path
+        url: $routes.SECOND_HOUSE_DETAIL.path + '?house_id=' + id
       });
     }
   },
   onLoad: function onLoad() {}
-}, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'99-0': {"tap": function proxy () {
+}, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'100-0': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
         _vm.onHandleDetail(_vm.item.id)
       })();
     
-  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'99-0': {"tap": function proxy () {
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'100-0': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
         _vm.onHandleDetail(_vm.item.id)
       })();
     
-  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'99-0': {"tap": function proxy () {
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'100-0': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
         _vm.onHandleDetail(_vm.item.id)
       })();
     
-  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'99-0': {"tap": function proxy () {
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'100-0': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
