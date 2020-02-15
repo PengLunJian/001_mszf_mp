@@ -2,14 +2,16 @@
 	"description": "This is a property management applet",
 	"setting": {
 		"urlCheck": false,
-		"es6": false,
-		"enhance": true,
+		"es6": true,
+		"enhance": false,
 		"postcss": false,
 		"minified": true,
 		"newFeature": true,
 		"coverView": true,
 		"nodeModules": true,
 		"autoAudits": false,
+		"showShadowRootInWxmlPanel": false,
+		"scopeDataCheck": false,
 		"uglifyFileName": false,
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
@@ -27,7 +29,7 @@
 	"miniprogramRoot": "weapp/",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
-	"libVersion": "2.9.5",
+	"libVersion": "2.10.1",
 	"condition": {
 		"search": {
 			"current": -1,

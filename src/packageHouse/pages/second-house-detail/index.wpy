@@ -190,9 +190,11 @@
             <div class="agent">
               <div class="agent-img">
                 <img src="../../../assets/images/agent.jpg"/>
-                <img src="../../images/address.png" v-if="false"/>
               </div>
-              <div class="agent-name">{{isData.agency[0].name}}</div>
+              <div class="agent-info">
+                <div class="agent-name">{{isData.agency[0].name}}</div>
+                <div class="agent-desc">{{isData.agency_com_name}}</div>
+              </div>
             </div>
             <div class="btns">
               <div class="btn btn-msg col-6" @tap="onHandleMessage(isData.agency[0].id)">
@@ -227,7 +229,6 @@
     mixins: [Toast],
 
     data: {
-      topBarHeight: '',
       items: [
         {
           url: 'http://sersms.com:7000/house/v1/file/static/userfile/202001/13/1216582503799492608.jpg'
@@ -372,10 +373,6 @@
     },
 
     onLoad() {
-      const system = wx.getSystemInfoSync();
-      const statusHeight = system.statusBarHeight;
-      const topBarHeight = statusHeight + 45;
-      this.topBarHeight = topBarHeight + 'px';
       this.onHandleInitQQMap();
       this.exeAjaxHouseDetail();
     }
@@ -722,6 +719,8 @@
             box-shadow: 0 0 15px @boxShadow1;
             .agent {
               width: 36%;
+              height: unit(110, rpx);
+              line-height: unit(110, rpx);
               padding-left: unit(30, rpx);
               text-align: left;
               font-size: 0;
@@ -737,15 +736,23 @@
                   box-shadow: 0 0 15px @boxShadow1;
                 }
               }
-              .agent-name {
+              .agent-info {
                 width: auto;
-                height: unit(110, rpx);
-                line-height: unit(110, rpx);
+                line-height: unit(32, rpx);
                 display: inline-block;
                 vertical-align: middle;
                 margin-left: unit(10, rpx);
-                font-size: @fontSize3;
-                color: @fontColor1;
+                letter-spacing: 0.5px;
+                font-size: 0;
+                .agent-name {
+                  font-size: @fontSize3;
+                  font-weight: bold;
+                  color: @fontColor1;
+                }
+                .agent-desc {
+                  font-size: @fontSize1;
+                  color: @fontColor3;
+                }
               }
             }
             .btns {

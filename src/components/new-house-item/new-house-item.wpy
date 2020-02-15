@@ -12,15 +12,13 @@
         <div class="item-row">
           <span class="item-addr">{{item.addr_qu}}</span>
           <span class="item-split"></span>
-          <span class="item-addr">{{item.addr}}</span>
+          <span class="item-size">建面 90-137m²</span>
         </div>
         <div class="item-row">
-                  <span class="item-normal item-price">
-                    <span class="item-value">{{item.total_price/10000}}</span>
-                    <span class="item-unit">万</span>
-                  </span>
-          <span class="item-normal">{{item.huxing}}</span>
-          <span class="item-normal">{{item.mianji}}m²</span>
+          <span class="item-normal item-price">
+            <span class="item-value">{{item.price}}/</span>
+            <span class="item-unit">元/m²</span>
+          </span>
         </div>
         <div class="item-row">
           <span class="item-tag"
@@ -52,9 +50,8 @@
     events: {},
     methods: {
       onHandleDetail(id) {
-        console.log(id);
         wx.navigateTo({
-          url: $routes.NEW_HOUSE_DETAIL.path
+          url: $routes.NEW_HOUSE_DETAIL.path + '?house_id=' + id
         });
       }
     },
@@ -98,9 +95,8 @@
             font-weight: bold;
             color: @fontColor1;
           }
-          .item-city,
           .item-addr,
-          .item-split,
+          .item-desc,
           .item-size {
             height: unit(32, rpx);
             line-height: unit(32, rpx);
@@ -108,16 +104,13 @@
             vertical-align: middle;
             font-size: unit(24, rpx);
             color: @fontColor2;
-            &.item-split {
-              padding: unit(6, rpx) unit(10, rpx);
-              &:before {
-                content: '';
-                display: block;
-                width: 0;
-                height: 100%;
-                border-left: 1px solid @borderColor1;
-              }
-            }
+          }
+          .item-split {
+            height: unit(20, rpx);
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0 unit(10, rpx);
+            border-left: 1px solid @borderColor1;
           }
           .item-value,
           .item-unit {

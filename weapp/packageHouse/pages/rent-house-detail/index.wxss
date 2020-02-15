@@ -366,6 +366,8 @@
 }
 .container .content .body .context .fixed-bar .agent {
   width: 36%;
+  height: 110rpx;
+  line-height: 110rpx;
   padding-left: 30rpx;
   text-align: left;
   font-size: 0;
@@ -382,15 +384,23 @@
   border-radius: 100%;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
 }
-.container .content .body .context .fixed-bar .agent .agent-name {
+.container .content .body .context .fixed-bar .agent .agent-info {
   width: auto;
-  height: 110rpx;
-  line-height: 110rpx;
+  line-height: 32rpx;
   display: inline-block;
   vertical-align: middle;
   margin-left: 10rpx;
+  letter-spacing: 0.5px;
+  font-size: 0;
+}
+.container .content .body .context .fixed-bar .agent .agent-info .agent-name {
   font-size: 28rpx;
+  font-weight: bold;
   color: #333333;
+}
+.container .content .body .context .fixed-bar .agent .agent-info .agent-desc {
+  font-size: 24rpx;
+  color: #999999;
 }
 .container .content .body .context .fixed-bar .btns {
   width: 64%;

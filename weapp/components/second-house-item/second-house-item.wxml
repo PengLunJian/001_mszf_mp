@@ -11,7 +11,7 @@
       <view class="item-row">
         <label class="item-addr">{{item.addr_qu}}</label>
         <label class="item-split"></label>
-        <label class="item-addr">{{item.addr}}</label>
+        <label class="item-desc">{{item.addr}}</label>
       </view>
       <view class="item-row">
                 <label class="item-normal item-price">

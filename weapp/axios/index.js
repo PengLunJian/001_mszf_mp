@@ -7,13 +7,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
-var _axios = _interopRequireDefault(require('../vendor.js')(4));
+var _axios = _interopRequireDefault(require('../vendor.js')(3));
 
 var _apis = _interopRequireDefault(require('../apis/index.js'));
 
 var utils = _interopRequireWildcard(require('../utils/index.js'));
 
-var _adapter = _interopRequireDefault(require('../vendor.js')(3));
+var _adapter = _interopRequireDefault(require('../vendor.js')(4));
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
 

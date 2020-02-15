@@ -12,7 +12,7 @@
         <div class="item-row">
           <span class="item-addr">{{item.addr_qu}}</span>
           <span class="item-split"></span>
-          <span class="item-addr">{{item.addr}}</span>
+          <span class="item-desc">{{item.addr}}</span>
         </div>
         <div class="item-row">
                   <span class="item-normal item-price">
@@ -98,7 +98,7 @@
             color: @fontColor1;
           }
           .item-addr,
-          .item-split,
+          .item-desc,
           .item-size {
             height: unit(32, rpx);
             line-height: unit(32, rpx);
@@ -106,16 +106,13 @@
             vertical-align: middle;
             font-size: unit(24, rpx);
             color: @fontColor2;
-            &.item-split {
-              padding: unit(6, rpx) unit(10, rpx);
-              &:before {
-                content: '';
-                display: block;
-                width: 0;
-                height: 100%;
-                border-left: 1px solid @borderColor1;
-              }
-            }
+          }
+          .item-split {
+            height: unit(20, rpx);
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0 unit(10, rpx);
+            border-left: 1px solid @borderColor1;
           }
           .item-value,
           .item-unit {
@@ -156,12 +153,6 @@
             border: 1px solid @theme2;
             font-size: unit(24, rpx);
             color: @theme2;
-            &.item-state {
-              border: none;
-              background-color: #009966;
-              line-height: unit(40, rpx);
-              color: @white;
-            }
             &:last-child {
               margin: 0;
             }
