@@ -1,5 +1,5 @@
 
-<view data-wpy-evt="101-5" bindtap="_proxy" class="item">
+<view data-wpy-evt="101-13" bindtap="_proxy" class="item">
   <view class="item-inner">
     <view class="item-img">
       <lazy-image bind_init="_initComponent" src="http://sersms.com:7000/house/v1/file/static/userfile/202001/15/1217303536806432768.jpg"></lazy-image>
@@ -11,15 +11,18 @@
       <view class="item-row">
         <label class="item-addr">{{item.addr_qu}}</label>
         <label class="item-split"></label>
-        <label class="item-size">建面 90-137m²</label>
+        <label class="item-size">建面 90-{{item.mianji}}m²</label>
       </view>
       <view class="item-row">
         <label class="item-normal item-price">
-          <label class="item-value">{{item.price}}/</label>
+          <label class="item-value">{{item.price}}</label>
           <label class="item-unit">元/m²</label>
         </label>
       </view>
       <view class="item-row">
+        <label wx:if="{{ item.status===1 }}" class="item-tag item-state state1">在售</label>
+        <label wx:if="{{ item.status===2 }}" class="item-tag item-state state2">待售</label>
+        <label wx:if="{{ item.status===3 }}" class="item-tag item-state state3">售罄</label>
         <label wx:for="{{ item.tags }}" wx:for-index="index" wx:for-item="tag" wx:key="index" key="{{ index }}" class="item-tag">{{tag}}</label>
       </view>
     </view>

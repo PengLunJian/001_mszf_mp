@@ -12,15 +12,18 @@
         <div class="item-row">
           <span class="item-addr">{{item.addr_qu}}</span>
           <span class="item-split"></span>
-          <span class="item-size">建面 90-137m²</span>
+          <span class="item-size">建面 90-{{item.mianji}}m²</span>
         </div>
         <div class="item-row">
           <span class="item-normal item-price">
-            <span class="item-value">{{item.price}}/</span>
+            <span class="item-value">{{item.price}}</span>
             <span class="item-unit">元/m²</span>
           </span>
         </div>
         <div class="item-row">
+          <span class="item-tag item-state state1" v-if="item.status===1">在售</span>
+          <span class="item-tag item-state state2" v-if="item.status===2">待售</span>
+          <span class="item-tag item-state state3" v-if="item.status===3">售罄</span>
           <span class="item-tag"
                 v-for="(tag,index) in item.tags"
                 :key="index">{{tag}}</span>
@@ -143,19 +146,25 @@
           }
           .item-tag {
             height: unit(40, rpx);
-            line-height: unit(36, rpx);
+            line-height: unit(40, rpx);
             display: inline-block;
             vertical-align: middle;
             padding: 0 unit(10, rpx);
             margin-right: unit(10, rpx);
-            border: 1px solid @theme2;
-            font-size: unit(24, rpx);
-            color: @theme2;
+            background-color: @stateColor;
+            font-size: @fontSize1;
+            color: @fontColor3;
             &.item-state {
-              border: none;
-              background-color: #009966;
-              line-height: unit(40, rpx);
               color: @white;
+              &.state1 {
+                background-color: @stateColor1;
+              }
+              &.state2 {
+                background-color: @stateColor2;
+              }
+              &.state3 {
+                background-color: @stateColor3;
+              }
             }
             &:last-child {
               margin: 0;

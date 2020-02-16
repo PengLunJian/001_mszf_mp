@@ -184,63 +184,63 @@ _core["default"].page({
     this.onHandleInitQQMap();
     this.exeAjaxHouseDetail();
   }
-}, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\..\\components\\error\\error"},"lazy-image":{"path":"..\\..\\..\\components\\lazy-image\\lazy-image"}},"on":{"10-126":["refresh"]}}, handlers: {'10-126': {"refresh": function proxy () {
+}, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\..\\components\\error\\error"},"lazy-image":{"path":"..\\..\\..\\components\\lazy-image\\lazy-image"}},"on":{"10-9":["refresh"]}}, handlers: {'10-9': {"refresh": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onRefresh($event)
       })();
     
-  }},'10-127': {"change": function proxy () {
+  }},'10-10': {"change": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleSwiperChange($event)
       })();
     
-  }},'10-128': {"tap": function proxy (index) {
+  }},'10-11': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {
         _vm.onHandleLargeImage(index)
       })();
     
-  }},'10-129': {"tap": function proxy () {
+  }},'10-12': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleFollow($event)
       })();
     
-  }},'10-130': {"tap": function proxy (item) {
+  }},'10-13': {"tap": function proxy (item) {
     
     var _vm=this;
       return (function () {
         _vm.onHandleMessage(item.id)
       })();
     
-  }},'10-131': {"tap": function proxy (item) {
+  }},'10-14': {"tap": function proxy (item) {
     
     var _vm=this;
       return (function () {
         _vm.onHandlePhone(item.tel)
       })();
     
-  }},'10-132': {"tap": function proxy () {
+  }},'10-15': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleClickMap($event)
       })();
     
-  }},'10-133': {"tap": function proxy () {
+  }},'10-16': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
         _vm.onHandleMessage(_vm.isData.agency[0].id)
       })();
     
-  }},'10-134': {"tap": function proxy () {
+  }},'10-17': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {

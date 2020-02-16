@@ -336,20 +336,26 @@ button:after {
 }
 .item .item-inner .item-info .item-row .item-tag {
   height: 40rpx;
-  line-height: 36rpx;
+  line-height: 40rpx;
   display: inline-block;
   vertical-align: middle;
   padding: 0 10rpx;
   margin-right: 10rpx;
-  border: 1px solid #FF9900;
+  background-color: #F0F0F0;
   font-size: 24rpx;
-  color: #FF9900;
+  color: #999999;
 }
 .item .item-inner .item-info .item-row .item-tag.item-state {
-  border: none;
-  background-color: #009966;
-  line-height: 40rpx;
   color: #ffffff;
+}
+.item .item-inner .item-info .item-row .item-tag.item-state.state1 {
+  background-color: #00D894;
+}
+.item .item-inner .item-info .item-row .item-tag.item-state.state2 {
+  background-color: #F2ABA9;
+}
+.item .item-inner .item-info .item-row .item-tag.item-state.state3 {
+  background-color: #ECD300;
 }
 .item .item-inner .item-info .item-row .item-tag:last-child {
   margin: 0;
