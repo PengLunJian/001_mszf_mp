@@ -134,12 +134,7 @@
               </view>
               <view class="module-body">
                 <view class="module-context">
-                  <view class="items row">
-                    <view wx:for="{{ isData.configs }}" wx:for-index="index" wx:for-item="item" wx:key="index" key="{{ index }}" class="item col-2{{item.isCan?' on':''}}">
-                      <view class="item-icon iconfont {{item.icon}}"></view>
-                      <label class="item-label">{{item.label}}</label>
-                    </view>
-                  </view>
+                  <layout bind_init="_initComponent"></layout>
                 </view>
               </view>
               <view class="module-footer"></view>

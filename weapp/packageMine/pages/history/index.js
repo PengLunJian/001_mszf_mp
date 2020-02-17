@@ -108,14 +108,140 @@ _core["default"].page({
     this.resetHouseHistory();
     this.exeAjaxHouseHistory();
   }
-}, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\..\\components\\error\\error"},"empty":{"path":"..\\..\\..\\components\\empty\\empty"},"load-more":{"path":"..\\..\\..\\components\\load-more\\load-more"},"rent-house-item":{"path":"..\\..\\..\\components\\rent-house-item\\rent-house-item"},"new-house-item":{"path":"..\\..\\..\\components\\new-house-item\\new-house-item"},"second-house-item":{"path":"..\\..\\..\\components\\second-house-item\\second-house-item"}},"on":{"14-3":["refresh"]}}, handlers: {'14-3': {"refresh": function proxy () {
+}, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\..\\components\\error\\error"},"empty":{"path":"..\\..\\..\\components\\empty\\empty"},"load-more":{"path":"..\\..\\..\\components\\load-more\\load-more"},"rent-house-item":{"path":"..\\..\\..\\components\\rent-house-item\\rent-house-item"},"new-house-item":{"path":"..\\..\\..\\components\\new-house-item\\new-house-item"},"second-house-item":{"path":"..\\..\\..\\components\\second-house-item\\second-house-item"}},"on":{"14-0":["refresh"]}}, handlers: {'14-0': {"refresh": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onRefresh($event)
       })();
     
-  }},'14-4': {"scroll": function proxy () {
+  }},'14-1': {"scroll": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleScroll($event)
+      })();
+    
+  }, "scrolltolower": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleScrollToLower($event)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\..\\components\\error\\error"},"empty":{"path":"..\\..\\..\\components\\empty\\empty"},"load-more":{"path":"..\\..\\..\\components\\load-more\\load-more"},"rent-house-item":{"path":"..\\..\\..\\components\\rent-house-item\\rent-house-item"},"new-house-item":{"path":"..\\..\\..\\components\\new-house-item\\new-house-item"},"second-house-item":{"path":"..\\..\\..\\components\\second-house-item\\second-house-item"}},"on":{"14-0":["refresh"]}}, handlers: {'14-0': {"refresh": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onRefresh($event)
+      })();
+    
+  }},'14-1': {"scroll": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleScroll($event)
+      })();
+    
+  }, "scrolltolower": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleScrollToLower($event)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\..\\components\\error\\error"},"empty":{"path":"..\\..\\..\\components\\empty\\empty"},"load-more":{"path":"..\\..\\..\\components\\load-more\\load-more"},"rent-house-item":{"path":"..\\..\\..\\components\\rent-house-item\\rent-house-item"},"new-house-item":{"path":"..\\..\\..\\components\\new-house-item\\new-house-item"},"second-house-item":{"path":"..\\..\\..\\components\\second-house-item\\second-house-item"}},"on":{"14-0":["refresh"]}}, handlers: {'14-0': {"refresh": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onRefresh($event)
+      })();
+    
+  }},'14-1': {"scroll": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleScroll($event)
+      })();
+    
+  }, "scrolltolower": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleScrollToLower($event)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\..\\components\\error\\error"},"empty":{"path":"..\\..\\..\\components\\empty\\empty"},"load-more":{"path":"..\\..\\..\\components\\load-more\\load-more"},"rent-house-item":{"path":"..\\..\\..\\components\\rent-house-item\\rent-house-item"},"new-house-item":{"path":"..\\..\\..\\components\\new-house-item\\new-house-item"},"second-house-item":{"path":"..\\..\\..\\components\\second-house-item\\second-house-item"}},"on":{"14-0":["refresh"]}}, handlers: {'14-0': {"refresh": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onRefresh($event)
+      })();
+    
+  }},'14-1': {"scroll": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleScroll($event)
+      })();
+    
+  }, "scrolltolower": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleScrollToLower($event)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\..\\components\\error\\error"},"empty":{"path":"..\\..\\..\\components\\empty\\empty"},"load-more":{"path":"..\\..\\..\\components\\load-more\\load-more"},"rent-house-item":{"path":"..\\..\\..\\components\\rent-house-item\\rent-house-item"},"new-house-item":{"path":"..\\..\\..\\components\\new-house-item\\new-house-item"},"second-house-item":{"path":"..\\..\\..\\components\\second-house-item\\second-house-item"}},"on":{"14-0":["refresh"]}}, handlers: {'14-0': {"refresh": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onRefresh($event)
+      })();
+    
+  }},'14-1': {"scroll": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleScroll($event)
+      })();
+    
+  }, "scrolltolower": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleScrollToLower($event)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\..\\components\\error\\error"},"empty":{"path":"..\\..\\..\\components\\empty\\empty"},"load-more":{"path":"..\\..\\..\\components\\load-more\\load-more"},"rent-house-item":{"path":"..\\..\\..\\components\\rent-house-item\\rent-house-item"},"new-house-item":{"path":"..\\..\\..\\components\\new-house-item\\new-house-item"},"second-house-item":{"path":"..\\..\\..\\components\\second-house-item\\second-house-item"}},"on":{"14-0":["refresh"]}}, handlers: {'14-0': {"refresh": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onRefresh($event)
+      })();
+    
+  }},'14-1': {"scroll": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleScroll($event)
+      })();
+    
+  }, "scrolltolower": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleScrollToLower($event)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\..\\components\\error\\error"},"empty":{"path":"..\\..\\..\\components\\empty\\empty"},"load-more":{"path":"..\\..\\..\\components\\load-more\\load-more"},"rent-house-item":{"path":"..\\..\\..\\components\\rent-house-item\\rent-house-item"},"new-house-item":{"path":"..\\..\\..\\components\\new-house-item\\new-house-item"},"second-house-item":{"path":"..\\..\\..\\components\\second-house-item\\second-house-item"}},"on":{"14-0":["refresh"]}}, handlers: {'14-0': {"refresh": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onRefresh($event)
+      })();
+    
+  }},'14-1': {"scroll": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {

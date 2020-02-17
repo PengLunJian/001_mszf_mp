@@ -110,7 +110,25 @@ export const dateFormat = (date, format) => {
 };
 /**
  *
- * @param element
+ */
+export const handleSaveImage = () => {
+  wx.getSetting({
+    success(res) {
+      const {authSetting} = res || {};
+      if (authSetting['scope.writePhotosAlbum'] === false) {
+        wx.openSetting({
+          success(res) {
+            console.log(res);
+          }
+        });
+      } else {
+        saveImage();
+      }
+    }
+  });
+};
+/**
+ *
  */
 export const saveImage = () => {
   setTimeout(() => {

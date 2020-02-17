@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.saveImage = exports.dateFormat = exports.historyFilter = exports.dataFilter = exports.stringify = exports.isExist = exports.success = void 0;
+exports.saveImage = exports.handleSaveImage = exports.dateFormat = exports.historyFilter = exports.dataFilter = exports.stringify = exports.isExist = exports.success = void 0;
 
 /**
  *
@@ -139,11 +139,35 @@ var dateFormat = function dateFormat(date, format) {
 };
 /**
  *
- * @param element
  */
 
 
 exports.dateFormat = dateFormat;
+
+var handleSaveImage = function handleSaveImage() {
+  wx.getSetting({
+    success: function success(res) {
+      var _ref = res || {},
+          authSetting = _ref.authSetting;
+
+      if (authSetting['scope.writePhotosAlbum'] === false) {
+        wx.openSetting({
+          success: function success(res) {
+            console.log(res);
+          }
+        });
+      } else {
+        saveImage();
+      }
+    }
+  });
+};
+/**
+ *
+ */
+
+
+exports.handleSaveImage = handleSaveImage;
 
 var saveImage = function saveImage() {
   setTimeout(function () {
@@ -151,8 +175,8 @@ var saveImage = function saveImage() {
     wx.downloadFile({
       url: imgUrl,
       success: function success(res) {
-        var _ref = res || {},
-            tempFilePath = _ref.tempFilePath;
+        var _ref2 = res || {},
+            tempFilePath = _ref2.tempFilePath;
 
         wx.saveImageToPhotosAlbum({
           filePath: tempFilePath,

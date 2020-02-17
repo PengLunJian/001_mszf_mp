@@ -7,10 +7,10 @@
     </view>
     <view class="body">
       <loading bind_init="_initComponent" isLoading="{{ isLoading&&!isData.rows.length }}"></loading>
-      <error bind_init="_initComponent" isFailure="{{ isFailure&&!isData.rows.length }}" data-wpy-evt="14-3" bindrefresh="_proxy"></error>
+      <error bind_init="_initComponent" isFailure="{{ isFailure&&!isData.rows.length }}" data-wpy-evt="14-0" bindrefresh="_proxy"></error>
       <empty bind_init="_initComponent" isSuccess="{{ isSuccess&&!isData.rows.length }}"></empty>
       <view wx:if="{{ isData.rows.length }}" class="context fade">
-        <scroll-view scroll-y="{{true}}" data-wpy-evt="14-4" bindscroll="_proxy" bindscrolltolower="_proxy" class="scroll-view">
+        <scroll-view scroll-y="{{true}}" data-wpy-evt="14-1" bindscroll="_proxy" bindscrolltolower="_proxy" class="scroll-view">
           <view class="groups">
             <block wx:for="{{ isTotalRowsFilter }}" wx:for-index="itemIndex" wx:for-item="itemGroup" wx:key="itemIndex" key="{{ itemIndex }}">
               <view class="group">

@@ -51,7 +51,49 @@ _core["default"].page({
     }
   },
   onLoad: function onLoad() {}
-}, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'5-1': {"tap": function proxy (item) {
+}, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'5-0': {"tap": function proxy (item) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleClick(item)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'5-0': {"tap": function proxy (item) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleClick(item)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'5-0': {"tap": function proxy (item) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleClick(item)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'5-0': {"tap": function proxy (item) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleClick(item)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'5-0': {"tap": function proxy (item) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleClick(item)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'5-0': {"tap": function proxy (item) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleClick(item)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'5-0': {"tap": function proxy (item) {
     
     var _vm=this;
       return (function () {

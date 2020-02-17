@@ -5,6 +5,7 @@
         "top-bar": "../../../components/top-bar/top-bar",
         "loading": "../../../components/loading/loading",
         "error": "../../../components/error/error",
-        "lazy-image": "../../../components/lazy-image/lazy-image"
+        "lazy-image": "../../../components/lazy-image/lazy-image",
+        "layout": "../../../components/layout/layout"
     }
 }

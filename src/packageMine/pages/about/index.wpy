@@ -126,12 +126,13 @@
         this.onHandleHideModal();
       },
       onHandleConfirm() {
-        utils.saveImage();
+        utils.handleSaveImage();
         this.onHandleHideModal();
       }
     },
 
-    onLoad() {}
+    onLoad() {
+    }
   });
 </script>
 

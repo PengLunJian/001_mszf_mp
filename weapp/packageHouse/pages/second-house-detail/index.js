@@ -247,4 +247,382 @@ _core["default"].page({
         _vm.onHandlePhone(_vm.isData.agency[0].tel)
       })();
     
+  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\..\\components\\error\\error"},"lazy-image":{"path":"..\\..\\..\\components\\lazy-image\\lazy-image"}},"on":{"10-9":["refresh"]}}, handlers: {'10-9': {"refresh": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onRefresh($event)
+      })();
+    
+  }},'10-10': {"change": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleSwiperChange($event)
+      })();
+    
+  }},'10-11': {"tap": function proxy (index) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleLargeImage(index)
+      })();
+    
+  }},'10-12': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleFollow($event)
+      })();
+    
+  }},'10-13': {"tap": function proxy (item) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleMessage(item.id)
+      })();
+    
+  }},'10-14': {"tap": function proxy (item) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandlePhone(item.tel)
+      })();
+    
+  }},'10-15': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleClickMap($event)
+      })();
+    
+  }},'10-16': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleMessage(_vm.isData.agency[0].id)
+      })();
+    
+  }},'10-17': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandlePhone(_vm.isData.agency[0].tel)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\..\\components\\error\\error"},"lazy-image":{"path":"..\\..\\..\\components\\lazy-image\\lazy-image"}},"on":{"10-9":["refresh"]}}, handlers: {'10-9': {"refresh": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onRefresh($event)
+      })();
+    
+  }},'10-10': {"change": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleSwiperChange($event)
+      })();
+    
+  }},'10-11': {"tap": function proxy (index) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleLargeImage(index)
+      })();
+    
+  }},'10-12': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleFollow($event)
+      })();
+    
+  }},'10-13': {"tap": function proxy (item) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleMessage(item.id)
+      })();
+    
+  }},'10-14': {"tap": function proxy (item) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandlePhone(item.tel)
+      })();
+    
+  }},'10-15': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleClickMap($event)
+      })();
+    
+  }},'10-16': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleMessage(_vm.isData.agency[0].id)
+      })();
+    
+  }},'10-17': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandlePhone(_vm.isData.agency[0].tel)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\..\\components\\error\\error"},"lazy-image":{"path":"..\\..\\..\\components\\lazy-image\\lazy-image"}},"on":{"10-9":["refresh"]}}, handlers: {'10-9': {"refresh": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onRefresh($event)
+      })();
+    
+  }},'10-10': {"change": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleSwiperChange($event)
+      })();
+    
+  }},'10-11': {"tap": function proxy (index) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleLargeImage(index)
+      })();
+    
+  }},'10-12': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleFollow($event)
+      })();
+    
+  }},'10-13': {"tap": function proxy (item) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleMessage(item.id)
+      })();
+    
+  }},'10-14': {"tap": function proxy (item) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandlePhone(item.tel)
+      })();
+    
+  }},'10-15': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleClickMap($event)
+      })();
+    
+  }},'10-16': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleMessage(_vm.isData.agency[0].id)
+      })();
+    
+  }},'10-17': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandlePhone(_vm.isData.agency[0].tel)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\..\\components\\error\\error"},"lazy-image":{"path":"..\\..\\..\\components\\lazy-image\\lazy-image"}},"on":{"10-9":["refresh"]}}, handlers: {'10-9': {"refresh": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onRefresh($event)
+      })();
+    
+  }},'10-10': {"change": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleSwiperChange($event)
+      })();
+    
+  }},'10-11': {"tap": function proxy (index) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleLargeImage(index)
+      })();
+    
+  }},'10-12': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleFollow($event)
+      })();
+    
+  }},'10-13': {"tap": function proxy (item) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleMessage(item.id)
+      })();
+    
+  }},'10-14': {"tap": function proxy (item) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandlePhone(item.tel)
+      })();
+    
+  }},'10-15': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleClickMap($event)
+      })();
+    
+  }},'10-16': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleMessage(_vm.isData.agency[0].id)
+      })();
+    
+  }},'10-17': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandlePhone(_vm.isData.agency[0].tel)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\..\\components\\error\\error"},"lazy-image":{"path":"..\\..\\..\\components\\lazy-image\\lazy-image"}},"on":{"10-9":["refresh"]}}, handlers: {'10-9': {"refresh": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onRefresh($event)
+      })();
+    
+  }},'10-10': {"change": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleSwiperChange($event)
+      })();
+    
+  }},'10-11': {"tap": function proxy (index) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleLargeImage(index)
+      })();
+    
+  }},'10-12': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleFollow($event)
+      })();
+    
+  }},'10-13': {"tap": function proxy (item) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleMessage(item.id)
+      })();
+    
+  }},'10-14': {"tap": function proxy (item) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandlePhone(item.tel)
+      })();
+    
+  }},'10-15': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleClickMap($event)
+      })();
+    
+  }},'10-16': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleMessage(_vm.isData.agency[0].id)
+      })();
+    
+  }},'10-17': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandlePhone(_vm.isData.agency[0].tel)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\..\\components\\error\\error"},"lazy-image":{"path":"..\\..\\..\\components\\lazy-image\\lazy-image"}},"on":{"10-9":["refresh"]}}, handlers: {'10-9': {"refresh": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onRefresh($event)
+      })();
+    
+  }},'10-10': {"change": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleSwiperChange($event)
+      })();
+    
+  }},'10-11': {"tap": function proxy (index) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleLargeImage(index)
+      })();
+    
+  }},'10-12': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleFollow($event)
+      })();
+    
+  }},'10-13': {"tap": function proxy (item) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleMessage(item.id)
+      })();
+    
+  }},'10-14': {"tap": function proxy (item) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandlePhone(item.tel)
+      })();
+    
+  }},'10-15': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleClickMap($event)
+      })();
+    
+  }},'10-16': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleMessage(_vm.isData.agency[0].id)
+      })();
+    
+  }},'10-17': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandlePhone(_vm.isData.agency[0].tel)
+      })();
+    
   }}}, models: {} });

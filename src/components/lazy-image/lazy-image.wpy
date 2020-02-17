@@ -1,9 +1,9 @@
 <template>
   <div class="lazy-image">
-    <div class="lazy-image-lazy{{isLazy?'':' lazy-image-leave'}}" v-if="isShow">
+    <div class="lazy-image-loading{{isLazy?'':' lazy-image-leave'}}" v-if="isShow">
       <img src="./images/logo@2x.png" style="{{lazyStyle}}" mode="aspectFit"/>
     </div>
-    <div class="lazy-image-load{{isLazy?'':' lazy-image-enter'}}">
+    <div class="lazy-image-success{{isLazy?'':' lazy-image-enter'}}">
       <img :src="src" @load="onHandleLoad"/>
     </div>
   </div>
@@ -50,7 +50,7 @@
     position: relative;
     width: 100%;
     height: 100%;
-    .lazy-image-lazy {
+    .lazy-image-loading {
       position: absolute;
       top: 0;
       left: 0;
@@ -67,7 +67,7 @@
         transform: translate3d(-50%, -50%, 0);
       }
     }
-    .lazy-image-load {
+    .lazy-image-success {
       position: absolute;
       top: 0;
       left: 0;
