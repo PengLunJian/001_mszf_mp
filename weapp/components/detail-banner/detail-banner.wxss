@@ -316,7 +316,7 @@ button:after {
   height: 60rpx;
   line-height: 70rpx;
   font-size: 40rpx;
-  color: #999999;
+  color: #F40505;
 }
 .module .module-content .module-body .module-context .module-banner .banner-btns .btn-favorite .btn-icon:before {
   content: '\e633';

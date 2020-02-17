@@ -188,7 +188,7 @@
                   height: unit(60, rpx);
                   line-height: unit(70, rpx);
                   font-size: @fontSize7;
-                  color: @fontColor3;
+                  color: @priceColor;
                   &:before {
                     content: '\e633';
                   }

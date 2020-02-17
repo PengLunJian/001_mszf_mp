@@ -270,7 +270,7 @@ button:after {
   color: #333333;
 }
 .module .module-content .module-body .module-context .module-items {
-  padding: 40rpx 0;
+  padding: 30rpx 0;
 }
 .module .module-content .module-body .module-context .module-items .module-item {
   display: flex;

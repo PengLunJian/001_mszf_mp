@@ -43,14 +43,14 @@ _core["default"].component({
     }
   },
   created: function created() {}
-}, {info: {"components":{},"on":{}}, handlers: {'140-27': {"tap": function proxy () {
+}, {info: {"components":{},"on":{}}, handlers: {'115-0': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
         _vm.onHandleMessage(_vm.item.agency[0].id)
       })();
     
-  }},'140-28': {"tap": function proxy () {
+  }},'115-1': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
