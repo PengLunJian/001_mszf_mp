@@ -6,6 +6,6 @@
         "loading": "../../../components/loading/loading",
         "error": "../../../components/error/error",
         "lazy-image": "../../../components/lazy-image/lazy-image",
-        "layout": "../../../components/layout/layout"
+        "detail-layout": "../../../components/detail-layout/detail-layout"
     }
 }

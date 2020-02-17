@@ -1,0 +1,163 @@
+<template>
+  <div class="module">
+    <div class="module-content">
+      <div class="module-header">
+        <div class="module-title">推荐经纪人</div>
+      </div>
+      <div class="module-body">
+        <div class="module-context">
+          <div class="module-items">
+            <div class="module-item" v-for="(item,index) in items" :key="index">
+              <div class="item-img">
+                <img src="../../assets/images/agent.jpg"/>
+              </div>
+              <div class="item-info">
+                <div class="item-name">{{item.name}}</div>
+                <div class="item-phone">{{item.tel||'暂无数据'}}</div>
+              </div>
+              <div class="item-btns">
+                <div class="btn-icon btn-msg iconfont icon-msg" @tap="onHandleMessage(item.id)"></div>
+                <div class="btn-icon btn-tel iconfont icon-tel" @tap="onHandlePhone(item.tel)"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="module-footer"></div>
+    </div>
+  </div>
+</template>
+
+<script type="text/ecmascript-6">
+  import wepy from '@wepy/core';
+  import * as $routes from '../../router';
+
+  wepy.component({
+    data: {},
+    events: {},
+    props: {
+      items: {
+        type: Object,
+        default: []
+      }
+    },
+    methods: {
+      onHandlePhone(phoneNumber) {
+        wx.makePhoneCall({
+          phoneNumber: phoneNumber,
+          success: (res) => {
+            console.log(res);
+          },
+          fail: (err) => {
+            console.log(err);
+          },
+          complete: (res) => {
+            console.log(res);
+          }
+        });
+      },
+      onHandleMessage(id) {
+        wx.navigateTo({
+          url: $routes.MESSAGE.path + '?id=' + id
+        });
+      }
+    },
+    created() {
+    }
+  });
+</script>
+
+<style scoped lang="less">
+  @import "../../assets/less/variable";
+  @import "../../assets/less/common";
+
+  .module {
+    position: relative;
+    background-color: transparent;
+    .module-content {
+      background-color: @white;
+      .module-header {
+        padding: unit(30, rpx) unit(30, rpx) 0;
+        .module-title {
+          height: unit(32, rpx);
+          line-height: unit(32, rpx);
+          padding-left: unit(20, rpx);
+          border-left: 4px solid @theme2;
+          font-size: @fontSize5;
+          letter-spacing: 0.5px;
+          font-weight: bold;
+          color: @fontColor1;
+        }
+      }
+      .module-body {
+        .module-context {
+          .module-items {
+            padding: unit(30, rpx) 0;
+            .module-item {
+              display: flex;
+              padding: 0 unit(30, rpx) unit(40, rpx);
+              .item-img {
+                image {
+                  width: unit(80, rpx);
+                  height: unit(80, rpx);
+                  border-radius: 100%;
+                  background-color: @white;
+                  box-shadow: 0 0 15px @boxShadow1;
+                }
+              }
+              .item-info {
+                flex: 1;
+                line-height: unit(40, rpx);
+                padding-left: unit(30, rpx);
+                .item-name {
+                  font-size: @fontSize5;
+                  color: @fontColor1;
+                }
+                .item-phone {
+                  font-size: @fontSize3;
+                  color: @fontColor3;
+                }
+              }
+              .item-btns {
+                flex: 1;
+                text-align: right;
+                font-size: 0;
+                .btn-icon {
+                  width: unit(80, rpx);
+                  height: unit(80, rpx);
+                  line-height: unit(80, rpx);
+                  display: inline-block;
+                  vertical-align: middle;
+                  border-radius: 100%;
+                  margin-right: unit(40, rpx);
+                  background-color: rgba(255, 153, 0, .05);
+                  font-size: @fontSize7;
+                  text-align: center;
+                  color: @theme2;
+                  &:last-child {
+                    margin: 0;
+                  }
+                }
+              }
+              &:last-child {
+                padding-bottom: 0;
+              }
+            }
+          }
+        }
+      }
+      .module-footer {
+
+      }
+    }
+  }
+
+</style>
+
+<config>
+  {
+  usingComponents: {
+  'lazy-image': '../lazy-image/lazy-image'
+  }
+  }
+</config>

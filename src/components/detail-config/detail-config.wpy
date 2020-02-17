@@ -1,0 +1,101 @@
+<template>
+  <div class="module">
+    <div class="module-content">
+      <div class="module-header">
+        <div class="module-title">房源配置</div>
+      </div>
+      <div class="module-body">
+        <div class="module-context">
+          <div class="module-items row">
+            <div class="module-item col-2{{item.isCan?' on':''}}"
+                 v-for="(item,index) in items" :key="index">
+              <div class="item-icon iconfont {{item.icon}}"></div>
+              <span class="item-label">{{item.label}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="module-footer"></div>
+    </div>
+  </div>
+</template>
+
+<script type="text/ecmascript-6">
+  import wepy from '@wepy/core';
+
+  wepy.component({
+    data: {},
+    events: {},
+    props: {
+      items: {
+        type: Object,
+        default: []
+      }
+    },
+    methods: {},
+    created() {
+    }
+  });
+</script>
+
+<style scoped lang="less">
+  @import "../../assets/less/variable";
+  @import "../../assets/less/common";
+
+  .module {
+    position: relative;
+    background-color: transparent;
+    .module-content {
+      background-color: @white;
+      .module-header {
+        padding: unit(30, rpx) unit(30, rpx) 0;
+        .module-title {
+          height: unit(32, rpx);
+          line-height: unit(32, rpx);
+          padding-left: unit(20, rpx);
+          border-left: 4px solid @theme2;
+          font-size: @fontSize5;
+          letter-spacing: 0.5px;
+          font-weight: bold;
+          color: @fontColor1;
+        }
+      }
+      .module-body {
+        .module-context {
+          .module-items {
+            padding-bottom: unit(30, rpx);
+            text-align: center;
+            .module-item {
+              width: 20%;
+              position: relative;
+              padding-top: unit(30, rpx);
+              color: @fontColor1;
+              .item-icon {
+                height: unit(60, rpx);
+                line-height: unit(60, rpx);
+                font-size: unit(60, rpx);
+                margin-bottom: unit(10, rpx);
+              }
+              .item-label {
+                display: block;
+                height: unit(40, rpx);
+                line-height: unit(40, rpx);
+                text-decoration: line-through;
+                font-size: @fontSize1;
+              }
+              &.on {
+                .item-label {
+                  text-decoration: none;
+                }
+              }
+            }
+          }
+        }
+      }
+      .module-footer {
+
+      }
+    }
+  }
+
+</style>

@@ -1,0 +1,160 @@
+<template>
+  <div class="module">
+    <div class="module-content">
+      <div class="module-header">
+        <div class="module-title">周边信息</div>
+      </div>
+      <div class="module-body">
+        <div class="module-context">
+          <div class="module-map">
+            <div class="map-content">
+              <map class="map-canvas"
+                   longitude="{{longitude}}"
+                   latitude="{{latitude}}"
+                   enable-zoom="{{enableZoom}}"
+                   enable-scroll="{{enableScroll}}"
+                   @tap="onHandleClickMap">
+              </map>
+              <view class="map-marker">
+                <view class="marker-container">
+                  <view class="marker-content">
+                    <view class="marker-text">{{name}}</view>
+                    <view class="marker-icon"></view>
+                    <view class="marker-circle"></view>
+                  </view>
+                </view>
+              </view>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="module-footer"></div>
+    </div>
+  </div>
+</template>
+
+<script type="text/ecmascript-6">
+  import wepy from '@wepy/core';
+
+  wepy.component({
+    data: {
+      enableZoom: false,
+      enableScroll: false
+    },
+    events: {},
+    props: {
+      longitude: {
+        type: Number,
+        default: 0
+      },
+      latitude: {
+        type: Number,
+        default: 0
+      },
+      name: {
+        type: String,
+        default: '暂无数据'
+      }
+    },
+    methods: {
+      onHandleClickMap() {
+        console.log('别摸我,我会爆炸的！');
+      }
+    },
+    created() {
+    }
+  });
+</script>
+
+<style scoped lang="less">
+  @import "../../assets/less/variable";
+  @import "../../assets/less/common";
+
+  .module {
+    margin: 0;
+    position: relative;
+    padding-bottom: unit(20, rpx);
+    background-color: transparent;
+    .module-content {
+      background-color: @white;
+      .module-header {
+        padding: unit(30, rpx) unit(30, rpx) 0;
+        .module-title {
+          height: unit(32, rpx);
+          line-height: unit(32, rpx);
+          padding-left: unit(20, rpx);
+          border-left: 4px solid @theme2;
+          font-size: @fontSize5;
+          letter-spacing: 0.5px;
+          font-weight: bold;
+          color: @fontColor1;
+        }
+      }
+      .module-body {
+        .module-context {
+          .module-map {
+            padding: unit(30, rpx);
+            .map-content {
+              position: relative;
+              .map-canvas {
+                width: 100%;
+                height: unit(400, rpx);
+              }
+              .map-marker {
+                position: absolute;
+                top: calc(50% - unit(40, rpx));
+                left: 50%;
+                transform: translate3d(-50%, -50%, 0);
+                .marker-container {
+                  .marker-content {
+                    position: relative;
+                    .marker-text {
+                      position: relative;
+                      z-index: 2;
+                      height: unit(90, rpx);
+                      line-height: unit(90, rpx);
+                      padding: 0 unit(30, rpx);
+                      background-color: @white;
+                      border-radius: @borderRadius1;
+                      box-shadow: 0 0 15px rgba(0, 0, 0, .05);
+                      letter-spacing: 0.5px;
+                      font-size: @fontSize3;
+                      color: @fontColor1;
+                    }
+                    .marker-icon {
+                      width: 0;
+                      height: 0;
+                      position: absolute;
+                      left: 50%;
+                      bottom: unit(-20, rpx);
+                      z-index: 2;
+                      transform: translateX(-50%);
+                      border-top: unit(20, rpx) solid @white;
+                      border-left: unit(20, rpx) solid transparent;
+                      border-right: unit(20, rpx) solid transparent;
+                    }
+                    .marker-circle {
+                      width: unit(40, rpx);
+                      height: unit(40, rpx);
+                      position: absolute;
+                      left: 50%;
+                      bottom: unit(-40, rpx);
+                      transform: translateX(-50%);
+                      border-radius: @borderRadius3;
+                      border: 1px solid rgba(255, 153, 0, 1);
+                      background-color: rgba(255, 153, 0, 0.5);
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      .module-footer {
+
+      }
+    }
+  }
+
+</style>

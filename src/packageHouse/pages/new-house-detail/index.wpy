@@ -133,19 +133,7 @@
                 <div class="module-footer"></div>
               </div>
             </div>
-            <div class="module">
-              <div class="module-content">
-                <div class="module-header">
-                  <div class="module-title">主力户型</div>
-                </div>
-                <div class="module-body">
-                  <div class="module-context">
-                    <layout></layout>
-                  </div>
-                </div>
-                <div class="module-footer"></div>
-              </div>
-            </div>
+            <detail-layout></detail-layout>
             <div class="module">
               <div class="module-content">
                 <div class="module-header">
@@ -786,7 +774,7 @@
   'loading': '../../../components/loading/loading',
   'error': '../../../components/error/error',
   'lazy-image':'../../../components/lazy-image/lazy-image',
-  'layout':'../../../components/layout/layout',
+  'detail-layout':'../../../components/detail-layout/detail-layout',
   }
   }
 </config>

@@ -1,0 +1,151 @@
+<template>
+  <div class="fixed-bar">
+    <div class="fixed-left">
+      <div class="agent-img">
+        <img src="../../assets/images/agent.jpg"/>
+      </div>
+      <div class="agent-info">
+        <div class="agent-name">{{item.agency[0].name}}</div>
+        <div class="agent-desc">{{item.agency_com_name}}</div>
+      </div>
+    </div>
+    <div class="fixed-right">
+      <div class="btn btn-msg col-6" @tap="onHandleMessage(item.agency[0].id)">
+        <text class="btn-icon iconfont icon-msg"></text>
+        <text class="btn-text">微聊</text>
+      </div>
+      <div class="btn btn-tel col-6" @tap="onHandlePhone(item.agency[0].tel)">
+        <text class="btn-icon iconfont icon-tel"></text>
+        <text class="btn-text">电话</text>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script type="text/ecmascript-6">
+  import wepy from '@wepy/core';
+  import * as $routes from '../../router';
+
+  wepy.component({
+    data: {},
+    events: {},
+    props: {
+      item: {
+        type: Object,
+        default: {}
+      }
+    },
+    methods: {
+      onHandlePhone(phoneNumber) {
+        wx.makePhoneCall({
+          phoneNumber: phoneNumber,
+          success: (res) => {
+            console.log(res);
+          },
+          fail: (err) => {
+            console.log(err);
+          },
+          complete: (res) => {
+            console.log(res);
+          }
+        });
+      },
+      onHandleMessage(id) {
+        wx.navigateTo({
+          url: $routes.MESSAGE.path + '?id=' + id
+        });
+      }
+    },
+    created() {
+    }
+  });
+</script>
+
+<style scoped lang="less">
+  @import "../../assets/less/variable";
+  @import "../../assets/less/common";
+
+  .fixed-bar {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 1000;
+    background-color: @white;
+    box-shadow: 0 0 15px @boxShadow1;
+    .fixed-left {
+      width: 36%;
+      height: unit(110, rpx);
+      line-height: unit(110, rpx);
+      padding-left: unit(30, rpx);
+      text-align: left;
+      font-size: 0;
+      .agent-img {
+        width: unit(70, rpx);
+        height: unit(70, rpx);
+        display: inline-block;
+        vertical-align: middle;
+        image {
+          width: 100%;
+          height: 100%;
+          border-radius: 100%;
+          box-shadow: 0 0 15px @boxShadow1;
+        }
+      }
+      .agent-info {
+        width: auto;
+        line-height: unit(32, rpx);
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: unit(10, rpx);
+        letter-spacing: 0.5px;
+        font-size: 0;
+        .agent-name {
+          font-size: @fontSize3;
+          font-weight: bold;
+          color: @fontColor1;
+        }
+        .agent-desc {
+          font-size: @fontSize1;
+          color: @fontColor3;
+        }
+      }
+    }
+    .fixed-right {
+      width: 64%;
+      display: flex;
+      font-size: 0;
+      .btn {
+        height: unit(110, rpx);
+        line-height: unit(110, rpx);
+        text-align: center;
+        color: @white;
+        &.btn-msg {
+          background-color: @theme1;
+        }
+        &.btn-tel {
+          background-color: @theme2;
+        }
+        .btn-icon {
+          display: inline-block;
+          vertical-align: middle;
+          height: unit(110, rpx);
+          line-height: unit(110, rpx);
+          margin-right: unit(10, rpx);
+          font-size: @fontSize8;
+        }
+        .btn-text {
+          display: inline-block;
+          vertical-align: middle;
+          height: unit(110, rpx);
+          line-height: unit(110, rpx);
+          font-size: @fontSize6;
+          letter-spacing: 1px;
+        }
+      }
+    }
+  }
+
+</style>

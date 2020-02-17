@@ -1,0 +1,28 @@
+
+<view class="module">
+  <view class="module-content">
+    <view class="module-header">
+      <view class="module-title">周边信息</view>
+    </view>
+    <view class="module-body">
+      <view class="module-context">
+        <view class="module-map">
+          <view class="map-content">
+            <map longitude="{{longitude}}" latitude="{{latitude}}" enable-zoom="{{enableZoom}}" enable-scroll="{{enableScroll}}" data-wpy-evt="114-3" bindtap="_proxy" class="map-canvas">
+            </map>
+            <view class="map-marker">
+              <view class="marker-container">
+                <view class="marker-content">
+                  <view class="marker-text">{{name}}</view>
+                  <view class="marker-icon"></view>
+                  <view class="marker-circle"></view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="module-footer"></view>
+  </view>
+</view>

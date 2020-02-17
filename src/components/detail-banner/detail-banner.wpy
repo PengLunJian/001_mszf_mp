@@ -1,0 +1,255 @@
+<template>
+  <div class="module">
+    <div class="module-content">
+      <div class="module-body">
+        <div class="module-context">
+          <div class="module-banner">
+            <div class="banner-swiper">
+              <swiper class="swiper"
+                      autoplay="{{autoplay}}"
+                      circular="{{circular}}"
+                      @change="onHandleSwiperChange">
+                <swiper-item v-for="(item,index) in items" :key="index"
+                             @tap="onHandleLargeImage(index)">
+                  <lazy-image class="swiper-img" src="{{item.url}}" lazyStyle="width:120px;height:60px;"/>
+                </swiper-item>
+              </swiper>
+            </div>
+            <div class="banner-code">
+              <span class="banner-label">{{current}}/{{items.length}}</span>
+            </div>
+            <div class="banner-btns">
+              <button class="btn-favorite" @tap="onHandleFollow">
+                <span class="btn-icon iconfont icon-favorite{{isData.isFollow?' active':''}}"></span>
+                <span class="btn-text">收藏</span>
+              </button>
+              <button class="btn-forward" open-type="share">
+                <span class="btn-icon iconfont icon-forward"></span>
+                <span class="btn-text">分享</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script type="text/ecmascript-6">
+  import wepy from '@wepy/core';
+
+  wepy.component({
+    data: {
+      items: [
+        {
+          url: 'http://sersms.com:7000/house/v1/file/static/userfile/202001/13/1216582503799492608.jpg'
+        },
+        {
+          url: 'http://sersms.com:7000/house/v1/file/static/userfile/202001/13/1216581838603849728.jpg'
+        }
+      ],
+      current: 1,
+      autoplay: false,
+      circular: true
+    },
+    props: {
+      isData: {
+        type: Object,
+        default: {}
+      }
+    },
+    events: {},
+    methods: {
+      onHandleLargeImage(index) {
+        wx.previewImage({
+          current: this.items[index].url,
+          urls: [
+            this.items[0].url,
+            this.items[1].url
+          ]
+        });
+      },
+      onHandleSwiperChange(e) {
+        const current = e.$wx.detail.current;
+        this.current = current + 1;
+      },
+      exeAjaxHouseFollow() {
+        const {house_id} = this.$wx.options;
+        this.ajaxHouseFollow({house_id})
+          .then((res) => {
+            const {success} = res.payload;
+            if (success) {
+              this.showToast('收藏成功');
+            } else {
+              this.showToast('收藏失败');
+            }
+            console.log(res);
+          })
+          .catch((err) => {
+            this.showToast('收藏失败');
+            console.log(err);
+          });
+      },
+      exeAjaxHouseUnfollow() {
+        const {house_id} = this.$wx.options;
+        this.ajaxHouseUnfollow({house_id})
+          .then((res) => {
+            const {success} = res.payload;
+            if (success) {
+              this.showToast('取消收藏成功');
+            } else {
+              this.showToast('取消收藏失败');
+            }
+            console.log(res);
+          })
+          .catch((err) => {
+            this.showToast('取消收藏失败');
+            console.log(err);
+          });
+      },
+      onHandleFollow() {
+        this.exeAjaxHouseFollow();
+      }
+    },
+    created() {
+    }
+  });
+</script>
+
+<style scoped lang="less">
+  @import "../../assets/less/variable";
+  @import "../../assets/less/common";
+
+  .module {
+    margin: 0;
+    position: relative;
+    background-color: transparent;
+    .module-content {
+      background-color: @white;
+      .module-header {
+        padding: unit(30, rpx) unit(30, rpx) 0;
+        .module-title {
+          height: unit(32, rpx);
+          line-height: unit(32, rpx);
+          padding-left: unit(20, rpx);
+          border-left: 4px solid @theme2;
+          font-size: @fontSize5;
+          letter-spacing: 0.5px;
+          font-weight: bold;
+          color: @fontColor1;
+        }
+      }
+      .module-body {
+        .module-context {
+          .module-banner {
+            .banner-swiper {
+              position: relative;
+              .swiper {
+                height: unit(520, rpx);
+                .swiper-img {
+                  width: 100%;
+                  height: 100%;
+                }
+              }
+            }
+            .banner-code {
+              width: 100%;
+              position: absolute;
+              left: 0;
+              bottom: unit(30, rpx);
+              text-align: center;
+              font-size: 0;
+              .banner-label {
+                height: unit(44, rpx);
+                line-height: unit(44, rpx);
+                min-width: unit(90, rpx);
+                display: inline-block;
+                padding: 0 unit(20, rpx);
+                border-radius: unit(44, rpx);
+                background-color: rgba(0, 0, 0, .5);
+                font-size: @fontSize1;
+                color: @white;
+              }
+            }
+            .banner-btns {
+              .btn-favorite {
+                width: unit(90, rpx);
+                height: unit(90, rpx);
+                border-radius: 100%;
+                position: absolute;
+                right: unit(40, rpx);
+                bottom: unit(-60, rpx);
+                z-index: 1;
+                overflow: hidden;
+                background-color: @white;
+                text-align: center;
+                .btn-icon {
+                  display: block;
+                  height: unit(60, rpx);
+                  line-height: unit(70, rpx);
+                  font-size: @fontSize7;
+                  color: @fontColor3;
+                  &:before {
+                    content: '\e633';
+                  }
+                  &.active {
+                    &:before {
+                      content: '\e63c';
+                    }
+                  }
+                }
+                .btn-text {
+                  display: block;
+                  height: unit(30, rpx);
+                  line-height: unit(30, rpx);
+                  font-size: unit(22, rpx);
+                  color: @fontColor3;
+                }
+              }
+              .btn-forward {
+                position: absolute;
+                top: unit(100, rpx);
+                right: unit(-30, rpx);
+                z-index: 1;
+                overflow: hidden;
+                border-radius: unit(60, rpx);
+                padding: 0 unit(50, rpx) 0 unit(20, rpx);
+                background: -webkit-linear-gradient(left, @theme2, @theme1);
+                box-shadow: 0 0 15px rgba(0, 0, 0, .05);
+                text-align: left;
+                font-size: 0;
+                color: @white;
+                .btn-icon {
+                  height: unit(60, rpx);
+                  display: inline-block;
+                  vertical-align: middle;
+                  line-height: unit(60, rpx);
+                  font-size: @fontSize5;
+                }
+                .btn-text {
+                  height: unit(60, rpx);
+                  display: inline-block;
+                  vertical-align: middle;
+                  padding-left: unit(4, rpx);
+                  line-height: unit(60, rpx);
+                  font-size: @fontSize1;
+                }
+              }
+            }
+          }
+        }
+      }
+      .module-footer {
+
+      }
+    }
+  }
+</style>
+
+<config>
+  {
+  usingComponents: {
+  'lazy-image': '../lazy-image/lazy-image'
+  }
+  }
+</config>

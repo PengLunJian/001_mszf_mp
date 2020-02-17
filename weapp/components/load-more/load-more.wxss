@@ -54,9 +54,6 @@ button:after {
   margin-bottom: 20rpx;
   background-color: #ffffff;
 }
-.module:last-child {
-  margin: 0;
-}
 .btn {
   position: relative;
 }

@@ -1,0 +1,220 @@
+<template>
+
+  <div class="module">
+    <div class="module-content">
+      <div class="module-header">
+        <div class="module-title">主力户型</div>
+      </div>
+      <div class="module-body">
+        <div class="module-context">
+          <div class="module-layout">
+            <scroll-view
+              class="scroll-view"
+              scroll-x="{{true}}">
+              <div class="layout-items">
+                <div class="layout-item">
+                  <div class="item-img">
+                    <lazy-image
+                      src="http://sersms.com:7000/house/v1/file/static/userfile/202002/17/1229324433378316288.jpg"/>
+                  </div>
+                  <div class="item-info">
+                    <div class="item-row">
+                      <div class="item-layout">3室2厅1卫</div>
+                      <div class="item-size">95m²</div>
+                    </div>
+                    <div class="item-row">
+                      <div class="item-state state1">在售</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="layout-item">
+                  <div class="item-img">
+                    <lazy-image
+                      src="http://sersms.com:7000/house/v1/file/static/userfile/202002/17/1229324433378316288.jpg"/>
+                  </div>
+                  <div class="item-info">
+                    <div class="item-row">
+                      <div class="item-layout">3室2厅1卫</div>
+                      <div class="item-size">95m²</div>
+                    </div>
+                    <div class="item-row">
+                      <div class="item-state state1">在售</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="layout-item">
+                  <div class="item-img">
+                    <lazy-image
+                      src="http://sersms.com:7000/house/v1/file/static/userfile/202002/17/1229324433378316288.jpg"/>
+                  </div>
+                  <div class="item-info">
+                    <div class="item-row">
+                      <div class="item-layout">3室2厅1卫</div>
+                      <div class="item-size">95m²</div>
+                    </div>
+                    <div class="item-row">
+                      <div class="item-state state1">在售</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="layout-item">
+                  <div class="item-img">
+                    <lazy-image
+                      src="http://sersms.com:7000/house/v1/file/static/userfile/202002/17/1229324433378316288.jpg"/>
+                  </div>
+                  <div class="item-info">
+                    <div class="item-row">
+                      <div class="item-layout">3室2厅1卫</div>
+                      <div class="item-size">95m²</div>
+                    </div>
+                    <div class="item-row">
+                      <div class="item-state state1">在售</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="layout-item">
+                  <div class="item-img">
+                    <lazy-image
+                      src="http://sersms.com:7000/house/v1/file/static/userfile/202002/17/1229324433378316288.jpg"/>
+                  </div>
+                  <div class="item-info">
+                    <div class="item-row">
+                      <div class="item-layout">3室2厅1卫</div>
+                      <div class="item-size">95m²</div>
+                    </div>
+                    <div class="item-row">
+                      <div class="item-state state1">在售</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="layout-item">
+                  <div class="item-img">
+                    <lazy-image
+                      src="http://sersms.com:7000/house/v1/file/static/userfile/202002/17/1229324433378316288.jpg"/>
+                  </div>
+                  <div class="item-info">
+                    <div class="item-row">
+                      <div class="item-layout">3室2厅1卫</div>
+                      <div class="item-size">95m²</div>
+                    </div>
+                    <div class="item-row">
+                      <div class="item-state state1">在售</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </scroll-view>
+          </div>
+        </div>
+      </div>
+      <div class="module-footer"></div>
+    </div>
+  </div>
+</template>
+
+<script type="text/ecmascript-6">
+  import wepy from '@wepy/core';
+
+  wepy.component({
+    data: {},
+    events: {},
+    methods: {},
+    created() {
+    }
+  });
+</script>
+
+<style scoped lang="less">
+  @import "../../assets/less/variable";
+  @import "../../assets/less/common";
+
+  .module {
+    position: relative;
+    background-color: transparent;
+    .module-content {
+      background-color: @white;
+      .module-header {
+        padding: unit(30, rpx) unit(30, rpx) 0;
+        .module-title {
+          height: unit(32, rpx);
+          line-height: unit(32, rpx);
+          padding-left: unit(20, rpx);
+          border-left: 4px solid @theme2;
+          font-size: @fontSize5;
+          letter-spacing: 0.5px;
+          font-weight: bold;
+          color: @fontColor1;
+        }
+      }
+      .module-body {
+        .module-context {
+          .module-layout {
+            padding: unit(30, rpx);
+            .scroll-view {
+              .layout-items {
+                display: flex;
+                .layout-item {
+                  margin-right: unit(30, rpx);
+                  .item-img {
+                    width: unit(250, rpx);
+                    height: unit(250, rpx);
+                    border: 0.5px solid @borderColor1;
+                  }
+                  .item-info {
+                    font-size: 0;
+                    .item-layout,
+                    .item-size {
+                      display: inline-block;
+                      vertical-align: middle;
+                      height: unit(40, rpx);
+                      line-height: unit(40, rpx);
+                      margin-top: unit(8, rpx);
+                      font-size: @fontSize2;
+                      color: @fontColor1;
+                      &.item-size {
+                        padding-left: unit(10, rpx);
+                      }
+                    }
+                    .item-state {
+                      display: inline-block;
+                      height: unit(40, rpx);
+                      line-height: unit(40, rpx);
+                      margin-top: unit(8, rpx);
+                      padding: 0 unit(10, rpx);
+                      font-size: @fontSize1;
+                      color: @white;
+                      &.state1 {
+                        background-color: @stateColor1;
+                      }
+                      &.state2 {
+                        background-color: @stateColor2;
+                      }
+                      &.state3 {
+                        background-color: @stateColor3;
+                      }
+                    }
+                  }
+                  &:last-child {
+                    margin: 0;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      .module-footer {
+
+      }
+    }
+  }
+
+</style>
+
+<config>
+  {
+  usingComponents: {
+  'lazy-image': '../lazy-image/lazy-image'
+  }
+  }
+</config>

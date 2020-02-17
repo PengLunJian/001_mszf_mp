@@ -5,7 +5,7 @@ exports.default = createAction;
 
 var _invariant = _interopRequireDefault(__wepy_require(33));
 
-var _isFunction = _interopRequireDefault(__wepy_require(6));
+var _isFunction = _interopRequireDefault(__wepy_require(7));
 
 var _identity = _interopRequireDefault(__wepy_require(11));
 
