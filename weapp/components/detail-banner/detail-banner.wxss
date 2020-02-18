@@ -334,11 +334,12 @@ button:after {
 .module .module-content .module-body .module-context .module-banner .banner-btns .btn-forward {
   position: absolute;
   top: 100rpx;
-  right: -30rpx;
+  right: 0;
   z-index: 1;
   overflow: hidden;
-  border-radius: 60rpx;
-  padding: 0 50rpx 0 20rpx;
+  padding: 0 20rpx;
+  border-top-left-radius: 30rpx;
+  border-bottom-left-radius: 30rpx;
   background: -webkit-linear-gradient(left, #FF9900, #FFCC00);
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
   text-align: left;

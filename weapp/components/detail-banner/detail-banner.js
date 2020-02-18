@@ -53,6 +53,7 @@ _core["default"].component({
     exeAjaxHouseFollow: function exeAjaxHouseFollow() {
       var _this = this;
 
+      console.log(this);
       var params = {
         house_id: this.isData.id
       };
@@ -99,63 +100,21 @@ _core["default"].component({
     }
   }),
   created: function created() {}
-}, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'110-6': {"change": function proxy () {
+}, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'110-51': {"change": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleSwiperChange($event)
       })();
     
-  }},'110-7': {"tap": function proxy (index) {
+  }},'110-52': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {
         _vm.onHandleLargeImage(index)
       })();
     
-  }},'110-8': {"tap": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleFollow($event)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'110-6': {"change": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleSwiperChange($event)
-      })();
-    
-  }},'110-7': {"tap": function proxy (index) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleLargeImage(index)
-      })();
-    
-  }},'110-8': {"tap": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleFollow($event)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'110-6': {"change": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleSwiperChange($event)
-      })();
-    
-  }},'110-7': {"tap": function proxy (index) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleLargeImage(index)
-      })();
-    
-  }},'110-8': {"tap": function proxy () {
+  }},'110-53': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {

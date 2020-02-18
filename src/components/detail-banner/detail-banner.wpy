@@ -70,6 +70,7 @@
         this.current = current + 1;
       },
       exeAjaxHouseFollow() {
+        console.log(this);
         const params = {house_id: this.isData.id};
         this.ajaxHouseFollow(params)
           .then((res) => {
@@ -205,11 +206,12 @@
               .btn-forward {
                 position: absolute;
                 top: unit(100, rpx);
-                right: unit(-30, rpx);
+                right: 0;
                 z-index: 1;
                 overflow: hidden;
-                border-radius: unit(60, rpx);
-                padding: 0 unit(50, rpx) 0 unit(20, rpx);
+                padding: 0 unit(20, rpx);
+                border-top-left-radius: unit(30, rpx);
+                border-bottom-left-radius: unit(30, rpx);
                 background: -webkit-linear-gradient(left, @theme2, @theme1);
                 box-shadow: 0 0 15px rgba(0, 0, 0, .05);
                 text-align: left;
