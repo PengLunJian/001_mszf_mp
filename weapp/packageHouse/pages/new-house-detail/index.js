@@ -10,10 +10,6 @@ var _redux = require('../../../vendor.js')(1);
 
 var controller = _interopRequireWildcard(require('controller.js'));
 
-var $routes = _interopRequireWildcard(require('../../../router/index.js'));
-
-var _toast = _interopRequireDefault(require('../../../mixins/toast.js'));
-
 var _wxQqmapJssdk = _interopRequireDefault(require('../../../vendor.js')(2));
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
@@ -30,27 +26,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 _core["default"].page({
   store: _index["default"],
-  mixins: [_toast["default"]],
   data: {
-    items: [{
-      url: 'http://sersms.com:7000/house/v1/file/static/userfile/202001/13/1216582503799492608.jpg'
-    }, {
-      url: 'http://sersms.com:7000/house/v1/file/static/userfile/202001/13/1216581838603849728.jpg'
-    }],
-    current: 1,
-    autoplay: false,
-    circular: true,
     longitude: 0,
-    latitude: 0,
-    enableZoom: false,
-    enableScroll: false,
-    markers: [{
-      id: 1,
-      longitude: 0,
-      latitude: 0,
-      width: 30,
-      height: 30
-    }]
+    latitude: 0
   },
   computed: _objectSpread({}, (0, _redux.mapState)(controller.STATES)),
   methods: _objectSpread({}, (0, _redux.mapActions)(controller.ACTIONS), {
@@ -64,90 +42,11 @@ _core["default"].page({
         console.log(err);
       });
     },
-    exeAjaxHouseFollow: function exeAjaxHouseFollow() {
-      var _this = this;
-
-      var house_id = this.$wx.options.house_id;
-      this.ajaxHouseFollow({
-        house_id: house_id
-      }).then(function (res) {
-        var success = res.payload.success;
-
-        if (success) {
-          _this.showToast('收藏成功');
-        } else {
-          _this.showToast('收藏失败');
-        }
-
-        console.log(res);
-      })["catch"](function (err) {
-        _this.showToast('收藏失败');
-
-        console.log(err);
-      });
-    },
-    exeAjaxHouseUnfollow: function exeAjaxHouseUnfollow() {
-      var _this2 = this;
-
-      var house_id = this.$wx.options.house_id;
-      this.ajaxHouseUnfollow({
-        house_id: house_id
-      }).then(function (res) {
-        var success = res.payload.success;
-
-        if (success) {
-          _this2.showToast('取消收藏');
-        } else {
-          _this2.showToast('取消失败');
-        }
-
-        console.log(res);
-      })["catch"](function (err) {
-        _this2.showToast('取消失败');
-
-        console.log(err);
-      });
-    },
-    onHandleFollow: function onHandleFollow() {
-      this.exeAjaxHouseFollow();
-    },
-    onHandleLargeImage: function onHandleLargeImage(index) {
-      wx.previewImage({
-        current: this.items[index].url,
-        urls: [this.items[0].url, this.items[1].url]
-      });
-    },
-    onHandleClickMap: function onHandleClickMap() {
-      console.log('别摸我,我会爆炸的！');
-    },
-    onHandleSwiperChange: function onHandleSwiperChange(e) {
-      var current = e.$wx.detail.current;
-      this.current = current + 1;
-    },
-    onHandlePhone: function onHandlePhone(phoneNumber) {
-      wx.makePhoneCall({
-        phoneNumber: phoneNumber,
-        success: function success(res) {
-          console.log(res);
-        },
-        fail: function fail(err) {
-          console.log(err);
-        },
-        complete: function complete(res) {
-          console.log(res);
-        }
-      });
-    },
-    onHandleMessage: function onHandleMessage(id) {
-      wx.navigateTo({
-        url: $routes.MESSAGE.path + '?id=' + id
-      });
-    },
     onRefresh: function onRefresh() {
       this.exeAjaxHouseDetail();
     },
     onHandleInitQQMap: function onHandleInitQQMap() {
-      var _this3 = this;
+      var _this = this;
 
       var qqmapsdk = new _wxQqmapJssdk["default"]({
         key: 'CQABZ-RINL4-5MAU4-DBWDV-D2UXZ-5GBEU'
@@ -155,7 +54,7 @@ _core["default"].page({
       qqmapsdk.geocoder({
         address: '安徽省宣城市广德市桃州镇水岸阳光城一区13栋',
         success: function success(res) {
-          _this3.onUpdateLocation(res);
+          _this.onUpdateLocation(res);
         },
         complete: function complete(res) {
           console.log(res);
@@ -184,67 +83,11 @@ _core["default"].page({
     this.onHandleInitQQMap();
     this.exeAjaxHouseDetail();
   }
-}, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\..\\components\\error\\error"},"lazy-image":{"path":"..\\..\\..\\components\\lazy-image\\lazy-image"},"detail-layout":{"path":"..\\..\\..\\components\\detail-layout\\detail-layout"}},"on":{"6-0":["refresh"]}}, handlers: {'6-0': {"refresh": function proxy () {
+}, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\..\\components\\error\\error"},"detail-banner":{"path":"..\\..\\..\\components\\detail-banner\\detail-banner"},"detail-base":{"path":"..\\..\\..\\components\\detail-base\\detail-base"},"detail-agent":{"path":"..\\..\\..\\components\\detail-agent\\detail-agent"},"detail-layout":{"path":"..\\..\\..\\components\\detail-layout\\detail-layout"},"detail-map":{"path":"..\\..\\..\\components\\detail-map\\detail-map"},"detail-footer":{"path":"..\\..\\..\\components\\detail-footer\\detail-footer"}},"on":{"6-9":["refresh"]}}, handlers: {'6-9': {"refresh": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onRefresh($event)
-      })();
-    
-  }},'6-1': {"change": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleSwiperChange($event)
-      })();
-    
-  }},'6-2': {"tap": function proxy (index) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleLargeImage(index)
-      })();
-    
-  }},'6-3': {"tap": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleFollow($event)
-      })();
-    
-  }},'6-4': {"tap": function proxy (item) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleMessage(item.id)
-      })();
-    
-  }},'6-5': {"tap": function proxy (item) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandlePhone(item.tel)
-      })();
-    
-  }},'6-6': {"tap": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleClickMap($event)
-      })();
-    
-  }},'6-7': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleMessage(_vm.isData.agency[0].id)
-      })();
-    
-  }},'6-8': {"tap": function proxy () {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandlePhone(_vm.isData.agency[0].tel)
       })();
     
   }}}, models: {} });

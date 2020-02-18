@@ -9,14 +9,14 @@
                       autoplay="{{autoplay}}"
                       circular="{{circular}}"
                       @change="onHandleSwiperChange">
-                <swiper-item v-for="(item,index) in items" :key="index"
+                <swiper-item v-for="(item,index) in isData.pic_url" :key="index"
                              @tap="onHandleLargeImage(index)">
-                  <lazy-image class="swiper-img" src="{{item.url}}" lazyStyle="width:120px;height:60px;"/>
+                  <lazy-image class="swiper-img" src="{{item}}" lazyStyle="width:120px;height:60px;"/>
                 </swiper-item>
               </swiper>
             </div>
             <div class="banner-code">
-              <span class="banner-label">{{current}}/{{items.length}}</span>
+              <span class="banner-label">{{current}}/{{isData.pic_url.length}}</span>
             </div>
             <div class="banner-btns">
               <button class="btn-favorite" @tap="onHandleFollow">
@@ -37,17 +37,15 @@
 
 <script type="text/ecmascript-6">
   import wepy from '@wepy/core';
+  import store from '../../store';
+  import {mapActions} from '@wepy/redux';
+  import * as controller from './controller';
+  import Toast from '../../mixins/toast';
 
   wepy.component({
+    store,
+    mixins: [Toast],
     data: {
-      items: [
-        {
-          url: 'http://sersms.com:7000/house/v1/file/static/userfile/202001/13/1216582503799492608.jpg'
-        },
-        {
-          url: 'http://sersms.com:7000/house/v1/file/static/userfile/202001/13/1216581838603849728.jpg'
-        }
-      ],
       current: 1,
       autoplay: false,
       circular: true
@@ -60,13 +58,11 @@
     },
     events: {},
     methods: {
+      ...mapActions(controller.ACTIONS),
       onHandleLargeImage(index) {
         wx.previewImage({
-          current: this.items[index].url,
-          urls: [
-            this.items[0].url,
-            this.items[1].url
-          ]
+          current: this.isData.pic_url[index],
+          urls: this.isData.pic_url
         });
       },
       onHandleSwiperChange(e) {
@@ -74,8 +70,8 @@
         this.current = current + 1;
       },
       exeAjaxHouseFollow() {
-        const {house_id} = this.$wx.options;
-        this.ajaxHouseFollow({house_id})
+        const params = {house_id: this.isData.id};
+        this.ajaxHouseFollow(params)
           .then((res) => {
             const {success} = res.payload;
             if (success) {
@@ -91,8 +87,8 @@
           });
       },
       exeAjaxHouseUnfollow() {
-        const {house_id} = this.$wx.options;
-        this.ajaxHouseUnfollow({house_id})
+        const params = {house_id: this.isData.id};
+        this.ajaxHouseUnfollow(params)
           .then((res) => {
             const {success} = res.payload;
             if (success) {

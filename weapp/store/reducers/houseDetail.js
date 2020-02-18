@@ -11,6 +11,8 @@ var _reduxActions = require('../../vendor.js')(47);
 
 var actionTypes = _interopRequireWildcard(require('../actionTypes.js'));
 
+var utils = _interopRequireWildcard(require('../../utils/index.js'));
+
 var states = _interopRequireWildcard(require('../states.js'));
 
 var _actions;
@@ -32,6 +34,7 @@ var actions = (_actions = {}, _defineProperty(_actions, actionTypes.SELECT_HOUSE
     isFailure: false
   });
 }), _defineProperty(_actions, actionTypes.SELECT_HOUSEDETAIL_SUCCESS, function (state, action) {
+  var items = ['http://sersms.com:7000/house/v1/file/static/userfile/202001/13/1216582503799492608.jpg', 'http://sersms.com:7000/house/v1/file/static/userfile/202001/13/1216581838603849728.jpg'];
   var configs = [{
     icon: 'icon-item01',
     label: '卫生间',
@@ -92,7 +95,10 @@ var actions = (_actions = {}, _defineProperty(_actions, actionTypes.SELECT_HOUSE
 
   var _ref = action.data || {},
       fagnwupeizhi = _ref.fagnwupeizhi,
-      release_time = _ref.release_time;
+      release_time = _ref.release_time,
+      kaipan = _ref.kaipan,
+      jiaofang = _ref.jiaofang,
+      tags = _ref.tags;
 
   if (fagnwupeizhi) {
     configs.map(function (item) {
@@ -102,8 +108,12 @@ var actions = (_actions = {}, _defineProperty(_actions, actionTypes.SELECT_HOUSE
     });
   }
 
+  action.data.pic_url = items;
   action.data.configs = configs;
   action.data.release_time = release_time.substring(0, 10);
+  action.data.tags = tags.split(' ');
+  action.data.kaipan = utils.dateFormat(kaipan, 'yyyy-mm-dd');
+  action.data.jiaofang = utils.dateFormat(jiaofang, 'yyyy-mm-dd');
   return _objectSpread({}, state, {
     isLoading: false,
     isSuccess: true,

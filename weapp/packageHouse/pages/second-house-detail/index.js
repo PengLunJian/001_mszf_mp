@@ -4,13 +4,11 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
 var _core = _interopRequireDefault(require('../../../vendor.js')(0));
 
-var _index = _interopRequireDefault(require('../../../store/index.js'));
+var _store = _interopRequireDefault(require('../../../store/index.js'));
 
 var _redux = require('../../../vendor.js')(1);
 
 var controller = _interopRequireWildcard(require('controller.js'));
-
-var _toast = _interopRequireDefault(require('../../../mixins/toast.js'));
 
 var _wxQqmapJssdk = _interopRequireDefault(require('../../../vendor.js')(2));
 
@@ -27,8 +25,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 _core["default"].page({
-  store: _index["default"],
-  mixins: [_toast["default"]],
+  store: _store["default"],
   data: {
     longitude: 0,
     latitude: 0
@@ -45,68 +42,11 @@ _core["default"].page({
         console.log(err);
       });
     },
-    exeAjaxHouseFollow: function exeAjaxHouseFollow() {
-      var _this = this;
-
-      var house_id = this.$wx.options.house_id;
-      this.ajaxHouseFollow({
-        house_id: house_id
-      }).then(function (res) {
-        var success = res.payload.success;
-
-        if (success) {
-          _this.showToast('收藏成功');
-        } else {
-          _this.showToast('收藏失败');
-        }
-
-        console.log(res);
-      })["catch"](function (err) {
-        _this.showToast('收藏失败');
-
-        console.log(err);
-      });
-    },
-    exeAjaxHouseUnfollow: function exeAjaxHouseUnfollow() {
-      var _this2 = this;
-
-      var house_id = this.$wx.options.house_id;
-      this.ajaxHouseUnfollow({
-        house_id: house_id
-      }).then(function (res) {
-        var success = res.payload.success;
-
-        if (success) {
-          _this2.showToast('取消收藏成功');
-        } else {
-          _this2.showToast('取消收藏失败');
-        }
-
-        console.log(res);
-      })["catch"](function (err) {
-        _this2.showToast('取消收藏失败');
-
-        console.log(err);
-      });
-    },
-    onHandleFollow: function onHandleFollow() {
-      this.exeAjaxHouseFollow();
-    },
-    onHandleLargeImage: function onHandleLargeImage(index) {
-      wx.previewImage({
-        current: this.items[index].url,
-        urls: [this.items[0].url, this.items[1].url]
-      });
-    },
-    onHandleSwiperChange: function onHandleSwiperChange(e) {
-      var current = e.$wx.detail.current;
-      this.current = current + 1;
-    },
     onRefresh: function onRefresh() {
       this.exeAjaxHouseDetail();
     },
     onHandleInitQQMap: function onHandleInitQQMap() {
-      var _this3 = this;
+      var _this = this;
 
       var qqmapsdk = new _wxQqmapJssdk["default"]({
         key: 'CQABZ-RINL4-5MAU4-DBWDV-D2UXZ-5GBEU'
@@ -114,7 +54,7 @@ _core["default"].page({
       qqmapsdk.geocoder({
         address: '安徽省宣城市广德市桃州镇水岸阳光城一区13栋',
         success: function success(res) {
-          _this3.onUpdateLocation(res);
+          _this.onUpdateLocation(res);
         },
         complete: function complete(res) {
           console.log(res);
@@ -143,7 +83,7 @@ _core["default"].page({
     this.onHandleInitQQMap();
     this.exeAjaxHouseDetail();
   }
-}, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\..\\components\\error\\error"},"lazy-image":{"path":"..\\..\\..\\components\\lazy-image\\lazy-image"},"detail-banner":{"path":"..\\..\\..\\components\\detail-banner\\detail-banner"},"detail-base-second":{"path":"..\\..\\..\\components\\detail-base-second\\detail-base-second"},"detail-agent":{"path":"..\\..\\..\\components\\detail-agent\\detail-agent"},"detail-config":{"path":"..\\..\\..\\components\\detail-config\\detail-config"},"detail-map":{"path":"..\\..\\..\\components\\detail-map\\detail-map"},"detail-footer":{"path":"..\\..\\..\\components\\detail-footer\\detail-footer"}},"on":{"10-0":["refresh"]}}, handlers: {'10-0': {"refresh": function proxy () {
+}, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\..\\components\\error\\error"},"detail-banner":{"path":"..\\..\\..\\components\\detail-banner\\detail-banner"},"detail-base":{"path":"..\\..\\..\\components\\detail-base\\detail-base"},"detail-agent":{"path":"..\\..\\..\\components\\detail-agent\\detail-agent"},"detail-config":{"path":"..\\..\\..\\components\\detail-config\\detail-config"},"detail-map":{"path":"..\\..\\..\\components\\detail-map\\detail-map"},"detail-footer":{"path":"..\\..\\..\\components\\detail-footer\\detail-footer"}},"on":{"10-1":["refresh"]}}, handlers: {'10-1': {"refresh": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {

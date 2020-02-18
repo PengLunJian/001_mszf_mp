@@ -11,8 +11,8 @@
           <scroll-view
             class="scroll-view"
             scroll-y="{{true}}">
-            <detail-banner></detail-banner>
-            <detail-base-second :item="isData"></detail-base-second>
+            <detail-banner :isData="isData"></detail-banner>
+            <detail-base :isData="isData"></detail-base>
             <detail-agent :items="isData.agency"></detail-agent>
             <detail-config :items="isData.configs"></detail-config>
             <detail-map :name="isData.xiaoqu"
@@ -29,16 +29,13 @@
 
 <script type="text/ecmascript-6">
   import wepy from '@wepy/core';
-  import store from '../../../store/index';
+  import store from '../../../store';
   import {mapState, mapActions} from '@wepy/redux';
   import * as controller from './controller';
-  import Toast from '../../../mixins/toast';
   import QQMapWX from 'wx-qqmap-jssdk';
 
   wepy.page({
     store,
-
-    mixins: [Toast],
 
     data: {
       longitude: 0,
@@ -60,56 +57,6 @@
           .catch((err) => {
             console.log(err);
           });
-      },
-      exeAjaxHouseFollow() {
-        const {house_id} = this.$wx.options;
-        this.ajaxHouseFollow({house_id})
-          .then((res) => {
-            const {success} = res.payload;
-            if (success) {
-              this.showToast('收藏成功');
-            } else {
-              this.showToast('收藏失败');
-            }
-            console.log(res);
-          })
-          .catch((err) => {
-            this.showToast('收藏失败');
-            console.log(err);
-          });
-      },
-      exeAjaxHouseUnfollow() {
-        const {house_id} = this.$wx.options;
-        this.ajaxHouseUnfollow({house_id})
-          .then((res) => {
-            const {success} = res.payload;
-            if (success) {
-              this.showToast('取消收藏成功');
-            } else {
-              this.showToast('取消收藏失败');
-            }
-            console.log(res);
-          })
-          .catch((err) => {
-            this.showToast('取消收藏失败');
-            console.log(err);
-          });
-      },
-      onHandleFollow() {
-        this.exeAjaxHouseFollow();
-      },
-      onHandleLargeImage(index) {
-        wx.previewImage({
-          current: this.items[index].url,
-          urls: [
-            this.items[0].url,
-            this.items[1].url
-          ]
-        });
-      },
-      onHandleSwiperChange(e) {
-        const current = e.$wx.detail.current;
-        this.current = current + 1;
       },
       onRefresh() {
         this.exeAjaxHouseDetail();
@@ -167,85 +114,6 @@
           .scroll-view {
             height: 100%;
           }
-          .fixed-bar {
-            width: 100%;
-            display: flex;
-            flex-wrap: wrap;
-            position: fixed;
-            left: 0;
-            bottom: 0;
-            z-index: 1000;
-            background-color: @white;
-            box-shadow: 0 0 15px @boxShadow1;
-            .fixed-bar-left {
-              display: flex;
-              width: 36%;
-              height: unit(110, rpx);
-              line-height: unit(110, rpx);
-              padding: 0 unit(20, rpx);
-              text-align: center;
-              font-size: 0;
-              .btn {
-                width: 50%;
-                padding-top: unit(18, rpx);
-                line-height: unit(40, rpx);
-                color: @fontColor3;
-                .btn-icon {
-                  display: block;
-                  font-size: @fontSize7;
-                }
-                .btn-text {
-                  display: block;
-                  font-size: @fontSize1;
-                }
-                &.btn-favorite {
-                  .btn-icon {
-                    &:before {
-                      content: '\e633';
-                    }
-                    &.active {
-                      &:before {
-                        content: '\e63c';
-                      }
-                    }
-                  }
-                }
-              }
-            }
-            .fixed-bar-right {
-              width: 64%;
-              display: flex;
-              font-size: 0;
-              .btn {
-                height: unit(110, rpx);
-                line-height: unit(110, rpx);
-                text-align: center;
-                color: @white;
-                &.btn-msg {
-                  background-color: @theme1;
-                }
-                &.btn-tel {
-                  background-color: @theme2;
-                }
-                .btn-icon {
-                  display: inline-block;
-                  vertical-align: middle;
-                  height: unit(110, rpx);
-                  line-height: unit(110, rpx);
-                  margin-right: unit(10, rpx);
-                  font-size: @fontSize8;
-                }
-                .btn-text {
-                  display: inline-block;
-                  vertical-align: middle;
-                  height: unit(110, rpx);
-                  line-height: unit(110, rpx);
-                  font-size: @fontSize6;
-                  letter-spacing: 1px;
-                }
-              }
-            }
-          }
         }
       }
       .footer {
@@ -261,9 +129,8 @@
   'top-bar': '../../../components/top-bar/top-bar',
   'loading': '../../../components/loading/loading',
   'error': '../../../components/error/error',
-  'lazy-image':'../../../components/lazy-image/lazy-image',
   'detail-banner':'../../../components/detail-banner/detail-banner',
-  'detail-base-second':'../../../components/detail-base-second/detail-base-second',
+  'detail-base':'../../../components/detail-base/detail-base',
   'detail-agent':'../../../components/detail-agent/detail-agent',
   'detail-config':'../../../components/detail-config/detail-config',
   'detail-map':'../../../components/detail-map/detail-map',

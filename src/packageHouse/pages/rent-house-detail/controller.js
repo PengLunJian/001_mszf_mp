@@ -8,7 +8,5 @@ export const STATES = {
 };
 
 export const ACTIONS = {
-  ajaxHouseDetail: params => actions.ajaxRequestHouseDetail(params),
-  ajaxHouseFollow: params => actions.ajaxRequestHouseFollow(params),
-  ajaxHouseUnfollow: params => actions.ajaxRequestHouseUnfollow(params)
+  ajaxHouseDetail: params => actions.ajaxRequestHouseDetail(params)
 };

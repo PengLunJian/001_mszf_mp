@@ -103,6 +103,9 @@ export const dateFormat = (date, format) => {
       case 'yyyy/mm/dd hh:mm:ss':
         dateStr = year + '/' + monthStr + '/' + dayStr + ' ' + hourStr + ':' + minuteStr + ':' + secondStr;
         break;
+      case 'yyyy-mm-dd':
+        dateStr = year + '-' + monthStr + '-' + dayStr;
+        break;
     }
     newDate = null;
   }

@@ -6,13 +6,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 
 _core["default"].component({
   data: {},
-  events: {},
   props: {
-    items: {
+    isData: {
       type: Object,
-      "default": []
+      "default": {}
     }
   },
+  events: {},
   methods: {},
   created: function created() {}
-}, {info: {"components":{},"on":{}}, handlers: {}, models: {} }, {info: {"components":{},"on":{}}, handlers: {}, models: {} }, {info: {"components":{},"on":{}}, handlers: {}, models: {} }, {info: {"components":{},"on":{}}, handlers: {}, models: {} });
+}, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {}, models: {} });

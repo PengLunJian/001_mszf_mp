@@ -1,0 +1,306 @@
+<template>
+  <div class="module">
+    <div class="module-content">
+      <div class="module-body">
+        <div class="module-context">
+          <div class="module-base" v-if="isData.type===1">
+            <div class="module-row row">
+              <div class="module-col col-12">
+                <div class="title ellipsis">{{isData.title}}</div>
+              </div>
+            </div>
+            <div class="module-row row">
+              <div class="module-col col-12">
+                <div class="item-tag item-state state1" v-if="isData.status===1">在售</div>
+                <div class="item-tag item-state state2" v-if="isData.status===2">待售</div>
+                <div class="item-tag item-state state3" v-if="isData.status===3">售罄</div>
+                <div class="item-tag" v-for="(item,index) in isData.tags" :key="index">{{item}}</div>
+              </div>
+            </div>
+            <div class="module-row row">
+              <div class="module-col col-6">
+                <span class="label">售价</span>
+                <span class="value">
+                  <span class="price">{{isData.price}}</span>
+                  <span class="unit">/m²</span>
+                </span>
+              </div>
+              <div class="module-col col-6">
+                <span class="label">建面</span>
+                <span class="value">90-{{isData.mianji}}m²</span>
+              </div>
+              <div class="module-col col-6">
+                <span class="label">户型</span>
+                <span class="value">2/3/4居</span>
+              </div>
+              <div class="module-col col-6">
+                <span class="label">开盘</span>
+                <span class="value">{{isData.kaipan}}</span>
+              </div>
+              <div class="module-col col-6">
+                <span class="label">交房</span>
+                <span class="value">{{isData.jiaofang}}</span>
+              </div>
+              <div class="module-col col-6">
+                <span class="label">类型</span>
+                <span class="value">{{isData.leixing}}</span>
+              </div>
+              <div class="module-col col-12">
+                <span class="label">地址</span>
+                <span class="value">{{isData.addr}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="module-base" v-if="isData.type===2">
+            <div class="module-row row">
+              <div class="module-col col-12">
+                <div class="title ellipsis">{{isData.title}}</div>
+              </div>
+            </div>
+            <div class="module-row row">
+              <div class="module-col col-4">
+                <div class="value">{{isData.total_price/10000}}万</div>
+                <div class="label">总价</div>
+              </div>
+              <div class="module-col col-4">
+                <div class="value">{{isData.huxing}}</div>
+                <div class="label">户型</div>
+              </div>
+              <div class="module-col col-4">
+                <div class="value">{{isData.mianji}}m²</div>
+                <div class="label">面积</div>
+              </div>
+            </div>
+            <div class="module-row row">
+              <div class="module-col col-6">
+                <span class="label">单价</span>
+                <span class="value">{{isData.price}}/元m²</span>
+              </div>
+              <div class="module-col col-6">
+                <span class="label">朝向</span>
+                <span class="value">{{isData.chaoxiang}}</span>
+              </div>
+              <div class="module-col col-6">
+                <span class="label">类型</span>
+                <span class="value">{{isData.leixing}}</span>
+              </div>
+              <div class="module-col col-6">
+                <span class="label">装修</span>
+                <span class="value">{{isData.zhaungxiu}}</span>
+              </div>
+              <div class="module-col col-6">
+                <span class="label">楼层</span>
+                <span class="value">{{isData.louceng}}</span>
+              </div>
+              <div class="module-col col-6">
+                <span class="label">年代</span>
+                <span class="value">{{isData.nianai}}</span>
+              </div>
+              <div class="module-col col-6">
+                <span class="label">小区</span>
+                <span class="value">{{isData.xiaoqu}}</span>
+              </div>
+              <div class="module-col col-6">
+                <span class="label">发布</span>
+                <span class="value">{{isData.release_time}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="module-base" v-if="isData.type===3">
+            <div class="module-row row">
+              <div class="module-col col-12">
+                <div class="title ellipsis">{{isData.title}}</div>
+              </div>
+            </div>
+            <div class="module-row row">
+              <div class="module-col col-4">
+                <div class="value">{{isData.price}}元/月</div>
+                <div class="label">租金</div>
+              </div>
+              <div class="module-col col-4">
+                <div class="value">{{isData.huxing}}</div>
+                <div class="label">户型</div>
+              </div>
+              <div class="module-col col-4">
+                <div class="value">{{isData.mianji}}m²</div>
+                <div class="label">面积</div>
+              </div>
+            </div>
+            <div class="module-row row">
+              <div class="module-col col-6">
+                <span class="label">看房时间</span>
+                <span class="value">{{isData.kanfangshijian}}</span>
+              </div>
+              <div class="module-col col-6">
+                <span class="label">支付</span>
+                <span class="value">{{isData.zhifufangshi}}</span>
+              </div>
+              <div class="module-col col-6">
+                <span class="label">出租方式</span>
+                <span class="value">{{isData.chuzufangshi}}</span>
+              </div>
+              <div class="module-col col-6">
+                <span class="label">朝向</span>
+                <span class="value">{{isData.chaoxiang}}</span>
+              </div>
+              <div class="module-col col-6">
+                <span class="label">楼层</span>
+                <span class="value">{{isData.louceng}}</span>
+              </div>
+              <div class="module-col col-6">
+                <span class="label">装修</span>
+                <span class="value">{{isData.zhaungxiu}}</span>
+              </div>
+              <div class="module-col col-6">
+                <span class="label">小区</span>
+                <span class="value">{{isData.xiaoqu}}</span>
+              </div>
+              <div class="module-col col-6">
+                <span class="label">发布</span>
+                <span class="value">{{isData.release_time}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script type="text/ecmascript-6">
+  import wepy from '@wepy/core';
+
+  wepy.component({
+    data: {},
+    props: {
+      isData: {
+        type: Object,
+        default: {}
+      }
+    },
+    events: {},
+    methods: {},
+    created() {
+    }
+  });
+</script>
+
+<style scoped lang="less">
+  @import "../../assets/less/variable";
+  @import "../../assets/less/common";
+
+  .module {
+    position: relative;
+    background-color: transparent;
+    .module-content {
+      background-color: @white;
+      .module-header {
+        padding: unit(30, rpx) unit(30, rpx) 0;
+        .module-title {
+          height: unit(32, rpx);
+          line-height: unit(32, rpx);
+          padding-left: unit(20, rpx);
+          border-left: 4px solid @theme2;
+          font-size: @fontSize5;
+          letter-spacing: 0.5px;
+          font-weight: bold;
+          color: @fontColor1;
+        }
+      }
+      .module-body {
+        .module-context {
+          .module-base {
+            padding: unit(30, rpx) 0;
+            .module-row {
+              line-height: unit(40, rpx);
+              margin-bottom: unit(20, rpx);
+              .module-col {
+                padding: 0 unit(30, rpx);
+                .title {
+                  line-height: unit(60, rpx);
+                  font-size: @fontSize6;
+                  font-weight: bold;
+                  color: @fontColor1;
+                }
+                .item-tag {
+                  height: unit(40, rpx);
+                  line-height: unit(40, rpx);
+                  display: inline-block;
+                  vertical-align: middle;
+                  padding: 0 unit(10, rpx);
+                  margin-right: unit(10, rpx);
+                  background-color: @stateColor;
+                  font-size: @fontSize1;
+                  color: @fontColor3;
+                  &.item-state {
+                    color: @white;
+                    &.state1 {
+                      background-color: @stateColor1;
+                    }
+                    &.state2 {
+                      background-color: @stateColor2;
+                    }
+                    &.state3 {
+                      background-color: @stateColor3;
+                    }
+                  }
+                  &:last-child {
+                    margin: 0;
+                  }
+                }
+                .value {
+                  .price {
+                    font-size: @fontSize5;
+                    font-weight: bold;
+                    color: @priceColor;
+                  }
+                  .unit {
+                    font-size: @fontSize1;
+                    color: @priceColor;
+                  }
+                }
+                &.col-4 {
+                  text-align: center;
+                  .value {
+                    margin-bottom: unit(20, rpx);
+                    font-size: @fontSize6;
+                    font-weight: bold;
+                    color: @priceColor;
+                  }
+                  .label {
+                    font-size: @fontSize1;
+                    color: @fontColor3;
+                  }
+                }
+                &.col-6,
+                &.col-12 {
+                  height: unit(60, rpx);
+                  line-height: unit(60, rpx);
+                  font-size: @fontSize3;
+                  .label {
+                    margin-right: unit(20, rpx);
+                    color: @fontColor3;
+                  }
+                }
+              }
+              &:last-child {
+                margin: 0;
+              }
+            }
+          }
+        }
+      }
+      .module-footer {
+
+      }
+    }
+  }
+</style>
+
+<config>
+  {
+  usingComponents: {
+  'lazy-image': '../lazy-image/lazy-image'
+  }
+  }
+</config>

@@ -43,14 +43,14 @@ _core["default"].component({
     }
   },
   created: function created() {}
-}, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'112-0': {"tap": function proxy (item) {
+}, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'112-2': {"tap": function proxy (item) {
     
     var _vm=this;
       return (function () {
         _vm.onHandleMessage(item.id)
       })();
     
-  }},'112-1': {"tap": function proxy (item) {
+  }},'112-3': {"tap": function proxy (item) {
     
     var _vm=this;
       return (function () {
