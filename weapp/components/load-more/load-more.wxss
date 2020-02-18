@@ -51,7 +51,8 @@ button:after {
   display: none;
 }
 .module {
-  margin-bottom: 20rpx;
+  position: relative;
+  margin-top: 20rpx;
   background-color: #ffffff;
 }
 .btn {

@@ -186,7 +186,8 @@ button:after {
   display: none;
 }
 .module {
-  margin-bottom: 20rpx;
+  position: relative;
+  margin-top: 20rpx;
   background-color: #ffffff;
 }
 .btn {
@@ -248,15 +249,6 @@ button:after {
   100% {
     transform: rotate(360deg);
   }
-}
-.module {
-  margin: 0;
-  position: relative;
-  padding-bottom: 20rpx;
-  background-color: transparent;
-}
-.module .module-content {
-  background-color: #ffffff;
 }
 .module .module-content .module-header {
   padding: 30rpx 30rpx 0;

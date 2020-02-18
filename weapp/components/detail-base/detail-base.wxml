@@ -22,7 +22,7 @@
               <label class="label">售价</label>
               <label class="value">
                 <label class="price">{{isData.price}}</label>
-                <label class="unit">/m²</label>
+                <label class="unit">元/m²</label>
               </label>
             </view>
             <view class="module-col col-6">

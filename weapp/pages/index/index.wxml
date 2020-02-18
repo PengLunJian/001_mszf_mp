@@ -20,52 +20,12 @@
     <view class="body">
       <view class="context">
         <scroll-view scroll-y="{{true}}" class="scroll-view">
-          <banner bind_init="_initComponent"></banner>
-          <customer-navigator bind_init="_initComponent"></customer-navigator>
-          <view class="module">
-            <view class="module-content">
-              <view class="module-header">
-                <view class="module-title">租房推荐</view>
-              </view>
-              <view class="module-body">
-                <view class="module-context">
-                  <block wx:for="{{ items }}" wx:for-index="index" wx:for-item="item" wx:key="index" key="{{ index }}">
-                    <rent-house-item bind_init="_initComponent" item="{{ item }}"></rent-house-item>
-                  </block>
-                </view>
-              </view>
-              <view class="module-footer"></view>
-            </view>
-          </view>
-          <view class="module">
-            <view class="module-content">
-              <view class="module-header">
-                <view class="module-title">二手房推荐</view>
-              </view>
-              <view class="module-body">
-                <view class="module-context">
-                  <block wx:for="{{ items }}" wx:for-index="index" wx:for-item="item" wx:key="index" key="{{ index }}">
-                    <second-house-item bind_init="_initComponent" item="{{ item }}"></second-house-item>
-                  </block>
-                </view>
-              </view>
-              <view class="module-footer"></view>
-            </view>
-          </view>
-          <view class="module">
-            <view class="module-content">
-              <view class="module-header">
-                <view class="module-title">新房推荐</view>
-              </view>
-              <view class="module-body">
-                <view class="module-context">
-                  <block wx:for="{{ items }}" wx:for-index="index" wx:for-item="item" wx:key="index" key="{{ index }}">
-                    <new-house-item bind_init="_initComponent" item="{{ item }}"></new-house-item>
-                  </block>
-                </view>
-              </view>
-              <view class="module-footer"></view>
-            </view>
+          <view class="scroll-inner">
+            <banner bind_init="_initComponent"></banner>
+            <customer-navigator bind_init="_initComponent"></customer-navigator>
+            <hot-house bind_init="_initComponent" items="{{ items1 }}" title="租房推荐"></hot-house>
+            <hot-house bind_init="_initComponent" items="{{ items2 }}" title="二手房推荐"></hot-house>
+            <hot-house bind_init="_initComponent" items="{{ items3 }}" title="新房推荐"></hot-house>
           </view>
         </scroll-view>
       </view>

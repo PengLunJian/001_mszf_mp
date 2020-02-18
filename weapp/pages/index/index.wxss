@@ -123,31 +123,7 @@
 .container .content .body .context .scroll-view {
   height: 100%;
 }
-.container .content .body .context .scroll-view .module {
-  position: relative;
-  margin: 20rpx 0 0 0;
-  background-color: transparent;
-}
-.container .content .body .context .scroll-view .module .module-content {
-  background-color: #ffffff;
-}
-.container .content .body .context .scroll-view .module .module-content .module-header {
-  padding: 30rpx 30rpx 0;
-}
-.container .content .body .context .scroll-view .module .module-content .module-header .module-title {
-  height: 32rpx;
-  line-height: 32rpx;
-  padding-left: 20rpx;
-  border-left: 4px solid #FF9900;
-  font-size: 32rpx;
-  letter-spacing: 0.5px;
-  font-weight: bold;
-  color: #333333;
-}
-.container .content .body .context .scroll-view .module .module-content .module-body .module-context {
-  min-height: 400rpx;
-}
-.container .content .body .context .scroll-view .module:last-child {
+.container .content .body .context .scroll-view .scroll-inner {
   padding-bottom: 20rpx;
 }
 

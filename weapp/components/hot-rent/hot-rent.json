@@ -1,0 +1,7 @@
+{
+    "component": true,
+    "usingComponents": {
+        "lazy-image": "../lazy-image/lazy-image",
+        "rent-house-item": "../rent-house-item/rent-house-item"
+    }
+}

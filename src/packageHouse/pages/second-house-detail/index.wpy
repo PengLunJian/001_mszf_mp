@@ -11,13 +11,15 @@
           <scroll-view
             class="scroll-view"
             scroll-y="{{true}}">
-            <detail-banner :isData="isData"></detail-banner>
-            <detail-base :isData="isData"></detail-base>
-            <detail-agent :items="isData.agency"></detail-agent>
-            <detail-config :items="isData.configs"></detail-config>
-            <detail-map :name="isData.xiaoqu"
-                        :longitude="longitude"
-                        :latitude="latitude"></detail-map>
+            <div class="scroll-inner">
+              <detail-banner :isData="isData"></detail-banner>
+              <detail-base :isData="isData"></detail-base>
+              <detail-agent :items="isData.agency"></detail-agent>
+              <detail-config :items="isData.configs"></detail-config>
+              <detail-map :name="isData.xiaoqu"
+                          :longitude="longitude"
+                          :latitude="latitude"></detail-map>
+            </div>
           </scroll-view>
           <detail-footer :item="isData"></detail-footer>
         </div>
@@ -113,6 +115,9 @@
           padding-bottom: unit(110, rpx);
           .scroll-view {
             height: 100%;
+            .scroll-inner {
+              padding-bottom: unit(20, rpx);
+            }
           }
         }
       }

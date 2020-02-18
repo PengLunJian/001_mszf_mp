@@ -22,7 +22,7 @@
                 <span class="label">售价</span>
                 <span class="value">
                   <span class="price">{{isData.price}}</span>
-                  <span class="unit">/m²</span>
+                  <span class="unit">元/m²</span>
                 </span>
               </div>
               <div class="module-col col-6">
@@ -190,10 +190,8 @@
   @import "../../assets/less/common";
 
   .module {
-    position: relative;
-    background-color: transparent;
+    margin: 0;
     .module-content {
-      background-color: @white;
       .module-header {
         padding: unit(30, rpx) unit(30, rpx) 0;
         .module-title {

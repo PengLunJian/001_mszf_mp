@@ -2,7 +2,7 @@
 	"description": "This is a property management applet",
 	"setting": {
 		"urlCheck": false,
-		"es6": true,
+		"es6": false,
 		"enhance": false,
 		"postcss": false,
 		"minified": true,
@@ -10,8 +10,6 @@
 		"coverView": true,
 		"nodeModules": true,
 		"autoAudits": false,
-		"showShadowRootInWxmlPanel": false,
-		"scopeDataCheck": false,
 		"uglifyFileName": false,
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
@@ -21,6 +19,8 @@
 			"disablePlugins": [],
 			"outputPath": ""
 		},
+		"showShadowRootInWxmlPanel": false,
+		"scopeDataCheck": false,
 		"bundle": false
 	},
 	"compileType": "miniprogram",

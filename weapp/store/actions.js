@@ -5,7 +5,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ajaxRequestHouseHistory = exports.ajaxRequestHouseFavorite = exports.ajaxRequestHouseUnfollow = exports.ajaxRequestHouseFollow = exports.ajaxRequestHouseDetail = exports.ajaxRequestHouseList = void 0;
+exports.ajaxRequestHotHouseRent = exports.ajaxRequestHouseHistory = exports.ajaxRequestHouseFavorite = exports.ajaxRequestHouseUnfollow = exports.ajaxRequestHouseFollow = exports.ajaxRequestHouseDetail = exports.ajaxRequestHouseList = void 0;
 
 var _apis = _interopRequireDefault(require('../apis/index.js'));
 
@@ -237,3 +237,28 @@ var ajaxRequestHouseHistory = (0, _reduxActions.createAction)('selectHouseHistor
   });
 });
 exports.ajaxRequestHouseHistory = ajaxRequestHouseHistory;
+var ajaxRequestHotHouseRent = (0, _reduxActions.createAction)('selectHotHouseRent', function (params) {
+  commit(actionTypes.SELECT_HOTHOUSERENT_REQUEST);
+  return new Promise(function (resolve, reject) {
+    _axios["default"].get(_apis["default"].selectHouseList, {
+      params: params
+    }).then(function (res) {
+      res = res || {};
+      var _res7 = res,
+          data = _res7.data,
+          success = _res7.success;
+
+      if (success) {
+        commit(actionTypes.SELECT_HOTHOUSERENT_SUCCESS, data);
+      } else {
+        commit(actionTypes.SELECT_HOTHOUSERENT_FAILURE);
+      }
+
+      resolve(res);
+    })["catch"](function (err) {
+      commit(actionTypes.SELECT_HOTHOUSERENT_FAILURE);
+      reject(err);
+    });
+  });
+});
+exports.ajaxRequestHotHouseRent = ajaxRequestHotHouseRent;

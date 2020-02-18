@@ -6,14 +6,16 @@
     </view>
     <view class="body">
       <loading bind_init="_initComponent" isLoading="{{ isLoading }}"></loading>
-      <error bind_init="_initComponent" isFailure="{{ isFailure }}" data-wpy-evt="8-1" bindrefresh="_proxy"></error>
+      <error bind_init="_initComponent" isFailure="{{ isFailure }}" data-wpy-evt="8-0" bindrefresh="_proxy"></error>
       <view wx:if="{{ isSuccess&&isData }}" class="context fade">
         <scroll-view scroll-y="{{true}}" class="scroll-view">
-          <detail-banner bind_init="_initComponent" isData="{{ isData }}"></detail-banner>
-          <detail-base bind_init="_initComponent" isData="{{ isData }}"></detail-base>
-          <detail-agent bind_init="_initComponent" items="{{ isData.agency }}"></detail-agent>
-          <detail-config bind_init="_initComponent" items="{{ isData.configs }}"></detail-config>
-          <detail-map bind_init="_initComponent" name="{{ isData.xiaoqu }}" longitude="{{ longitude }}" latitude="{{ latitude }}"></detail-map>
+          <view class="scroll-inner">
+            <detail-banner bind_init="_initComponent" isData="{{ isData }}"></detail-banner>
+            <detail-base bind_init="_initComponent" isData="{{ isData }}"></detail-base>
+            <detail-agent bind_init="_initComponent" items="{{ isData.agency }}"></detail-agent>
+            <detail-config bind_init="_initComponent" items="{{ isData.configs }}"></detail-config>
+            <detail-map bind_init="_initComponent" name="{{ isData.xiaoqu }}" longitude="{{ longitude }}" latitude="{{ latitude }}"></detail-map>
+          </view>
         </scroll-view>
         <detail-footer bind_init="_initComponent" item="{{ isData }}"></detail-footer>
       </view>

@@ -54,3 +54,24 @@ export const HOUSEFAVORITE_STATE = {
     data: null
   }
 };
+
+export const HOTHOUSERENT_STATE = {
+  isLoading: true,
+  isSuccess: false,
+  isFailure: false,
+  data: []
+};
+
+export const HOTHOUSESECOND_STATE = {
+  isLoading: true,
+  isSuccess: false,
+  isFailure: false,
+  data: []
+};
+
+export const HOTHOUSENEW_STATE = {
+  isLoading: true,
+  isSuccess: false,
+  isFailure: false,
+  data: []
+};

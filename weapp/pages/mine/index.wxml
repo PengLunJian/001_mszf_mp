@@ -6,18 +6,39 @@
     </view>
     <view class="body">
       <view class="context">
-        <view class="module user">
-          <view class="info">
-            <image src="../../assets/images/agent.jpg" class="img"></image>
-            <view class="name">WEB前端架构师</view>
+        <view class="module">
+          <view class="module-content">
+            <view class="module-body">
+              <view class="module-context">
+                <view class="module-user">
+                  <view class="user-bg">
+                    <lazy-image bind_init="_initComponent" src="http://sersms.com:7000/house/v1/file/static/userfile/202002/07/1225622956127174656.jpg"></lazy-image>
+                  </view>
+                  <view class="user-info">
+                    <image src="../../assets/images/agent.jpg" class="user-img"></image>
+                    <view class="user-name">WEB前端架构师</view>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view class="module-footer"></view>
           </view>
         </view>
-        <view class="module list">
-          <button wx:for="{{ items }}" wx:for-index="index" wx:for-item="item" wx:key="index" hover-class="none" key="{{ index }}" open-type="{{item.name==='意见反馈'?'feedback':''}}" data-wpy-evt="5-0" bindtap="_proxy" data-wpytap-a="{{ item }}" class="list-item btn">
-            <view class="list-item-icon iconfont {{item.icon}}"></view>
-            <view class="list-item-text">{{item.name}}</view>
-            <view class="list-item-next iconfont icon-next"></view>
-          </button>
+        <view class="module">
+          <view class="module-content">
+            <view class="module-body">
+              <view class="module-context">
+                <view class="module-list">
+                  <button wx:for="{{ items }}" wx:for-index="index" wx:for-item="item" wx:key="index" hover-class="none" key="{{ index }}" open-type="{{item.name==='意见反馈'?'feedback':''}}" data-wpy-evt="5-7" bindtap="_proxy" data-wpytap-a="{{ item }}" class="list-item btn">
+                    <view class="list-item-icon iconfont {{item.icon}}"></view>
+                    <view class="list-item-text">{{item.name}}</view>
+                    <view class="list-item-next iconfont icon-next"></view>
+                  </button>
+                </view>
+              </view>
+            </view>
+            <view class="module-footer"></view>
+          </view>
         </view>
       </view>
     </view>

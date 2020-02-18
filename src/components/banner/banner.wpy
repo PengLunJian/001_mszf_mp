@@ -7,7 +7,7 @@
               @change="onHandleSwiperChange">
         <swiper-item v-for="(item,index) in items" :key="index"
                      @tap="onHandleBanner(index)">
-          <lazy-image class="swiper-img" src="{{item.url}}" lazyStyle="width:100px;height:60px;"/>
+          <lazy-image class="swiper-img" src="{{item.url}}"/>
         </swiper-item>
       </swiper>
     </div>

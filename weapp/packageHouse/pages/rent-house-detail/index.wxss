@@ -60,4 +60,7 @@
 .container .content .body .context .scroll-view {
   height: 100%;
 }
+.container .content .body .context .scroll-view .scroll-inner {
+  padding-bottom: 20rpx;
+}
 

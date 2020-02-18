@@ -190,3 +190,25 @@ export const ajaxRequestHouseHistory = createAction(
         });
     });
   });
+
+export const ajaxRequestHotHouseRent = createAction(
+  'selectHotHouseRent', (params) => {
+    commit(actionTypes.SELECT_HOTHOUSERENT_REQUEST);
+    return new Promise((resolve, reject) => {
+      axios.get(apis.selectHouseList, {params})
+        .then((res) => {
+          res = res || {};
+          const {data, success} = res;
+          if (success) {
+            commit(actionTypes.SELECT_HOTHOUSERENT_SUCCESS, data);
+          } else {
+            commit(actionTypes.SELECT_HOTHOUSERENT_FAILURE);
+          }
+          resolve(res);
+        })
+        .catch((err) => {
+          commit(actionTypes.SELECT_HOTHOUSERENT_FAILURE);
+          reject(err);
+        });
+    });
+  });

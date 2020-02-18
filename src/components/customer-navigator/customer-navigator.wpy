@@ -1,6 +1,10 @@
 <template>
   <div class="nav row">
-    <navigator v-for="(item,index) in items" class="nav-item" hover-class="none" :url="item.path" :key="index">
+    <navigator v-for="(item,index) in items"
+               class="nav-item"
+               hover-class="none"
+               :url="item.path"
+               :key="index">
       <div class="nav-icon iconfont {{item.icon}}"></div>
       <div class="nav-text">{{item.text}}</div>
     </navigator>

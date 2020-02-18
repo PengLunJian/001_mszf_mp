@@ -1,0 +1,80 @@
+<template>
+  <div class="module">
+    <div class="module-content">
+      <div class="module-header">
+        <div class="module-title">二手房推荐</div>
+      </div>
+      <div class="module-body">
+        <div class="module-context">
+          <block v-for="(item,index) in items" :key="index">
+            <second-house-item :item="item"></second-house-item>
+          </block>
+        </div>
+      </div>
+      <div class="module-footer"></div>
+    </div>
+  </div>
+</template>
+
+<script type="text/ecmascript-6">
+  import wepy from '@wepy/core';
+
+  wepy.component({
+    data: {},
+    events: {},
+    props: {
+      items: {
+        type: Object,
+        default: []
+      }
+    },
+    methods: {},
+    created() {
+    }
+  });
+</script>
+
+<style scoped lang="less">
+  @import "../../assets/less/variable";
+  @import "../../assets/less/common";
+
+  .module {
+    position: relative;
+    margin-top: unit(20, rpx);
+    background-color: transparent;
+    .module-content {
+      background-color: @white;
+      .module-header {
+        padding: unit(30, rpx) unit(30, rpx) 0;
+        .module-title {
+          height: unit(32, rpx);
+          line-height: unit(32, rpx);
+          padding-left: unit(20, rpx);
+          border-left: 4px solid @theme2;
+          font-size: @fontSize5;
+          letter-spacing: 0.5px;
+          font-weight: bold;
+          color: @fontColor1;
+        }
+      }
+      .module-body {
+        .module-context {
+          min-height: unit(400, rpx);
+        }
+      }
+      .module-footer {
+
+      }
+    }
+  }
+
+</style>
+
+<config>
+  {
+  usingComponents: {
+  'lazy-image': '../lazy-image/lazy-image',
+  'second-house-item': '../../components/second-house-item/second-house-item'
+  }
+  }
+</config>

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.HOUSEFAVORITE_STATE = exports.HOUSEUNFOLLOW_STATE = exports.HOUSEFOLLOW_STATE = exports.HOUSEDETAIL_STATE = exports.HOUSEHISTORY_STATE = exports.HOUSELIST_STATE = void 0;
+exports.HOTHOUSENEW_STATE = exports.HOTHOUSESECOND_STATE = exports.HOTHOUSERENT_STATE = exports.HOUSEFAVORITE_STATE = exports.HOUSEUNFOLLOW_STATE = exports.HOUSEFOLLOW_STATE = exports.HOUSEDETAIL_STATE = exports.HOUSEHISTORY_STATE = exports.HOUSELIST_STATE = void 0;
 var HOUSELIST_STATE = {
   isLoading: true,
   isSuccess: false,
@@ -61,3 +61,24 @@ var HOUSEFAVORITE_STATE = {
   }
 };
 exports.HOUSEFAVORITE_STATE = HOUSEFAVORITE_STATE;
+var HOTHOUSERENT_STATE = {
+  isLoading: true,
+  isSuccess: false,
+  isFailure: false,
+  data: []
+};
+exports.HOTHOUSERENT_STATE = HOTHOUSERENT_STATE;
+var HOTHOUSESECOND_STATE = {
+  isLoading: true,
+  isSuccess: false,
+  isFailure: false,
+  data: []
+};
+exports.HOTHOUSESECOND_STATE = HOTHOUSESECOND_STATE;
+var HOTHOUSENEW_STATE = {
+  isLoading: true,
+  isSuccess: false,
+  isFailure: false,
+  data: []
+};
+exports.HOTHOUSENEW_STATE = HOTHOUSENEW_STATE;

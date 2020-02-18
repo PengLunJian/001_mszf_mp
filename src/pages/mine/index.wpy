@@ -6,23 +6,45 @@
       </div>
       <div class="body">
         <div class="context">
-          <div class="module user">
-            <div class="info">
-              <img class="img" src="../../assets/images/agent.jpg"/>
-              <div class="name">WEB前端架构师</div>
+          <div class="module">
+            <div class="module-content">
+              <div class="module-body">
+                <div class="module-context">
+                  <div class="module-user">
+                    <div class="user-bg">
+                      <lazy-image
+                        src="http://sersms.com:7000/house/v1/file/static/userfile/202002/07/1225622956127174656.jpg"/>
+                    </div>
+                    <div class="user-info">
+                      <img class="user-img" src="../../assets/images/agent.jpg"/>
+                      <div class="user-name">WEB前端架构师</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="module-footer"></div>
             </div>
           </div>
-          <div class="module list">
-            <button v-for="(item,index) in items"
-                    class="list-item btn"
-                    hover-class="none"
-                    :key="index"
-                    @tap="onHandleClick(item)"
-                    open-type="{{item.name==='意见反馈'?'feedback':''}}">
-              <div class="list-item-icon iconfont {{item.icon}}"></div>
-              <div class="list-item-text">{{item.name}}</div>
-              <div class="list-item-next iconfont icon-next"></div>
-            </button>
+          <div class="module">
+            <div class="module-content">
+              <div class="module-body">
+                <div class="module-context">
+                  <div class="module-list">
+                    <button v-for="(item,index) in items"
+                            class="list-item btn"
+                            hover-class="none"
+                            :key="index"
+                            @tap="onHandleClick(item)"
+                            open-type="{{item.name==='意见反馈'?'feedback':''}}">
+                      <div class="list-item-icon iconfont {{item.icon}}"></div>
+                      <div class="list-item-text">{{item.name}}</div>
+                      <div class="list-item-next iconfont icon-next"></div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="module-footer"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -104,103 +126,129 @@
         .context {
           height: 100%;
           padding-top: 65px;
-          .user {
-            position: relative;
-            height: unit(280, rpx);
-            background-size: 100% auto;
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-image: url("http://sersms.com:7000/house/v1/file/static/userfile/202002/07/1225622956127174656.jpg");
-            .info {
-              position: absolute;
-              left: 0;
-              z-index: 1;
-              bottom: unit(70, rpx);
-              padding-left: unit(40, rpx);
-              font-size: 0;
-              .img {
-                width: unit(140, rpx);
-                height: unit(140, rpx);
-                display: inline-block;
-                vertical-align: middle;
-                border-radius: 100%;
-                border: 2px solid @white;
-                background-color: @white;
-                box-shadow: 0 0 15px @boxShadow1;
+          .module {
+            .module-content {
+              .module-header {
+                padding: unit(30, rpx) unit(30, rpx) 0;
+                .module-title {
+                  height: unit(32, rpx);
+                  line-height: unit(32, rpx);
+                  padding-left: unit(20, rpx);
+                  border-left: 4px solid @theme2;
+                  font-size: @fontSize5;
+                  letter-spacing: 0.5px;
+                  font-weight: bold;
+                  color: @fontColor1;
+                }
               }
-              .name {
-                width: auto;
-                height: unit(40, rpx);
-                line-height: unit(40, rpx);
-                padding-left: unit(30, rpx);
-                display: inline-block;
-                vertical-align: middle;
-                font-size: @fontSize6;
-                letter-spacing: 1px;
-                color: @white;
+              .module-body {
+                .module-context {
+                  .module-user {
+                    position: relative;
+                    height: unit(280, rpx);
+                    .user-bg {
+                      position: absolute;
+                      top: 0;
+                      left: 0;
+                      z-index: 1;
+                      width: 100%;
+                      height: 100%;
+                    }
+                    .user-info {
+                      display: flex;
+                      position: absolute;
+                      left: 0;
+                      z-index: 2;
+                      bottom: unit(70, rpx);
+                      padding-left: unit(40, rpx);
+                      .user-img {
+                        width: unit(140, rpx);
+                        height: unit(140, rpx);
+                        border-radius: 100%;
+                        border: 2px solid @white;
+                        background-color: @white;
+                        box-shadow: 0 0 15px @boxShadow1;
+                      }
+                      .user-name {
+                        height: unit(140, rpx);
+                        line-height: unit(140, rpx);
+                        padding-left: unit(30, rpx);
+                        font-size: @fontSize6;
+                        letter-spacing: 1px;
+                        color: @white;
+                      }
+                    }
+                  }
+                  .module-list {
+                    .list-item {
+                      height: unit(110, rpx);
+                      line-height: unit(110, rpx);
+                      padding-left: unit(110, rpx);
+                      text-align: left;
+                      .list-item-icon,
+                      .list-item-next {
+                        position: absolute;
+                        top: 0;
+                        width: unit(110, rpx);
+                        height: unit(110, rpx);
+                        text-align: center;
+                        &.list-item-icon {
+                          left: 0;
+                          font-size: unit(46, rpx);
+                          -webkit-text-fill-color: transparent;
+                          -webkit-background-clip: text;
+                        }
+                        &.list-item-next {
+                          right: 0;
+                          color: @iconNext;
+                        }
+                      }
+                      .list-item-text {
+                        height: 100%;
+                        letter-spacing: 1px;
+                        font-size: unit(32, rpx);
+                        border-bottom: 0.5px solid @borderColor1;
+                      }
+                      &:last-child {
+                        .list-item-text {
+                          border: none;
+                        }
+                      }
+                      &:nth-child(1) {
+                        .list-item-icon {
+                          background-image: -webkit-linear-gradient(left, #FF2714, #FF841D);
+                        }
+                      }
+                      &:nth-child(2) {
+                        .list-item-icon {
+                          background-image: -webkit-linear-gradient(left, #FFFF00, #FFB421);
+                        }
+                      }
+                      &:nth-child(3) {
+                        .list-item-icon {
+                          background-image: -webkit-linear-gradient(left, #00FF00, #12B347);
+                        }
+                      }
+                      &:nth-child(4) {
+                        .list-item-icon {
+                          background-image: -webkit-linear-gradient(left, #FF8F8F, #DE7979);
+                        }
+                      }
+                      &:nth-child(5) {
+                        .list-item-icon {
+                          background-image: -webkit-linear-gradient(left, #060BFF, #17F2FF);
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              .module-footer {
+
               }
             }
-          }
-          .list {
-            .list-item {
-              height: unit(110, rpx);
-              line-height: unit(110, rpx);
-              padding-left: unit(110, rpx);
-              text-align: left;
-              .list-item-icon,
-              .list-item-next {
-                position: absolute;
-                top: 0;
-                width: unit(110, rpx);
-                height: unit(110, rpx);
-                text-align: center;
-                &.list-item-icon {
-                  left: 0;
-                  font-size: unit(46, rpx);
-                  -webkit-text-fill-color: transparent;
-                  -webkit-background-clip: text;
-                }
-                &.list-item-next {
-                  right: 0;
-                  color: @iconNext;
-                }
-              }
-              .list-item-text {
-                height: 100%;
-                letter-spacing: 1px;
-                font-size: unit(32, rpx);
-                border-bottom: 0.5px solid @borderColor1;
-              }
-              &:last-child {
-                .list-item-text {
-                  border: none;
-                }
-              }
-              &:nth-child(1) {
-                .list-item-icon {
-                  background-image: -webkit-linear-gradient(left, #FF2714, #FF841D);
-                }
-              }
-              &:nth-child(2) {
-                .list-item-icon {
-                  background-image: -webkit-linear-gradient(left, #FFFF00, #FFB421);
-                }
-              }
-              &:nth-child(3) {
-                .list-item-icon {
-                  background-image: -webkit-linear-gradient(left, #00FF00, #12B347);
-                }
-              }
-              &:nth-child(4) {
-                .list-item-icon {
-                  background-image: -webkit-linear-gradient(left, #FF8F8F, #DE7979);
-                }
-              }
-              &:nth-child(5) {
-                .list-item-icon {
-                  background-image: -webkit-linear-gradient(left, #060BFF, #17F2FF);
-                }
-              }
+            &:first-child {
+              margin: 0;
             }
           }
         }
@@ -216,6 +264,7 @@
   navigationStyle:'custom',
   usingComponents: {
   'top-bar': '../../components/top-bar/top-bar',
+  'lazy-image': '../../components/lazy-image/lazy-image'
   }
   }
 </config>

@@ -5,7 +5,6 @@
         "top-bar": "../../../components/top-bar/top-bar",
         "loading": "../../../components/loading/loading",
         "error": "../../../components/error/error",
-        "lazy-image": "../../../components/lazy-image/lazy-image",
         "detail-banner": "../../../components/detail-banner/detail-banner",
         "detail-base": "../../../components/detail-base/detail-base",
         "detail-agent": "../../../components/detail-agent/detail-agent",

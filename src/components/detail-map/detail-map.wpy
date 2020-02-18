@@ -71,12 +71,7 @@
   @import "../../assets/less/common";
 
   .module {
-    margin: 0;
-    position: relative;
-    padding-bottom: unit(20, rpx);
-    background-color: transparent;
     .module-content {
-      background-color: @white;
       .module-header {
         padding: unit(30, rpx) unit(30, rpx) 0;
         .module-title {
