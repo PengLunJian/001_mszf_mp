@@ -2,6 +2,6 @@
 <view wx:if="{{ isShow }}" class="error fade{{isFailure?'':' hide'}}">
   <view class="error-inner">
     <image src="images/error@2x.png" mode="aspectFit" class="error-image"></image>
-    <view data-wpy-evt="104-0" bindtap="_proxy" class="btn btn-refresh">重新加载</view>
+    <view data-wpy-evt="103-0" bindtap="_proxy" class="btn btn-refresh">重新加载</view>
   </view>
 </view>

@@ -191,11 +191,55 @@ export const ajaxRequestHouseHistory = createAction(
     });
   });
 
+export const ajaxRequestHotHouseNew = createAction(
+  'selectHotHouseNew', (params) => {
+    commit(actionTypes.SELECT_HOTHOUSENEW_REQUEST);
+    return new Promise((resolve, reject) => {
+      axios.get(apis.selectHotHouseNew, {params})
+        .then((res) => {
+          res = res || {};
+          const {data, success} = res;
+          if (success) {
+            commit(actionTypes.SELECT_HOTHOUSENEW_SUCCESS, data);
+          } else {
+            commit(actionTypes.SELECT_HOTHOUSENEW_FAILURE);
+          }
+          resolve(res);
+        })
+        .catch((err) => {
+          commit(actionTypes.SELECT_HOTHOUSENEW_FAILURE);
+          reject(err);
+        });
+    });
+  });
+
+export const ajaxRequestHotHouseSecond = createAction(
+  'selectHotHouseSecond', (params) => {
+    commit(actionTypes.SELECT_HOTHOUSESECOND_REQUEST);
+    return new Promise((resolve, reject) => {
+      axios.get(apis.selectHotHouseSecond, {params})
+        .then((res) => {
+          res = res || {};
+          const {data, success} = res;
+          if (success) {
+            commit(actionTypes.SELECT_HOTHOUSESECOND_SUCCESS, data);
+          } else {
+            commit(actionTypes.SELECT_HOTHOUSESECOND_FAILURE);
+          }
+          resolve(res);
+        })
+        .catch((err) => {
+          commit(actionTypes.SELECT_HOTHOUSESECOND_FAILURE);
+          reject(err);
+        });
+    });
+  });
+
 export const ajaxRequestHotHouseRent = createAction(
   'selectHotHouseRent', (params) => {
     commit(actionTypes.SELECT_HOTHOUSERENT_REQUEST);
     return new Promise((resolve, reject) => {
-      axios.get(apis.selectHouseList, {params})
+      axios.get(apis.selectHotHouseRent, {params})
         .then((res) => {
           res = res || {};
           const {data, success} = res;
@@ -208,6 +252,36 @@ export const ajaxRequestHotHouseRent = createAction(
         })
         .catch((err) => {
           commit(actionTypes.SELECT_HOTHOUSERENT_FAILURE);
+          reject(err);
+        });
+    });
+  });
+
+export const ajaxRequestHotHouse = createAction(
+  'selectHotHouse', () => {
+    commit(actionTypes.SELECT_HOTHOUSE_REQUEST);
+    return new Promise((resolve, reject) => {
+      axios.all([
+        ajaxRequestHotHouseNew(),
+        ajaxRequestHotHouseSecond(),
+        ajaxRequestHotHouseRent()
+      ])
+        .then(axios.spread((resNew, resSecond, resRent) => {
+          const newData = {resNew, resSecond, resRent};
+          resNew.payload.then(res => {
+            newData.resNew = res.data;
+            resSecond.payload.then(res => {
+              newData.resSecond = res.data;
+              resRent.payload.then(res => {
+                newData.resRent = res.data;
+                commit(actionTypes.SELECT_HOTHOUSE_SUCCESS, newData);
+              });
+            });
+          });
+          resolve(newData);
+        }))
+        .catch((err) => {
+          commit(actionTypes.SELECT_HOTHOUSE_FAILURE);
           reject(err);
         });
     });

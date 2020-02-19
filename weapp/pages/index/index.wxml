@@ -18,14 +18,16 @@
       </view>
     </view>
     <view class="body">
-      <view class="context">
+      <loading bind_init="_initComponent" isLoading="{{ isLoading }}"></loading>
+      <error bind_init="_initComponent" isFailure="{{ isFailure }}" data-wpy-evt="3-0" bindrefresh="_proxy"></error>
+      <view wx:if="{{ isSuccess }}" class="context fade">
         <scroll-view scroll-y="{{true}}" class="scroll-view">
           <view class="scroll-inner">
             <banner bind_init="_initComponent"></banner>
             <customer-navigator bind_init="_initComponent"></customer-navigator>
-            <hot-house bind_init="_initComponent" items="{{ items1 }}" title="租房推荐"></hot-house>
-            <hot-house bind_init="_initComponent" items="{{ items2 }}" title="二手房推荐"></hot-house>
-            <hot-house bind_init="_initComponent" items="{{ items3 }}" title="新房推荐"></hot-house>
+            <hot-house bind_init="_initComponent" title="租房推荐" items="{{ isData.resRent.rows }}"></hot-house>
+            <hot-house bind_init="_initComponent" title="二手房推荐" items="{{ isData.resSecond.rows }}"></hot-house>
+            <hot-house bind_init="_initComponent" title="新房推荐" items="{{ isData.resNew.rows }}"></hot-house>
           </view>
         </scroll-view>
       </view>

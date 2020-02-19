@@ -12,14 +12,14 @@
                 <img src="../../../assets/images/logo@2x.png" mode="aspectFit"/>
               </div>
               <div class="login-body">
-                <div class="btn btn-wechat">
-                  <div class="btn-icon iconfont icon-wechat"></div>
-                  <div class="btn-text">微信授权登录</div>
-                </div>
-                <div class="btn btn-mobile">
-                  <div class="btn-icon iconfont icon-mobile"></div>
-                  <div class="btn-text">手机快捷登录</div>
-                </div>
+                <button class="btn btn-wechat" open-type="getPhoneNumber" @getphonenumber="getPhoneNumber">
+                  <span class="btn-icon iconfont icon-wechat"></span>
+                  <span class="btn-text">微信授权登录</span>
+                </button>
+                <button class="btn btn-mobile">
+                  <span class="btn-icon iconfont icon-mobile"></span>
+                  <span class="btn-text">手机快捷登录</span>
+                </button>
               </div>
               <div class="login-footer"></div>
             </div>
@@ -45,7 +45,15 @@
 
     computed: {},
 
-    methods: {},
+    methods: {
+      getPhoneNumber(e) {
+        wx.login({
+          success(res) {
+            console.log(res);
+          }
+        });
+      }
+    },
 
     onLoad() {
     }
@@ -76,7 +84,7 @@
             .login-content {
               width: 100%;
               position: absolute;
-              top: 50%;
+              top: 45%;
               left: 50%;
               padding: unit(60, rpx);
               transform: translate3d(-50%, -50%, 0);
@@ -150,7 +158,6 @@
 <config>
   {
   navigationStyle:'custom',
-  disableScroll:true,
   usingComponents: {
   'top-bar': '../../../components/top-bar/top-bar',
   }

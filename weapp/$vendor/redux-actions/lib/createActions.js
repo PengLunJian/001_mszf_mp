@@ -5,7 +5,7 @@ exports.default = createActions;
 
 var _invariant = _interopRequireDefault(__wepy_require(33));
 
-var _isPlainObject = _interopRequireDefault(__wepy_require(13));
+var _isPlainObject = _interopRequireDefault(__wepy_require(12));
 
 var _isFunction = _interopRequireDefault(__wepy_require(6));
 
@@ -23,7 +23,7 @@ var _camelCase = _interopRequireDefault(__wepy_require(45));
 
 var _arrayToObject = _interopRequireDefault(__wepy_require(17));
 
-var _flattenActionMap = _interopRequireDefault(__wepy_require(25));
+var _flattenActionMap = _interopRequireDefault(__wepy_require(24));
 
 var _unflattenActionCreators = _interopRequireDefault(__wepy_require(18));
 

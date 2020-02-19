@@ -61,7 +61,7 @@
       }
       .module-body {
         .module-context {
-          min-height: unit(400, rpx);
+          min-height: unit(600, rpx);
         }
       }
       .module-footer {

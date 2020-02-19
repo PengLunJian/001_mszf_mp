@@ -4,6 +4,8 @@
     "usingComponents": {
         "banner": "../../components/banner/banner",
         "customer-navigator": "../../components/customer-navigator/customer-navigator",
-        "hot-house": "../../components/hot-house/hot-house"
+        "hot-house": "../../components/hot-house/hot-house",
+        "loading": "../../components/loading/loading",
+        "error": "../../components/error/error"
     }
 }

@@ -55,23 +55,30 @@ export const HOUSEFAVORITE_STATE = {
   }
 };
 
-export const HOTHOUSERENT_STATE = {
+export const HOTHOUSENEW_STATE = {
   isLoading: true,
   isSuccess: false,
   isFailure: false,
-  data: []
+  data: null
 };
 
 export const HOTHOUSESECOND_STATE = {
   isLoading: true,
   isSuccess: false,
   isFailure: false,
-  data: []
+  data: null
 };
 
-export const HOTHOUSENEW_STATE = {
+export const HOTHOUSERENT_STATE = {
   isLoading: true,
   isSuccess: false,
   isFailure: false,
-  data: []
+  data: null
+};
+
+export const HOTHOUSE_STATE = {
+  isLoading: true,
+  isSuccess: false,
+  isFailure: false,
+  data: null
 };

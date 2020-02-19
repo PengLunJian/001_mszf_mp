@@ -1,8 +1,8 @@
 
 <view class="top-bar">
   <view wx:if="{{ isIcon }}" class="top-inner">
-    <view data-wpy-evt="100-0" bindtap="_proxy" class="top-icon iconfont icon-back"></view>
-    <view data-wpy-evt="100-1" bindtap="_proxy" class="top-icon iconfont icon-home"></view>
+    <view data-wpy-evt="104-2" bindtap="_proxy" class="top-icon iconfont icon-back"></view>
+    <view data-wpy-evt="104-3" bindtap="_proxy" class="top-icon iconfont icon-home"></view>
     <view class="top-title">{{title}}</view>
   </view>
   <view wx:if="{{ !isIcon }}" class="top-inner">

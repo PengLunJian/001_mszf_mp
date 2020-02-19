@@ -2,41 +2,35 @@
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-var _core = _interopRequireDefault(require('../../vendor.js')(0));
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.ACTIONS = exports.STATES = void 0;
 
-var $routes = _interopRequireWildcard(require('../../router/index.js'));
+var actions = _interopRequireWildcard(require('../../store/actions.js'));
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-_core["default"].component({
-  data: {
-    items: [{
-      text: '租房',
-      icon: 'icon-nav01',
-      path: $routes.RENT_HOUSE_LIST.path
-    }, {
-      text: '二手房',
-      icon: 'icon-nav02',
-      path: $routes.SECOND_HOUSE_LIST.path
-    }, {
-      text: '新房',
-      icon: 'icon-nav03',
-      path: $routes.NEW_HOUSE_LIST.path
-    }, {
-      text: '房贷计算',
-      icon: 'icon-nav04',
-      path: $routes.CALCULATOR.path
-    }, {
-      text: '房源发布',
-      icon: 'icon-nav05',
-      path: $routes.RELEASE.path
-    }]
+var STATES = {
+  isLoading: function isLoading(state) {
+    return state.HOTHOUSE_REDUCER.isLoading;
   },
-  events: {},
-  methods: {},
-  onLoad: function onLoad() {}
-}, {info: {"components":{},"on":{}}, handlers: {}, models: {} });
+  isSuccess: function isSuccess(state) {
+    return state.HOTHOUSE_REDUCER.isSuccess;
+  },
+  isFailure: function isFailure(state) {
+    return state.HOTHOUSE_REDUCER.isFailure;
+  },
+  isData: function isData(state) {
+    return state.HOTHOUSE_REDUCER.data;
+  }
+};
+exports.STATES = STATES;
+var ACTIONS = {
+  ajaxHotHouse: function ajaxHotHouse() {
+    return actions.ajaxRequestHotHouse();
+  }
+};
+exports.ACTIONS = ACTIONS;

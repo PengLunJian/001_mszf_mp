@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.MESSAGE = exports.NEW_HOUSE_DETAIL = exports.NEW_HOUSE_LIST = exports.SECOND_HOUSE_DETAIL = exports.SECOND_HOUSE_LIST = exports.RENT_HOUSE_DETAIL = exports.RENT_HOUSE_LIST = exports.ABOUT = exports.SUGGEST = exports.RELEASE = exports.HISTORY = exports.FAVORITE = exports.MINE = exports.CALCULATOR = exports.ADDRESS = exports.SEARCH = exports.INDEX = void 0;
+exports.MESSAGE = exports.NEW_HOUSE_DETAIL = exports.NEW_HOUSE_LIST = exports.SECOND_HOUSE_DETAIL = exports.SECOND_HOUSE_LIST = exports.RENT_HOUSE_DETAIL = exports.RENT_HOUSE_LIST = exports.ABOUT = exports.SUGGEST = exports.RELEASE = exports.HISTORY = exports.FAVORITE = exports.LOGIN = exports.MINE = exports.CALCULATOR = exports.ADDRESS = exports.SEARCH = exports.INDEX = void 0;
 var INDEX = {
   name: '首页',
   path: '/pages/index/index'
@@ -29,6 +29,11 @@ var MINE = {
   path: '/packageMine/pages/mine/index'
 };
 exports.MINE = MINE;
+var LOGIN = {
+  name: '在线咨询',
+  path: '/packageMine/pages/login/index'
+};
+exports.LOGIN = LOGIN;
 var FAVORITE = {
   name: '我的收藏',
   path: '/packageMine/pages/favorite/index'

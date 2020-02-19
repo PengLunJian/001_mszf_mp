@@ -6,6 +6,72 @@ const apis = {
   headers: {
     'Content-Type': 'application/json; charset=UTF-8'
   },
+  selectHotHouseRent: {
+    url: 'house/v1/houser/house/list',
+    params: {
+      page: {
+        pageSize: 5,
+        pageIndex: 1
+      },
+      filter: [
+        {
+          field: 'type',
+          opt: '=',
+          value: 3
+        }
+      ],
+      sort: [
+        {
+          field: 'id',
+          asc: false
+        }
+      ]
+    }
+  },
+  selectHotHouseSecond: {
+    url: 'house/v1/houser/house/list',
+    params: {
+      page: {
+        pageSize: 5,
+        pageIndex: 1
+      },
+      filter: [
+        {
+          field: 'type',
+          opt: '=',
+          value: 2
+        }
+      ],
+      sort: [
+        {
+          field: 'id',
+          asc: false
+        }
+      ]
+    }
+  },
+  selectHotHouseNew: {
+    url: 'house/v1/houser/house/list',
+    params: {
+      page: {
+        pageSize: 5,
+        pageIndex: 1
+      },
+      filter: [
+        {
+          field: 'type',
+          opt: '=',
+          value: 1
+        }
+      ],
+      sort: [
+        {
+          field: 'release_time',
+          asc: false
+        }
+      ]
+    }
+  },
   selectHouseList: {
     url: 'house/v1/houser/house/list',
     params: {

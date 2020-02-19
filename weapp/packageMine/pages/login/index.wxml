@@ -12,14 +12,14 @@
               <image src="../../../assets/images/logo@2x.png" mode="aspectFit"></image>
             </view>
             <view class="login-body">
-              <view class="btn btn-wechat">
-                <view class="btn-icon iconfont icon-wechat"></view>
-                <view class="btn-text">微信授权登录</view>
-              </view>
-              <view class="btn btn-mobile">
-                <view class="btn-icon iconfont icon-mobile"></view>
-                <view class="btn-text">手机快捷登录</view>
-              </view>
+              <button open-type="getPhoneNumber" data-wpy-evt="17-4" bindgetphonenumber="_proxy" class="btn btn-wechat">
+                <label class="btn-icon iconfont icon-wechat"></label>
+                <label class="btn-text">微信授权登录</label>
+              </button>
+              <button class="btn btn-mobile">
+                <label class="btn-icon iconfont icon-mobile"></label>
+                <label class="btn-text">手机快捷登录</label>
+              </button>
             </view>
             <view class="login-footer"></view>
           </view>

@@ -2,7 +2,6 @@ import {handleActions} from 'redux-actions';
 import * as actionTypes from '../actionTypes';
 import * as utils from '../../utils';
 import * as states from '../states';
-import {dateFormat} from "../../utils";
 
 const actions = {
   [actionTypes.SELECT_HOUSEDETAIL_REQUEST](state) {

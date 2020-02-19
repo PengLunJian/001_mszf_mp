@@ -44,28 +44,23 @@ _core["default"].page({
   methods: {
     onHandleClick: function onHandleClick(item) {
       if (item.name !== '意见反馈') {
-        wx.navigateTo({
-          url: item.path
-        });
+        if (item.name === '我的收藏' || item.name === '历史浏览') {
+          var globalData = this.$app.$options.globalData;
+          var userInfo = globalData.userInfo;
+          var path = userInfo ? item.path : $routes.LOGIN.path;
+          wx.navigateTo({
+            url: path
+          });
+        } else {
+          wx.navigateTo({
+            url: item.path
+          });
+        }
       }
     }
   },
   onLoad: function onLoad() {}
-}, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"},"lazy-image":{"path":"..\\..\\components\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'5-7': {"tap": function proxy (item) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleClick(item)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"},"lazy-image":{"path":"..\\..\\components\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'5-7': {"tap": function proxy (item) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandleClick(item)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"},"lazy-image":{"path":"..\\..\\components\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'5-7': {"tap": function proxy (item) {
+}, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"},"lazy-image":{"path":"..\\..\\components\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'5-6': {"tap": function proxy (item) {
     
     var _vm=this;
       return (function () {

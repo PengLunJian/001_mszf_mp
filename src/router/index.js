@@ -18,6 +18,10 @@ export const MINE = {
   name: '个人中心',
   path: '/packageMine/pages/mine/index'
 };
+export const LOGIN = {
+  name: '在线咨询',
+  path: '/packageMine/pages/login/index'
+};
 export const FAVORITE = {
   name: '我的收藏',
   path: '/packageMine/pages/favorite/index'

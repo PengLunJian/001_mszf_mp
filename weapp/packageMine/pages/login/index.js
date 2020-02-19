@@ -12,6 +12,21 @@ _core["default"].page({
   mixins: [],
   data: {},
   computed: {},
-  methods: {},
+  methods: {
+    getPhoneNumber: function getPhoneNumber(e) {
+      wx.login({
+        success: function success(res) {
+          console.log(res);
+        }
+      });
+    }
+  },
   onLoad: function onLoad() {}
-}, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {}, models: {} });
+}, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'17-4': {"getphonenumber": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.getPhoneNumber($event)
+      })();
+    
+  }}}, models: {} });

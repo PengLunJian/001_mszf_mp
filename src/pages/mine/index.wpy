@@ -98,9 +98,18 @@
     methods: {
       onHandleClick(item) {
         if (item.name !== '意见反馈') {
-          wx.navigateTo({
-            url: item.path
-          });
+          if (item.name === '我的收藏' || item.name === '历史浏览') {
+            const {globalData} = this.$app.$options;
+            const {userInfo} = globalData;
+            const path = userInfo ? item.path : $routes.LOGIN.path;
+            wx.navigateTo({
+              url: path
+            });
+          } else {
+            wx.navigateTo({
+              url: item.path
+            });
+          }
         }
       }
     },

@@ -4,7 +4,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
 var _core = _interopRequireDefault(require('../../../vendor.js')(0));
 
-var _index = _interopRequireDefault(require('../../../store/index.js'));
+var _store = _interopRequireDefault(require('../../../store/index.js'));
 
 var _redux = require('../../../vendor.js')(1);
 
@@ -25,7 +25,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 _core["default"].page({
-  store: _index["default"],
+  store: _store["default"],
   data: {
     longitude: 0,
     latitude: 0
@@ -84,20 +84,6 @@ _core["default"].page({
     this.exeAjaxHouseDetail();
   }
 }, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\..\\components\\error\\error"},"detail-banner":{"path":"..\\..\\..\\components\\detail-banner\\detail-banner"},"detail-base":{"path":"..\\..\\..\\components\\detail-base\\detail-base"},"detail-agent":{"path":"..\\..\\..\\components\\detail-agent\\detail-agent"},"detail-layout":{"path":"..\\..\\..\\components\\detail-layout\\detail-layout"},"detail-map":{"path":"..\\..\\..\\components\\detail-map\\detail-map"},"detail-footer":{"path":"..\\..\\..\\components\\detail-footer\\detail-footer"}},"on":{"6-0":["refresh"]}}, handlers: {'6-0': {"refresh": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onRefresh($event)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\..\\components\\error\\error"},"detail-banner":{"path":"..\\..\\..\\components\\detail-banner\\detail-banner"},"detail-base":{"path":"..\\..\\..\\components\\detail-base\\detail-base"},"detail-agent":{"path":"..\\..\\..\\components\\detail-agent\\detail-agent"},"detail-layout":{"path":"..\\..\\..\\components\\detail-layout\\detail-layout"},"detail-map":{"path":"..\\..\\..\\components\\detail-map\\detail-map"},"detail-footer":{"path":"..\\..\\..\\components\\detail-footer\\detail-footer"}},"on":{"6-0":["refresh"]}}, handlers: {'6-0': {"refresh": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onRefresh($event)
-      })();
-    
-  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\..\\components\\error\\error"},"detail-banner":{"path":"..\\..\\..\\components\\detail-banner\\detail-banner"},"detail-base":{"path":"..\\..\\..\\components\\detail-base\\detail-base"},"detail-agent":{"path":"..\\..\\..\\components\\detail-agent\\detail-agent"},"detail-layout":{"path":"..\\..\\..\\components\\detail-layout\\detail-layout"},"detail-map":{"path":"..\\..\\..\\components\\detail-map\\detail-map"},"detail-footer":{"path":"..\\..\\..\\components\\detail-footer\\detail-footer"}},"on":{"6-0":["refresh"]}}, handlers: {'6-0': {"refresh": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {

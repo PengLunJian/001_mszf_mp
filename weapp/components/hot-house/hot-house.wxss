@@ -264,6 +264,6 @@ button:after {
   color: #333333;
 }
 .module .module-content .module-body .module-context {
-  min-height: 400rpx;
+  min-height: 600rpx;
 }
 

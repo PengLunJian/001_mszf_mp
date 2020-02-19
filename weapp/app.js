@@ -15,10 +15,6 @@ _core["default"].app({
       phoneNumber: '13731887133'
     }
   },
-  onLaunch: function onLaunch() {
-    var system = wx.getSystemInfoSync();
-    var statusHeight = system.statusBarHeight;
-    this.$options.globalData.statusHeight = statusHeight + 'px';
-  },
+  onLaunch: function onLaunch() {},
   methods: {}
-}, {info: {"noPromiseAPI":["createSelectorQuery"]}, handlers: {}, models: {} }, {info: {"noPromiseAPI":["createSelectorQuery"]}, handlers: {}, models: {} }, {info: {"noPromiseAPI":["createSelectorQuery"]}, handlers: {}, models: {} });
+}, {info: {"noPromiseAPI":["createSelectorQuery"]}, handlers: {}, models: {} });
