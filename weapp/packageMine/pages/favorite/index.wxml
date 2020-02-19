@@ -4,19 +4,19 @@
     <view class="header">
       <top-bar bind_init="_initComponent" title="我的收藏"></top-bar>
       <view class="tab-bar">
-        <view wx:for="{{ tabs }}" wx:for-index="index" wx:for-item="item" wx:key="index" key="{{ index }}" data-wpy-evt="13-0" bindtap="_proxy" data-wpytap-a="{{ index }}" class="tab-item {{ [ index===tabIndex ? 'active' : '' ] }}">
+        <view wx:for="{{ tabs }}" wx:for-index="index" wx:for-item="item" wx:key="index" key="{{ index }}" data-wpy-evt="13-24" bindtap="_proxy" data-wpytap-a="{{ index }}" class="tab-item {{ [ index===tabIndex ? 'active' : '' ] }}">
           <view class="tab-text">{{item.label}}</view>
         </view>
       </view>
     </view>
     <view class="body">
-      <swiper current="{{current}}" data-wpy-evt="13-1" bindchange="_proxy" class="tab-swiper">
+      <swiper current="{{current}}" data-wpy-evt="13-25" bindchange="_proxy" class="tab-swiper">
         <swiper-item class="tab-content">
           <loading bind_init="_initComponent" isLoading="{{ isRentLoading&&!isRentData.rows.length }}"></loading>
-          <error bind_init="_initComponent" isFailure="{{ isRentFailure&&!isRentData.rows.length }}" data-wpy-evt="13-2" bindrefresh="_proxy"></error>
+          <error bind_init="_initComponent" isFailure="{{ isRentFailure&&!isRentData.rows.length }}" data-wpy-evt="13-26" bindrefresh="_proxy"></error>
           <empty bind_init="_initComponent" isSuccess="{{ isRentSuccess&&!isRentData.rows.length }}"></empty>
           <view wx:if="{{ isRentData.rows.length }}" class="context fade">
-            <scroll-view scroll-y="{{true}}" data-wpy-evt="13-3" bindscrolltolower="_proxy" class="scroll-view">
+            <scroll-view scroll-y="{{true}}" data-wpy-evt="13-27" bindscrolltolower="_proxy" class="scroll-view">
               <view class="items">
                 <block wx:for="{{ isRentData.rows }}" wx:for-index="index" wx:for-item="item" wx:key="index" key="{{ index }}">
                   <rent-house-item bind_init="_initComponent" item="{{ item }}"></rent-house-item>
@@ -28,10 +28,10 @@
         </swiper-item>
         <swiper-item class="tab-content">
           <loading bind_init="_initComponent" isLoading="{{ isSecondLoading&&!isSecondData.rows.length }}"></loading>
-          <error bind_init="_initComponent" isFailure="{{ isSecondFailure&&!isSecondData.rows.length }}" data-wpy-evt="13-4" bindrefresh="_proxy"></error>
+          <error bind_init="_initComponent" isFailure="{{ isSecondFailure&&!isSecondData.rows.length }}" data-wpy-evt="13-28" bindrefresh="_proxy"></error>
           <empty bind_init="_initComponent" isSuccess="{{ isSecondSuccess&&!isSecondData.rows.length }}"></empty>
           <view wx:if="{{ isSecondData.rows.length }}" class="context fade">
-            <scroll-view scroll-y="{{true}}" data-wpy-evt="13-5" bindscrolltolower="_proxy" class="scroll-view">
+            <scroll-view scroll-y="{{true}}" data-wpy-evt="13-29" bindscrolltolower="_proxy" class="scroll-view">
               <view class="items">
                 <block wx:for="{{ isSecondData.rows }}" wx:for-index="index" wx:for-item="item" wx:key="index" key="{{ index }}">
                   <second-house-item bind_init="_initComponent" item="{{ item }}"></second-house-item>
@@ -43,10 +43,10 @@
         </swiper-item>
         <swiper-item class="tab-content">
           <loading bind_init="_initComponent" isLoading="{{ isNewLoading&&!isNewData.rows.length }}"></loading>
-          <error bind_init="_initComponent" isFailure="{{ isNewFailure&&!isNewData.rows.length }}" data-wpy-evt="13-6" bindrefresh="_proxy"></error>
+          <error bind_init="_initComponent" isFailure="{{ isNewFailure&&!isNewData.rows.length }}" data-wpy-evt="13-30" bindrefresh="_proxy"></error>
           <empty bind_init="_initComponent" isSuccess="{{ isNewSuccess&&!isNewData.rows.length }}"></empty>
           <view wx:if="{{ isNewData.rows.length }}" class="context fade">
-            <scroll-view scroll-y="{{true}}" data-wpy-evt="13-7" bindscrolltolower="_proxy" class="scroll-view">
+            <scroll-view scroll-y="{{true}}" data-wpy-evt="13-31" bindscrolltolower="_proxy" class="scroll-view">
               <view class="items">
                 <block wx:for="{{ isNewData.rows }}" wx:for-index="index" wx:for-item="item" wx:key="index" key="{{ index }}">
                   <new-house-item bind_init="_initComponent" item="{{ item }}"></new-house-item>

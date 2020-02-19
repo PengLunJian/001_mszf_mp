@@ -10,7 +10,7 @@
               </div>
             </div>
             <div class="module-row row">
-              <div class="module-col col-12">
+              <div class="module-col tags col-12">
                 <div class="item-tag item-state state1" v-if="isData.status===1">在售</div>
                 <div class="item-tag item-state state2" v-if="isData.status===2">待售</div>
                 <div class="item-tag item-state state3" v-if="isData.status===3">售罄</div>
@@ -208,10 +208,10 @@
       .module-body {
         .module-context {
           .module-base {
-            padding: unit(30, rpx) 0;
+            padding: unit(40, rpx) 0;
             .module-row {
               line-height: unit(40, rpx);
-              margin-bottom: unit(20, rpx);
+              margin-bottom: unit(30, rpx);
               .module-col {
                 padding: 0 unit(30, rpx);
                 .title {
@@ -266,19 +266,22 @@
                     color: @priceColor;
                   }
                   .label {
-                    font-size: @fontSize1;
+                    font-size: @fontSize2;
                     color: @fontColor3;
                   }
                 }
                 &.col-6,
                 &.col-12 {
-                  height: unit(60, rpx);
-                  line-height: unit(60, rpx);
-                  font-size: @fontSize3;
+                  line-height: unit(65, rpx);
+                  letter-spacing: 0.5px;
+                  font-size: @fontSize4;
                   .label {
                     margin-right: unit(20, rpx);
                     color: @fontColor3;
                   }
+                }
+                &.tags {
+                  line-height: normal;
                 }
               }
               &:last-child {

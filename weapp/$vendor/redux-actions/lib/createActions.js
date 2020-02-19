@@ -5,7 +5,7 @@ exports.default = createActions;
 
 var _invariant = _interopRequireDefault(__wepy_require(33));
 
-var _isPlainObject = _interopRequireDefault(__wepy_require(12));
+var _isPlainObject = _interopRequireDefault(__wepy_require(13));
 
 var _isFunction = _interopRequireDefault(__wepy_require(6));
 

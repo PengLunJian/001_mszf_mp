@@ -166,68 +166,48 @@
               }
             }
             .banner-btns {
-              .btn-favorite {
+              display: flex;
+              position: absolute;
+              right: 0;
+              z-index: 10;
+              bottom: unit(-60, rpx);
+              padding: 0 unit(20, rpx);
+              button {
                 width: unit(90, rpx);
-                height: unit(90, rpx);
                 border-radius: 100%;
-                position: absolute;
-                right: unit(40, rpx);
-                bottom: unit(-60, rpx);
-                z-index: 1;
                 overflow: hidden;
                 background-color: @white;
-                text-align: center;
+                color: @fontColor3;
                 .btn-icon {
                   display: block;
                   height: unit(60, rpx);
                   line-height: unit(70, rpx);
                   font-size: @fontSize7;
-                  color: @priceColor;
-                  &:before {
-                    content: '\e633';
-                  }
-                  &.active {
-                    &:before {
-                      content: '\e63c';
-                    }
-                  }
                 }
                 .btn-text {
                   display: block;
                   height: unit(30, rpx);
                   line-height: unit(30, rpx);
                   font-size: unit(22, rpx);
-                  color: @fontColor3;
                 }
-              }
-              .btn-forward {
-                position: absolute;
-                top: unit(100, rpx);
-                right: 0;
-                z-index: 1;
-                overflow: hidden;
-                padding: 0 unit(20, rpx);
-                border-top-left-radius: unit(30, rpx);
-                border-bottom-left-radius: unit(30, rpx);
-                background: -webkit-linear-gradient(left, @theme2, @theme1);
-                box-shadow: 0 0 15px rgba(0, 0, 0, .05);
-                text-align: left;
-                font-size: 0;
-                color: @white;
-                .btn-icon {
-                  height: unit(60, rpx);
-                  display: inline-block;
-                  vertical-align: middle;
-                  line-height: unit(60, rpx);
-                  font-size: @fontSize5;
+                &.btn-favorite {
+                  margin-right: unit(20, rpx);
+                  .btn-icon {
+                    color: @favorite;
+                    &:before {
+                      content: '\e633';
+                    }
+                    &.active {
+                      &:before {
+                        content: '\e63c';
+                      }
+                    }
+                  }
                 }
-                .btn-text {
-                  height: unit(60, rpx);
-                  display: inline-block;
-                  vertical-align: middle;
-                  padding-left: unit(4, rpx);
-                  line-height: unit(60, rpx);
-                  font-size: @fontSize1;
+                &.btn-forward {
+                  .btn-icon {
+                    color: @forward;
+                  }
                 }
               }
             }

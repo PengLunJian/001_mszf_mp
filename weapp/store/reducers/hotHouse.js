@@ -38,17 +38,25 @@ var actions = (_actions = {}, _defineProperty(_actions, actionTypes.SELECT_HOTHO
       resNew = _action$data.resNew,
       resSecond = _action$data.resSecond,
       resRent = _action$data.resRent;
-  var resNewRows = resNew.rows || [];
-  var resSecondRows = resSecond.rows || [];
-  var resRentRows = resRent.rows || [];
-  action.data.resNew.rows = [].concat(utils.dataFilter(resNewRows));
-  action.data.resSecond.rows = [].concat(utils.dataFilter(resSecondRows));
-  action.data.resRent.rows = [].concat(utils.dataFilter(resRentRows));
+  var resNewData = resNew.data || {};
+  var resSecondData = resSecond.data || {};
+  var resRentData = resRent.data || {};
+  var resNewRows = resNewData.rows || [];
+  var resSecondRows = resSecondData.rows || [];
+  var resRentRows = resRentData.rows || [];
+  var newRows = utils.dataFilter(resNewRows);
+  var secondRows = utils.dataFilter(resSecondRows);
+  var rentRows = utils.dataFilter(resRentRows);
+  var newData = {
+    newRows: newRows,
+    secondRows: secondRows,
+    rentRows: rentRows
+  };
   return _objectSpread({}, state, {
     isLoading: false,
     isSuccess: true,
     isFailure: false,
-    data: action.data
+    data: newData
   });
 }), _defineProperty(_actions, actionTypes.SELECT_HOTHOUSE_FAILURE, function (state) {
   return _objectSpread({}, state, {

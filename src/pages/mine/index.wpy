@@ -11,10 +11,6 @@
               <div class="module-body">
                 <div class="module-context">
                   <div class="module-user">
-                    <div class="user-bg">
-                      <lazy-image
-                        src="http://sersms.com:7000/house/v1/file/static/userfile/202002/07/1225622956127174656.jpg"/>
-                    </div>
                     <div class="user-info">
                       <img class="user-img" src="../../assets/images/agent.jpg"/>
                       <div class="user-name">WEB前端架构师</div>
@@ -155,14 +151,10 @@
                   .module-user {
                     position: relative;
                     height: unit(280, rpx);
-                    .user-bg {
-                      position: absolute;
-                      top: 0;
-                      left: 0;
-                      z-index: 1;
-                      width: 100%;
-                      height: 100%;
-                    }
+                    background-size: 100% 100%;
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                    background-image: url('http://sersms.com:7000/house/v1/file/static/userfile/202002/07/1225622956127174656.jpg');
                     .user-info {
                       display: flex;
                       position: absolute;

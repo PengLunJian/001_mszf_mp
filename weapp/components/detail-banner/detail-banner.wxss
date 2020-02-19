@@ -295,66 +295,46 @@ button:after {
   font-size: 24rpx;
   color: #ffffff;
 }
-.module .module-content .module-body .module-context .module-banner .banner-btns .btn-favorite {
-  width: 90rpx;
-  height: 90rpx;
-  border-radius: 100%;
+.module .module-content .module-body .module-context .module-banner .banner-btns {
+  display: flex;
   position: absolute;
-  right: 40rpx;
+  right: 0;
+  z-index: 10;
   bottom: -60rpx;
-  z-index: 1;
+  padding: 0 20rpx;
+}
+.module .module-content .module-body .module-context .module-banner .banner-btns button {
+  width: 90rpx;
+  border-radius: 100%;
   overflow: hidden;
   background-color: #ffffff;
-  text-align: center;
+  color: #999999;
 }
-.module .module-content .module-body .module-context .module-banner .banner-btns .btn-favorite .btn-icon {
+.module .module-content .module-body .module-context .module-banner .banner-btns button .btn-icon {
   display: block;
   height: 60rpx;
   line-height: 70rpx;
   font-size: 40rpx;
-  color: #F40505;
 }
-.module .module-content .module-body .module-context .module-banner .banner-btns .btn-favorite .btn-icon:before {
-  content: '\e633';
-}
-.module .module-content .module-body .module-context .module-banner .banner-btns .btn-favorite .btn-icon.active:before {
-  content: '\e63c';
-}
-.module .module-content .module-body .module-context .module-banner .banner-btns .btn-favorite .btn-text {
+.module .module-content .module-body .module-context .module-banner .banner-btns button .btn-text {
   display: block;
   height: 30rpx;
   line-height: 30rpx;
   font-size: 22rpx;
-  color: #999999;
 }
-.module .module-content .module-body .module-context .module-banner .banner-btns .btn-forward {
-  position: absolute;
-  top: 100rpx;
-  right: 0;
-  z-index: 1;
-  overflow: hidden;
-  padding: 0 20rpx;
-  border-top-left-radius: 30rpx;
-  border-bottom-left-radius: 30rpx;
-  background: -webkit-linear-gradient(left, #FF9900, #FFCC00);
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
-  text-align: left;
-  font-size: 0;
-  color: #ffffff;
+.module .module-content .module-body .module-context .module-banner .banner-btns button.btn-favorite {
+  margin-right: 20rpx;
 }
-.module .module-content .module-body .module-context .module-banner .banner-btns .btn-forward .btn-icon {
-  height: 60rpx;
-  display: inline-block;
-  vertical-align: middle;
-  line-height: 60rpx;
-  font-size: 32rpx;
+.module .module-content .module-body .module-context .module-banner .banner-btns button.btn-favorite .btn-icon {
+  color: #F40505;
 }
-.module .module-content .module-body .module-context .module-banner .banner-btns .btn-forward .btn-text {
-  height: 60rpx;
-  display: inline-block;
-  vertical-align: middle;
-  padding-left: 4rpx;
-  line-height: 60rpx;
-  font-size: 24rpx;
+.module .module-content .module-body .module-context .module-banner .banner-btns button.btn-favorite .btn-icon:before {
+  content: '\e633';
+}
+.module .module-content .module-body .module-context .module-banner .banner-btns button.btn-favorite .btn-icon.active:before {
+  content: '\e63c';
+}
+.module .module-content .module-body .module-context .module-banner .banner-btns button.btn-forward .btn-icon {
+  color: #30C404;
 }
 

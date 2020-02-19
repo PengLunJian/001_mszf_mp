@@ -267,11 +267,11 @@ button:after {
   color: #333333;
 }
 .module .module-content .module-body .module-context .module-base {
-  padding: 30rpx 0;
+  padding: 40rpx 0;
 }
 .module .module-content .module-body .module-context .module-base .module-row {
   line-height: 40rpx;
-  margin-bottom: 20rpx;
+  margin-bottom: 30rpx;
 }
 .module .module-content .module-body .module-context .module-base .module-row .module-col {
   padding: 0 30rpx;
@@ -327,19 +327,22 @@ button:after {
   color: #F40505;
 }
 .module .module-content .module-body .module-context .module-base .module-row .module-col.col-4 .label {
-  font-size: 24rpx;
+  font-size: 26rpx;
   color: #999999;
 }
 .module .module-content .module-body .module-context .module-base .module-row .module-col.col-6,
 .module .module-content .module-body .module-context .module-base .module-row .module-col.col-12 {
-  height: 60rpx;
-  line-height: 60rpx;
-  font-size: 28rpx;
+  line-height: 65rpx;
+  letter-spacing: 0.5px;
+  font-size: 30rpx;
 }
 .module .module-content .module-body .module-context .module-base .module-row .module-col.col-6 .label,
 .module .module-content .module-body .module-context .module-base .module-row .module-col.col-12 .label {
   margin-right: 20rpx;
   color: #999999;
+}
+.module .module-content .module-body .module-context .module-base .module-row .module-col.tags {
+  line-height: normal;
 }
 .module .module-content .module-body .module-context .module-base .module-row:last-child {
   margin: 0;

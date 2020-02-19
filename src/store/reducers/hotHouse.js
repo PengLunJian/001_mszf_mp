@@ -14,18 +14,22 @@ const actions = {
   },
   [actionTypes.SELECT_HOTHOUSE_SUCCESS](state, action) {
     const {resNew, resSecond, resRent} = action.data;
-    const resNewRows = resNew.rows || [];
-    const resSecondRows = resSecond.rows || [];
-    const resRentRows = resRent.rows || [];
-    action.data.resNew.rows = [].concat(utils.dataFilter(resNewRows));
-    action.data.resSecond.rows = [].concat(utils.dataFilter(resSecondRows));
-    action.data.resRent.rows = [].concat(utils.dataFilter(resRentRows));
+    const resNewData = resNew.data || {};
+    const resSecondData = resSecond.data || {};
+    const resRentData = resRent.data || {};
+    const resNewRows = resNewData.rows || [];
+    const resSecondRows = resSecondData.rows || [];
+    const resRentRows = resRentData.rows || [];
+    const newRows = utils.dataFilter(resNewRows);
+    const secondRows = utils.dataFilter(resSecondRows);
+    const rentRows = utils.dataFilter(resRentRows);
+    const newData = {newRows, secondRows, rentRows};
     return {
       ...state,
       isLoading: false,
       isSuccess: true,
       isFailure: false,
-      data: action.data
+      data: newData
     };
   },
   [actionTypes.SELECT_HOTHOUSE_FAILURE](state) {

@@ -12,7 +12,7 @@
               <image src="../../../assets/images/logo@2x.png" mode="aspectFit"></image>
             </view>
             <view class="login-body">
-              <button open-type="getPhoneNumber" data-wpy-evt="17-4" bindgetphonenumber="_proxy" class="btn btn-wechat">
+              <button open-type="getPhoneNumber" data-wpy-evt="17-3" bindgetphonenumber="_proxy" class="btn btn-wechat">
                 <label class="btn-icon iconfont icon-wechat"></label>
                 <label class="btn-text">微信授权登录</label>
               </button>

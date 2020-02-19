@@ -22,7 +22,7 @@ _core["default"].page({
     }
   },
   onLoad: function onLoad() {}
-}, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'17-4': {"getphonenumber": function proxy () {
+}, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'17-3': {"getphonenumber": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {

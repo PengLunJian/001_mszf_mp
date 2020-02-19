@@ -3,7 +3,7 @@
 exports.__esModule = true;
 exports.default = void 0;
 
-var _isPlainObject = _interopRequireDefault(__wepy_require(12));
+var _isPlainObject = _interopRequireDefault(__wepy_require(13));
 
 var _flattenWhenNode = _interopRequireDefault(__wepy_require(23));
 

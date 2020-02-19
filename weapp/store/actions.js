@@ -5,7 +5,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ajaxRequestHotHouse = exports.ajaxRequestHotHouseRent = exports.ajaxRequestHotHouseSecond = exports.ajaxRequestHotHouseNew = exports.ajaxRequestHouseHistory = exports.ajaxRequestHouseFavorite = exports.ajaxRequestHouseUnfollow = exports.ajaxRequestHouseFollow = exports.ajaxRequestHouseDetail = exports.ajaxRequestHouseList = void 0;
+exports.ajaxRequestHotHouse = exports.ajaxRequestHouseHistory = exports.ajaxRequestHouseFavorite = exports.ajaxRequestHouseUnfollow = exports.ajaxRequestHouseFollow = exports.ajaxRequestHouseDetail = exports.ajaxRequestHouseList = void 0;
 
 var _apis = _interopRequireDefault(require('../apis/index.js'));
 
@@ -237,81 +237,28 @@ var ajaxRequestHouseHistory = (0, _reduxActions.createAction)('selectHouseHistor
   });
 });
 exports.ajaxRequestHouseHistory = ajaxRequestHouseHistory;
-var ajaxRequestHotHouseNew = (0, _reduxActions.createAction)('selectHotHouseNew', function (params) {
-  commit(actionTypes.SELECT_HOTHOUSENEW_REQUEST);
-  return new Promise(function (resolve, reject) {
-    _axios["default"].get(_apis["default"].selectHotHouseNew, {
-      params: params
-    }).then(function (res) {
-      res = res || {};
-      var _res7 = res,
-          data = _res7.data,
-          success = _res7.success;
 
-      if (success) {
-        commit(actionTypes.SELECT_HOTHOUSENEW_SUCCESS, data);
-      } else {
-        commit(actionTypes.SELECT_HOTHOUSENEW_FAILURE);
-      }
-
-      resolve(res);
-    })["catch"](function (err) {
-      commit(actionTypes.SELECT_HOTHOUSENEW_FAILURE);
-      reject(err);
-    });
+var ajaxRequestHotHouseNew = function ajaxRequestHotHouseNew() {
+  return _axios["default"].get(_apis["default"].selectHotHouseNew).then(function (res) {
+    res = res || {};
+    return res;
   });
-});
-exports.ajaxRequestHotHouseNew = ajaxRequestHotHouseNew;
-var ajaxRequestHotHouseSecond = (0, _reduxActions.createAction)('selectHotHouseSecond', function (params) {
-  commit(actionTypes.SELECT_HOTHOUSESECOND_REQUEST);
-  return new Promise(function (resolve, reject) {
-    _axios["default"].get(_apis["default"].selectHotHouseSecond, {
-      params: params
-    }).then(function (res) {
-      res = res || {};
-      var _res8 = res,
-          data = _res8.data,
-          success = _res8.success;
+};
 
-      if (success) {
-        commit(actionTypes.SELECT_HOTHOUSESECOND_SUCCESS, data);
-      } else {
-        commit(actionTypes.SELECT_HOTHOUSESECOND_FAILURE);
-      }
-
-      resolve(res);
-    })["catch"](function (err) {
-      commit(actionTypes.SELECT_HOTHOUSESECOND_FAILURE);
-      reject(err);
-    });
+var ajaxRequestHotHouseSecond = function ajaxRequestHotHouseSecond() {
+  return _axios["default"].get(_apis["default"].selectHotHouseSecond).then(function (res) {
+    res = res || {};
+    return res;
   });
-});
-exports.ajaxRequestHotHouseSecond = ajaxRequestHotHouseSecond;
-var ajaxRequestHotHouseRent = (0, _reduxActions.createAction)('selectHotHouseRent', function (params) {
-  commit(actionTypes.SELECT_HOTHOUSERENT_REQUEST);
-  return new Promise(function (resolve, reject) {
-    _axios["default"].get(_apis["default"].selectHotHouseRent, {
-      params: params
-    }).then(function (res) {
-      res = res || {};
-      var _res9 = res,
-          data = _res9.data,
-          success = _res9.success;
+};
 
-      if (success) {
-        commit(actionTypes.SELECT_HOTHOUSERENT_SUCCESS, data);
-      } else {
-        commit(actionTypes.SELECT_HOTHOUSERENT_FAILURE);
-      }
-
-      resolve(res);
-    })["catch"](function (err) {
-      commit(actionTypes.SELECT_HOTHOUSERENT_FAILURE);
-      reject(err);
-    });
+var ajaxRequestHotHouseRent = function ajaxRequestHotHouseRent() {
+  return _axios["default"].get(_apis["default"].selectHotHouseRent).then(function (res) {
+    res = res || {};
+    return res;
   });
-});
-exports.ajaxRequestHotHouseRent = ajaxRequestHotHouseRent;
+};
+
 var ajaxRequestHotHouse = (0, _reduxActions.createAction)('selectHotHouse', function () {
   commit(actionTypes.SELECT_HOTHOUSE_REQUEST);
   return new Promise(function (resolve, reject) {
@@ -321,16 +268,7 @@ var ajaxRequestHotHouse = (0, _reduxActions.createAction)('selectHotHouse', func
         resSecond: resSecond,
         resRent: resRent
       };
-      resNew.payload.then(function (res) {
-        newData.resNew = res.data;
-        resSecond.payload.then(function (res) {
-          newData.resSecond = res.data;
-          resRent.payload.then(function (res) {
-            newData.resRent = res.data;
-            commit(actionTypes.SELECT_HOTHOUSE_SUCCESS, newData);
-          });
-        });
-      });
+      commit(actionTypes.SELECT_HOTHOUSE_SUCCESS, newData);
       resolve(newData);
     }))["catch"](function (err) {
       commit(actionTypes.SELECT_HOTHOUSE_FAILURE);

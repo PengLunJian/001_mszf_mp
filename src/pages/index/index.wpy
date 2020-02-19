@@ -1,6 +1,8 @@
 <template>
   <div class="container">
-    <div class="content">
+    <loading :isLoading="isLoading"></loading>
+    <error :isFailure="isFailure" @refresh="onRefresh"></error>
+    <div class="content fade" v-if="isSuccess">
       <div class="header">
         <div class="top-bar">
           <div class="top-inner">
@@ -18,18 +20,16 @@
         </div>
       </div>
       <div class="body">
-        <loading :isLoading="isLoading"></loading>
-        <error :isFailure="isFailure" @refresh="onRefresh"></error>
-        <div class="context fade" v-if="isSuccess">
+        <div class="context">
           <scroll-view
             class="scroll-view"
             scroll-y="{{true}}">
             <div class="scroll-inner">
               <banner></banner>
               <customer-navigator></customer-navigator>
-              <hot-house title="租房推荐" :items="isData.resRent.rows"></hot-house>
-              <hot-house title="二手房推荐" :items="isData.resSecond.rows"></hot-house>
-              <hot-house title="新房推荐" :items="isData.resNew.rows"></hot-house>
+              <hot-house title="租房推荐" :items="isData.rentRows"></hot-house>
+              <hot-house title="二手房推荐" :items="isData.secondRows"></hot-house>
+              <hot-house title="新房推荐" :items="isData.newRows"></hot-house>
             </div>
           </scroll-view>
         </div>

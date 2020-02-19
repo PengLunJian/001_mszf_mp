@@ -10,11 +10,11 @@
     </view>
   </view>
   <view class="fixed-right">
-    <view data-wpy-evt="112-0" bindtap="_proxy" class="btn btn-msg col-6">
+    <view data-wpy-evt="112-6" bindtap="_proxy" class="btn btn-msg col-6">
       <text class="btn-icon iconfont icon-msg"></text>
       <text class="btn-text">微聊</text>
     </view>
-    <view data-wpy-evt="112-1" bindtap="_proxy" class="btn btn-tel col-6">
+    <view data-wpy-evt="112-7" bindtap="_proxy" class="btn btn-tel col-6">
       <text class="btn-icon iconfont icon-tel"></text>
       <text class="btn-text">电话</text>
     </view>

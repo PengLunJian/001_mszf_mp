@@ -1,8 +1,8 @@
 
 <view class="banner">
   <view class="banner-swiper">
-    <swiper autoplay="{{autoplay}}" circular="{{circular}}" data-wpy-evt="99-0" bindchange="_proxy" class="swiper">
-      <swiper-item wx:for="{{ items }}" wx:for-index="index" wx:for-item="item" wx:key="index" key="{{ index }}" data-wpy-evt="99-1" bindtap="_proxy" data-wpytap-a="{{ index }}">
+    <swiper autoplay="{{autoplay}}" circular="{{circular}}" data-wpy-evt="99-6" bindchange="_proxy" class="swiper">
+      <swiper-item wx:for="{{ items }}" wx:for-index="index" wx:for-item="item" wx:key="index" key="{{ index }}" data-wpy-evt="99-7" bindtap="_proxy" data-wpytap-a="{{ index }}">
         <lazy-image bind_init="_initComponent" src="{{item.url}}" class="swiper-img"></lazy-image>
       </swiper-item>
     </swiper>

@@ -10,7 +10,7 @@
             </view>
           </view>
           <view class="module-row row">
-            <view class="module-col col-12">
+            <view class="module-col tags col-12">
               <view wx:if="{{ isData.status===1 }}" class="item-tag item-state state1">在售</view>
               <view wx:if="{{ isData.status===2 }}" class="item-tag item-state state2">待售</view>
               <view wx:if="{{ isData.status===3 }}" class="item-tag item-state state3">售罄</view>
