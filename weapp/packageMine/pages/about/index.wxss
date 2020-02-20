@@ -68,7 +68,7 @@
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center center;
-  background-image: url("http://sersms.com:7000/house/v1/file/static/userfile/202002/10/1226759973292621824.jpg");
+  background-image: url("http://sersms.com:7000/house/v1/file/static/userfile/202002/20/1230344166403805184.jpg");
 }
 .container .content .body .context .list {
   padding: 0 30rpx 30rpx;

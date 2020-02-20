@@ -6,7 +6,7 @@
     </view>
     <view class="body">
       <loading bind_init="_initComponent" isLoading="{{ isLoading }}"></loading>
-      <error bind_init="_initComponent" isFailure="{{ isFailure }}" data-wpy-evt="10-3" bindrefresh="_proxy"></error>
+      <error bind_init="_initComponent" isFailure="{{ isFailure }}" data-wpy-evt="10-0" bindrefresh="_proxy"></error>
       <view wx:if="{{ isSuccess&&isData }}" class="context fade">
         <scroll-view scroll-y="{{true}}" class="scroll-view">
           <view class="scroll-inner">

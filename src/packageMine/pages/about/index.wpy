@@ -5,7 +5,7 @@
         <top-bar title="关于我们"></top-bar>
       </div>
       <div class="body">
-        <div class="context">
+        <div class="context fade">
           <div class="banner">
             <div class="inner"></div>
           </div>
@@ -165,7 +165,7 @@
               background-size: 100% 100%;
               background-repeat: no-repeat;
               background-position: center center;
-              background-image: url("http://sersms.com:7000/house/v1/file/static/userfile/202002/10/1226759973292621824.jpg");
+              background-image: url("http://sersms.com:7000/house/v1/file/static/userfile/202002/20/1230344166403805184.jpg");
             }
           }
           .list {

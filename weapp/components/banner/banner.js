@@ -27,14 +27,14 @@ _core["default"].component({
     }
   },
   onLoad: function onLoad() {}
-}, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'99-6': {"change": function proxy () {
+}, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'99-0': {"change": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleSwiperChange($event)
       })();
     
-  }},'99-7': {"tap": function proxy (index) {
+  }},'99-1': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {

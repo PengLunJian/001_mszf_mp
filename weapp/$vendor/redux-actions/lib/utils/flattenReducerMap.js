@@ -5,7 +5,7 @@ exports.default = void 0;
 
 var _isPlainObject = _interopRequireDefault(__wepy_require(13));
 
-var _isMap = _interopRequireDefault(__wepy_require(20));
+var _isMap = _interopRequireDefault(__wepy_require(19));
 
 var _hasGeneratorInterface = _interopRequireDefault(__wepy_require(25));
 

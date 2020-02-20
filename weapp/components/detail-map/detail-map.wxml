@@ -8,7 +8,7 @@
       <view class="module-context">
         <view class="module-map">
           <view class="map-content">
-            <map longitude="{{longitude}}" latitude="{{latitude}}" enable-zoom="{{enableZoom}}" enable-scroll="{{enableScroll}}" data-wpy-evt="111-3" bindtap="_proxy" class="map-canvas">
+            <map longitude="{{longitude}}" latitude="{{latitude}}" enable-zoom="{{enableZoom}}" enable-scroll="{{enableScroll}}" data-wpy-evt="111-0" bindtap="_proxy" class="map-canvas">
             </map>
             <view class="map-marker">
               <view class="marker-container">

@@ -16,8 +16,8 @@
               <view class="item-phone">{{item.tel||'暂无数据'}}</view>
             </view>
             <view class="item-btns">
-              <view data-wpy-evt="109-6" bindtap="_proxy" data-wpytap-a="{{ item }}" class="btn-icon btn-msg iconfont icon-msg"></view>
-              <view data-wpy-evt="109-7" bindtap="_proxy" data-wpytap-a="{{ item }}" class="btn-icon btn-tel iconfont icon-tel"></view>
+              <view data-wpy-evt="109-0" bindtap="_proxy" data-wpytap-a="{{ item }}" class="btn-icon btn-msg iconfont icon-msg"></view>
+              <view data-wpy-evt="109-1" bindtap="_proxy" data-wpytap-a="{{ item }}" class="btn-icon btn-tel iconfont icon-tel"></view>
             </view>
           </view>
         </view>

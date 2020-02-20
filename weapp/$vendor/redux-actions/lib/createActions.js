@@ -3,7 +3,7 @@
 exports.__esModule = true;
 exports.default = createActions;
 
-var _invariant = _interopRequireDefault(__wepy_require(33));
+var _invariant = _interopRequireDefault(__wepy_require(35));
 
 var _isPlainObject = _interopRequireDefault(__wepy_require(13));
 
@@ -27,7 +27,7 @@ var _flattenActionMap = _interopRequireDefault(__wepy_require(24));
 
 var _unflattenActionCreators = _interopRequireDefault(__wepy_require(18));
 
-var _createAction = _interopRequireDefault(__wepy_require(31));
+var _createAction = _interopRequireDefault(__wepy_require(33));
 
 var _constants = __wepy_require(5);
 

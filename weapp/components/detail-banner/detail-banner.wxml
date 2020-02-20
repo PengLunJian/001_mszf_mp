@@ -5,8 +5,8 @@
       <view class="module-context">
         <view class="module-banner">
           <view class="banner-swiper">
-            <swiper autoplay="{{autoplay}}" circular="{{circular}}" data-wpy-evt="107-66" bindchange="_proxy" class="swiper">
-              <swiper-item wx:for="{{ isData.pic_url }}" wx:for-index="index" wx:for-item="item" wx:key="index" key="{{ index }}" data-wpy-evt="107-67" bindtap="_proxy" data-wpytap-a="{{ index }}">
+            <swiper autoplay="{{autoplay}}" circular="{{circular}}" data-wpy-evt="107-0" bindchange="_proxy" class="swiper">
+              <swiper-item wx:for="{{ isData.pic_url }}" wx:for-index="index" wx:for-item="item" wx:key="index" key="{{ index }}" data-wpy-evt="107-1" bindtap="_proxy" data-wpytap-a="{{ index }}">
                 <lazy-image bind_init="_initComponent" src="{{item}}" lazyStyle="width:120px;height:60px;" class="swiper-img"></lazy-image>
               </swiper-item>
             </swiper>
@@ -15,7 +15,7 @@
             <label class="banner-label">{{current}}/{{isData.pic_url.length}}</label>
           </view>
           <view class="banner-btns">
-            <button data-wpy-evt="107-68" bindtap="_proxy" class="btn-favorite">
+            <button data-wpy-evt="107-2" bindtap="_proxy" class="btn-favorite">
               <label class="btn-icon iconfont icon-favorite{{isData.isFollow?' active':''}}"></label>
               <label class="btn-text">收藏</label>
             </button>

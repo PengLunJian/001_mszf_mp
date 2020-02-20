@@ -75,15 +75,16 @@
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center center;
-  background-image: url('http://sersms.com:7000/house/v1/file/static/userfile/202002/07/1225622956127174656.jpg');
+  background-image: url('http://sersms.com:7000/house/v1/file/static/userfile/202002/20/1230363451876511744.jpg');
 }
 .container .content .body .context .module .module-content .module-body .module-context .module-user .user-info {
   display: flex;
   position: absolute;
   left: 0;
-  z-index: 2;
-  bottom: 70rpx;
+  top: 50%;
+  z-index: 10;
   padding-left: 40rpx;
+  transform: translate3d(0, -50%, 0);
 }
 .container .content .body .context .module .module-content .module-body .module-context .module-user .user-info .user-img {
   width: 140rpx;
