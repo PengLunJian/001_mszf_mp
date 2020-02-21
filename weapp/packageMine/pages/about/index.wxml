@@ -11,7 +11,7 @@
         </view>
         <view class="list">
           <view class="inner">
-            <button data-wpy-evt="12-12" bindtap="_proxy" class="list-item btn">
+            <button data-wpy-evt="12-0" bindtap="_proxy" class="list-item btn">
               <view class="list-item-icon iconfont icon-phone"></view>
               <view class="list-item-text">联系电话</view>
               <view class="list-item-next iconfont icon-next"></view>
@@ -21,12 +21,12 @@
               <view class="list-item-text">在线客服</view>
               <view class="list-item-next iconfont icon-next"></view>
             </button>
-            <button data-wpy-evt="12-13" bindtap="_proxy" class="list-item btn">
+            <button data-wpy-evt="12-1" bindtap="_proxy" class="list-item btn">
               <view class="list-item-icon iconfont icon-address"></view>
               <view class="list-item-text">地址导航</view>
               <view class="list-item-next iconfont icon-next"></view>
             </button>
-            <button data-wpy-evt="12-14" bindtap="_proxy" class="list-item btn">
+            <button data-wpy-evt="12-2" bindtap="_proxy" class="list-item btn">
               <view class="list-item-icon iconfont icon-share"></view>
               <view class="list-item-text">我要分享</view>
               <view class="list-item-next iconfont icon-next"></view>
@@ -42,7 +42,7 @@
       </view>
     </view>
     <view class="modal{{isShow?' enter':''}}{{isHide?' leave':''}}">
-      <view data-wpy-evt="12-15" bindtap="_proxy" class="modal-bg"></view>
+      <view data-wpy-evt="12-3" bindtap="_proxy" class="modal-bg"></view>
       <view class="modal-content">
         <view class="modal-header">
           <image src="../../images/logo@2x.png" mode="aspectFit"></image>
@@ -53,8 +53,8 @@
           <view class="small">优质好房 尽在码上找房</view>
         </view>
         <view class="modal-footer">
-          <view data-wpy-evt="12-16" bindtap="_proxy" class="btn btn-cancel">取消</view>
-          <view data-wpy-evt="12-17" bindtap="_proxy" class="btn btn-confirm">保存</view>
+          <view data-wpy-evt="12-4" bindtap="_proxy" class="btn btn-cancel">取消</view>
+          <view data-wpy-evt="12-5" bindtap="_proxy" class="btn btn-confirm">保存</view>
         </view>
       </view>
     </view>

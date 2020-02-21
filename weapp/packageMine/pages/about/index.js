@@ -76,42 +76,42 @@ _core["default"].page({
     }
   },
   onLoad: function onLoad() {}
-}, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'12-12': {"tap": function proxy () {
+}, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'12-0': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandlePhone($event)
       })();
     
-  }},'12-13': {"tap": function proxy () {
+  }},'12-1': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleLocation($event)
       })();
     
-  }},'12-14': {"tap": function proxy () {
+  }},'12-2': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleShowModal($event)
       })();
     
-  }},'12-15': {"tap": function proxy () {
+  }},'12-3': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleHideModal($event)
       })();
     
-  }},'12-16': {"tap": function proxy () {
+  }},'12-4': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleCancel($event)
       })();
     
-  }},'12-17': {"tap": function proxy () {
+  }},'12-5': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {

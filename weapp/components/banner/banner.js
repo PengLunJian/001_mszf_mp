@@ -7,11 +7,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 _core["default"].component({
   data: {
     items: [{
-      url: 'http://sersms.com:7000/house/v1/file/static/userfile/202002/06/1225297117435019264.jpg'
+      url: 'http://sersms.com:7000/house/v1/file/static/userfile/202002/21/1230753480843005952.jpg'
     }, {
-      url: 'http://sersms.com:7000/house/v1/file/static/userfile/202002/06/1225297515902287872.jpg'
+      url: 'http://sersms.com:7000/house/v1/file/static/userfile/202002/21/1230753683352391680.jpg'
     }, {
-      url: 'http://sersms.com:7000/house/v1/file/static/userfile/202002/06/1225313315841261568.jpg'
+      url: 'http://sersms.com:7000/house/v1/file/static/userfile/202002/21/1230753772972085248.jpg'
     }],
     current: 0,
     autoplay: true,
@@ -27,14 +27,14 @@ _core["default"].component({
     }
   },
   onLoad: function onLoad() {}
-}, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'99-0': {"change": function proxy () {
+}, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'99-4': {"change": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleSwiperChange($event)
       })();
     
-  }},'99-1': {"tap": function proxy (index) {
+  }},'99-5': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {

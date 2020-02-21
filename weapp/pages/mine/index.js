@@ -60,7 +60,7 @@ _core["default"].page({
     }
   },
   onLoad: function onLoad() {}
-}, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"},"lazy-image":{"path":"..\\..\\components\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'5-9': {"tap": function proxy (item) {
+}, {info: {"components":{"top-bar":{"path":"..\\..\\components\\top-bar\\top-bar"},"lazy-image":{"path":"..\\..\\components\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'5-0': {"tap": function proxy (item) {
     
     var _vm=this;
       return (function () {
