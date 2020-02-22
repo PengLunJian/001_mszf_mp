@@ -1,6 +1,7 @@
 {
     "component": true,
     "usingComponents": {
+        "empty": "../empty/empty",
         "rent-house-item": "../rent-house-item/rent-house-item",
         "second-house-item": "../second-house-item/second-house-item",
         "new-house-item": "../new-house-item/new-house-item"

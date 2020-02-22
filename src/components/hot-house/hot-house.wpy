@@ -6,6 +6,7 @@
       </div>
       <div class="module-body">
         <div class="module-context">
+          <empty :isSuccess="!items.length"></empty>
           <block v-for="(item,index) in items" :key="index">
             <new-house-item v-if="item.type===1" :item="item"></new-house-item>
             <second-house-item v-if="item.type===2" :item="item"></second-house-item>
@@ -75,6 +76,7 @@
 <config>
   {
   usingComponents: {
+  'empty': '../empty/empty',
   'rent-house-item': '../rent-house-item/rent-house-item',
   'second-house-item': '../second-house-item/second-house-item',
   'new-house-item': '../new-house-item/new-house-item'

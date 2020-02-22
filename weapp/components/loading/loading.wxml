@@ -1,9 +1,11 @@
 
 <view wx:if="{{ isShow }}" class="loading fade{{isLoading?'':' hide'}}">
   <view class="loading-inner">
-    <view class="loading-image">
-      <image src="images/loading-icon@2x.png" mode="aspectFit" class="loading-icon"></image>
-      <image src="images/loading-clock@2x.png" mode="aspectFit" class="loading-clock"></image>
+    <view class="loading-icon">
+      <image src="images/loading-icon@2x.png" mode="aspectFit" class="loading-house"></image>
+      <image src="images/loading-clock@2x.png" mode="aspectFit" class="loading-round"></image>
+    </view>
+    <view class="loading-text">
       <image src="images/loading-label@2x.png" mode="aspectFit" class="loading-label"></image>
     </view>
   </view>

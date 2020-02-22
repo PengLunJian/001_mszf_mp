@@ -261,31 +261,37 @@ button:after {
   display: inline-block;
   font-size: 0;
 }
-.load-more .load-more-content .load-more-true .load-more-icon {
-  position: absolute;
-  top: 0;
-  left: 0;
+.load-more .load-more-content .load-more-exist .load-more-icon {
+  position: relative;
   width: 50rpx;
   height: 50rpx;
-  padding: 16rpx;
-  transform: translate3d(0%, 0%, 0);
-}
-.load-more .load-more-content .load-more-true .load-more-clock {
-  width: 50rpx;
-  height: 50rpx;
-  padding: 5rpx;
   display: inline-block;
   vertical-align: middle;
+}
+.load-more .load-more-content .load-more-exist .load-more-icon .load-more-house {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 8px;
+  transform: translate3d(-50%, -50%, 0);
+}
+.load-more .load-more-content .load-more-exist .load-more-icon .load-more-round {
+  width: 100%;
+  height: 100%;
+  padding: 5rpx;
   animation: rotate 3s linear infinite;
 }
-.load-more .load-more-content .load-more-true .load-more-label {
-  width: 90rpx;
-  height: 50rpx;
+.load-more .load-more-content .load-more-exist .load-more-text {
   display: inline-block;
   vertical-align: middle;
-  padding: 0 5rpx;
+  margin-left: 5rpx;
 }
-.load-more .load-more-content .load-more-false .load-more-label {
+.load-more .load-more-content .load-more-exist .load-more-text .load-more-label {
+  width: 76rpx;
+  height: 26rpx;
+}
+.load-more .load-more-content .load-more-empty .load-more-label {
   height: 50rpx;
   line-height: 50rpx;
   display: inline-block;
@@ -294,8 +300,8 @@ button:after {
   font-size: 28rpx;
   color: #999999;
 }
-.load-more .load-more-content .load-more-false:before,
-.load-more .load-more-content .load-more-false:after {
+.load-more .load-more-content .load-more-empty:before,
+.load-more .load-more-content .load-more-empty:after {
   content: '';
   width: 50rpx;
   display: inline-block;

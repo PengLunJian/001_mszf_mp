@@ -98,8 +98,9 @@
 .container .content .modal .modal-content .modal-body .modal-group {
   padding: 0 15rpx;
 }
-.container .content .modal .modal-content .modal-body .modal-group .modal-padding {
+.container .content .modal .modal-content .modal-body .modal-group .modal-slider {
   padding: 0 15rpx;
+  margin-top: 15rpx;
 }
 .container .content .modal .modal-content .modal-body .modal-group .modal-split {
   width: 690rpx;
@@ -113,7 +114,7 @@
   position: relative;
   padding: 30rpx 0;
 }
-.container .content .modal .modal-content .modal-body .modal-group .modal-slider {
+.container .content .modal .modal-content .modal-body .modal-group .modal-slider-bar {
   padding: 0 28rpx;
 }
 .container .content .modal .modal-content .modal-body .modal-group .min-label,
@@ -141,6 +142,7 @@
   text-align: center;
   color: #999999;
 }
+.container .content .modal .modal-content .modal-body .modal-group .modal-col.active .btn-size,
 .container .content .modal .modal-content .modal-body .modal-group .modal-col.active .btn-price,
 .container .content .modal .modal-content .modal-body .modal-group .modal-col.active .btn-method,
 .container .content .modal .modal-content .modal-body .modal-group .modal-col.active .btn-layout,
@@ -157,6 +159,31 @@
   padding: 0 15rpx;
   font-size: 28rpx;
   color: #666666;
+}
+.container .content .modal .modal-content .modal-body .modal-addr {
+  display: flex;
+  height: 100%;
+  line-height: 90rpx;
+  letter-spacing: 0.5px;
+  font-size: 30rpx;
+  color: #333333;
+}
+.container .content .modal .modal-content .modal-body .modal-addr .modal-city {
+  width: 35%;
+  text-align: center;
+}
+.container .content .modal .modal-content .modal-body .modal-addr .modal-area {
+  width: 65%;
+  background-color: #fafafa;
+}
+.container .content .modal .modal-content .modal-body .modal-addr .modal-area .scroll-view {
+  height: 100%;
+}
+.container .content .modal .modal-content .modal-body .modal-addr .modal-area .scroll-view .modal-area-item {
+  padding: 0 40rpx;
+}
+.container .content .modal .modal-content .modal-body .modal-addr .modal-area .scroll-view .modal-area-item.active {
+  color: #FF9900;
 }
 .container .content .modal .modal-content .modal-body .modal-sort .btn-sort {
   height: 50px;
@@ -199,7 +226,7 @@
   width: 65%;
   background: -webkit-linear-gradient(left, #FFCC00, #FF9900);
 }
-.container .content .modal#price .modal-content,
+.container .content .modal#address .modal-content,
 .container .content .modal#filter .modal-content {
   padding-bottom: 100rpx;
 }

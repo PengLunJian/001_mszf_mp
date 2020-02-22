@@ -55,13 +55,13 @@ _axios["default"].interceptors.response.use(function (response) {
   return new Promise(function (resolve) {
     setTimeout(function () {
       resolve(response.data);
-    }, 1000);
+    }, 500);
   });
 }, function (error) {
   return new Promise(function (resolve) {
     setTimeout(function () {
       resolve(error.response);
-    }, 1000);
+    }, 500);
   });
 });
 

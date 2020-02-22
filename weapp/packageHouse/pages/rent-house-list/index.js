@@ -35,7 +35,7 @@ _core["default"].page({
     tabIndex: -1,
     tabs: [{
       index: 0,
-      label: '价格',
+      label: '区域',
       isShow: false
     }, {
       index: 1,
@@ -50,9 +50,13 @@ _core["default"].page({
       initIndex: -1,
       items: ['1000以下', '1k-2k', '2k-3k', '3k-4k', '4k-5k', '5k-6k', '6k-7k', '7k-8k', '8k-9k', '9k-10k']
     },
+    btnSize: {
+      initIndex: -1,
+      items: ['50m²以下', '50-70m²', '70-90m²', '90-110m²', '110-130m²', '130-150m²', '150-200m²', '200-300m²', '300-500m²', '500m²以上']
+    },
     btnMethod: {
       initIndex: -1,
-      items: ['整租', '合租']
+      items: ['整租', '合租', '转租']
     },
     btnLayout: {
       initIndex: -1,
@@ -71,11 +75,11 @@ _core["default"].page({
     sliderPriceValue: [0, 10000],
     trackStylePrice: ['background: -webkit-linear-gradient(left, #FFCC00, #FF9900);'],
     handleStylePrice: ['transform:translate3d(-50%,-50%,0) scale(1.0);box-shadow:0 0 15px rgba(0,0,0,.15)', 'transform:translate3d(-50%,-50%,0) scale(1.0);box-shadow:0 0 15px rgba(0,0,0,.15)'],
-    minArea: '面积',
-    maxArea: '不限',
-    sliderAreaValue: [0, 300],
-    trackStyleArea: ['background: -webkit-linear-gradient(left, #FFCC00, #FF9900);'],
-    handleStyleArea: ['transform:translate3d(-50%,-50%,0) scale(1.0);box-shadow:0 0 15px rgba(0,0,0,.15)', 'transform:translate3d(-50%,-50%,0) scale(1.0);box-shadow:0 0 15px rgba(0,0,0,.15)']
+    minSize: '面积',
+    maxSize: '不限',
+    sliderSizeValue: [0, 500],
+    trackStyleSize: ['background: -webkit-linear-gradient(left, #FFCC00, #FF9900);'],
+    handleStyleSize: ['transform:translate3d(-50%,-50%,0) scale(1.0);box-shadow:0 0 15px rgba(0,0,0,.15)', 'transform:translate3d(-50%,-50%,0) scale(1.0);box-shadow:0 0 15px rgba(0,0,0,.15)']
   },
   computed: _objectSpread({}, (0, _redux.mapState)(controller.STATES)),
   methods: _objectSpread({}, (0, _redux.mapActions)(controller.ACTIONS), {
@@ -124,31 +128,32 @@ _core["default"].page({
       }
 
       this.sliderPriceValue = value;
-      this.maxPrice = maxLabel;
       this.btnPrice.initIndex = -1;
+      this.maxPrice = maxLabel;
     },
-    onHandleSliderChangeArea: function onHandleSliderChangeArea(e) {
+    onHandleSliderChangeSize: function onHandleSliderChangeSize(e) {
       var maxLabel = '';
       var value = e.$wx.detail.value;
-      var minArea = value[0];
-      var maxArea = value[1];
+      var minSize = value[0];
+      var maxSize = value[1];
 
-      if (!minArea) {
-        if (maxArea >= 300) {
+      if (!minSize) {
+        if (maxSize >= 500) {
           maxLabel = '不限';
         } else {
-          maxLabel = maxArea + 'm²';
+          maxLabel = maxSize + 'm²';
         }
       } else {
-        if (maxArea >= 300) {
-          maxLabel = minArea + 'm²以上';
+        if (maxSize >= 500) {
+          maxLabel = minSize + 'm²以上';
         } else {
-          maxLabel = minArea + '-' + maxArea + 'm²';
+          maxLabel = minSize + '-' + maxSize + 'm²';
         }
       }
 
-      this.sliderAreaValue = value;
-      this.maxArea = maxLabel;
+      this.sliderSizeValue = value;
+      this.btnSize.initIndex = -1;
+      this.maxSize = maxLabel;
     },
     onHandlePriceFilter: function onHandlePriceFilter(index) {
       var btnIndex = this.btnPrice.initIndex;
@@ -161,6 +166,18 @@ _core["default"].page({
 
       this.maxPrice = '不限';
       this.sliderPriceValue = [0, 10000];
+    },
+    onHandleSizeFilter: function onHandleSizeFilter(index) {
+      var btnIndex = this.btnSize.initIndex;
+
+      if (btnIndex === index) {
+        this.btnSize.initIndex = -1;
+      } else {
+        this.btnSize.initIndex = index;
+      }
+
+      this.maxSize = '不限';
+      this.sliderSizeValue = [0, 500];
     },
     onHandleMethodFilter: function onHandleMethodFilter(index) {
       var btnIndex = this.btnMethod.initIndex;
@@ -198,17 +215,17 @@ _core["default"].page({
         this.btnSort.initIndex = index;
       }
     },
-    onHandleClearModal1: function onHandleClearModal1() {
-      this.maxPrice = '不限';
-      this.btnPrice.initIndex = -1;
-      this.sliderPriceValue = [0, 10000];
-    },
+    onHandleClearModal1: function onHandleClearModal1() {},
     onHandleClearModal2: function onHandleClearModal2() {
-      this.maxArea = '不限';
       this.btnMethod.initIndex = -1;
       this.btnLayout.initIndex = -1;
       this.btnStyle.initIndex = -1;
-      this.sliderAreaValue = [0, 300];
+      this.maxSize = '不限';
+      this.btnSize.initIndex = -1;
+      this.sliderSizeValue = [0, 500];
+      this.maxPrice = '不限';
+      this.btnPrice.initIndex = -1;
+      this.sliderPriceValue = [0, 10000];
     },
     onHandleScrollToLower: function onHandleScrollToLower() {
       var _this2 = this;
@@ -283,105 +300,112 @@ _core["default"].page({
     this.resetHouseList();
     this.exeAjaxHouseList();
   }
-}, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\..\\components\\error\\error"},"empty":{"path":"..\\..\\..\\components\\empty\\empty"},"load-more":{"path":"..\\..\\..\\components\\load-more\\load-more"},"rent-house-item":{"path":"..\\..\\..\\components\\rent-house-item\\rent-house-item"},"wux-slider":{"path":"..\\..\\..\\$vendor\\wux-weapp\\dist\\slider\\index"}},"on":{"9-1":["refresh"],"9-5":["change"],"9-11":["change"]}}, handlers: {'9-0': {"tap": function proxy (index) {
+}, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\..\\components\\error\\error"},"empty":{"path":"..\\..\\..\\components\\empty\\empty"},"load-more":{"path":"..\\..\\..\\components\\load-more\\load-more"},"rent-house-item":{"path":"..\\..\\..\\components\\rent-house-item\\rent-house-item"},"wux-slider":{"path":"..\\..\\..\\$vendor\\wux-weapp\\dist\\slider\\index"}},"on":{"9-683":["refresh"],"9-692":["change"],"9-694":["change"]}}, handlers: {'9-682': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {
         _vm.onHandleTabChange(index)
       })();
     
-  }},'9-1': {"refresh": function proxy () {
+  }},'9-683': {"refresh": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onRefresh($event)
       })();
     
-  }},'9-2': {"scrolltolower": function proxy () {
+  }},'9-684': {"scrolltolower": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleScrollToLower($event)
       })();
     
-  }},'9-3': {"tap": function proxy () {
+  }},'9-685': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
         _vm.onHandleCloseModal(0)
       })();
     
-  }},'9-4': {"tap": function proxy (index) {
-    
-    var _vm=this;
-      return (function () {
-        _vm.onHandlePriceFilter(index)
-      })();
-    
-  }},'9-5': {"change": function proxy () {
-    var $event = arguments[arguments.length - 1];
-    var _vm=this;
-      return (function () {
-        _vm.onHandleSliderChangePrice($event)
-      })();
-    
-  }},'9-6': {"tap": function proxy () {
+  }},'9-686': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleClearModal1($event)
       })();
     
-  }},'9-7': {"tap": function proxy () {
+  }},'9-687': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
         _vm.onHandleCloseModal(1)
       })();
     
-  }},'9-8': {"tap": function proxy (index) {
+  }},'9-688': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {
         _vm.onHandleMethodFilter(index)
       })();
     
-  }},'9-9': {"tap": function proxy (index) {
+  }},'9-689': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {
         _vm.onHandleLayoutFilter(index)
       })();
     
-  }},'9-10': {"tap": function proxy (index) {
+  }},'9-690': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {
         _vm.onHandleStyleFilter(index)
       })();
     
-  }},'9-11': {"change": function proxy () {
+  }},'9-691': {"tap": function proxy (index) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandlePriceFilter(index)
+      })();
+    
+  }},'9-692': {"change": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
-        _vm.onHandleSliderChangeArea($event)
+        _vm.onHandleSliderChangePrice($event)
       })();
     
-  }},'9-12': {"tap": function proxy () {
+  }},'9-693': {"tap": function proxy (index) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleSizeFilter(index)
+      })();
+    
+  }},'9-694': {"change": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleSliderChangeSize($event)
+      })();
+    
+  }},'9-695': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleClearModal2($event)
       })();
     
-  }},'9-13': {"tap": function proxy () {
+  }},'9-696': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
         _vm.onHandleCloseModal(2)
       })();
     
-  }},'9-14': {"tap": function proxy (index) {
+  }},'9-697': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {

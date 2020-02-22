@@ -323,7 +323,7 @@ button:after {
   font-size: 22rpx;
 }
 .module .module-content .module-body .module-context .module-banner .banner-btns button.btn-favorite {
-  margin-right: 20rpx;
+  margin-right: 10rpx;
 }
 .module .module-content .module-body .module-context .module-banner .banner-btns button.btn-favorite .btn-icon {
   color: #F40505;

@@ -5,7 +5,7 @@
         <top-bar title="房源搜索"></top-bar>
       </div>
       <div class="body">
-        <wait></wait>
+        <wait :isLoading="true"></wait>
       </div>
       <div class="footer"></div>
     </div>

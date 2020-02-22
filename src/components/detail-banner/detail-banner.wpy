@@ -191,7 +191,7 @@
                   font-size: unit(22, rpx);
                 }
                 &.btn-favorite {
-                  margin-right: unit(20, rpx);
+                  margin-right: unit(10, rpx);
                   .btn-icon {
                     color: @favorite;
                     &:before {

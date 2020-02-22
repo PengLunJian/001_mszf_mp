@@ -33,47 +33,26 @@
         </div>
       </div>
       <div class="footer"></div>
-      <div class="modal" id="price" :class="{'hide':!tabs[0].isShow}">
+      <div class="modal" id="address" :class="{'hide':!tabs[0].isShow}">
         <div class="modal-bg" @tap="onHandleCloseModal(0)"></div>
         <div class="modal-content">
           <div class="modal-header"></div>
           <div class="modal-body">
-            <scroll-view class="scroll-view" scroll-y="{{true}}">
-              <div class="modal-group">
-                <div class="modal-block">
-                  <div class="modal-row row">
-                    <div v-for="(item,index) in btnPrice.items"
-                         class="modal-col col-3"
-                         :class="{'active':index===btnPrice.initIndex}">
-                      <div class="btn-item btn-price" @tap="onHandlePriceFilter(index)">{{item}}</div>
-                    </div>
-                  </div>
-                  <div class="modal-split"></div>
-                </div>
+            <div class="modal-addr">
+              <div class="modal-city">
+                <div class="modal-city-item">宣城市</div>
               </div>
-              <div class="modal-group">
-                <div class="modal-block">
-                  <div class="modal-padding">
-                    <div class="modal-row row">
-                      <div class="min-label col-6">{{minPrice}}</div>
-                      <div class="max-label col-6">{{maxPrice}}</div>
-                    </div>
-                    <div class="modal-slider">
-                      <wux-slider
-                        min="0"
-                        step="10"
-                        max="10000"
-                        tipFormatter=""
-                        controlled="{{true}}"
-                        value="{{ sliderPriceValue }}"
-                        trackStyle="{{trackStylePrice}}"
-                        handleStyle="{{handleStylePrice}}"
-                        @change="onHandleSliderChangePrice"></wux-slider>
-                    </div>
-                  </div>
-                </div>
+              <div class="modal-area">
+                <scroll-view class="scroll-view" scroll-y="{{true}}">
+                  <div class="modal-area-item">宣州区</div>
+                  <div class="modal-area-item">绩溪县</div>
+                  <div class="modal-area-item">郎溪县</div>
+                  <div class="modal-area-item">泾县</div>
+                  <div class="modal-area-item active">广德县</div>
+                  <div class="modal-area-item">宁国市</div>
+                </scroll-view>
               </div>
-            </scroll-view>
+            </div>
           </div>
           <div class="modal-footer">
             <div class="modal-button">
@@ -130,22 +109,61 @@
               </div>
               <div class="modal-group">
                 <div class="modal-block">
-                  <div class="modal-padding">
-                    <div class="modal-row row">
-                      <div class="min-label col-6">{{minArea}}</div>
-                      <div class="max-label col-6">{{maxArea}}</div>
+                  <div class="modal-label">价格</div>
+                  <div class="modal-row row">
+                    <div v-for="(item,index) in btnPrice.items"
+                         class="modal-col col-3"
+                         :class="{'active':index===btnPrice.initIndex}">
+                      <div class="btn-item btn-price" @tap="onHandlePriceFilter(index)">{{item}}</div>
                     </div>
-                    <div class="modal-slider">
+                  </div>
+                  <div class="modal-slider">
+                    <div class="modal-row row">
+                      <div class="min-label col-6">{{minPrice}}</div>
+                      <div class="max-label col-6">{{maxPrice}}</div>
+                    </div>
+                    <div class="modal-slider-bar">
+                      <wux-slider
+                        min="0"
+                        step="10"
+                        max="10000"
+                        tipFormatter=""
+                        controlled="{{true}}"
+                        value="{{ sliderPriceValue }}"
+                        trackStyle="{{trackStylePrice}}"
+                        handleStyle="{{handleStylePrice}}"
+                        @change="onHandleSliderChangePrice"></wux-slider>
+                    </div>
+                    <div class="modal-split"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-group">
+                <div class="modal-block">
+                  <div class="modal-label">面积</div>
+                  <div class="modal-row row">
+                    <div v-for="(item,index) in btnSize.items"
+                         class="modal-col col-3"
+                         :class="{'active':index===btnSize.initIndex}">
+                      <div class="btn-item btn-size" @tap="onHandleSizeFilter(index)">{{item}}</div>
+                    </div>
+                  </div>
+                  <div class="modal-slider">
+                    <div class="modal-row row">
+                      <div class="min-label col-6">{{minSize}}</div>
+                      <div class="max-label col-6">{{maxSize}}</div>
+                    </div>
+                    <div class="modal-slider-bar">
                       <wux-slider
                         min="0"
                         step="1"
-                        max="300"
+                        max="500"
                         tipFormatter=""
                         controlled="{{true}}"
-                        value="{{ sliderAreaValue }}"
-                        trackStyle="{{trackStyleArea}}"
-                        handleStyle="{{handleStyleArea}}"
-                        @change="onHandleSliderChangeArea"></wux-slider>
+                        value="{{ sliderSizeValue }}"
+                        trackStyle="{{trackStyleSize}}"
+                        handleStyle="{{handleStyleSize}}"
+                        @change="onHandleSliderChangeSize"></wux-slider>
                     </div>
                   </div>
                 </div>
@@ -199,7 +217,7 @@
       tabs: [
         {
           index: 0,
-          label: '价格',
+          label: '区域',
           isShow: false
         },
         {
@@ -228,11 +246,27 @@
           '9k-10k'
         ]
       },
+      btnSize: {
+        initIndex: -1,
+        items: [
+          '50m²以下',
+          '50-70m²',
+          '70-90m²',
+          '90-110m²',
+          '110-130m²',
+          '130-150m²',
+          '150-200m²',
+          '200-300m²',
+          '300-500m²',
+          '500m²以上'
+        ]
+      },
       btnMethod: {
         initIndex: -1,
         items: [
           '整租',
-          '合租'
+          '合租',
+          '转租'
         ]
       },
       btnLayout: {
@@ -277,13 +311,13 @@
         'transform:translate3d(-50%,-50%,0) scale(1.0);box-shadow:0 0 15px rgba(0,0,0,.15)',
         'transform:translate3d(-50%,-50%,0) scale(1.0);box-shadow:0 0 15px rgba(0,0,0,.15)'
       ],
-      minArea: '面积',
-      maxArea: '不限',
-      sliderAreaValue: [0, 300],
-      trackStyleArea: [
+      minSize: '面积',
+      maxSize: '不限',
+      sliderSizeValue: [0, 500],
+      trackStyleSize: [
         'background: -webkit-linear-gradient(left, #FFCC00, #FF9900);'
       ],
-      handleStyleArea: [
+      handleStyleSize: [
         'transform:translate3d(-50%,-50%,0) scale(1.0);box-shadow:0 0 15px rgba(0,0,0,.15)',
         'transform:translate3d(-50%,-50%,0) scale(1.0);box-shadow:0 0 15px rgba(0,0,0,.15)'
       ]
@@ -334,29 +368,30 @@
           }
         }
         this.sliderPriceValue = value;
-        this.maxPrice = maxLabel;
         this.btnPrice.initIndex = -1;
+        this.maxPrice = maxLabel;
       },
-      onHandleSliderChangeArea(e) {
+      onHandleSliderChangeSize(e) {
         let maxLabel = '';
         const value = e.$wx.detail.value;
-        const minArea = value[0];
-        const maxArea = value[1];
-        if (!minArea) {
-          if (maxArea >= 300) {
+        const minSize = value[0];
+        const maxSize = value[1];
+        if (!minSize) {
+          if (maxSize >= 500) {
             maxLabel = '不限';
           } else {
-            maxLabel = maxArea + 'm²';
+            maxLabel = maxSize + 'm²';
           }
         } else {
-          if (maxArea >= 300) {
-            maxLabel = minArea + 'm²以上';
+          if (maxSize >= 500) {
+            maxLabel = minSize + 'm²以上';
           } else {
-            maxLabel = minArea + '-' + maxArea + 'm²';
+            maxLabel = minSize + '-' + maxSize + 'm²';
           }
         }
-        this.sliderAreaValue = value;
-        this.maxArea = maxLabel;
+        this.sliderSizeValue = value;
+        this.btnSize.initIndex = -1;
+        this.maxSize = maxLabel;
       },
       onHandlePriceFilter(index) {
         const btnIndex = this.btnPrice.initIndex;
@@ -367,6 +402,16 @@
         }
         this.maxPrice = '不限';
         this.sliderPriceValue = [0, 10000];
+      },
+      onHandleSizeFilter(index) {
+        const btnIndex = this.btnSize.initIndex;
+        if (btnIndex === index) {
+          this.btnSize.initIndex = -1;
+        } else {
+          this.btnSize.initIndex = index;
+        }
+        this.maxSize = '不限';
+        this.sliderSizeValue = [0, 500];
       },
       onHandleMethodFilter(index) {
         const btnIndex = this.btnMethod.initIndex;
@@ -401,16 +446,18 @@
         }
       },
       onHandleClearModal1() {
-        this.maxPrice = '不限';
-        this.btnPrice.initIndex = -1;
-        this.sliderPriceValue = [0, 10000];
+
       },
       onHandleClearModal2() {
-        this.maxArea = '不限';
         this.btnMethod.initIndex = -1;
         this.btnLayout.initIndex = -1;
         this.btnStyle.initIndex = -1;
-        this.sliderAreaValue = [0, 300];
+        this.maxSize = '不限';
+        this.btnSize.initIndex = -1;
+        this.sliderSizeValue = [0, 500];
+        this.maxPrice = '不限';
+        this.btnPrice.initIndex = -1;
+        this.sliderPriceValue = [0, 10000];
       },
       onHandleScrollToLower() {
         if (this.timer) return;
@@ -590,8 +637,9 @@
             }
             .modal-group {
               padding: 0 unit(15, rpx);
-              .modal-padding {
+              .modal-slider {
                 padding: 0 unit(15, rpx);
+                margin-top: unit(15, rpx);
               }
               .modal-split {
                 width: unit(690, rpx);
@@ -605,7 +653,7 @@
                 position: relative;
                 padding: unit(30, rpx) 0;
               }
-              .modal-slider {
+              .modal-slider-bar {
                 padding: 0 unit(28, rpx);
               }
               .min-label,
@@ -632,6 +680,7 @@
                   color: @fontColor3;
                 }
                 &.active {
+                  .btn-size,
                   .btn-price,
                   .btn-method,
                   .btn-layout,
@@ -650,6 +699,31 @@
                 padding: 0 unit(15, rpx);
                 font-size: @fontSize3;
                 color: @fontColor2;
+              }
+            }
+            .modal-addr {
+              display: flex;
+              height: 100%;
+              line-height: unit(90, rpx);
+              letter-spacing: 0.5px;
+              font-size: @fontSize4;
+              color: @fontColor1;
+              .modal-city {
+                width: 35%;
+                text-align: center;
+              }
+              .modal-area {
+                width: 65%;
+                background-color: @bgColor;
+                .scroll-view {
+                  height: 100%;
+                  .modal-area-item {
+                    padding: 0 unit(40, rpx);
+                    &.active {
+                      color: @theme2;
+                    }
+                  }
+                }
               }
             }
             .modal-sort {
@@ -699,7 +773,7 @@
             }
           }
         }
-        &#price,
+        &#address,
         &#filter {
           .modal-content {
             padding-bottom: unit(100, rpx);

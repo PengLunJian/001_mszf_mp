@@ -61,4 +61,312 @@ _core["default"].component({
         _vm.onHandleDetail(_vm.item.id)
       })();
     
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'117-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'117-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'117-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'117-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'117-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'117-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'117-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'117-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'117-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'117-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'117-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'117-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'117-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'117-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'117-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'117-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'117-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'117-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'117-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'117-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'117-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'117-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'117-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'117-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'117-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'117-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'117-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'117-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'117-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'117-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'117-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'117-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'117-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'117-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'117-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'117-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'117-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'117-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'117-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'117-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'117-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'117-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'117-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'117-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleDetail(_vm.item.id)
+      })();
+    
   }}}, models: {} });
