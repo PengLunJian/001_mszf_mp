@@ -44,12 +44,11 @@
               </div>
               <div class="modal-area">
                 <scroll-view class="scroll-view" scroll-y="{{true}}">
-                  <div class="modal-area-item">宣州区</div>
-                  <div class="modal-area-item">绩溪县</div>
-                  <div class="modal-area-item">郎溪县</div>
-                  <div class="modal-area-item">泾县</div>
-                  <div class="modal-area-item active">广德县</div>
-                  <div class="modal-area-item">宁国市</div>
+                  <div class="modal-area-item{{item.state?' on':''}}"
+                       v-for="(item,index) in btnArea.items"
+                       :class="{'active':index===btnArea.activeIndex}"
+                       @tap="onHandleChooseArea(item,index)">{{item.label}}
+                  </div>
                 </scroll-view>
               </div>
             </div>
@@ -231,6 +230,39 @@
           isShow: false
         }
       ],
+      btnArea: {
+        activeIndex: 2,
+        items: [
+          {
+            state: false,
+            label: '宣州区'
+          },
+          {
+            state: false,
+            label: '郎溪县'
+          },
+          {
+            state: true,
+            label: '广德市'
+          },
+          {
+            state: false,
+            label: '宁国市'
+          },
+          {
+            state: false,
+            label: '泾县'
+          },
+          {
+            state: false,
+            label: '绩溪县'
+          },
+          {
+            state: false,
+            label: '旌德县'
+          }
+        ]
+      },
       btnPrice: {
         initIndex: -1,
         items: [
@@ -446,7 +478,7 @@
         }
       },
       onHandleClearModal1() {
-
+        this.btnArea.activeIndex = -1;
       },
       onHandleClearModal2() {
         this.btnMethod.initIndex = -1;
@@ -467,6 +499,11 @@
             this.exeAjaxHouseList();
           }
         }, 500);
+      },
+      onHandleChooseArea(item, index) {
+        if (item.state) {
+          this.btnArea.activeIndex = index;
+        }
       },
       resetParams() {
         this.pageSize = 10;
@@ -711,6 +748,11 @@
               .modal-city {
                 width: 35%;
                 text-align: center;
+                .modal-city-item {
+                  &.active {
+                    color: @theme2;
+                  }
+                }
               }
               .modal-area {
                 width: 65%;
@@ -719,6 +761,10 @@
                   height: 100%;
                   .modal-area-item {
                     padding: 0 unit(40, rpx);
+                    color: @fontColor3;
+                    &.on {
+                      color: @fontColor1;
+                    }
                     &.active {
                       color: @theme2;
                     }

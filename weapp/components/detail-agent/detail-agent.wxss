@@ -170,7 +170,7 @@ image {
 page {
   font-size: 26rpx;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background-color: #fafafa;
+  background-color: #FAFAFA;
 }
 button {
   padding: 0;
@@ -188,7 +188,7 @@ button:after {
 .module {
   position: relative;
   margin-top: 20rpx;
-  background-color: #ffffff;
+  background-color: #FFFFFF;
 }
 .btn {
   position: relative;
@@ -274,7 +274,7 @@ button:after {
   width: 80rpx;
   height: 80rpx;
   border-radius: 100%;
-  background-color: #ffffff;
+  background-color: #FFFFFF;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
 }
 .module .module-content .module-body .module-context .module-items .module-item .item-info {

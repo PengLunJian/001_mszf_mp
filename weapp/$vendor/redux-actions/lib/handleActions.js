@@ -5,9 +5,9 @@ exports.default = handleActions;
 
 var _reduceReducers = _interopRequireDefault(__wepy_require(37));
 
-var _invariant = _interopRequireDefault(__wepy_require(33));
+var _invariant = _interopRequireDefault(__wepy_require(34));
 
-var _isPlainObject = _interopRequireDefault(__wepy_require(12));
+var _isPlainObject = _interopRequireDefault(__wepy_require(6));
 
 var _isMap = _interopRequireDefault(__wepy_require(19));
 

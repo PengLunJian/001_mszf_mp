@@ -12,7 +12,7 @@
   top: 65px;
   left: 0;
   z-index: 1000;
-  background-color: #ffffff;
+  background-color: #FFFFFF;
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.03);
   font-size: 28rpx;
   text-align: center;
@@ -85,7 +85,7 @@
   width: 100%;
   height: 850rpx;
   padding-top: 105px;
-  background-color: #ffffff;
+  background-color: #FFFFFF;
   transition: all 450ms ease-out;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
 }
@@ -150,7 +150,7 @@
   border: none;
   line-height: 60rpx;
   background: -webkit-linear-gradient(left, #FFBB00, #FF9900);
-  color: #ffffff;
+  color: #FFFFFF;
 }
 .container .content .modal .modal-content .modal-body .modal-group .modal-label {
   height: 40rpx;
@@ -172,15 +172,22 @@
   width: 35%;
   text-align: center;
 }
+.container .content .modal .modal-content .modal-body .modal-addr .modal-city .modal-city-item.active {
+  color: #FF9900;
+}
 .container .content .modal .modal-content .modal-body .modal-addr .modal-area {
   width: 65%;
-  background-color: #fafafa;
+  background-color: #FAFAFA;
 }
 .container .content .modal .modal-content .modal-body .modal-addr .modal-area .scroll-view {
   height: 100%;
 }
 .container .content .modal .modal-content .modal-body .modal-addr .modal-area .scroll-view .modal-area-item {
   padding: 0 40rpx;
+  color: #999999;
+}
+.container .content .modal .modal-content .modal-body .modal-addr .modal-area .scroll-view .modal-area-item.on {
+  color: #333333;
 }
 .container .content .modal .modal-content .modal-body .modal-addr .modal-area .scroll-view .modal-area-item.active {
   color: #FF9900;
@@ -214,11 +221,11 @@
   line-height: 100rpx;
   font-size: 32rpx;
   letter-spacing: 1px;
-  color: #ffffff;
+  color: #FFFFFF;
 }
 .container .content .modal .modal-content .modal-footer .modal-button .btn.btn-clear {
   width: 35%;
-  background-color: #ffffff;
+  background-color: #FFFFFF;
   border-top: 0.5px solid #DEDEDE;
   color: #666666;
 }

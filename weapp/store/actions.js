@@ -268,7 +268,13 @@ var ajaxRequestHotHouse = (0, _reduxActions.createAction)('selectHotHouse', func
         resSecond: resSecond,
         resRent: resRent
       };
-      commit(actionTypes.SELECT_HOTHOUSE_SUCCESS, newData);
+
+      if (resNew.success && resSecond.success && resRent.success) {
+        commit(actionTypes.SELECT_HOTHOUSE_SUCCESS, newData);
+      } else {
+        commit(actionTypes.SELECT_HOTHOUSE_FAILURE);
+      }
+
       resolve(newData);
     }))["catch"](function (err) {
       commit(actionTypes.SELECT_HOTHOUSE_FAILURE);

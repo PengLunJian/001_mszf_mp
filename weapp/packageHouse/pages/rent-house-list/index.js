@@ -46,6 +46,31 @@ _core["default"].page({
       label: '排序',
       isShow: false
     }],
+    btnArea: {
+      activeIndex: 2,
+      items: [{
+        state: false,
+        label: '宣州区'
+      }, {
+        state: false,
+        label: '郎溪县'
+      }, {
+        state: true,
+        label: '广德市'
+      }, {
+        state: false,
+        label: '宁国市'
+      }, {
+        state: false,
+        label: '泾县'
+      }, {
+        state: false,
+        label: '绩溪县'
+      }, {
+        state: false,
+        label: '旌德县'
+      }]
+    },
     btnPrice: {
       initIndex: -1,
       items: ['1000以下', '1k-2k', '2k-3k', '3k-4k', '4k-5k', '5k-6k', '6k-7k', '7k-8k', '8k-9k', '9k-10k']
@@ -215,7 +240,9 @@ _core["default"].page({
         this.btnSort.initIndex = index;
       }
     },
-    onHandleClearModal1: function onHandleClearModal1() {},
+    onHandleClearModal1: function onHandleClearModal1() {
+      this.btnArea.activeIndex = -1;
+    },
     onHandleClearModal2: function onHandleClearModal2() {
       this.btnMethod.initIndex = -1;
       this.btnLayout.initIndex = -1;
@@ -240,6 +267,11 @@ _core["default"].page({
           _this2.exeAjaxHouseList();
         }
       }, 500);
+    },
+    onHandleChooseArea: function onHandleChooseArea(item, index) {
+      if (item.state) {
+        this.btnArea.activeIndex = index;
+      }
     },
     resetParams: function resetParams() {
       this.pageSize = 10;
@@ -300,112 +332,119 @@ _core["default"].page({
     this.resetHouseList();
     this.exeAjaxHouseList();
   }
-}, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\..\\components\\error\\error"},"empty":{"path":"..\\..\\..\\components\\empty\\empty"},"load-more":{"path":"..\\..\\..\\components\\load-more\\load-more"},"rent-house-item":{"path":"..\\..\\..\\components\\rent-house-item\\rent-house-item"},"wux-slider":{"path":"..\\..\\..\\$vendor\\wux-weapp\\dist\\slider\\index"}},"on":{"9-683":["refresh"],"9-692":["change"],"9-694":["change"]}}, handlers: {'9-682': {"tap": function proxy (index) {
+}, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\..\\components\\error\\error"},"empty":{"path":"..\\..\\..\\components\\empty\\empty"},"load-more":{"path":"..\\..\\..\\components\\load-more\\load-more"},"rent-house-item":{"path":"..\\..\\..\\components\\rent-house-item\\rent-house-item"},"wux-slider":{"path":"..\\..\\..\\$vendor\\wux-weapp\\dist\\slider\\index"}},"on":{"9-467":["refresh"],"9-477":["change"],"9-479":["change"]}}, handlers: {'9-466': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {
         _vm.onHandleTabChange(index)
       })();
     
-  }},'9-683': {"refresh": function proxy () {
+  }},'9-467': {"refresh": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onRefresh($event)
       })();
     
-  }},'9-684': {"scrolltolower": function proxy () {
+  }},'9-468': {"scrolltolower": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleScrollToLower($event)
       })();
     
-  }},'9-685': {"tap": function proxy () {
+  }},'9-469': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
         _vm.onHandleCloseModal(0)
       })();
     
-  }},'9-686': {"tap": function proxy () {
+  }},'9-470': {"tap": function proxy (item, index) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleChooseArea(item,index)
+      })();
+    
+  }},'9-471': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleClearModal1($event)
       })();
     
-  }},'9-687': {"tap": function proxy () {
+  }},'9-472': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
         _vm.onHandleCloseModal(1)
       })();
     
-  }},'9-688': {"tap": function proxy (index) {
+  }},'9-473': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {
         _vm.onHandleMethodFilter(index)
       })();
     
-  }},'9-689': {"tap": function proxy (index) {
+  }},'9-474': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {
         _vm.onHandleLayoutFilter(index)
       })();
     
-  }},'9-690': {"tap": function proxy (index) {
+  }},'9-475': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {
         _vm.onHandleStyleFilter(index)
       })();
     
-  }},'9-691': {"tap": function proxy (index) {
+  }},'9-476': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {
         _vm.onHandlePriceFilter(index)
       })();
     
-  }},'9-692': {"change": function proxy () {
+  }},'9-477': {"change": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleSliderChangePrice($event)
       })();
     
-  }},'9-693': {"tap": function proxy (index) {
+  }},'9-478': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {
         _vm.onHandleSizeFilter(index)
       })();
     
-  }},'9-694': {"change": function proxy () {
+  }},'9-479': {"change": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleSliderChangeSize($event)
       })();
     
-  }},'9-695': {"tap": function proxy () {
+  }},'9-480': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleClearModal2($event)
       })();
     
-  }},'9-696': {"tap": function proxy () {
+  }},'9-481': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
         _vm.onHandleCloseModal(2)
       })();
     
-  }},'9-697': {"tap": function proxy (index) {
+  }},'9-482': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {

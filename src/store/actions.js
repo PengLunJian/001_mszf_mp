@@ -226,7 +226,11 @@ export const ajaxRequestHotHouse = createAction(
       ])
         .then(axios.spread((resNew, resSecond, resRent) => {
           const newData = {resNew, resSecond, resRent};
-          commit(actionTypes.SELECT_HOTHOUSE_SUCCESS, newData);
+          if (resNew.success && resSecond.success && resRent.success) {
+            commit(actionTypes.SELECT_HOTHOUSE_SUCCESS, newData);
+          } else {
+            commit(actionTypes.SELECT_HOTHOUSE_FAILURE);
+          }
           resolve(newData);
         }))
         .catch((err) => {

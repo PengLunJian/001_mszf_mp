@@ -35,7 +35,7 @@ image {
 page {
   font-size: 26rpx;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background-color: #fafafa;
+  background-color: #FAFAFA;
 }
 button {
   padding: 0;
@@ -53,7 +53,7 @@ button:after {
 .module {
   position: relative;
   margin-top: 20rpx;
-  background-color: #ffffff;
+  background-color: #FFFFFF;
 }
 .btn {
   position: relative;
@@ -276,7 +276,7 @@ button:after {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 12px;
+  width: 14px;
   height: 14px;
   transform: translate3d(-50%, -50%, 0);
 }

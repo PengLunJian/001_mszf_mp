@@ -170,7 +170,7 @@ image {
 page {
   font-size: 26rpx;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background-color: #fafafa;
+  background-color: #FAFAFA;
 }
 button {
   padding: 0;
@@ -188,7 +188,7 @@ button:after {
 .module {
   position: relative;
   margin-top: 20rpx;
-  background-color: #ffffff;
+  background-color: #FFFFFF;
 }
 .btn {
   position: relative;
@@ -254,7 +254,7 @@ button:after {
   position: relative;
   overflow: hidden;
   padding: 0 30rpx;
-  background-color: #ffffff;
+  background-color: #FFFFFF;
 }
 .item .item-inner {
   display: flex;
@@ -359,7 +359,7 @@ button:after {
   font-size: 16rpx;
   font-weight: bold;
   text-align: center;
-  color: #ffffff;
+  color: #FFFFFF;
 }
 rent-house-item:last-child .item-inner {
   border: none !important;
