@@ -170,7 +170,7 @@ image {
 page {
   font-size: 26rpx;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background-color: #fafafa;
+  background-color: #FAFAFA;
 }
 button {
   padding: 0;
@@ -188,7 +188,7 @@ button:after {
 .module {
   position: relative;
   margin-top: 20rpx;
-  background-color: #ffffff;
+  background-color: #FFFFFF;
 }
 .btn {
   position: relative;
@@ -293,7 +293,7 @@ button:after {
   border-radius: 44rpx;
   background-color: rgba(0, 0, 0, 0.5);
   font-size: 24rpx;
-  color: #ffffff;
+  color: #FFFFFF;
 }
 .module .module-content .module-body .module-context .module-banner .banner-btns {
   display: flex;
@@ -307,7 +307,7 @@ button:after {
   width: 90rpx;
   border-radius: 100%;
   overflow: hidden;
-  background-color: #ffffff;
+  background-color: #FFFFFF;
   color: #999999;
 }
 .module .module-content .module-body .module-context .module-banner .banner-btns button .btn-icon {

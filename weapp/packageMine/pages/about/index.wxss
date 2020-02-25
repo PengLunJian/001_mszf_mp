@@ -75,7 +75,7 @@
 }
 .container .content .body .context .list .inner {
   overflow: hidden;
-  background-color: #ffffff;
+  background-color: #FFFFFF;
   border-radius: 20rpx;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
 }
@@ -104,7 +104,7 @@
 .container .content .body .context .list .inner .list-item .list-item-icon.list-item-next,
 .container .content .body .context .list .inner .list-item .list-item-next.list-item-next {
   right: 0;
-  color: #dedede;
+  color: #DEDEDE;
 }
 .container .content .body .context .list .inner .list-item .list-item-text {
   height: 100%;

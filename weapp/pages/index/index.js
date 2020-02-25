@@ -54,4 +54,18 @@ _core["default"].page({
         _vm.onRefresh($event)
       })();
     
+  }}}, models: {} }, {info: {"components":{"banner":{"path":"..\\..\\components\\banner\\banner"},"customer-navigator":{"path":"..\\..\\components\\customer-navigator\\customer-navigator"},"hot-house":{"path":"..\\..\\components\\hot-house\\hot-house"},"loading":{"path":"..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\components\\error\\error"}},"on":{"3-0":["refresh"]}}, handlers: {'3-0': {"refresh": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onRefresh($event)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"banner":{"path":"..\\..\\components\\banner\\banner"},"customer-navigator":{"path":"..\\..\\components\\customer-navigator\\customer-navigator"},"hot-house":{"path":"..\\..\\components\\hot-house\\hot-house"},"loading":{"path":"..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\components\\error\\error"}},"on":{"3-0":["refresh"]}}, handlers: {'3-0': {"refresh": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onRefresh($event)
+      })();
+    
   }}}, models: {} });

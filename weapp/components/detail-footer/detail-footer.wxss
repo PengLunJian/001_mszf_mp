@@ -170,7 +170,7 @@ image {
 page {
   font-size: 26rpx;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background-color: #fafafa;
+  background-color: #FAFAFA;
 }
 button {
   padding: 0;
@@ -188,7 +188,7 @@ button:after {
 .module {
   position: relative;
   margin-top: 20rpx;
-  background-color: #ffffff;
+  background-color: #FFFFFF;
 }
 .btn {
   position: relative;
@@ -258,7 +258,7 @@ button:after {
   left: 0;
   bottom: 0;
   z-index: 1000;
-  background-color: #ffffff;
+  background-color: #FFFFFF;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
 }
 .fixed-bar .fixed-left {
@@ -308,7 +308,7 @@ button:after {
   height: 110rpx;
   line-height: 110rpx;
   text-align: center;
-  color: #ffffff;
+  color: #FFFFFF;
 }
 .fixed-bar .fixed-right .btn.btn-msg {
   background-color: #FFCC00;

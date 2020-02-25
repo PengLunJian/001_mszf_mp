@@ -85,4 +85,88 @@ _core["default"].component({
         _vm.onHandlePhone(_vm.item.agency[0].tel)
       })();
     
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'112-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleMessage(_vm.item.agency[0].id)
+      })();
+    
+  }},'112-1': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandlePhone(_vm.item.agency[0].tel)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'112-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleMessage(_vm.item.agency[0].id)
+      })();
+    
+  }},'112-1': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandlePhone(_vm.item.agency[0].tel)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'112-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleMessage(_vm.item.agency[0].id)
+      })();
+    
+  }},'112-1': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandlePhone(_vm.item.agency[0].tel)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'112-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleMessage(_vm.item.agency[0].id)
+      })();
+    
+  }},'112-1': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandlePhone(_vm.item.agency[0].tel)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'112-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleMessage(_vm.item.agency[0].id)
+      })();
+    
+  }},'112-1': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandlePhone(_vm.item.agency[0].tel)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{},"on":{}}, handlers: {'112-0': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleMessage(_vm.item.agency[0].id)
+      })();
+    
+  }},'112-1': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandlePhone(_vm.item.agency[0].tel)
+      })();
+    
   }}}, models: {} });

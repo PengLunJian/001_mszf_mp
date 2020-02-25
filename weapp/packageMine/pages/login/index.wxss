@@ -85,7 +85,7 @@
   margin-bottom: 40rpx;
   border-radius: 10rpx;
   text-align: center;
-  color: #ffffff;
+  color: #FFFFFF;
   font-size: 0;
 }
 .container .content .body .context .login-container .login-content .login-body .btn .btn-icon {

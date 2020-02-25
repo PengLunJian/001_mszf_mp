@@ -170,7 +170,7 @@ image {
 page {
   font-size: 26rpx;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background-color: #fafafa;
+  background-color: #FAFAFA;
 }
 button {
   padding: 0;
@@ -188,7 +188,7 @@ button:after {
 .module {
   position: relative;
   margin-top: 20rpx;
-  background-color: #ffffff;
+  background-color: #FFFFFF;
 }
 .btn {
   position: relative;
@@ -278,6 +278,7 @@ button:after {
 }
 .module .module-content .module-body .module-context .module-base .module-row .module-col .title {
   line-height: 60rpx;
+  text-align: justify;
   font-size: 36rpx;
   font-weight: bold;
   color: #333333;
@@ -294,7 +295,7 @@ button:after {
   color: #999999;
 }
 .module .module-content .module-body .module-context .module-base .module-row .module-col .item-tag.item-state {
-  color: #ffffff;
+  color: #FFFFFF;
 }
 .module .module-content .module-body .module-context .module-base .module-row .module-col .item-tag.item-state.state1 {
   background-color: #00D894;

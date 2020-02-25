@@ -29,4 +29,18 @@ _core["default"].page({
         _vm.getPhoneNumber($event)
       })();
     
+  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'17-0': {"getphonenumber": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.getPhoneNumber($event)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"}},"on":{}}, handlers: {'17-0': {"getphonenumber": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.getPhoneNumber($event)
+      })();
+    
   }}}, models: {} });

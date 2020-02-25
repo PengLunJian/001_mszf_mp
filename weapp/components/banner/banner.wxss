@@ -170,7 +170,7 @@ image {
 page {
   font-size: 26rpx;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background-color: #fafafa;
+  background-color: #FAFAFA;
 }
 button {
   padding: 0;
@@ -188,7 +188,7 @@ button:after {
 .module {
   position: relative;
   margin-top: 20rpx;
-  background-color: #ffffff;
+  background-color: #FFFFFF;
 }
 .btn {
   position: relative;
@@ -274,7 +274,7 @@ button:after {
   margin-right: 6px;
   display: inline-block;
   vertical-align: middle;
-  background-color: #ffffff;
+  background-color: #FFFFFF;
   transition: all 300ms ease-out;
 }
 .banner .banner-code .swiper-code:last-child {

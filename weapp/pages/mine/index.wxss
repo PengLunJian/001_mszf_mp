@@ -90,8 +90,8 @@
   width: 140rpx;
   height: 140rpx;
   border-radius: 100%;
-  border: 2px solid #ffffff;
-  background-color: #ffffff;
+  border: 2px solid #FFFFFF;
+  background-color: #FFFFFF;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
 }
 .container .content .body .context .module .module-content .module-body .module-context .module-user .user-info .user-name {
@@ -100,7 +100,7 @@
   padding-left: 30rpx;
   font-size: 36rpx;
   letter-spacing: 1px;
-  color: #ffffff;
+  color: #FFFFFF;
 }
 .container .content .body .context .module .module-content .module-body .module-context .module-list .list-item {
   height: 110rpx;
@@ -126,7 +126,7 @@
 .container .content .body .context .module .module-content .module-body .module-context .module-list .list-item .list-item-icon.list-item-next,
 .container .content .body .context .module .module-content .module-body .module-context .module-list .list-item .list-item-next.list-item-next {
   right: 0;
-  color: #dedede;
+  color: #DEDEDE;
 }
 .container .content .body .context .module .module-content .module-body .module-context .module-list .list-item .list-item-text {
   height: 100%;

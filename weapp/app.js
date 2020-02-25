@@ -17,4 +17,4 @@ _core["default"].app({
   },
   onLaunch: function onLaunch() {},
   methods: {}
-}, {info: {"noPromiseAPI":["createSelectorQuery"]}, handlers: {}, models: {} });
+}, {info: {"noPromiseAPI":["createSelectorQuery"]}, handlers: {}, models: {} }, {info: {"noPromiseAPI":["createSelectorQuery"]}, handlers: {}, models: {} }, {info: {"noPromiseAPI":["createSelectorQuery"]}, handlers: {}, models: {} });

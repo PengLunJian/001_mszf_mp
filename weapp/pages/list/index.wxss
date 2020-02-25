@@ -79,7 +79,7 @@
   position: relative;
   overflow: hidden;
   padding: 30rpx;
-  background-color: #ffffff;
+  background-color: #FFFFFF;
 }
 .container .content .body .context .item .item-img {
   position: absolute;
@@ -181,7 +181,7 @@
   border: none;
   background-color: #009966;
   line-height: 40rpx;
-  color: #ffffff;
+  color: #FFFFFF;
 }
 .container .content .body .context .item .item-info .item-row .item-tag:last-child {
   margin: 0;
@@ -198,7 +198,7 @@
   font-size: 16rpx;
   font-weight: bold;
   text-align: center;
-  color: #ffffff;
+  color: #FFFFFF;
 }
 .container .content .body .context .item .item-type .color1 {
   background-color: #FF6E0F;

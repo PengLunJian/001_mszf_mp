@@ -34,7 +34,7 @@ var process = { env: {} };
    return __wepy_require;
 })([
 /***** module 0 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\@wepy\core\dist\wepy.js *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\@wepy\core\dist\wepy.js *****/
 function(module, exports, __wepy_require) {'use strict';
 
 // can we use __proto__?
@@ -2447,8 +2447,9 @@ function patchLifecycle(output, options, rel, isComponent) {
       vm.$root = vm;
       vm.$app = app;
     } else if (!vm.$app) {
-      vm.$app = app
+      vm.$app = app;
     }
+
 
     vm.$id = ++comid + (isComponent ? '.1' : '.0');
 
@@ -2748,7 +2749,7 @@ module.exports = wepy;
 
 
 /***** module 1 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\@wepy\redux\dist\index.js *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\@wepy\redux\dist\index.js *****/
 function(module, exports, __wepy_require) {'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -2857,13 +2858,350 @@ exports.mapActions = mapActions;
 
 
 /***** module 2 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\wx-qqmap-jssdk\qqmap-wx-jssdk.min.js *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\wx-qqmap-jssdk\qqmap-wx-jssdk.min.js *****/
 function(module, exports, __wepy_require) {var ERROR_CONF = { KEY_ERR: 311, KEY_ERR_MSG: 'key格式错误', PARAM_ERR: 310, PARAM_ERR_MSG: '请求参数信息有误', SYSTEM_ERR: 600, SYSTEM_ERR_MSG: '系统错误', WX_ERR_CODE: 1000, WX_OK_CODE: 200 }; var BASE_URL = 'https://apis.map.qq.com/ws/'; var URL_SEARCH = BASE_URL + 'place/v1/search'; var URL_SUGGESTION = BASE_URL + 'place/v1/suggestion'; var URL_GET_GEOCODER = BASE_URL + 'geocoder/v1/'; var URL_CITY_LIST = BASE_URL + 'district/v1/list'; var URL_AREA_LIST = BASE_URL + 'district/v1/getchildren'; var URL_DISTANCE = BASE_URL + 'distance/v1/'; var URL_DIRECTION = BASE_URL + 'direction/v1/'; var MODE = { driving: 'driving', transit: 'transit' }; var EARTH_RADIUS = 6378136.49; var Utils = { safeAdd(x, y) { var lsw = (x & 0xffff) + (y & 0xffff); var msw = (x >> 16) + (y >> 16) + (lsw >> 16); return (msw << 16) | (lsw & 0xffff) }, bitRotateLeft(num, cnt) { return (num << cnt) | (num >>> (32 - cnt)) }, md5cmn(q, a, b, x, s, t) { return this.safeAdd(this.bitRotateLeft(this.safeAdd(this.safeAdd(a, q), this.safeAdd(x, t)), s), b) }, md5ff(a, b, c, d, x, s, t) { return this.md5cmn((b & c) | (~b & d), a, b, x, s, t) }, md5gg(a, b, c, d, x, s, t) { return this.md5cmn((b & d) | (c & ~d), a, b, x, s, t) }, md5hh(a, b, c, d, x, s, t) { return this.md5cmn(b ^ c ^ d, a, b, x, s, t) }, md5ii(a, b, c, d, x, s, t) { return this.md5cmn(c ^ (b | ~d), a, b, x, s, t) }, binlMD5(x, len) { x[len >> 5] |= 0x80 << (len % 32); x[((len + 64) >>> 9 << 4) + 14] = len; var i; var olda; var oldb; var oldc; var oldd; var a = 1732584193; var b = -271733879; var c = -1732584194; var d = 271733878; for (i = 0; i < x.length; i += 16) { olda = a; oldb = b; oldc = c; oldd = d; a = this.md5ff(a, b, c, d, x[i], 7, -680876936); d = this.md5ff(d, a, b, c, x[i + 1], 12, -389564586); c = this.md5ff(c, d, a, b, x[i + 2], 17, 606105819); b = this.md5ff(b, c, d, a, x[i + 3], 22, -1044525330); a = this.md5ff(a, b, c, d, x[i + 4], 7, -176418897); d = this.md5ff(d, a, b, c, x[i + 5], 12, 1200080426); c = this.md5ff(c, d, a, b, x[i + 6], 17, -1473231341); b = this.md5ff(b, c, d, a, x[i + 7], 22, -45705983); a = this.md5ff(a, b, c, d, x[i + 8], 7, 1770035416); d = this.md5ff(d, a, b, c, x[i + 9], 12, -1958414417); c = this.md5ff(c, d, a, b, x[i + 10], 17, -42063); b = this.md5ff(b, c, d, a, x[i + 11], 22, -1990404162); a = this.md5ff(a, b, c, d, x[i + 12], 7, 1804603682); d = this.md5ff(d, a, b, c, x[i + 13], 12, -40341101); c = this.md5ff(c, d, a, b, x[i + 14], 17, -1502002290); b = this.md5ff(b, c, d, a, x[i + 15], 22, 1236535329); a = this.md5gg(a, b, c, d, x[i + 1], 5, -165796510); d = this.md5gg(d, a, b, c, x[i + 6], 9, -1069501632); c = this.md5gg(c, d, a, b, x[i + 11], 14, 643717713); b = this.md5gg(b, c, d, a, x[i], 20, -373897302); a = this.md5gg(a, b, c, d, x[i + 5], 5, -701558691); d = this.md5gg(d, a, b, c, x[i + 10], 9, 38016083); c = this.md5gg(c, d, a, b, x[i + 15], 14, -660478335); b = this.md5gg(b, c, d, a, x[i + 4], 20, -405537848); a = this.md5gg(a, b, c, d, x[i + 9], 5, 568446438); d = this.md5gg(d, a, b, c, x[i + 14], 9, -1019803690); c = this.md5gg(c, d, a, b, x[i + 3], 14, -187363961); b = this.md5gg(b, c, d, a, x[i + 8], 20, 1163531501); a = this.md5gg(a, b, c, d, x[i + 13], 5, -1444681467); d = this.md5gg(d, a, b, c, x[i + 2], 9, -51403784); c = this.md5gg(c, d, a, b, x[i + 7], 14, 1735328473); b = this.md5gg(b, c, d, a, x[i + 12], 20, -1926607734); a = this.md5hh(a, b, c, d, x[i + 5], 4, -378558); d = this.md5hh(d, a, b, c, x[i + 8], 11, -2022574463); c = this.md5hh(c, d, a, b, x[i + 11], 16, 1839030562); b = this.md5hh(b, c, d, a, x[i + 14], 23, -35309556); a = this.md5hh(a, b, c, d, x[i + 1], 4, -1530992060); d = this.md5hh(d, a, b, c, x[i + 4], 11, 1272893353); c = this.md5hh(c, d, a, b, x[i + 7], 16, -155497632); b = this.md5hh(b, c, d, a, x[i + 10], 23, -1094730640); a = this.md5hh(a, b, c, d, x[i + 13], 4, 681279174); d = this.md5hh(d, a, b, c, x[i], 11, -358537222); c = this.md5hh(c, d, a, b, x[i + 3], 16, -722521979); b = this.md5hh(b, c, d, a, x[i + 6], 23, 76029189); a = this.md5hh(a, b, c, d, x[i + 9], 4, -640364487); d = this.md5hh(d, a, b, c, x[i + 12], 11, -421815835); c = this.md5hh(c, d, a, b, x[i + 15], 16, 530742520); b = this.md5hh(b, c, d, a, x[i + 2], 23, -995338651); a = this.md5ii(a, b, c, d, x[i], 6, -198630844); d = this.md5ii(d, a, b, c, x[i + 7], 10, 1126891415); c = this.md5ii(c, d, a, b, x[i + 14], 15, -1416354905); b = this.md5ii(b, c, d, a, x[i + 5], 21, -57434055); a = this.md5ii(a, b, c, d, x[i + 12], 6, 1700485571); d = this.md5ii(d, a, b, c, x[i + 3], 10, -1894986606); c = this.md5ii(c, d, a, b, x[i + 10], 15, -1051523); b = this.md5ii(b, c, d, a, x[i + 1], 21, -2054922799); a = this.md5ii(a, b, c, d, x[i + 8], 6, 1873313359); d = this.md5ii(d, a, b, c, x[i + 15], 10, -30611744); c = this.md5ii(c, d, a, b, x[i + 6], 15, -1560198380); b = this.md5ii(b, c, d, a, x[i + 13], 21, 1309151649); a = this.md5ii(a, b, c, d, x[i + 4], 6, -145523070); d = this.md5ii(d, a, b, c, x[i + 11], 10, -1120210379); c = this.md5ii(c, d, a, b, x[i + 2], 15, 718787259); b = this.md5ii(b, c, d, a, x[i + 9], 21, -343485551); a = this.safeAdd(a, olda); b = this.safeAdd(b, oldb); c = this.safeAdd(c, oldc); d = this.safeAdd(d, oldd) } return [a, b, c, d] }, binl2rstr(input) { var i; var output = ''; var length32 = input.length * 32; for (i = 0; i < length32; i += 8) { output += String.fromCharCode((input[i >> 5] >>> (i % 32)) & 0xff) } return output }, rstr2binl(input) { var i; var output = []; output[(input.length >> 2) - 1] = undefined; for (i = 0; i < output.length; i += 1) { output[i] = 0 } var length8 = input.length * 8; for (i = 0; i < length8; i += 8) { output[i >> 5] |= (input.charCodeAt(i / 8) & 0xff) << (i % 32) } return output }, rstrMD5(s) { return this.binl2rstr(this.binlMD5(this.rstr2binl(s), s.length * 8)) }, rstrHMACMD5(key, data) { var i; var bkey = this.rstr2binl(key); var ipad = []; var opad = []; var hash; ipad[15] = opad[15] = undefined; if (bkey.length > 16) { bkey = this.binlMD5(bkey, key.length * 8) } for (i = 0; i < 16; i += 1) { ipad[i] = bkey[i] ^ 0x36363636; opad[i] = bkey[i] ^ 0x5c5c5c5c } hash = this.binlMD5(ipad.concat(this.rstr2binl(data)), 512 + data.length * 8); return this.binl2rstr(this.binlMD5(opad.concat(hash), 512 + 128)) }, rstr2hex(input) { var hexTab = '0123456789abcdef'; var output = ''; var x; var i; for (i = 0; i < input.length; i += 1) { x = input.charCodeAt(i); output += hexTab.charAt((x >>> 4) & 0x0f) + hexTab.charAt(x & 0x0f) } return output }, str2rstrUTF8(input) { return unescape(encodeURIComponent(input)) }, rawMD5(s) { return this.rstrMD5(this.str2rstrUTF8(s)) }, hexMD5(s) { return this.rstr2hex(this.rawMD5(s)) }, rawHMACMD5(k, d) { return this.rstrHMACMD5(this.str2rstrUTF8(k), str2rstrUTF8(d)) }, hexHMACMD5(k, d) { return this.rstr2hex(this.rawHMACMD5(k, d)) }, md5(string, key, raw) { if (!key) { if (!raw) { return this.hexMD5(string) } return this.rawMD5(string) } if (!raw) { return this.hexHMACMD5(key, string) } return this.rawHMACMD5(key, string) }, getSig(requestParam, sk, feature, mode) { var sig = null; var requestArr = []; Object.keys(requestParam).sort().forEach(function (key) { requestArr.push(key + '=' + requestParam[key]) }); if (feature == 'search') { sig = '/ws/place/v1/search?' + requestArr.join('&') + sk } if (feature == 'suggest') { sig = '/ws/place/v1/suggestion?' + requestArr.join('&') + sk } if (feature == 'reverseGeocoder') { sig = '/ws/geocoder/v1/?' + requestArr.join('&') + sk } if (feature == 'geocoder') { sig = '/ws/geocoder/v1/?' + requestArr.join('&') + sk } if (feature == 'getCityList') { sig = '/ws/district/v1/list?' + requestArr.join('&') + sk } if (feature == 'getDistrictByCityId') { sig = '/ws/district/v1/getchildren?' + requestArr.join('&') + sk } if (feature == 'calculateDistance') { sig = '/ws/distance/v1/?' + requestArr.join('&') + sk } if (feature == 'direction') { sig = '/ws/direction/v1/' + mode + '?' + requestArr.join('&') + sk } sig = this.md5(sig); return sig }, location2query(data) { if (typeof data == 'string') { return data } var query = ''; for (var i = 0; i < data.length; i++) { var d = data[i]; if (!!query) { query += ';' } if (d.location) { query = query + d.location.lat + ',' + d.location.lng } if (d.latitude && d.longitude) { query = query + d.latitude + ',' + d.longitude } } return query }, rad(d) { return d * Math.PI / 180.0 }, getEndLocation(location) { var to = location.split(';'); var endLocation = []; for (var i = 0; i < to.length; i++) { endLocation.push({ lat: parseFloat(to[i].split(',')[0]), lng: parseFloat(to[i].split(',')[1]) }) } return endLocation }, getDistance(latFrom, lngFrom, latTo, lngTo) { var radLatFrom = this.rad(latFrom); var radLatTo = this.rad(latTo); var a = radLatFrom - radLatTo; var b = this.rad(lngFrom) - this.rad(lngTo); var distance = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(radLatFrom) * Math.cos(radLatTo) * Math.pow(Math.sin(b / 2), 2))); distance = distance * EARTH_RADIUS; distance = Math.round(distance * 10000) / 10000; return parseFloat(distance.toFixed(0)) }, getWXLocation(success, fail, complete) { wx.getLocation({ type: 'gcj02', success: success, fail: fail, complete: complete }) }, getLocationParam(location) { if (typeof location == 'string') { var locationArr = location.split(','); if (locationArr.length === 2) { location = { latitude: location.split(',')[0], longitude: location.split(',')[1] } } else { location = {} } } return location }, polyfillParam(param) { param.success = param.success || function () { }; param.fail = param.fail || function () { }; param.complete = param.complete || function () { } }, checkParamKeyEmpty(param, key) { if (!param[key]) { var errconf = this.buildErrorConfig(ERROR_CONF.PARAM_ERR, ERROR_CONF.PARAM_ERR_MSG + key + '参数格式有误'); param.fail(errconf); param.complete(errconf); return true } return false }, checkKeyword(param) { return !this.checkParamKeyEmpty(param, 'keyword') }, checkLocation(param) { var location = this.getLocationParam(param.location); if (!location || !location.latitude || !location.longitude) { var errconf = this.buildErrorConfig(ERROR_CONF.PARAM_ERR, ERROR_CONF.PARAM_ERR_MSG + ' location参数格式有误'); param.fail(errconf); param.complete(errconf); return false } return true }, buildErrorConfig(errCode, errMsg) { return { status: errCode, message: errMsg } }, handleData(param, data, feature) { if (feature == 'search') { var searchResult = data.data; var searchSimplify = []; for (var i = 0; i < searchResult.length; i++) { searchSimplify.push({ id: searchResult[i].id || null, title: searchResult[i].title || null, latitude: searchResult[i].location && searchResult[i].location.lat || null, longitude: searchResult[i].location && searchResult[i].location.lng || null, address: searchResult[i].address || null, category: searchResult[i].category || null, tel: searchResult[i].tel || null, adcode: searchResult[i].ad_info && searchResult[i].ad_info.adcode || null, city: searchResult[i].ad_info && searchResult[i].ad_info.city || null, district: searchResult[i].ad_info && searchResult[i].ad_info.district || null, province: searchResult[i].ad_info && searchResult[i].ad_info.province || null }) } param.success(data, { searchResult: searchResult, searchSimplify: searchSimplify }) } else if (feature == 'suggest') { var suggestResult = data.data; var suggestSimplify = []; for (var i = 0; i < suggestResult.length; i++) { suggestSimplify.push({ adcode: suggestResult[i].adcode || null, address: suggestResult[i].address || null, category: suggestResult[i].category || null, city: suggestResult[i].city || null, district: suggestResult[i].district || null, id: suggestResult[i].id || null, latitude: suggestResult[i].location && suggestResult[i].location.lat || null, longitude: suggestResult[i].location && suggestResult[i].location.lng || null, province: suggestResult[i].province || null, title: suggestResult[i].title || null, type: suggestResult[i].type || null }) } param.success(data, { suggestResult: suggestResult, suggestSimplify: suggestSimplify }) } else if (feature == 'reverseGeocoder') { var reverseGeocoderResult = data.result; var reverseGeocoderSimplify = { address: reverseGeocoderResult.address || null, latitude: reverseGeocoderResult.location && reverseGeocoderResult.location.lat || null, longitude: reverseGeocoderResult.location && reverseGeocoderResult.location.lng || null, adcode: reverseGeocoderResult.ad_info && reverseGeocoderResult.ad_info.adcode || null, city: reverseGeocoderResult.address_component && reverseGeocoderResult.address_component.city || null, district: reverseGeocoderResult.address_component && reverseGeocoderResult.address_component.district || null, nation: reverseGeocoderResult.address_component && reverseGeocoderResult.address_component.nation || null, province: reverseGeocoderResult.address_component && reverseGeocoderResult.address_component.province || null, street: reverseGeocoderResult.address_component && reverseGeocoderResult.address_component.street || null, street_number: reverseGeocoderResult.address_component && reverseGeocoderResult.address_component.street_number || null, recommend: reverseGeocoderResult.formatted_addresses && reverseGeocoderResult.formatted_addresses.recommend || null, rough: reverseGeocoderResult.formatted_addresses && reverseGeocoderResult.formatted_addresses.rough || null }; if (reverseGeocoderResult.pois) { var pois = reverseGeocoderResult.pois; var poisSimplify = []; for (var i = 0; i < pois.length; i++) { poisSimplify.push({ id: pois[i].id || null, title: pois[i].title || null, latitude: pois[i].location && pois[i].location.lat || null, longitude: pois[i].location && pois[i].location.lng || null, address: pois[i].address || null, category: pois[i].category || null, adcode: pois[i].ad_info && pois[i].ad_info.adcode || null, city: pois[i].ad_info && pois[i].ad_info.city || null, district: pois[i].ad_info && pois[i].ad_info.district || null, province: pois[i].ad_info && pois[i].ad_info.province || null }) } param.success(data, { reverseGeocoderResult: reverseGeocoderResult, reverseGeocoderSimplify: reverseGeocoderSimplify, pois: pois, poisSimplify: poisSimplify }) } else { param.success(data, { reverseGeocoderResult: reverseGeocoderResult, reverseGeocoderSimplify: reverseGeocoderSimplify }) } } else if (feature == 'geocoder') { var geocoderResult = data.result; var geocoderSimplify = { title: geocoderResult.title || null, latitude: geocoderResult.location && geocoderResult.location.lat || null, longitude: geocoderResult.location && geocoderResult.location.lng || null, adcode: geocoderResult.ad_info && geocoderResult.ad_info.adcode || null, province: geocoderResult.address_components && geocoderResult.address_components.province || null, city: geocoderResult.address_components && geocoderResult.address_components.city || null, district: geocoderResult.address_components && geocoderResult.address_components.district || null, street: geocoderResult.address_components && geocoderResult.address_components.street || null, street_number: geocoderResult.address_components && geocoderResult.address_components.street_number || null, level: geocoderResult.level || null }; param.success(data, { geocoderResult: geocoderResult, geocoderSimplify: geocoderSimplify }) } else if (feature == 'getCityList') { var provinceResult = data.result[0]; var cityResult = data.result[1]; var districtResult = data.result[2]; param.success(data, { provinceResult: provinceResult, cityResult: cityResult, districtResult: districtResult }) } else if (feature == 'getDistrictByCityId') { var districtByCity = data.result[0]; param.success(data, districtByCity) } else if (feature == 'calculateDistance') { var calculateDistanceResult = data.result.elements; var distance = []; for (var i = 0; i < calculateDistanceResult.length; i++) { distance.push(calculateDistanceResult[i].distance) } param.success(data, { calculateDistanceResult: calculateDistanceResult, distance: distance }) } else if (feature == 'direction') { var direction = data.result.routes; param.success(data, direction) } else { param.success(data) } }, buildWxRequestConfig(param, options, feature) { var that = this; options.header = { "content-type": "application/json" }; options.method = 'GET'; options.success = function (res) { var data = res.data; if (data.status === 0) { that.handleData(param, data, feature) } else { param.fail(data) } }; options.fail = function (res) { res.statusCode = ERROR_CONF.WX_ERR_CODE; param.fail(that.buildErrorConfig(ERROR_CONF.WX_ERR_CODE, res.errMsg)) }; options.complete = function (res) { var statusCode = +res.statusCode; switch (statusCode) { case ERROR_CONF.WX_ERR_CODE: { param.complete(that.buildErrorConfig(ERROR_CONF.WX_ERR_CODE, res.errMsg)); break } case ERROR_CONF.WX_OK_CODE: { var data = res.data; if (data.status === 0) { param.complete(data) } else { param.complete(that.buildErrorConfig(data.status, data.message)) } break } default: { param.complete(that.buildErrorConfig(ERROR_CONF.SYSTEM_ERR, ERROR_CONF.SYSTEM_ERR_MSG)) } } }; return options }, locationProcess(param, locationsuccess, locationfail, locationcomplete) { var that = this; locationfail = locationfail || function (res) { res.statusCode = ERROR_CONF.WX_ERR_CODE; param.fail(that.buildErrorConfig(ERROR_CONF.WX_ERR_CODE, res.errMsg)) }; locationcomplete = locationcomplete || function (res) { if (res.statusCode == ERROR_CONF.WX_ERR_CODE) { param.complete(that.buildErrorConfig(ERROR_CONF.WX_ERR_CODE, res.errMsg)) } }; if (!param.location) { that.getWXLocation(locationsuccess, locationfail, locationcomplete) } else if (that.checkLocation(param)) { var location = Utils.getLocationParam(param.location); locationsuccess(location) } } }; class QQMapWX { constructor(options) { if (!options.key) { throw Error('key值不能为空') } this.key = options.key }; search(options) { var that = this; options = options || {}; Utils.polyfillParam(options); if (!Utils.checkKeyword(options)) { return } var requestParam = { keyword: options.keyword, orderby: options.orderby || '_distance', page_size: options.page_size || 10, page_index: options.page_index || 1, output: 'json', key: that.key }; if (options.address_format) { requestParam.address_format = options.address_format } if (options.filter) { requestParam.filter = options.filter } var distance = options.distance || "1000"; var auto_extend = options.auto_extend || 1; var region = null; var rectangle = null; if (options.region) { region = options.region } if (options.rectangle) { rectangle = options.rectangle } var locationsuccess = function (result) { if (region && !rectangle) { requestParam.boundary = "region(" + region + "," + auto_extend + "," + result.latitude + "," + result.longitude + ")"; if (options.sig) { requestParam.sig = Utils.getSig(requestParam, options.sig, 'search') } } else if (rectangle && !region) { requestParam.boundary = "rectangle(" + rectangle + ")"; if (options.sig) { requestParam.sig = Utils.getSig(requestParam, options.sig, 'search') } } else { requestParam.boundary = "nearby(" + result.latitude + "," + result.longitude + "," + distance + "," + auto_extend + ")"; if (options.sig) { requestParam.sig = Utils.getSig(requestParam, options.sig, 'search') } } wx.request(Utils.buildWxRequestConfig(options, { url: URL_SEARCH, data: requestParam }, 'search')) }; Utils.locationProcess(options, locationsuccess) }; getSuggestion(options) { var that = this; options = options || {}; Utils.polyfillParam(options); if (!Utils.checkKeyword(options)) { return } var requestParam = { keyword: options.keyword, region: options.region || '全国', region_fix: options.region_fix || 0, policy: options.policy || 0, page_size: options.page_size || 10, page_index: options.page_index || 1, get_subpois: options.get_subpois || 0, output: 'json', key: that.key }; if (options.address_format) { requestParam.address_format = options.address_format } if (options.filter) { requestParam.filter = options.filter } if (options.location) { var locationsuccess = function (result) { requestParam.location = result.latitude + ',' + result.longitude; if (options.sig) { requestParam.sig = Utils.getSig(requestParam, options.sig, 'suggest') } wx.request(Utils.buildWxRequestConfig(options, { url: URL_SUGGESTION, data: requestParam }, "suggest")) }; Utils.locationProcess(options, locationsuccess) } else { if (options.sig) { requestParam.sig = Utils.getSig(requestParam, options.sig, 'suggest') } wx.request(Utils.buildWxRequestConfig(options, { url: URL_SUGGESTION, data: requestParam }, "suggest")) } }; reverseGeocoder(options) { var that = this; options = options || {}; Utils.polyfillParam(options); var requestParam = { coord_type: options.coord_type || 5, get_poi: options.get_poi || 0, output: 'json', key: that.key }; if (options.poi_options) { requestParam.poi_options = options.poi_options } var locationsuccess = function (result) { requestParam.location = result.latitude + ',' + result.longitude; if (options.sig) { requestParam.sig = Utils.getSig(requestParam, options.sig, 'reverseGeocoder') } wx.request(Utils.buildWxRequestConfig(options, { url: URL_GET_GEOCODER, data: requestParam }, 'reverseGeocoder')) }; Utils.locationProcess(options, locationsuccess) }; geocoder(options) { var that = this; options = options || {}; Utils.polyfillParam(options); if (Utils.checkParamKeyEmpty(options, 'address')) { return } var requestParam = { address: options.address, output: 'json', key: that.key }; if (options.region) { requestParam.region = options.region } if (options.sig) { requestParam.sig = Utils.getSig(requestParam, options.sig, 'geocoder') } wx.request(Utils.buildWxRequestConfig(options, { url: URL_GET_GEOCODER, data: requestParam }, 'geocoder')) }; getCityList(options) { var that = this; options = options || {}; Utils.polyfillParam(options); var requestParam = { output: 'json', key: that.key }; if (options.sig) { requestParam.sig = Utils.getSig(requestParam, options.sig, 'getCityList') } wx.request(Utils.buildWxRequestConfig(options, { url: URL_CITY_LIST, data: requestParam }, 'getCityList')) }; getDistrictByCityId(options) { var that = this; options = options || {}; Utils.polyfillParam(options); if (Utils.checkParamKeyEmpty(options, 'id')) { return } var requestParam = { id: options.id || '', output: 'json', key: that.key }; if (options.sig) { requestParam.sig = Utils.getSig(requestParam, options.sig, 'getDistrictByCityId') } wx.request(Utils.buildWxRequestConfig(options, { url: URL_AREA_LIST, data: requestParam }, 'getDistrictByCityId')) }; calculateDistance(options) { var that = this; options = options || {}; Utils.polyfillParam(options); if (Utils.checkParamKeyEmpty(options, 'to')) { return } var requestParam = { mode: options.mode || 'walking', to: Utils.location2query(options.to), output: 'json', key: that.key }; if (options.from) { options.location = options.from } if (requestParam.mode == 'straight') { var locationsuccess = function (result) { var locationTo = Utils.getEndLocation(requestParam.to); var data = { message: "query ok", result: { elements: [] }, status: 0 }; for (var i = 0; i < locationTo.length; i++) { data.result.elements.push({ distance: Utils.getDistance(result.latitude, result.longitude, locationTo[i].lat, locationTo[i].lng), duration: 0, from: { lat: result.latitude, lng: result.longitude }, to: { lat: locationTo[i].lat, lng: locationTo[i].lng } }) } var calculateResult = data.result.elements; var distanceResult = []; for (var i = 0; i < calculateResult.length; i++) { distanceResult.push(calculateResult[i].distance) } return options.success(data, { calculateResult: calculateResult, distanceResult: distanceResult }) }; Utils.locationProcess(options, locationsuccess) } else { var locationsuccess = function (result) { requestParam.from = result.latitude + ',' + result.longitude; if (options.sig) { requestParam.sig = Utils.getSig(requestParam, options.sig, 'calculateDistance') } wx.request(Utils.buildWxRequestConfig(options, { url: URL_DISTANCE, data: requestParam }, 'calculateDistance')) }; Utils.locationProcess(options, locationsuccess) } }; direction(options) { var that = this; options = options || {}; Utils.polyfillParam(options); if (Utils.checkParamKeyEmpty(options, 'to')) { return } var requestParam = { output: 'json', key: that.key }; if (typeof options.to == 'string') { requestParam.to = options.to } else { requestParam.to = options.to.latitude + ',' + options.to.longitude } var SET_URL_DIRECTION = null; options.mode = options.mode || MODE.driving; SET_URL_DIRECTION = URL_DIRECTION + options.mode; if (options.from) { options.location = options.from } if (options.mode == MODE.driving) { if (options.from_poi) { requestParam.from_poi = options.from_poi } if (options.heading) { requestParam.heading = options.heading } if (options.speed) { requestParam.speed = options.speed } if (options.accuracy) { requestParam.accuracy = options.accuracy } if (options.road_type) { requestParam.road_type = options.road_type } if (options.to_poi) { requestParam.to_poi = options.to_poi } if (options.from_track) { requestParam.from_track = options.from_track } if (options.waypoints) { requestParam.waypoints = options.waypoints } if (options.policy) { requestParam.policy = options.policy } if (options.plate_number) { requestParam.plate_number = options.plate_number } } if (options.mode == MODE.transit) { if (options.departure_time) { requestParam.departure_time = options.departure_time } if (options.policy) { requestParam.policy = options.policy } } var locationsuccess = function (result) { requestParam.from = result.latitude + ',' + result.longitude; if (options.sig) { requestParam.sig = Utils.getSig(requestParam, options.sig, 'direction', options.mode) } wx.request(Utils.buildWxRequestConfig(options, { url: SET_URL_DIRECTION, data: requestParam }, 'direction')) }; Utils.locationProcess(options, locationsuccess) } }; module.exports = QQMapWX;
 },/***** module 2 end *****/
 
 
 /***** module 3 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\axios\dist\axios.js *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\wepy-plugin-axios\dist\adapter.js *****/
+function(module, exports, __wepy_require) {'use strict';
+
+/** 请求队列 */
+var queue = [];
+
+/** 未完成的请求数 */
+var pendingRequests = 0;
+
+/** 最多同时发送的请求数 */
+var MAX_PENDING_REQUESTS = 5;
+
+/** 检查是否可以发送下一个请求. 如果可以，则发送 */
+function checkQueue () {
+  var loop = function () {
+    var item = queue.shift();
+    if (!item) { return 'break' }
+
+    pendingRequests++;
+    new Promise(item.promiseFunc).then(function (result) {
+      pendingRequests--;
+      item.resolve(result);
+      checkQueue();
+    }).catch(function (err) {
+      pendingRequests--;
+      item.reject(err);
+      checkQueue();
+    });
+  };
+
+  while (pendingRequests < MAX_PENDING_REQUESTS) {
+    var returned = loop();
+
+    if ( returned === 'break' ) break;
+  }
+}
+
+/**
+ * 将一个请求加入队列中. 如果当前没有正在排队的请求则立即发送
+ *
+ * @param {Function} promiseFunc 要入队的请求
+ */
+function enqueue (promiseFunc) {
+  return new Promise(function (resolve, reject) {
+    queue.push({ resolve: resolve, reject: reject, promiseFunc: promiseFunc });
+    checkQueue();
+  })
+}
+
+/**
+ * 将 headers 对象中的 key 都转为标准格式
+ *
+ * @param {object} headers 要转换的 headers 对象
+ */
+function normalizeHeaders (headers) {
+  if (headers == null) { return {} }
+
+  var result = {};
+  Object.keys(headers).forEach(function (key) {
+    if (headers[key] == null) { return }
+
+    var keyParts = key.split('-').map(function (part) {
+      return part[0].toUpperCase() + part.slice(1).toLowerCase()
+    });
+
+    result[keyParts.join('-')] = headers[key];
+  });
+
+  return result
+}
+
+/**
+ * 将 headers 对象中的 key 都转为小写
+ *
+ * @param {object} headers 要转换的 headers 对象
+ */
+function lowerCaseHeaders (headers) {
+  if (headers == null) { return {} }
+
+  var result = {};
+  Object.keys(headers).forEach(function (key) {
+    result[key.toLowerCase()] = headers[key];
+  });
+
+  return result
+}
+
+/**
+ * URL 编码
+ *
+ * @param {string} val 要编码的字符串
+ */
+function encode (val) {
+  return encodeURIComponent(val)
+    .replace(/%40/gi, '@')
+    .replace(/%3A/gi, ':')
+    .replace(/%24/g, '$')
+    .replace(/%2C/gi, ',')
+    .replace(/%20/g, '+')
+    .replace(/%5B/gi, '[')
+    .replace(/%5D/gi, ']')
+}
+
+/**
+ * 拼接 URL 与参数
+ *
+ * @param {string} url 原 URL
+ * @param {object} params 要拼接的参数
+ * @param {Function} paramsSerializer 参数序列化方法
+ */
+function buildURL (url, params, paramsSerializer) {
+  if (!params) { return url }
+
+  var serializedParams;
+  if (paramsSerializer) {
+    serializedParams = paramsSerializer(params);
+  } else {
+    var parts = [];
+
+    Object.keys(params).forEach(function (key) {
+      var val = params[key];
+      if (val == null) { return }
+
+      if (Array.isArray(val)) {
+        key = key + '[]';
+      } else {
+        val = [val];
+      }
+
+      Object.keys(val).forEach(function (valKey) {
+        var v = val[valKey];
+        if (Object.prototype.toString.call(v) === '[object Date]') {
+          v = v.toISOString();
+        } else if (v != null && typeof v === 'object') {
+          v = JSON.stringify(v);
+        }
+
+        parts.push(encode(key) + '=' + encode(v));
+      });
+    });
+
+    serializedParams = parts.join('&');
+  }
+
+  if (serializedParams) {
+    url += (url.indexOf('?') === -1 ? '?' : '&') + serializedParams;
+  }
+
+  return url
+}
+
+/**
+ * Update an Error with the specified config, error code, and response.
+ *
+ * @param {Error} error The error to update.
+ * @param {Object} config The config.
+ * @param {string} [code] The error code (for example, 'ECONNABORTED').
+ @ @param {Object} [response] The response.
+ * @returns {Error} The error.
+ */
+var enhanceError = function enhanceError(error, config, code, response) {
+  error.config = config;
+  if (code) {
+    error.code = code;
+  }
+  error.response = response;
+  return error;
+};
+
+/**
+ * Create an Error with the specified message, config, error code, and response.
+ *
+ * @param {string} message The error message.
+ * @param {Object} config The config.
+ * @param {string} [code] The error code (for example, 'ECONNABORTED').
+ @ @param {Object} [response] The response.
+ * @returns {Error} The created error.
+ */
+var createError = function createError(message, config, code, response) {
+  var error = new Error(message);
+  return enhanceError(error, config, code, response);
+};
+
+/**
+ * Resolve or reject a Promise based on response status.
+ *
+ * @param {Function} resolve A function that resolves the promise.
+ * @param {Function} reject A function that rejects the promise.
+ * @param {object} response The response.
+ */
+var settle = function settle(resolve, reject, response) {
+  var validateStatus = response.config.validateStatus;
+  // Note: status is not exposed by XDomainRequest
+  if (!response.status || !validateStatus || validateStatus(response.status)) {
+    resolve(response);
+  } else {
+    reject(createError(
+      'Request failed with status code ' + response.status,
+      response.config,
+      null,
+      response
+    ));
+  }
+};
+
+var supportedMethods = ['OPTIONS', 'GET', 'HEAD', 'POST', 'PUT', 'DELETE', 'TRACE', 'CONNECT'];
+var supportedResponseTypes = ['json', 'text', 'file'];
+
+/**
+ * 创建用于微信小程序的 axios adapter
+ *
+ * @param {AxiosInstance} axios 原始 axios 对象
+ * @returns {AxiosAdapter} 用于微信小程序的 axios adapter
+ */
+function wepyAxiosAdapterFactory (axios) {
+  // 不使用默认的 transformResponse
+  axios.defaults['transformResponse'] = [];
+
+  // 使用自定义的 transformRequest
+  axios.defaults['transformRequest'] = [function (data, headers) {
+    var contentTypeKey = Object.keys(headers).find(function (key) { return /content-type/i.test(key); });
+    if (contentTypeKey == null && data != null && typeof data === 'object') {
+      headers['Content-Type'] = 'application/json; charset=utf-8';
+    }
+
+    return data
+  }];
+
+  // 删除无法使用的 axios 选项
+  ['timeout', 'xsrfCookieName', 'xsrfHeaderName', 'maxContentLength'].forEach(function (item) {
+    delete axios.defaults[item];
+  });
+
+  /**
+   * 用于微信小程序的 axios adapter
+   *
+   * @type {AxiosAdapter}
+   */
+  return function wepyAxiosAdapter (config) {
+    return enqueue(function (resolve, reject) {
+      /** 发送普通请求或是上传、下载请求 */
+      var requestType = 'request';
+
+      /** 请求所使用的参数 */
+      var request = {
+        url: buildURL(config.url, config.params, config.paramsSerializer),
+        header: normalizeHeaders(config.headers)
+      };
+
+      // 必须在 URL 中指定是 http 还是 https 协议
+      if (!/https?:\/\//.test(request.url)) {
+        return reject(createError('Request protocol must be http or https', config))
+      }
+
+      // 处理调用上传文件接口的情况
+      if (config.data && config.data.$upload) {
+        var ref = config.data.$upload;
+        var filePath = ref.filePath;
+        var name = ref.name;
+        if (typeof filePath === 'string' && typeof name === 'string') {
+          if (config.method !== 'post') {
+            return reject(createError('HTTP methods must be POST when uploading file', config))
+          }
+
+          requestType = 'uploadFile';
+          config.responseType = 'file';
+
+          request.filePath = filePath;
+          request.name = name;
+          request.formData = config.data;
+          delete config.data.$upload;
+        } else {
+          return reject(createError('Invalid upload paramaters', config))
+        }
+      }
+
+      // 处理响应类型和下载接口类型
+      if (config.responseType && supportedResponseTypes.indexOf(config.responseType) === -1) {
+        // 只接受 json 或 text 的返回类型
+        return reject(createError('Unsupported responseType', config))
+      } else if (requestType === 'request') {
+        // 确认是否调用下载文件接口
+        if (config.responseType === 'file') {
+          if (config.method !== 'get') {
+            reject(createError('HTTP method must be GET when downloading file', config));
+          } else {
+            requestType = 'downloadFile';
+          }
+        } else {
+          // 普通请求必须使用 https
+          if (process.env.NODE_ENV === 'production' && config.url.slice(0, 5).toLowerCase() !== 'https') {
+            return reject(createError('Requesting an http URL is not allowed', config))
+          }
+
+          // 检查小程序是否支持所使用的 method
+          config.method = config.method.toUpperCase();
+          if (supportedMethods.indexOf(config.method) === -1) {
+            return reject(createError('Unsupported request method', config))
+          }
+
+          request.data = config.data;
+          request.method = config.method;
+
+          // 增加 Content-Type
+          if (!request.header['Content-Type'] && config.data && typeof config.data === 'object') {
+            request.header['Content-Type'] = 'application/json; charset=utf-8';
+          }
+        }
+      }
+
+      // 加入回调函数
+      request.success = function (response) {
+        // 按照 axios 的返回格式构造返回值
+        settle(resolve, reject, {
+          data: response.data || response.tempFilePath,
+          status: response.statusCode,
+          headers: lowerCaseHeaders(response.header),
+          config: config,
+          request: request
+        });
+      };
+
+      request.fail = function (response) { return reject(createError(response.errMsg, config)); };
+
+      // 发送请求
+      wx[requestType](request);
+    })
+  }
+}
+
+module.exports = wepyAxiosAdapterFactory;
+//# sourceMappingURL=adapter.js.map
+
+},/***** module 3 end *****/
+
+
+/***** module 4 start *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\axios\dist\axios.js *****/
 function(module, exports, __wepy_require) {/* axios v0.18.0 | (c) 2018 by Matt Zabriskie */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -4467,348 +4805,11 @@ return /******/ (function(modules) { // webpackBootstrap
 });
 ;
 //# sourceMappingURL=axios.map
-},/***** module 3 end *****/
-
-
-/***** module 4 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\wepy-plugin-axios\dist\adapter.js *****/
-function(module, exports, __wepy_require) {'use strict';
-
-/** 请求队列 */
-var queue = [];
-
-/** 未完成的请求数 */
-var pendingRequests = 0;
-
-/** 最多同时发送的请求数 */
-var MAX_PENDING_REQUESTS = 5;
-
-/** 检查是否可以发送下一个请求. 如果可以，则发送 */
-function checkQueue () {
-  var loop = function () {
-    var item = queue.shift();
-    if (!item) { return 'break' }
-
-    pendingRequests++;
-    new Promise(item.promiseFunc).then(function (result) {
-      pendingRequests--;
-      item.resolve(result);
-      checkQueue();
-    }).catch(function (err) {
-      pendingRequests--;
-      item.reject(err);
-      checkQueue();
-    });
-  };
-
-  while (pendingRequests < MAX_PENDING_REQUESTS) {
-    var returned = loop();
-
-    if ( returned === 'break' ) break;
-  }
-}
-
-/**
- * 将一个请求加入队列中. 如果当前没有正在排队的请求则立即发送
- *
- * @param {Function} promiseFunc 要入队的请求
- */
-function enqueue (promiseFunc) {
-  return new Promise(function (resolve, reject) {
-    queue.push({ resolve: resolve, reject: reject, promiseFunc: promiseFunc });
-    checkQueue();
-  })
-}
-
-/**
- * 将 headers 对象中的 key 都转为标准格式
- *
- * @param {object} headers 要转换的 headers 对象
- */
-function normalizeHeaders (headers) {
-  if (headers == null) { return {} }
-
-  var result = {};
-  Object.keys(headers).forEach(function (key) {
-    if (headers[key] == null) { return }
-
-    var keyParts = key.split('-').map(function (part) {
-      return part[0].toUpperCase() + part.slice(1).toLowerCase()
-    });
-
-    result[keyParts.join('-')] = headers[key];
-  });
-
-  return result
-}
-
-/**
- * 将 headers 对象中的 key 都转为小写
- *
- * @param {object} headers 要转换的 headers 对象
- */
-function lowerCaseHeaders (headers) {
-  if (headers == null) { return {} }
-
-  var result = {};
-  Object.keys(headers).forEach(function (key) {
-    result[key.toLowerCase()] = headers[key];
-  });
-
-  return result
-}
-
-/**
- * URL 编码
- *
- * @param {string} val 要编码的字符串
- */
-function encode (val) {
-  return encodeURIComponent(val)
-    .replace(/%40/gi, '@')
-    .replace(/%3A/gi, ':')
-    .replace(/%24/g, '$')
-    .replace(/%2C/gi, ',')
-    .replace(/%20/g, '+')
-    .replace(/%5B/gi, '[')
-    .replace(/%5D/gi, ']')
-}
-
-/**
- * 拼接 URL 与参数
- *
- * @param {string} url 原 URL
- * @param {object} params 要拼接的参数
- * @param {Function} paramsSerializer 参数序列化方法
- */
-function buildURL (url, params, paramsSerializer) {
-  if (!params) { return url }
-
-  var serializedParams;
-  if (paramsSerializer) {
-    serializedParams = paramsSerializer(params);
-  } else {
-    var parts = [];
-
-    Object.keys(params).forEach(function (key) {
-      var val = params[key];
-      if (val == null) { return }
-
-      if (Array.isArray(val)) {
-        key = key + '[]';
-      } else {
-        val = [val];
-      }
-
-      Object.keys(val).forEach(function (valKey) {
-        var v = val[valKey];
-        if (Object.prototype.toString.call(v) === '[object Date]') {
-          v = v.toISOString();
-        } else if (v != null && typeof v === 'object') {
-          v = JSON.stringify(v);
-        }
-
-        parts.push(encode(key) + '=' + encode(v));
-      });
-    });
-
-    serializedParams = parts.join('&');
-  }
-
-  if (serializedParams) {
-    url += (url.indexOf('?') === -1 ? '?' : '&') + serializedParams;
-  }
-
-  return url
-}
-
-/**
- * Update an Error with the specified config, error code, and response.
- *
- * @param {Error} error The error to update.
- * @param {Object} config The config.
- * @param {string} [code] The error code (for example, 'ECONNABORTED').
- @ @param {Object} [response] The response.
- * @returns {Error} The error.
- */
-var enhanceError = function enhanceError(error, config, code, response) {
-  error.config = config;
-  if (code) {
-    error.code = code;
-  }
-  error.response = response;
-  return error;
-};
-
-/**
- * Create an Error with the specified message, config, error code, and response.
- *
- * @param {string} message The error message.
- * @param {Object} config The config.
- * @param {string} [code] The error code (for example, 'ECONNABORTED').
- @ @param {Object} [response] The response.
- * @returns {Error} The created error.
- */
-var createError = function createError(message, config, code, response) {
-  var error = new Error(message);
-  return enhanceError(error, config, code, response);
-};
-
-/**
- * Resolve or reject a Promise based on response status.
- *
- * @param {Function} resolve A function that resolves the promise.
- * @param {Function} reject A function that rejects the promise.
- * @param {object} response The response.
- */
-var settle = function settle(resolve, reject, response) {
-  var validateStatus = response.config.validateStatus;
-  // Note: status is not exposed by XDomainRequest
-  if (!response.status || !validateStatus || validateStatus(response.status)) {
-    resolve(response);
-  } else {
-    reject(createError(
-      'Request failed with status code ' + response.status,
-      response.config,
-      null,
-      response
-    ));
-  }
-};
-
-var supportedMethods = ['OPTIONS', 'GET', 'HEAD', 'POST', 'PUT', 'DELETE', 'TRACE', 'CONNECT'];
-var supportedResponseTypes = ['json', 'text', 'file'];
-
-/**
- * 创建用于微信小程序的 axios adapter
- *
- * @param {AxiosInstance} axios 原始 axios 对象
- * @returns {AxiosAdapter} 用于微信小程序的 axios adapter
- */
-function wepyAxiosAdapterFactory (axios) {
-  // 不使用默认的 transformResponse
-  axios.defaults['transformResponse'] = [];
-
-  // 使用自定义的 transformRequest
-  axios.defaults['transformRequest'] = [function (data, headers) {
-    var contentTypeKey = Object.keys(headers).find(function (key) { return /content-type/i.test(key); });
-    if (contentTypeKey == null && data != null && typeof data === 'object') {
-      headers['Content-Type'] = 'application/json; charset=utf-8';
-    }
-
-    return data
-  }];
-
-  // 删除无法使用的 axios 选项
-  ['timeout', 'xsrfCookieName', 'xsrfHeaderName', 'maxContentLength'].forEach(function (item) {
-    delete axios.defaults[item];
-  });
-
-  /**
-   * 用于微信小程序的 axios adapter
-   *
-   * @type {AxiosAdapter}
-   */
-  return function wepyAxiosAdapter (config) {
-    return enqueue(function (resolve, reject) {
-      /** 发送普通请求或是上传、下载请求 */
-      var requestType = 'request';
-
-      /** 请求所使用的参数 */
-      var request = {
-        url: buildURL(config.url, config.params, config.paramsSerializer),
-        header: normalizeHeaders(config.headers)
-      };
-
-      // 必须在 URL 中指定是 http 还是 https 协议
-      if (!/https?:\/\//.test(request.url)) {
-        return reject(createError('Request protocol must be http or https', config))
-      }
-
-      // 处理调用上传文件接口的情况
-      if (config.data && config.data.$upload) {
-        var ref = config.data.$upload;
-        var filePath = ref.filePath;
-        var name = ref.name;
-        if (typeof filePath === 'string' && typeof name === 'string') {
-          if (config.method !== 'post') {
-            return reject(createError('HTTP methods must be POST when uploading file', config))
-          }
-
-          requestType = 'uploadFile';
-          config.responseType = 'file';
-
-          request.filePath = filePath;
-          request.name = name;
-          request.formData = config.data;
-          delete config.data.$upload;
-        } else {
-          return reject(createError('Invalid upload paramaters', config))
-        }
-      }
-
-      // 处理响应类型和下载接口类型
-      if (config.responseType && supportedResponseTypes.indexOf(config.responseType) === -1) {
-        // 只接受 json 或 text 的返回类型
-        return reject(createError('Unsupported responseType', config))
-      } else if (requestType === 'request') {
-        // 确认是否调用下载文件接口
-        if (config.responseType === 'file') {
-          if (config.method !== 'get') {
-            reject(createError('HTTP method must be GET when downloading file', config));
-          } else {
-            requestType = 'downloadFile';
-          }
-        } else {
-          // 普通请求必须使用 https
-          if (process.env.NODE_ENV === 'production' && config.url.slice(0, 5).toLowerCase() !== 'https') {
-            return reject(createError('Requesting an http URL is not allowed', config))
-          }
-
-          // 检查小程序是否支持所使用的 method
-          config.method = config.method.toUpperCase();
-          if (supportedMethods.indexOf(config.method) === -1) {
-            return reject(createError('Unsupported request method', config))
-          }
-
-          request.data = config.data;
-          request.method = config.method;
-
-          // 增加 Content-Type
-          if (!request.header['Content-Type'] && config.data && typeof config.data === 'object') {
-            request.header['Content-Type'] = 'application/json; charset=utf-8';
-          }
-        }
-      }
-
-      // 加入回调函数
-      request.success = function (response) {
-        // 按照 axios 的返回格式构造返回值
-        settle(resolve, reject, {
-          data: response.data || response.tempFilePath,
-          status: response.statusCode,
-          headers: lowerCaseHeaders(response.header),
-          config: config,
-          request: request
-        });
-      };
-
-      request.fail = function (response) { return reject(createError(response.errMsg, config)); };
-
-      // 发送请求
-      wx[requestType](request);
-    })
-  }
-}
-
-module.exports = wepyAxiosAdapterFactory;
-//# sourceMappingURL=adapter.js.map
-
 },/***** module 4 end *****/
 
 
 /***** module 5 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\constants.js *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\redux-actions\lib\constants.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
 exports.__esModule = true;
@@ -4821,7 +4822,112 @@ exports.ACTION_TYPE_DELIMITER = ACTION_TYPE_DELIMITER;
 
 
 /***** module 6 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\isPlainObject.js *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\redux-actions\lib\utils\isFunction.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _default = function _default(value) {
+  return typeof value === 'function';
+};
+
+exports.default = _default;
+},/***** module 6 end *****/
+
+
+/***** module 7 start *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\redux-actions\lib\utils\isSymbol.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _default = function _default(value) {
+  return typeof value === 'symbol' || typeof value === 'object' && Object.prototype.toString.call(value) === '[object Symbol]';
+};
+
+exports.default = _default;
+},/***** module 7 end *****/
+
+
+/***** module 8 start *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\redux-actions\lib\utils\toString.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _default = function _default(value) {
+  return value.toString();
+};
+
+exports.default = _default;
+},/***** module 8 end *****/
+
+
+/***** module 9 start *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\redux-actions\lib\utils\isString.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _default = function _default(value) {
+  return typeof value === 'string';
+};
+
+exports.default = _default;
+},/***** module 9 end *****/
+
+
+/***** module 10 start *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\redux-actions\lib\utils\isEmpty.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _default = function _default(value) {
+  return value.length === 0;
+};
+
+exports.default = _default;
+},/***** module 10 end *****/
+
+
+/***** module 11 start *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\redux-actions\lib\utils\isNull.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _default = function _default(value) {
+  return value === null;
+};
+
+exports.default = _default;
+},/***** module 11 end *****/
+
+
+/***** module 12 start *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\redux-actions\lib\utils\identity.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _default = function _default(value) {
+  return value;
+};
+
+exports.default = _default;
+},/***** module 12 end *****/
+
+
+/***** module 13 start *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\redux-actions\lib\utils\isPlainObject.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
 exports.__esModule = true;
@@ -4839,26 +4945,11 @@ var _default = function _default(value) {
 };
 
 exports.default = _default;
-},/***** module 6 end *****/
+},/***** module 13 end *****/
 
 
-/***** module 7 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\isFunction.js *****/
-function(module, exports, __wepy_require) {"use strict";
-
-exports.__esModule = true;
-exports.default = void 0;
-
-var _default = function _default(value) {
-  return typeof value === 'function';
-};
-
-exports.default = _default;
-},/***** module 7 end *****/
-
-
-/***** module 8 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\isArray.js *****/
+/***** module 14 start *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\redux-actions\lib\utils\isArray.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
 exports.__esModule = true;
@@ -4869,56 +4960,11 @@ var _default = function _default(value) {
 };
 
 exports.default = _default;
-},/***** module 8 end *****/
+},/***** module 14 end *****/
 
 
-/***** module 9 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\identity.js *****/
-function(module, exports, __wepy_require) {"use strict";
-
-exports.__esModule = true;
-exports.default = void 0;
-
-var _default = function _default(value) {
-  return value;
-};
-
-exports.default = _default;
-},/***** module 9 end *****/
-
-
-/***** module 10 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\isString.js *****/
-function(module, exports, __wepy_require) {"use strict";
-
-exports.__esModule = true;
-exports.default = void 0;
-
-var _default = function _default(value) {
-  return typeof value === 'string';
-};
-
-exports.default = _default;
-},/***** module 10 end *****/
-
-
-/***** module 11 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\isNil.js *****/
-function(module, exports, __wepy_require) {"use strict";
-
-exports.__esModule = true;
-exports.default = void 0;
-
-var _default = function _default(value) {
-  return value === null || value === undefined;
-};
-
-exports.default = _default;
-},/***** module 11 end *****/
-
-
-/***** module 12 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\getLastElement.js *****/
+/***** module 15 start *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\redux-actions\lib\utils\getLastElement.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
 exports.__esModule = true;
@@ -4929,11 +4975,26 @@ var _default = function _default(array) {
 };
 
 exports.default = _default;
-},/***** module 12 end *****/
+},/***** module 15 end *****/
 
 
-/***** module 13 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\arrayToObject.js *****/
+/***** module 16 start *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\redux-actions\lib\utils\isNil.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _default = function _default(value) {
+  return value === null || value === undefined;
+};
+
+exports.default = _default;
+},/***** module 16 end *****/
+
+
+/***** module 17 start *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\redux-actions\lib\utils\arrayToObject.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
 exports.__esModule = true;
@@ -4946,41 +5007,11 @@ var _default = function _default(array, callback) {
 };
 
 exports.default = _default;
-},/***** module 13 end *****/
+},/***** module 17 end *****/
 
 
-/***** module 14 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\isSymbol.js *****/
-function(module, exports, __wepy_require) {"use strict";
-
-exports.__esModule = true;
-exports.default = void 0;
-
-var _default = function _default(value) {
-  return typeof value === 'symbol' || typeof value === 'object' && Object.prototype.toString.call(value) === '[object Symbol]';
-};
-
-exports.default = _default;
-},/***** module 14 end *****/
-
-
-/***** module 15 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\toString.js *****/
-function(module, exports, __wepy_require) {"use strict";
-
-exports.__esModule = true;
-exports.default = void 0;
-
-var _default = function _default(value) {
-  return value.toString();
-};
-
-exports.default = _default;
-},/***** module 15 end *****/
-
-
-/***** module 16 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\unflattenActionCreators.js *****/
+/***** module 18 start *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\redux-actions\lib\utils\unflattenActionCreators.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
 exports.__esModule = true;
@@ -4988,7 +5019,7 @@ exports.default = unflattenActionCreators;
 
 var _constants = __wepy_require(5);
 
-var _isEmpty = _interopRequireDefault(__wepy_require(17));
+var _isEmpty = _interopRequireDefault(__wepy_require(10));
 
 var _camelCase = _interopRequireDefault(__wepy_require(45));
 
@@ -5021,41 +5052,11 @@ function unflattenActionCreators(flatActionCreators, _temp) {
   });
   return nestedActionCreators;
 }
-},/***** module 16 end *****/
-
-
-/***** module 17 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\isEmpty.js *****/
-function(module, exports, __wepy_require) {"use strict";
-
-exports.__esModule = true;
-exports.default = void 0;
-
-var _default = function _default(value) {
-  return value.length === 0;
-};
-
-exports.default = _default;
-},/***** module 17 end *****/
-
-
-/***** module 18 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\isUndefined.js *****/
-function(module, exports, __wepy_require) {"use strict";
-
-exports.__esModule = true;
-exports.default = void 0;
-
-var _default = function _default(value) {
-  return value === undefined;
-};
-
-exports.default = _default;
 },/***** module 18 end *****/
 
 
 /***** module 19 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\isMap.js *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\redux-actions\lib\utils\isMap.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
 exports.__esModule = true;
@@ -5070,7 +5071,22 @@ exports.default = _default;
 
 
 /***** module 20 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\ownKeys.js *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\redux-actions\lib\utils\isUndefined.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _default = function _default(value) {
+  return value === undefined;
+};
+
+exports.default = _default;
+},/***** module 20 end *****/
+
+
+/***** module 21 start *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\redux-actions\lib\utils\ownKeys.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
 exports.__esModule = true;
@@ -5104,11 +5120,11 @@ function ownKeys(object) {
 
   return keys;
 }
-},/***** module 20 end *****/
+},/***** module 21 end *****/
 
 
-/***** module 21 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\get.js *****/
+/***** module 22 start *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\redux-actions\lib\utils\get.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
 exports.__esModule = true;
@@ -5121,26 +5137,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function get(key, x) {
   return (0, _isMap.default)(x) ? x.get(key) : x[key];
 }
-},/***** module 21 end *****/
-
-
-/***** module 22 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\isNull.js *****/
-function(module, exports, __wepy_require) {"use strict";
-
-exports.__esModule = true;
-exports.default = void 0;
-
-var _default = function _default(value) {
-  return value === null;
-};
-
-exports.default = _default;
 },/***** module 22 end *****/
 
 
 /***** module 23 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\is-promise\index.js *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\is-promise\index.js *****/
 function(module, exports, __wepy_require) {module.exports = isPromise;
 
 function isPromise(obj) {
@@ -5151,7 +5152,53 @@ function isPromise(obj) {
 
 
 /***** module 24 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\flattenWhenNode.js *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\redux-actions\lib\utils\hasGeneratorInterface.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.default = hasGeneratorInterface;
+
+var _ownKeys = _interopRequireDefault(__wepy_require(21));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function hasGeneratorInterface(handler) {
+  var keys = (0, _ownKeys.default)(handler);
+  var hasOnlyInterfaceNames = keys.every(function (ownKey) {
+    return ownKey === 'next' || ownKey === 'throw';
+  });
+  return keys.length && keys.length <= 2 && hasOnlyInterfaceNames;
+}
+},/***** module 24 end *****/
+
+
+/***** module 25 start *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\redux-actions\lib\utils\flattenReducerMap.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _isPlainObject = _interopRequireDefault(__wepy_require(13));
+
+var _isMap = _interopRequireDefault(__wepy_require(19));
+
+var _hasGeneratorInterface = _interopRequireDefault(__wepy_require(24));
+
+var _flattenWhenNode = _interopRequireDefault(__wepy_require(26));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = (0, _flattenWhenNode.default)(function (node) {
+  return ((0, _isPlainObject.default)(node) || (0, _isMap.default)(node)) && !(0, _hasGeneratorInterface.default)(node);
+});
+
+exports.default = _default;
+},/***** module 25 end *****/
+
+
+/***** module 26 start *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\redux-actions\lib\utils\flattenWhenNode.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
 exports.__esModule = true;
@@ -5159,9 +5206,9 @@ exports.default = void 0;
 
 var _constants = __wepy_require(5);
 
-var _ownKeys = _interopRequireDefault(__wepy_require(20));
+var _ownKeys = _interopRequireDefault(__wepy_require(21));
 
-var _get = _interopRequireDefault(__wepy_require(21));
+var _get = _interopRequireDefault(__wepy_require(22));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5219,76 +5266,30 @@ var _default = function _default(predicate) {
 };
 
 exports.default = _default;
-},/***** module 24 end *****/
+},/***** module 26 end *****/
 
 
-/***** module 25 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\flattenActionMap.js *****/
+/***** module 27 start *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\redux-actions\lib\utils\flattenActionMap.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
 exports.__esModule = true;
 exports.default = void 0;
 
-var _isPlainObject = _interopRequireDefault(__wepy_require(6));
+var _isPlainObject = _interopRequireDefault(__wepy_require(13));
 
-var _flattenWhenNode = _interopRequireDefault(__wepy_require(24));
+var _flattenWhenNode = _interopRequireDefault(__wepy_require(26));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _default = (0, _flattenWhenNode.default)(_isPlainObject.default);
 
 exports.default = _default;
-},/***** module 25 end *****/
-
-
-/***** module 26 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\hasGeneratorInterface.js *****/
-function(module, exports, __wepy_require) {"use strict";
-
-exports.__esModule = true;
-exports.default = hasGeneratorInterface;
-
-var _ownKeys = _interopRequireDefault(__wepy_require(20));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function hasGeneratorInterface(handler) {
-  var keys = (0, _ownKeys.default)(handler);
-  var hasOnlyInterfaceNames = keys.every(function (ownKey) {
-    return ownKey === 'next' || ownKey === 'throw';
-  });
-  return keys.length && keys.length <= 2 && hasOnlyInterfaceNames;
-}
-},/***** module 26 end *****/
-
-
-/***** module 27 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\flattenReducerMap.js *****/
-function(module, exports, __wepy_require) {"use strict";
-
-exports.__esModule = true;
-exports.default = void 0;
-
-var _isPlainObject = _interopRequireDefault(__wepy_require(6));
-
-var _isMap = _interopRequireDefault(__wepy_require(19));
-
-var _hasGeneratorInterface = _interopRequireDefault(__wepy_require(26));
-
-var _flattenWhenNode = _interopRequireDefault(__wepy_require(24));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var _default = (0, _flattenWhenNode.default)(function (node) {
-  return ((0, _isPlainObject.default)(node) || (0, _isMap.default)(node)) && !(0, _hasGeneratorInterface.default)(node);
-});
-
-exports.default = _default;
 },/***** module 27 end *****/
 
 
 /***** module 28 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\symbol-observable\lib\ponyfill.js *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\symbol-observable\lib\ponyfill.js *****/
 function(module, exports, __wepy_require) {'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -5316,7 +5317,7 @@ function symbolObservablePonyfill(root) {
 
 
 /***** module 29 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\symbol-observable\lib\index.js *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\symbol-observable\lib\index.js *****/
 function(module, exports, __wepy_require) {'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -5350,7 +5351,7 @@ exports['default'] = result;
 
 
 /***** module 30 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux\lib\redux.js *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\redux\lib\redux.js *****/
 function(module, exports, __wepy_require) {'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -6028,127 +6029,19 @@ exports.createStore = createStore;
 
 
 /***** module 31 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\combineActions.js *****/
-function(module, exports, __wepy_require) {"use strict";
-
-exports.__esModule = true;
-exports.default = combineActions;
-
-var _invariant = _interopRequireDefault(__wepy_require(34));
-
-var _isFunction = _interopRequireDefault(__wepy_require(7));
-
-var _isSymbol = _interopRequireDefault(__wepy_require(14));
-
-var _isEmpty = _interopRequireDefault(__wepy_require(17));
-
-var _toString = _interopRequireDefault(__wepy_require(15));
-
-var _isString = _interopRequireDefault(__wepy_require(10));
-
-var _constants = __wepy_require(5);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function isValidActionType(type) {
-  return (0, _isString.default)(type) || (0, _isFunction.default)(type) || (0, _isSymbol.default)(type);
-}
-
-function isValidActionTypes(types) {
-  if ((0, _isEmpty.default)(types)) {
-    return false;
-  }
-
-  return types.every(isValidActionType);
-}
-
-function combineActions() {
-  for (var _len = arguments.length, actionsTypes = new Array(_len), _key = 0; _key < _len; _key++) {
-    actionsTypes[_key] = arguments[_key];
-  }
-
-  (0, _invariant.default)(isValidActionTypes(actionsTypes), 'Expected action types to be strings, symbols, or action creators');
-  var combinedActionType = actionsTypes.map(_toString.default).join(_constants.ACTION_TYPE_DELIMITER);
-  return {
-    toString: function toString() {
-      return combinedActionType;
-    }
-  };
-}
-},/***** module 31 end *****/
-
-
-/***** module 32 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\handleAction.js *****/
-function(module, exports, __wepy_require) {"use strict";
-
-exports.__esModule = true;
-exports.default = handleAction;
-
-var _invariant = _interopRequireDefault(__wepy_require(34));
-
-var _isFunction = _interopRequireDefault(__wepy_require(7));
-
-var _isPlainObject = _interopRequireDefault(__wepy_require(6));
-
-var _identity = _interopRequireDefault(__wepy_require(9));
-
-var _isNil = _interopRequireDefault(__wepy_require(11));
-
-var _isUndefined = _interopRequireDefault(__wepy_require(18));
-
-var _toString = _interopRequireDefault(__wepy_require(15));
-
-var _constants = __wepy_require(5);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function handleAction(type, reducer, defaultState) {
-  if (reducer === void 0) {
-    reducer = _identity.default;
-  }
-
-  var types = (0, _toString.default)(type).split(_constants.ACTION_TYPE_DELIMITER);
-  (0, _invariant.default)(!(0, _isUndefined.default)(defaultState), "defaultState for reducer handling " + types.join(', ') + " should be defined");
-  (0, _invariant.default)((0, _isFunction.default)(reducer) || (0, _isPlainObject.default)(reducer), 'Expected reducer to be a function or object with next and throw reducers');
-
-  var _ref = (0, _isFunction.default)(reducer) ? [reducer, reducer] : [reducer.next, reducer.throw].map(function (aReducer) {
-    return (0, _isNil.default)(aReducer) ? _identity.default : aReducer;
-  }),
-      nextReducer = _ref[0],
-      throwReducer = _ref[1];
-
-  return function (state, action) {
-    if (state === void 0) {
-      state = defaultState;
-    }
-
-    var actionType = action.type;
-
-    if (!actionType || types.indexOf((0, _toString.default)(actionType)) === -1) {
-      return state;
-    }
-
-    return (action.error === true ? throwReducer : nextReducer)(state, action);
-  };
-}
-},/***** module 32 end *****/
-
-
-/***** module 33 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\createAction.js *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\redux-actions\lib\createAction.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
 exports.__esModule = true;
 exports.default = createAction;
 
-var _invariant = _interopRequireDefault(__wepy_require(34));
+var _invariant = _interopRequireDefault(__wepy_require(33));
 
-var _isFunction = _interopRequireDefault(__wepy_require(7));
+var _isFunction = _interopRequireDefault(__wepy_require(6));
 
-var _identity = _interopRequireDefault(__wepy_require(9));
+var _identity = _interopRequireDefault(__wepy_require(12));
 
-var _isNull = _interopRequireDefault(__wepy_require(22));
+var _isNull = _interopRequireDefault(__wepy_require(11));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -6195,11 +6088,68 @@ function createAction(type, payloadCreator, metaCreator) {
 
   return actionCreator;
 }
-},/***** module 33 end *****/
+},/***** module 31 end *****/
 
 
-/***** module 34 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\invariant\invariant.js *****/
+/***** module 32 start *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\redux-actions\lib\handleAction.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.default = handleAction;
+
+var _invariant = _interopRequireDefault(__wepy_require(33));
+
+var _isFunction = _interopRequireDefault(__wepy_require(6));
+
+var _isPlainObject = _interopRequireDefault(__wepy_require(13));
+
+var _identity = _interopRequireDefault(__wepy_require(12));
+
+var _isNil = _interopRequireDefault(__wepy_require(16));
+
+var _isUndefined = _interopRequireDefault(__wepy_require(20));
+
+var _toString = _interopRequireDefault(__wepy_require(8));
+
+var _constants = __wepy_require(5);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function handleAction(type, reducer, defaultState) {
+  if (reducer === void 0) {
+    reducer = _identity.default;
+  }
+
+  var types = (0, _toString.default)(type).split(_constants.ACTION_TYPE_DELIMITER);
+  (0, _invariant.default)(!(0, _isUndefined.default)(defaultState), "defaultState for reducer handling " + types.join(', ') + " should be defined");
+  (0, _invariant.default)((0, _isFunction.default)(reducer) || (0, _isPlainObject.default)(reducer), 'Expected reducer to be a function or object with next and throw reducers');
+
+  var _ref = (0, _isFunction.default)(reducer) ? [reducer, reducer] : [reducer.next, reducer.throw].map(function (aReducer) {
+    return (0, _isNil.default)(aReducer) ? _identity.default : aReducer;
+  }),
+      nextReducer = _ref[0],
+      throwReducer = _ref[1];
+
+  return function (state, action) {
+    if (state === void 0) {
+      state = defaultState;
+    }
+
+    var actionType = action.type;
+
+    if (!actionType || types.indexOf((0, _toString.default)(actionType)) === -1) {
+      return state;
+    }
+
+    return (action.error === true ? throwReducer : nextReducer)(state, action);
+  };
+}
+},/***** module 32 end *****/
+
+
+/***** module 33 start *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\invariant\invariant.js *****/
 function(module, exports, __wepy_require) {/**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -6252,11 +6202,62 @@ var invariant = function(condition, format, a, b, c, d, e, f) {
 
 module.exports = invariant;
 
+},/***** module 33 end *****/
+
+
+/***** module 34 start *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\redux-actions\lib\combineActions.js *****/
+function(module, exports, __wepy_require) {"use strict";
+
+exports.__esModule = true;
+exports.default = combineActions;
+
+var _invariant = _interopRequireDefault(__wepy_require(33));
+
+var _isFunction = _interopRequireDefault(__wepy_require(6));
+
+var _isSymbol = _interopRequireDefault(__wepy_require(7));
+
+var _isEmpty = _interopRequireDefault(__wepy_require(10));
+
+var _toString = _interopRequireDefault(__wepy_require(8));
+
+var _isString = _interopRequireDefault(__wepy_require(9));
+
+var _constants = __wepy_require(5);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function isValidActionType(type) {
+  return (0, _isString.default)(type) || (0, _isFunction.default)(type) || (0, _isSymbol.default)(type);
+}
+
+function isValidActionTypes(types) {
+  if ((0, _isEmpty.default)(types)) {
+    return false;
+  }
+
+  return types.every(isValidActionType);
+}
+
+function combineActions() {
+  for (var _len = arguments.length, actionsTypes = new Array(_len), _key = 0; _key < _len; _key++) {
+    actionsTypes[_key] = arguments[_key];
+  }
+
+  (0, _invariant.default)(isValidActionTypes(actionsTypes), 'Expected action types to be strings, symbols, or action creators');
+  var combinedActionType = actionsTypes.map(_toString.default).join(_constants.ACTION_TYPE_DELIMITER);
+  return {
+    toString: function toString() {
+      return combinedActionType;
+    }
+  };
+}
 },/***** module 34 end *****/
 
 
 /***** module 35 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\just-curry-it\index.js *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\just-curry-it\index.js *****/
 function(module, exports, __wepy_require) {module.exports = curry;
 
 /*
@@ -6302,7 +6303,7 @@ function curry(fn, arity) {
 
 
 /***** module 36 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\createCurriedAction.js *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\redux-actions\lib\createCurriedAction.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
 exports.__esModule = true;
@@ -6310,7 +6311,7 @@ exports.default = void 0;
 
 var _justCurryIt = _interopRequireDefault(__wepy_require(35));
 
-var _createAction = _interopRequireDefault(__wepy_require(33));
+var _createAction = _interopRequireDefault(__wepy_require(31));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -6323,7 +6324,7 @@ exports.default = _default;
 
 
 /***** module 37 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\reduce-reducers\lib\index.js *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\reduce-reducers\lib\index.js *****/
 function(module, exports, __wepy_require) {'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -6365,7 +6366,7 @@ module.exports = exports['default'];
 
 
 /***** module 38 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\handleActions.js *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\redux-actions\lib\handleActions.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
 exports.__esModule = true;
@@ -6373,19 +6374,19 @@ exports.default = handleActions;
 
 var _reduceReducers = _interopRequireDefault(__wepy_require(37));
 
-var _invariant = _interopRequireDefault(__wepy_require(34));
+var _invariant = _interopRequireDefault(__wepy_require(33));
 
-var _isPlainObject = _interopRequireDefault(__wepy_require(6));
+var _isPlainObject = _interopRequireDefault(__wepy_require(13));
 
 var _isMap = _interopRequireDefault(__wepy_require(19));
 
-var _ownKeys = _interopRequireDefault(__wepy_require(20));
+var _ownKeys = _interopRequireDefault(__wepy_require(21));
 
-var _flattenReducerMap = _interopRequireDefault(__wepy_require(27));
+var _flattenReducerMap = _interopRequireDefault(__wepy_require(25));
 
 var _handleAction = _interopRequireDefault(__wepy_require(32));
 
-var _get = _interopRequireDefault(__wepy_require(21));
+var _get = _interopRequireDefault(__wepy_require(22));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -6414,7 +6415,7 @@ function handleActions(handlers, defaultState, options) {
 
 
 /***** module 39 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\lodash\lodash.js *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\lodash\lodash.js *****/
 function(module, exports, __wepy_require) {/**
  * @license
  * Lodash <https://lodash.com/>
@@ -23532,7 +23533,7 @@ function(module, exports, __wepy_require) {/**
 
 
 /***** module 40 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\flux-standard-action\lib\index.js *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\flux-standard-action\lib\index.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -23558,7 +23559,7 @@ function isValidKey(key) {
 
 
 /***** module 41 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-promise\lib\index.js *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\redux-promise\lib\index.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -23602,7 +23603,7 @@ function promiseMiddleware(_ref) {
 
 
 /***** module 42 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\to-no-case\index.js *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\to-no-case\index.js *****/
 function(module, exports, __wepy_require) {
 /**
  * Export.
@@ -23675,7 +23676,7 @@ function uncamelize(string) {
 
 
 /***** module 43 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\to-space-case\index.js *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\to-space-case\index.js *****/
 function(module, exports, __wepy_require) {
 var clean = __wepy_require(42)
 
@@ -23702,7 +23703,7 @@ function toSpaceCase(string) {
 
 
 /***** module 44 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\to-camel-case\index.js *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\to-camel-case\index.js *****/
 function(module, exports, __wepy_require) {
 var space = __wepy_require(43)
 
@@ -23729,7 +23730,7 @@ function toCamelCase(string) {
 
 
 /***** module 45 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\utils\camelCase.js *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\redux-actions\lib\utils\camelCase.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
 exports.__esModule = true;
@@ -23750,37 +23751,37 @@ exports.default = _default;
 
 
 /***** module 46 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\createActions.js *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\redux-actions\lib\createActions.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
 exports.__esModule = true;
 exports.default = createActions;
 
-var _invariant = _interopRequireDefault(__wepy_require(34));
+var _invariant = _interopRequireDefault(__wepy_require(33));
 
-var _isPlainObject = _interopRequireDefault(__wepy_require(6));
+var _isPlainObject = _interopRequireDefault(__wepy_require(13));
 
-var _isFunction = _interopRequireDefault(__wepy_require(7));
+var _isFunction = _interopRequireDefault(__wepy_require(6));
 
-var _identity = _interopRequireDefault(__wepy_require(9));
+var _identity = _interopRequireDefault(__wepy_require(12));
 
-var _isArray = _interopRequireDefault(__wepy_require(8));
+var _isArray = _interopRequireDefault(__wepy_require(14));
 
-var _isString = _interopRequireDefault(__wepy_require(10));
+var _isString = _interopRequireDefault(__wepy_require(9));
 
-var _isNil = _interopRequireDefault(__wepy_require(11));
+var _isNil = _interopRequireDefault(__wepy_require(16));
 
-var _getLastElement = _interopRequireDefault(__wepy_require(12));
+var _getLastElement = _interopRequireDefault(__wepy_require(15));
 
 var _camelCase = _interopRequireDefault(__wepy_require(45));
 
-var _arrayToObject = _interopRequireDefault(__wepy_require(13));
+var _arrayToObject = _interopRequireDefault(__wepy_require(17));
 
-var _flattenActionMap = _interopRequireDefault(__wepy_require(25));
+var _flattenActionMap = _interopRequireDefault(__wepy_require(27));
 
-var _unflattenActionCreators = _interopRequireDefault(__wepy_require(16));
+var _unflattenActionCreators = _interopRequireDefault(__wepy_require(18));
 
-var _createAction = _interopRequireDefault(__wepy_require(33));
+var _createAction = _interopRequireDefault(__wepy_require(31));
 
 var _constants = __wepy_require(5);
 
@@ -23860,16 +23861,16 @@ function actionCreatorsFromIdentityActions(identityActions, options) {
 
 
 /***** module 47 start *****/
-/***** C:\work\project\INFINITY_WEPY_PENG\products\001_mszf_app\node_modules\redux-actions\lib\index.js *****/
+/***** C:\work\PengLunJian\projects\PENG_APP_WECHAT\products\001_mszf_app\node_modules\redux-actions\lib\index.js *****/
 function(module, exports, __wepy_require) {"use strict";
 
 exports.__esModule = true;
 
-var _combineActions = _interopRequireDefault(__wepy_require(31));
+var _combineActions = _interopRequireDefault(__wepy_require(34));
 
 exports.combineActions = _combineActions.default;
 
-var _createAction = _interopRequireDefault(__wepy_require(33));
+var _createAction = _interopRequireDefault(__wepy_require(31));
 
 exports.createAction = _createAction.default;
 

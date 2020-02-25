@@ -332,119 +332,357 @@ _core["default"].page({
     this.resetHouseList();
     this.exeAjaxHouseList();
   }
-}, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\..\\components\\error\\error"},"empty":{"path":"..\\..\\..\\components\\empty\\empty"},"load-more":{"path":"..\\..\\..\\components\\load-more\\load-more"},"rent-house-item":{"path":"..\\..\\..\\components\\rent-house-item\\rent-house-item"},"wux-slider":{"path":"..\\..\\..\\$vendor\\wux-weapp\\dist\\slider\\index"}},"on":{"9-467":["refresh"],"9-477":["change"],"9-479":["change"]}}, handlers: {'9-466': {"tap": function proxy (index) {
+}, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\..\\components\\error\\error"},"empty":{"path":"..\\..\\..\\components\\empty\\empty"},"load-more":{"path":"..\\..\\..\\components\\load-more\\load-more"},"rent-house-item":{"path":"..\\..\\..\\components\\rent-house-item\\rent-house-item"},"wux-slider":{"path":"..\\..\\..\\$vendor\\wux-weapp\\dist\\slider\\index"}},"on":{"9-1":["refresh"],"9-11":["change"],"9-13":["change"]}}, handlers: {'9-0': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {
         _vm.onHandleTabChange(index)
       })();
     
-  }},'9-467': {"refresh": function proxy () {
+  }},'9-1': {"refresh": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onRefresh($event)
       })();
     
-  }},'9-468': {"scrolltolower": function proxy () {
+  }},'9-2': {"scrolltolower": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleScrollToLower($event)
       })();
     
-  }},'9-469': {"tap": function proxy () {
+  }},'9-3': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
         _vm.onHandleCloseModal(0)
       })();
     
-  }},'9-470': {"tap": function proxy (item, index) {
+  }},'9-4': {"tap": function proxy (item, index) {
     
     var _vm=this;
       return (function () {
         _vm.onHandleChooseArea(item,index)
       })();
     
-  }},'9-471': {"tap": function proxy () {
+  }},'9-5': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleClearModal1($event)
       })();
     
-  }},'9-472': {"tap": function proxy () {
+  }},'9-6': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
         _vm.onHandleCloseModal(1)
       })();
     
-  }},'9-473': {"tap": function proxy (index) {
+  }},'9-7': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {
         _vm.onHandleMethodFilter(index)
       })();
     
-  }},'9-474': {"tap": function proxy (index) {
+  }},'9-8': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {
         _vm.onHandleLayoutFilter(index)
       })();
     
-  }},'9-475': {"tap": function proxy (index) {
+  }},'9-9': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {
         _vm.onHandleStyleFilter(index)
       })();
     
-  }},'9-476': {"tap": function proxy (index) {
+  }},'9-10': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {
         _vm.onHandlePriceFilter(index)
       })();
     
-  }},'9-477': {"change": function proxy () {
+  }},'9-11': {"change": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleSliderChangePrice($event)
       })();
     
-  }},'9-478': {"tap": function proxy (index) {
+  }},'9-12': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {
         _vm.onHandleSizeFilter(index)
       })();
     
-  }},'9-479': {"change": function proxy () {
+  }},'9-13': {"change": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleSliderChangeSize($event)
       })();
     
-  }},'9-480': {"tap": function proxy () {
+  }},'9-14': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
         _vm.onHandleClearModal2($event)
       })();
     
-  }},'9-481': {"tap": function proxy () {
+  }},'9-15': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
         _vm.onHandleCloseModal(2)
       })();
     
-  }},'9-482': {"tap": function proxy (index) {
+  }},'9-16': {"tap": function proxy (index) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleSortFilter(index)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\..\\components\\error\\error"},"empty":{"path":"..\\..\\..\\components\\empty\\empty"},"load-more":{"path":"..\\..\\..\\components\\load-more\\load-more"},"rent-house-item":{"path":"..\\..\\..\\components\\rent-house-item\\rent-house-item"},"wux-slider":{"path":"..\\..\\..\\$vendor\\wux-weapp\\dist\\slider\\index"}},"on":{"9-1":["refresh"],"9-11":["change"],"9-13":["change"]}}, handlers: {'9-0': {"tap": function proxy (index) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleTabChange(index)
+      })();
+    
+  }},'9-1': {"refresh": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onRefresh($event)
+      })();
+    
+  }},'9-2': {"scrolltolower": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleScrollToLower($event)
+      })();
+    
+  }},'9-3': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleCloseModal(0)
+      })();
+    
+  }},'9-4': {"tap": function proxy (item, index) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleChooseArea(item,index)
+      })();
+    
+  }},'9-5': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleClearModal1($event)
+      })();
+    
+  }},'9-6': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleCloseModal(1)
+      })();
+    
+  }},'9-7': {"tap": function proxy (index) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleMethodFilter(index)
+      })();
+    
+  }},'9-8': {"tap": function proxy (index) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleLayoutFilter(index)
+      })();
+    
+  }},'9-9': {"tap": function proxy (index) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleStyleFilter(index)
+      })();
+    
+  }},'9-10': {"tap": function proxy (index) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandlePriceFilter(index)
+      })();
+    
+  }},'9-11': {"change": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleSliderChangePrice($event)
+      })();
+    
+  }},'9-12': {"tap": function proxy (index) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleSizeFilter(index)
+      })();
+    
+  }},'9-13': {"change": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleSliderChangeSize($event)
+      })();
+    
+  }},'9-14': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleClearModal2($event)
+      })();
+    
+  }},'9-15': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleCloseModal(2)
+      })();
+    
+  }},'9-16': {"tap": function proxy (index) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleSortFilter(index)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\..\\components\\error\\error"},"empty":{"path":"..\\..\\..\\components\\empty\\empty"},"load-more":{"path":"..\\..\\..\\components\\load-more\\load-more"},"rent-house-item":{"path":"..\\..\\..\\components\\rent-house-item\\rent-house-item"},"wux-slider":{"path":"..\\..\\..\\$vendor\\wux-weapp\\dist\\slider\\index"}},"on":{"9-1":["refresh"],"9-11":["change"],"9-13":["change"]}}, handlers: {'9-0': {"tap": function proxy (index) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleTabChange(index)
+      })();
+    
+  }},'9-1': {"refresh": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onRefresh($event)
+      })();
+    
+  }},'9-2': {"scrolltolower": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleScrollToLower($event)
+      })();
+    
+  }},'9-3': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleCloseModal(0)
+      })();
+    
+  }},'9-4': {"tap": function proxy (item, index) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleChooseArea(item,index)
+      })();
+    
+  }},'9-5': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleClearModal1($event)
+      })();
+    
+  }},'9-6': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleCloseModal(1)
+      })();
+    
+  }},'9-7': {"tap": function proxy (index) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleMethodFilter(index)
+      })();
+    
+  }},'9-8': {"tap": function proxy (index) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleLayoutFilter(index)
+      })();
+    
+  }},'9-9': {"tap": function proxy (index) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleStyleFilter(index)
+      })();
+    
+  }},'9-10': {"tap": function proxy (index) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandlePriceFilter(index)
+      })();
+    
+  }},'9-11': {"change": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleSliderChangePrice($event)
+      })();
+    
+  }},'9-12': {"tap": function proxy (index) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleSizeFilter(index)
+      })();
+    
+  }},'9-13': {"change": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleSliderChangeSize($event)
+      })();
+    
+  }},'9-14': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleClearModal2($event)
+      })();
+    
+  }},'9-15': {"tap": function proxy () {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleCloseModal(2)
+      })();
+    
+  }},'9-16': {"tap": function proxy (index) {
     
     var _vm=this;
       return (function () {

@@ -12,7 +12,7 @@
   top: 130rpx;
   left: 0;
   z-index: 1000;
-  background-color: #ffffff;
+  background-color: #FFFFFF;
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.03);
   font-size: 28rpx;
   text-align: center;

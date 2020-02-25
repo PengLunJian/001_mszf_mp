@@ -55,7 +55,7 @@
   left: 0;
   z-index: 1000;
   overflow: hidden;
-  background-color: #ffffff;
+  background-color: #FFFFFF;
   padding-top: 20px;
   padding-bottom: 5px;
   font-size: 0;

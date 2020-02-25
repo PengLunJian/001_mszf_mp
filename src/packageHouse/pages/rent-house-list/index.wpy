@@ -542,7 +542,7 @@
               this.pageIndex++;
             } else {
               if (rows.length) {
-                this.showToast('请求失败');
+                this.showToast('加载失败，请重试');
               }
             }
             this.timer = null;
@@ -550,7 +550,7 @@
           })
           .catch((err) => {
             if (rows.length) {
-              this.showToast('请求失败');
+              this.showToast('加载失败，请重试');
             }
             this.timer = null;
             console.log(err);

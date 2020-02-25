@@ -87,7 +87,7 @@
   height: 65px;
   line-height: 65px;
   background-color: #000;
-  color: #ffffff;
+  color: #FFFFFF;
   font-size: 30px;
   text-align: center;
   z-index: 2000;

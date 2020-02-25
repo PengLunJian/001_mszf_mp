@@ -163,4 +163,130 @@ _core["default"].component({
         _vm.onHandleFollow($event)
       })();
     
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'107-0': {"change": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleSwiperChange($event)
+      })();
+    
+  }},'107-1': {"tap": function proxy (index) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleLargeImage(index)
+      })();
+    
+  }},'107-2': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleFollow($event)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'107-0': {"change": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleSwiperChange($event)
+      })();
+    
+  }},'107-1': {"tap": function proxy (index) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleLargeImage(index)
+      })();
+    
+  }},'107-2': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleFollow($event)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'107-0': {"change": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleSwiperChange($event)
+      })();
+    
+  }},'107-1': {"tap": function proxy (index) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleLargeImage(index)
+      })();
+    
+  }},'107-2': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleFollow($event)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'107-0': {"change": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleSwiperChange($event)
+      })();
+    
+  }},'107-1': {"tap": function proxy (index) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleLargeImage(index)
+      })();
+    
+  }},'107-2': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleFollow($event)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'107-0': {"change": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleSwiperChange($event)
+      })();
+    
+  }},'107-1': {"tap": function proxy (index) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleLargeImage(index)
+      })();
+    
+  }},'107-2': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleFollow($event)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"lazy-image":{"path":"..\\lazy-image\\lazy-image"}},"on":{}}, handlers: {'107-0': {"change": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleSwiperChange($event)
+      })();
+    
+  }},'107-1': {"tap": function proxy (index) {
+    
+    var _vm=this;
+      return (function () {
+        _vm.onHandleLargeImage(index)
+      })();
+    
+  }},'107-2': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onHandleFollow($event)
+      })();
+    
   }}}, models: {} });

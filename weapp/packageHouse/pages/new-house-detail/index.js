@@ -90,4 +90,18 @@ _core["default"].page({
         _vm.onRefresh($event)
       })();
     
+  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\..\\components\\error\\error"},"detail-banner":{"path":"..\\..\\..\\components\\detail-banner\\detail-banner"},"detail-base":{"path":"..\\..\\..\\components\\detail-base\\detail-base"},"detail-agent":{"path":"..\\..\\..\\components\\detail-agent\\detail-agent"},"detail-layout":{"path":"..\\..\\..\\components\\detail-layout\\detail-layout"},"detail-map":{"path":"..\\..\\..\\components\\detail-map\\detail-map"},"detail-footer":{"path":"..\\..\\..\\components\\detail-footer\\detail-footer"}},"on":{"6-0":["refresh"]}}, handlers: {'6-0': {"refresh": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onRefresh($event)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"top-bar":{"path":"..\\..\\..\\components\\top-bar\\top-bar"},"loading":{"path":"..\\..\\..\\components\\loading\\loading"},"error":{"path":"..\\..\\..\\components\\error\\error"},"detail-banner":{"path":"..\\..\\..\\components\\detail-banner\\detail-banner"},"detail-base":{"path":"..\\..\\..\\components\\detail-base\\detail-base"},"detail-agent":{"path":"..\\..\\..\\components\\detail-agent\\detail-agent"},"detail-layout":{"path":"..\\..\\..\\components\\detail-layout\\detail-layout"},"detail-map":{"path":"..\\..\\..\\components\\detail-map\\detail-map"},"detail-footer":{"path":"..\\..\\..\\components\\detail-footer\\detail-footer"}},"on":{"6-0":["refresh"]}}, handlers: {'6-0': {"refresh": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.onRefresh($event)
+      })();
+    
   }}}, models: {} });
