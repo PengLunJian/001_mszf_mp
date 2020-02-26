@@ -1,7 +1,0 @@
-
-<view wx:if="{{ isShow }}" class="empty fade">
-  <view class="empty-inner">
-    <image src="images/empty@2x.png" mode="aspectFit" class="empty-image"></image>
-    <view class="empty-label">暂无数据</view>
-  </view>
-</view>

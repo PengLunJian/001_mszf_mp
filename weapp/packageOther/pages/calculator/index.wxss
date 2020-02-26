@@ -1,7 +1,0 @@
-.container .content {
-  height: 100vh;
-}
-.container .content .body {
-  height: 100%;
-}
-

@@ -1,7 +1,0 @@
-
-<view class="nav row">
-  <navigator wx:for="{{ items }}" wx:for-index="index" wx:for-item="item" wx:key="index" hover-class="none" url="{{ item.path }}" key="{{ index }}" class="nav-item">
-    <view class="nav-icon iconfont {{item.icon}}"></view>
-    <view class="nav-text">{{item.text}}</view>
-  </navigator>
-</view>

@@ -1,7 +1,0 @@
-
-<view class="wait fade">
-  <view class="wait-inner">
-    <image src="images/wait@2x.png" mode="aspectFit" class="wait-image"></image>
-    <view class="wait-label">敬请期待</view>
-  </view>
-</view>

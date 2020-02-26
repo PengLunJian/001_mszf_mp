@@ -231,8 +231,12 @@
         }
       ],
       btnArea: {
-        activeIndex: 2,
+        activeIndex: 0,
         items: [
+          {
+            state: true,
+            label: '不限'
+          },
           {
             state: false,
             label: '宣州区'
@@ -478,7 +482,7 @@
         }
       },
       onHandleClearModal1() {
-        this.btnArea.activeIndex = -1;
+        this.btnArea.activeIndex = 0;
       },
       onHandleClearModal2() {
         this.btnMethod.initIndex = -1;

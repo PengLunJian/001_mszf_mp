@@ -1,12 +1,8 @@
 <template>
   <div class="top-bar">
-    <div class="top-inner" v-if="isIcon">
-      <div class="top-icon iconfont icon-back" @tap="onHandleBack"></div>
-      <div class="top-icon iconfont icon-home" @tap="onHandleHome"></div>
-      <div class="top-title">{{title}}</div>
-    </div>
-    <div class="top-inner" v-if="!isIcon">
-      <div class="top-image"></div>
+    <div class="top-inner">
+      <div class="top-icon iconfont icon-back" v-if="isIcon" @tap="onHandleBack"></div>
+      <div class="top-icon iconfont icon-home" v-if="isIcon" @tap="onHandleHome"></div>
       <div class="top-title">{{title}}</div>
     </div>
   </div>
@@ -72,18 +68,6 @@
         z-index: 1;
         float: left;
         font-size: unit(40, rpx);
-      }
-      .top-image {
-        width: unit(150, rpx);
-        height: @topBarHeight;
-        position: relative;
-        z-index: 1;
-        float: left;
-        margin-left: unit(20, rpx);
-        background-size: 100% auto;
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-image: url('http://sersms.com:7000/house/v1/file/static/userfile/202002/02/1223882602650681344.png');
       }
       .top-title {
         position: absolute;

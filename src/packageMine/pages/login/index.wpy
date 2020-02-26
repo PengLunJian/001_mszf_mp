@@ -81,14 +81,9 @@
           .login-container {
             height: 100%;
             position: relative;
+            padding-top: unit(200, rpx);
             .login-content {
-              width: 100%;
-              position: absolute;
-              top: 45%;
-              left: 50%;
               padding: unit(60, rpx);
-              transform: translate3d(-50%, -50%, 0);
-              border-radius: @borderRadius2;
               .login-header {
                 margin-bottom: unit(80, rpx);
                 image {
