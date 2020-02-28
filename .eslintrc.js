@@ -29,6 +29,7 @@ module.exports = {
     /*eslint semi: "error"*/
     'semi': ['error', 'always'],
     /*eslint no-throw-literal: "error"*/
-    'no-throw-literal': 0
+    'no-throw-literal': 0,
+    'camelcase': 0
   }
 }

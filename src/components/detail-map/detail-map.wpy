@@ -53,7 +53,7 @@
       },
       name: {
         type: String,
-        default: '暂无数据'
+        default: '正在加载'
       }
     },
     methods: {
