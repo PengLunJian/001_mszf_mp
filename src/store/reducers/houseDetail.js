@@ -13,10 +13,6 @@ const actions = {
     };
   },
   [actionTypes.SELECT_HOUSEDETAIL_SUCCESS](state, action) {
-    const items = [
-      'http://sersms.com:7000/house/v1/file/static/userfile/202001/13/1216582503799492608.jpg',
-      'http://sersms.com:7000/house/v1/file/static/userfile/202001/13/1216581838603849728.jpg'
-    ];
     const configs = [
       {
         icon: 'icon-item01',
@@ -89,7 +85,7 @@ const actions = {
         isCan: false
       }
     ];
-    const {fagnwupeizhi, release_time, kaipan, jiaofang, tags} = action.data || {};
+    const {fagnwupeizhi, release_time, kaipan, jiaofang, tags, pic_url} = action.data || {};
     if (fagnwupeizhi) {
       configs.map((item) => {
         if (fagnwupeizhi.indexOf(item.label) !== -1) {
@@ -97,7 +93,7 @@ const actions = {
         }
       });
     }
-    action.data.pic_url = items;
+    action.data.pic_url = pic_url.length ? pic_url : [''];
     action.data.configs = configs;
     action.data.release_time = release_time.substring(0, 10);
     action.data.tags = tags.split(' ');

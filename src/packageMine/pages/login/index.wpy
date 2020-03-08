@@ -52,6 +52,13 @@
             console.log(res);
           }
         });
+      },
+      getUserWechatCode() {
+        wx.login({
+          success(res) {
+            console.log(res);
+          }
+        });
       }
     },
 

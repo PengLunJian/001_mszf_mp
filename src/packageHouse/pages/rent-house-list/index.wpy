@@ -591,7 +591,7 @@
           z-index: 1000;
           background-color: @white;
           box-shadow: 0 5px 5px rgba(0, 0, 0, 0.03);
-          font-size: @fontSize3;
+          font-size: @fontSize28;
           text-align: center;
           color: @fontColor1;
           .tab-item {
@@ -608,7 +608,7 @@
                 display: inline-block;
                 vertical-align: middle;
                 &.tab-label {
-                  font-size: @fontSize3;
+                  font-size: @fontSize28;
                 }
                 &.tab-triangle {
                   margin-left: unit(20, rpx);
@@ -702,7 +702,7 @@
                 height: unit(40, rpx);
                 line-height: unit(40, rpx);
                 margin-bottom: unit(20, rpx);
-                font-size: @fontSize3;
+                font-size: @fontSize28;
                 color: @fontColor2;
                 &.max-label {
                   text-align: right;
@@ -716,7 +716,7 @@
                   line-height: unit(56, rpx);
                   border-radius: unit(60, rpx);
                   border: 1px solid @borderColor1;
-                  font-size: @fontSize1;
+                  font-size: @fontSize24;
                   text-align: center;
                   color: @fontColor3;
                 }
@@ -738,7 +738,7 @@
                 line-height: unit(40, rpx);
                 margin-bottom: unit(10, rpx);
                 padding: 0 unit(15, rpx);
-                font-size: @fontSize3;
+                font-size: @fontSize28;
                 color: @fontColor2;
               }
             }
@@ -747,7 +747,7 @@
               height: 100%;
               line-height: unit(90, rpx);
               letter-spacing: 0.5px;
-              font-size: @fontSize4;
+              font-size: @fontSize30;
               color: @fontColor1;
               .modal-city {
                 width: 35%;
@@ -781,7 +781,7 @@
                 height: 50px;
                 line-height: 50px;
                 border-bottom: 0.5px solid @borderColor1;
-                font-size: @fontSize3;
+                font-size: @fontSize28;
                 text-align: center;
                 color: @fontColor2;
                 &.active {
@@ -806,7 +806,7 @@
               .btn {
                 height: unit(100, rpx);
                 line-height: unit(100, rpx);
-                font-size: @fontSize5;
+                font-size: @fontSize32;
                 letter-spacing: 1px;
                 color: @white;
                 &.btn-clear {

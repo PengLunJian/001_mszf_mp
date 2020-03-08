@@ -6,6 +6,12 @@ const apis = {
   headers: {
     'Content-Type': 'application/json; charset=UTF-8'
   },
+  selectUserLogin: {
+    url: 'auth/account/loginByWechatCode',
+    params: {
+      wechat_code: ''
+    }
+  },
   selectHotHouseRent: {
     url: 'house/v1/houser/house/list',
     params: {

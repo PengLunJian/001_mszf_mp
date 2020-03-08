@@ -40,8 +40,14 @@ export const stringify = (params) => {
  */
 export const dataFilter = (data) => {
   data.map((item) => {
-    item.browsing_time = dateFormat(item.browsing_time, 'yyyy/mm/dd');
-    item.tags = item.tags.split(' ');
+    let {pic_url, browsing_time, tags} = item;
+    pic_url = pic_url.length ? pic_url : [];
+    browsing_time = dateFormat(browsing_time, 'yyyy/mm/dd');
+    tags = tags.split(' ');
+
+    item.pic_url = pic_url;
+    item.browsing_time = browsing_time;
+    item.tags = tags;
   });
   return data;
 };
