@@ -93,7 +93,7 @@
           display: inline-block;
           vertical-align: middle;
           padding: 0 unit(10, rpx);
-          font-size: @fontSize3;
+          font-size: @fontSize28;
           color: @fontColor3;
         }
         &:before,

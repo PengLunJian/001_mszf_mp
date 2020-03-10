@@ -68,13 +68,13 @@
         line-height: unit(90, rpx);
         margin: 0 auto unit(20, rpx);
         border-radius: 100%;
-        font-size: @fontSize9;
+        font-size: @fontSize50;
         color: @white;
       }
       .nav-text {
         height: unit(40, rpx);
         line-height: unit(40, rpx);
-        font-size: @fontSize2;
+        font-size: @fontSize26;
         color: @fontColor1;
       }
       &:nth-child(1) {

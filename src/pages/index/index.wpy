@@ -115,13 +115,13 @@
             .location-icon {
               display: inline-block;
               vertical-align: middle;
-              font-size: @fontSize8;
+              font-size: @fontSize46;
             }
             .location-text {
               display: inline-block;
               vertical-align: middle;
               margin-left: unit(4, rpx);
-              font-size: @fontSize5;
+              font-size: @fontSize32;
             }
           }
           .top-search {
@@ -145,13 +145,13 @@
                 left: 0;
                 width: @height;
                 height: @height;
-                font-size: @fontSize5;
+                font-size: @fontSize32;
               }
               .btn-text {
                 height: @height;
                 line-height: @height;
                 padding-left: unit(55, rpx);
-                font-size: @fontSize1;
+                font-size: @fontSize24;
                 text-align: left;
               }
             }

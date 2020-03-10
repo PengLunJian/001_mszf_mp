@@ -152,7 +152,7 @@
             padding: 0 unit(10, rpx);
             margin-right: unit(10, rpx);
             background-color: @stateColor;
-            font-size: @fontSize1;
+            font-size: @fontSize24;
             color: @fontColor3;
             &.item-state {
               color: @white;

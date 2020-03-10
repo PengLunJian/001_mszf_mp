@@ -728,7 +728,7 @@
                   .btn-style {
                     border: none;
                     line-height: unit(60, rpx);
-                    background: -webkit-linear-gradient(left, #FFBB00, #FF9900);
+                    background: -webkit-linear-gradient(left, @theme1, @theme2);
                     color: @white;
                   }
                 }

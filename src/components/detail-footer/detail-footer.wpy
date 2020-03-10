@@ -103,12 +103,12 @@
         letter-spacing: 0.5px;
         font-size: 0;
         .agent-name {
-          font-size: @fontSize3;
+          font-size: @fontSize28;
           font-weight: bold;
           color: @fontColor1;
         }
         .agent-desc {
-          font-size: @fontSize1;
+          font-size: @fontSize24;
           color: @fontColor3;
         }
       }
@@ -134,14 +134,14 @@
           height: unit(110, rpx);
           line-height: unit(110, rpx);
           margin-right: unit(10, rpx);
-          font-size: @fontSize8;
+          font-size: @fontSize46;
         }
         .btn-text {
           display: inline-block;
           vertical-align: middle;
           height: unit(110, rpx);
           line-height: unit(110, rpx);
-          font-size: @fontSize6;
+          font-size: @fontSize36;
           letter-spacing: 1px;
         }
       }

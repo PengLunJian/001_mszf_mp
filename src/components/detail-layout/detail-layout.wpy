@@ -136,7 +136,7 @@
           line-height: unit(32, rpx);
           padding-left: unit(20, rpx);
           border-left: 4px solid @theme2;
-          font-size: @fontSize5;
+          font-size: @fontSize32;
           letter-spacing: 0.5px;
           font-weight: bold;
           color: @fontColor1;
@@ -165,7 +165,7 @@
                       height: unit(40, rpx);
                       line-height: unit(40, rpx);
                       margin-top: unit(8, rpx);
-                      font-size: @fontSize2;
+                      font-size: @fontSize26;
                       color: @fontColor1;
                       &.item-size {
                         padding-left: unit(10, rpx);
@@ -177,7 +177,7 @@
                       line-height: unit(40, rpx);
                       margin-top: unit(8, rpx);
                       padding: 0 unit(10, rpx);
-                      font-size: @fontSize1;
+                      font-size: @fontSize24;
                       color: @white;
                       &.state1 {
                         background-color: @stateColor1;

@@ -190,7 +190,7 @@
                   text-align: center;
                   &.list-item-icon {
                     left: 0;
-                    font-size: @fontSize8;
+                    font-size: @fontSize46;
                     -webkit-text-fill-color: transparent;
                     -webkit-background-clip: text;
                   }
@@ -248,7 +248,7 @@
             vertical-align: middle;
             padding-right: unit(20, rpx);
             border-right: 0.5px solid @borderColor1;
-            font-size: @fontSize2;
+            font-size: @fontSize26;
             color: #CCCCCC;
           }
           .company-logo {
@@ -311,11 +311,11 @@
               letter-spacing: 0.5px;
               text-align: center;
               &.large {
-                font-size: @fontSize2;
+                font-size: @fontSize26;
                 color: @fontColor2;
               }
               &.small {
-                font-size: @fontSize1;
+                font-size: @fontSize24;
                 color: @fontColor3;
               }
             }
@@ -325,7 +325,7 @@
             height: @height;
             line-height: @height;
             border-top: 0.5px solid @borderColor3;
-            font-size: @fontSize5;
+            font-size: @fontSize32;
             letter-spacing: 1px;
             text-align: center;
             .btn-cancel {
@@ -420,8 +420,8 @@
 
 <config>
   {
-  navigationStyle:'custom',
   disableScroll:true,
+  navigationStyle:'custom',
   usingComponents: {
   'top-bar': '../../../components/top-bar/top-bar',
   }

@@ -235,7 +235,7 @@
           z-index: 1000;
           background-color: @white;
           box-shadow: 0 5px 5px rgba(0, 0, 0, 0.03);
-          font-size: @fontSize3;
+          font-size: @fontSize28;
           text-align: center;
           color: @fontColor2;
           .tab-item {

@@ -60,7 +60,7 @@
         line-height: unit(40, rpx);
         margin-top: unit(10, rpx);
         letter-spacing: 0.5px;
-        font-size: @fontSize4;
+        font-size: @fontSize30;
         color: @fontColor3;
       }
     }

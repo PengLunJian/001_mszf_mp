@@ -80,7 +80,7 @@
           line-height: unit(32, rpx);
           padding-left: unit(20, rpx);
           border-left: 4px solid @theme2;
-          font-size: @fontSize5;
+          font-size: @fontSize32;
           letter-spacing: 0.5px;
           font-weight: bold;
           color: @fontColor1;
@@ -107,11 +107,11 @@
                 line-height: unit(40, rpx);
                 padding-left: unit(30, rpx);
                 .item-name {
-                  font-size: @fontSize5;
+                  font-size: @fontSize32;
                   color: @fontColor1;
                 }
                 .item-phone {
-                  font-size: @fontSize3;
+                  font-size: @fontSize28;
                   color: @fontColor3;
                 }
               }
@@ -128,7 +128,7 @@
                   border-radius: 100%;
                   margin-right: unit(40, rpx);
                   background-color: rgba(255, 153, 0, .05);
-                  font-size: @fontSize7;
+                  font-size: @fontSize40;
                   text-align: center;
                   color: @theme2;
                   &:last-child {

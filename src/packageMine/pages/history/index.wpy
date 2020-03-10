@@ -156,7 +156,7 @@
               .group-date {
                 height: unit(60, rpx);
                 line-height: unit(60, rpx);
-                font-size: @fontSize1;
+                font-size: @fontSize24;
                 color: @fontColor3;
                 .group-label {
                   width: 100%;

@@ -72,7 +72,7 @@
         padding: 0 unit(30, rpx);
         margin-top: unit(20, rpx);
         border: 0.5px solid @borderColor3;
-        font-size: @fontSize3;
+        font-size: @fontSize28;
         letter-spacing: 1px;
         color: @fontColor3;
       }

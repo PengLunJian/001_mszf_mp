@@ -199,7 +199,7 @@
           line-height: unit(32, rpx);
           padding-left: unit(20, rpx);
           border-left: 4px solid @theme2;
-          font-size: @fontSize5;
+          font-size: @fontSize32;
           letter-spacing: 0.5px;
           font-weight: bold;
           color: @fontColor1;
@@ -217,7 +217,7 @@
                 .title {
                   line-height: unit(60, rpx);
                   text-align: justify;
-                  font-size: @fontSize6;
+                  font-size: @fontSize36;
                   font-weight: bold;
                   color: @fontColor1;
                 }
@@ -229,7 +229,7 @@
                   padding: 0 unit(10, rpx);
                   margin-right: unit(10, rpx);
                   background-color: @stateColor;
-                  font-size: @fontSize1;
+                  font-size: @fontSize24;
                   color: @fontColor3;
                   &.item-state {
                     color: @white;
@@ -249,12 +249,12 @@
                 }
                 .value {
                   .price {
-                    font-size: @fontSize5;
+                    font-size: @fontSize32;
                     font-weight: bold;
                     color: @priceColor;
                   }
                   .unit {
-                    font-size: @fontSize1;
+                    font-size: @fontSize24;
                     color: @priceColor;
                   }
                 }
@@ -262,12 +262,12 @@
                   text-align: center;
                   .value {
                     margin-bottom: unit(20, rpx);
-                    font-size: @fontSize6;
+                    font-size: @fontSize36;
                     font-weight: bold;
                     color: @priceColor;
                   }
                   .label {
-                    font-size: @fontSize2;
+                    font-size: @fontSize26;
                     color: @fontColor3;
                   }
                 }
@@ -275,7 +275,7 @@
                 &.col-12 {
                   line-height: unit(65, rpx);
                   letter-spacing: 0.5px;
-                  font-size: @fontSize4;
+                  font-size: @fontSize30;
                   .label {
                     margin-right: unit(20, rpx);
                     color: @fontColor3;

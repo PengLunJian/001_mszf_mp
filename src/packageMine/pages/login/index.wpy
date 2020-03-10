@@ -113,7 +113,7 @@
                     line-height: unit(100, rpx);
                     display: inline-block;
                     vertical-align: middle;
-                    font-size: @fontSize8;
+                    font-size: @fontSize46;
                   }
                   .btn-text {
                     height: unit(100, rpx);
@@ -121,7 +121,7 @@
                     display: inline-block;
                     vertical-align: middle;
                     margin-left: unit(10, rpx);
-                    font-size: @fontSize6;
+                    font-size: @fontSize36;
                     letter-spacing: 1px;
                   }
                   &.btn-wechat {

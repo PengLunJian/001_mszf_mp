@@ -11,7 +11,7 @@
                       @change="onHandleSwiperChange">
                 <swiper-item v-for="(item,index) in isData.pic_url" :key="index"
                              @tap="onHandleLargeImage(index)">
-                  <lazy-image class="swiper-img" src="{{item}}" lazyStyle="width:120px;height:60px;"/>
+                  <lazy-image class="swiper-img" src="{{item}}" mode="aspectFill" lazyStyle="width:120px;height:60px;"/>
                 </swiper-item>
               </swiper>
             </div>
@@ -128,7 +128,7 @@
           line-height: unit(32, rpx);
           padding-left: unit(20, rpx);
           border-left: 4px solid @theme2;
-          font-size: @fontSize5;
+          font-size: @fontSize32;
           letter-spacing: 0.5px;
           font-weight: bold;
           color: @fontColor1;
@@ -138,16 +138,11 @@
         .module-context {
           .module-banner {
             .banner-swiper {
-              overflow: hidden;
               position: relative;
               height: unit(520, rpx);
               .swiper {
                 width: 100%;
-                height: unit(750, rpx);
-                position: absolute;
-                top: 50%;
-                left: 0;
-                margin-top: unit(-375, rpx);
+                height: 100%;
                 .swiper-img {
                   width: 100%;
                   height: 100%;
@@ -158,6 +153,7 @@
               width: 100%;
               position: absolute;
               left: 0;
+              z-index: 2;
               bottom: unit(30, rpx);
               text-align: center;
               font-size: 0;
@@ -169,7 +165,7 @@
                 padding: 0 unit(20, rpx);
                 border-radius: unit(44, rpx);
                 background-color: rgba(0, 0, 0, .5);
-                font-size: @fontSize1;
+                font-size: @fontSize24;
                 color: @white;
               }
             }
@@ -177,7 +173,7 @@
               display: flex;
               position: absolute;
               right: 0;
-              z-index: 10;
+              z-index: 3;
               bottom: unit(-60, rpx);
               padding: 0 unit(20, rpx);
               button {
@@ -190,7 +186,7 @@
                   display: block;
                   height: unit(60, rpx);
                   line-height: unit(70, rpx);
-                  font-size: @fontSize7;
+                  font-size: @fontSize40;
                 }
                 .btn-text {
                   display: block;
