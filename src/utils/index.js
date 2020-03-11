@@ -1,3 +1,5 @@
+import apis from '../apis';
+
 /**
  *
  * @returns {boolean}
@@ -40,13 +42,14 @@ export const stringify = (params) => {
  */
 export const dataFilter = (data) => {
   data.map((item) => {
-    let {pic_url, browsing_time, tags} = item;
-    pic_url = pic_url.length ? pic_url : [];
+    let {browsing_time, pic_url, tags} = item;
+    let defaultImage = apis.baseUrl + 'house/v1/file/static/userfile/202003/11/1237660841611137024.jpg';
     browsing_time = dateFormat(browsing_time, 'yyyy/mm/dd');
+    pic_url = pic_url.length ? pic_url : [defaultImage];
     tags = tags.split(' ');
 
-    item.pic_url = pic_url;
     item.browsing_time = browsing_time;
+    item.pic_url = pic_url;
     item.tags = tags;
   });
   return data;
