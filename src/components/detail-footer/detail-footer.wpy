@@ -124,9 +124,11 @@
         color: @white;
         &.btn-msg {
           background-color: @theme1;
+          background: -webkit-linear-gradient(left, @theme1, @theme2);
         }
         &.btn-tel {
           background-color: @theme2;
+          background: -webkit-linear-gradient(left, @green1, @green2);
         }
         .btn-icon {
           display: inline-block;

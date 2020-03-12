@@ -2,6 +2,14 @@ import apis from '../apis';
 
 /**
  *
+ * @type {string[]}
+ */
+const urls = [
+  'house/v1/file/static/userfile/202003/12/1237927940854157312.jpg',
+  'house/v1/file/static/userfile/202002/09/1226431602998263808.png'
+];
+/**
+ *
  * @returns {boolean}
  */
 export const success = () => {
@@ -43,9 +51,8 @@ export const stringify = (params) => {
 export const dataFilter = (data) => {
   data.map((item) => {
     let {browsing_time, pic_url, tags} = item;
-    let defaultImage = apis.baseUrl + 'house/v1/file/static/userfile/202003/11/1237660841611137024.jpg';
     browsing_time = dateFormat(browsing_time, 'yyyy/mm/dd');
-    pic_url = pic_url.length ? pic_url : [defaultImage];
+    pic_url = pic_url.length ? pic_url : [defaultUrl];
     tags = tags.split(' ');
 
     item.browsing_time = browsing_time;
@@ -144,9 +151,9 @@ export const handleSaveImage = () => {
  */
 export const saveImage = () => {
   setTimeout(() => {
-    const imgUrl = 'http://sersms.com:7000/house/v1/file/static/userfile/202002/09/1226431602998263808.png';
+    const url = apis.baseUrl + urls[0];
     wx.downloadFile({
-      url: imgUrl,
+      url: url,
       success(res) {
         const {tempFilePath} = res || {};
         wx.saveImageToPhotosAlbum({
@@ -168,3 +175,8 @@ export const saveImage = () => {
     });
   }, 300);
 };
+/**
+ *
+ * @type {string}
+ */
+export const defaultUrl = apis.baseUrl + urls[0];

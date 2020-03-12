@@ -2,7 +2,6 @@ import {handleActions} from 'redux-actions';
 import * as actionTypes from '../actionTypes';
 import * as utils from '../../utils';
 import * as states from '../states';
-import apis from '../../apis';
 
 const actions = {
   [actionTypes.SELECT_HOUSEDETAIL_REQUEST](state) {
@@ -87,7 +86,6 @@ const actions = {
       }
     ];
     const {fagnwupeizhi, release_time, kaipan, jiaofang, tags, pic_url} = action.data || {};
-    const defaultImage = apis.baseUrl + 'house/v1/file/static/userfile/202003/11/1237660841611137024.jpg';
     if (fagnwupeizhi) {
       configs.map((item) => {
         if (fagnwupeizhi.indexOf(item.label) !== -1) {
@@ -95,7 +93,7 @@ const actions = {
         }
       });
     }
-    action.data.pic_url = pic_url.length ? pic_url : [defaultImage];
+    action.data.pic_url = pic_url.length ? pic_url : [utils.defaultUrl];
     action.data.configs = configs;
     action.data.release_time = release_time.substring(0, 10);
     action.data.tags = tags.split(' ');
