@@ -3,32 +3,32 @@
        @tap="onHandleDetail(item.id)">
     <div class="item-inner">
       <div class="item-img">
-        <lazy-image src="http://sersms.com:7000/house/v1/file/static/userfile/202001/15/1217306190710345728.jpg"/>
+        <lazy-image src="{{item.pic_url[0]}}" mode="aspectFill"/>
       </div>
       <div class="item-info">
         <div class="item-row">
-          <div class="item-title ellipsis">{{item.title}}</div>
+          <div class="item-title ellipsis">{{item.title||noData}}</div>
         </div>
-        <div class="item-row">
-          <span class="item-addr">{{item.addr_qu}}</span>
-          <span class="item-split"></span>
-          <span class="item-desc">{{item.addr}}</span>
+        <div class="item-row row">
+          <div class="item-addr ellipsis">
+            <span class="item-normal addr">{{item.addr_qu||noData}}</span>
+            <span class="item-normal split"></span>
+            <span class="item-normal desc">{{item.addr||noData}}</span>
+          </div>
         </div>
-        <div class="item-row">
-                  <span class="item-normal item-price">
-                    <span class="item-value">{{item.total_price/10000}}</span>
-                    <span class="item-unit">万</span>
-                  </span>
-          <span class="item-normal">{{item.huxing}}</span>
-          <span class="item-normal">{{item.mianji}}m²</span>
+        <div class="item-row row">
+          <div class="item-normal price">{{item.total_price||0}}</div>
+          <div class="item-normal unit">万元</div>
+          <div class="item-normal">{{item.huxing||noData}}</div>
+          <div class="item-normal">{{item.mianji||noData}}m²</div>
         </div>
-        <div class="item-row">
-          <span class="item-tag"
-                v-for="(tag,index) in item.tags"
-                :key="index">{{tag}}</span>
+        <div class="item-row row">
+          <div class="item-col" v-for="(value,index) in item.tags" :key="index">
+            <div class="item-tag">{{value}}</div>
+          </div>
         </div>
       </div>
-      <div class="item-type" v-if="isType">二手房</div>
+      <div class="item-type" v-if="isType">租房</div>
     </div>
   </div>
 </template>
@@ -38,7 +38,9 @@
   import * as $routes from '../../router';
 
   wepy.component({
-    data: {},
+    data: {
+      noData: '暂无数据'
+    },
     props: {
       item: {
         type: Object,
@@ -68,8 +70,8 @@
   @import "../../assets/less/common";
 
   .item {
-    position: relative;
     overflow: hidden;
+    position: relative;
     padding: 0 unit(30, rpx);
     background-color: @white;
     .item-inner {
@@ -86,76 +88,78 @@
         .item-row {
           margin-bottom: unit(8, rpx);
           font-size: 0;
-          &:last-child {
-            margin: 0;
-            padding-top: unit(4, rpx);
-          }
           .item-title {
             height: unit(40, rpx);
             line-height: unit(40, rpx);
-            font-size: unit(28, rpx);
+            font-size: @fontSize32;
             font-weight: bold;
             color: @fontColor1;
           }
           .item-addr,
-          .item-desc,
           .item-size {
             height: unit(32, rpx);
             line-height: unit(32, rpx);
             display: inline-block;
             vertical-align: middle;
-            font-size: unit(24, rpx);
+            font-size: @fontSize24;
             color: @fontColor2;
-          }
-          .item-split {
-            height: unit(20, rpx);
-            display: inline-block;
-            vertical-align: middle;
-            margin: 0 unit(10, rpx);
-            border-left: 1px solid @borderColor1;
-          }
-          .item-value,
-          .item-unit {
-            height: 100%;
-            display: inline-block;
-            vertical-align: middle;
-            &.item-value {
-              font-size: unit(32, rpx);
-              font-weight: bold;
-            }
-            &.item-unit {
-              font-size: unit(24, rpx);
-            }
           }
           .item-normal {
             height: unit(40, rpx);
             line-height: unit(40, rpx);
-            display: inline-block;
-            vertical-align: middle;
             margin-right: unit(10, rpx);
-            font-size: unit(24, rpx);
+            font-size: @fontSize24;
             color: @fontColor3;
-            &.item-price {
-              color: @priceColor;
+            &.addr,
+            &.desc,
+            &.split {
+              margin: 0;
+              height: unit(32, rpx);
+              line-height: unit(32, rpx);
+              color: @fontColor2;
+            }
+            &.split {
+              padding: 0 unit(10, rpx);
               font-size: 0;
+              &:before {
+                content: '';
+                height: unit(20, rpx);
+                display: inline-block;
+                border-left: 1px solid @borderColor1;
+              }
+            }
+            &.price {
+              margin: 0;
+              font-size: @fontSize36;
+              color: @priceColor;
+              font-weight: bold;
+            }
+            &.unit {
+              font-size: @fontSize24;
+              color: @priceColor;
             }
             &:last-child {
               margin: 0;
             }
           }
-          .item-tag {
-            height: unit(40, rpx);
-            line-height: unit(36, rpx);
-            display: inline-block;
-            vertical-align: middle;
-            padding: 0 unit(10, rpx);
-            margin-right: unit(10, rpx);
-            border: 1px solid @theme2;
-            font-size: unit(24, rpx);
-            color: @theme2;
-            &:last-child {
-              margin: 0;
+          .item-col {
+            padding-top: unit(10, rpx);
+            padding-right: unit(10, rpx);
+            .item-tag {
+              line-height: unit(38, rpx);
+              padding: 0 unit(10, rpx);
+              border: 1px solid @theme2;
+              font-size: @fontSize24;
+              text-align: center;
+              color: @theme2;
             }
+            &:last-child {
+              padding-right: 0;
+            }
+          }
+          &:nth-last-child(1),
+          &:nth-last-child(2) {
+            margin: 0;
           }
         }
       }
@@ -168,7 +172,7 @@
         height: unit(30, rpx);
         line-height: unit(30, rpx);
         transform: rotate(-45deg);
-        background-color: @typeColor2;
+        background-color: @typeColor3;
         font-size: unit(16, rpx);
         font-weight: bold;
         text-align: center;

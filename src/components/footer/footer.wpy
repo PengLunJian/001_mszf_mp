@@ -1,0 +1,67 @@
+<template>
+  <div class="module">
+    <div class="module-row row">
+      <div class="module-col col-4">
+        <div class="module-icon iconfont icon-home"></div>
+        <div class="module-text">首页</div>
+      </div>
+      <div class="module-col col-4">
+        <div class="module-icon iconfont icon-msg"></div>
+        <div class="module-text">消息</div>
+      </div>
+      <div class="module-col col-4">
+        <div class="module-icon iconfont icon-mine"></div>
+        <div class="module-text">我的</div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script type="text/ecmascript-6">
+  import wepy from '@wepy/core';
+
+  wepy.component({
+    data: {},
+    props: {
+      length: {
+        type: Number,
+        default: 0
+      },
+      totalCount: {
+        type: Number,
+        default: 0
+      }
+    },
+    events: {},
+    watch: {},
+    methods: {},
+    created() {
+    }
+  });
+</script>
+
+<style scoped lang="less">
+  @import "../../assets/less/common";
+  @import "../../assets/less/variable";
+  @import "../../assets/less/iconfont";
+
+  .module {
+    text-align: center;
+    color: @fontColor3;
+    .module-row {
+      .module-col {
+        padding: unit(15, rpx) 0;
+        .module-icon {
+          height: unit(50, rpx);
+          line-height: unit(50, rpx);
+          font-size: @fontSize50;
+        }
+        .module-text {
+          height: unit(30, rpx);
+          line-height: unit(30, rpx);
+          font-size: @fontSize22;
+        }
+      }
+    }
+  }
+</style>

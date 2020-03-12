@@ -71,8 +71,8 @@
   @import "../../assets/less/common";
 
   .item {
-    position: relative;
     overflow: hidden;
+    position: relative;
     padding: 0 unit(30, rpx);
     background-color: @white;
     .item-inner {
@@ -148,9 +148,9 @@
             padding-right: unit(10, rpx);
             .item-tag {
               line-height: unit(38, rpx);
-              padding: 0 unit(8, rpx);
+              padding: 0 unit(10, rpx);
               border: 1px solid @theme2;
-              font-size: @fontSize22;
+              font-size: @fontSize24;
               text-align: center;
               color: @theme2;
             }

@@ -1,17 +1,17 @@
 <template>
-  <div class="load-more" v-if="totalCount>10">
-    <div class="load-more-content">
-      <div class="load-more-exist" v-if="length<totalCount">
-        <div class="load-more-icon">
-          <img class="load-more-house" src="./images/loading-icon@2x.png" mode="aspectFit"/>
-          <img class="load-more-round" src="./images/loading-clock@2x.png" mode="aspectFit"/>
+  <div class="loading-more" v-if="totalCount>10">
+    <div class="loading-more-content">
+      <div class="loading-more-exist" v-if="length<totalCount">
+        <div class="loading-more-icon">
+          <img class="loading-more-house" src="./images/loading-icon@2x.png" mode="aspectFit"/>
+          <img class="loading-more-round" src="./images/loading-clock@2x.png" mode="aspectFit"/>
         </div>
-        <div class="load-more-text">
-          <img class="load-more-label" src="./images/loading-label@2x.png" mode="aspectFit"/>
+        <div class="loading-more-text">
+          <img class="loading-more-label" src="./images/loading-label@2x.png" mode="aspectFit"/>
         </div>
       </div>
-      <div class="load-more-empty" v-if="length>=totalCount">
-        <div class="load-more-label">我是有底线的</div>
+      <div class="loading-more-empty" v-if="length>=totalCount">
+        <div class="loading-more-label">我是有底线的</div>
       </div>
     </div>
   </div>
@@ -45,23 +45,23 @@
   @import "../../assets/less/variable";
   @import "../../assets/less/iconfont";
 
-  .load-more {
+  .loading-more {
     padding: unit(10, rpx) 0;
     text-align: center;
     font-size: 0;
-    .load-more-content {
+    .loading-more-content {
       width: auto;
       position: relative;
       display: inline-block;
       font-size: 0;
-      .load-more-exist {
-        .load-more-icon {
+      .loading-more-exist {
+        .loading-more-icon {
           position: relative;
           width: unit(50, rpx);
           height: unit(50, rpx);
           display: inline-block;
           vertical-align: middle;
-          .load-more-house {
+          .loading-more-house {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -69,25 +69,25 @@
             height: 8px;
             transform: translate3d(-50%, -50%, 0);
           }
-          .load-more-round {
+          .loading-more-round {
             width: 100%;
             height: 100%;
             padding: unit(5, rpx);
             animation: rotate 3s linear infinite;
           }
         }
-        .load-more-text {
+        .loading-more-text {
           display: inline-block;
           vertical-align: middle;
           margin-left: unit(5, rpx);
-          .load-more-label {
+          .loading-more-label {
             width: unit(76, rpx);
             height: unit(26, rpx);
           }
         }
       }
-      .load-more-empty {
-        .load-more-label {
+      .loading-more-empty {
+        .loading-more-label {
           height: unit(50, rpx);
           line-height: unit(50, rpx);
           display: inline-block;

@@ -317,6 +317,7 @@
   navigationStyle:'custom',
   usingComponents: {
   'top-bar': '../../components/top-bar/top-bar',
+  'footer':'../../components/footer/footer',
   'wait':'../../components/wait/wait'
   }
   }

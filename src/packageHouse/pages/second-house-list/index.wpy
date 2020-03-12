@@ -29,8 +29,8 @@
                 <second-house-item :item="item"></second-house-item>
               </block>
             </div>
-            <load-more :length="isData.rows.length"
-                       :totalCount="isData.totalCount"></load-more>
+            <loading-more :length="isData.rows.length"
+                       :totalCount="isData.totalCount"></loading-more>
           </scroll-view>
         </div>
       </div>
@@ -741,7 +741,7 @@
   'loading': '../../../components/loading/loading',
   'error': '../../../components/error/error',
   'empty': '../../../components/empty/empty',
-  'load-more': '../../../components/load-more/load-more',
+  'loading-more': '../../../components/loading-more/loading-more',
   'second-house-item': '../../../components/second-house-item/second-house-item'
   }
   }

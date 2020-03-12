@@ -54,6 +54,7 @@
         const {house_id} = this.$wx.options;
         this.ajaxHouseDetail({house_id})
           .then((res) => {
+            this.onHandleInitQQMap();
             console.log(res);
           })
           .catch((err) => {
@@ -64,15 +65,17 @@
         this.exeAjaxHouseDetail();
       },
       onHandleInitQQMap() {
+        const {addr_sheng, addr_shi, addr_qu, addr, xiaoqu} = this.isData;
+        const address = addr_sheng + addr_shi + addr_qu + xiaoqu + addr;
         const qqmapsdk = new QQMapWX({
           key: 'CQABZ-RINL4-5MAU4-DBWDV-D2UXZ-5GBEU'
         });
         qqmapsdk.geocoder({
-          address: '安徽省宣城市广德市桃州镇水岸阳光城一区13栋',
+          address: address,
           success: (res) => {
             this.onUpdateLocation(res);
           },
-          complete: res => {
+          complete: (res) => {
             console.log(res);
           }
         });
@@ -90,7 +93,6 @@
     },
 
     onLoad() {
-      this.onHandleInitQQMap();
       this.exeAjaxHouseDetail();
     }
   });

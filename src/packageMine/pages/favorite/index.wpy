@@ -60,7 +60,8 @@
                     <new-house-item :item="item"></new-house-item>
                   </block>
                 </div>
-                <load-more :length="isNewData.rows.length" :totalCount="isNewData.totalCount"></load-more>
+                <loading-more :length="isNewData.rows.length"
+                              :totalCount="isNewData.totalCount"></loading-more>
               </scroll-view>
             </div>
           </swiper-item>
@@ -305,10 +306,10 @@
   'loading': '../../../components/loading/loading',
   'error': '../../../components/error/error',
   'empty': '../../../components/empty/empty',
-  'load-more': '../../../components/load-more/load-more',
-  'rent-house-item': '../../../components/rent-house-item/rent-house-item',
+  'loading-more': '../../../components/loading-more/loading-more',
   'new-house-item': '../../../components/new-house-item/new-house-item',
-  'second-house-item': '../../../components/second-house-item/second-house-item'
+  'second-house-item': '../../../components/second-house-item/second-house-item',
+  'rent-house-item': '../../../components/rent-house-item/rent-house-item'
   }
   }
 </config>

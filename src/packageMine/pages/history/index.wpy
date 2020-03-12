@@ -30,7 +30,7 @@
                 </div>
               </block>
             </div>
-            <load-more :length="isData.rows.length" :totalCount="isData.totalCount"></load-more>
+            <loading-more :length="isData.rows.length" :totalCount="isData.totalCount"></loading-more>
           </scroll-view>
         </div>
       </div>
@@ -206,10 +206,10 @@
   'loading': '../../../components/loading/loading',
   'error': '../../../components/error/error',
   'empty': '../../../components/empty/empty',
-  'load-more': '../../../components/load-more/load-more',
-  'rent-house-item': '../../../components/rent-house-item/rent-house-item',
+  'loading-more': '../../../components/loading-more/loading-more',
   'new-house-item': '../../../components/new-house-item/new-house-item',
-  'second-house-item': '../../../components/second-house-item/second-house-item'
+  'second-house-item': '../../../components/second-house-item/second-house-item',
+  'rent-house-item': '../../../components/rent-house-item/rent-house-item'
   }
   }
 </config>
