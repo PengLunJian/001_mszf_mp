@@ -3,8 +3,8 @@
     <div class="loading-more-content">
       <div class="loading-more-exist" v-if="length<totalCount">
         <div class="loading-more-icon">
-          <img class="loading-more-house" src="./images/loading-icon@2x.png" mode="aspectFit"/>
-          <img class="loading-more-round" src="./images/loading-clock@2x.png" mode="aspectFit"/>
+          <img class="loading-more-house" src="./images/loading-house@2x.png" mode="aspectFit"/>
+          <img class="loading-more-round" src="./images/loading-round@2x.png" mode="aspectFit"/>
         </div>
         <div class="loading-more-text">
           <img class="loading-more-label" src="./images/loading-label@2x.png" mode="aspectFit"/>

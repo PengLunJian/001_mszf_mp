@@ -2,8 +2,8 @@
   <div class="loading fade{{isLoading?'':' hide'}}" v-if="isShow">
     <div class="loading-inner">
       <div class="loading-icon">
-        <img class="loading-house" src="./images/loading-icon@2x.png" mode="aspectFit"/>
-        <img class="loading-round" src="./images/loading-clock@2x.png" mode="aspectFit"/>
+        <img class="loading-house" src="./images/loading-house@2x.png" mode="aspectFit"/>
+        <img class="loading-round" src="./images/loading-round@2x.png" mode="aspectFit"/>
       </div>
       <div class="loading-text">
         <img class="loading-label" src="./images/loading-label@2x.png" mode="aspectFit"/>
