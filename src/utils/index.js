@@ -5,7 +5,7 @@ import apis from '../apis';
  * @type {string[]}
  */
 const urls = [
-  'house/v1/file/static/userfile/202003/12/1237927940854157312.jpg',
+  'house/v1/file/static/userfile/202003/13/1238307984306900992.jpg',
   'house/v1/file/static/userfile/202002/09/1226431602998263808.png'
 ];
 /**
@@ -151,7 +151,7 @@ export const handleSaveImage = () => {
  */
 export const saveImage = () => {
   setTimeout(() => {
-    const url = apis.baseUrl + urls[0];
+    const url = apis.baseUrl + urls[1];
     wx.downloadFile({
       url: url,
       success(res) {
