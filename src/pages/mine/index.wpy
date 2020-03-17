@@ -154,7 +154,7 @@
                     background-size: 100% 100%;
                     background-repeat: no-repeat;
                     background-position: center center;
-                    background-image: url('http://sersms.com:7000/house/v1/file/static/userfile/202002/20/1230363451876511744.jpg');
+                    background-image: url('http://fang.sersms.com:7000/house/v1/file/static/userfile/202003/17/1239814790655492096.jpg');
                     .user-info {
                       display: flex;
                       position: absolute;

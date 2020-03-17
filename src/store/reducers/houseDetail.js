@@ -1,5 +1,6 @@
 import {handleActions} from 'redux-actions';
 import * as actionTypes from '../actionTypes';
+import * as $config from '../../config';
 import * as utils from '../../utils';
 import * as states from '../states';
 
@@ -93,7 +94,7 @@ const actions = {
         }
       });
     }
-    action.data.pic_url = pic_url.length ? pic_url : [utils.defaultUrl];
+    action.data.pic_url = pic_url.length ? pic_url : [$config.DEFAULT_HOUSE];
     action.data.configs = configs;
     action.data.release_time = release_time.substring(0, 10);
     action.data.tags = tags.split(' ');

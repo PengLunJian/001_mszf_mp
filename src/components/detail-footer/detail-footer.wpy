@@ -1,15 +1,15 @@
 <template>
-  <div class="fixed-bar">
-    <div class="fixed-left">
+  <div class="fixed-bar row">
+    <div class="fixed-col col-4">
       <div class="agent-img">
-        <img src="../../assets/images/agent.jpg"/>
+        <lazy-image :src="item.agency[0].photo||defaultAgent"/>
       </div>
       <div class="agent-info">
-        <div class="agent-name">{{item.agency[0].name}}</div>
-        <div class="agent-desc">{{item.agency_com_name}}</div>
+        <div class="agent-name">{{item.agency[0].name||noData}}</div>
+        <div class="agent-desc">{{item.agency_com_name||noData}}</div>
       </div>
     </div>
-    <div class="fixed-right">
+    <div class="fixed-col col-8">
       <div class="btn btn-msg col-6" @tap="onHandleMessage(item.agency[0].id)">
         <text class="btn-icon iconfont icon-msg"></text>
         <text class="btn-text">微聊</text>
@@ -25,9 +25,13 @@
 <script type="text/ecmascript-6">
   import wepy from '@wepy/core';
   import * as $routes from '../../router';
+  import * as $config from '../../config';
 
   wepy.component({
-    data: {},
+    data: {
+      noData: '暂无数据',
+      defaultAgent: $config.DEFAULT_AGENT
+    },
     events: {},
     props: {
       item: {
@@ -67,7 +71,6 @@
 
   .fixed-bar {
     width: 100%;
-    display: flex;
     flex-wrap: wrap;
     position: fixed;
     left: 0;
@@ -75,7 +78,7 @@
     z-index: 1000;
     background-color: @white;
     box-shadow: 0 0 15px @boxShadow1;
-    .fixed-left {
+    .col-4 {
       width: 36%;
       height: unit(110, rpx);
       line-height: unit(110, rpx);
@@ -90,30 +93,31 @@
         image {
           width: 100%;
           height: 100%;
-          border-radius: 100%;
-          box-shadow: 0 0 15px @boxShadow1;
+          border-radius: @borderRadius100;
         }
       }
       .agent-info {
-        width: auto;
-        line-height: unit(32, rpx);
         display: inline-block;
         vertical-align: middle;
-        margin-left: unit(10, rpx);
+        margin-left: unit(15, rpx);
         letter-spacing: 0.5px;
         font-size: 0;
         .agent-name {
+          height: unit(40, rpx);
+          line-height: unit(40, rpx);
           font-size: @fontSize28;
           font-weight: bold;
           color: @fontColor1;
         }
         .agent-desc {
+          height: unit(30, rpx);
+          line-height: unit(30, rpx);
           font-size: @fontSize24;
           color: @fontColor3;
         }
       }
     }
-    .fixed-right {
+    .col-8 {
       width: 64%;
       display: flex;
       font-size: 0;
@@ -149,5 +153,12 @@
       }
     }
   }
-
 </style>
+
+<config>
+  {
+  usingComponents: {
+  'lazy-image': '../lazy-image/lazy-image'
+  }
+  }
+</config>

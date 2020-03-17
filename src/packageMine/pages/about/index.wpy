@@ -65,6 +65,7 @@
 <script type="text/ecmascript-6">
   import wepy from '@wepy/core';
   import store from '../../../store';
+  import QQMapWX from 'wx-qqmap-jssdk';
   import * as utils from '../../../utils';
 
   wepy.page({
@@ -74,7 +75,13 @@
 
     data: {
       isShow: false,
-      isHide: false
+      isHide: false,
+      location: {
+        latitude: 0, // 纬度
+        longitude: 0, // 经度
+        name: '广德码上找房',
+        address: '安徽省宣城市广德市金鑫世贸广场北区块B栋五楼505-506'
+      }
     },
 
     computed: {},
@@ -97,12 +104,35 @@
           }
         });
       },
+      onHandlePosition() {
+        const {address} = this.location;
+        const qqmapsdk = new QQMapWX({
+          key: 'CQABZ-RINL4-5MAU4-DBWDV-D2UXZ-5GBEU'
+        });
+        qqmapsdk.geocoder({
+          address: address,
+          success: (res) => {
+            if (res) {
+              const {result} = res || {};
+              const {location} = result || {};
+              const {lat, lng} = location || {};
+              this.location.longitude = lng;
+              this.location.latitude = lat;
+              console.log('东经=' + lng + '|北纬=' + lat);
+            }
+          },
+          complete: (res) => {
+            console.log(res);
+          }
+        });
+      },
       onHandleLocation() {
+        const {latitude, longitude, name, address} = this.location;
         wx.openLocation({
-          latitude: 30.8791290000, // 纬度
-          longitude: 119.4235460000, // 经度
-          name: '广德码上找房',
-          address: '安徽省宣城市广德市金鑫世贸广场北区块B栋五楼505-506',
+          name: name,
+          address: address,
+          latitude: latitude,
+          longitude: longitude,
           success: (res) => {
             console.log(res);
           },
@@ -132,6 +162,7 @@
     },
 
     onLoad() {
+      this.onHandlePosition();
     }
   });
 </script>
@@ -165,7 +196,7 @@
               background-size: 100% 100%;
               background-repeat: no-repeat;
               background-position: center center;
-              background-image: url("http://sersms.com:7000/house/v1/file/static/userfile/202002/20/1230344166403805184.jpg");
+              background-image: url("http://fang.sersms.com:7000/house/v1/file/static/userfile/202003/17/1239815132554182656.jpg");
             }
           }
           .list {

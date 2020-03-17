@@ -1,5 +1,5 @@
 const apis = {
-  baseUrl: 'http://sersms.com:7000/',
+  baseUrl: 'http://fang.sersms.com:7000',
   method: 'POST',
   timeout: 5000,
   dataType: 'json',
@@ -7,13 +7,13 @@ const apis = {
     'Content-Type': 'application/json; charset=UTF-8'
   },
   selectUserLogin: {
-    url: 'auth/account/loginByWechatCode',
+    url: '/auth/account/loginByWechatCode',
     params: {
       wechat_code: ''
     }
   },
   selectHotHouseRent: {
-    url: 'house/v1/houser/house/list',
+    url: '/house/v1/houser/house/list',
     params: {
       page: {
         pageSize: 5,
@@ -35,7 +35,7 @@ const apis = {
     }
   },
   selectHotHouseSecond: {
-    url: 'house/v1/houser/house/list',
+    url: '/house/v1/houser/house/list',
     params: {
       page: {
         pageSize: 5,
@@ -57,7 +57,7 @@ const apis = {
     }
   },
   selectHotHouseNew: {
-    url: 'house/v1/houser/house/list',
+    url: '/house/v1/houser/house/list',
     params: {
       page: {
         pageSize: 5,
@@ -79,7 +79,7 @@ const apis = {
     }
   },
   selectHouseList: {
-    url: 'house/v1/houser/house/list',
+    url: '/house/v1/houser/house/list',
     params: {
       page: {
         pageSize: 10,
@@ -101,25 +101,25 @@ const apis = {
     }
   },
   selectHouseDetail: {
-    url: 'house/v1/houser/house/detail',
+    url: '/house/v1/houser/house/detail',
     params: {
       house_id: 1
     }
   },
   updateHouseFollow: {
-    url: 'house/v1/houser/house/follow',
+    url: '/house/v1/houser/house/follow',
     params: {
       house_id: 1
     }
   },
   updateHouseUnfollow: {
-    url: 'house/v1/houser/house/unfollow',
+    url: '/house/v1/houser/house/unfollow',
     params: {
       house_id: 1
     }
   },
   selectHouseFavorite: {
-    url: 'house/v1/houser/house/followed',
+    url: '/house/v1/houser/house/followed',
     params: {
       page: {
         pageSize: 10,
@@ -135,7 +135,7 @@ const apis = {
     }
   },
   selectHouseHistory: {
-    url: 'house/v1/houser/house/history',
+    url: '/house/v1/houser/house/history',
     params: {
       page: {
         pageSize: 10,

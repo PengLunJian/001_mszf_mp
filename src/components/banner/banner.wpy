@@ -7,7 +7,7 @@
               @change="onHandleSwiperChange">
         <swiper-item v-for="(item,index) in items" :key="index"
                      @tap="onHandleBanner(index)">
-          <lazy-image class="swiper-img" src="{{item.url}}"/>
+          <lazy-image class="swiper-img" src="{{item}}"/>
         </swiper-item>
       </swiper>
     </div>
@@ -20,20 +20,11 @@
 
 <script type="text/ecmascript-6">
   import wepy from '@wepy/core';
+  import * as $config from '../../config';
 
   wepy.component({
     data: {
-      items: [
-        {
-          url: 'http://sersms.com:7000/house/v1/file/static/userfile/202002/21/1230753480843005952.jpg'
-        },
-        {
-          url: 'http://sersms.com:7000/house/v1/file/static/userfile/202002/21/1230753683352391680.jpg'
-        },
-        {
-          url: 'http://sersms.com:7000/house/v1/file/static/userfile/202002/21/1230753772972085248.jpg'
-        }
-      ],
+      items: $config.DEFAULT_BANNER,
       current: 0,
       autoplay: true,
       circular: true

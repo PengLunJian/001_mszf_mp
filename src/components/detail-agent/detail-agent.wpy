@@ -9,11 +9,11 @@
           <div class="module-items">
             <div class="module-item" v-for="(item,index) in items" :key="index">
               <div class="item-img">
-                <img src="../../assets/images/agent.jpg"/>
+                <lazy-image :src="item.photo||defaultAgent"/>
               </div>
               <div class="item-info">
-                <div class="item-name">{{item.name}}</div>
-                <div class="item-phone">{{item.tel||'暂无数据'}}</div>
+                <div class="item-name">{{item.name||noData}}</div>
+                <div class="item-phone">{{item.tel||noData}}</div>
               </div>
               <div class="item-btns">
                 <div class="btn-icon btn-msg iconfont icon-msg" @tap="onHandleMessage(item.id)"></div>
@@ -31,9 +31,13 @@
 <script type="text/ecmascript-6">
   import wepy from '@wepy/core';
   import * as $routes from '../../router';
+  import * as $config from '../../config';
 
   wepy.component({
-    data: {},
+    data: {
+      noData: '暂无数据',
+      defaultAgent: $config.DEFAULT_AGENT
+    },
     events: {},
     props: {
       items: {
@@ -92,14 +96,14 @@
             padding: unit(30, rpx) 0;
             .module-item {
               display: flex;
-              padding: 0 unit(30, rpx) unit(40, rpx);
+              padding: 0 unit(30, rpx);
+              margin-bottom: unit(40, rpx);
               .item-img {
+                width: unit(80, rpx);
+                height: unit(80, rpx);
+                border-radius: @borderRadius100;
                 image {
-                  width: unit(80, rpx);
-                  height: unit(80, rpx);
-                  border-radius: 100%;
-                  background-color: @white;
-                  box-shadow: 0 0 15px @boxShadow1;
+                  border-radius: @borderRadius100;
                 }
               }
               .item-info {
@@ -137,7 +141,7 @@
                 }
               }
               &:last-child {
-                padding-bottom: 0;
+                margin-bottom: 0;
               }
             }
           }
