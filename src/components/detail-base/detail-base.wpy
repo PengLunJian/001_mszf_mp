@@ -19,7 +19,7 @@
             </div>
             <div class="module-row row">
               <div class="module-col col-6">
-                <span class="label">售价</span>
+                <span class="label">单价</span>
                 <span class="value">
                   <span class="price">{{isData.price}}</span>
                   <span class="unit">元/m²</span>
@@ -27,11 +27,11 @@
               </div>
               <div class="module-col col-6">
                 <span class="label">建面</span>
-                <span class="value">90-{{isData.mianji}}m²</span>
+                <span class="value">{{isData.mianji}}m²</span>
               </div>
               <div class="module-col col-6">
                 <span class="label">户型</span>
-                <span class="value">2/3/4居</span>
+                <span class="value">{{isData.huxing}}</span>
               </div>
               <div class="module-col col-6">
                 <span class="label">开盘</span>
