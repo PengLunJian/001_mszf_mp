@@ -6,11 +6,14 @@
       </div>
       <div class="module-body">
         <div class="module-context">
-          <div class="module-items row">
-            <div class="module-item col-2{{item.isCan?' on':''}}"
-                 v-for="(item,index) in items" :key="index">
-              <div class="item-icon iconfont {{item.icon}}"></div>
-              <span class="item-label">{{item.label}}</span>
+          <div class="module-configs">
+            <div class="module-row row">
+              <div class="module-col col-2" v-for="(item,index) in items" :key="index">
+                <div class="module-item{{item.checked?' checked':''}}">
+                  <div class="item-icon iconfont {{item.icon}}"></div>
+                  <div class="item-label">{{item.label}}</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -59,30 +62,32 @@
       }
       .module-body {
         .module-context {
-          .module-items {
-            padding-bottom: unit(30, rpx);
-            text-align: center;
-            .module-item {
-              width: 20%;
-              position: relative;
-              padding-top: unit(30, rpx);
-              color: @fontColor1;
-              .item-icon {
-                height: unit(60, rpx);
-                line-height: unit(60, rpx);
-                font-size: unit(60, rpx);
-                margin-bottom: unit(10, rpx);
-              }
-              .item-label {
-                display: block;
-                height: unit(40, rpx);
-                line-height: unit(40, rpx);
-                text-decoration: line-through;
-                font-size: @fontSize24;
-              }
-              &.on {
-                .item-label {
-                  text-decoration: none;
+          .module-configs {
+            .module-row {
+              padding: unit(20,rpx) 0;
+              .module-col {
+                width: 20%;
+                padding: unit(20,rpx) 0;
+                .module-item {
+                  text-align: center;
+                  color: @fontColor1;
+                  .item-icon {
+                    height: unit(60, rpx);
+                    line-height: unit(60, rpx);
+                    font-size: unit(60, rpx);
+                    margin-bottom: unit(10, rpx);
+                  }
+                  .item-label {
+                    height: unit(40, rpx);
+                    line-height: unit(40, rpx);
+                    text-decoration: line-through;
+                    font-size: @fontSize24;
+                  }
+                  &.checked {
+                    .item-label {
+                      text-decoration: none;
+                    }
+                  }
                 }
               }
             }

@@ -62,8 +62,8 @@
 
     methods: {
       ...mapActions(controller.ACTIONS),
-      exeAjaxHotHouse() {
-        this.ajaxHotHouse()
+      exeAjaxSelectHotHouse() {
+        this.ajaxSelectHotHouse()
           .then((res) => {
             console.log(res);
           })
@@ -72,12 +72,12 @@
           });
       },
       onRefresh() {
-        this.exeAjaxHotHouse();
+        this.exeAjaxSelectHotHouse();
       }
     },
 
     onLoad() {
-      this.exeAjaxHotHouse();
+      this.exeAjaxSelectHotHouse();
     }
   });
 </script>

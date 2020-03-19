@@ -1,12 +1,12 @@
 import * as actions from '../../../store/actions';
 
 export const STATES = {
-  isLoading: state => state.HOUSEDETAIL_REDUCER.isLoading,
-  isSuccess: state => state.HOUSEDETAIL_REDUCER.isSuccess,
-  isFailure: state => state.HOUSEDETAIL_REDUCER.isFailure,
-  isData: state => state.HOUSEDETAIL_REDUCER.data
+  isLoading: state => state.SELECT_DETAIL_REDUCER.isLoading,
+  isSuccess: state => state.SELECT_DETAIL_REDUCER.isSuccess,
+  isFailure: state => state.SELECT_DETAIL_REDUCER.isFailure,
+  isData: state => state.SELECT_DETAIL_REDUCER.data
 };
 
 export const ACTIONS = {
-  ajaxHouseDetail: params => actions.ajaxRequestHouseDetail(params)
+  ajaxSelectDetail: params => actions.ajaxRequestSelectDetail(params)
 };

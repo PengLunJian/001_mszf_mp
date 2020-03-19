@@ -1,9 +1,9 @@
 import apis from '../apis';
 import store from './index';
 import axios from '../axios';
-import * as utils from '../utils';
 import * as actionTypes from './actionTypes';
 import {createAction} from 'redux-actions';
+import QQMapWX from 'wx-qqmap-jssdk';
 
 /**
  *
@@ -17,55 +17,55 @@ const commit = (type, data) => {
   });
 };
 
-export const ajaxRequestHouseList = createAction(
-  'selectHouseList', (params) => {
-    commit(actionTypes.SELECT_HOUSELIST_REQUEST);
+export const ajaxRequestSelectHouse = createAction(
+  'selectHouse', (params) => {
+    commit(actionTypes.SELECT_HOUSE_REQUEST);
     return new Promise((resolve, reject) => {
-      axios.get(apis.selectHouseList, {params})
+      axios.get(apis.selectHouse, {params})
         .then((res) => {
           res = res || {};
           const {data, success} = res;
           if (success) {
-            commit(actionTypes.SELECT_HOUSELIST_SUCCESS, data);
+            commit(actionTypes.SELECT_HOUSE_SUCCESS, data);
           } else {
-            commit(actionTypes.SELECT_HOUSELIST_FAILURE);
+            commit(actionTypes.SELECT_HOUSE_FAILURE);
           }
           resolve(res);
         })
         .catch((err) => {
-          commit(actionTypes.SELECT_HOUSELIST_FAILURE);
+          commit(actionTypes.SELECT_HOUSE_FAILURE);
           reject(err);
         });
     });
   });
 
-export const ajaxRequestHouseDetail = createAction(
-  'selectHouseDetail', (params) => {
-    commit(actionTypes.SELECT_HOUSEDETAIL_REQUEST);
+export const ajaxRequestSelectDetail = createAction(
+  'selectDetail', (params) => {
+    commit(actionTypes.SELECT_DETAIL_REQUEST);
     return new Promise((resolve, reject) => {
-      axios.get(apis.selectHouseDetail, {params})
+      axios.get(apis.selectDetail, {params})
         .then((res) => {
           res = res || {};
           const {data, success} = res;
           if (success) {
-            commit(actionTypes.SELECT_HOUSEDETAIL_SUCCESS, data);
+            commit(actionTypes.SELECT_DETAIL_SUCCESS, data);
           } else {
-            commit(actionTypes.SELECT_HOUSEDETAIL_FAILURE);
+            commit(actionTypes.SELECT_DETAIL_FAILURE);
           }
           resolve(res);
         })
         .catch((err) => {
-          commit(actionTypes.SELECT_HOUSEDETAIL_FAILURE);
+          commit(actionTypes.SELECT_DETAIL_FAILURE);
           reject(err);
         });
     });
   });
 
-export const ajaxRequestHouseFollow = createAction(
-  'updateHouseFollow', (params) => {
+export const ajaxRequestUpdateFollow = createAction(
+  'updateFollow', (params) => {
     commit(actionTypes.UPDATE_HOUSEFOLLOW_REQUEST);
     return new Promise((resolve, reject) => {
-      axios.post(apis.updateHouseFollow, params)
+      axios.post(apis.updateFollow, params)
         .then((res) => {
           res = res || {};
           const {data, success} = res;
@@ -83,150 +83,138 @@ export const ajaxRequestHouseFollow = createAction(
     });
   });
 
-export const ajaxRequestHouseUnfollow = createAction(
-  'updateHouseUnfollow', (params) => {
-    commit(actionTypes.UPDATE_HOUSEUNFOLLOW_REQUEST);
+export const ajaxRequestUpdateUnfollow = createAction(
+  'updateUnfollow', (params) => {
+    commit(actionTypes.UPDATE_UNFOLLOW_REQUEST);
     return new Promise((resolve, reject) => {
-      axios.post(apis.updateHouseUnfollow, params)
+      axios.post(apis.updateUnfollow, params)
         .then((res) => {
           res = res || {};
           const {data, success} = res;
           if (success) {
-            commit(actionTypes.UPDATE_HOUSEUNFOLLOW_SUCCESS, data);
+            commit(actionTypes.UPDATE_UNFOLLOW_SUCCESS, data);
           } else {
-            commit(actionTypes.UPDATE_HOUSEUNFOLLOW_FAILURE);
+            commit(actionTypes.UPDATE_UNFOLLOW_FAILURE);
           }
           resolve(res);
         })
         .catch((err) => {
-          commit(actionTypes.UPDATE_HOUSEUNFOLLOW_FAILURE);
+          commit(actionTypes.UPDATE_UNFOLLOW_FAILURE);
           reject(err);
         });
     });
   });
 
 export const ajaxRequestHouseFavorite = createAction(
-  'selectHouseFavorite', (params) => {
-    const houseType = params.filter[0].value;
-    switch (houseType) {
-      case 1:
-        commit(actionTypes.SELECT_HOUSEFAVORITENEW_REQUEST);
-        break;
-      case 2:
-        commit(actionTypes.SELECT_HOUSEFAVORITESECOND_REQUEST);
-        break;
-      case 3:
-        commit(actionTypes.SELECT_HOUSEFAVORITERENT_REQUEST);
-        break;
-    }
+  'selectFavorite', (params) => {
+    commit(actionTypes.SELECT_FAVORITE_REQUEST);
     return new Promise((resolve, reject) => {
-      axios.get(apis.selectHouseFavorite, {params})
+      axios.get(apis.selectFavorite, {params})
         .then((res) => {
           res = res || {};
           const {data, success} = res;
           if (success) {
-            data.rows = utils.dataFilter(data.rows);
-            switch (houseType) {
-              case 1:
-                commit(actionTypes.SELECT_HOUSEFAVORITENEW_SUCCESS, data);
-                break;
-              case 2:
-                commit(actionTypes.SELECT_HOUSEFAVORITESECOND_SUCCESS, data);
-                break;
-              case 3:
-                commit(actionTypes.SELECT_HOUSEFAVORITERENT_SUCCESS, data);
-                break;
-            }
+            commit(actionTypes.SELECT_FAVORITE_SUCCESS, data);
           } else {
-            switch (houseType) {
-              case 1:
-                commit(actionTypes.SELECT_HOUSEFAVORITENEW_FAILURE);
-                break;
-              case 2:
-                commit(actionTypes.SELECT_HOUSEFAVORITESECOND_FAILURE);
-                break;
-              case 3:
-                commit(actionTypes.SELECT_HOUSEFAVORITERENT_FAILURE);
-                break;
-            }
+            commit(actionTypes.SELECT_FAVORITE_FAILURE);
           }
           resolve(res);
         })
         .catch((err) => {
-          switch (houseType) {
-            case 1:
-              commit(actionTypes.SELECT_HOUSEFAVORITENEW_FAILURE);
-              break;
-            case 2:
-              commit(actionTypes.SELECT_HOUSEFAVORITESECOND_FAILURE);
-              break;
-            case 3:
-              commit(actionTypes.SELECT_HOUSEFAVORITERENT_FAILURE);
-              break;
-          }
+          commit(actionTypes.SELECT_FAVORITE_FAILURE);
           reject(err);
         });
     });
   });
 
-export const ajaxRequestHouseHistory = createAction(
-  'selectHouseHistory', (params) => {
-    commit(actionTypes.SELECT_HOUSEHISTORY_REQUEST);
+export const ajaxRequestSelectHistory = createAction(
+  'selectHistory', (params) => {
+    commit(actionTypes.SELECT_HISTORY_REQUEST);
     return new Promise((resolve, reject) => {
-      axios.get(apis.selectHouseHistory, {params})
+      axios.get(apis.selectHistory, {params})
         .then((res) => {
           res = res || {};
           const {data, success} = res;
           if (success) {
-            commit(actionTypes.SELECT_HOUSEHISTORY_SUCCESS, data);
+            commit(actionTypes.SELECT_HISTORY_SUCCESS, data);
           } else {
-            commit(actionTypes.SELECT_HOUSEHISTORY_FAILURE);
+            commit(actionTypes.SELECT_HISTORY_FAILURE);
           }
           resolve(res);
         })
         .catch((err) => {
-          commit(actionTypes.SELECT_HOUSEHISTORY_FAILURE);
+          commit(actionTypes.SELECT_HISTORY_FAILURE);
           reject(err);
         });
     });
   });
 
-const ajaxRequestHotHouseNew = () => {
-  return axios.get(apis.selectHotHouseNew)
+export const ajaxRequestSelectCitys = createAction(
+  'selectCitys', () => {
+    return new Promise((resolve, reject) => {
+      commit(actionTypes.SELECT_CITYS_REQUEST);
+      const qqmapsdk = new QQMapWX({
+        key: 'CQABZ-RINL4-5MAU4-DBWDV-D2UXZ-5GBEU'
+      });
+      qqmapsdk.getCityList({
+        success: (res) => {
+          res = res || {};
+          const {status} = res;
+          if (!status) {
+            commit(actionTypes.SELECT_CITYS_SUCCESS, res);
+          } else {
+            commit(actionTypes.SELECT_CITYS_FAILURE);
+          }
+          resolve(res);
+        },
+        fail: (err) => {
+          commit(actionTypes.SELECT_CITYS_FAILURE);
+          reject(err);
+        }
+      });
+    });
+  });
+
+const ajaxRequestHotHouse = (type) => {
+  const params = {
+    page: {
+      pageSize: 5,
+      pageIndex: 1
+    },
+    filter: [
+      {
+        field: 'type',
+        opt: '=',
+        value: type
+      }
+    ],
+    sort: [
+      {
+        field: 'release_time',
+        asc: false
+      }
+    ]
+  };
+  return axios.get(apis.selectHotHouse, {params})
     .then((res) => {
       res = res || {};
       return res;
     });
 };
 
-const ajaxRequestHotHouseSecond = () => {
-  return axios.get(apis.selectHotHouseSecond)
-    .then((res) => {
-      res = res || {};
-      return res;
-    });
-};
-
-const ajaxRequestHotHouseRent = () => {
-  return axios.get(apis.selectHotHouseRent)
-    .then((res) => {
-      res = res || {};
-      return res;
-    });
-};
-
-export const ajaxRequestHotHouse = createAction(
+export const ajaxRequestSelectHotHouse = createAction(
   'selectHotHouse', () => {
     commit(actionTypes.SELECT_HOTHOUSE_REQUEST);
     return new Promise((resolve, reject) => {
       axios.all([
-        ajaxRequestHotHouseNew(),
-        ajaxRequestHotHouseSecond(),
-        ajaxRequestHotHouseRent()
+        ajaxRequestHotHouse(1),
+        ajaxRequestHotHouse(2),
+        ajaxRequestHotHouse(3)
       ])
         .then(axios.spread((resNew, resSecond, resRent) => {
           const newData = {resNew, resSecond, resRent};
-          if (resNew.success && resSecond.success && resRent.success) {
+          const success = resNew.success && resSecond.success && resRent.success;
+          if (success) {
             commit(actionTypes.SELECT_HOTHOUSE_SUCCESS, newData);
           } else {
             commit(actionTypes.SELECT_HOTHOUSE_FAILURE);

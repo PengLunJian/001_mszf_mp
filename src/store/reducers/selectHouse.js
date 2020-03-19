@@ -2,10 +2,9 @@ import {handleActions} from 'redux-actions';
 import * as actionTypes from '../actionTypes';
 import * as states from '../states';
 import * as utils from '../../utils';
-import {dateFormat} from "../../utils";
 
 const actions = {
-  [actionTypes.SELECT_HOUSEHISTORY_REQUEST](state) {
+  [actionTypes.SELECT_HOUSE_REQUEST](state) {
     return {
       ...state,
       isLoading: true,
@@ -13,26 +12,21 @@ const actions = {
       isFailure: false
     };
   },
-  [actionTypes.SELECT_HOUSEHISTORY_SUCCESS](state, action) {
+  [actionTypes.SELECT_HOUSE_SUCCESS](state, action) {
     const oldData = state.data || {};
     const oldRows = oldData.rows || [];
     const newData = action.data || {};
     const newRows = newData.rows || [];
-    const newRowsFilter = utils.dataFilter(newRows);
-    const totalRows = oldRows.concat(newRowsFilter);
-
-    const totalRowsFilter = utils.historyFilter(totalRows, 'browsing_time');
-    action.data.rows = totalRows;
+    action.data.rows = oldRows.concat(utils.dataFilter(newRows));
     return {
       ...state,
       isLoading: false,
       isSuccess: true,
       isFailure: false,
-      data: action.data,
-      totalRowsFilter
+      data: action.data
     };
   },
-  [actionTypes.SELECT_HOUSEHISTORY_FAILURE](state) {
+  [actionTypes.SELECT_HOUSE_FAILURE](state) {
     return {
       ...state,
       isLoading: false,
@@ -40,18 +34,17 @@ const actions = {
       isFailure: true
     };
   },
-  [actionTypes.RESET_HOUSEHISTORY_STATE](state) {
+  [actionTypes.SELECT_HOUSE_REPLACE](state) {
     return {
       ...state,
       isLoading: false,
       isSuccess: false,
       isFailure: false,
-      data: null,
-      totalRowsFilter: []
+      data: null
     };
   }
 };
 
-const HOUSEHISTORY_REDUCER = handleActions(actions, states.HOUSEHISTORY_STATE);
+const SELECT_HOUSE_REDUCER = handleActions(actions, states.SELECT_HOUSE_STATE);
 
-export default HOUSEHISTORY_REDUCER;
+export default SELECT_HOUSE_REDUCER;

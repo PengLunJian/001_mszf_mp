@@ -42,6 +42,6 @@ const actions = {
   }
 };
 
-const HOTHOUSE_REDUCER = handleActions(actions, states.HOTHOUSE_STATE);
+const HOTHOUSE_REDUCER = handleActions(actions, states.SELECT_HOTHOUSE_STATE);
 
 export default HOTHOUSE_REDUCER;

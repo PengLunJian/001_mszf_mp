@@ -419,7 +419,7 @@
         this.timer = setTimeout(() => {
           const {rows, totalCount} = this.isData;
           if (rows.length < totalCount) {
-            this.exeAjaxHouseList();
+            this.exeAjaxSelectHouse();
           }
         }, 500);
       },
@@ -449,11 +449,11 @@
         };
         return params;
       },
-      exeAjaxHouseList() {
+      exeAjaxSelectHouse() {
         const data = this.isData || {};
         const rows = data.rows || [];
         const params = this.getParams();
-        this.ajaxHouseList(params)
+        this.ajaxSelectHouse(params)
           .then((res) => {
             const {success} = res.payload;
             if (success) {
@@ -475,18 +475,14 @@
           });
       },
       onRefresh() {
-        this.exeAjaxHouseList();
+        this.exeAjaxSelectHouse();
       }
     },
 
     onLoad() {
-      const system = wx.getSystemInfoSync();
-      const statusHeight = system.statusBarHeight;
-      const topBarHeight = statusHeight + 45;
-      this.topBarHeight = topBarHeight + 'px';
       this.resetParams();
-      this.resetHouseList();
-      this.exeAjaxHouseList();
+      this.selectHouseReplace();
+      this.exeAjaxSelectHouse();
     }
   });
 </script>

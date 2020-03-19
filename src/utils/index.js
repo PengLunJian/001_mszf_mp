@@ -1,5 +1,5 @@
-import apis from '../apis';
 import * as $config from '../config';
+
 /**
  *
  * @returns {boolean}
@@ -112,6 +112,9 @@ export const dateFormat = (date, format) => {
       case 'yyyy-mm-dd':
         dateStr = year + '-' + monthStr + '-' + dayStr;
         break;
+      case 'zh-cn':
+        dateStr = year + '年' + monthStr + '月' + dayStr + '日';
+        break;
     }
     newDate = null;
   }
@@ -163,4 +166,47 @@ export const saveImage = () => {
       }
     });
   }, 300);
+};
+/**
+ *
+ * @param res
+ * @returns {Array}
+ */
+export const getCitys = (res) => {
+  const list = [];
+  const CONST_CHK = ['宣城市'];
+  const CONST_HOT = ['北京市', '上海市', '广州市'];
+  const CONST_KEY = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const items1 = res.result[0].filter((item) => {
+    return item.fullname.indexOf('市') !== -1;
+  });
+  const items2 = res.result[1].filter((item) => {
+    return item.fullname.indexOf('市') !== -1;
+  });
+  const items = items1.concat(items2);
+  const keys = CONST_KEY.split('');
+  for (let i = 0; i < keys.length; i++) {
+    list[i] = {label: keys[i], items: []};
+    for (let j in items) {
+      const str = items[j].pinyin[0].substring(0, 1);
+      const key = str.toLocaleUpperCase();
+      if (keys[i] === key) {
+        list[i].items.push(items[j]);
+      }
+    }
+  }
+  list.unshift({label: '热门城市', items: []});
+  list[0].items = items.filter((item) => {
+    return CONST_HOT.indexOf(item.fullname) !== -1;
+  });
+  for (let i in list) {
+    for (let j in list[i].items) {
+      list[i].items[j].checked = false;
+      list[i].items[j].isOpen = false;
+      if (CONST_CHK.indexOf(list[i].items[j].fullname) !== -1) {
+        list[i].items[j].isOpen = true;
+      }
+    }
+  }
+  return list;
 };

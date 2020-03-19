@@ -5,7 +5,7 @@ import * as utils from '../../utils';
 import * as states from '../states';
 
 const actions = {
-  [actionTypes.SELECT_HOUSEDETAIL_REQUEST](state) {
+  [actionTypes.SELECT_DETAIL_REQUEST](state) {
     return {
       ...state,
       isLoading: true,
@@ -13,84 +13,84 @@ const actions = {
       isFailure: false
     };
   },
-  [actionTypes.SELECT_HOUSEDETAIL_SUCCESS](state, action) {
+  [actionTypes.SELECT_DETAIL_SUCCESS](state, action) {
     const configs = [
       {
         icon: 'icon-item01',
         label: '卫生间',
-        isCan: false
+        checked: false
       },
       {
         icon: 'icon-item02',
         label: '洗衣机',
-        isCan: false
+        checked: false
       },
       {
         icon: 'icon-item03',
         label: '可做饭',
-        isCan: false
+        checked: false
       },
       {
         icon: 'icon-item04',
         label: '热水器',
-        isCan: false
+        checked: false
       },
       {
         icon: 'icon-item05',
         label: '阳台',
-        isCan: false
+        checked: false
       },
       {
         icon: 'icon-item06',
         label: '冰箱',
-        isCan: false
+        checked: false
       },
       {
         icon: 'icon-item07',
         label: '电梯',
-        isCan: false
+        checked: false
       },
       {
         icon: 'icon-item08',
         label: '沙发',
-        isCan: false
+        checked: false
       },
       {
         icon: 'icon-item09',
         label: '宽带',
-        isCan: false
+        checked: false
       },
       {
         icon: 'icon-item10',
         label: '衣柜',
-        isCan: false
+        checked: false
       },
       {
         icon: 'icon-item11',
         label: '暖气',
-        isCan: false
+        checked: false
       },
       {
         icon: 'icon-item12',
         label: '床',
-        isCan: false
+        checked: false
       },
       {
         icon: 'icon-item13',
         label: '空调',
-        isCan: false
+        checked: false
       },
       {
         icon: 'icon-item14',
         label: '电视',
-        isCan: false
+        checked: false
       }
     ];
     const {fagnwupeizhi, release_time, kaipan, jiaofang, tags, pic_url} = action.data || {};
     if (fagnwupeizhi) {
       configs.map((item) => {
         if (fagnwupeizhi.indexOf(item.label) !== -1) {
-          item.isCan = true;
+          item.checked = true;
         }
       });
     }
@@ -108,7 +108,7 @@ const actions = {
       data: action.data
     };
   },
-  [actionTypes.SELECT_HOUSEDETAIL_FAILURE](state) {
+  [actionTypes.SELECT_DETAIL_FAILURE](state) {
     return {
       ...state,
       isLoading: false,
@@ -118,6 +118,6 @@ const actions = {
   }
 };
 
-const HOUSEDETAIL_REDUCER = handleActions(actions, states.HOUSEDETAIL_STATE);
+const SELECT_DETAIL_REDUCER = handleActions(actions, states.SELECT_DETAIL_STATE);
 
-export default HOUSEDETAIL_REDUCER;
+export default SELECT_DETAIL_REDUCER;

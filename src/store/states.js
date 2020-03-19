@@ -1,4 +1,4 @@
-export const HOUSELIST_STATE = {
+export const SELECT_HOUSE_STATE = {
   isLoading: true,
   isSuccess: false,
   isFailure: false,
@@ -6,77 +6,49 @@ export const HOUSELIST_STATE = {
   totalRowsFilter: []
 };
 
-export const HOUSEHISTORY_STATE = {
+export const SELECT_HISTORY_STATE = {
   isLoading: true,
   isSuccess: false,
   isFailure: false,
   data: null
 };
 
-export const HOUSEDETAIL_STATE = {
+export const SELECT_DETAIL_STATE = {
   isLoading: true,
   isSuccess: false,
   isFailure: false,
   data: null
 };
 
-export const HOUSEFOLLOW_STATE = {
+export const UPDATE_FOLLOW_STATE = {
   isLoading: true,
   isSuccess: false,
   isFailure: false,
   data: null
 };
 
-export const HOUSEUNFOLLOW_STATE = {
+export const UPDATE_UNFOLLOW_STATE = {
   isLoading: true,
   isSuccess: false,
   isFailure: false,
   data: null
 };
 
-export const HOUSEFAVORITE_STATE = {
-  rentHouse: {
-    isLoading: true,
-    isSuccess: false,
-    isFailure: false,
-    data: null
-  },
-  secondHouse: {
-    isLoading: true,
-    isSuccess: false,
-    isFailure: false,
-    data: null
-  },
-  newHouse: {
-    isLoading: true,
-    isSuccess: false,
-    isFailure: false,
-    data: null
-  }
-};
-
-export const HOTHOUSENEW_STATE = {
+export const SELECT_FAVORITE_STATE = {
   isLoading: true,
   isSuccess: false,
   isFailure: false,
   data: null
 };
 
-export const HOTHOUSESECOND_STATE = {
+export const SELECT_HOTHOUSE_STATE = {
   isLoading: true,
   isSuccess: false,
   isFailure: false,
   data: null
 };
 
-export const HOTHOUSERENT_STATE = {
-  isLoading: true,
-  isSuccess: false,
-  isFailure: false,
-  data: null
-};
-
-export const HOTHOUSE_STATE = {
+export const SELECT_CITYS_STATE = {
   isLoading: true,
   isSuccess: false,
   isFailure: false,

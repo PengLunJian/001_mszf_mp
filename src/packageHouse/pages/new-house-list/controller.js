@@ -2,13 +2,13 @@ import * as actions from '../../../store/actions';
 import * as actionTypes from '../../../store/actionTypes';
 
 export const STATES = {
-  isLoading: state => state.HOUSELIST_REDUCER.isLoading,
-  isSuccess: state => state.HOUSELIST_REDUCER.isSuccess,
-  isFailure: state => state.HOUSELIST_REDUCER.isFailure,
-  isData: state => state.HOUSELIST_REDUCER.data
+  isLoading: state => state.SELECT_HOUSE_REDUCER.isLoading,
+  isSuccess: state => state.SELECT_HOUSE_REDUCER.isSuccess,
+  isFailure: state => state.SELECT_HOUSE_REDUCER.isFailure,
+  isData: state => state.SELECT_HOUSE_REDUCER.data
 };
 
 export const ACTIONS = {
-  resetHouseList: actionTypes.RESET_HOUSELIST_STATE,
-  ajaxHouseList: params => actions.ajaxRequestHouseList(params)
+  selectHouseReplace: actionTypes.SELECT_HOUSE_REPLACE,
+  ajaxSelectHouse: params => actions.ajaxRequestSelectHouse(params)
 };

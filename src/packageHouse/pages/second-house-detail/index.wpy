@@ -50,19 +50,8 @@
 
     methods: {
       ...mapActions(controller.ACTIONS),
-      exeAjaxHouseDetail() {
-        const {house_id} = this.$wx.options;
-        this.ajaxHouseDetail({house_id})
-          .then((res) => {
-            this.onHandleInitQQMap();
-            console.log(res);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      },
       onRefresh() {
-        this.exeAjaxHouseDetail();
+        this.exeAjaxSelectDetail();
       },
       onHandleInitQQMap() {
         const {addr_sheng, addr_shi, addr_qu, addr, xiaoqu} = this.isData;
@@ -73,14 +62,14 @@
         qqmapsdk.geocoder({
           address: address,
           success: (res) => {
-            this.onUpdateLocation(res);
+            this.onHandleLocation(res);
           },
           complete: (res) => {
             console.log(res);
           }
         });
       },
-      onUpdateLocation(res) {
+      onHandleLocation(res) {
         if (res) {
           const {result} = res || {};
           const {location} = result || {};
@@ -89,11 +78,22 @@
           this.latitude = lat;
           console.log('东经=' + lng + '|北纬=' + lat);
         }
+      },
+      exeAjaxSelectDetail() {
+        const {house_id} = this.$wx.options;
+        this.ajaxSelectDetail({house_id})
+          .then((res) => {
+            this.onHandleInitQQMap();
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       }
     },
 
     onLoad() {
-      this.exeAjaxHouseDetail();
+      this.exeAjaxSelectDetail();
     }
   });
 </script>

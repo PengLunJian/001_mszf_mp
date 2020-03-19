@@ -5,7 +5,31 @@
         <top-bar title="选择城市"></top-bar>
       </div>
       <div class="body">
-        <wait></wait>
+        <loading :isLoading="isLoading&&!isData.length"></loading>
+        <error :isFailure="isFailure&&!isData.length" @refresh="onRefresh"></error>
+        <empty :isSuccess="isSuccess&&!isData.length"></empty>
+        <div class="context fade" v-if="isData.length">
+          <scroll-view
+            class="scroll-view"
+            scroll-y="{{true}}">
+            <div class="module" v-for="(item,index) in isData"
+                 v-if="item.items.length" :key="index">
+              <div class="module-content">
+                <div class="module-header">{{item.label}}</div>
+                <div class="module-body">
+                  <div class="module-citys">
+                    <div class="module-row row">
+                      <div class="module-col col-3" v-for="(city,index) in item.items" :key="index">
+                        <div class="module-item{{city.isOpen?' on':''}}">{{city.fullname}}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="module-footer"></div>
+              </div>
+            </div>
+          </scroll-view>
+        </div>
       </div>
       <div class="footer"></div>
     </div>
@@ -14,7 +38,9 @@
 
 <script type="text/ecmascript-6">
   import wepy from '@wepy/core';
-  import store from '../../../store/index';
+  import store from '../../../store';
+  import {mapState, mapActions} from '@wepy/redux';
+  import * as controller from './controller';
 
   wepy.page({
     store,
@@ -23,17 +49,36 @@
 
     data: {},
 
-    computed: {},
+    computed: {
+      ...mapState(controller.STATES)
+    },
 
-    methods: {},
+    methods: {
+      ...mapActions(controller.ACTIONS),
+      exeAjaxSelectCitys() {
+        this.ajaxSelectCitys()
+          .then((res) => {
+            res = res || {};
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
+      onRefresh() {
+        this.exeAjaxSelectCitys();
+      }
+    },
 
-    created() {
+    onLoad() {
+      this.exeAjaxSelectCitys();
     }
   });
 </script>
 
 <style scoped lang="less">
   @import "../../../assets/less/variable";
+  @import "../../../assets/less/@media";
 
   .container {
     .content {
@@ -42,6 +87,58 @@
       }
       .body {
         height: 100%;
+        position: relative;
+        .context {
+          height: 100%;
+          padding-top: 65px;
+          .scroll-view {
+            height: 100%;
+            .module {
+              margin: 0;
+              .module-content {
+                .module-header {
+                  height: unit(70, rpx);
+                  line-height: unit(70, rpx);
+                  padding: 0 unit(30, rpx);
+                  background-color: #F7F7F7;
+                  font-size: @fontSize28;
+                  color: @fontColor1;
+                  font-weight: bold;
+                }
+                .module-body {
+                  .module-citys {
+                    text-align: center;
+                    .module-row {
+                      padding: unit(15, rpx);
+                      .module-col {
+                        padding: unit(15, rpx);
+                        .module-item {
+                          height: unit(60, rpx);
+                          line-height: unit(60, rpx);
+                          border-radius: unit(60, rpx);
+                          background-color: @bgColor;
+                          font-size: @fontSize24;
+                          color: @fontColor3;
+                          &.on {
+                            background: -webkit-linear-gradient(left, @green1, @green2);
+                            color: @white;
+                          }
+                          &.checked {
+                            background: -webkit-linear-gradient(left, @theme1, @theme2);
+                            color: @white;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                .module-footer {
+
+                }
+              }
+            }
+          }
+        }
       }
       .footer {
       }
@@ -54,7 +151,9 @@
   navigationStyle:'custom',
   usingComponents: {
   'top-bar': '../../../components/top-bar/top-bar',
-  'wait': '../../../components/wait/wait'
+  'loading': '../../../components/loading/loading',
+  'error': '../../../components/error/error',
+  'empty': '../../../components/empty/empty'
   }
   }
 </config>

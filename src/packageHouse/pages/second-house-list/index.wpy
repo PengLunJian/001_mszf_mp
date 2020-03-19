@@ -419,9 +419,34 @@
         this.timer = setTimeout(() => {
           const {rows, totalCount} = this.isData;
           if (rows.length < totalCount) {
-            this.exeAjaxHouseList();
+            this.exeAjaxSelectHouse();
           }
         }, 500);
+      },
+      exeAjaxSelectHouse() {
+        const data = this.isData || {};
+        const rows = data.rows || [];
+        const params = this.getParams();
+        this.ajaxSelectHouse(params)
+          .then((res) => {
+            const {success} = res.payload;
+            if (success) {
+              this.pageIndex++;
+            } else {
+              if (rows.length) {
+                this.showToast('请求失败');
+              }
+            }
+            this.timer = null;
+            console.log(res);
+          })
+          .catch((err) => {
+            if (rows.length) {
+              this.showToast('请求失败');
+            }
+            this.timer = null;
+            console.log(err);
+          });
       },
       resetParams() {
         this.pageSize = 10;
@@ -449,40 +474,15 @@
         };
         return params;
       },
-      exeAjaxHouseList() {
-        const data = this.isData || {};
-        const rows = data.rows || [];
-        const params = this.getParams();
-        this.ajaxHouseList(params)
-          .then((res) => {
-            const {success} = res.payload;
-            if (success) {
-              this.pageIndex++;
-            } else {
-              if (rows.length) {
-                this.showToast('请求失败');
-              }
-            }
-            this.timer = null;
-            console.log(res);
-          })
-          .catch((err) => {
-            if (rows.length) {
-              this.showToast('请求失败');
-            }
-            this.timer = null;
-            console.log(err);
-          });
-      },
       onRefresh() {
-        this.exeAjaxHouseList();
+        this.exeAjaxSelectHouse();
       }
     },
 
     onLoad() {
       this.resetParams();
-      this.resetHouseList();
-      this.exeAjaxHouseList();
+      this.selectHouseReplace();
+      this.exeAjaxSelectHouse();
     }
   });
 </script>

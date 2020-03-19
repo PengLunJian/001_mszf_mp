@@ -3,7 +3,7 @@ import * as actionTypes from '../actionTypes';
 import * as states from '../states';
 
 const actions = {
-  [actionTypes.UPDATE_HOUSEUNFOLLOW_REQUEST](state) {
+  [actionTypes.UPDATE_UNFOLLOW_REQUEST](state) {
     return {
       ...state,
       isLoading: true,
@@ -11,7 +11,7 @@ const actions = {
       isFailure: false
     };
   },
-  [actionTypes.UPDATE_HOUSEUNFOLLOW_SUCCESS](state, action) {
+  [actionTypes.UPDATE_UNFOLLOW_SUCCESS](state, action) {
     return {
       ...state,
       isLoading: false,
@@ -20,7 +20,7 @@ const actions = {
       data: action.data
     };
   },
-  [actionTypes.UPDATE_HOUSEUNFOLLOW_FAILURE](state) {
+  [actionTypes.UPDATE_UNFOLLOW_FAILURE](state) {
     return {
       ...state,
       isLoading: false,
@@ -30,6 +30,6 @@ const actions = {
   }
 };
 
-const HOUSEUNFOLLOW_REDUCER = handleActions(actions, states.HOUSEUNFOLLOW_STATE);
+const UPDATE_UNFOLLOW_REDUCER = handleActions(actions, states.UPDATE_UNFOLLOW_STATE);
 
-export default HOUSEUNFOLLOW_REDUCER;
+export default UPDATE_UNFOLLOW_REDUCER;

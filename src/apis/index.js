@@ -6,57 +6,13 @@ const apis = {
   headers: {
     'Content-Type': 'application/json; charset=UTF-8'
   },
-  selectUserLogin: {
+  selectLogin: {
     url: '/auth/account/loginByWechatCode',
     params: {
       wechat_code: ''
     }
   },
-  selectHotHouseRent: {
-    url: '/house/v1/houser/house/list',
-    params: {
-      page: {
-        pageSize: 5,
-        pageIndex: 1
-      },
-      filter: [
-        {
-          field: 'type',
-          opt: '=',
-          value: 3
-        }
-      ],
-      sort: [
-        {
-          field: 'id',
-          asc: false
-        }
-      ]
-    }
-  },
-  selectHotHouseSecond: {
-    url: '/house/v1/houser/house/list',
-    params: {
-      page: {
-        pageSize: 5,
-        pageIndex: 1
-      },
-      filter: [
-        {
-          field: 'type',
-          opt: '=',
-          value: 2
-        }
-      ],
-      sort: [
-        {
-          field: 'id',
-          asc: false
-        }
-      ]
-    }
-  },
-  selectHotHouseNew: {
+  selectHotHouse: {
     url: '/house/v1/houser/house/list',
     params: {
       page: {
@@ -78,7 +34,7 @@ const apis = {
       ]
     }
   },
-  selectHouseList: {
+  selectHouse: {
     url: '/house/v1/houser/house/list',
     params: {
       page: {
@@ -100,25 +56,25 @@ const apis = {
       ]
     }
   },
-  selectHouseDetail: {
+  selectDetail: {
     url: '/house/v1/houser/house/detail',
     params: {
       house_id: 1
     }
   },
-  updateHouseFollow: {
+  updateFollow: {
     url: '/house/v1/houser/house/follow',
     params: {
       house_id: 1
     }
   },
-  updateHouseUnfollow: {
+  updateUnfollow: {
     url: '/house/v1/houser/house/unfollow',
     params: {
       house_id: 1
     }
   },
-  selectHouseFavorite: {
+  selectFavorite: {
     url: '/house/v1/houser/house/followed',
     params: {
       page: {
@@ -134,7 +90,7 @@ const apis = {
       ]
     }
   },
-  selectHouseHistory: {
+  selectHistory: {
     url: '/house/v1/houser/house/history',
     params: {
       page: {
