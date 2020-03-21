@@ -9,8 +9,7 @@ const actions = {
       ...state,
       isLoading: true,
       isSuccess: false,
-      isFailure: false,
-      data: null
+      isFailure: false
     };
   },
   [actionTypes.SELECT_CITYS_SUCCESS](state, action) {
@@ -29,6 +28,17 @@ const actions = {
       isLoading: false,
       isSuccess: false,
       isFailure: true
+    };
+  },
+  [actionTypes.SELECT_CITYS_REPLACE](state, params) {
+    const {data} = state;
+    data.check = params.data;
+    return {
+      ...state,
+      isLoading: false,
+      isSuccess: true,
+      isFailure: false,
+      data
     };
   }
 };

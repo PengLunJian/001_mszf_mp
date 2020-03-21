@@ -1,52 +1,50 @@
 <template>
   <div class="item" @tap="onHandleDetail(item.id)">
-        <div class="item-inner">
-          <div class="item-img">
-            <lazy-image src="{{item.pic_url[0]||defaultHouse}}" mode="aspectFill"/>
+    <div class="item-inner">
+      <div class="item-img">
+        <lazy-image src="{{item.pic_url[0]}}" mode="aspectFill"/>
+      </div>
+      <div class="item-info">
+        <div class="item-row">
+          <div class="item-title ellipsis">{{item.title||noData}}</div>
+        </div>
+        <div class="item-row row">
+          <div class="item-addr ellipsis">
+            <span class="item-normal addr">{{item.addr_qu||noData}}</span>
+            <span class="item-normal split"></span>
+            <span class="item-normal desc">{{item.addr||noData}}</span>
           </div>
-          <div class="item-info">
-            <div class="item-row">
-              <div class="item-title ellipsis">{{item.title||noData}}</div>
-            </div>
-            <div class="item-row row">
-              <div class="item-addr ellipsis">
-                <span class="item-normal addr">{{item.addr_qu||noData}}</span>
-                <span class="item-normal split"></span>
-                <span class="item-normal desc">{{item.addr||noData}}</span>
-              </div>
-            </div>
-            <div class="item-row row">
-              <div class="item-normal price">{{item.price||0}}</div>
-              <div class="item-normal unit">元/m²</div>
-              <div class="item-normal">建面{{item.mianji||0}}m²</div>
-            </div>
-            <div class="item-row row">
-              <div class="item-col">
-                <div class="item-tag item-state state1" v-if="item.status===1">在售</div>
-                <div class="item-tag item-state state2" v-if="item.status===2">待售</div>
-                <div class="item-tag item-state state3" v-if="item.status===3">售罄</div>
-              </div>
-              <div class="item-col" v-for="(value,index) in item.tags" :key="index">
-                <div class="item-tag">{{value}}</div>
-              </div>
-            </div>
+        </div>
+        <div class="item-row row">
+          <div class="item-normal price">{{item.price||0}}</div>
+          <div class="item-normal unit">元/m²</div>
+          <div class="item-normal">建面{{item.mianji||0}}m²</div>
+        </div>
+        <div class="item-row row">
+          <div class="item-col">
+            <div class="item-tag item-state state1" v-if="item.status===1">在售</div>
+            <div class="item-tag item-state state2" v-if="item.status===2">待售</div>
+            <div class="item-tag item-state state3" v-if="item.status===3">售罄</div>
           </div>
-          <div class="item-type" v-if="isType">新房</div>
+          <div class="item-col" v-for="(value,index) in item.tags" :key="index">
+            <div class="item-tag">{{value}}</div>
+          </div>
         </div>
       </div>
+      <div class="item-type" v-if="isType">新房</div>
+    </div>
+  </div>
 </template>
 
 <script type="text/ecmascript-6">
   import wepy from '@wepy/core';
   import store from '../../store';
   import * as $routes from '../../router';
-  import * as $config from '../../config';
 
   wepy.component({
     store,
     data: {
-      noData: '暂无数据',
-      defaultHouse: $config.DEFAULT_HOUSE
+      noData: '暂无数据'
     },
     props: {
       item: {

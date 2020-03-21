@@ -2,7 +2,7 @@
   <div class="fixed-bar row">
     <div class="fixed-col col-4">
       <div class="agent-img">
-        <lazy-image :src="item.agency[0].photo||defaultAgent"/>
+        <lazy-image-agent src="{{item.agency[0].photo}}"/>
       </div>
       <div class="agent-info">
         <div class="agent-name">{{item.agency[0].name||noData}}</div>
@@ -25,12 +25,10 @@
 <script type="text/ecmascript-6">
   import wepy from '@wepy/core';
   import * as $routes from '../../router';
-  import * as $config from '../../config';
 
   wepy.component({
     data: {
-      noData: '暂无数据',
-      defaultAgent: $config.DEFAULT_AGENT
+      noData: '暂无数据'
     },
     events: {},
     props: {
@@ -158,7 +156,7 @@
 <config>
   {
   usingComponents: {
-  'lazy-image': '../lazy-image/lazy-image'
+  'lazy-image-agent': '../lazy-image-agent/lazy-image-agent'
   }
   }
 </config>

@@ -1,4 +1,5 @@
 import * as $config from '../config';
+import apis from '../apis';
 
 /**
  *
@@ -41,14 +42,55 @@ export const stringify = (params) => {
  * @returns {*}
  */
 export const dataFilter = (data) => {
-  data.map((item) => {
-    let {browsing_time, tags} = item;
-    browsing_time = dateFormat(browsing_time, 'yyyy/mm/dd');
-    tags = tags.split(' ');
-
-    item.browsing_time = browsing_time;
-    item.tags = tags;
+  const rows = data.map((item) => {
+    return dataFormat(item);
   });
+  return rows;
+};
+/**
+ *
+ * @param data
+ * @returns {*}
+ */
+export const dataFormat = (data) => {
+  const configs = $config.DEFAULT_CONFIG;
+  const {
+    pic_url, tags, fagnwupeizhi, kaipan,
+    jiaofang, release_time, agency, zhulihuxing
+  } = data;
+  if (fagnwupeizhi) {
+    configs.map((item) => {
+      if (fagnwupeizhi.indexOf(item.label) !== -1) {
+        item.checked = true;
+      }
+    });
+  }
+  data.configs = configs;
+  data.tags = tags.split(' ');
+  if (pic_url.length) {
+    data.pic_url = pic_url.map((item) => {
+      return apis.baseUrl + item;
+    });
+  } else {
+    data.pic_url = [$config.DEFAULT_HOUSE];
+  }
+  data.zhulihuxing = (zhulihuxing || []).map((item) => {
+    let pic = item.pic ? apis.baseUrl + item.pic : $config.DEFAULT_HOUSE;
+    return {
+      ...item,
+      pic
+    };
+  });
+  data.agency = (agency || []).map((item) => {
+    let photo = item.photo ? apis.baseUrl + item.photo : $config.DEFAULT_AGENT;
+    return {
+      ...item,
+      photo
+    };
+  });
+  data.kaipan = dateFormat(kaipan, 'yyyy-mm-dd');
+  data.jiaofang = dateFormat(jiaofang, 'yyyy-mm-dd');
+  data.release_time = dateFormat(release_time, 'yyyy/mm/dd');
   return data;
 };
 /**
@@ -173,40 +215,74 @@ export const saveImage = () => {
  * @returns {Array}
  */
 export const getCitys = (res) => {
-  const list = [];
+  let citys = [];
+  let areas = [];
+  let check = {};
   const CONST_CHK = ['宣城市'];
-  const CONST_HOT = ['北京市', '上海市', '广州市'];
+  const CONST_ARE = ['广德市'];
+  const CONST_RUN = ['宣城市', '上海市'];
   const CONST_KEY = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const CONST_HOT = ['北京市', '上海市', '广州市'];
+  const CONST_DEL = ['北京市', '上海市', '重庆市', '天津市'];
   const items1 = res.result[0].filter((item) => {
     return item.fullname.indexOf('市') !== -1;
   });
   const items2 = res.result[1].filter((item) => {
-    return item.fullname.indexOf('市') !== -1;
+    for (let i in items1) {
+      const itemId1 = items1[i].id.substring(0, 2);
+      const itemId2 = item.id.substring(0, 2);
+      if (itemId1 === itemId2) {
+        areas.push(item);
+        return;
+      }
+    }
+    return item;
   });
+  areas = areas.concat(res.result[2]);
   const items = items1.concat(items2);
   const keys = CONST_KEY.split('');
   for (let i = 0; i < keys.length; i++) {
-    list[i] = {label: keys[i], items: []};
+    citys[i] = {label: keys[i], items: []};
     for (let j in items) {
       const str = items[j].pinyin[0].substring(0, 1);
       const key = str.toLocaleUpperCase();
       if (keys[i] === key) {
-        list[i].items.push(items[j]);
+        citys[i].items.push(items[j]);
       }
     }
   }
-  list.unshift({label: '热门城市', items: []});
-  list[0].items = items.filter((item) => {
+  citys.unshift({label: '热门城市', items: []});
+  citys[0].items = items.filter((item) => {
     return CONST_HOT.indexOf(item.fullname) !== -1;
   });
-  for (let i in list) {
-    for (let j in list[i].items) {
-      list[i].items[j].checked = false;
-      list[i].items[j].isOpen = false;
-      if (CONST_CHK.indexOf(list[i].items[j].fullname) !== -1) {
-        list[i].items[j].isOpen = true;
+  for (let i in citys) {
+    for (let j in citys[i].items) {
+      const tempObj = citys[i].items[j];
+      tempObj.checked = false;
+      tempObj.isOpen = false;
+      if (CONST_RUN.indexOf(tempObj.fullname) !== -1) {
+        tempObj.isOpen = true;
       }
+      if (CONST_CHK.indexOf(tempObj.fullname) !== -1) {
+        tempObj.checked = true;
+        check = tempObj;
+      }
+      tempObj.children = [{isOpen: true, fullname: '不限'}];
+      const length = CONST_DEL.indexOf(tempObj.fullname) !== -1 ? 2 : 4;
+      for (let k in areas) {
+        const cityId = tempObj.id.substring(0, length);
+        const areaId = areas[k].id.substring(0, length);
+        if (cityId === areaId) {
+          const checked = false;
+          const isOpen = CONST_ARE.indexOf(areas[k].fullname) !== -1 ? true : false;
+          tempObj.children.push({...areas[k], checked, isOpen});
+        }
+      }
+      citys[i].items[j] = tempObj;
     }
   }
-  return list;
+  return {
+    citys,
+    check
+  };
 };

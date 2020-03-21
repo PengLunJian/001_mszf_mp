@@ -175,6 +175,11 @@ export const ajaxRequestSelectCitys = createAction(
     });
   });
 
+export const selectCitysReplace = createAction(
+  'selectCitysReplace', (params) => {
+    commit(actionTypes.SELECT_CITYS_REPLACE, params);
+  });
+
 const ajaxRequestHotHouse = (type) => {
   const params = {
     page: {

@@ -41,14 +41,14 @@
           <div class="modal-body">
             <div class="modal-addr">
               <div class="modal-city">
-                <div class="modal-city-item">宣城市</div>
+                <div class="modal-city-item">{{btnArea.fullname}}</div>
               </div>
               <div class="modal-area">
                 <scroll-view class="scroll-view" scroll-y="{{true}}">
-                  <div class="modal-area-item{{item.state?' on':''}}"
-                       v-for="(item,index) in btnArea.items"
+                  <div class="modal-area-item{{item.isOpen?' on':''}}"
+                       v-for="(item,index) in btnArea.children"
                        :class="{'active':index===btnArea.activeIndex}"
-                       @tap="onHandleChooseArea(item,index)">{{item.label}}
+                       @tap="onHandleChooseArea(item,index)">{{item.fullname}}
                   </div>
                 </scroll-view>
               </div>
@@ -57,7 +57,7 @@
           <div class="modal-footer">
             <div class="modal-button">
               <div class="btn btn-clear" @tap="onHandleClearModal1">重置</div>
-              <div class="btn btn-confirm">确定</div>
+              <div class="btn btn-confirm" @tap="onHandleConfirmArea">确定</div>
             </div>
           </div>
         </div>
@@ -203,12 +203,14 @@
   import store from '../../../store';
   import {mapState, mapActions} from '@wepy/redux';
   import * as controller from './controller';
+  import * as $config from '../../../config';
   import Toast from '../../../mixins/toast';
 
   wepy.page({
     store,
     mixins: [Toast],
     data: {
+      defaultCity: '宣城市',
       timer: null,
       pageIndex: 1,
       pageSize: 10,
@@ -233,40 +235,8 @@
       ],
       btnArea: {
         activeIndex: 0,
-        items: [
-          {
-            state: true,
-            label: '不限'
-          },
-          {
-            state: false,
-            label: '宣州区'
-          },
-          {
-            state: false,
-            label: '郎溪县'
-          },
-          {
-            state: true,
-            label: '广德市'
-          },
-          {
-            state: false,
-            label: '宁国市'
-          },
-          {
-            state: false,
-            label: '泾县'
-          },
-          {
-            state: false,
-            label: '绩溪县'
-          },
-          {
-            state: false,
-            label: '旌德县'
-          }
-        ]
+        fullname: '宣城市',
+        children: $config.DEFAULT_AREAS
       },
       btnPrice: {
         initIndex: -1,
@@ -506,27 +476,54 @@
         }, 500);
       },
       onHandleChooseArea(item, index) {
-        if (item.state) {
+        if (item.isOpen) {
           this.btnArea.activeIndex = index;
+        } else {
+          this.showToast('该城市暂未开通服务，敬请期待');
         }
+      },
+      onHandleConfirmArea() {
+        this.resetParams();
+        this.selectHouseReplace();
+        this.exeAjaxSelectHouse();
+        this.onHandleCloseModal(0);
       },
       resetParams() {
         this.pageSize = 10;
         this.pageIndex = 1;
       },
       getParams() {
+        const {pageIndex, pageSize} = this;
+        const {activeIndex, children} = this.btnArea;
+        const {fullname} = children[activeIndex];
+        const page = {pageSize, pageIndex};
+        const filter = [
+          {
+            field: 'type',
+            opt: '=',
+            value: 3
+          }
+        ];
+        if (fullname === '不限') {
+          const value = this.btnArea.fullname;
+          const item = {
+            field: 'addr_shi',
+            opt: '=',
+            value
+          };
+          filter.push(item);
+        } else {
+          const value = fullname === '广德市' ? '广德县' : fullname;
+          const item = {
+            field: 'addr_qu',
+            opt: '=',
+            value
+          };
+          filter.push(item);
+        }
         const params = {
-          page: {
-            pageSize: this.pageSize,
-            pageIndex: this.pageIndex
-          },
-          filter: [
-            {
-              field: 'type',
-              opt: '=',
-              value: 3
-            }
-          ],
+          page,
+          filter,
           sort: [
             {
               field: 'id',
@@ -570,6 +567,10 @@
       this.resetParams();
       this.selectHouseReplace();
       this.exeAjaxSelectHouse();
+      const {children} = this.isCity;
+      if (children) {
+        this.btnArea.children = children;
+      }
     }
   });
 </script>
@@ -941,7 +942,6 @@
       }
     }
   }
-
 </style>
 
 <config>

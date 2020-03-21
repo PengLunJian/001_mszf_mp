@@ -1,5 +1,5 @@
 <template>
-  <div class="empty fade" v-if="isShow">
+  <div class="empty fade{{isSuccess?'':' hide'}}" v-if="isShow">
     <div class="empty-inner">
       <img class="empty-image" src="./images/empty@2x.png" mode="aspectFit"/>
       <div class="empty-label">暂无数据</div>
@@ -25,6 +25,10 @@
       isSuccess() {
         if (this.isSuccess) {
           this.isShow = this.isSuccess;
+        } else {
+          setTimeout(() => {
+            this.isShow = this.isSuccess;
+          }, 300);
         }
       }
     },

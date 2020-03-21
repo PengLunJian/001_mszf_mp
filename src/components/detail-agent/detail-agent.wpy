@@ -11,7 +11,7 @@
               <div class="module-col col-12" v-for="(item,index) in items" :key="index">
                 <div class="module-item">
                   <div class="item-img">
-                    <lazy-image :src="item.photo||defaultAgent"/>
+                    <lazy-image-agent src="{{item.photo}}"/>
                   </div>
                   <div class="item-info">
                     <div class="item-name">{{item.name||noData}}</div>
@@ -35,12 +35,10 @@
 <script type="text/ecmascript-6">
   import wepy from '@wepy/core';
   import * as $routes from '../../router';
-  import * as $config from '../../config';
 
   wepy.component({
     data: {
-      noData: '暂无数据',
-      defaultAgent: $config.DEFAULT_AGENT
+      noData: '暂无数据'
     },
     events: {},
     props: {
@@ -162,7 +160,7 @@
 <config>
   {
   usingComponents: {
-  'lazy-image': '../lazy-image/lazy-image'
+  'lazy-image-agent': '../lazy-image-agent/lazy-image-agent'
   }
   }
 </config>

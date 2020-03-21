@@ -8,5 +8,6 @@ export const STATES = {
 };
 
 export const ACTIONS = {
-  ajaxSelectCitys: () => actions.ajaxRequestSelectCitys()
+  ajaxSelectCitys: () => actions.ajaxRequestSelectCitys(),
+  selectCitysReplace: params => actions.selectCitysReplace(params)
 };

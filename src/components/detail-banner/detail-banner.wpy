@@ -11,7 +11,8 @@
                       @change="onHandleSwiperChange">
                 <swiper-item v-for="(item,index) in isData.pic_url" :key="index"
                              @tap="onHandleLargeImage(index)">
-                  <lazy-image class="swiper-img" src="{{item}}" mode="aspectFill" lazyStyle="width:120px;height:60px;"/>
+                  <lazy-image class="swiper-img" src="{{item}}" mode="aspectFill"
+                              lazyStyle="width:120px;height:60px;"/>
                 </swiper-item>
               </swiper>
             </div>
@@ -47,8 +48,8 @@
     mixins: [Toast],
     data: {
       current: 1,
-      autoplay: false,
-      circular: true
+      circular: true,
+      autoplay: false
     },
     props: {
       isData: {

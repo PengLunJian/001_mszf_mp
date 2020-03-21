@@ -8,7 +8,7 @@
           <div class="top-inner">
             <navigator class="top-location" hover-class="none" :url="addressUrl">
               <span class="location-icon iconfont icon-location"></span>
-              <span class="location-text">宣城</span>
+              <span class="location-text">{{isCity.check.fullname||defaultCity}}</span>
             </navigator>
             <div class="top-search">
               <navigator class="btn btn-search" hover-class="none" :url="searchUrl">
@@ -52,6 +52,7 @@
     mixins: [],
 
     data: {
+      defaultCity: '宣城市',
       addressUrl: $routes.ADDRESS.path,
       searchUrl: $routes.SEARCH.path
     },
@@ -103,56 +104,60 @@
           background-color: @white;
           padding-top: 20px;
           padding-bottom: 5px;
-          font-size: 0;
-          .top-location {
-            display: inline-block;
-            vertical-align: middle;
-            height: @topBarHeight;
-            line-height: @topBarHeight;
-            padding: 0 unit(20, rpx);
-            color: @fontColor1;
-            font-size: 0;
-            .location-icon {
-              display: inline-block;
-              vertical-align: middle;
-              font-size: @fontSize46;
-            }
-            .location-text {
-              display: inline-block;
-              vertical-align: middle;
-              margin-left: unit(4, rpx);
-              font-size: @fontSize32;
-            }
-          }
-          .top-search {
-            display: inline-block;
-            vertical-align: middle;
-            margin-left: unit(30, rpx);
-            text-align: center;
-            font-size: 0;
-            .btn-search {
-              width: unit(320, rpx);
-              height: @height;
-              line-height: @height;
-              display: inline-block;
-              overflow: hidden;
-              border-radius: @height;
-              background-color: #f0f0f0;
-              color: @fontColor3;
-              .btn-icon {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: @height;
-                height: @height;
+          .top-inner {
+            display: flex;
+            .top-location {
+              width: unit(160, rpx);
+              height: @topBarHeight;
+              line-height: @topBarHeight;
+              padding: 0 unit(20, rpx);
+              color: @fontColor1;
+              .location-icon {
+                display: inline-block;
+                vertical-align: middle;
+                font-size: @fontSize46;
+              }
+              .location-text {
+                display: inline-block;
+                vertical-align: middle;
+                margin-left: unit(4, rpx);
                 font-size: @fontSize32;
               }
-              .btn-text {
+            }
+            .top-search {
+              text-align: center;
+              font-size: 0;
+              .btn-search {
+                overflow: hidden;
+                width: unit(320, rpx);
                 height: @height;
                 line-height: @height;
-                padding-left: unit(55, rpx);
-                font-size: @fontSize24;
-                text-align: left;
+                display: inline-block;
+                vertical-align: middle;
+                border-radius: @height;
+                background-color: #f0f0f0;
+                color: @fontColor3;
+                .btn-icon {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  width: @height;
+                  height: @height;
+                  font-size: @fontSize32;
+                }
+                .btn-text {
+                  height: @height;
+                  line-height: @height;
+                  padding-left: unit(55, rpx);
+                  font-size: @fontSize24;
+                  text-align: left;
+                }
+              }
+              &:before {
+                content: '';
+                height: 100%;
+                display: inline-block;
+                vertical-align: middle;
               }
             }
           }

@@ -52,5 +52,8 @@ export const SELECT_CITYS_STATE = {
   isLoading: true,
   isSuccess: false,
   isFailure: false,
-  data: null
+  data: {
+    citys: {},
+    check: {}
+  }
 };
