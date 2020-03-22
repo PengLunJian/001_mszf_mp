@@ -11,14 +11,14 @@
               class="scroll-view"
               scroll-x="{{true}}">
               <div class="layout-row row">
-                <div class="layout-col col-4" v-for="(item) in items">
+                <div class="layout-col" v-for="(item) in items">
                   <div class="layout-item">
                     <div class="item-img">
-                      <lazy-image :src="item.pic"/>
+                      <lazy-image :src="item.pic" mode="aspectFill"/>
                     </div>
                     <div class="item-info">
                       <div class="item-row row">
-                        <div class="item-layout">{{item.title}}</div>
+                        <div class="item-title">{{item.title}}</div>
                         <div class="item-size">{{item.mianji}}m²</div>
                       </div>
                       <div class="item-row row">
@@ -82,6 +82,7 @@
             .scroll-view {
               .layout-row {
                 padding: unit(15, rpx);
+                flex-wrap: nowrap;
                 .layout-col {
                   padding: unit(15, rpx);
                   .layout-item {
@@ -92,7 +93,7 @@
                       border: 0.5px solid @borderColor1;
                     }
                     .item-info {
-                      font-size: @fontSize24;
+                      font-size: @fontSize26;
                       color: @fontColor1;
                       text-align: left;
                       .item-title {
@@ -108,6 +109,7 @@
                         height: unit(40, rpx);
                         line-height: unit(40, rpx);
                         padding: 0 unit(10, rpx);
+                        font-size: @fontSize24;
                         color: @white;
                         &.state1 {
                           background-color: @stateColor1;
