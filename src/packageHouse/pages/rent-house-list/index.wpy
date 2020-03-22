@@ -567,8 +567,9 @@
       this.resetParams();
       this.selectHouseReplace();
       this.exeAjaxSelectHouse();
-      const {children} = this.isCity;
-      if (children) {
+      const {children, fullname} = this.isCity;
+      if (children && fullname) {
+        this.btnArea.fullname = fullname;
         this.btnArea.children = children;
       }
     }
@@ -715,9 +716,9 @@
                 .btn-item {
                   overflow: hidden;
                   height: unit(60, rpx);
-                  line-height: unit(56, rpx);
+                  line-height: unit(60, rpx);
                   border-radius: unit(60, rpx);
-                  border: 1px solid @borderColor1;
+                  background-color: @bgColor;
                   font-size: @fontSize24;
                   text-align: center;
                   color: @fontColor3;
@@ -728,8 +729,6 @@
                   .btn-method,
                   .btn-layout,
                   .btn-style {
-                    border: none;
-                    line-height: unit(60, rpx);
                     background: -webkit-linear-gradient(left, @theme1, @theme2);
                     color: @white;
                   }

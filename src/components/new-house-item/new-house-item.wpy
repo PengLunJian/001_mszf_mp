@@ -18,7 +18,7 @@
         <div class="item-row row">
           <div class="item-normal price">{{item.price||0}}</div>
           <div class="item-normal unit">元/m²</div>
-          <div class="item-normal">建面{{item.mianji||0}}m²</div>
+          <div class="item-normal">建面{{item.mianjifanwen||0}}m²</div>
         </div>
         <div class="item-row row">
           <div class="item-col">

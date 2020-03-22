@@ -41,6 +41,8 @@
   import store from '../../store';
   import {mapActions} from '@wepy/redux';
   import * as controller from './controller';
+  import * as storage from '../../utils/storage';
+  import * as $routes from '../../router';
   import Toast from '../../mixins/toast';
 
   wepy.component({
@@ -71,27 +73,9 @@
         const current = e.$wx.detail.current;
         this.current = current + 1;
       },
-      exeAjaxHouseFollow() {
-        console.log(this);
+      exeAjaxUpdateUnfollow() {
         const params = {house_id: this.isData.id};
-        this.ajaxHouseFollow(params)
-          .then((res) => {
-            const {success} = res.payload;
-            if (success) {
-              this.showToast('收藏成功');
-            } else {
-              this.showToast('收藏失败');
-            }
-            console.log(res);
-          })
-          .catch((err) => {
-            this.showToast('收藏失败');
-            console.log(err);
-          });
-      },
-      exeAjaxHouseUnfollow() {
-        const params = {house_id: this.isData.id};
-        this.ajaxHouseUnfollow(params)
+        this.ajaxUpdateUnfollow(params)
           .then((res) => {
             const {success} = res.payload;
             if (success) {
@@ -106,8 +90,32 @@
             console.log(err);
           });
       },
+      exeAjaxUpdateFollow() {
+        const params = {house_id: this.isData.id};
+        this.ajaxUpdateFollow(params)
+          .then((res) => {
+            const {success} = res.payload;
+            if (success) {
+              this.showToast('收藏成功');
+            } else {
+              this.showToast('收藏失败');
+            }
+            console.log(res);
+          })
+          .catch((err) => {
+            this.showToast('收藏失败');
+            console.log(err);
+          });
+      },
       onHandleFollow() {
-        this.exeAjaxHouseFollow();
+        const {user} = storage.getItem('user');
+        if (user) {
+          this.exeAjaxUpdateFollow();
+        } else {
+          wx.navigateTo({
+            url: $routes.LOGIN.path
+          });
+        }
       }
     },
     created() {

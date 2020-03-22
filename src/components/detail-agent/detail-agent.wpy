@@ -96,7 +96,7 @@
         .module-context {
           .module-agents {
             .module-row {
-              padding: unit(20, rpx) unit(15, rpx);
+              padding: unit(15, rpx);
               .module-col {
                 padding: unit(20, rpx) unit(15, rpx);
                 .module-item {

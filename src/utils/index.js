@@ -88,8 +88,8 @@ export const dataFormat = (data) => {
       photo
     };
   });
-  data.kaipan = dateFormat(kaipan, 'yyyy-mm-dd');
-  data.jiaofang = dateFormat(jiaofang, 'yyyy-mm-dd');
+  data.kaipan = dateFormat(kaipan, 'yyyy/mm/dd');
+  data.jiaofang = dateFormat(jiaofang, 'yyyy/mm/dd');
   data.release_time = dateFormat(release_time, 'yyyy/mm/dd');
   return data;
 };
