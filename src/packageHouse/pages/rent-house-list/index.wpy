@@ -566,12 +566,12 @@
     onLoad() {
       this.resetParams();
       this.selectHouseReplace();
-      this.exeAjaxSelectHouse();
       const {children, fullname} = this.isCity;
       if (children && fullname) {
         this.btnArea.fullname = fullname;
         this.btnArea.children = children;
       }
+      this.exeAjaxSelectHouse();
     }
   });
 </script>

@@ -11,7 +11,7 @@
               <div class="module-col col-12" v-for="(item,index) in items" :key="index">
                 <div class="module-item">
                   <div class="item-img">
-                    <lazy-image-agent src="{{item.photo}}"/>
+                    <lazy-image src="{{item.photo}}"/>
                   </div>
                   <div class="item-info">
                     <div class="item-name">{{item.name||noData}}</div>
@@ -102,6 +102,7 @@
                 .module-item {
                   display: flex;
                   .item-img {
+                    overflow:hidden;
                     width: unit(80, rpx);
                     height: unit(80, rpx);
                     border-radius: @borderRadius100;
@@ -160,7 +161,7 @@
 <config>
   {
   usingComponents: {
-  'lazy-image-agent': '../lazy-image-agent/lazy-image-agent'
+  'lazy-image': '../lazy-image/lazy-image'
   }
   }
 </config>
