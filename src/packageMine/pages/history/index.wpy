@@ -15,13 +15,13 @@
                        @scroll="onHandleScroll"
                        @scrolltolower="onHandleScrollToLower">
             <div class="groups">
-              <block v-for="(itemGroup,itemIndex) in isTotalRowsFilter" :key="itemIndex">
+              <block v-for="(list,index) in isData.list" :key="index">
                 <div class="group">
                   <div class="group-date">
-                    <div class="group-label">{{itemGroup.date}}</div>
+                    <div class="group-label">{{list.date}}</div>
                   </div>
                   <div class="group-items">
-                    <block v-for="(item,index) in itemGroup.items" :key="index">
+                    <block v-for="(item,index) in list.items" :key="index">
                       <new-house-item v-if="item.type===1" :item="item" :isType="true"></new-house-item>
                       <second-house-item v-if="item.type===2" :item="item" :isType="true"></second-house-item>
                       <rent-house-item v-if="item.type===3" :item="item" :isType="true"></rent-house-item>
@@ -100,7 +100,7 @@
         const data = this.isData || {};
         const rows = data.rows || [];
         const params = this.getParams();
-        this.ajaxHouseHistory(params)
+        this.ajaxSelectHistory(params)
           .then((res) => {
             const {success} = res.payload;
             if (success) {
@@ -128,7 +128,7 @@
 
     onLoad() {
       this.resetParams();
-      this.resetHouseHistory();
+      this.removeHistoryReplace();
       this.exeAjaxHouseHistory();
     }
   });

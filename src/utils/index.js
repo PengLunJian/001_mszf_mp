@@ -55,17 +55,19 @@ export const dataFilter = (data) => {
 export const dataFormat = (data) => {
   const configs = $config.DEFAULT_CONFIG;
   const {
-    pic_url, tags, fagnwupeizhi, kaipan,
-    jiaofang, release_time, agency, zhulihuxing
+    pic_url, tags, fagnwupeizhi, kaipan, jiaofang,
+    release_time, agency, zhulihuxing
   } = data;
-  if (fagnwupeizhi) {
-    configs.map((item) => {
-      if (fagnwupeizhi.indexOf(item.label) !== -1) {
-        item.checked = true;
-      }
-    });
-  }
-  data.configs = configs;
+  data.configs = configs.map((item) => {
+    let checked = false;
+    if (fagnwupeizhi) {
+      checked = fagnwupeizhi.indexOf(item.label) !== -1;
+    }
+    return {
+      ...item,
+      checked
+    };
+  });
   data.tags = tags.split(' ');
   if (pic_url.length) {
     data.pic_url = pic_url.map((item) => {
@@ -100,22 +102,25 @@ export const dataFormat = (data) => {
  * @param attr
  * @returns {*}
  */
-export const historyFilter = (data, attr) => {
-  let obj = {};
-  let result = [];
-
-  data.forEach(item => {
-    obj[item[attr]] || (obj[item[attr]] = []);
-    obj[item[attr]] && obj[item[attr]].push(item);
-  });
-
-  for (let key in obj) {
-    result.push({
-      date: key,
-      items: obj[key]
-    });
+export const historyFilter = (list, rows, attr) => {
+  for (let i = 0; i < rows.length; i++) {
+    let index = 0;
+    let isExit = false;
+    const date = dateFormat(rows[i][attr], 'yyyy/mm/dd');
+    const item = {date, items: [rows[i]]};
+    for (let j = 0; j < list.length; j++) {
+      if (date === list[j].date) {
+        index = j;
+        isExit = true;
+      }
+    }
+    if (isExit) {
+      list[index].items.push(rows[i]);
+    } else {
+      list.push(item);
+    }
   }
-  return result;
+  return list;
 };
 /**
  *
@@ -220,7 +225,7 @@ export const getCitys = (res) => {
   let check = {};
   const CONST_CHK = ['宣城市'];
   const CONST_ARE = ['广德市'];
-  const CONST_RUN = ['宣城市', '上海市'];
+  const CONST_RUN = ['宣城市'];
   const CONST_KEY = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   const CONST_HOT = ['北京市', '上海市', '广州市'];
   const CONST_DEL = ['北京市', '上海市', '重庆市', '天津市'];
@@ -274,7 +279,7 @@ export const getCitys = (res) => {
         const areaId = areas[k].id.substring(0, length);
         if (cityId === areaId) {
           const checked = false;
-          const isOpen = CONST_ARE.indexOf(areas[k].fullname) !== -1 ? true : false;
+          const isOpen = CONST_ARE.indexOf(areas[k].fullname) !== -1;
           tempObj.children.push({...areas[k], checked, isOpen});
         }
       }

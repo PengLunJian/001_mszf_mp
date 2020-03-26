@@ -10,6 +10,6 @@ export const STATES = {
 };
 
 export const ACTIONS = {
-  selectHouseReplace: actionTypes.SELECT_HOUSE_REPLACE,
-  ajaxSelectHouse: params => actions.ajaxRequestSelectHouse(params)
+  ajaxSelectHouse: params => actions.ajaxRequestSelectHouse(params),
+  removeHouseReplace: () => actions.removeHouseReplace()
 };

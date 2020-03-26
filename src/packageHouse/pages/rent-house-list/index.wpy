@@ -484,7 +484,7 @@
       },
       onHandleConfirmArea() {
         this.resetParams();
-        this.selectHouseReplace();
+        this.removeHouseReplace();
         this.exeAjaxSelectHouse();
         this.onHandleCloseModal(0);
       },
@@ -565,7 +565,7 @@
 
     onLoad() {
       this.resetParams();
-      this.selectHouseReplace();
+      this.removeHouseReplace();
       const {children, fullname} = this.isCity;
       if (children && fullname) {
         this.btnArea.fullname = fullname;

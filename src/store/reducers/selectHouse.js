@@ -34,7 +34,7 @@ const actions = {
       isFailure: true
     };
   },
-  [actionTypes.SELECT_HOUSE_REPLACE](state) {
+  [actionTypes.REMOVE_HOUSE_REPLACE](state) {
     return {
       ...state,
       isLoading: false,

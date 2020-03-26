@@ -1,5 +1,4 @@
 import * as actions from '../../../store/actions';
-import * as actionTypes from '../../../store/actionTypes';
 
 export const STATES = {
   isLoading: state => state.SELECT_HOUSE_REDUCER.isLoading,
@@ -9,6 +8,6 @@ export const STATES = {
 };
 
 export const ACTIONS = {
-  selectHouseReplace: actionTypes.SELECT_HOUSE_REPLACE,
-  ajaxSelectHouse: params => actions.ajaxRequestSelectHouse(params)
+  ajaxSelectHouse: params => actions.ajaxRequestSelectHouse(params),
+  removeHouseReplace: () => actions.removeHouseReplace()
 };

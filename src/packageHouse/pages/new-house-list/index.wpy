@@ -481,7 +481,7 @@
 
     onLoad() {
       this.resetParams();
-      this.selectHouseReplace();
+      this.removeHouseReplace();
       this.exeAjaxSelectHouse();
     }
   });

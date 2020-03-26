@@ -180,6 +180,16 @@ export const selectCitysReplace = createAction(
     commit(actionTypes.SELECT_CITYS_REPLACE, params);
   });
 
+export const removeHouseReplace = createAction(
+  'removeSelectHouse', () => {
+    commit(actionTypes.REMOVE_HOUSE_REPLACE);
+  });
+
+export const removeHistoryReplace = createAction(
+  'removeHistoryReplace', () => {
+    commit(actionTypes.REMOVE_HISTORY_REPLACE);
+  });
+
 const ajaxRequestHotHouse = (type) => {
   const params = {
     page: {

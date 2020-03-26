@@ -2,8 +2,7 @@ export const SELECT_HOUSE_STATE = {
   isLoading: true,
   isSuccess: false,
   isFailure: false,
-  data: null,
-  totalRowsFilter: []
+  data: null
 };
 
 export const SELECT_HISTORY_STATE = {

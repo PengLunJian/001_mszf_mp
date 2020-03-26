@@ -15,20 +15,17 @@ const actions = {
   [actionTypes.SELECT_HISTORY_SUCCESS](state, action) {
     const oldData = state.data || {};
     const oldRows = oldData.rows || [];
+    const oldList = oldData.list || [];
     const newData = action.data || {};
-    const newRows = newData.rows || [];
-    const newRowsFilter = utils.dataFilter(newRows);
-    const totalRows = oldRows.concat(newRowsFilter);
-
-    const totalRowsFilter = utils.historyFilter(totalRows, 'browsing_time');
-    action.data.rows = totalRows;
+    const newRows = utils.dataFilter(newData.rows || []);
+    action.data.rows = oldRows.concat(newRows);
+    action.data.list = utils.historyFilter(oldList, newRows, 'browsing_time');
     return {
       ...state,
       isLoading: false,
       isSuccess: true,
       isFailure: false,
-      data: action.data,
-      totalRowsFilter
+      data: action.data
     };
   },
   [actionTypes.SELECT_HISTORY_FAILURE](state) {
@@ -39,7 +36,7 @@ const actions = {
       isFailure: true
     };
   },
-  [actionTypes.SELECT_HISTORY_REPLACE](state) {
+  [actionTypes.REMOVE_HISTORY_REPLACE](state) {
     return {
       ...state,
       isLoading: false,
