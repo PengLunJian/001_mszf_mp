@@ -203,14 +203,12 @@
   import store from '../../../store';
   import {mapState, mapActions} from '@wepy/redux';
   import * as controller from './controller';
-  import * as $config from '../../../config';
   import Toast from '../../../mixins/toast';
 
   wepy.page({
     store,
     mixins: [Toast],
     data: {
-      defaultCity: '宣城市',
       timer: null,
       pageIndex: 1,
       pageSize: 10,
@@ -233,11 +231,7 @@
           isShow: false
         }
       ],
-      btnArea: {
-        activeIndex: 0,
-        fullname: '宣城市',
-        children: $config.DEFAULT_AREAS
-      },
+      btnArea: {},
       btnPrice: {
         initIndex: -1,
         items: [
@@ -488,6 +482,31 @@
         this.exeAjaxSelectHouse();
         this.onHandleCloseModal(0);
       },
+      exeAjaxSelectHouse() {
+        const data = this.isData || {};
+        const rows = data.rows || [];
+        const params = this.getParams();
+        this.ajaxSelectHouse(params)
+          .then((res) => {
+            const {success} = res.payload;
+            if (success) {
+              this.pageIndex++;
+            } else {
+              if (rows.length) {
+                this.showToast('加载失败，请重试');
+              }
+            }
+            this.timer = null;
+            console.log(res);
+          })
+          .catch((err) => {
+            if (rows.length) {
+              this.showToast('加载失败，请重试');
+            }
+            this.timer = null;
+            console.log(err);
+          });
+      },
       resetParams() {
         this.pageSize = 10;
         this.pageIndex = 1;
@@ -533,31 +552,6 @@
         };
         return params;
       },
-      exeAjaxSelectHouse() {
-        const data = this.isData || {};
-        const rows = data.rows || [];
-        const params = this.getParams();
-        this.ajaxSelectHouse(params)
-          .then((res) => {
-            const {success} = res.payload;
-            if (success) {
-              this.pageIndex++;
-            } else {
-              if (rows.length) {
-                this.showToast('加载失败，请重试');
-              }
-            }
-            this.timer = null;
-            console.log(res);
-          })
-          .catch((err) => {
-            if (rows.length) {
-              this.showToast('加载失败，请重试');
-            }
-            this.timer = null;
-            console.log(err);
-          });
-      },
       onRefresh() {
         this.exeAjaxSelectHouse();
       }
@@ -566,11 +560,10 @@
     onLoad() {
       this.resetParams();
       this.removeHouseReplace();
-      const {children, fullname} = this.isCity;
-      if (children && fullname) {
-        this.btnArea.fullname = fullname;
-        this.btnArea.children = children;
-      }
+      this.btnArea = {
+        activeIndex: 0,
+        ...this.isCity.city
+      };
       this.exeAjaxSelectHouse();
     }
   });
@@ -593,7 +586,7 @@
           left: 0;
           z-index: 1000;
           background-color: @white;
-          box-shadow: 0 5px 5px rgba(0, 0, 0, 0.03);
+          box-shadow: 0 0 15px @boxShadow1;
           font-size: @fontSize28;
           text-align: center;
           color: @fontColor1;

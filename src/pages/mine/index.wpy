@@ -10,7 +10,7 @@
             <div class="module-content">
               <div class="module-body">
                 <div class="module-context">
-                  <div class="module-user">
+                  <div class="module-user" :style="{backgroundImage:'url('+url+')'}">
                     <div class="user-info">
                       <img class="user-img" src="../../assets/images/agent.jpg"/>
                       <div class="user-name">WEB前端架构师</div>
@@ -53,6 +53,7 @@
   import wepy from '@wepy/core';
   import store from '../../store';
   import * as $routes from '../../router';
+  import * as $config from '../../config';
 
   wepy.page({
     store,
@@ -60,6 +61,7 @@
     mixins: [],
 
     data: {
+      url: $config.DEFAULT_MINE,
       items: [
         {
           name: $routes.FAVORITE.name,
@@ -154,7 +156,6 @@
                     background-size: 100% 100%;
                     background-repeat: no-repeat;
                     background-position: center center;
-                    background-image: url('http://fang.sersms.com:7000/house/v1/file/static/userfile/202003/17/1239814790655492096.jpg');
                     .user-info {
                       display: flex;
                       position: absolute;

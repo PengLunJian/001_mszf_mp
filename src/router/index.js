@@ -1,6 +1,14 @@
-export const INDEX = {
+export const HOME = {
   name: '首页',
-  path: '/pages/index/index'
+  path: '/pages/home/index'
+};
+export const NEWS = {
+  name: '消息',
+  path: '/pages/news/index'
+};
+export const MINE = {
+  name: '我的',
+  path: '/pages/mine/index'
 };
 export const SEARCH = {
   name: '房源搜索',
@@ -13,10 +21,6 @@ export const ADDRESS = {
 export const CALCULATOR = {
   name: '房贷计算',
   path: '/packageOther/pages/calculator/index'
-};
-export const MINE = {
-  name: '个人中心',
-  path: '/packageMine/pages/mine/index'
 };
 export const LOGIN = {
   name: '在线咨询',

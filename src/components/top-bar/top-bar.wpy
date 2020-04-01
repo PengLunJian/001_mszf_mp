@@ -33,7 +33,7 @@
       },
       onHandleHome() {
         wx.reLaunch({
-          url: $routes.INDEX.path
+          url: $routes.HOME.path
         });
       }
     },
@@ -52,10 +52,10 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1000;
+    z-index: 1010;
     background-color: @white;
-    padding-top: 20px;
     padding-bottom: 5px;
+    padding-top: 20px;
     .top-inner {
       position: relative;
       height: @topBarHeight;

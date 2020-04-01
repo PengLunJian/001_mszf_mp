@@ -220,9 +220,9 @@ export const saveImage = () => {
  * @returns {Array}
  */
 export const getCitys = (res) => {
+  let city = {};
   let citys = [];
   let areas = [];
-  let check = {};
   const CONST_CHK = ['宣城市'];
   const CONST_ARE = ['广德市'];
   const CONST_RUN = ['宣城市'];
@@ -270,7 +270,7 @@ export const getCitys = (res) => {
       }
       if (CONST_CHK.indexOf(tempObj.fullname) !== -1) {
         tempObj.checked = true;
-        check = tempObj;
+        city = tempObj;
       }
       tempObj.children = [{isOpen: true, fullname: '不限'}];
       const length = CONST_DEL.indexOf(tempObj.fullname) !== -1 ? 2 : 4;
@@ -288,6 +288,6 @@ export const getCitys = (res) => {
   }
   return {
     citys,
-    check
+    city
   };
 };

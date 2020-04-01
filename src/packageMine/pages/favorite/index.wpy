@@ -4,68 +4,31 @@
       <div class="header">
         <top-bar title="我的收藏"></top-bar>
         <div class="tab-bar">
-          <div class="tab-item" v-for="(item,index) in tabs"
-               :class="{'active':index===tabIndex}" :key="index"
+          <div class="tab-item" v-for="(item,index) in tab.items"
+               :class="{'active':index===tab.initIndex}" :key="index"
                @tap="onHandleTabChange(index)">
-            <div class="tab-text">{{item.label}}</div>
+            <div class="tab-text">{{item.name}}</div>
           </div>
         </div>
       </div>
       <div class="body">
-        <swiper class="tab-swiper" current="{{current}}" @change="onHandleSwiperChange">
-          <swiper-item class="tab-content">
-            <loading :isLoading="isRentLoading&&!isRentData.rows.length"></loading>
-            <error :isFailure="isRentFailure&&!isRentData.rows.length" @refresh="onRefresh"></error>
-            <empty :isSuccess="isRentSuccess&&!isRentData.rows.length"></empty>
-            <div class="context fade" v-if="isRentData.rows.length">
-              <scroll-view class="scroll-view"
-                           scroll-y="{{true}}"
-                           @scrolltolower="onHandleScrollToLower">
-                <div class="items">
-                  <block v-for="(item,index) in isRentData.rows" :key="index">
-                    <rent-house-item :item="item"></rent-house-item>
-                  </block>
-                </div>
-                <load-more :length="isRentData.rows.length" :totalCount="isRentData.totalCount"></load-more>
-              </scroll-view>
+        <loading :isLoading="isLoading&&!isData.rows.length"></loading>
+        <error :isFailure="isFailure&&!isData.rows.length" @refresh="onRefresh"></error>
+        <empty :isSuccess="isSuccess&&!isData.rows.length"></empty>
+        <div class="context fade" v-if="isData.rows.length">
+          <scroll-view class="scroll-view"
+                       scroll-y="{{true}}"
+                       @scrolltolower="onHandleScrollToLower">
+            <div class="items">
+              <block v-for="(item,index) in isData.rows" :key="index">
+                <new-house-item v-if="item.type===1" :item="item"></new-house-item>
+                <second-house-item v-if="item.type===2" :item="item"></second-house-item>
+                <rent-house-item v-if="item.type===3" :item="item"></rent-house-item>
+              </block>
             </div>
-          </swiper-item>
-          <swiper-item class="tab-content">
-            <loading :isLoading="isSecondLoading&&!isSecondData.rows.length"></loading>
-            <error :isFailure="isSecondFailure&&!isSecondData.rows.length" @refresh="onRefresh"></error>
-            <empty :isSuccess="isSecondSuccess&&!isSecondData.rows.length"></empty>
-            <div class="context fade" v-if="isSecondData.rows.length">
-              <scroll-view class="scroll-view"
-                           scroll-y="{{true}}"
-                           @scrolltolower="onHandleScrollToLower">
-                <div class="items">
-                  <block v-for="(item,index) in isSecondData.rows" :key="index">
-                    <second-house-item :item="item"></second-house-item>
-                  </block>
-                </div>
-                <load-more :length="isSecondData.rows.length" :totalCount="isSecondData.totalCount"></load-more>
-              </scroll-view>
-            </div>
-          </swiper-item>
-          <swiper-item class="tab-content">
-            <loading :isLoading="isNewLoading&&!isNewData.rows.length"></loading>
-            <error :isFailure="isNewFailure&&!isNewData.rows.length" @refresh="onRefresh"></error>
-            <empty :isSuccess="isNewSuccess&&!isNewData.rows.length"></empty>
-            <div class="context fade" v-if="isNewData.rows.length">
-              <scroll-view class="scroll-view"
-                           scroll-y="{{true}}"
-                           @scrolltolower="onHandleScrollToLower">
-                <div class="items">
-                  <block v-for="(item,index) in isNewData.rows" :key="index">
-                    <new-house-item :item="item"></new-house-item>
-                  </block>
-                </div>
-                <loading-more :length="isNewData.rows.length"
-                              :totalCount="isNewData.totalCount"></loading-more>
-              </scroll-view>
-            </div>
-          </swiper-item>
-        </swiper>
+            <loading-more :length="isData.rows.length" :totalCount="isData.totalCount"/>
+          </scroll-view>
+        </div>
       </div>
     </div>
   </div>
@@ -86,25 +49,21 @@
     data: {
       timer: null,
       pageSize: 10,
-      tabIndex: 0,
-      tabs: [
-        {
-          label: '租房',
-          type: 3,
-          pageIndex: 1
-        },
-        {
-          label: '二手房',
-          type: 2,
-          pageIndex: 1
-        },
-        {
-          label: '新房',
-          type: 1,
-          pageIndex: 1
-        }
-      ],
-      current: 0
+      pageIndex: 1,
+      tab: {
+        initIndex: 0,
+        items: [
+          {
+            name: '新房'
+          },
+          {
+            name: '二手房'
+          },
+          {
+            name: '租房'
+          }
+        ]
+      }
     },
 
     computed: {
@@ -113,72 +72,32 @@
     methods: {
       ...mapActions(controller.ACTIONS),
       onHandleTabChange(index) {
-        this.tabIndex = index;
-        this.current = this.tabIndex;
-        const type = this.tabs[this.tabIndex].type;
-        if (this.tabTimer) clearInterval(this.tabTimer);
-        this.tabTimer = setTimeout(() => {
-          if (type === 1 && this.isNewLoading) {
-            this.exeAjaxHouseFavorite();
-          } else if (type === 2 && this.isSecondLoading) {
-            this.exeAjaxHouseFavorite();
-          } else if (type === 3 && this.isRentLoading) {
-            this.exeAjaxHouseFavorite();
-          }
-        }, 500);
+        this.pageIndex = 1;
+        this.tab.initIndex = index;
+        this.removeFavoriteReplace();
+        this.exeAjaxSelectFavorite();
       },
-      onHandleSwiperChange(e) {
-        const current = e.$wx.detail.current;
-        this.tabIndex = current;
-        this.current = current;
-        const type = this.tabs[this.tabIndex].type;
-        if (this.tabTimer) clearInterval(this.tabTimer);
-        this.tabTimer = setTimeout(() => {
-          if (type === 1 && this.isNewLoading) {
-            this.exeAjaxHouseFavorite();
-          } else if (type === 2 && this.isSecondLoading) {
-            this.exeAjaxHouseFavorite();
-          } else if (type === 3 && this.isRentLoading) {
-            this.exeAjaxHouseFavorite();
-          }
-        }, 500);
-      },
-      resetParams() {
-        this.tabs.map((item) => {
-          item.pageIndex = 1;
-        });
-      },
-      exeAjaxHouseFavorite() {
-        const params = {
-          page: {
-            pageSize: this.pageSize,
-            pageIndex: this.tabs[this.tabIndex].pageIndex
-          },
-          filter: [
-            {
-              field: 'type',
-              opt: '=',
-              value: this.tabs[this.tabIndex].type
-            }
-          ]
-        };
-        this.ajaxHouseFavorite(params)
+      exeAjaxSelectFavorite() {
+        const data = this.isData || {};
+        const rows = data.rows || [];
+        const params = this.getParams();
+        this.ajaxSelectFavorite(params)
           .then((res) => {
             const {success} = res.payload;
             if (success) {
-              const type = params.filter[0].value;
-              this.tabs.map((item) => {
-                if (item.type === type) {
-                  item.pageIndex++;
-                }
-              });
+              this.pageIndex++;
             } else {
-
+              if (rows.length) {
+                this.showToast('加载失败，请重试');
+              }
             }
             this.timer = null;
             console.log(res);
           })
           .catch((err) => {
+            if (rows.length) {
+              this.showToast('加载失败，请重试');
+            }
             this.timer = null;
             console.log(err);
           });
@@ -186,34 +105,43 @@
       onHandleScrollToLower() {
         if (this.timer) return;
         this.timer = setTimeout(() => {
-          const type = this.tabs[this.tabIndex].type;
-          if (type === 1) {
-            const {rows, totalCount} = this.isNewData;
-            if (rows.length < totalCount) {
-              this.exeAjaxHouseFavorite();
-            }
-          } else if (type === 2) {
-            const {rows, totalCount} = this.isSecondData;
-            if (rows.length < totalCount) {
-              this.exeAjaxHouseFavorite();
-            }
-          } else if (type === 3) {
-            const {rows, totalCount} = this.isRentData;
-            if (rows.length < totalCount) {
-              this.exeAjaxHouseFavorite();
-            }
+          const {rows, totalCount} = this.isData;
+          if (rows.length < totalCount) {
+            this.exeAjaxSelectFavorite();
           }
-        }, 1000);
+        }, 500);
+      },
+      getParams() {
+        const type = this.tab.initIndex + 1;
+        const params = {
+          page: {
+            pageSize: this.pageSize,
+            pageIndex: this.pageIndex
+          },
+          filter: [
+            {
+              field: 'type',
+              opt: '=',
+              value: type
+            }
+          ],
+          sort: [
+            {
+              field: 'id',
+              asc: false
+            }
+          ]
+        };
+        return params;
       },
       onRefresh() {
-        this.exeAjaxHouseFavorite();
+        this.exeAjaxSelectFavorite();
       }
     },
 
     onLoad() {
-      this.resetParams();
-      this.resetHouseFavorite();
-      this.exeAjaxHouseFavorite();
+      this.removeFavoriteReplace();
+      this.exeAjaxSelectFavorite();
     }
   });
 </script>
@@ -231,11 +159,11 @@
           display: flex;
           flex-wrap: wrap;
           position: fixed;
-          top: unit(130, rpx);
+          top: 65px;
           left: 0;
           z-index: 1000;
           background-color: @white;
-          box-shadow: 0 5px 5px rgba(0, 0, 0, 0.03);
+          box-shadow: 0 0 15px @boxShadow1;
           font-size: @fontSize28;
           text-align: center;
           color: @fontColor2;
@@ -280,15 +208,12 @@
       }
       .body {
         height: 100%;
-        .tab-swiper {
+        position: relative;
+        .context {
           height: 100%;
-          position: relative;
-          .context {
+          padding-top: unit(210, rpx);
+          .scroll-view {
             height: 100%;
-            padding-top: unit(210, rpx);
-            .scroll-view {
-              height: 100%;
-            }
           }
         }
       }
@@ -302,10 +227,10 @@
   {
   navigationStyle:'custom',
   usingComponents: {
-  'top-bar': '../../../components/top-bar/top-bar',
-  'loading': '../../../components/loading/loading',
   'error': '../../../components/error/error',
   'empty': '../../../components/empty/empty',
+  'loading': '../../../components/loading/loading',
+  'top-bar': '../../../components/top-bar/top-bar',
   'loading-more': '../../../components/loading-more/loading-more',
   'new-house-item': '../../../components/new-house-item/new-house-item',
   'second-house-item': '../../../components/second-house-item/second-house-item',

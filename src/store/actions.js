@@ -105,7 +105,7 @@ export const ajaxRequestUpdateUnfollow = createAction(
     });
   });
 
-export const ajaxRequestHouseFavorite = createAction(
+export const ajaxRequestSelectFavorite = createAction(
   'selectFavorite', (params) => {
     commit(actionTypes.SELECT_FAVORITE_REQUEST);
     return new Promise((resolve, reject) => {
@@ -183,6 +183,11 @@ export const selectCitysReplace = createAction(
 export const removeHouseReplace = createAction(
   'removeSelectHouse', () => {
     commit(actionTypes.REMOVE_HOUSE_REPLACE);
+  });
+
+export const removeFavoriteReplace = createAction(
+  'removeFavoriteReplace', () => {
+    commit(actionTypes.REMOVE_FAVORITE_REPLACE);
   });
 
 export const removeHistoryReplace = createAction(

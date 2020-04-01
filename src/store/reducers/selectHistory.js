@@ -42,8 +42,7 @@ const actions = {
       isLoading: false,
       isSuccess: false,
       isFailure: false,
-      data: null,
-      totalRowsFilter: []
+      data: null
     };
   }
 };

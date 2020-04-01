@@ -8,7 +8,7 @@
           <div class="top-inner">
             <navigator class="top-location" hover-class="none" :url="addressUrl">
               <span class="location-icon iconfont icon-location"></span>
-              <span class="location-text">{{isCity.check.fullname||defaultCity}}</span>
+              <span class="location-text">{{isCity.city.fullname}}</span>
             </navigator>
             <div class="top-search">
               <navigator class="btn btn-search" hover-class="none" :url="searchUrl">
@@ -26,7 +26,7 @@
             scroll-y="{{true}}">
             <div class="scroll-inner">
               <banner></banner>
-              <customer-navigator></customer-navigator>
+              <custom-navigator></custom-navigator>
               <hot-house title="租房推荐" :items="isData.rentRows"></hot-house>
               <hot-house title="二手房推荐" :items="isData.secondRows"></hot-house>
               <hot-house title="新房推荐" :items="isData.newRows"></hot-house>
@@ -52,7 +52,6 @@
     mixins: [],
 
     data: {
-      defaultCity: '宣城市',
       addressUrl: $routes.ADDRESS.path,
       searchUrl: $routes.SEARCH.path
     },
@@ -188,11 +187,11 @@
   {
   navigationStyle:'custom',
   usingComponents: {
+  'error': '../../components/error/error',
   'banner': '../../components/banner/banner',
-  'customer-navigator': '../../components/customer-navigator/customer-navigator',
-  'hot-house': '../../components/hot-house/hot-house',
   'loading': '../../components/loading/loading',
-  'error': '../../components/error/error'
+  'hot-house': '../../components/hot-house/hot-house',
+  'custom-navigator': '../../components/custom-navigator/custom-navigator'
   }
   }
 </config>

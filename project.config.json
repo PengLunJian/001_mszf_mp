@@ -61,9 +61,9 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "pages/index/index",
-					"pathName": "pages/index/index",
+					"id": 1,
+					"name": "pages/home/index",
+					"pathName": "pages/home/index",
 					"query": "",
 					"scene": null
 				},
@@ -92,6 +92,13 @@
 					"id": -1,
 					"name": "packageOther/pages/address/index",
 					"pathName": "packageOther/pages/address/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "packageMine/pages/favorite/index",
+					"pathName": "packageMine/pages/favorite/index",
 					"query": "",
 					"scene": null
 				}

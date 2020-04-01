@@ -423,6 +423,31 @@
           }
         }, 500);
       },
+      exeAjaxSelectHouse() {
+        const data = this.isData || {};
+        const rows = data.rows || [];
+        const params = this.getParams();
+        this.ajaxSelectHouse(params)
+          .then((res) => {
+            const {success} = res.payload;
+            if (success) {
+              this.pageIndex++;
+            } else {
+              if (rows.length) {
+                this.showToast('请求失败');
+              }
+            }
+            this.timer = null;
+            console.log(res);
+          })
+          .catch((err) => {
+            if (rows.length) {
+              this.showToast('请求失败');
+            }
+            this.timer = null;
+            console.log(err);
+          });
+      },
       resetParams() {
         this.pageSize = 10;
         this.pageIndex = 1;
@@ -448,31 +473,6 @@
           ]
         };
         return params;
-      },
-      exeAjaxSelectHouse() {
-        const data = this.isData || {};
-        const rows = data.rows || [];
-        const params = this.getParams();
-        this.ajaxSelectHouse(params)
-          .then((res) => {
-            const {success} = res.payload;
-            if (success) {
-              this.pageIndex++;
-            } else {
-              if (rows.length) {
-                this.showToast('请求失败');
-              }
-            }
-            this.timer = null;
-            console.log(res);
-          })
-          .catch((err) => {
-            if (rows.length) {
-              this.showToast('请求失败');
-            }
-            this.timer = null;
-            console.log(err);
-          });
       },
       onRefresh() {
         this.exeAjaxSelectHouse();

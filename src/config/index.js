@@ -1,8 +1,10 @@
 import apis from '../apis';
 
+export const DEFAULT_MINE = apis.baseUrl + '/house/v1/file/static/userfile/202003/17/1239814790655492096.jpg';
 export const DEFAULT_HOUSE = apis.baseUrl + '/house/v1/file/static/userfile/202003/13/1238374760268992512.jpg';
 export const DEFAULT_AGENT = apis.baseUrl + '/house/v1/file/static/userfile/202003/16/1239418041721929728.png';
 export const DEFAULT_SHARE = apis.baseUrl + '/house/v1/file/static/userfile/202002/09/1226431602998263808.png';
+export const DEFAULT_ABOUT = apis.baseUrl + '/house/v1/file/static/userfile/202003/17/1239815132554182656.jpg';
 export const DEFAULT_BANNER = [
   apis.baseUrl + '/house/v1/file/static/userfile/202003/17/1239813587297091584.jpg',
   apis.baseUrl + '/house/v1/file/static/userfile/202003/17/1239813737998434304.jpg',
@@ -78,39 +80,5 @@ export const DEFAULT_CONFIG = [
     icon: 'icon-item14',
     label: '电视',
     checked: false
-  }
-];
-export const DEFAULT_AREAS = [
-  {
-    isOpen: true,
-    fullname: '不限'
-  },
-  {
-    isOpen: false,
-    fullname: '宣州区'
-  },
-  {
-    isOpen: false,
-    fullname: '郎溪县'
-  },
-  {
-    isOpen: true,
-    fullname: '广德市'
-  },
-  {
-    isOpen: false,
-    fullname: '宁国市'
-  },
-  {
-    isOpen: false,
-    fullname: '泾县'
-  },
-  {
-    isOpen: false,
-    fullname: '绩溪县'
-  },
-  {
-    isOpen: false,
-    fullname: '旌德县'
   }
 ];

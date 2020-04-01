@@ -17,7 +17,8 @@
       }
     },
 
-    onLaunch() {},
+    onLaunch() {
+    },
 
     methods: {}
   });
@@ -26,8 +27,8 @@
 <config>
   {
   pages: [
-  'pages/index/index',
-  'pages/list/index',
+  'pages/home/index',
+  'pages/news/index',
   'pages/mine/index',
   ],
   subpackages: [
@@ -72,13 +73,13 @@
   tabBar:{
   list:[
   {
-  pagePath:'pages/index/index',
+  pagePath:'pages/home/index',
   iconPath:'./assets/images/tab-item01.png',
   selectedIconPath:'./assets/images/tab-item01-active.png',
   text:'首页'
   },
   {
-  pagePath:'pages/list/index',
+  pagePath:'pages/news/index',
   iconPath:'/assets/images/tab-item02.png',
   selectedIconPath:'./assets/images/tab-item02-active.png',
   text:'消息'
@@ -97,49 +98,3 @@
   }
   }
 </config>
-
-<!--<script type="text/ecmascript-6">-->
-<!--const config =-->
-<!--{-->
-<!--pages: [-->
-<!--'pages/index/index'-->
-<!--],-->
-<!--subpackages: [-->
-<!--{-->
-<!--root: 'packageHouse',-->
-<!--pages: [-->
-<!--'pages/new-house-detail/index',-->
-<!--'pages/new-house-list/index',-->
-<!--'pages/rent-house-detail/index',-->
-<!--'pages/rent-house-list/index',-->
-<!--'pages/second-house-detail/index',-->
-<!--'pages/second-house-list/index'-->
-<!--]-->
-<!--},-->
-<!--{-->
-<!--root: 'packageMine',-->
-<!--pages: [-->
-<!--'pages/about/index',-->
-<!--'pages/favorite/index',-->
-<!--'pages/history/index',-->
-<!--'pages/mine/index',-->
-<!--'pages/release/index',-->
-<!--'pages/suggest/index'-->
-<!--]-->
-<!--},-->
-<!--{-->
-<!--root: 'packageOther',-->
-<!--pages: [-->
-<!--'pages/calculator/index',-->
-<!--'pages/search/index'-->
-<!--]-->
-<!--}-->
-<!--],-->
-<!--window: {-->
-<!--backgroundColor: '#fafafa',-->
-<!--backgroundTextStyle: 'light',-->
-<!--navigationBarTextStyle: 'black',-->
-<!--navigationBarBackgroundColor: '#ffffff'-->
-<!--}-->
-<!--};-->
-<!--</script>-->
