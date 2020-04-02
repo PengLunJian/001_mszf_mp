@@ -5,15 +5,31 @@
         <top-bar title="个人中心" isIcon="{{false}}"></top-bar>
       </div>
       <div class="body">
-        <div class="context">
+        <div class="context fade">
           <div class="module">
             <div class="module-content">
               <div class="module-body">
                 <div class="module-context">
-                  <div class="module-user" :style="{backgroundImage:'url('+url+')'}">
-                    <div class="user-info">
-                      <img class="user-img" src="../../assets/images/agent.jpg"/>
-                      <div class="user-name">WEB前端架构师</div>
+                  <div class="module-user">
+                    <div class="user-bg">
+                      <lazy-image src="{{url}}" width="30%"/>
+                    </div>
+                    <div class="user-item" v-if="isUser">
+                      <div class="item-img">
+                        <lazy-image src="../../assets/images/user.png"/>
+                      </div>
+                      <div class="item-info">
+                        <div class="item-name">{{isUser}}</div>
+                      </div>
+                    </div>
+                    <div class="user-item" v-if="!isUser" @tap="onHandleLogin">
+                      <div class="item-img">
+                        <lazy-image src="../../assets/images/user.png"/>
+                      </div>
+                      <div class="item-info">
+                        <div class="item-name">点击登录/注册</div>
+                        <div class="item-desc">登录即可体验更多功能</div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -52,6 +68,8 @@
 <script type="text/ecmascript-6">
   import wepy from '@wepy/core';
   import store from '../../store';
+  import {mapState} from '@wepy/redux';
+  import * as controller from './controller';
   import * as $routes from '../../router';
   import * as $config from '../../config';
 
@@ -91,15 +109,21 @@
       ]
     },
 
-    computed: {},
+    computed: {
+      ...mapState(controller.STATES)
+    },
 
     methods: {
+      onHandleLogin() {
+        wx.navigateTo({
+          url: $routes.LOGIN.path
+        });
+      },
       onHandleClick(item) {
         if (item.name !== '意见反馈') {
           if (item.name === '我的收藏' || item.name === '历史浏览') {
-            const {globalData} = this.$app.$options;
-            const {userInfo} = globalData;
-            const path = userInfo ? item.path : $routes.LOGIN.path;
+            const {isUser} = this;
+            const path = isUser ? item.path : $routes.LOGIN.path;
             wx.navigateTo({
               url: path
             });
@@ -153,32 +177,55 @@
                   .module-user {
                     position: relative;
                     height: unit(280, rpx);
-                    background-size: 100% 100%;
-                    background-repeat: no-repeat;
-                    background-position: center center;
-                    .user-info {
-                      display: flex;
+                    .user-bg {
+                      width: 100%;
+                      height: 100%;
                       position: absolute;
+                      top: 0;
                       left: 0;
-                      top: 50%;
+                      z-index: 1;
+                    }
+                    .user-item {
+                      position: absolute;
+                      top: 0;
+                      left: 0;
                       z-index: 10;
+                      width: 100%;
+                      height: 100%;
                       padding-left: unit(40, rpx);
-                      transform: translate3d(0, -50%, 0);
-                      .user-img {
-                        width: unit(140, rpx);
-                        height: unit(140, rpx);
-                        border-radius: 100%;
-                        border: 2px solid @white;
-                        background-color: @white;
-                        box-shadow: 0 0 15px @boxShadow1;
+                      .item-img {
+                        overflow: hidden;
+                        width: unit(120, rpx);
+                        height: unit(120, rpx);
+                        display: inline-block;
+                        vertical-align: middle;
+                        border-radius: @borderRadius100;
+                        image {
+                          border: 2px solid @white;
+                          background-color: @white;
+                          border-radius: @borderRadius100;
+                        }
                       }
-                      .user-name {
-                        height: unit(140, rpx);
-                        line-height: unit(140, rpx);
-                        padding-left: unit(30, rpx);
-                        font-size: @fontSize36;
-                        letter-spacing: 1px;
-                        color: @white;
+                      .item-info {
+                        display: inline-block;
+                        vertical-align: middle;
+                        padding: 0 unit(30, rpx);
+                        line-height: unit(40, rpx);
+                        .item-name {
+                          font-size: @fontSize36;
+                          letter-spacing: 1px;
+                          color: @white;
+                        }
+                        .item-desc {
+                          font-size: @fontSize24;
+                          color: @fontColor3;
+                        }
+                      }
+                      &:before {
+                        content: '';
+                        height: 100%;
+                        display: inline-block;
+                        vertical-align: middle;
                       }
                     }
                   }

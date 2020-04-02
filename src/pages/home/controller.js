@@ -9,5 +9,5 @@ export const STATES = {
 };
 
 export const ACTIONS = {
-  ajaxSelectHotHouse: () => actions.ajaxRequestSelectHotHouse()
+  ajaxSelectHotHouse: params => actions.ajaxRequestSelectHotHouse(params)
 };

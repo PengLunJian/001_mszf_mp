@@ -63,21 +63,21 @@ export const ajaxRequestSelectDetail = createAction(
 
 export const ajaxRequestUpdateFollow = createAction(
   'updateFollow', (params) => {
-    commit(actionTypes.UPDATE_HOUSEFOLLOW_REQUEST);
+    commit(actionTypes.UPDATE_FOLLOW_REQUEST);
     return new Promise((resolve, reject) => {
       axios.post(apis.updateFollow, params)
         .then((res) => {
           res = res || {};
           const {data, success} = res;
           if (success) {
-            commit(actionTypes.UPDATE_HOUSEFOLLOW_SUCCESS, data);
+            commit(actionTypes.UPDATE_FOLLOW_SUCCESS, data);
           } else {
-            commit(actionTypes.UPDATE_HOUSEFOLLOW_FAILURE);
+            commit(actionTypes.UPDATE_FOLLOW_FAILURE);
           }
           resolve(res);
         })
         .catch((err) => {
-          commit(actionTypes.UPDATE_HOUSEFOLLOW_FAILURE);
+          commit(actionTypes.UPDATE_FOLLOW_FAILURE);
           reject(err);
         });
     });
@@ -149,6 +149,35 @@ export const ajaxRequestSelectHistory = createAction(
     });
   });
 
+export const ajaxRequestSelectLogin = createAction(
+  'selectLogin', (params) => {
+    commit(actionTypes.SELECT_LOGIN_REQUEST);
+    return new Promise((resolve, reject) => {
+      axios.post(apis.selectLogin, params)
+        .then((res) => {
+          res = res || {};
+          res.data = '18130278679';
+          res.success = true;
+          const {data, success} = res;
+          if (success) {
+            commit(actionTypes.SELECT_LOGIN_SUCCESS, data);
+          } else {
+            commit(actionTypes.SELECT_LOGIN_FAILURE);
+          }
+          resolve(res);
+        })
+        .catch((err) => {
+          commit(actionTypes.SELECT_LOGIN_FAILURE);
+          reject(err);
+        });
+    });
+  });
+
+export const selectLoginReplace = createAction(
+  'selectLoginReplace', (params) => {
+    commit(actionTypes.SELECT_LOGIN_SUCCESS, params);
+  });
+
 export const ajaxRequestSelectCitys = createAction(
   'selectCitys', () => {
     return new Promise((resolve, reject) => {
@@ -195,7 +224,7 @@ export const removeHistoryReplace = createAction(
     commit(actionTypes.REMOVE_HISTORY_REPLACE);
   });
 
-const ajaxRequestHotHouse = (type) => {
+const ajaxRequestHotHouse = (type, cityName) => {
   const params = {
     page: {
       pageSize: 5,
@@ -206,6 +235,11 @@ const ajaxRequestHotHouse = (type) => {
         field: 'type',
         opt: '=',
         value: type
+      },
+      {
+        field: 'addr_shi',
+        opt: '=',
+        value: cityName
       }
     ],
     sort: [
@@ -223,13 +257,13 @@ const ajaxRequestHotHouse = (type) => {
 };
 
 export const ajaxRequestSelectHotHouse = createAction(
-  'selectHotHouse', () => {
+  'selectHotHouse', (cityName) => {
     commit(actionTypes.SELECT_HOTHOUSE_REQUEST);
     return new Promise((resolve, reject) => {
       axios.all([
-        ajaxRequestHotHouse(1),
-        ajaxRequestHotHouse(2),
-        ajaxRequestHotHouse(3)
+        ajaxRequestHotHouse(1, cityName),
+        ajaxRequestHotHouse(2, cityName),
+        ajaxRequestHotHouse(3, cityName)
       ])
         .then(axios.spread((resNew, resSecond, resRent) => {
           const newData = {resNew, resSecond, resRent};

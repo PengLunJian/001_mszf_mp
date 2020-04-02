@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="content">
+    <div class="content fade">
       <div class="header">
         <top-bar title="消息列表" isIcon="{{false}}"></top-bar>
       </div>

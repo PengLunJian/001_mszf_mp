@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <!--<div class="scroll-top" :class="{'fixed':scrollTop<=390}">{{scrollTop}}</div>-->
     <div class="content">
       <div class="header">
         <top-bar title="历史浏览"></top-bar>

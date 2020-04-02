@@ -12,11 +12,12 @@
                 <img src="../../../assets/images/logo@2x.png" mode="aspectFit"/>
               </div>
               <div class="login-body">
-                <button class="btn btn-wechat" open-type="getPhoneNumber" @getphonenumber="getPhoneNumber">
+                <button class="btn btn-wechat" open-type="getPhoneNumber"
+                        @getphonenumber="onHandleGrantLogin">
                   <span class="btn-icon iconfont icon-wechat"></span>
                   <span class="btn-text">微信授权登录</span>
                 </button>
-                <button class="btn btn-mobile">
+                <button class="btn btn-mobile" @tap="onHandleMobileLogin">
                   <span class="btn-icon iconfont icon-mobile"></span>
                   <span class="btn-text">手机快捷登录</span>
                 </button>
@@ -34,31 +35,81 @@
 <script type="text/ecmascript-6">
   import wepy from '@wepy/core';
   import store from '../../../store';
-  // import * as utils from '../../../utils';
+  import {mapState, mapActions} from '@wepy/redux';
+  import * as storage from '../../../utils/storage';
+  import * as controller from './controller';
+  import Toast from '../../../mixins/toast';
 
   wepy.page({
     store,
 
-    mixins: [],
+    mixins: [Toast],
 
-    data: {},
+    data: {
+      wechat_code: ''
+    },
 
-    computed: {},
+    computed: {
+      ...mapState(controller.STATES)
+    },
 
     methods: {
-      getPhoneNumber(e) {
-        wx.login({
-          success(res) {
+      ...mapActions(controller.ACTIONS),
+      onHandleGrantLogin() {
+        this.onHandleWechatCode()
+          .then((res) => {
+            this.exeAjaxSelectLogin();
             console.log(res);
-          }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
+      onHandleWechatCode() {
+        return new Promise((resolve, reject) => {
+          wx.login({
+            success: (res) => {
+              res = res || {};
+              const {code} = res;
+              this.wechat_code = code;
+              resolve(res);
+            },
+            fail: (err) => {
+              reject(err);
+            }
+          });
         });
       },
-      getUserWechatCode() {
-        wx.login({
-          success(res) {
+      onHandleMobileLogin() {
+        this.showToast('该功能暂未开通，敬请期待');
+      },
+      exeAjaxSelectLogin() {
+        const params = this.getParams();
+        this.ajaxSelectLogin(params)
+          .then((res) => {
+            res = res || {};
+            const {success, data} = res.payload;
+            if (success) {
+              storage.setItem('user', data);
+              wx.navigateBack({
+                delta: 1
+              });
+            } else {
+              this.showToast('登录失败，请重试');
+            }
             console.log(res);
-          }
-        });
+          })
+          .catch((err) => {
+            this.showToast('登录失败，请重试');
+            console.log(err);
+          });
+      },
+      getParams() {
+        const {wechat_code} = this;
+        const params = {
+          wechat_code
+        };
+        return params;
       }
     },
 

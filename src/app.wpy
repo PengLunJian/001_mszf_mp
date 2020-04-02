@@ -6,6 +6,8 @@
 <script type="text/ecmascript-6">
   import wepy from '@wepy/core';
   import wepyRedux from '@wepy/redux';
+  import * as storage from './utils/storage';
+  import {selectLoginReplace} from './store/actions';
 
   wepy.use(wepyRedux);
 
@@ -18,6 +20,10 @@
     },
 
     onLaunch() {
+      const user = storage.getItem('user');
+      if (user) {
+        selectLoginReplace(user);
+      }
     },
 
     methods: {}
@@ -29,7 +35,7 @@
   pages: [
   'pages/home/index',
   'pages/news/index',
-  'pages/mine/index',
+  'pages/mine/index'
   ],
   subpackages: [
   {

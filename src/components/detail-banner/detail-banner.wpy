@@ -38,9 +38,8 @@
 <script type="text/ecmascript-6">
   import wepy from '@wepy/core';
   import store from '../../store';
-  import {mapActions} from '@wepy/redux';
+  import {mapActions, mapState} from '@wepy/redux';
   import * as controller from './controller';
-  import * as storage from '../../utils/storage';
   import * as $routes from '../../router';
   import Toast from '../../mixins/toast';
 
@@ -58,7 +57,9 @@
         default: {}
       }
     },
-    events: {},
+    computed: {
+      ...mapState(controller.STATES)
+    },
     methods: {
       ...mapActions(controller.ACTIONS),
       onHandleLargeImage(index) {
@@ -107,8 +108,8 @@
           });
       },
       onHandleFollow() {
-        const {user} = storage.getItem('user');
-        if (user) {
+        const {isUser} = this;
+        if (isUser) {
           this.exeAjaxUpdateFollow();
         } else {
           wx.navigateTo({

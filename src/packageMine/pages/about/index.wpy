@@ -6,31 +6,41 @@
       </div>
       <div class="body">
         <div class="context fade">
-          <div class="banner">
-            <div class="inner" :style="{backgroundImage:'url('+url+')'}"></div>
+          <div class="module">
+            <div class="module-content">
+              <div class="module-body">
+                <div class="module-image">
+                  <lazy-image src="{{url}}" width="30%"/>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="list">
-            <div class="inner">
-              <button class="list-item btn" @tap="onHandlePhone">
-                <div class="list-item-icon iconfont icon-phone"></div>
-                <div class="list-item-text">联系电话</div>
-                <div class="list-item-next iconfont icon-next"></div>
-              </button>
-              <button class="list-item btn" open-type="contact">
-                <div class="list-item-icon iconfont icon-service"></div>
-                <div class="list-item-text">在线客服</div>
-                <div class="list-item-next iconfont icon-next"></div>
-              </button>
-              <button class="list-item btn" @tap="onHandleLocation">
-                <div class="list-item-icon iconfont icon-address"></div>
-                <div class="list-item-text">地址导航</div>
-                <div class="list-item-next iconfont icon-next"></div>
-              </button>
-              <button class="list-item btn" @tap="onHandleShowModal">
-                <div class="list-item-icon iconfont icon-share"></div>
-                <div class="list-item-text">我要分享</div>
-                <div class="list-item-next iconfont icon-next"></div>
-              </button>
+          <div class="module">
+            <div class="module-content">
+              <div class="module-body">
+                <div class="module-list">
+                  <button class="list-item btn" @tap="onHandlePhone">
+                    <div class="list-item-icon iconfont icon-phone"></div>
+                    <div class="list-item-text">联系电话</div>
+                    <div class="list-item-next iconfont icon-next"></div>
+                  </button>
+                  <button class="list-item btn" open-type="contact">
+                    <div class="list-item-icon iconfont icon-service"></div>
+                    <div class="list-item-text">在线客服</div>
+                    <div class="list-item-next iconfont icon-next"></div>
+                  </button>
+                  <button class="list-item btn" @tap="onHandleLocation">
+                    <div class="list-item-icon iconfont icon-address"></div>
+                    <div class="list-item-text">地址导航</div>
+                    <div class="list-item-next iconfont icon-next"></div>
+                  </button>
+                  <button class="list-item btn" @tap="onHandleShowModal">
+                    <div class="list-item-icon iconfont icon-share"></div>
+                    <div class="list-item-text">我要分享</div>
+                    <div class="list-item-next iconfont icon-next"></div>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -187,22 +197,21 @@
         .context {
           height: 100%;
           padding-top: 65px;
-          .banner {
-            padding: unit(30, rpx);
-            .inner {
+          .module {
+            margin: 0;
+            padding: unit(30, rpx) unit(30, rpx) 0;
+            background-color: transparent;
+            .module-image {
               overflow: hidden;
               position: relative;
               height: unit(300, rpx);
               border-radius: @borderRadius2;
               box-shadow: 0 0 15px @boxShadow1;
-              background-size: 100% 100%;
-              background-repeat: no-repeat;
-              background-position: center center;
+              image {
+                border-radius: @borderRadius2;
+              }
             }
-          }
-          .list {
-            padding: 0 unit(30, rpx) unit(30, rpx);
-            .inner {
+            .module-list {
               overflow: hidden;
               background-color: @white;
               border-radius: @borderRadius2;
@@ -305,21 +314,18 @@
           background-color: rgba(0, 0, 0, 0.5);
         }
         .modal-content {
-          position: fixed;
+          position:fixed;
           top: 50%;
           left: 50%;
           z-index: 1011;
           opacity: 0;
           overflow: hidden;
           visibility: hidden;
-          width: unit(560, rpx);
-          height: unit(800, rpx);
-          margin-top: unit(-400, rpx);
-          margin-left: unit(-280, rpx);
+          width: unit(560,rpx);
           padding-top: unit(170, rpx);
           border-radius: unit(40, rpx);
           box-shadow: 0 0 15px @boxShadow1;
-          transform: scale(1.0);
+          transform: translate3d(-50%,-50%,0) scale(1.0);
           background-color: #ECEAE9;
           .modal-header {
             position: absolute;
@@ -409,17 +415,17 @@
     0% {
       opacity: 0;
       visibility: hidden;
-      transform: scale(0.5);
+      transform:translate3d(-50%,-50%,0) scale(0.5);
     }
     50% {
       opacity: 1;
       visibility: visible;
-      transform: scale(1.2);
+      transform:translate3d(-50%,-50%,0) scale(1.2);
     }
     100% {
       opacity: 1;
       visibility: visible;
-      transform: scale(1);
+      transform:translate3d(-50%,-50%,0) scale(1);
     }
   }
 
@@ -438,17 +444,17 @@
     0% {
       opacity: 1;
       visibility: visible;
-      transform: scale(1.0);
+      transform:translate3d(-50%,-50%,0) scale(1.0);
     }
     50% {
       opacity: 1;
       visibility: visible;
-      transform: scale(0.7);
+      transform:translate3d(-50%,-50%,0) scale(0.7);
     }
     100% {
       opacity: 0;
       visibility: hidden;
-      transform: scale(1.2);
+      transform:translate3d(-50%,-50%,0) scale(1.2);
     }
   }
 </style>
@@ -459,6 +465,7 @@
   navigationStyle:'custom',
   usingComponents: {
   'top-bar': '../../../components/top-bar/top-bar',
+  'lazy-image': '../../../components/lazy-image/lazy-image'
   }
   }
 </config>

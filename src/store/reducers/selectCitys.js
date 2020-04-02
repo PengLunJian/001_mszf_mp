@@ -32,7 +32,7 @@ const actions = {
   },
   [actionTypes.SELECT_CITYS_REPLACE](state, params) {
     const {data} = state;
-    data.check = params.data;
+    data.city = params.data;
     return {
       ...state,
       isLoading: false,

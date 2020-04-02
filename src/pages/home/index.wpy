@@ -1,8 +1,6 @@
 <template>
   <div class="container">
-    <loading :isLoading="isLoading"></loading>
-    <error :isFailure="isFailure" @refresh="onRefresh"></error>
-    <div class="content fade" v-if="isSuccess">
+    <div class="content">
       <div class="header">
         <div class="top-bar">
           <div class="top-inner">
@@ -20,7 +18,9 @@
         </div>
       </div>
       <div class="body">
-        <div class="context">
+        <loading :isLoading="isLoading"></loading>
+        <error :isFailure="isFailure" @refresh="onRefresh"></error>
+        <div class="context fade" v-if="isSuccess">
           <scroll-view
             class="scroll-view"
             scroll-y="{{true}}">
@@ -52,6 +52,7 @@
     mixins: [],
 
     data: {
+      cityName: '',
       addressUrl: $routes.ADDRESS.path,
       searchUrl: $routes.SEARCH.path
     },
@@ -63,7 +64,8 @@
     methods: {
       ...mapActions(controller.ACTIONS),
       exeAjaxSelectHotHouse() {
-        this.ajaxSelectHotHouse()
+        const params = this.cityName;
+        this.ajaxSelectHotHouse(params)
           .then((res) => {
             console.log(res);
           })
@@ -76,7 +78,19 @@
       }
     },
 
+    onShow() {
+      const {cityName, isCity} = this;
+      const {fullname} = isCity.city;
+      if (cityName !== fullname) {
+        this.cityName = fullname;
+        this.exeAjaxSelectHotHouse();
+      }
+    },
+
     onLoad() {
+      const {city} = this.isCity;
+      const {fullname} = city;
+      this.cityName = fullname;
       this.exeAjaxSelectHotHouse();
     }
   });
