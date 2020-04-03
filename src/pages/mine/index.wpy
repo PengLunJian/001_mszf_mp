@@ -19,7 +19,7 @@
                         <lazy-image src="../../assets/images/user.png"/>
                       </div>
                       <div class="item-info">
-                        <div class="item-name">{{isUser}}</div>
+                        <div class="item-name">{{phoneNumber}}</div>
                       </div>
                     </div>
                     <div class="user-item" v-if="!isUser" @tap="onHandleLogin">
@@ -27,8 +27,8 @@
                         <lazy-image src="../../assets/images/user.png"/>
                       </div>
                       <div class="item-info">
-                        <div class="item-name">点击登录/注册</div>
-                        <div class="item-desc">登录即可体验更多功能</div>
+                        <div class="item-name">登录/注册</div>
+                        <div class="item-desc">登录后即可体验更多服务</div>
                       </div>
                     </div>
                   </div>
@@ -79,6 +79,7 @@
     mixins: [],
 
     data: {
+      phoneNumber: '',
       url: $config.DEFAULT_MINE,
       items: [
         {
@@ -133,6 +134,15 @@
             });
           }
         }
+      }
+    },
+
+    onShow() {
+      const {isUser} = this;
+      if (isUser) {
+        const start = isUser.substr(0, 3);
+        const end = isUser.substr(8, 3);
+        this.phoneNumber = start + '****' + end;
       }
     },
 
@@ -199,10 +209,10 @@
                         height: unit(120, rpx);
                         display: inline-block;
                         vertical-align: middle;
+                        border: 2px solid @white;
+                        background-color: @white;
                         border-radius: @borderRadius100;
                         image {
-                          border: 2px solid @white;
-                          background-color: @white;
                           border-radius: @borderRadius100;
                         }
                       }
@@ -211,14 +221,13 @@
                         vertical-align: middle;
                         padding: 0 unit(30, rpx);
                         line-height: unit(40, rpx);
+                        color: @white;
                         .item-name {
-                          font-size: @fontSize36;
-                          letter-spacing: 1px;
-                          color: @white;
+                          font-size: @fontSize40;
                         }
                         .item-desc {
+                          margin-top: unit(5, rpx);
                           font-size: @fontSize24;
-                          color: @fontColor3;
                         }
                       }
                       &:before {

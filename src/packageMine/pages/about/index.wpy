@@ -206,7 +206,6 @@
               position: relative;
               height: unit(300, rpx);
               border-radius: @borderRadius2;
-              box-shadow: 0 0 15px @boxShadow1;
               image {
                 border-radius: @borderRadius2;
               }
@@ -215,7 +214,6 @@
               overflow: hidden;
               background-color: @white;
               border-radius: @borderRadius2;
-              box-shadow: 0 0 15px @boxShadow1;
               .list-item {
                 height: unit(110, rpx);
                 line-height: unit(110, rpx);

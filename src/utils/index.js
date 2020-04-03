@@ -225,7 +225,7 @@ export const getCitys = (res) => {
   let areas = [];
   const CONST_CHK = ['宣城市'];
   const CONST_ARE = ['广德市'];
-  const CONST_RUN = ['宣城市', '上海市'];
+  const CONST_RUN = ['宣城市'];
   const CONST_KEY = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   const CONST_HOT = ['北京市', '上海市', '广州市'];
   const CONST_DEL = ['北京市', '上海市', '重庆市', '天津市'];
