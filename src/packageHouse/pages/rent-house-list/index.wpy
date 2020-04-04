@@ -467,7 +467,7 @@
           if (rows.length < totalCount) {
             this.exeAjaxSelectHouse();
           }
-        }, 500);
+        }, 0);
       },
       onHandleChooseArea(item, index) {
         if (item.isOpen) {
@@ -477,10 +477,10 @@
         }
       },
       onHandleConfirmArea() {
+        this.onHandleCloseModal(0);
         this.resetParams();
         this.removeHouseReplace();
         this.exeAjaxSelectHouse();
-        this.onHandleCloseModal(0);
       },
       exeAjaxSelectHouse() {
         const data = this.isData || {};

@@ -72,10 +72,13 @@
     methods: {
       ...mapActions(controller.ACTIONS),
       onHandleTabChange(index) {
-        this.pageIndex = 1;
-        this.tab.initIndex = index;
-        this.removeFavoriteReplace();
-        this.exeAjaxSelectFavorite();
+        if (this.timer) return;
+        this.timer = setTimeout(() => {
+          this.pageIndex = 1;
+          this.tab.initIndex = index;
+          this.removeFavoriteReplace();
+          this.exeAjaxSelectFavorite();
+        }, 0);
       },
       exeAjaxSelectFavorite() {
         const data = this.isData || {};
@@ -109,7 +112,7 @@
           if (rows.length < totalCount) {
             this.exeAjaxSelectFavorite();
           }
-        }, 500);
+        }, 0);
       },
       getParams() {
         const type = this.tab.initIndex + 1;

@@ -73,7 +73,7 @@
           if (rows.length < totalCount) {
             this.exeAjaxHouseHistory();
           }
-        }, 500);
+        }, 0);
       },
       resetParams() {
         this.pageSize = 10;
