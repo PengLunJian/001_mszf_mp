@@ -19,22 +19,22 @@
             <div class="module-content">
               <div class="module-body">
                 <div class="module-list">
-                  <button class="list-item btn" @tap="onHandlePhone">
+                  <button class="list-item btn" hover-class="none" @tap="onHandlePhone">
                     <div class="list-item-icon iconfont icon-phone"></div>
                     <div class="list-item-text">联系电话</div>
                     <div class="list-item-next iconfont icon-next"></div>
                   </button>
-                  <button class="list-item btn" open-type="contact">
+                  <button class="list-item btn" hover-class="none" open-type="contact">
                     <div class="list-item-icon iconfont icon-service"></div>
                     <div class="list-item-text">在线客服</div>
                     <div class="list-item-next iconfont icon-next"></div>
                   </button>
-                  <button class="list-item btn" @tap="onHandleLocation">
+                  <button class="list-item btn" hover-class="none" @tap="onHandleLocation">
                     <div class="list-item-icon iconfont icon-address"></div>
                     <div class="list-item-text">地址导航</div>
                     <div class="list-item-next iconfont icon-next"></div>
                   </button>
-                  <button class="list-item btn" @tap="onHandleShowModal">
+                  <button class="list-item btn" hover-class="none" @tap="onHandleShowModal">
                     <div class="list-item-icon iconfont icon-share"></div>
                     <div class="list-item-text">我要分享</div>
                     <div class="list-item-next iconfont icon-next"></div>
@@ -46,9 +46,13 @@
         </div>
       </div>
       <div class="footer">
-        <div class="company">
-          <div class="company-text">技术支持</div>
-          <img class="company-logo" src="../../images/company@2x.png" mode="aspectFit"/>
+        <div class="footer-row row">
+          <div class="footer-col col-6">
+            <div class="footer-text">技术支持</div>
+          </div>
+          <div class="footer-col col-6">
+            <img class="footer-logo" src="../../images/company@2x.png" mode="aspectFit"/>
+          </div>
         </div>
       </div>
       <div class="modal{{isShow?' enter':''}}{{isHide?' leave':''}}">
@@ -271,31 +275,32 @@
         }
       }
       .footer {
-        width: 100%;
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        .company {
-          padding-bottom: unit(50, rpx);
-          text-align: center;
-          font-size: 0;
-          .company-text {
-            width: auto;
-            height: unit(30, rpx);
-            line-height: unit(30, rpx);
-            display: inline-block;
-            vertical-align: middle;
-            padding-right: unit(20, rpx);
-            border-right: 0.5px solid @borderColor1;
-            font-size: @fontSize26;
-            color: #CCCCCC;
-          }
-          .company-logo {
-            width: unit(115, rpx);
-            height: unit(30, rpx);
-            display: inline-block;
-            vertical-align: middle;
-            margin-left: unit(20, rpx);
+        .footer-row {
+          position: fixed;
+          left: 0;
+          bottom: unit(50, rpx);
+          z-index: 1000;
+          width: 100%;
+          .footer-col {
+            padding: 0 unit(20, rpx);
+            &:first-child {
+              border-right: 0.5px solid @borderColor1;
+            }
+            .footer-text {
+              height: unit(30, rpx);
+              line-height: unit(30, rpx);
+              font-size: @fontSize26;
+              color: @fontColor4;
+              text-align: right;
+            }
+            .footer-logo {
+              width: unit(115, rpx);
+              height: unit(30, rpx);
+              image {
+                width: 100%;
+                height: 100%;
+              }
+            }
           }
         }
       }
