@@ -1,5 +1,6 @@
 import {combineReducers} from 'redux';
 import SELECT_LOGIN_REDUCER from './selectLogin';
+import SELECT_PHONE_REDUCER from './selectPhone';
 import SELECT_CITYS_REDUCER from './selectCitys';
 import SELECT_HOUSE_REDUCER from './selectHouse';
 import SELECT_DETAIL_REDUCER from './selectDetail';
@@ -10,6 +11,7 @@ import SELECT_HOTHOUSE_REDUCER from './selectHotHouse';
 
 export default combineReducers({
   SELECT_LOGIN_REDUCER,
+  SELECT_PHONE_REDUCER,
   SELECT_CITYS_REDUCER,
   SELECT_HOUSE_REDUCER,
   SELECT_DETAIL_REDUCER,

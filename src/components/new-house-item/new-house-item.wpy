@@ -193,9 +193,9 @@
         line-height: unit(30, rpx);
         transform: rotate(-45deg);
         background-color: @typeColor1;
-        font-size: unit(16, rpx);
-        font-weight: bold;
+        font-size: @fontSize16;
         text-align: center;
+        font-weight: bold;
         color: @white;
       }
     }

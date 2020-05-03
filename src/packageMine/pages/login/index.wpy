@@ -12,12 +12,12 @@
                 <img src="../../../assets/images/logo@2x.png" mode="aspectFit"/>
               </div>
               <div class="login-body">
-                <button class="btn btn-wechat" open-type="getPhoneNumber"
+                <button class="btn btn-wechat" hover-class="none" open-type="getPhoneNumber"
                         @getphonenumber="onHandleGrantLogin">
                   <span class="btn-icon iconfont icon-wechat"></span>
                   <span class="btn-text">微信授权登录</span>
                 </button>
-                <button class="btn btn-mobile" @tap="onHandleMobileLogin">
+                <button class="btn btn-mobile" hover-class="none" @tap="onHandlePhoneLogin">
                   <span class="btn-icon iconfont icon-mobile"></span>
                   <span class="btn-text">手机快捷登录</span>
                 </button>
@@ -46,7 +46,11 @@
     mixins: [Toast],
 
     data: {
-      wechat_code: ''
+      code: '',
+      id: '',
+      iv: '',
+      sessionKey: '',
+      encryptedData: ''
     },
 
     computed: {
@@ -55,15 +59,23 @@
 
     methods: {
       ...mapActions(controller.ACTIONS),
-      onHandleGrantLogin() {
-        this.onHandleWechatCode()
-          .then((res) => {
-            this.exeAjaxSelectLogin();
-            console.log(res);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+      onHandleGrantLogin(e) {
+        const {errMsg} = e.$wx.detail;
+        if (errMsg === 'getPhoneNumber:ok') {
+          const {iv, encryptedData} = e.$wx.detail;
+          this.iv = iv;
+          this.encryptedData = encryptedData;
+          this.onHandleWechatCode()
+            .then((res) => {
+              this.exeAjaxSelectPhone();
+              console.log(res);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        } else {
+          console.log(false);
+        }
       },
       onHandleWechatCode() {
         return new Promise((resolve, reject) => {
@@ -71,7 +83,7 @@
             success: (res) => {
               res = res || {};
               const {code} = res;
-              this.wechat_code = code;
+              this.code = code;
               resolve(res);
             },
             fail: (err) => {
@@ -80,20 +92,38 @@
           });
         });
       },
-      onHandleMobileLogin() {
+      onHandlePhoneLogin() {
         this.showToast('该功能暂未开通，敬请期待');
       },
       exeAjaxSelectLogin() {
-        const params = this.getParams();
-        this.ajaxSelectLogin(params)
+        const {code} = this;
+        this.ajaxSelectLogin({code})
           .then((res) => {
             res = res || {};
             const {success, data} = res.payload;
             if (success) {
-              storage.setItem('user', data);
-              wx.navigateBack({
-                delta: 1
-              });
+              const {id, sessionKey} = data;
+              this.id = id;
+              this.sessionKey = sessionKey;
+              this.exeAjaxSelectPhone();
+            } else {
+              this.showToast('登录失败，请重试');
+            }
+            console.log(res);
+          })
+          .catch((err) => {
+            this.showToast('登录失败，请重试');
+            console.log(err);
+          });
+      },
+      exeAjaxSelectPhone() {
+        const params = this.getParams();
+        this.ajaxSelectPhone(params)
+          .then((res) => {
+            res = res || {};
+            const {success, data} = res.payload;
+            if (success) {
+              console.log(data);
             } else {
               this.showToast('登录失败，请重试');
             }
@@ -105,9 +135,11 @@
           });
       },
       getParams() {
-        const {wechat_code} = this;
+        const {code, iv, encryptedData} = this;
         const params = {
-          wechat_code
+          iv,
+          code,
+          encryptedData
         };
         return params;
       }

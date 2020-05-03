@@ -149,6 +149,29 @@ export const ajaxRequestSelectHistory = createAction(
     });
   });
 
+export const ajaxRequestSelectPhone = createAction(
+  'selectPhone', (params) => {
+    commit(actionTypes.SELECT_PHONE_REQUEST);
+    return new Promise((resolve, reject) => {
+      axios.post(apis.selectPhone, params)
+        .then((res) => {
+          res = res || {};
+          console.log(res);
+          const {data, success} = res;
+          if (success) {
+            commit(actionTypes.SELECT_PHONE_SUCCESS, data);
+          } else {
+            commit(actionTypes.SELECT_PHONE_FAILURE);
+          }
+          resolve(res);
+        })
+        .catch((err) => {
+          commit(actionTypes.SELECT_PHONE_FAILURE);
+          reject(err);
+        });
+    });
+  });
+
 export const ajaxRequestSelectLogin = createAction(
   'selectLogin', (params) => {
     commit(actionTypes.SELECT_LOGIN_REQUEST);
@@ -156,8 +179,7 @@ export const ajaxRequestSelectLogin = createAction(
       axios.post(apis.selectLogin, params)
         .then((res) => {
           res = res || {};
-          res.data = '18130278679';
-          res.success = true;
+          console.log(res);
           const {data, success} = res;
           if (success) {
             commit(actionTypes.SELECT_LOGIN_SUCCESS, data);

@@ -1,5 +1,6 @@
 const apis = {
-  baseUrl: 'http://fang.sersms.com:7000',
+  baseUrl: 'http://192.168.5.12:8181/api',
+  fileUrl: 'http://47.103.197.178:8080',
   method: 'POST',
   timeout: 5000,
   dataType: 'json',
@@ -7,9 +8,18 @@ const apis = {
     'Content-Type': 'application/json; charset=UTF-8'
   },
   selectLogin: {
-    url: '/auth/account/loginByWechatCode',
+    url: '/user/getOpenId',
     params: {
-      wechat_code: ''
+      code: ''
+    }
+  },
+  selectPhone: {
+    url: '/user/gePhone',
+    params: {
+      id: '',
+      iv: '',
+      sessionKey: '',
+      encryptedData: ''
     }
   },
   selectHotHouse: {

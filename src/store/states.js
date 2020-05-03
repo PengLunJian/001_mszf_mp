@@ -99,3 +99,10 @@ export const SELECT_LOGIN_STATE = {
   isFailure: false,
   data: null
 };
+
+export const SELECT_PHONE_STATE = {
+  isLoading: true,
+  isSuccess: false,
+  isFailure: false,
+  data: null
+};
