@@ -8,7 +8,7 @@
         <div class="module-context">
           <div class="module-configs">
             <div class="module-row row">
-              <div class="module-col col-2" v-for="(item,index) in items" :key="index">
+              <div class="module-col col-2" v-for="(item,index) in isData.configs" :key="index">
                 <div class="module-item{{item.checked?' checked':''}}">
                   <div class="item-icon iconfont {{item.icon}}"></div>
                   <div class="item-label">{{item.label}}</div>
@@ -30,9 +30,9 @@
     data: {},
     events: {},
     props: {
-      items: {
+      isData: {
         type: Object,
-        default: []
+        default: {}
       }
     },
     methods: {},
@@ -64,10 +64,10 @@
         .module-context {
           .module-configs {
             .module-row {
-              padding: unit(20,rpx) 0;
+              padding: unit(20, rpx) 0;
               .module-col {
                 width: 20%;
-                padding: unit(20,rpx) 0;
+                padding: unit(20, rpx) 0;
                 .module-item {
                   text-align: center;
                   color: @fontColor1;

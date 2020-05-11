@@ -9,8 +9,8 @@
           <div class="module-map">
             <div class="map-content">
               <map class="map-canvas"
-                   longitude="{{longitude}}"
-                   latitude="{{latitude}}"
+                   longitude="{{isData.longitude||0}}"
+                   latitude="{{isData.latitude||0}}"
                    enable-zoom="{{enableZoom}}"
                    enable-scroll="{{enableScroll}}"
                    @tap="onHandleClickMap">
@@ -18,7 +18,7 @@
               <view class="map-marker">
                 <view class="marker-container">
                   <view class="marker-content">
-                    <view class="marker-text">{{name}}</view>
+                    <view class="marker-text">{{isData.houseName||noData}}</view>
                     <view class="marker-icon"></view>
                     <view class="marker-circle"></view>
                   </view>
@@ -39,21 +39,14 @@
   wepy.component({
     data: {
       enableZoom: false,
-      enableScroll: false
+      enableScroll: false,
+      noData: '正在加载'
     },
     events: {},
     props: {
-      longitude: {
-        type: Number,
-        default: 0
-      },
-      latitude: {
-        type: Number,
-        default: 0
-      },
-      name: {
-        type: String,
-        default: '正在加载'
+      isData: {
+        type: Object,
+        default: {}
       }
     },
     methods: {

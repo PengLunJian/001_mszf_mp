@@ -4,13 +4,12 @@
       <div class="header">
         <top-bar title="房源列表"></top-bar>
         <div class="tab-bar">
-          <div v-for="(tab,index) in tabs"
+          <div v-for="(item,index) in tab.items"
                class="tab-item"
-               :class="{'active':tabIndex===index}"
+               :class="{'active':tab.activeIndex===index}"
                @tap="onHandleTabChange(index)">
             <div class="tab-text">
-              <span class="tab-label">{{tab.label}}</span>
-              <span class="tab-triangle"></span>
+              <span class="tab-label">{{item.label}}</span>
             </div>
           </div>
         </div>
@@ -25,16 +24,15 @@
                        @scrolltolower="onHandleScrollToLower">
             <div class="items">
               <block v-for="(item,index) in isData.rows" :key="index">
-                <rent-house-item :item="item"></rent-house-item>
+                <house-item :item="item"></house-item>
               </block>
             </div>
-            <loading-more :length="isData.rows.length"
-                          :totalCount="isData.totalCount"></loading-more>
+            <loading-more :length="isData.rows.length" :totalCount="isData.totalCount"/>
           </scroll-view>
         </div>
       </div>
       <div class="footer"></div>
-      <div class="modal" id="address" :class="{'hide':!tabs[0].isShow}">
+      <div class="modal" id="address" :class="{'hide':!tab.items[0].isShow}">
         <div class="modal-bg" @tap="onHandleCloseModal(0)"></div>
         <div class="modal-content">
           <div class="modal-header"></div>
@@ -62,7 +60,7 @@
           </div>
         </div>
       </div>
-      <div class="modal" id="filter" :class="{'hide':!tabs[1].isShow}">
+      <div class="modal" id="filter" :class="{'hide':!tab.items[1].isShow}">
         <div class="modal-bg" @tap="onHandleCloseModal(1)"></div>
         <div class="modal-content">
           <div class="modal-header"></div>
@@ -74,7 +72,7 @@
                   <div class="modal-row row">
                     <div class="modal-col col-3"
                          v-for="(item,index) in btnMethod.items"
-                         :class="{'active':index===btnMethod.initIndex}">
+                         :class="{'active':index===btnMethod.activeIndex}">
                       <div class="btn-item btn-method" @tap="onHandleMethodFilter(index)">{{item}}</div>
                     </div>
                   </div>
@@ -87,7 +85,7 @@
                   <div class="modal-row row">
                     <div class="modal-col col-3"
                          v-for="(item,index) in btnLayout.items"
-                         :class="{'active':index===btnLayout.initIndex}">
+                         :class="{'active':index===btnLayout.activeIndex}">
                       <div class="btn-item btn-layout" @tap="onHandleLayoutFilter(index)">{{item}}</div>
                     </div>
                   </div>
@@ -100,7 +98,7 @@
                   <div class="modal-row row">
                     <div class="modal-col col-3"
                          v-for="(item,index) in btnStyle.items"
-                         :class="{'active':index===btnStyle.initIndex}">
+                         :class="{'active':index===btnStyle.activeIndex}">
                       <div class="btn-item btn-style" @tap="onHandleStyleFilter(index)">{{item}}</div>
                     </div>
                   </div>
@@ -113,7 +111,7 @@
                   <div class="modal-row row">
                     <div v-for="(item,index) in btnPrice.items"
                          class="modal-col col-3"
-                         :class="{'active':index===btnPrice.initIndex}">
+                         :class="{'active':index===btnPrice.activeIndex}">
                       <div class="btn-item btn-price" @tap="onHandlePriceFilter(index)">{{item}}</div>
                     </div>
                   </div>
@@ -144,7 +142,7 @@
                   <div class="modal-row row">
                     <div v-for="(item,index) in btnSize.items"
                          class="modal-col col-3"
-                         :class="{'active':index===btnSize.initIndex}">
+                         :class="{'active':index===btnSize.activeIndex}">
                       <div class="btn-item btn-size" @tap="onHandleSizeFilter(index)">{{item}}</div>
                     </div>
                   </div>
@@ -178,7 +176,7 @@
           </div>
         </div>
       </div>
-      <div class="modal" id="sort" :class="{'hide':!tabs[2].isShow}">
+      <div class="modal" id="sort" :class="{'hide':!tab.items[2].isShow}">
         <div class="modal-bg" @tap="onHandleCloseModal(2)"></div>
         <div class="modal-content">
           <div class="modal-header"></div>
@@ -186,7 +184,7 @@
             <div class="modal-sort">
               <div class="btn btn-sort"
                    v-for="(item,index) in btnSort.items"
-                   :class="{'active':index===btnSort.initIndex}"
+                   :class="{'active':index===btnSort.activeIndex}"
                    @tap="onHandleSortFilter(index)">{{item}}
               </div>
             </div>
@@ -202,8 +200,8 @@
   import wepy from '@wepy/core';
   import store from '../../../store';
   import {mapState, mapActions} from '@wepy/redux';
-  import * as controller from './controller';
   import Toast from '../../../mixins/toast';
+  import * as controller from './controller';
 
   wepy.page({
     store,
@@ -213,27 +211,29 @@
       pageIndex: 1,
       pageSize: 10,
       iSwitch: true,
-      tabIndex: -1,
-      tabs: [
-        {
-          index: 0,
-          label: '区域',
-          isShow: false
-        },
-        {
-          index: 1,
-          label: '筛选',
-          isShow: false
-        },
-        {
-          index: 2,
-          label: '排序',
-          isShow: false
-        }
-      ],
+      tab: {
+        activeIndex: -1,
+        items: [
+          {
+            index: 0,
+            label: '区域',
+            isShow: false
+          },
+          {
+            index: 1,
+            label: '筛选',
+            isShow: false
+          },
+          {
+            index: 2,
+            label: '排序',
+            isShow: false
+          }
+        ]
+      },
       btnArea: {},
       btnPrice: {
-        initIndex: -1,
+        activeIndex: -1,
         items: [
           '1000以下',
           '1k-2k',
@@ -248,7 +248,7 @@
         ]
       },
       btnSize: {
-        initIndex: -1,
+        activeIndex: -1,
         items: [
           '50m²以下',
           '50-70m²',
@@ -263,7 +263,7 @@
         ]
       },
       btnMethod: {
-        initIndex: -1,
+        activeIndex: -1,
         items: [
           '整租',
           '合租',
@@ -271,7 +271,7 @@
         ]
       },
       btnLayout: {
-        initIndex: -1,
+        activeIndex: -1,
         items: [
           '一室',
           '二室',
@@ -282,7 +282,7 @@
         ]
       },
       btnStyle: {
-        initIndex: -1,
+        activeIndex: -1,
         items: [
           '毛坯',
           '简装',
@@ -293,7 +293,7 @@
         ]
       },
       btnSort: {
-        initIndex: -1,
+        activeIndex: -1,
         items: [
           '综合排序',
           '价格从低到高',
@@ -329,17 +329,17 @@
     methods: {
       ...mapActions(controller.ACTIONS),
       onHandleTabChange(index) {
-        this.tabs.map((item) => {
+        this.tab.items.map((item) => {
           if (index !== item.index) {
-            this.tabs[item.index].isShow = false;
+            this.tab.items[item.index].isShow = false;
           } else {
-            if (this.tabs[index].isShow) {
-              this.tabs[index].isShow = false;
-              this.tabIndex = -1;
+            if (this.tab.items[index].isShow) {
+              this.tab.items[index].isShow = false;
+              this.tab.activeIndex = -1;
               this.iSwitch = true;
             } else {
-              this.tabs[index].isShow = true;
-              this.tabIndex = index;
+              this.tab.items[index].isShow = true;
+              this.tab.activeIndex = index;
               this.iSwitch = false;
             }
           }
@@ -347,8 +347,8 @@
       },
       onHandleCloseModal(index) {
         this.iSwitch = true;
-        this.tabs[index].isShow = false;
-        this.tabIndex = -1;
+        this.tab.items[index].isShow = false;
+        this.tab.activeIndex = -1;
       },
       onHandleSliderChangePrice(e) {
         let maxLabel = '';
@@ -369,7 +369,7 @@
           }
         }
         this.sliderPriceValue = value;
-        this.btnPrice.initIndex = -1;
+        this.btnPrice.activeIndex = -1;
         this.maxPrice = maxLabel;
       },
       onHandleSliderChangeSize(e) {
@@ -391,73 +391,73 @@
           }
         }
         this.sliderSizeValue = value;
-        this.btnSize.initIndex = -1;
+        this.btnSize.activeIndex = -1;
         this.maxSize = maxLabel;
       },
       onHandlePriceFilter(index) {
-        const btnIndex = this.btnPrice.initIndex;
+        const btnIndex = this.btnPrice.activeIndex;
         if (btnIndex === index) {
-          this.btnPrice.initIndex = -1;
+          this.btnPrice.activeIndex = -1;
         } else {
-          this.btnPrice.initIndex = index;
+          this.btnPrice.activeIndex = index;
         }
         this.maxPrice = '不限';
         this.sliderPriceValue = [0, 10000];
       },
       onHandleSizeFilter(index) {
-        const btnIndex = this.btnSize.initIndex;
+        const btnIndex = this.btnSize.activeIndex;
         if (btnIndex === index) {
-          this.btnSize.initIndex = -1;
+          this.btnSize.activeIndex = -1;
         } else {
-          this.btnSize.initIndex = index;
+          this.btnSize.activeIndex = index;
         }
         this.maxSize = '不限';
         this.sliderSizeValue = [0, 500];
       },
       onHandleMethodFilter(index) {
-        const btnIndex = this.btnMethod.initIndex;
+        const btnIndex = this.btnMethod.activeIndex;
         if (btnIndex === index) {
-          this.btnMethod.initIndex = -1;
+          this.btnMethod.activeIndex = -1;
         } else {
-          this.btnMethod.initIndex = index;
+          this.btnMethod.activeIndex = index;
         }
       },
       onHandleLayoutFilter(index) {
-        const btnIndex = this.btnLayout.initIndex;
+        const btnIndex = this.btnLayout.activeIndex;
         if (btnIndex === index) {
-          this.btnLayout.initIndex = -1;
+          this.btnLayout.activeIndex = -1;
         } else {
-          this.btnLayout.initIndex = index;
+          this.btnLayout.activeIndex = index;
         }
       },
       onHandleStyleFilter(index) {
-        const btnIndex = this.btnStyle.initIndex;
+        const btnIndex = this.btnStyle.activeIndex;
         if (btnIndex === index) {
-          this.btnStyle.initIndex = -1;
+          this.btnStyle.activeIndex = -1;
         } else {
-          this.btnStyle.initIndex = index;
+          this.btnStyle.activeIndex = index;
         }
       },
       onHandleSortFilter(index) {
-        const btnIndex = this.btnSort.initIndex;
+        const btnIndex = this.btnSort.activeIndex;
         if (btnIndex === index) {
-          this.btnSort.initIndex = -1;
+          this.btnSort.activeIndex = -1;
         } else {
-          this.btnSort.initIndex = index;
+          this.btnSort.activeIndex = index;
         }
       },
       onHandleClearModal1() {
         this.btnArea.activeIndex = 0;
       },
       onHandleClearModal2() {
-        this.btnMethod.initIndex = -1;
-        this.btnLayout.initIndex = -1;
-        this.btnStyle.initIndex = -1;
+        this.btnMethod.activeIndex = -1;
+        this.btnLayout.activeIndex = -1;
+        this.btnStyle.activeIndex = -1;
         this.maxSize = '不限';
-        this.btnSize.initIndex = -1;
+        this.btnSize.activeIndex = -1;
         this.sliderSizeValue = [0, 500];
         this.maxPrice = '不限';
-        this.btnPrice.initIndex = -1;
+        this.btnPrice.activeIndex = -1;
         this.sliderPriceValue = [0, 10000];
       },
       onHandleScrollToLower() {
@@ -512,43 +512,25 @@
         this.pageIndex = 1;
       },
       getParams() {
+        let city = '';
+        let area = '';
+        const type = 3;
         const {pageIndex, pageSize} = this;
         const {activeIndex, children} = this.btnArea;
         const {fullname} = children[activeIndex];
-        const page = {pageSize, pageIndex};
-        const filter = [
-          {
-            field: 'type',
-            opt: '=',
-            value: 3
-          }
-        ];
         if (fullname === '不限') {
-          const value = this.btnArea.fullname;
-          const item = {
-            field: 'addr_shi',
-            opt: '=',
-            value
-          };
-          filter.push(item);
+          city = this.btnArea.fullname;
+          area = '';
         } else {
-          const value = fullname === '广德市' ? '广德县' : fullname;
-          const item = {
-            field: 'addr_qu',
-            opt: '=',
-            value
-          };
-          filter.push(item);
+          city = this.btnArea.fullname;
+          area = fullname === '广德市' ? '广德县' : fullname;
         }
         const params = {
-          page,
-          filter,
-          sort: [
-            {
-              field: 'id',
-              asc: false
-            }
-          ]
+          type,
+          city,
+          area,
+          pageSize,
+          pageIndex
         };
         return params;
       },
@@ -558,7 +540,6 @@
     },
 
     onLoad() {
-      this.resetParams();
       this.removeHouseReplace();
       this.btnArea = {
         activeIndex: 0,
@@ -599,27 +580,29 @@
               line-height: 20px;
               border-right: 0.5px solid @borderColor1;
               font-size: 0;
-              .tab-label,
-              .tab-triangle {
+              .tab-label {
                 display: inline-block;
                 vertical-align: middle;
-                &.tab-label {
-                  font-size: @fontSize28;
-                }
-                &.tab-triangle {
-                  margin-left: unit(20, rpx);
-                  border-top: unit(12, rpx) solid @fontColor1;
-                  border-left: unit(8, rpx) solid transparent;
-                  border-right: unit(8, rpx) solid transparent;
-                  transition: all 300ms ease;
-                }
+                font-size: @fontSize28;
+              }
+              &:after {
+                content: '';
+                display: inline-block;
+                vertical-align: middle;
+                margin-left: unit(20, rpx);
+                border-top: unit(12, rpx) solid @fontColor1;
+                border-left: unit(8, rpx) solid transparent;
+                border-right: unit(8, rpx) solid transparent;
+                transition: all 300ms ease;
               }
             }
             &.active {
               color: @theme2;
-              .tab-triangle {
-                transform: rotate(180deg);
-                border-top-color: @theme2 !important;
+              .tab-text {
+                &:after {
+                  transform: rotate(180deg);
+                  border-top-color: @theme2 !important;
+                }
               }
             }
             &:last-child {
@@ -947,7 +930,7 @@
   'error': '../../../components/error/error',
   'empty': '../../../components/empty/empty',
   'loading-more': '../../../components/loading-more/loading-more',
-  'rent-house-item': '../../../components/rent-house-item/rent-house-item'
+  'house-item': '../../../components/house-item/house-item'
   }
   }
 </config>

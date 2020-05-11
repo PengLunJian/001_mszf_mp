@@ -1,15 +1,10 @@
 import apis from '../apis';
 
 export const DEFAULT_MINE = apis.baseUrl + '/house/v1/file/static/userfile/202003/17/1239814790655492096.jpg';
-export const DEFAULT_HOUSE = apis.baseUrl + '/house/v1/file/static/userfile/202003/13/1238374760268992512.jpg';
-export const DEFAULT_AGENT = apis.baseUrl + '/house/v1/file/static/userfile/202003/16/1239418041721929728.png';
-export const DEFAULT_SHARE = apis.baseUrl + '/house/v1/file/static/userfile/202002/09/1226431602998263808.png';
-export const DEFAULT_ABOUT = apis.baseUrl + '/house/v1/file/static/userfile/202003/17/1239815132554182656.jpg';
-export const DEFAULT_BANNER = [
-  apis.baseUrl + '/house/v1/file/static/userfile/202003/17/1239813587297091584.jpg',
-  apis.baseUrl + '/house/v1/file/static/userfile/202003/17/1239813737998434304.jpg',
-  apis.baseUrl + '/house/v1/file/static/userfile/202003/17/1239813832600961024.jpg'
-];
+export const DEFAULT_HOUSE = apis.fileUrl + '/image/d7adf25d-8e9a-478a-af04-b1e25be2aae3.jpg';
+export const DEFAULT_AGENT = apis.fileUrl + '/house/v1/file/static/userfile/202003/16/1239418041721929728.png';
+export const DEFAULT_SHARE = apis.fileUrl + '/house/v1/file/static/userfile/202002/09/1226431602998263808.png';
+export const DEFAULT_ABOUT = apis.fileUrl + '/house/v1/file/static/userfile/202003/17/1239815132554182656.jpg';
 export const DEFAULT_CONFIG = [
   {
     icon: 'icon-item01',

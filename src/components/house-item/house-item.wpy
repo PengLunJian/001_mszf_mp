@@ -1,0 +1,334 @@
+<template>
+  <div class="item" v-if="item.type===1" @tap="onHandleDetail">
+    <div class="item-row row">
+      <div class="item-col col-3">
+        <div class="item-img">
+          <lazy-image src="{{item.picUrl[0]?fileUrl+item.picUrl[0]:url}}" width="50%" mode="aspectFill"/>
+        </div>
+      </div>
+      <div class="item-col col-9">
+        <div class="item-info">
+          <div class="item-row row">
+            <div class="item-title ellipsis">{{item.title||noData}}</div>
+          </div>
+          <div class="item-row row">
+            <div class="item-address ellipsis">
+              <span class="item-normal area">{{item.area||noData}}</span>
+              <span class="item-normal split"></span>
+              <span class="item-normal address">{{item.address||noData}}</span>
+            </div>
+          </div>
+          <div class="item-row row">
+            <div class="item-normal price">{{item.price||0}}</div>
+            <div class="item-normal unit">元/m²</div>
+            <div class="item-normal">建面{{item.minfloorArea||0}}-{{item.maxfloorArea||0}}m²</div>
+          </div>
+          <div class="item-row row">
+            <div class="item-state{{getState}}">{{item.state}}</div>
+            <div class="item-tag type1" v-for="(value,index) in getTags" :key="index">{{value}}</div>
+          </div>
+          <div class="item-row row" v-if="isType">
+            <div class="item-type type1">新房</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="item" v-if="item.type===2" @tap="onHandleDetail">
+    <div class="item-row row">
+      <div class="item-col col-3">
+        <div class="item-img">
+          <lazy-image src="{{item.picUrl[0]?fileUrl+item.picUrl[0]:url}}" width="50%" mode="aspectFill"/>
+        </div>
+      </div>
+      <div class="item-col col-9">
+        <div class="item-info">
+          <div class="item-row row">
+            <div class="item-title ellipsis">{{item.title||noData}}</div>
+          </div>
+          <div class="item-row row">
+            <div class="item-address ellipsis">
+              <span class="item-normal area">{{item.area||noData}}</span>
+              <span class="item-normal split"></span>
+              <span class="item-normal address">{{item.address||noData}}</span>
+            </div>
+          </div>
+          <div class="item-row row">
+            <div class="item-normal price">{{item.totalPrice||0}}</div>
+            <div class="item-normal unit">万元</div>
+            <div class="item-normal">{{item.apart||noData}}</div>
+            <div class="item-normal">{{item.floorArea||noData}}m²</div>
+          </div>
+          <div class="item-row row">
+            <div class="item-tag type2" v-for="(value,index) in getTags" :key="index">{{value}}</div>
+          </div>
+          <div class="item-row row">
+            <div class="item-type type2" v-if="isType">租房</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="item" v-if="item.type===3" @tap="onHandleDetail">
+    <div class="item-row row">
+      <div class="item-col col-3">
+        <div class="item-img">
+          <lazy-image src="{{item.picUrl[0]?fileUrl+item.picUrl[0]:url}}" width="50%" mode="aspectFill"/>
+        </div>
+      </div>
+      <div class="item-col col-9">
+        <div class="item-info">
+          <div class="item-row row">
+            <div class="item-title ellipsis">{{item.title||noData}}</div>
+          </div>
+          <div class="item-row row">
+            <div class="item-address ellipsis">
+              <span class="item-normal area">{{item.area||noData}}</span>
+              <span class="item-normal split"></span>
+              <span class="item-normal address">{{item.address||noData}}</span>
+            </div>
+          </div>
+          <div class="item-row row">
+            <div class="item-normal price">{{item.price||0}}</div>
+            <div class="item-normal unit">元/月</div>
+            <div class="item-normal">{{item.apart||noData}}</div>
+            <div class="item-normal">{{item.leaseWay||noData}}</div>
+            <div class="item-normal">{{item.floorArea||noData}}m²</div>
+          </div>
+          <div class="item-row row">
+            <div class="item-tag type3" v-for="(value,index) in getTags" :key="index">{{value}}</div>
+          </div>
+          <div class="item-row row">
+            <div class="item-type type3" v-if="isType">租房</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script type="text/ecmascript-6">
+  import wepy from '@wepy/core';
+  import store from '../../store';
+  import apis from '../../apis';
+  import * as $routes from '../../router';
+  import * as $config from '../../config';
+
+  wepy.component({
+    store,
+    data: {
+      noData: '暂无数据',
+      fileUrl: apis.fileUrl,
+      url: $config.DEFAULT_HOUSE
+    },
+    props: {
+      item: {
+        type: Object,
+        default: {}
+      },
+      isType: {
+        type: Boolean,
+        default: false
+      }
+    },
+    computed: {
+      getState() {
+        let clazz = '';
+        const {type, state} = this.item;
+        if (type) {
+          const states = [
+            ['在售', '待售', '售罄'],
+            ['未售', '', '已售'],
+            ['未租', '', '已租']
+          ];
+          states[type - 1].map((item, index) => {
+            if (item === state) {
+              clazz = ' state' + (index + 1);
+            }
+          });
+        }
+        return clazz;
+      },
+      getTags() {
+        const {tags} = this.item;
+        return tags ? tags.split(' ') : '';
+      }
+    },
+    methods: {
+      onHandleDetail() {
+        const {id, type} = this.item;
+        const urls = [
+          $routes.NEW_HOUSE_DETAIL.path,
+          $routes.SECOND_HOUSE_DETAIL.path,
+          $routes.RENT_HOUSE_DETAIL.path
+        ];
+        const url = urls[type - 1] + '?id=' + id;
+        wx.navigateTo({
+          url
+        });
+      }
+    },
+    created() {
+    }
+  });
+</script>
+
+<style scoped lang="less">
+  @import "../../assets/less/variable";
+  @import "../../assets/less/iconfont";
+  @import "../../assets/less/common";
+
+  .item {
+    overflow: hidden;
+    position: relative;
+    padding: 0 unit(30, rpx);
+    background-color: @white;
+    > .item-row {
+      padding: unit(30, rpx) 0;
+      border-bottom: 0.5px solid @borderColor2;
+      > .col-3 {
+        width: 32%;
+        .item-img {
+          height: unit(180, rpx);
+        }
+      }
+      > .col-9 {
+        width: 68%;
+        .item-info {
+          padding-left: unit(20, rpx);
+          .item-row {
+            font-size: 0;
+            .item-title {
+              height: unit(42, rpx);
+              line-height: unit(42, rpx);
+              font-size: @fontSize32;
+              color: @fontColor1;
+              font-weight: bold;
+            }
+            .item-address {
+              height: unit(32, rpx);
+            }
+            .item-normal {
+              height: unit(40, rpx);
+              line-height: unit(40, rpx);
+              margin-right: unit(10, rpx);
+              font-size: @fontSize24;
+              color: @fontColor3;
+              &.area,
+              &.address,
+              &.split {
+                margin: 0;
+                height: unit(32, rpx);
+                line-height: unit(32, rpx);
+                color: @fontColor2;
+              }
+              &.split {
+                padding: 0 unit(10, rpx);
+                font-size: 0;
+                &:before {
+                  content: '';
+                  height: unit(20, rpx);
+                  display: inline-block;
+                  border-left: 1px solid @borderColor1;
+                }
+              }
+              &.price {
+                margin: 0;
+                font-size: @fontSize36;
+                color: @priceColor;
+                font-weight: bold;
+              }
+              &.unit {
+                font-size: @fontSize24;
+                color: @priceColor;
+              }
+              &:last-child {
+                margin: 0;
+              }
+            }
+            .item-state {
+              height: unit(40, rpx);
+              line-height: unit(40, rpx);
+              margin-right: unit(10, rpx);
+              margin-top: unit(10, rpx);
+              padding: 0 unit(10, rpx);
+              background-color: @stateColor;
+              font-size: @fontSize24;
+              color: @white;
+              &.state1 {
+                background-color: @stateColor1;
+              }
+              &.state2 {
+                background-color: @stateColor2;
+              }
+              &.state3 {
+                background-color: @stateColor3;
+              }
+            }
+            .item-tag {
+              line-height: unit(40, rpx);
+              margin-right: unit(10, rpx);
+              margin-top: unit(10, rpx);
+              padding: 0 unit(10, rpx);
+              font-size: @fontSize24;
+              &.type1 {
+                background-color: @stateColor;
+                color: @fontColor3;
+              }
+              &.type2 {
+                line-height: unit(38, rpx);
+                border: 1px solid @theme2;
+                color: @theme2;
+              }
+              &.type3 {
+                line-height: unit(38, rpx);
+                border: 1px solid @theme2;
+                color: @theme2;
+              }
+              &:last-child {
+                margin-right: 0;
+              }
+            }
+            .item-type {
+              position: absolute;
+              top: unit(8, rpx);
+              left: unit(-80, rpx);
+              z-index: 10;
+              width: unit(200, rpx);
+              height: unit(30, rpx);
+              line-height: unit(30, rpx);
+              transform: rotate(-45deg);
+              background-color: @typeColor1;
+              font-size: @fontSize16;
+              text-align: center;
+              font-weight: bold;
+              color: @white;
+            }
+            &:nth-child(1),
+            &:nth-child(2) {
+              margin-bottom: unit(8, rpx);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  house-item {
+    &:last-child {
+      .item {
+        > .item-row {
+          border: none !important;
+        }
+      }
+    }
+  }
+</style>
+
+<config>
+  {
+  usingComponents: {
+  'lazy-image': '../lazy-image/lazy-image'
+  }
+  }
+</config>

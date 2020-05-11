@@ -21,7 +21,7 @@ export const ajaxRequestSelectHouse = createAction(
   'selectHouse', (params) => {
     commit(actionTypes.SELECT_HOUSE_REQUEST);
     return new Promise((resolve, reject) => {
-      axios.get(apis.selectHouse, {params})
+      axios.post(apis.selectHouse, params)
         .then((res) => {
           res = res || {};
           const {data, success} = res;
@@ -43,7 +43,7 @@ export const ajaxRequestSelectDetail = createAction(
   'selectDetail', (params) => {
     commit(actionTypes.SELECT_DETAIL_REQUEST);
     return new Promise((resolve, reject) => {
-      axios.get(apis.selectDetail, {params})
+      axios.post(apis.selectDetail, params)
         .then((res) => {
           res = res || {};
           const {data, success} = res;
@@ -109,7 +109,7 @@ export const ajaxRequestSelectFavorite = createAction(
   'selectFavorite', (params) => {
     commit(actionTypes.SELECT_FAVORITE_REQUEST);
     return new Promise((resolve, reject) => {
-      axios.get(apis.selectFavorite, {params})
+      axios.post(apis.selectFavorite, params)
         .then((res) => {
           res = res || {};
           const {data, success} = res;
@@ -131,7 +131,7 @@ export const ajaxRequestSelectHistory = createAction(
   'selectHistory', (params) => {
     commit(actionTypes.SELECT_HISTORY_REQUEST);
     return new Promise((resolve, reject) => {
-      axios.get(apis.selectHistory, {params})
+      axios.post(apis.selectHistory, params)
         .then((res) => {
           res = res || {};
           const {data, success} = res;
@@ -248,30 +248,12 @@ export const removeHistoryReplace = createAction(
 
 const ajaxRequestHotHouse = (type, cityName) => {
   const params = {
-    page: {
-      pageSize: 5,
-      pageIndex: 1
-    },
-    filter: [
-      {
-        field: 'type',
-        opt: '=',
-        value: type
-      },
-      {
-        field: 'addr_shi',
-        opt: '=',
-        value: cityName
-      }
-    ],
-    sort: [
-      {
-        field: 'release_time',
-        asc: false
-      }
-    ]
+    type,
+    pageSize: 5,
+    pageIndex: 1,
+    city: cityName
   };
-  return axios.get(apis.selectHotHouse, {params})
+  return axios.post(apis.selectHotHouse, params)
     .then((res) => {
       res = res || {};
       return res;

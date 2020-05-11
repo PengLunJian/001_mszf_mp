@@ -8,20 +8,8 @@
         <div class="module-context">
           <div class="module-agents">
             <div class="module-row row">
-              <div class="module-col col-12" v-for="(item,index) in items" :key="index">
-                <div class="module-item">
-                  <div class="item-img">
-                    <lazy-image src="{{item.photo}}"/>
-                  </div>
-                  <div class="item-info">
-                    <div class="item-name">{{item.name||noData}}</div>
-                    <div class="item-phone">{{item.tel||noData}}</div>
-                  </div>
-                  <div class="item-btns">
-                    <div class="btn-icon btn-msg iconfont icon-msg" @tap="onHandleMessage(item.id)"></div>
-                    <div class="btn-icon btn-tel iconfont icon-tel" @tap="onHandlePhone(item.tel)"></div>
-                  </div>
-                </div>
+              <div class="module-col col-12" v-for="(item,index) in isData.agent" :key="index">
+                <agent-item :item="item"></agent-item>
               </div>
             </div>
           </div>
@@ -34,7 +22,6 @@
 
 <script type="text/ecmascript-6">
   import wepy from '@wepy/core';
-  import * as $routes from '../../router';
 
   wepy.component({
     data: {
@@ -42,32 +29,12 @@
     },
     events: {},
     props: {
-      items: {
+      isData: {
         type: Object,
-        default: []
+        default: {}
       }
     },
-    methods: {
-      onHandlePhone(phoneNumber) {
-        wx.makePhoneCall({
-          phoneNumber: phoneNumber,
-          success: (res) => {
-            console.log(res);
-          },
-          fail: (err) => {
-            console.log(err);
-          },
-          complete: (res) => {
-            console.log(res);
-          }
-        });
-      },
-      onHandleMessage(id) {
-        wx.navigateTo({
-          url: $routes.MESSAGE.path + '?id=' + id
-        });
-      }
-    },
+    methods: {},
     created() {
     }
   });
@@ -99,52 +66,6 @@
               padding: unit(15, rpx);
               .module-col {
                 padding: unit(20, rpx) unit(15, rpx);
-                .module-item {
-                  display: flex;
-                  .item-img {
-                    overflow:hidden;
-                    width: unit(80, rpx);
-                    height: unit(80, rpx);
-                    border-radius: @borderRadius100;
-                    image {
-                      border-radius: @borderRadius100;
-                    }
-                  }
-                  .item-info {
-                    flex: 1;
-                    line-height: unit(40, rpx);
-                    padding-left: unit(30, rpx);
-                    .item-name {
-                      font-size: @fontSize28;
-                      color: @fontColor1;
-                    }
-                    .item-phone {
-                      font-size: @fontSize28;
-                      color: @fontColor3;
-                    }
-                  }
-                  .item-btns {
-                    flex: 1;
-                    text-align: right;
-                    font-size: 0;
-                    .btn-icon {
-                      width: unit(80, rpx);
-                      height: unit(80, rpx);
-                      line-height: unit(80, rpx);
-                      display: inline-block;
-                      vertical-align: middle;
-                      border-radius: 100%;
-                      margin-right: unit(40, rpx);
-                      background-color: rgba(255, 153, 0, .05);
-                      font-size: @fontSize40;
-                      text-align: center;
-                      color: @theme2;
-                      &:last-child {
-                        margin: 0;
-                      }
-                    }
-                  }
-                }
               }
             }
           }
@@ -161,7 +82,7 @@
 <config>
   {
   usingComponents: {
-  'lazy-image': '../lazy-image/lazy-image'
+  'agent-item': '../agent-item/agent-item'
   }
   }
 </config>

@@ -1,5 +1,5 @@
 const apis = {
-  baseUrl: 'http://192.168.5.12:8181/api',
+  baseUrl: 'http://118.190.202.38:8181/api',
   fileUrl: 'http://47.103.197.178:8080',
   method: 'POST',
   timeout: 5000,
@@ -23,53 +23,24 @@ const apis = {
     }
   },
   selectHotHouse: {
-    url: '/house/v1/houser/house/list',
+    url: '/house/select',
     params: {
-      page: {
-        pageSize: 5,
-        pageIndex: 1
-      },
-      filter: [
-        {
-          field: 'type',
-          opt: '=',
-          value: 1
-        }
-      ],
-      sort: [
-        {
-          field: 'release_time',
-          asc: false
-        }
-      ]
+      pageSize: 5,
+      pageIndex: 1
     }
   },
   selectHouse: {
-    url: '/house/v1/houser/house/list',
+    url: '/house/select',
     params: {
-      page: {
-        pageSize: 10,
-        pageIndex: 1
-      },
-      filter: [
-        {
-          field: 'type',
-          opt: '=',
-          value: 3
-        }
-      ],
-      sort: [
-        {
-          field: 'id',
-          asc: false
-        }
-      ]
+      pageIndex: 1,
+      pageSize: 10
     }
   },
   selectDetail: {
-    url: '/house/v1/houser/house/detail',
+    url: '/house/detail/select',
     params: {
-      house_id: 1
+      id: 1,
+      phone: ''
     }
   },
   updateFollow: {

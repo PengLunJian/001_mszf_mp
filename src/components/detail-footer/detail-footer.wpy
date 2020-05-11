@@ -2,19 +2,19 @@
   <div class="fixed-bar row">
     <div class="fixed-col col-4">
       <div class="agent-img">
-        <lazy-image src="{{item.agency[0].photo}}"/>
+        <lazy-image src="{{isData.agent[0].picUrl}}"/>
       </div>
       <div class="agent-info">
-        <div class="agent-name">{{item.agency[0].name||noData}}</div>
-        <div class="agent-desc">{{item.agency_com_name||noData}}</div>
+        <div class="agent-name">{{isData.agent[0].agentName||noData}}</div>
+        <div class="agent-desc">{{isData.business||noData}}</div>
       </div>
     </div>
     <div class="fixed-col col-8">
-      <div class="btn btn-msg col-6" @tap="onHandleMessage(item.agency[0].id)">
+      <div class="btn btn-msg col-6" @tap="onHandleMessage">
         <text class="btn-icon iconfont icon-msg"></text>
         <text class="btn-text">微聊</text>
       </div>
-      <div class="btn btn-tel col-6" @tap="onHandlePhone(item.agency[0].tel)">
+      <div class="btn btn-tel col-6" @tap="onHandlePhone">
         <text class="btn-icon iconfont icon-tel"></text>
         <text class="btn-text">电话</text>
       </div>
@@ -32,15 +32,16 @@
     },
     events: {},
     props: {
-      item: {
+      isData: {
         type: Object,
         default: {}
       }
     },
     methods: {
-      onHandlePhone(phoneNumber) {
+      onHandlePhone() {
+        const {phone} = this.isData.agent[0];
         wx.makePhoneCall({
-          phoneNumber: phoneNumber,
+          phoneNumber: phone,
           success: (res) => {
             console.log(res);
           },
@@ -52,7 +53,8 @@
           }
         });
       },
-      onHandleMessage(id) {
+      onHandleMessage() {
+        const {id} = this.isData.agent[0];
         wx.navigateTo({
           url: $routes.MESSAGE.path + '?id=' + id
         });
@@ -90,7 +92,7 @@
         display: inline-block;
         vertical-align: middle;
         border-radius: @borderRadius100;
-        image{
+        image {
           border-radius: @borderRadius100;
         }
       }

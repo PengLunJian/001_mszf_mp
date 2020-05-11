@@ -1,0 +1,119 @@
+<template>
+  <div class="module-item">
+    <div class="item-img">
+      <lazy-image src="{{item.picUrl}}"/>
+    </div>
+    <div class="item-info">
+      <div class="item-name">{{item.agentName||noData}}</div>
+      <div class="item-phone">{{item.phone||noData}}</div>
+    </div>
+    <div class="item-btns">
+      <div class="btn-icon btn-msg iconfont icon-msg" @tap="onHandleMessage"></div>
+      <div class="btn-icon btn-tel iconfont icon-tel" @tap="onHandlePhone"></div>
+    </div>
+  </div>
+</template>
+
+<script type="text/ecmascript-6">
+  import wepy from '@wepy/core';
+  import * as $routes from '../../router';
+
+  wepy.component({
+    data: {
+      noData: '暂无数据'
+    },
+    events: {},
+    props: {
+      item: {
+        type: Object,
+        default: {}
+      }
+    },
+    methods: {
+      onHandlePhone() {
+        const {phone} = this.item;
+        wx.makePhoneCall({
+          phoneNumber: phone,
+          success: (res) => {
+            console.log(res);
+          },
+          fail: (err) => {
+            console.log(err);
+          },
+          complete: (res) => {
+            console.log(res);
+          }
+        });
+      },
+      onHandleMessage() {
+        const {id} = this.item;
+        wx.navigateTo({
+          url: $routes.MESSAGE.path + '?id=' + id
+        });
+      }
+    },
+    created() {
+    }
+  });
+</script>
+
+<style scoped lang="less">
+  @import "../../assets/less/variable";
+  @import "../../assets/less/common";
+
+  .module-item {
+    display: flex;
+    .item-img {
+      overflow: hidden;
+      width: unit(80, rpx);
+      height: unit(80, rpx);
+      border-radius: @borderRadius100;
+      image {
+        border-radius: @borderRadius100;
+      }
+    }
+    .item-info {
+      flex: 1;
+      line-height: unit(40, rpx);
+      padding-left: unit(30, rpx);
+      .item-name {
+        font-size: @fontSize28;
+        color: @fontColor1;
+      }
+      .item-phone {
+        font-size: @fontSize28;
+        color: @fontColor3;
+      }
+    }
+    .item-btns {
+      flex: 1;
+      text-align: right;
+      font-size: 0;
+      .btn-icon {
+        width: unit(80, rpx);
+        height: unit(80, rpx);
+        line-height: unit(80, rpx);
+        display: inline-block;
+        vertical-align: middle;
+        border-radius: 100%;
+        margin-right: unit(40, rpx);
+        background-color: rgba(255, 153, 0, .05);
+        font-size: @fontSize40;
+        text-align: center;
+        color: @theme2;
+        &:last-child {
+          margin: 0;
+        }
+      }
+    }
+  }
+
+</style>
+
+<config>
+  {
+  usingComponents: {
+  'lazy-image': '../lazy-image/lazy-image'
+  }
+  }
+</config>

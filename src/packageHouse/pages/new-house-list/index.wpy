@@ -26,11 +26,10 @@
             @scrolltolower="onHandleScrollToLower">
             <div class="items">
               <block v-for="(item,index) in isData.rows" :key="index">
-                <new-house-item :item="item"></new-house-item>
+                <house-item :item="item"></house-item>
               </block>
             </div>
-            <loading-more :length="isData.rows.length"
-                       :totalCount="isData.totalCount"></loading-more>
+            <loading-more :length="isData.rows.length" :totalCount="isData.totalCount"/>
           </scroll-view>
         </div>
       </div>
@@ -448,29 +447,12 @@
             console.log(err);
           });
       },
-      resetParams() {
-        this.pageSize = 10;
-        this.pageIndex = 1;
-      },
       getParams() {
+        const {pageIndex, pageSize} = this;
         const params = {
-          page: {
-            pageSize: this.pageSize,
-            pageIndex: this.pageIndex
-          },
-          filter: [
-            {
-              field: 'type',
-              opt: '=',
-              value: 1
-            }
-          ],
-          sort: [
-            {
-              field: 'id',
-              asc: false
-            }
-          ]
+          pageSize,
+          pageIndex,
+          type: 1
         };
         return params;
       },
@@ -480,7 +462,6 @@
     },
 
     onLoad() {
-      this.resetParams();
       this.removeHouseReplace();
       this.exeAjaxSelectHouse();
     }
@@ -742,7 +723,7 @@
   'error': '../../../components/error/error',
   'empty': '../../../components/empty/empty',
   'loading-more': '../../../components/loading-more/loading-more',
-  'new-house-item': '../../../components/new-house-item/new-house-item'
+  'house-item': '../../../components/house-item/house-item'
   }
   }
 </config>

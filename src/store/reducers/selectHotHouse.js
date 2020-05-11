@@ -1,7 +1,6 @@
 import {handleActions} from 'redux-actions';
 import * as actionTypes from '../actionTypes';
 import * as states from '../states';
-import * as utils from '../../utils';
 
 const actions = {
   [actionTypes.SELECT_HOTHOUSE_REQUEST](state) {
@@ -17,12 +16,9 @@ const actions = {
     const resNewData = resNew.data || {};
     const resSecondData = resSecond.data || {};
     const resRentData = resRent.data || {};
-    const resNewRows = resNewData.rows || [];
-    const resSecondRows = resSecondData.rows || [];
-    const resRentRows = resRentData.rows || [];
-    const newRows = utils.dataFilter(resNewRows);
-    const secondRows = utils.dataFilter(resSecondRows);
-    const rentRows = utils.dataFilter(resRentRows);
+    const newRows = resNewData.rows || [];
+    const secondRows = resSecondData.rows || [];
+    const rentRows = resRentData.rows || [];
     const newData = {newRows, secondRows, rentRows};
     return {
       ...state,

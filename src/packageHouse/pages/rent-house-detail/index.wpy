@@ -14,14 +14,12 @@
             <div class="scroll-content">
               <detail-banner :isData="isData"></detail-banner>
               <detail-base :isData="isData"></detail-base>
-              <detail-agent :items="isData.agency"></detail-agent>
-              <detail-config :items="isData.configs"></detail-config>
-              <detail-map :name="isData.xiaoqu"
-                          :longitude="longitude"
-                          :latitude="latitude"></detail-map>
+              <detail-agent :isData="isData"></detail-agent>
+              <detail-config :isData="isData"></detail-config>
+              <detail-map :isData="isData"></detail-map>
             </div>
           </scroll-view>
-          <detail-footer :item="isData"></detail-footer>
+          <detail-footer :isData="isData"></detail-footer>
         </div>
       </div>
       <div class="footer"></div>
@@ -32,16 +30,14 @@
 <script type="text/ecmascript-6">
   import wepy from '@wepy/core';
   import store from '../../../store';
-  import {mapState, mapActions} from '@wepy/redux';
-  import * as controller from './controller';
   import QQMapWX from 'wx-qqmap-jssdk';
+  import {mapState, mapActions} from '@wepy/redux';
+  import * as $storage from '../../../utils/storage';
+  import * as controller from './controller';
 
   wepy.page({
     store,
-    data: {
-      longitude: 0,
-      latitude: 0
-    },
+    data: {},
 
     computed: {
       ...mapState(controller.STATES)
@@ -50,16 +46,16 @@
     methods: {
       ...mapActions(controller.ACTIONS),
       onRefresh() {
-        this.exeAjaxHouseDetail();
+        this.exeAjaxSelectDetail();
       },
       onHandleInitQQMap() {
-        const {addr_sheng, addr_shi, addr_qu, addr, xiaoqu} = this.isData;
-        const address = addr_sheng + addr_shi + addr_qu + xiaoqu + addr;
+        const {province, city, area, address, houseName} = this.isData;
+        const detailAddress = province + city + area + houseName + address;
         const qqmapsdk = new QQMapWX({
           key: 'CQABZ-RINL4-5MAU4-DBWDV-D2UXZ-5GBEU'
         });
         qqmapsdk.geocoder({
-          address: address,
+          address: detailAddress,
           success: (res) => {
             this.onHandleLocation(res);
           },
@@ -73,14 +69,16 @@
           const {result} = res || {};
           const {location} = result || {};
           const {lat, lng} = location || {};
-          this.longitude = lng;
-          this.latitude = lat;
+          this.isData.longitude = lng;
+          this.isData.latitude = lat;
           console.log('东经=' + lng + '|北纬=' + lat);
         }
       },
       exeAjaxSelectDetail() {
-        const {house_id} = this.$wx.options;
-        this.ajaxSelectDetail({house_id})
+        const {id} = this.$wx.options;
+        const user = $storage.getItem('user');
+        const phone = user.phone || '';
+        this.ajaxSelectDetail({id, phone})
           .then((res) => {
             this.onHandleInitQQMap();
             console.log(res);

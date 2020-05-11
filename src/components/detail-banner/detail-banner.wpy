@@ -9,14 +9,14 @@
                       autoplay="{{autoplay}}"
                       circular="{{circular}}"
                       @change="onHandleSwiperChange">
-                <swiper-item v-for="(item,index) in isData.pic_url" :key="index"
+                <swiper-item v-for="(item,index) in isData.picUrl" :key="index"
                              @tap="onHandleLargeImage(index)">
                   <lazy-image class="swiper-img" width="30%" src="{{item}}" mode="aspectFill"/>
                 </swiper-item>
               </swiper>
             </div>
             <div class="banner-code">
-              <span class="banner-label">{{current}}/{{isData.pic_url.length}}</span>
+              <span class="banner-label">{{current}}/{{isData.picUrl.length}}</span>
             </div>
             <div class="banner-btns">
               <button class="btn-favorite" @tap="onHandleFollow">
@@ -63,10 +63,10 @@
     methods: {
       ...mapActions(controller.ACTIONS),
       onHandleLargeImage(index) {
-        const {pic_url} = this.isData;
+        const {picUrl} = this.isData;
         wx.previewImage({
-          current: pic_url[index],
-          urls: pic_url
+          current: picUrl[index],
+          urls: picUrl
         });
       },
       onHandleSwiperChange(e) {
@@ -74,8 +74,8 @@
         this.current = current + 1;
       },
       exeAjaxUpdateUnfollow() {
-        const params = {house_id: this.isData.id};
-        this.ajaxUpdateUnfollow(params)
+        const {id} = this.isData;
+        this.ajaxUpdateUnfollow({id})
           .then((res) => {
             const {success} = res.payload;
             if (success) {
@@ -91,8 +91,8 @@
           });
       },
       exeAjaxUpdateFollow() {
-        const params = {house_id: this.isData.id};
-        this.ajaxUpdateFollow(params)
+        const {id} = this.isData;
+        this.ajaxUpdateFollow({id})
           .then((res) => {
             const {success} = res.payload;
             if (success) {
