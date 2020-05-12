@@ -1,10 +1,10 @@
 import apis from '../apis';
 
-export const DEFAULT_MINE = apis.baseUrl + '/house/v1/file/static/userfile/202003/17/1239814790655492096.jpg';
+export const DEFAULT_MINE = apis.fileUrl + '/image/0f3513e4-7f72-4236-90be-c6d35042adb9.jpg';
 export const DEFAULT_HOUSE = apis.fileUrl + '/image/d7adf25d-8e9a-478a-af04-b1e25be2aae3.jpg';
 export const DEFAULT_AGENT = apis.fileUrl + '/house/v1/file/static/userfile/202003/16/1239418041721929728.png';
 export const DEFAULT_SHARE = apis.fileUrl + '/house/v1/file/static/userfile/202002/09/1226431602998263808.png';
-export const DEFAULT_ABOUT = apis.fileUrl + '/house/v1/file/static/userfile/202003/17/1239815132554182656.jpg';
+export const DEFAULT_ABOUT = apis.fileUrl + '/image/415dbe7a-82fe-4ee8-a505-b701814af516.jpg';
 export const DEFAULT_CONFIG = [
   {
     icon: 'icon-item01',

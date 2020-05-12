@@ -9,8 +9,8 @@
           <div class="module-map">
             <div class="map-content">
               <map class="map-canvas"
-                   longitude="{{isData.longitude||0}}"
-                   latitude="{{isData.latitude||0}}"
+                   latitude="{{latitude}}"
+                   longitude="{{longitude}}"
                    enable-zoom="{{enableZoom}}"
                    enable-scroll="{{enableScroll}}"
                    @tap="onHandleClickMap">
@@ -35,9 +35,12 @@
 
 <script type="text/ecmascript-6">
   import wepy from '@wepy/core';
+  import QQMapWX from 'wx-qqmap-jssdk';
 
   wepy.component({
     data: {
+      latitude: 0,
+      longitude: 0,
       enableZoom: false,
       enableScroll: false,
       noData: '正在加载'
@@ -49,7 +52,39 @@
         default: {}
       }
     },
+    watch: {
+      isData() {
+        this.onHandleInitQQMap();
+      }
+    },
     methods: {
+      onHandleInitQQMap() {
+        if (!this.isData) return;
+        const {province, city, area, address, houseName} = this.isData;
+        const detailAddress = province + city + area + address + houseName;
+        const qqmapsdk = new QQMapWX({
+          key: 'MFZBZ-MGLWS-C55OR-6KRVW-K6ZFK-YUF3R'
+        });
+        qqmapsdk.geocoder({
+          address: detailAddress,
+          success: (res) => {
+            this.onHandleLocation(res);
+          },
+          complete: (res) => {
+            console.log(res);
+          }
+        });
+      },
+      onHandleLocation(res) {
+        if (res) {
+          const {result} = res || {};
+          const {location} = result || {};
+          const {lat, lng} = location || {};
+          this.latitude = lat;
+          this.longitude = lng;
+          console.log('东经=' + lng + '|北纬=' + lat);
+        }
+      },
       onHandleClickMap() {
         console.log('别摸我,我会爆炸的！');
       }

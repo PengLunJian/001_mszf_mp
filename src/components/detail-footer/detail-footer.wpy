@@ -2,11 +2,11 @@
   <div class="fixed-bar row">
     <div class="fixed-col col-4">
       <div class="agent-img">
-        <lazy-image src="{{isData.agent[0].picUrl}}"/>
+        <lazy-image src="{{getAgent.picUrl}}"/>
       </div>
       <div class="agent-info">
-        <div class="agent-name">{{isData.agent[0].agentName||noData}}</div>
-        <div class="agent-desc">{{isData.business||noData}}</div>
+        <div class="agent-name">{{getAgent.agentName||noData}}</div>
+        <div class="agent-desc">{{isData.business.busName||noData}}</div>
       </div>
     </div>
     <div class="fixed-col col-8">
@@ -23,8 +23,10 @@
 </template>
 
 <script type="text/ecmascript-6">
+  import apis from '../../apis';
   import wepy from '@wepy/core';
   import * as $routes from '../../router';
+  import * as $config from '../../config';
 
   wepy.component({
     data: {
@@ -35,6 +37,18 @@
       isData: {
         type: Object,
         default: {}
+      }
+    },
+    computed: {
+      getAgent() {
+        const {agent} = this.isData;
+        if (!agent) return null;
+        const url = agent[0].picUrl;
+        const picUrl = url ? apis.fileUrl + url : $config.DEFAULT_AGENT;
+        return {
+          ...agent[0],
+          picUrl
+        };
       }
     },
     methods: {

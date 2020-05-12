@@ -24,7 +24,7 @@
                        @scrolltolower="onHandleScrollToLower">
             <div class="items">
               <block v-for="(item,index) in isData.rows" :key="index">
-                <house-item :item="item"></house-item>
+                <house-item :item="item"/>
               </block>
             </div>
             <loading-more :length="isData.rows.length" :totalCount="isData.totalCount"/>
@@ -590,10 +590,10 @@
                 display: inline-block;
                 vertical-align: middle;
                 margin-left: unit(20, rpx);
-                border-top: unit(12, rpx) solid @fontColor1;
-                border-left: unit(8, rpx) solid transparent;
-                border-right: unit(8, rpx) solid transparent;
                 transition: all 300ms ease;
+                border-top: unit(12, rpx) solid @fontColor1;
+                border-left: unit(8, rpx) solid @transparent;
+                border-right: unit(8, rpx) solid @transparent;
               }
             }
             &.active {
@@ -921,16 +921,16 @@
 
 <config>
   {
-  navigationStyle:'custom',
   disableScroll:true,
+  navigationStyle:'custom',
   usingComponents: {
+  'error': '../../../components/error/error',
+  'empty': '../../../components/empty/empty',
   'wux-slider':'module:wux-weapp/dist/slider',
   'top-bar': '../../../components/top-bar/top-bar',
   'loading': '../../../components/loading/loading',
-  'error': '../../../components/error/error',
-  'empty': '../../../components/empty/empty',
-  'loading-more': '../../../components/loading-more/loading-more',
-  'house-item': '../../../components/house-item/house-item'
+  'house-item': '../../../components/house-item/house-item',
+  'loading-more': '../../../components/loading-more/loading-more'
   }
   }
 </config>

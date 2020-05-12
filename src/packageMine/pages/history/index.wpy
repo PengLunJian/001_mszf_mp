@@ -21,15 +21,13 @@
                   </div>
                   <div class="group-items">
                     <block v-for="(item,index) in list.items" :key="index">
-                      <new-house-item v-if="item.type===1" :item="item" :isType="true"></new-house-item>
-                      <second-house-item v-if="item.type===2" :item="item" :isType="true"></second-house-item>
-                      <rent-house-item v-if="item.type===3" :item="item" :isType="true"></rent-house-item>
+                      <house-item :item="item" :isType="true"/>
                     </block>
                   </div>
                 </div>
               </block>
             </div>
-            <loading-more :length="isData.rows.length" :totalCount="isData.totalCount"></loading-more>
+            <loading-more :length="isData.rows.length" :totalCount="isData.totalCount"/>
           </scroll-view>
         </div>
       </div>
@@ -201,14 +199,12 @@
   navigationStyle:'custom',
   disableScroll:true,
   usingComponents: {
-  'top-bar': '../../../components/top-bar/top-bar',
-  'loading': '../../../components/loading/loading',
   'error': '../../../components/error/error',
   'empty': '../../../components/empty/empty',
-  'loading-more': '../../../components/loading-more/loading-more',
-  'new-house-item': '../../../components/new-house-item/new-house-item',
-  'second-house-item': '../../../components/second-house-item/second-house-item',
-  'rent-house-item': '../../../components/rent-house-item/rent-house-item'
+  'top-bar': '../../../components/top-bar/top-bar',
+  'loading': '../../../components/loading/loading',
+  'house-item': '../../../components/house-item/house-item',
+  'loading-more': '../../../components/loading-more/loading-more'
   }
   }
 </config>

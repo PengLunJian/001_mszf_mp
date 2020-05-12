@@ -62,8 +62,8 @@
           <div class="item-row row">
             <div class="item-tag type2" v-for="(value,index) in getTags" :key="index">{{value}}</div>
           </div>
-          <div class="item-row row">
-            <div class="item-type type2" v-if="isType">租房</div>
+          <div class="item-row row" v-if="isType">
+            <div class="item-type type2">租房</div>
           </div>
         </div>
       </div>
@@ -98,8 +98,8 @@
           <div class="item-row row">
             <div class="item-tag type3" v-for="(value,index) in getTags" :key="index">{{value}}</div>
           </div>
-          <div class="item-row row">
-            <div class="item-type type3" v-if="isType">租房</div>
+          <div class="item-row row" v-if="isType">
+            <div class="item-type type3">租房</div>
           </div>
         </div>
       </div>

@@ -112,7 +112,7 @@
             </div>
             <div class="module-row row">
               <div class="module-col col-4">
-                <div class="value">{{isData.price||noData}}元/月</div>
+                <div class="value">{{isData.price||0}}元/月</div>
                 <div class="label">租金</div>
               </div>
               <div class="module-col col-4">
@@ -120,34 +120,34 @@
                 <div class="label">户型</div>
               </div>
               <div class="module-col col-4">
-                <div class="value">{{isData.area||noData}}m²</div>
+                <div class="value">{{isData.floorArea||0}}m²</div>
                 <div class="label">面积</div>
               </div>
             </div>
             <div class="module-row row">
               <div class="module-col col-6">
                 <span class="label">看房时间</span>
-                <span class="value">{{isData.kanfangshijian||noData}}</span>
+                <span class="value">{{isData.seeHouse||noData}}</span>
               </div>
               <div class="module-col col-6">
                 <span class="label">支付</span>
-                <span class="value">{{isData.zhifufangshi||noData}}</span>
+                <span class="value">{{isData.payWay||noData}}</span>
               </div>
               <div class="module-col col-6">
                 <span class="label">出租方式</span>
-                <span class="value">{{isData.chuzufangshi||noData}}</span>
+                <span class="value">{{isData.leaseWay||noData}}</span>
               </div>
               <div class="module-col col-6">
                 <span class="label">朝向</span>
-                <span class="value">{{isData.chaoxiang||noData}}</span>
+                <span class="value">{{isData.direction||noData}}</span>
               </div>
               <div class="module-col col-6">
                 <span class="label">楼层</span>
-                <span class="value">{{isData.louceng||noData}}</span>
+                <span class="value">{{isData.floors||noData}}</span>
               </div>
               <div class="module-col col-6">
                 <span class="label">装修</span>
-                <span class="value">{{isData.zhaungxiu||noData}}</span>
+                <span class="value">{{isData.renovation||noData}}</span>
               </div>
               <div class="module-col col-6">
                 <span class="label">小区</span>

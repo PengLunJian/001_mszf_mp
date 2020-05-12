@@ -21,9 +21,7 @@
                        @scrolltolower="onHandleScrollToLower">
             <div class="items">
               <block v-for="(item,index) in isData.rows" :key="index">
-                <new-house-item v-if="item.type===1" :item="item"></new-house-item>
-                <second-house-item v-if="item.type===2" :item="item"></second-house-item>
-                <rent-house-item v-if="item.type===3" :item="item"></rent-house-item>
+                <house-item :item="item"/>
               </block>
             </div>
             <loading-more :length="isData.rows.length" :totalCount="isData.totalCount"/>
@@ -234,10 +232,8 @@
   'empty': '../../../components/empty/empty',
   'loading': '../../../components/loading/loading',
   'top-bar': '../../../components/top-bar/top-bar',
+  'house-item': '../../../components/house-item/house-item',
   'loading-more': '../../../components/loading-more/loading-more',
-  'new-house-item': '../../../components/new-house-item/new-house-item',
-  'second-house-item': '../../../components/second-house-item/second-house-item',
-  'rent-house-item': '../../../components/rent-house-item/rent-house-item'
   }
   }
 </config>

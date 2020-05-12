@@ -481,44 +481,46 @@
           display: flex;
           flex-wrap: wrap;
           position: fixed;
-          top: unit(130, rpx);
+          top: 65px;
           left: 0;
           z-index: 1000;
           background-color: @white;
-          box-shadow: 0 5px 5px rgba(0, 0, 0, 0.03);
+          box-shadow: 0 0 15px @boxShadow1;
           font-size: @fontSize28;
           text-align: center;
           color: @fontColor1;
           .tab-item {
             width: 33.333%;
             position: relative;
-            padding: unit(20, rpx) 0;
+            padding: 10px 0;
             .tab-text {
-              height: unit(40, rpx);
-              line-height: unit(40, rpx);
+              height: 20px;
+              line-height: 20px;
               border-right: 0.5px solid @borderColor1;
               font-size: 0;
-              .tab-label,
-              .tab-triangle {
+              .tab-label {
                 display: inline-block;
                 vertical-align: middle;
-                &.tab-label {
-                  font-size: @fontSize28;
-                }
-                &.tab-triangle {
-                  margin-left: unit(20, rpx);
-                  border-top: unit(12, rpx) solid @fontColor1;
-                  border-left: unit(8, rpx) solid transparent;
-                  border-right: unit(8, rpx) solid transparent;
-                  transition: all 300ms ease;
-                }
+                font-size: @fontSize28;
+              }
+              &:after {
+                content: '';
+                display: inline-block;
+                vertical-align: middle;
+                margin-left: unit(20, rpx);
+                transition: all 300ms ease;
+                border-top: unit(12, rpx) solid @fontColor1;
+                border-left: unit(8, rpx) solid @transparent;
+                border-right: unit(8, rpx) solid @transparent;
               }
             }
             &.active {
               color: @theme2;
-              .tab-triangle {
-                transform: rotate(180deg);
-                border-top-color: @theme2 !important;
+              .tab-text {
+                &:after {
+                  transform: rotate(180deg);
+                  border-top-color: @theme2 !important;
+                }
               }
             }
             &:last-child {
@@ -714,16 +716,16 @@
 
 <config>
   {
-  navigationStyle:'custom',
   disableScroll:true,
+  navigationStyle:'custom',
   usingComponents: {
+  'error': '../../../components/error/error',
+  'empty': '../../../components/empty/empty',
   'wux-slider':'module:wux-weapp/dist/slider',
   'top-bar': '../../../components/top-bar/top-bar',
   'loading': '../../../components/loading/loading',
-  'error': '../../../components/error/error',
-  'empty': '../../../components/empty/empty',
-  'loading-more': '../../../components/loading-more/loading-more',
-  'house-item': '../../../components/house-item/house-item'
+  'house-item': '../../../components/house-item/house-item',
+  'loading-more': '../../../components/loading-more/loading-more'
   }
   }
 </config>

@@ -8,8 +8,8 @@
         <div class="module-context">
           <div class="module-agents">
             <div class="module-row row">
-              <div class="module-col col-12" v-for="(item,index) in isData.agent" :key="index">
-                <agent-item :item="item"></agent-item>
+              <div class="module-col col-12" v-for="(item,index) in getAgent" :key="index">
+                <agent-item :item="item"/>
               </div>
             </div>
           </div>
@@ -21,7 +21,9 @@
 </template>
 
 <script type="text/ecmascript-6">
+  import apis from '../../apis';
   import wepy from '@wepy/core';
+  import * as $config from '../../config';
 
   wepy.component({
     data: {
@@ -32,6 +34,23 @@
       isData: {
         type: Object,
         default: {}
+      }
+    },
+    computed: {
+      getAgent() {
+        const {agent} = this.isData;
+        const result = (agent || []).map((item) => {
+          console.log(item);
+          if (item) {
+            const picUrl = item.picUrl
+              ? apis.fileUrl + item.picUrl : $config.DEFAULT_AGENT;
+            return {
+              ...item,
+              picUrl
+            };
+          }
+        });
+        return result;
       }
     },
     methods: {},

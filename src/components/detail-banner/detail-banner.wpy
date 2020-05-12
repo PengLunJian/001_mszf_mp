@@ -9,7 +9,7 @@
                       autoplay="{{autoplay}}"
                       circular="{{circular}}"
                       @change="onHandleSwiperChange">
-                <swiper-item v-for="(item,index) in isData.picUrl" :key="index"
+                <swiper-item v-for="(item,index) in getPicUrl" :key="index"
                              @tap="onHandleLargeImage(index)">
                   <lazy-image class="swiper-img" width="30%" src="{{item}}" mode="aspectFill"/>
                 </swiper-item>
@@ -36,12 +36,14 @@
 </template>
 
 <script type="text/ecmascript-6">
+  import apis from '../../apis';
   import wepy from '@wepy/core';
   import store from '../../store';
+  import Toast from '../../mixins/toast';
   import {mapActions, mapState} from '@wepy/redux';
   import * as controller from './controller';
   import * as $routes from '../../router';
-  import Toast from '../../mixins/toast';
+  import * as $config from '../../config';
 
   wepy.component({
     store,
@@ -58,15 +60,23 @@
       }
     },
     computed: {
-      ...mapState(controller.STATES)
+      ...mapState(controller.STATES),
+      getPicUrl() {
+        const {picUrl} = this.isData;
+        if (!(picUrl || []).length) return [$config.DEFAULT_HOUSE];
+        const result = picUrl.map((item) => {
+          return apis.fileUrl + item;
+        });
+        return result;
+      }
     },
     methods: {
       ...mapActions(controller.ACTIONS),
       onHandleLargeImage(index) {
-        const {picUrl} = this.isData;
+        const urls = this.getPicUrl;
         wx.previewImage({
-          current: picUrl[index],
-          urls: picUrl
+          current: urls[index],
+          urls
         });
       },
       onHandleSwiperChange(e) {

@@ -13,7 +13,6 @@ const actions = {
     };
   },
   [actionTypes.SELECT_DETAIL_SUCCESS](state, action) {
-    action.data = utils.dataFormat(action.data);
     return {
       ...state,
       isLoading: false,

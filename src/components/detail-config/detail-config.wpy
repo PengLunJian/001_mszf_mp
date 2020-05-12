@@ -8,7 +8,7 @@
         <div class="module-context">
           <div class="module-configs">
             <div class="module-row row">
-              <div class="module-col col-2" v-for="(item,index) in isData.configs" :key="index">
+              <div class="module-col col-2" v-for="(item,index) in getConfig" :key="index">
                 <div class="module-item{{item.checked?' checked':''}}">
                   <div class="item-icon iconfont {{item.icon}}"></div>
                   <div class="item-label">{{item.label}}</div>
@@ -25,6 +25,7 @@
 
 <script type="text/ecmascript-6">
   import wepy from '@wepy/core';
+  import * as $config from '../../config';
 
   wepy.component({
     data: {},
@@ -33,6 +34,20 @@
       isData: {
         type: Object,
         default: {}
+      }
+    },
+    computed: {
+      getConfig() {
+        const configs = $config.DEFAULT_CONFIG;
+        const {deploy} = this.isData;
+        const result = configs.map((item) => {
+          const checked = (deploy || '').indexOf(item.label) !== -1;
+          return {
+            ...item,
+            checked
+          };
+        });
+        return result;
       }
     },
     methods: {},
