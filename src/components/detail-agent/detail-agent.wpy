@@ -39,16 +39,11 @@
     computed: {
       getAgent() {
         const {agent} = this.isData;
+        if (!agent) return;
         const result = (agent || []).map((item) => {
-          console.log(item);
-          if (item) {
-            const picUrl = item.picUrl
-              ? apis.fileUrl + item.picUrl : $config.DEFAULT_AGENT;
-            return {
-              ...item,
-              picUrl
-            };
-          }
+          const picUrl = item.picUrl
+            ? apis.fileUrl + item.picUrl : $config.DEFAULT_AGENT;
+          return {...item, picUrl};
         });
         return result;
       }

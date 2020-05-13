@@ -1,0 +1,105 @@
+<template>
+  <div class="item">
+    <div class="item-img">
+      <lazy-image src="{{getPicUrl}}" mode="aspectFill"/>
+    </div>
+    <div class="item-info">
+      <div class="item-row row">
+        <div class="item-apart">{{item.apart}}</div>
+        <div class="item-area">{{item.mainArea}}m²</div>
+      </div>
+      <div class="item-row row">
+        <div class="item-state{{getState}}">{{item.state}}</div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script type="text/ecmascript-6">
+  import wepy from '@wepy/core';
+  import apis from '../../apis';
+
+  wepy.component({
+    data: {
+      noData: '暂无数据'
+    },
+    events: {},
+    props: {
+      item: {
+        type: Object,
+        default: {}
+      }
+    },
+    computed: {
+      getPicUrl() {
+        const {picUrl} = this.item;
+        return picUrl ? apis.fileUrl + picUrl : '';
+      },
+      getState() {
+        const {state} = this.item;
+        const states = ['在售', '待售', '售罄'];
+        const index = states.indexOf(state);
+        return ' state' + (index + 1);
+      }
+    },
+    methods: {},
+    created() {
+    }
+  });
+</script>
+
+<style scoped lang="less">
+  @import "../../assets/less/variable";
+  @import "../../assets/less/common";
+
+  .item {
+    margin-right: unit(30, rpx);
+    .item-img {
+      width: unit(250, rpx);
+      height: unit(250, rpx);
+      border: 0.5px solid @borderColor1;
+    }
+    .item-info {
+      font-size: @fontSize26;
+      color: @fontColor1;
+      text-align: left;
+      .item-apart {
+        height: unit(50, rpx);
+        line-height: unit(50, rpx);
+      }
+      .item-area {
+        height: unit(50, rpx);
+        line-height: unit(50, rpx);
+        margin-left: unit(10, rpx);
+      }
+      .item-state {
+        height: unit(40, rpx);
+        line-height: unit(40, rpx);
+        padding: 0 unit(10, rpx);
+        font-size: @fontSize24;
+        color: @white;
+        &.state1 {
+          background-color: @stateColor1;
+        }
+        &.state2 {
+          background-color: @stateColor2;
+        }
+        &.state3 {
+          background-color: @stateColor3;
+        }
+      }
+    }
+    &:last-child {
+      margin: 0;
+    }
+  }
+
+</style>
+
+<config>
+  {
+  usingComponents: {
+  'lazy-image': '../lazy-image/lazy-image'
+  }
+  }
+</config>

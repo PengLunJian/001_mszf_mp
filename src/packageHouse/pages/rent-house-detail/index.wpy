@@ -12,14 +12,14 @@
             class="scroll-view"
             scroll-y="{{true}}">
             <div class="scroll-content">
-              <detail-banner :isData="isData"></detail-banner>
-              <detail-base :isData="isData"></detail-base>
-              <detail-agent :isData="isData"></detail-agent>
-              <detail-config :isData="isData"></detail-config>
-              <detail-map :isData="isData"></detail-map>
+              <detail-banner :isData="isData"/>
+              <detail-base :isData="isData"/>
+              <detail-agent :isData="isData"/>
+              <detail-config :isData="isData"/>
+              <detail-map :name="isData.houseName" :latitude="latitude" :longitude="longitude"/>
             </div>
           </scroll-view>
-          <detail-footer :isData="isData"></detail-footer>
+          <detail-footer :isData="isData"/>
         </div>
       </div>
       <div class="footer"></div>
@@ -30,13 +30,17 @@
 <script type="text/ecmascript-6">
   import wepy from '@wepy/core';
   import store from '../../../store';
+  import QQMapWX from 'wx-qqmap-jssdk';
   import {mapState, mapActions} from '@wepy/redux';
   import * as $storage from '../../../utils/storage';
   import * as controller from './controller';
 
   wepy.page({
     store,
-    data: {},
+    data: {
+      latitude: 0,
+      longitude: 0
+    },
 
     computed: {
       ...mapState(controller.STATES)
@@ -47,12 +51,32 @@
       onRefresh() {
         this.exeAjaxSelectDetail();
       },
+      onHandleInitQQMap() {
+        const {province, city, area, address, houseName} = this.isData;
+        const detailAddress = province + city + area + address + houseName;
+        const qqmapsdk = new QQMapWX({
+          key: 'MFZBZ-MGLWS-C55OR-6KRVW-K6ZFK-YUF3R'
+        });
+        qqmapsdk.geocoder({
+          address: detailAddress,
+          success: (res) => {
+            res = res || {};
+            const {result} = res;
+            const {location} = result || {};
+            const {lat, lng} = location || {};
+            this.latitude = lat;
+            this.longitude = lng;
+            console.log('东经=' + lng + '|北纬=' + lat);
+          }
+        });
+      },
       exeAjaxSelectDetail() {
         const {id} = this.$wx.options;
         const user = $storage.getItem('user');
         const phone = user.phone || '';
         this.ajaxSelectDetail({id, phone})
           .then((res) => {
+            this.onHandleInitQQMap();
             console.log(res);
           })
           .catch((err) => {

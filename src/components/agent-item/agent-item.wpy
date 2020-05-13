@@ -1,7 +1,7 @@
 <template>
-  <div class="module-item">
+  <div class="item">
     <div class="item-img">
-      <lazy-image src="{{item.picUrl}}"/>
+      <lazy-image src="{{item.picUrl}}" mode="aspectFill"/>
     </div>
     <div class="item-info">
       <div class="item-name">{{item.agentName||noData}}</div>
@@ -61,16 +61,14 @@
   @import "../../assets/less/variable";
   @import "../../assets/less/common";
 
-  .module-item {
+  .item {
     display: flex;
     .item-img {
       overflow: hidden;
       width: unit(80, rpx);
       height: unit(80, rpx);
+      will-change: transform;
       border-radius: @borderRadius100;
-      image {
-        border-radius: @borderRadius100;
-      }
     }
     .item-info {
       flex: 1;
