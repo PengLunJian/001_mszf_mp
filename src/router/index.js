@@ -74,3 +74,8 @@ export const MESSAGE = {
   name: '在线咨询',
   path: '/packageOther/pages/message/index'
 };
+
+export const WAITING = {
+  name: '敬请期待',
+  path: '/packageOther/pages/waiting/index'
+};

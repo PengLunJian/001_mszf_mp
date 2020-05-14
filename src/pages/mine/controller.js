@@ -1,3 +1,3 @@
 export const STATES = {
-  isUser: state => state.SELECT_LOGIN_REDUCER.data
+  isUser: state => state.SELECT_PHONE_REDUCER.data
 };

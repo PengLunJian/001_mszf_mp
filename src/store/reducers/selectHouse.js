@@ -1,5 +1,6 @@
 import {handleActions} from 'redux-actions';
 import * as actionTypes from '../actionTypes';
+import * as utils from '../../utils';
 import * as states from '../states';
 
 const actions = {
@@ -16,7 +17,10 @@ const actions = {
     const oldRows = oldData.rows || [];
     const newData = action.data || {};
     const newRows = newData.rows || [];
-    action.data.rows = oldRows.concat(newRows);
+    const rows = newRows.map((item) => {
+      return utils.dataFormat(item);
+    });
+    action.data.rows = oldRows.concat(rows);
     return {
       ...state,
       isLoading: false,

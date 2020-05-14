@@ -77,3 +77,5 @@ export const DEFAULT_CONFIG = [
     checked: false
   }
 ];
+
+export const DEFAULT_MAPKEY = 'MFZBZ-MGLWS-C55OR-6KRVW-K6ZFK-YUF3R';

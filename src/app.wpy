@@ -6,24 +6,21 @@
 <script type="text/ecmascript-6">
   import wepy from '@wepy/core';
   import wepyRedux from '@wepy/redux';
-  import * as storage from './utils/storage';
-  import {selectLoginReplace} from './store/actions';
+  import Storage from './mixins/storage';
+  import {selectPhoneReplace} from './store/actions';
 
   wepy.use(wepyRedux);
 
   wepy.app({
     globalData: {
-      userInfo: null,
-      company: {
-        phoneNumber: '13731887133'
-      }
+      userInfo: null
     },
 
+    mixins: [Storage],
+
     onLaunch() {
-      const user = storage.getItem('user');
-      if (user) {
-        selectLoginReplace(user);
-      }
+      const user = this.getItem('user');
+      if (user) selectPhoneReplace(user);
     },
 
     methods: {}
@@ -66,7 +63,8 @@
   'pages/calculator/index',
   'pages/address/index',
   'pages/message/index',
-  'pages/search/index'
+  'pages/search/index',
+  'pages/waiting/index'
   ]
   }
   ],

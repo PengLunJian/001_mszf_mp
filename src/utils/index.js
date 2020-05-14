@@ -41,58 +41,44 @@ export const stringify = (params) => {
  * @param data
  * @returns {*}
  */
-export const dataFilter = (data) => {
-  const rows = data.map((item) => {
-    return dataFormat(item);
-  });
-  return rows;
-};
-/**
- *
- * @param data
- * @returns {*}
- */
 export const dataFormat = (data) => {
-  const configs = $config.DEFAULT_CONFIG;
   const {
-    pic_url, tags, fagnwupeizhi, kaipan, jiaofang,
-    release_time, agency, zhulihuxing
+    picUrl, tags, deploy, openTime, handTime,
+    createTime, agent, mainApart
   } = data;
+  const configs = $config.DEFAULT_CONFIG;
   data.configs = configs.map((item) => {
-    let checked = false;
-    if (fagnwupeizhi) {
-      checked = fagnwupeizhi.indexOf(item.label) !== -1;
-    }
+    const checked = (deploy || '').indexOf(item.label) !== -1;
     return {
       ...item,
       checked
     };
   });
-  data.tags = tags.split(' ');
-  if (pic_url.length) {
-    data.pic_url = pic_url.map((item) => {
-      return apis.baseUrl + item;
+  data.tags = (tags || '').split(' ');
+  if (picUrl.length) {
+    data.picUrl = (picUrl || []).map((item) => {
+      return apis.fileUrl + item;
     });
   } else {
-    data.pic_url = [$config.DEFAULT_HOUSE];
+    data.picUrl = [$config.DEFAULT_HOUSE];
   }
-  data.zhulihuxing = (zhulihuxing || []).map((item) => {
-    let pic = item.pic ? apis.baseUrl + item.pic : $config.DEFAULT_HOUSE;
+  data.mainApart = (mainApart || []).map((item) => {
+    const picUrl = item.picUrl
+      ? apis.fileUrl + item.picUrl
+      : $config.DEFAULT_HOUSE;
     return {
       ...item,
-      pic
+      picUrl
     };
   });
-  data.agency = (agency || []).map((item) => {
-    let photo = item.photo ? apis.baseUrl + item.photo : $config.DEFAULT_AGENT;
-    return {
-      ...item,
-      photo
-    };
+  data.agent = (agent || []).map((item) => {
+    const picUrl = item.picUrl
+      ? apis.fileUrl + item.picUrl : $config.DEFAULT_AGENT;
+    return {...item, picUrl};
   });
-  data.kaipan = dateFormat(kaipan, 'yyyy/mm/dd');
-  data.jiaofang = dateFormat(jiaofang, 'yyyy/mm/dd');
-  data.release_time = dateFormat(release_time, 'yyyy/mm/dd');
+  data.openTime = dateFormat(openTime, 'yyyy/mm/dd');
+  data.handTime = dateFormat(handTime, 'yyyy/mm/dd');
+  data.createTime = dateFormat(createTime, 'yyyy/mm/dd');
   return data;
 };
 /**
@@ -129,42 +115,45 @@ export const historyFilter = (list, rows, attr) => {
  * @returns {string}
  */
 export const dateFormat = (date, format) => {
+  if (!date) return;
   let dateStr = '';
-  if (date) {
-    let newDate = new Date(date.replace(/-/g, '/'));
-    let year = newDate.getFullYear();
-    let month = newDate.getMonth() + 1;
-    let day = newDate.getDate();
-    let hour = newDate.getHours();
-    let minute = newDate.getMinutes();
-    let second = newDate.getSeconds();
-    const monthStr = month > 9 ? '' + month : '0' + month;
-    const dayStr = day > 9 ? '' + day : '0' + day;
-    const hourStr = hour > 9 ? '' + hour : '0' + hour;
-    const minuteStr = minute > 9 ? '' + minute : '0' + minute;
-    const secondStr = second > 9 ? '' + second : '0' + second;
-    switch (format) {
-      case 'yyyy/mm/dd':
-        dateStr = year + '/' + monthStr + '/' + dayStr;
-        break;
-      case 'yyyy/mm/dd hh':
-        dateStr = year + '/' + monthStr + '/' + dayStr + ' ' + hourStr;
-        break;
-      case 'yyyy/mm/dd hh:mm':
-        dateStr = year + '/' + monthStr + '/' + dayStr + ' ' + hourStr + ':' + minuteStr;
-        break;
-      case 'yyyy/mm/dd hh:mm:ss':
-        dateStr = year + '/' + monthStr + '/' + dayStr + ' ' + hourStr + ':' + minuteStr + ':' + secondStr;
-        break;
-      case 'yyyy-mm-dd':
-        dateStr = year + '-' + monthStr + '-' + dayStr;
-        break;
-      case 'zh-cn':
-        dateStr = year + '年' + monthStr + '月' + dayStr + '日';
-        break;
-    }
-    newDate = null;
+  let tempStr = date.replace(/[-年月日]/g, '/');
+  const tempDate = tempStr.split('/').filter((item) => {
+    return item !== '';
+  });
+  let newDate = new Date(tempDate.join('/'));
+  const year = newDate.getFullYear();
+  const month = newDate.getMonth() + 1;
+  const day = newDate.getDate();
+  const hour = newDate.getHours();
+  const minute = newDate.getMinutes();
+  const second = newDate.getSeconds();
+  const monthStr = month > 9 ? '' + month : '0' + month;
+  const dayStr = day > 9 ? '' + day : '0' + day;
+  const hourStr = hour > 9 ? '' + hour : '0' + hour;
+  const minuteStr = minute > 9 ? '' + minute : '0' + minute;
+  const secondStr = second > 9 ? '' + second : '0' + second;
+  switch (format) {
+    case 'yyyy/mm/dd':
+      dateStr = year + '/' + monthStr + '/' + dayStr;
+      break;
+    case 'yyyy/mm/dd hh':
+      dateStr = year + '/' + monthStr + '/' + dayStr + ' ' + hourStr;
+      break;
+    case 'yyyy/mm/dd hh:mm':
+      dateStr = year + '/' + monthStr + '/' + dayStr + ' ' + hourStr + ':' + minuteStr;
+      break;
+    case 'yyyy/mm/dd hh:mm:ss':
+      dateStr = year + '/' + monthStr + '/' + dayStr + ' ' + hourStr + ':' + minuteStr + ':' + secondStr;
+      break;
+    case 'yyyy-mm-dd':
+      dateStr = year + '-' + monthStr + '-' + dayStr;
+      break;
+    case 'zh-cn':
+      dateStr = year + '年' + monthStr + '月' + dayStr + '日';
+      break;
   }
+  newDate = null;
   return dateStr;
 };
 /**

@@ -19,7 +19,7 @@
                         <lazy-image src="../../assets/images/user.png"/>
                       </div>
                       <div class="item-info">
-                        <div class="item-name">{{phoneNumber}}</div>
+                        <div class="item-name">{{isUser.hidePhone}}</div>
                       </div>
                     </div>
                     <div class="user-item" v-if="!isUser" @tap="onHandleLogin">
@@ -67,9 +67,9 @@
   import wepy from '@wepy/core';
   import store from '../../store';
   import {mapState} from '@wepy/redux';
-  import * as controller from './controller';
   import * as $routes from '../../router';
   import * as $config from '../../config';
+  import * as controller from './controller';
 
   wepy.page({
     store,
@@ -77,7 +77,6 @@
     mixins: [],
 
     data: {
-      phoneNumber: '',
       url: $config.DEFAULT_MINE,
       items: [
         {
@@ -132,15 +131,6 @@
             });
           }
         }
-      }
-    },
-
-    onShow() {
-      const {isUser} = this;
-      if (isUser) {
-        const start = isUser.substr(0, 3);
-        const end = isUser.substr(8, 3);
-        this.phoneNumber = start + '****' + end;
       }
     },
 

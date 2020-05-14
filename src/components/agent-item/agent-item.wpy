@@ -22,7 +22,6 @@
     data: {
       noData: '暂无数据'
     },
-    events: {},
     props: {
       item: {
         type: Object,

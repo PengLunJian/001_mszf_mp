@@ -35,15 +35,17 @@
 <script type="text/ecmascript-6">
   import wepy from '@wepy/core';
   import store from '../../../store';
-  import {mapState, mapActions} from '@wepy/redux';
-  import * as storage from '../../../utils/storage';
-  import * as controller from './controller';
   import Toast from '../../../mixins/toast';
+  import Route from '../../../mixins/route';
+  import Storage from '../../../mixins/storage';
+  import {mapState, mapActions} from '@wepy/redux';
+  import * as $routes from '../../../router';
+  import * as controller from './controller';
 
   wepy.page({
     store,
 
-    mixins: [Toast],
+    mixins: [Toast, Route, Storage],
 
     data: {
       code: '',
@@ -93,7 +95,7 @@
         });
       },
       onHandlePhoneLogin() {
-        this.showToast('该功能暂未开通，敬请期待');
+        this.navigateTo($routes.WAITING.path);
       },
       exeAjaxSelectLogin() {
         const {code} = this;
@@ -123,7 +125,12 @@
             res = res || {};
             const {success, data} = res.payload;
             if (success) {
-              console.log(data);
+              const phone = data;
+              const start = phone.substr(0, 3);
+              const end = phone.substr(8, 3);
+              const hidePhone = start + '****' + end;
+              this.setItem('user', {phone, hidePhone});
+              this.navigateBack(1);
             } else {
               this.showToast('登录失败，请重试');
             }

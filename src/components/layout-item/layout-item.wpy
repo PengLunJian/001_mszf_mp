@@ -1,15 +1,17 @@
 <template>
   <div class="item">
     <div class="item-img">
-      <lazy-image src="{{getPicUrl}}" mode="aspectFill"/>
+      <lazy-image src="{{item.picUrl}}" mode="aspectFill"/>
     </div>
     <div class="item-info">
       <div class="item-row row">
-        <div class="item-apart">{{item.apart}}</div>
-        <div class="item-area">{{item.mainArea}}m²</div>
+        <div class="item-apart">{{item.apart||noData}}</div>
+        <div class="item-area">{{item.mainArea||0}}m²</div>
       </div>
       <div class="item-row row">
-        <div class="item-state{{getState}}">{{item.state}}</div>
+        <div class="item-state state1" v-if="item.state==='在售'">{{item.state}}</div>
+        <div class="item-state state2" v-if="item.state==='待售'">{{item.state}}</div>
+        <div class="item-state state3" v-if="item.state==='售罄'">{{item.state}}</div>
       </div>
     </div>
   </div>
@@ -17,31 +19,18 @@
 
 <script type="text/ecmascript-6">
   import wepy from '@wepy/core';
-  import apis from '../../apis';
 
   wepy.component({
     data: {
       noData: '暂无数据'
     },
-    events: {},
     props: {
       item: {
         type: Object,
         default: {}
       }
     },
-    computed: {
-      getPicUrl() {
-        const {picUrl} = this.item;
-        return picUrl ? apis.fileUrl + picUrl : '';
-      },
-      getState() {
-        const {state} = this.item;
-        const states = ['在售', '待售', '售罄'];
-        const index = states.indexOf(state);
-        return ' state' + (index + 1);
-      }
-    },
+    computed: {},
     methods: {},
     created() {
     }

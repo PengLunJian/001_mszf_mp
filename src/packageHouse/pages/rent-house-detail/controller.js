@@ -8,5 +8,6 @@ export const STATES = {
 };
 
 export const ACTIONS = {
-  ajaxSelectDetail: params => actions.ajaxRequestSelectDetail(params)
+  ajaxSelectDetail: params => actions.ajaxRequestSelectDetail(params),
+  ajaxSelectLocation: params => actions.ajaxRequestSelectLocation(params)
 };

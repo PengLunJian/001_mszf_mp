@@ -1,6 +1,6 @@
 export default {
   data: {
-    mixin: 'MixinText'
+    mixin: 'Toast'
   },
   methods: {
     showToast(title, icon) {

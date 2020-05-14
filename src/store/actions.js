@@ -1,9 +1,10 @@
 import apis from '../apis';
 import store from './index';
 import axios from '../axios';
-import * as actionTypes from './actionTypes';
-import {createAction} from 'redux-actions';
 import QQMapWX from 'wx-qqmap-jssdk';
+import {createAction} from 'redux-actions';
+import * as actionTypes from './actionTypes';
+import * as $config from '../config';
 
 /**
  *
@@ -58,6 +59,33 @@ export const ajaxRequestSelectDetail = createAction(
           commit(actionTypes.SELECT_DETAIL_FAILURE);
           reject(err);
         });
+    });
+  });
+
+export const ajaxRequestSelectLocation = createAction(
+  'selectLocation', (params) => {
+    return new Promise((resolve, reject) => {
+      const {province, city, area, address, houseName} = params;
+      const detailAddress = province + city + area + address + houseName;
+      const qqmapsdk = new QQMapWX({
+        key: $config.DEFAULT_MAPKEY
+      });
+      qqmapsdk.geocoder({
+        address: detailAddress,
+        success: (res) => {
+          res = res || {};
+          const {result} = res;
+          const {location} = result || {};
+          const {lng, lat} = location;
+          const data = {...params, lng, lat};
+          commit(actionTypes.SELECT_DETAIL_REPLACE, data);
+          resolve(res);
+        },
+        fail: (err) => {
+          console.log(err);
+          reject(err);
+        }
+      });
     });
   });
 
@@ -156,7 +184,6 @@ export const ajaxRequestSelectPhone = createAction(
       axios.post(apis.selectPhone, params)
         .then((res) => {
           res = res || {};
-          console.log(res);
           const {data, success} = res;
           if (success) {
             commit(actionTypes.SELECT_PHONE_SUCCESS, data);
@@ -179,7 +206,6 @@ export const ajaxRequestSelectLogin = createAction(
       axios.post(apis.selectLogin, params)
         .then((res) => {
           res = res || {};
-          console.log(res);
           const {data, success} = res;
           if (success) {
             commit(actionTypes.SELECT_LOGIN_SUCCESS, data);
@@ -195,9 +221,9 @@ export const ajaxRequestSelectLogin = createAction(
     });
   });
 
-export const selectLoginReplace = createAction(
-  'selectLoginReplace', (params) => {
-    commit(actionTypes.SELECT_LOGIN_SUCCESS, params);
+export const selectPhoneReplace = createAction(
+  'selectPhoneReplace', (params) => {
+    commit(actionTypes.SELECT_PHONE_REPLACE, params);
   });
 
 export const ajaxRequestSelectCitys = createAction(
@@ -205,7 +231,7 @@ export const ajaxRequestSelectCitys = createAction(
     return new Promise((resolve, reject) => {
       commit(actionTypes.SELECT_CITYS_REQUEST);
       const qqmapsdk = new QQMapWX({
-        key: 'CQABZ-RINL4-5MAU4-DBWDV-D2UXZ-5GBEU'
+        key: 'MFZBZ-MGLWS-C55OR-6KRVW-K6ZFK-YUF3R'
       });
       qqmapsdk.getCityList({
         success: (res) => {

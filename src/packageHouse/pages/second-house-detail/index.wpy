@@ -16,7 +16,7 @@
               <detail-base :isData="isData"/>
               <detail-agent :isData="isData"/>
               <detail-config :isData="isData"/>
-              <detail-map :name="isData.houseName" :latitude="latitude" :longitude="longitude"/>
+              <detail-map :isData="isData"/>
             </div>
           </scroll-view>
           <detail-footer :isData="isData"/>
@@ -30,18 +30,16 @@
 <script type="text/ecmascript-6">
   import wepy from '@wepy/core';
   import store from '../../../store';
-  import QQMapWX from 'wx-qqmap-jssdk';
   import {mapState, mapActions} from '@wepy/redux';
-  import * as $storage from '../../../utils/storage';
+  import Storage from '../../../mixins/storage';
   import * as controller from './controller';
 
   wepy.page({
     store,
 
-    data: {
-      latitude: 0,
-      longitude: 0
-    },
+    mixins: [Storage],
+
+    data: {},
 
     computed: {
       ...mapState(controller.STATES)
@@ -52,32 +50,18 @@
       onRefresh() {
         this.exeAjaxSelectDetail();
       },
-      onHandleInitQQMap() {
-        const {province, city, area, address, houseName} = this.isData;
-        const detailAddress = province + city + area + address + houseName;
-        const qqmapsdk = new QQMapWX({
-          key: 'MFZBZ-MGLWS-C55OR-6KRVW-K6ZFK-YUF3R'
-        });
-        qqmapsdk.geocoder({
-          address: detailAddress,
-          success: (res) => {
-            res = res || {};
-            const {result} = res;
-            const {location} = result || {};
-            const {lat, lng} = location || {};
-            this.latitude = lat;
-            this.longitude = lng;
-            console.log('东经=' + lng + '|北纬=' + lat);
-          }
-        });
-      },
       exeAjaxSelectDetail() {
         const {id} = this.$wx.options;
-        const user = $storage.getItem('user');
-        const phone = user.phone || '';
-        this.ajaxSelectDetail({id, phone})
+        const user = this.getItem('user');
+        const {phone} = user;
+        const params = phone ? {id, phone} : {id};
+        this.ajaxSelectDetail(params)
           .then((res) => {
-            this.onHandleInitQQMap();
+            res = res || {};
+            const {success, data} = res.payload;
+            if (success) {
+              this.ajaxSelectLocation(data);
+            }
             console.log(res);
           })
           .catch((err) => {

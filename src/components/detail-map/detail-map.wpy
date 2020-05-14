@@ -9,8 +9,8 @@
           <div class="module-map">
             <div class="map-content">
               <map class="map-canvas"
-                   latitude="{{latitude}}"
-                   longitude="{{longitude}}"
+                   latitude="{{isData.lat}}"
+                   longitude="{{isData.lng}}"
                    enable-zoom="{{enableZoom}}"
                    enable-scroll="{{enableScroll}}"
                    @tap="onHandleClickMap">
@@ -18,7 +18,7 @@
               <view class="map-marker">
                 <view class="marker-container">
                   <view class="marker-content">
-                    <view class="marker-text">{{name}}</view>
+                    <view class="marker-text">{{isData.houseName}}</view>
                     <view class="marker-icon"></view>
                     <view class="marker-circle"></view>
                   </view>
@@ -42,17 +42,9 @@
       enableScroll: false
     },
     props: {
-      name: {
-        type: String,
-        default: '正在加载'
-      },
-      latitude: {
-        type: Number,
-        default: 0
-      },
-      longitude: {
-        type: Number,
-        default: 0
+      isData: {
+        type: Object,
+        default: {}
       }
     },
     methods: {

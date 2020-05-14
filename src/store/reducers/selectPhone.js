@@ -12,12 +12,17 @@ const actions = {
     };
   },
   [actionTypes.SELECT_PHONE_SUCCESS](state, action) {
+    const phone = action.data;
+    const start = phone.substr(0, 3);
+    const end = phone.substr(8, 3);
+    const hidePhone = start + '****' + end;
+    const data = {phone, hidePhone};
     return {
       ...state,
       isLoading: false,
       isSuccess: true,
       isFailure: false,
-      data: action.data
+      data
     };
   },
   [actionTypes.SELECT_PHONE_FAILURE](state) {
@@ -26,6 +31,15 @@ const actions = {
       isLoading: false,
       isSuccess: false,
       isFailure: true
+    };
+  },
+  [actionTypes.SELECT_PHONE_REPLACE](state, action) {
+    return {
+      ...state,
+      isLoading: false,
+      isSuccess: true,
+      isFailure: false,
+      data: action.data
     };
   }
 };

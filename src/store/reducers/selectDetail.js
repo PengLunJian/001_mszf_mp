@@ -1,5 +1,6 @@
 import {handleActions} from 'redux-actions';
 import * as actionTypes from '../actionTypes';
+import * as utils from '../../utils';
 import * as states from '../states';
 
 const actions = {
@@ -13,12 +14,13 @@ const actions = {
     };
   },
   [actionTypes.SELECT_DETAIL_SUCCESS](state, action) {
+    const data = utils.dataFormat(action.data);
     return {
       ...state,
       isLoading: false,
       isSuccess: true,
       isFailure: false,
-      data: action.data
+      data
     };
   },
   [actionTypes.SELECT_DETAIL_FAILURE](state) {
@@ -27,6 +29,15 @@ const actions = {
       isLoading: false,
       isSuccess: false,
       isFailure: true
+    };
+  },
+  [actionTypes.SELECT_DETAIL_REPLACE](state, action) {
+    return {
+      ...state,
+      isLoading: false,
+      isSuccess: true,
+      isFailure: false,
+      data: action.data
     };
   }
 };

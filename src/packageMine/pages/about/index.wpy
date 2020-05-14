@@ -92,10 +92,11 @@
       isShow: false,
       isHide: false,
       url: $config.DEFAULT_ABOUT,
-      location: {
-        latitude: 0, // 纬度
-        longitude: 0, // 经度
-        name: '广德码上找房',
+      company: {
+        latitude: 0,
+        longitude: 0,
+        name: '广德市码上找房',
+        phoneNumber: '18130278679',
         address: '安徽省宣城市广德市金鑫世贸广场北区块B栋五楼505-506'
       }
     },
@@ -104,11 +105,9 @@
 
     methods: {
       onHandlePhone() {
-        const {globalData} = this.$app.$options;
-        const {company} = globalData;
-        const {phoneNumber} = company;
+        const {phoneNumber} = this.company;
         wx.makePhoneCall({
-          phoneNumber: phoneNumber,
+          phoneNumber,
           success: (res) => {
             console.log(res);
           },
@@ -121,20 +120,19 @@
         });
       },
       onHandlePosition() {
-        const {address} = this.location;
+        const {address} = this.company;
         const qqmapsdk = new QQMapWX({
-          key: 'CQABZ-RINL4-5MAU4-DBWDV-D2UXZ-5GBEU'
+          key: $config.DEFAULT_MAPKEY
         });
         qqmapsdk.geocoder({
-          address: address,
+          address,
           success: (res) => {
             if (res) {
               const {result} = res || {};
               const {location} = result || {};
               const {lat, lng} = location || {};
-              this.location.longitude = lng;
-              this.location.latitude = lat;
-              console.log('东经=' + lng + '|北纬=' + lat);
+              this.company.longitude = lng;
+              this.company.latitude = lat;
             }
           },
           complete: (res) => {
@@ -143,12 +141,12 @@
         });
       },
       onHandleLocation() {
-        const {latitude, longitude, name, address} = this.location;
+        const {latitude, longitude, name, address} = this.company;
         wx.openLocation({
-          name: name,
-          address: address,
-          latitude: latitude,
-          longitude: longitude,
+          name,
+          address,
+          latitude,
+          longitude,
           success: (res) => {
             console.log(res);
           },

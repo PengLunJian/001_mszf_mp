@@ -1,5 +1,6 @@
 import {handleActions} from 'redux-actions';
 import * as actionTypes from '../actionTypes';
+import * as utils from '../../utils';
 import * as states from '../states';
 
 const actions = {
@@ -16,16 +17,25 @@ const actions = {
     const resNewData = resNew.data || {};
     const resSecondData = resSecond.data || {};
     const resRentData = resRent.data || {};
-    const newRows = resNewData.rows || [];
-    const secondRows = resSecondData.rows || [];
-    const rentRows = resRentData.rows || [];
-    const newData = {newRows, secondRows, rentRows};
+    const resNewRows = resNewData.rows || [];
+    const newRows = resNewRows.map((item) => {
+      return utils.dataFormat(item);
+    });
+    const resSecondRows = resSecondData.rows || [];
+    const secondRows = resSecondRows.map((item) => {
+      return utils.dataFormat(item);
+    });
+    const resRentRows = resRentData.rows || [];
+    const rentRows = resRentRows.map((item) => {
+      return utils.dataFormat(item);
+    });
+    const data = {newRows, secondRows, rentRows};
     return {
       ...state,
       isLoading: false,
       isSuccess: true,
       isFailure: false,
-      data: newData
+      data
     };
   },
   [actionTypes.SELECT_HOTHOUSE_FAILURE](state) {

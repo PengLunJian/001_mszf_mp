@@ -3,7 +3,7 @@
     <div class="item-row row">
       <div class="item-col col-3">
         <div class="item-img">
-          <lazy-image src="{{item.picUrl[0]?fileUrl+item.picUrl[0]:url}}" width="50%" mode="aspectFill"/>
+          <lazy-image src="{{item.picUrl[0]}}" width="50%" mode="aspectFill"/>
         </div>
       </div>
       <div class="item-col col-9">
@@ -24,8 +24,10 @@
             <div class="item-normal">建面{{item.minfloorArea||0}}-{{item.maxfloorArea||0}}m²</div>
           </div>
           <div class="item-row row">
-            <div class="item-state{{getState}}">{{item.state}}</div>
-            <div class="item-tag type1" v-for="(value,index) in getTags" :key="index">{{value}}</div>
+            <div class="item-state state1" v-if="item.state==='在售'">{{item.state}}</div>
+            <div class="item-state state2" v-if="item.state==='待售'">{{item.state}}</div>
+            <div class="item-state state3" v-if="item.state==='售罄'">{{item.state}}</div>
+            <div class="item-tag type1" v-for="(value,index) in item.tags" :key="index">{{value}}</div>
           </div>
           <div class="item-row row" v-if="isType">
             <div class="item-type type1">新房</div>
@@ -38,7 +40,7 @@
     <div class="item-row row">
       <div class="item-col col-3">
         <div class="item-img">
-          <lazy-image src="{{item.picUrl[0]?fileUrl+item.picUrl[0]:url}}" width="50%" mode="aspectFill"/>
+          <lazy-image src="{{item.picUrl[0]}}" width="50%" mode="aspectFill"/>
         </div>
       </div>
       <div class="item-col col-9">
@@ -60,7 +62,7 @@
             <div class="item-normal">{{item.floorArea||noData}}m²</div>
           </div>
           <div class="item-row row">
-            <div class="item-tag type2" v-for="(value,index) in getTags" :key="index">{{value}}</div>
+            <div class="item-tag type2" v-for="(value,index) in item.tags" :key="index">{{value}}</div>
           </div>
           <div class="item-row row" v-if="isType">
             <div class="item-type type2">租房</div>
@@ -73,7 +75,7 @@
     <div class="item-row row">
       <div class="item-col col-3">
         <div class="item-img">
-          <lazy-image src="{{item.picUrl[0]?fileUrl+item.picUrl[0]:url}}" width="50%" mode="aspectFill"/>
+          <lazy-image src="{{item.picUrl[0]}}" width="50%" mode="aspectFill"/>
         </div>
       </div>
       <div class="item-col col-9">
@@ -96,7 +98,7 @@
             <div class="item-normal">{{item.floorArea||noData}}m²</div>
           </div>
           <div class="item-row row">
-            <div class="item-tag type3" v-for="(value,index) in getTags" :key="index">{{value}}</div>
+            <div class="item-tag type3" v-for="(value,index) in item.tags" :key="index">{{value}}</div>
           </div>
           <div class="item-row row" v-if="isType">
             <div class="item-type type3">租房</div>
@@ -131,29 +133,7 @@
         default: false
       }
     },
-    computed: {
-      getState() {
-        let clazz = '';
-        const {type, state} = this.item;
-        if (type) {
-          const states = [
-            ['在售', '待售', '售罄'],
-            ['未售', '', '已售'],
-            ['未租', '', '已租']
-          ];
-          states[type - 1].map((item, index) => {
-            if (item === state) {
-              clazz = ' state' + (index + 1);
-            }
-          });
-        }
-        return clazz;
-      },
-      getTags() {
-        const {tags} = this.item;
-        return tags ? tags.split(' ') : '';
-      }
-    },
+    computed: {},
     methods: {
       onHandleDetail() {
         const {id, type} = this.item;

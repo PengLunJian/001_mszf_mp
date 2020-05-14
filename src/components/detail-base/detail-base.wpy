@@ -6,8 +6,10 @@
           <div class="module-base" v-if="isData.type===1">
             <div class="module-row row">
               <div class="module-col tags col-12">
-                <div class="item-state{{getState}}">{{isData.state}}</div>
-                <div class="item-tag" v-for="(item,index) in getTags" :key="index">{{item}}</div>
+                <div class="item-state state1" v-if="isData.state==='在售'">{{isData.state}}</div>
+                <div class="item-state state2" v-if="isData.state==='待售'">{{isData.state}}</div>
+                <div class="item-state state3" v-if="isData.state==='售罄'">{{isData.state}}</div>
+                <div class="item-tag" v-for="(item,index) in isData.tags" :key="index">{{item}}</div>
               </div>
             </div>
             <div class="module-row row">
@@ -43,9 +45,13 @@
                 <span class="label">类型</span>
                 <span class="value">{{isData.quality||noData}}</span>
               </div>
-              <div class="module-col col-12">
+              <div class="module-col col-6">
                 <span class="label">地址</span>
                 <span class="value">{{isData.address||noData}}</span>
+              </div>
+              <div class="module-col col-6">
+                <span class="label">发布</span>
+                <span class="value">{{isData.createTime||noData}}</span>
               </div>
             </div>
           </div>
@@ -100,7 +106,7 @@
               </div>
               <div class="module-col col-6">
                 <span class="label">发布</span>
-                <span class="value">{{getCreateTime||noData}}</span>
+                <span class="value">{{isData.createTime||noData}}</span>
               </div>
             </div>
           </div>
@@ -155,7 +161,7 @@
               </div>
               <div class="module-col col-6">
                 <span class="label">发布</span>
-                <span class="value">{{getCreateTime||noData}}</span>
+                <span class="value">{{isData.createTime||noData}}</span>
               </div>
             </div>
           </div>
@@ -167,7 +173,6 @@
 
 <script type="text/ecmascript-6">
   import wepy from '@wepy/core';
-  import * as utils from '../../utils';
 
   wepy.component({
     data: {
@@ -179,34 +184,7 @@
         default: {}
       }
     },
-    computed: {
-      getCreateTime() {
-        const {createTime} = this.isData;
-        if (!createTime) return;
-        return utils.dateFormat(createTime, 'yyyy/mm/dd');
-      },
-      getState() {
-        let clazz = '';
-        const {type, state} = this.isData;
-        if (type) {
-          const states = [
-            ['在售', '待售', '售罄'],
-            ['未售', '', '已售'],
-            ['未租', '', '已租']
-          ];
-          states[type - 1].map((item, index) => {
-            if (item === state) {
-              clazz = ' state' + (index + 1);
-            }
-          });
-        }
-        return clazz;
-      },
-      getTags() {
-        const {tags} = this.isData;
-        return tags ? tags.split(' ') : '';
-      }
-    },
+    computed: {},
     methods: {},
     created() {
     }
