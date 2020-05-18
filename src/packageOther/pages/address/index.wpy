@@ -2,17 +2,17 @@
   <div class="container">
     <div class="content">
       <div class="header">
-        <top-bar title="选择城市"></top-bar>
+        <top-bar title="选择城市"/>
       </div>
       <div class="body">
-        <loading :isLoading="isLoading&&!isData.citys.length"></loading>
-        <error :isFailure="isFailure&&!isData.citys.length" @refresh="onRefresh"></error>
-        <empty :isSuccess="isSuccess&&!isData.citys.length"></empty>
-        <div class="context fade" v-if="isData.citys.length">
+        <loading :isLoading="isLoading&&!isData.length"></loading>
+        <error :isFailure="isFailure&&!isData.length" @refresh="onRefresh"></error>
+        <empty :isSuccess="isSuccess&&!isData.length"></empty>
+        <div class="context fade" v-if="isData.length">
           <scroll-view
             class="scroll-view"
             scroll-y="{{true}}">
-            <div class="module" v-for="(item,index) in isData.citys"
+            <div class="module" v-for="(item,index) in isData"
                  v-if="item.items.length" :key="index">
               <div class="module-content">
                 <div class="module-header">{{item.label}}</div>
@@ -20,9 +20,7 @@
                   <div class="module-citys">
                     <div class="module-row row">
                       <div class="module-col col-3" v-for="(city,index) in item.items" :key="index">
-                        <div class="module-item{{city.isOpen?' on':''}}"
-                             @tap="onHandleSelectCity(city)">{{city.fullname}}
-                        </div>
+                        <div class="module-item" @tap="onHandleUpdateCitys(city)">{{city.fullname}}</div>
                       </div>
                     </div>
                   </div>
@@ -41,14 +39,14 @@
 <script type="text/ecmascript-6">
   import wepy from '@wepy/core';
   import store from '../../../store';
+  import Route from '../../../mixins/route';
   import {mapState, mapActions} from '@wepy/redux';
   import * as controller from './controller';
-  import Toast from '../../../mixins/toast';
 
   wepy.page({
     store,
 
-    mixins: [Toast],
+    mixins: [Route],
 
     data: {},
 
@@ -58,15 +56,9 @@
 
     methods: {
       ...mapActions(controller.ACTIONS),
-      onHandleSelectCity(item) {
-        if (item.isOpen) {
-          this.selectCitysReplace(item);
-          wx.navigateBack({
-            delta: 1
-          });
-        } else {
-          this.showToast('该城市暂未开通服务，敬请期待');
-        }
+      onHandleUpdateCitys(item) {
+        this.updateCitysReplace(item);
+        this.navigateBack(1);
       },
       exeAjaxSelectCitys() {
         this.ajaxSelectCitys()

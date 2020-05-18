@@ -23,9 +23,7 @@
                        scroll-y="{{iSwitch}}"
                        @scrolltolower="onHandleScrollToLower">
             <div class="items">
-              <block v-for="(item,index) in isData.rows" :key="index">
-                <house-item :item="item"/>
-              </block>
+              <house-item v-for="(item,index) in isData.rows" :item="item" :key="index"/>
             </div>
             <loading-more :length="isData.rows.length" :totalCount="isData.totalCount"/>
           </scroll-view>
@@ -39,14 +37,13 @@
           <div class="modal-body">
             <div class="modal-addr">
               <div class="modal-city">
-                <div class="modal-city-item">{{btnArea.fullname}}</div>
+                <div class="modal-city-item">{{isCity.fullname}}</div>
               </div>
               <div class="modal-area">
                 <scroll-view class="scroll-view" scroll-y="{{true}}">
-                  <div class="modal-area-item{{item.isOpen?' on':''}}"
-                       v-for="(item,index) in btnArea.children"
+                  <div class="modal-area-item" v-for="(item,index) in btnArea.items"
                        :class="{'active':index===btnArea.activeIndex}"
-                       @tap="onHandleChooseArea(item,index)">{{item.fullname}}
+                       @tap="onHandleChooseArea(index)">{{item.fullname}}
                   </div>
                 </scroll-view>
               </div>
@@ -199,8 +196,8 @@
 <script type="text/ecmascript-6">
   import wepy from '@wepy/core';
   import store from '../../../store';
-  import {mapState, mapActions} from '@wepy/redux';
   import Toast from '../../../mixins/toast';
+  import {mapState, mapActions} from '@wepy/redux';
   import * as controller from './controller';
 
   wepy.page({
@@ -469,12 +466,8 @@
           }
         }, 0);
       },
-      onHandleChooseArea(item, index) {
-        if (item.isOpen) {
-          this.btnArea.activeIndex = index;
-        } else {
-          this.showToast('该城市暂未开通服务，敬请期待');
-        }
+      onHandleChooseArea(index) {
+        this.btnArea.activeIndex = index;
       },
       onHandleConfirmArea() {
         this.onHandleCloseModal(0);
@@ -512,19 +505,13 @@
         this.pageIndex = 1;
       },
       getParams() {
-        let city = '';
-        let area = '';
         const type = 3;
+        const city = this.isCity.fullname;
         const {pageIndex, pageSize} = this;
-        const {activeIndex, children} = this.btnArea;
-        const {fullname} = children[activeIndex];
-        if (fullname === '不限') {
-          city = this.btnArea.fullname;
-          area = '';
-        } else {
-          city = this.btnArea.fullname;
-          area = fullname === '广德市' ? '广德县' : fullname;
-        }
+        const {activeIndex, items} = this.btnArea;
+        const {fullname} = items[activeIndex];
+        const area = fullname === '不限'
+          ? '' : (fullname === '广德市' ? '广德县' : fullname);
         const params = {
           type,
           city,
@@ -543,7 +530,7 @@
       this.removeHouseReplace();
       this.btnArea = {
         activeIndex: 0,
-        ...this.isCity.city
+        items: this.isArea
       };
       this.exeAjaxSelectHouse();
     }
@@ -742,10 +729,7 @@
                   height: 100%;
                   .modal-area-item {
                     padding: 0 unit(40, rpx);
-                    color: @fontColor3;
-                    &.on {
-                      color: @fontColor1;
-                    }
+                    color: @fontColor1;
                     &.active {
                       color: @theme2;
                     }

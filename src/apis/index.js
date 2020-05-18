@@ -44,47 +44,34 @@ const apis = {
     }
   },
   updateFollow: {
-    url: '/house/v1/houser/house/follow',
+    url: '/conllect/insert',
     params: {
-      house_id: 1
+      houseId: '',
+      phone: ''
     }
   },
   updateUnfollow: {
-    url: '/house/v1/houser/house/unfollow',
+    url: '/collect/delete',
     params: {
-      house_id: 1
+      houseId: '',
+      phone: ''
     }
   },
   selectFavorite: {
-    url: '/house/v1/houser/house/followed',
+    url: '/collect/select',
     params: {
-      page: {
-        pageSize: 10,
-        pageIndex: 1
-      },
-      filter: [
-        {
-          field: 'id',
-          opt: '>=',
-          value: 2
-        }
-      ]
+      pageSize: 10,
+      pageIndex: 1,
+      phone: '',
+      type: ''
     }
   },
   selectHistory: {
-    url: '/house/v1/houser/house/history',
+    url: '/history/select',
     params: {
-      page: {
-        pageSize: 10,
-        pageIndex: 1
-      },
-      filter: [
-        {
-          field: '',
-          opt: '',
-          value: 0
-        }
-      ]
+      pageSize: 10,
+      pageIndex: 1,
+      phone: ''
     }
   }
 };

@@ -8,6 +8,6 @@ export const STATES = {
 };
 
 export const ACTIONS = {
-  ajaxSelectCitys: () => actions.ajaxRequestSelectCitys(),
-  selectCitysReplace: params => actions.selectCitysReplace(params)
+  ajaxSelectCitys: actions.ajaxRequestSelectCitys,
+  updateCitysReplace: params => actions.updateCitysReplace(params)
 };

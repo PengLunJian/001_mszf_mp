@@ -2,12 +2,12 @@
   <div class="container">
     <div class="content">
       <div class="header">
-        <top-bar title="我的收藏"></top-bar>
+        <top-bar title="我的收藏"/>
         <div class="tab-bar">
           <div class="tab-item" v-for="(item,index) in tab.items"
-               :class="{'active':index===tab.initIndex}" :key="index"
+               :class="{'active':index===tab.activeIndex}" :key="index"
                @tap="onHandleTabChange(index)">
-            <div class="tab-text">{{item.name}}</div>
+            <div class="tab-text">{{item}}</div>
           </div>
         </div>
       </div>
@@ -20,9 +20,7 @@
                        scroll-y="{{true}}"
                        @scrolltolower="onHandleScrollToLower">
             <div class="items">
-              <block v-for="(item,index) in isData.rows" :key="index">
-                <house-item :item="item"/>
-              </block>
+              <house-item v-for="(item,index) in isData.rows" :item="item" :key="index"/>
             </div>
             <loading-more :length="isData.rows.length" :totalCount="isData.totalCount"/>
           </scroll-view>
@@ -35,32 +33,23 @@
 <script type="text/ecmascript-6">
   import wepy from '@wepy/core';
   import store from '../../../store/index';
+  import Toast from '../../../mixins/toast';
+  import Storage from '../../../mixins/storage';
   import {mapState, mapActions} from '@wepy/redux';
   import * as controller from './controller';
-  import Toast from '../../../mixins/toast';
 
   wepy.page({
     store,
 
-    mixins: [Toast],
+    mixins: [Toast, Storage],
 
     data: {
       timer: null,
       pageSize: 10,
       pageIndex: 1,
       tab: {
-        initIndex: 0,
-        items: [
-          {
-            name: '新房'
-          },
-          {
-            name: '二手房'
-          },
-          {
-            name: '租房'
-          }
-        ]
+        activeIndex: 0,
+        items: ['新房', '二手房', '租房']
       }
     },
 
@@ -73,7 +62,7 @@
         if (this.timer) return;
         this.timer = setTimeout(() => {
           this.pageIndex = 1;
-          this.tab.initIndex = index;
+          this.tab.activeIndex = index;
           this.removeFavoriteReplace();
           this.exeAjaxSelectFavorite();
         }, 0);
@@ -113,25 +102,14 @@
         }, 0);
       },
       getParams() {
-        const type = this.tab.initIndex + 1;
+        const {pageSize, pageIndex} = this;
+        const {phone} = this.getItem('user');
+        const type = this.tab.activeIndex + 1;
         const params = {
-          page: {
-            pageSize: this.pageSize,
-            pageIndex: this.pageIndex
-          },
-          filter: [
-            {
-              field: 'type',
-              opt: '=',
-              value: type
-            }
-          ],
-          sort: [
-            {
-              field: 'id',
-              asc: false
-            }
-          ]
+          pageSize,
+          pageIndex,
+          phone,
+          type
         };
         return params;
       },

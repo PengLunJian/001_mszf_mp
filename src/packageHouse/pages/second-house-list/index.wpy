@@ -24,9 +24,7 @@
             scroll-y="{{iSwitch}}"
             @scrolltolower="onHandleScrollToLower">
             <div class="items">
-              <block v-for="(item,index) in isData.rows" :key="index">
-                <house-item :item="item"/>
-              </block>
+              <house-item v-for="(item,index) in isData.rows" :item="item" :key="index"/>
             </div>
             <loading-more :length="isData.rows.length" :totalCount="isData.totalCount"/>
           </scroll-view>

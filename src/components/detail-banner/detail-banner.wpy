@@ -39,13 +39,14 @@
   import wepy from '@wepy/core';
   import store from '../../store';
   import Toast from '../../mixins/toast';
+  import Storage from '../../mixins/storage';
   import {mapActions, mapState} from '@wepy/redux';
   import * as controller from './controller';
   import * as $routes from '../../router';
 
   wepy.component({
     store,
-    mixins: [Toast],
+    mixins: [Toast, Storage],
     data: {
       current: 1,
       circular: true,
@@ -74,8 +75,8 @@
         this.current = current + 1;
       },
       exeAjaxUpdateUnfollow() {
-        const {id} = this.isData;
-        this.ajaxUpdateUnfollow({id})
+        const params = this.getParams();
+        this.ajaxUpdateUnfollow(params)
           .then((res) => {
             const {success} = res.payload;
             if (success) {
@@ -91,8 +92,8 @@
           });
       },
       exeAjaxUpdateFollow() {
-        const {id} = this.isData;
-        this.ajaxUpdateFollow({id})
+        const params = this.getParams();
+        this.ajaxUpdateFollow(params)
           .then((res) => {
             const {success} = res.payload;
             if (success) {
@@ -108,14 +109,23 @@
           });
       },
       onHandleFollow() {
-        const {isUser} = this;
-        if (isUser) {
+        const {phone} = this.getItem('user');
+        if (phone) {
           this.exeAjaxUpdateFollow();
         } else {
           wx.navigateTo({
             url: $routes.LOGIN.path
           });
         }
+      },
+      getParams() {
+        const houseId = this.isData.id;
+        const {phone} = this.getItem('user');
+        const params = {
+          houseId,
+          phone
+        };
+        return params;
       }
     },
     created() {

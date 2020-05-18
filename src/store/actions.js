@@ -252,9 +252,36 @@ export const ajaxRequestSelectCitys = createAction(
     });
   });
 
-export const selectCitysReplace = createAction(
-  'selectCitysReplace', (params) => {
-    commit(actionTypes.SELECT_CITYS_REPLACE, params);
+export const ajaxRequestSelectAreas = createAction(
+  'selectAreas', (params) => {
+    return new Promise((resolve, reject) => {
+      commit(actionTypes.SELECT_AREAS_REQUEST);
+      const qqmapsdk = new QQMapWX({
+        key: 'MFZBZ-MGLWS-C55OR-6KRVW-K6ZFK-YUF3R'
+      });
+      qqmapsdk.getDistrictByCityId({
+        id: params,
+        success: (res) => {
+          res = res || {};
+          const {status} = res;
+          if (!status) {
+            commit(actionTypes.SELECT_AREAS_SUCCESS, res);
+          } else {
+            commit(actionTypes.SELECT_AREAS_FAILURE);
+          }
+          resolve(res);
+        },
+        fail: (err) => {
+          commit(actionTypes.SELECT_AREAS_FAILURE);
+          reject(err);
+        }
+      });
+    });
+  });
+
+export const updateCitysReplace = createAction(
+  'updateCitysReplace', (params) => {
+    commit(actionTypes.UPDATE_CITYS_REPLACE, params);
   });
 
 export const removeHouseReplace = createAction(

@@ -17,9 +17,12 @@ const actions = {
     const oldRows = oldData.rows || [];
     const oldList = oldData.list || [];
     const newData = action.data || {};
-    const newRows = utils.dataFilter(newData.rows || []);
-    action.data.rows = oldRows.concat(newRows);
-    action.data.list = utils.historyFilter(oldList, newRows, 'browsing_time');
+    const newRows = newData.rows || [];
+    const rows = newRows.map((item) => {
+      return utils.dataFormat(item);
+    });
+    action.data.rows = oldRows.concat(rows);
+    action.data.list = utils.historyFormat(oldList, rows, 'browseTime');
     return {
       ...state,
       isLoading: false,

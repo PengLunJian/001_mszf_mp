@@ -3,16 +3,16 @@
     <div class="content">
       <div class="header">
         <div class="top-bar">
-          <div class="top-inner">
-            <navigator class="top-location" hover-class="none" :url="addressUrl">
-              <span class="location-icon iconfont icon-location"></span>
-              <span class="location-text">{{isCity.city.fullname}}</span>
-            </navigator>
-            <div class="top-search">
-              <navigator class="btn btn-search" hover-class="none" :url="searchUrl">
+          <div class="top-row row">
+            <div class="top-col col-3" @tap="onHandleAddress">
+              <div class="top-icon iconfont icon-location"></div>
+              <div class="top-text">{{isCity.fullname}}</div>
+            </div>
+            <div class="top-col col-9">
+              <div class="btn btn-search" @tap="onHandleSearch">
                 <div class="btn-icon iconfont icon-search"></div>
                 <div class="btn-text">请输入小区/商圈</div>
-              </navigator>
+              </div>
             </div>
           </div>
         </div>
@@ -21,15 +21,13 @@
         <loading :isLoading="isLoading"></loading>
         <error :isFailure="isFailure" @refresh="onRefresh"></error>
         <div class="context fade" v-if="isSuccess">
-          <scroll-view
-            class="scroll-view"
-            scroll-y="{{true}}">
-            <div class="scroll-inner">
-              <banner></banner>
-              <custom-navigator></custom-navigator>
-              <hot-house title="租房推荐" :items="isData.rentRows"></hot-house>
-              <hot-house title="二手房推荐" :items="isData.secondRows"></hot-house>
-              <hot-house title="新房推荐" :items="isData.newRows"></hot-house>
+          <scroll-view class="scroll-view" scroll-y="{{true}}">
+            <div class="scroll-content">
+              <banner/>
+              <custom-navigator/>
+              <hot-house title="租房推荐" :items="isData.rentRows"/>
+              <hot-house title="二手房推荐" :items="isData.secondRows"/>
+              <hot-house title="新房推荐" :items="isData.newRows"/>
             </div>
           </scroll-view>
         </div>
@@ -42,6 +40,7 @@
 <script type="text/ecmascript-6">
   import wepy from '@wepy/core';
   import store from '../../store';
+  import Route from '../../mixins/route';
   import {mapState, mapActions} from '@wepy/redux';
   import * as controller from './controller';
   import * as $routes from '../../router';
@@ -49,12 +48,13 @@
   wepy.page({
     store,
 
-    mixins: [],
+    mixins: [Route],
 
     data: {
-      cityName: '',
-      addressUrl: $routes.ADDRESS.path,
-      searchUrl: $routes.SEARCH.path
+      city: {
+        id: '',
+        fullname: ''
+      }
     },
 
     computed: {
@@ -63,9 +63,25 @@
 
     methods: {
       ...mapActions(controller.ACTIONS),
+      onHandleAddress() {
+        this.navigateTo($routes.ADDRESS.path);
+      },
+      onHandleSearch() {
+        this.navigateTo($routes.SEARCH.path);
+      },
+      exeAjaxSelectAreas() {
+        const {id} = this.city;
+        this.ajaxSelectAreas(id)
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
       exeAjaxSelectHotHouse() {
-        const params = this.cityName;
-        this.ajaxSelectHotHouse(params)
+        const {fullname} = this.city;
+        this.ajaxSelectHotHouse(fullname)
           .then((res) => {
             console.log(res);
           })
@@ -79,18 +95,17 @@
     },
 
     onShow() {
-      const {cityName, isCity} = this;
-      const {fullname} = isCity.city;
-      if (cityName !== fullname) {
-        this.cityName = fullname;
+      const {city, isCity} = this;
+      if (city.id !== isCity.id) {
+        this.city = isCity;
+        this.exeAjaxSelectAreas();
         this.exeAjaxSelectHotHouse();
       }
     },
 
     onLoad() {
-      const {city} = this.isCity;
-      const {fullname} = city;
-      this.cityName = fullname;
+      this.city = this.isCity;
+      this.exeAjaxSelectAreas();
       this.exeAjaxSelectHotHouse();
     }
   });
@@ -117,27 +132,22 @@
           background-color: @white;
           padding-top: 20px;
           padding-bottom: 5px;
-          .top-inner {
-            display: flex;
-            .top-location {
-              width: unit(160, rpx);
+          .top-row {
+            .col-3 {
+              display: flex;
               height: @topBarHeight;
               line-height: @topBarHeight;
               padding: 0 unit(20, rpx);
               color: @fontColor1;
-              .location-icon {
-                display: inline-block;
-                vertical-align: middle;
+              .top-icon {
                 font-size: @fontSize46;
               }
-              .location-text {
-                display: inline-block;
-                vertical-align: middle;
+              .top-text {
                 margin-left: unit(4, rpx);
                 font-size: @fontSize32;
               }
             }
-            .top-search {
+            .col-9 {
               text-align: center;
               font-size: 0;
               .btn-search {
@@ -184,7 +194,7 @@
           padding-top: 65px;
           .scroll-view {
             height: 100%;
-            .scroll-inner {
+            .scroll-content {
               padding-bottom: unit(20, rpx);
             }
           }

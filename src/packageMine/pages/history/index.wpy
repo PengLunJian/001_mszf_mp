@@ -20,9 +20,7 @@
                     <div class="group-label">{{list.date}}</div>
                   </div>
                   <div class="group-items">
-                    <block v-for="(item,index) in list.items" :key="index">
-                      <house-item :item="item" :isType="true"/>
-                    </block>
+                    <house-item v-for="(item,index) in list.items" :item="item" :key="index" :isType="true"/>
                   </div>
                 </div>
               </block>
@@ -38,14 +36,15 @@
 <script type="text/ecmascript-6">
   import wepy from '@wepy/core';
   import store from '../../../store/index';
+  import Toast from '../../../mixins/toast';
+  import Storage from '../../../mixins/storage';
   import {mapState, mapActions} from '@wepy/redux';
   import * as controller from './controller';
-  import Toast from '../../../mixins/toast';
 
   wepy.page({
     store,
 
-    mixins: [Toast],
+    mixins: [Toast, Storage],
 
     data: {
       timer: null,
@@ -73,23 +72,14 @@
           }
         }, 0);
       },
-      resetParams() {
-        this.pageSize = 10;
-        this.pageIndex = 1;
-      },
       getParams() {
+        const user = this.getItem('user');
+        const {phone} = user;
+        const {pageSize, pageIndex} = this;
         const params = {
-          page: {
-            pageSize: this.pageSize,
-            pageIndex: this.pageIndex
-          },
-          filter: [
-            {
-              field: '',
-              opt: '',
-              value: 0
-            }
-          ]
+          phone,
+          pageSize,
+          pageIndex
         };
         return params;
       },
@@ -124,7 +114,6 @@
     },
 
     onLoad() {
-      this.resetParams();
       this.removeHistoryReplace();
       this.exeAjaxHouseHistory();
     }

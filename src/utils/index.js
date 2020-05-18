@@ -88,7 +88,7 @@ export const dataFormat = (data) => {
  * @param attr
  * @returns {*}
  */
-export const historyFilter = (list, rows, attr) => {
+export const historyFormat = (list, rows, attr) => {
   for (let i = 0; i < rows.length; i++) {
     let index = 0;
     let isExit = false;
@@ -115,13 +115,9 @@ export const historyFilter = (list, rows, attr) => {
  * @returns {string}
  */
 export const dateFormat = (date, format) => {
-  if (!date) return;
   let dateStr = '';
-  let tempStr = date.replace(/[-年月日]/g, '/');
-  const tempDate = tempStr.split('/').filter((item) => {
-    return item !== '';
-  });
-  let newDate = new Date(tempDate.join('/'));
+  if (!date) return dateStr;
+  let newDate = new Date(date.replace(/-/g, '/'));
   const year = newDate.getFullYear();
   const month = newDate.getMonth() + 1;
   const day = newDate.getDate();
@@ -206,77 +202,52 @@ export const saveImage = () => {
 /**
  *
  * @param res
+ */
+export const areaFormat = (res) => {
+  res = res || {};
+  const result = res.result[0];
+  result.unshift({fullname: '不限'});
+  return result;
+};
+/**
+ *
+ * @param res
  * @returns {Array}
  */
-export const getCitys = (res) => {
-  let city = {};
-  let citys = [];
-  let areas = [];
-  const CONST_CHK = ['宣城市'];
-  const CONST_ARE = ['广德市'];
-  const CONST_RUN = ['宣城市'];
-  const CONST_KEY = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+export const cityFormat = (res) => {
+  res = res || {};
+  const {result} = res;
+  const totalCity = [];
+  const CONST_LAB = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   const CONST_HOT = ['北京市', '上海市', '广州市'];
   const CONST_DEL = ['北京市', '上海市', '重庆市', '天津市'];
-  const items1 = res.result[0].filter((item) => {
-    return item.fullname.indexOf('市') !== -1;
+  const tempCity1 = result[0].filter((item) => {
+    return CONST_DEL.indexOf(item.fullname) !== -1;
   });
-  const items2 = res.result[1].filter((item) => {
-    for (let i in items1) {
-      const itemId1 = items1[i].id.substring(0, 2);
-      const itemId2 = item.id.substring(0, 2);
-      if (itemId1 === itemId2) {
-        areas.push(item);
-        return;
-      }
+  const tempCity2 = result[1].filter((item) => {
+    for (let i in tempCity1) {
+      const subId1 = tempCity1[i].id.substring(0, 2);
+      const subId2 = item.id.substring(0, 2);
+      if (subId1 === subId2) return;
     }
     return item;
   });
-  areas = areas.concat(res.result[2]);
-  const items = items1.concat(items2);
-  const keys = CONST_KEY.split('');
+  const tempCity3 = tempCity1.concat(tempCity2);
+  const keys = CONST_LAB.split('');
   for (let i = 0; i < keys.length; i++) {
-    citys[i] = {label: keys[i], items: []};
-    for (let j in items) {
-      const str = items[j].pinyin[0].substring(0, 1);
+    totalCity[i] = {label: keys[i], items: []};
+    for (let j in tempCity3) {
+      const {pinyin} = tempCity3[j];
+      const str = pinyin[0].substring(0, 1);
       const key = str.toLocaleUpperCase();
       if (keys[i] === key) {
-        citys[i].items.push(items[j]);
+        totalCity[i].items.push(tempCity3[j]);
       }
     }
   }
-  citys.unshift({label: '热门城市', items: []});
-  citys[0].items = items.filter((item) => {
+  totalCity.unshift({label: '热门城市', items: []});
+  totalCity[0].items = tempCity3.filter((item) => {
     return CONST_HOT.indexOf(item.fullname) !== -1;
   });
-  for (let i in citys) {
-    for (let j in citys[i].items) {
-      const tempObj = citys[i].items[j];
-      tempObj.checked = false;
-      tempObj.isOpen = false;
-      if (CONST_RUN.indexOf(tempObj.fullname) !== -1) {
-        tempObj.isOpen = true;
-      }
-      if (CONST_CHK.indexOf(tempObj.fullname) !== -1) {
-        tempObj.checked = true;
-        city = tempObj;
-      }
-      tempObj.children = [{isOpen: true, fullname: '不限'}];
-      const length = CONST_DEL.indexOf(tempObj.fullname) !== -1 ? 2 : 4;
-      for (let k in areas) {
-        const cityId = tempObj.id.substring(0, length);
-        const areaId = areas[k].id.substring(0, length);
-        if (cityId === areaId) {
-          const checked = false;
-          const isOpen = CONST_ARE.indexOf(areas[k].fullname) !== -1;
-          tempObj.children.push({...areas[k], checked, isOpen});
-        }
-      }
-      citys[i].items[j] = tempObj;
-    }
-  }
-  return {
-    citys,
-    city
-  };
+  return totalCity;
 };

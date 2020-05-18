@@ -65,7 +65,7 @@
             <div class="item-tag type2" v-for="(value,index) in item.tags" :key="index">{{value}}</div>
           </div>
           <div class="item-row row" v-if="isType">
-            <div class="item-type type2">租房</div>
+            <div class="item-type type2">二手房</div>
           </div>
         </div>
       </div>
@@ -278,11 +278,19 @@
               height: unit(30, rpx);
               line-height: unit(30, rpx);
               transform: rotate(-45deg);
-              background-color: @typeColor1;
               font-size: @fontSize16;
               text-align: center;
               font-weight: bold;
               color: @white;
+              &.type1{
+                background-color: @typeColor1;
+              }
+              &.type2{
+                background-color: @typeColor2;
+              }
+              &.type3{
+                background-color: @typeColor3;
+              }
             }
             &:nth-child(1),
             &:nth-child(2) {

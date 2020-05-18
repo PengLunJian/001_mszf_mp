@@ -13,7 +13,7 @@ const actions = {
     };
   },
   [actionTypes.SELECT_CITYS_SUCCESS](state, action) {
-    const data = utils.getCitys(action.data);
+    const data = utils.cityFormat(action.data);
     return {
       ...state,
       isLoading: false,
