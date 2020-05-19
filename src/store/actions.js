@@ -111,45 +111,23 @@ export const ajaxRequestUpdateFollow = createAction(
     });
   });
 
-export const ajaxRequestUpdateUnfollow = createAction(
-  'updateUnfollow', (params) => {
-    commit(actionTypes.UPDATE_UNFOLLOW_REQUEST);
+export const ajaxRequestSelectFollow = createAction(
+  'selectFollow', (params) => {
+    commit(actionTypes.SELECT_FOLLOW_REQUEST);
     return new Promise((resolve, reject) => {
-      axios.post(apis.updateUnfollow, params)
+      axios.post(apis.selectFollow, params)
         .then((res) => {
           res = res || {};
           const {data, success} = res;
           if (success) {
-            commit(actionTypes.UPDATE_UNFOLLOW_SUCCESS, data);
+            commit(actionTypes.SELECT_FOLLOW_SUCCESS, data);
           } else {
-            commit(actionTypes.UPDATE_UNFOLLOW_FAILURE);
+            commit(actionTypes.SELECT_FOLLOW_FAILURE);
           }
           resolve(res);
         })
         .catch((err) => {
-          commit(actionTypes.UPDATE_UNFOLLOW_FAILURE);
-          reject(err);
-        });
-    });
-  });
-
-export const ajaxRequestSelectFavorite = createAction(
-  'selectFavorite', (params) => {
-    commit(actionTypes.SELECT_FAVORITE_REQUEST);
-    return new Promise((resolve, reject) => {
-      axios.post(apis.selectFavorite, params)
-        .then((res) => {
-          res = res || {};
-          const {data, success} = res;
-          if (success) {
-            commit(actionTypes.SELECT_FAVORITE_SUCCESS, data);
-          } else {
-            commit(actionTypes.SELECT_FAVORITE_FAILURE);
-          }
-          resolve(res);
-        })
-        .catch((err) => {
-          commit(actionTypes.SELECT_FAVORITE_FAILURE);
+          commit(actionTypes.SELECT_FOLLOW_FAILURE);
           reject(err);
         });
     });
@@ -226,12 +204,22 @@ export const selectPhoneReplace = createAction(
     commit(actionTypes.SELECT_PHONE_REPLACE, params);
   });
 
+export const selectDetailReplace = createAction(
+  'selectDetailReplace', (params) => {
+    commit(actionTypes.SELECT_DETAIL_REPLACE, params);
+  });
+
+export const selectFollowReplace = createAction(
+  'selectFollowReplace', (params) => {
+    commit(actionTypes.SELECT_FOLLOW_REPLACE, params);
+  });
+
 export const ajaxRequestSelectCitys = createAction(
   'selectCitys', () => {
     return new Promise((resolve, reject) => {
       commit(actionTypes.SELECT_CITYS_REQUEST);
       const qqmapsdk = new QQMapWX({
-        key: 'MFZBZ-MGLWS-C55OR-6KRVW-K6ZFK-YUF3R'
+        key: $config.DEFAULT_MAPKEY
       });
       qqmapsdk.getCityList({
         success: (res) => {
@@ -257,7 +245,7 @@ export const ajaxRequestSelectAreas = createAction(
     return new Promise((resolve, reject) => {
       commit(actionTypes.SELECT_AREAS_REQUEST);
       const qqmapsdk = new QQMapWX({
-        key: 'MFZBZ-MGLWS-C55OR-6KRVW-K6ZFK-YUF3R'
+        key: $config.DEFAULT_MAPKEY
       });
       qqmapsdk.getDistrictByCityId({
         id: params,
@@ -289,9 +277,9 @@ export const removeHouseReplace = createAction(
     commit(actionTypes.REMOVE_HOUSE_REPLACE);
   });
 
-export const removeFavoriteReplace = createAction(
-  'removeFavoriteReplace', () => {
-    commit(actionTypes.REMOVE_FAVORITE_REPLACE);
+export const removeFollowReplace = createAction(
+  'removeFollowReplace', () => {
+    commit(actionTypes.REMOVE_FOLLOW_REPLACE);
   });
 
 export const removeHistoryReplace = createAction(

@@ -47,17 +47,11 @@ const apis = {
     url: '/conllect/insert',
     params: {
       houseId: '',
-      phone: ''
+      phone: '',
+      isFollow: 1
     }
   },
-  updateUnfollow: {
-    url: '/collect/delete',
-    params: {
-      houseId: '',
-      phone: ''
-    }
-  },
-  selectFavorite: {
+  selectFollow: {
     url: '/collect/select',
     params: {
       pageSize: 10,

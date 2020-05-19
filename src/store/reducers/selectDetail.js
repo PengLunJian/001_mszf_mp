@@ -32,12 +32,10 @@ const actions = {
     };
   },
   [actionTypes.SELECT_DETAIL_REPLACE](state, action) {
+    const {data} = action;
     return {
       ...state,
-      isLoading: false,
-      isSuccess: true,
-      isFailure: false,
-      data: action.data
+      data
     };
   }
 };

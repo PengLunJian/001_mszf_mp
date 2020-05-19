@@ -7,8 +7,8 @@ import SELECT_AREAS_REDUCER from './selectAreas';
 import SELECT_HOUSE_REDUCER from './selectHouse';
 import SELECT_DETAIL_REDUCER from './selectDetail';
 import UPDATE_FOLLOW_REDUCER from './updateFollow';
+import SELECT_FOLLOW_REDUCER from './selectFollow';
 import SELECT_HISTORY_REDUCER from './selectHistory';
-import SELECT_FAVORITE_REDUCER from './selectFavorite';
 import SELECT_HOTHOUSE_REDUCER from './selectHotHouse';
 
 export default combineReducers({
@@ -20,7 +20,7 @@ export default combineReducers({
   SELECT_HOUSE_REDUCER,
   SELECT_DETAIL_REDUCER,
   UPDATE_FOLLOW_REDUCER,
+  SELECT_FOLLOW_REDUCER,
   SELECT_HISTORY_REDUCER,
-  SELECT_FAVORITE_REDUCER,
   SELECT_HOTHOUSE_REDUCER
 });

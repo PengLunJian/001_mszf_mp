@@ -19,7 +19,7 @@
               <span class="banner-label">{{current}}/{{isData.picUrl.length}}</span>
             </div>
             <div class="banner-btns">
-              <button class="btn-favorite" @tap="onHandleFollow">
+              <button class="btn-favorite" @tap="onHandleUpdateFollow">
                 <span class="btn-icon iconfont icon-favorite{{isData.isFollow?' active':''}}"></span>
                 <span class="btn-text">收藏</span>
               </button>
@@ -39,6 +39,7 @@
   import wepy from '@wepy/core';
   import store from '../../store';
   import Toast from '../../mixins/toast';
+  import Route from '../../mixins/route';
   import Storage from '../../mixins/storage';
   import {mapActions, mapState} from '@wepy/redux';
   import * as controller from './controller';
@@ -46,7 +47,7 @@
 
   wepy.component({
     store,
-    mixins: [Toast, Storage],
+    mixins: [Toast, Route, Storage],
     data: {
       current: 1,
       circular: true,
@@ -74,55 +75,44 @@
         const current = e.$wx.detail.current;
         this.current = current + 1;
       },
-      exeAjaxUpdateUnfollow() {
-        const params = this.getParams();
-        this.ajaxUpdateUnfollow(params)
-          .then((res) => {
-            const {success} = res.payload;
-            if (success) {
-              this.showToast('取消收藏成功');
-            } else {
-              this.showToast('取消收藏失败');
-            }
-            console.log(res);
-          })
-          .catch((err) => {
-            this.showToast('取消收藏失败');
-            console.log(err);
-          });
-      },
-      exeAjaxUpdateFollow() {
-        const params = this.getParams();
-        this.ajaxUpdateFollow(params)
-          .then((res) => {
-            const {success} = res.payload;
-            if (success) {
-              this.showToast('收藏成功');
-            } else {
-              this.showToast('收藏失败');
-            }
-            console.log(res);
-          })
-          .catch((err) => {
-            this.showToast('收藏失败');
-            console.log(err);
-          });
-      },
-      onHandleFollow() {
+      onHandleUpdateFollow() {
         const {phone} = this.getItem('user');
         if (phone) {
           this.exeAjaxUpdateFollow();
         } else {
-          wx.navigateTo({
-            url: $routes.LOGIN.path
-          });
+          this.navigateTo($routes.LOGIN.path);
         }
       },
+      exeAjaxUpdateFollow() {
+        const params = this.getParams();
+        const {isFollow} = params;
+        const msg = isFollow ? '添加' : '取消';
+        this.ajaxUpdateFollow(params)
+          .then((res) => {
+            const {success} = res.payload;
+            if (success) {
+              const {isData} = this;
+              const data = {...isData, isFollow};
+              this.showToast(msg + '收藏成功');
+              this.selectDetailReplace(data);
+              this.selectFollowReplace(data);
+            } else {
+              this.showToast(msg + '收藏失败');
+            }
+            console.log(res);
+          })
+          .catch((err) => {
+            this.showToast(msg + '收藏失败');
+            console.log(err);
+          });
+      },
       getParams() {
-        const houseId = this.isData.id;
+        let {id, isFollow} = this.isData;
+        isFollow = isFollow ? 0 : 1;
         const {phone} = this.getItem('user');
         const params = {
-          houseId,
+          houseId: id,
+          isFollow,
           phone
         };
         return params;

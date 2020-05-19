@@ -50,7 +50,7 @@
   root: 'packageMine',
   pages: [
   'pages/about/index',
-  'pages/favorite/index',
+  'pages/follow/index',
   'pages/history/index',
   'pages/release/index',
   'pages/suggest/index',

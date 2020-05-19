@@ -63,15 +63,15 @@
         this.timer = setTimeout(() => {
           this.pageIndex = 1;
           this.tab.activeIndex = index;
-          this.removeFavoriteReplace();
-          this.exeAjaxSelectFavorite();
+          this.removeFollowReplace();
+          this.exeAjaxSelectFollow();
         }, 0);
       },
-      exeAjaxSelectFavorite() {
+      exeAjaxSelectFollow() {
         const data = this.isData || {};
         const rows = data.rows || [];
         const params = this.getParams();
-        this.ajaxSelectFavorite(params)
+        this.ajaxSelectFollow(params)
           .then((res) => {
             const {success} = res.payload;
             if (success) {
@@ -97,7 +97,7 @@
         this.timer = setTimeout(() => {
           const {rows, totalCount} = this.isData;
           if (rows.length < totalCount) {
-            this.exeAjaxSelectFavorite();
+            this.exeAjaxSelectFollow();
           }
         }, 0);
       },
@@ -114,13 +114,13 @@
         return params;
       },
       onRefresh() {
-        this.exeAjaxSelectFavorite();
+        this.exeAjaxSelectFollow();
       }
     },
 
     onLoad() {
-      this.removeFavoriteReplace();
-      this.exeAjaxSelectFavorite();
+      this.removeFollowReplace();
+      this.exeAjaxSelectFollow();
     }
   });
 </script>

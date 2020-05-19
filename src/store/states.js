@@ -26,14 +26,7 @@ export const UPDATE_FOLLOW_STATE = {
   data: null
 };
 
-export const UPDATE_UNFOLLOW_STATE = {
-  isLoading: true,
-  isSuccess: false,
-  isFailure: false,
-  data: null
-};
-
-export const SELECT_FAVORITE_STATE = {
+export const SELECT_FOLLOW_STATE = {
   isLoading: true,
   isSuccess: false,
   isFailure: false,

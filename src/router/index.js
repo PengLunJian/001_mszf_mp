@@ -26,9 +26,9 @@ export const LOGIN = {
   name: '在线咨询',
   path: '/packageMine/pages/login/index'
 };
-export const FAVORITE = {
+export const FOLLOW = {
   name: '我的收藏',
-  path: '/packageMine/pages/favorite/index'
+  path: '/packageMine/pages/follow/index'
 };
 export const HISTORY = {
   name: '历史浏览',

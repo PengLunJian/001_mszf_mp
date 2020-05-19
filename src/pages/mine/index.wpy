@@ -80,8 +80,8 @@
       url: $config.DEFAULT_MINE,
       items: [
         {
-          name: $routes.FAVORITE.name,
-          path: $routes.FAVORITE.path,
+          name: $routes.FOLLOW.name,
+          path: $routes.FOLLOW.path,
           icon: 'icon-favorite'
         },
         {
