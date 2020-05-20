@@ -13,22 +13,22 @@ const actions = {
     };
   },
   [actionTypes.SELECT_HISTORY_SUCCESS](state, action) {
-    const oldData = state.data || {};
-    const oldRows = oldData.rows || [];
-    const oldList = oldData.list || [];
-    const newData = action.data || {};
-    const newRows = newData.rows || [];
-    const rows = newRows.map((item) => {
+    let oldData = state.data || {};
+    let oldRows = oldData.rows || [];
+    let newData = action.data || {};
+    let newRows = newData.rows || [];
+    newRows = newRows.map((item) => {
       return utils.dataFormat(item);
     });
-    action.data.rows = oldRows.concat(rows);
-    action.data.list = utils.historyFormat(oldList, rows, 'browseTime');
+    let rows = oldRows.concat(newRows);
+    let list = utils.historyFormat(rows, 'browseTime');
+    let data = {...action.data, rows, list};
     return {
       ...state,
       isLoading: false,
       isSuccess: true,
       isFailure: false,
-      data: action.data
+      data
     };
   },
   [actionTypes.SELECT_HISTORY_FAILURE](state) {
@@ -37,6 +37,28 @@ const actions = {
       isLoading: false,
       isSuccess: false,
       isFailure: true
+    };
+  },
+  [actionTypes.SELECT_HISTORY_REPLACE](state, action) {
+    let oldData = state.data || {};
+    let oldRows = oldData.rows || [];
+    let newData = action.data || {};
+    let rows = oldRows.map((item) => {
+      if (item.id === newData.id) {
+        return newData;
+      }
+      return item;
+    });
+    rows.sort((a, b) => {
+      const offsetTime1 = new Date(a.browseTime.replace(/-/g, '/')).getTime();
+      const offsetTime2 = new Date(b.browseTime.replace(/-/g, '/')).getTime();
+      return offsetTime2 - offsetTime1;
+    });
+    let list = utils.historyFormat(rows, 'browseTime');
+    let data = {...oldData, rows, list};
+    return {
+      ...state,
+      data
     };
   },
   [actionTypes.REMOVE_HISTORY_REPLACE](state) {

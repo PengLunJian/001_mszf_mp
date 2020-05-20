@@ -214,6 +214,11 @@ export const selectFollowReplace = createAction(
     commit(actionTypes.SELECT_FOLLOW_REPLACE, params);
   });
 
+export const selectHistoryReplace = createAction(
+  'selectHistoryReplace', (params) => {
+    commit(actionTypes.SELECT_HISTORY_REPLACE, params);
+  });
+
 export const ajaxRequestSelectCitys = createAction(
   'selectCitys', () => {
     return new Promise((resolve, reject) => {

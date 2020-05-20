@@ -38,11 +38,10 @@ const actions = {
     };
   },
   [actionTypes.SELECT_FOLLOW_REPLACE](state, action) {
-    const oldData = state.data || {};
+    let oldData = state.data || {};
     let rows = oldData.rows || [];
-    const newData = action.data || {};
-    console.log(newData);
-    const {isFollow} = newData;
+    let newData = action.data || {};
+    let {isFollow} = newData;
     if (isFollow) {
       rows.unshift(newData);
     } else {
@@ -50,6 +49,11 @@ const actions = {
         return item.id !== newData.id;
       });
     }
+    rows.sort((a, b) => {
+      const offsetTime1 = new Date(a.createTime.replace(/-/g, '/')).getTime();
+      const offsetTime2 = new Date(b.createTime.replace(/-/g, '/')).getTime();
+      return offsetTime2 - offsetTime1;
+    });
     const data = {...oldData, rows};
     return {
       ...state,

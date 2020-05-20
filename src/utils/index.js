@@ -88,7 +88,7 @@ export const dataFormat = (data) => {
  * @param attr
  * @returns {*}
  */
-export const historyFormat = (list, rows, attr) => {
+export const hisFormat = (list, rows, attr) => {
   for (let i = 0; i < rows.length; i++) {
     let index = 0;
     let isExit = false;
@@ -110,6 +110,33 @@ export const historyFormat = (list, rows, attr) => {
 };
 /**
  *
+ * @param rows
+ * @param attr
+ * @returns {Array}
+ */
+export const historyFormat = (rows, attr) => {
+  let result = [];
+  for (let i = 0; i < rows.length; i++) {
+    let index = 0;
+    let isExit = false;
+    const date = dateFormat(rows[i][attr], 'yyyy/mm/dd');
+    const item = {date, items: [rows[i]]};
+    for (let j = 0; j < result.length; j++) {
+      if (date === result[j].date) {
+        index = j;
+        isExit = true;
+      }
+    }
+    if (isExit) {
+      result[index].items.push(rows[i]);
+    } else {
+      result.push(item);
+    }
+  }
+  return result;
+};
+/**
+ *
  * @param date
  * @param format
  * @returns {string}
@@ -117,18 +144,20 @@ export const historyFormat = (list, rows, attr) => {
 export const dateFormat = (date, format) => {
   let dateStr = '';
   if (!date) return dateStr;
-  let newDate = new Date(date.replace(/-/g, '/'));
-  const year = newDate.getFullYear();
-  const month = newDate.getMonth() + 1;
-  const day = newDate.getDate();
-  const hour = newDate.getHours();
-  const minute = newDate.getMinutes();
-  const second = newDate.getSeconds();
-  const monthStr = month > 9 ? '' + month : '0' + month;
-  const dayStr = day > 9 ? '' + day : '0' + day;
-  const hourStr = hour > 9 ? '' + hour : '0' + hour;
-  const minuteStr = minute > 9 ? '' + minute : '0' + minute;
-  const secondStr = second > 9 ? '' + second : '0' + second;
+  let dateType = typeof date;
+  let newDate = dateType === 'string'
+    ? new Date(date.replace(/-/g, '/')) : date;
+  let year = newDate.getFullYear();
+  let month = newDate.getMonth() + 1;
+  let day = newDate.getDate();
+  let hour = newDate.getHours();
+  let minute = newDate.getMinutes();
+  let second = newDate.getSeconds();
+  let monthStr = month > 9 ? '' + month : '0' + month;
+  let dayStr = day > 9 ? '' + day : '0' + day;
+  let hourStr = hour > 9 ? '' + hour : '0' + hour;
+  let minuteStr = minute > 9 ? '' + minute : '0' + minute;
+  let secondStr = second > 9 ? '' + second : '0' + second;
   switch (format) {
     case 'yyyy/mm/dd':
       dateStr = year + '/' + monthStr + '/' + dayStr;
@@ -144,6 +173,15 @@ export const dateFormat = (date, format) => {
       break;
     case 'yyyy-mm-dd':
       dateStr = year + '-' + monthStr + '-' + dayStr;
+      break;
+    case 'yyyy-mm-dd hh':
+      dateStr = year + '-' + monthStr + '-' + dayStr + ' ' + hourStr;
+      break;
+    case 'yyyy-mm-dd hh:mm':
+      dateStr = year + '-' + monthStr + '-' + dayStr + ' ' + hourStr + ':' + minuteStr;
+      break;
+    case 'yyyy-mm-dd hh:mm:ss':
+      dateStr = year + '-' + monthStr + '-' + dayStr + ' ' + hourStr + ':' + minuteStr + ':' + secondStr;
       break;
     case 'zh-cn':
       dateStr = year + '年' + monthStr + '月' + dayStr + '日';
