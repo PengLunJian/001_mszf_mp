@@ -2,11 +2,11 @@
   <div class="container">
     <div class="content">
       <div class="header">
-        <top-bar title="房源详情"></top-bar>
+        <top-bar title="房源详情"/>
       </div>
       <div class="body">
-        <loading :isLoading="isLoading"></loading>
-        <error :isFailure="isFailure" @refresh="onRefresh"></error>
+        <loading :isLoading="isLoading"/>
+        <error :isFailure="isFailure" @refresh="onRefresh"/>
         <div class="context fade" v-if="isSuccess&&isData">
           <scroll-view
             class="scroll-view"
@@ -30,8 +30,8 @@
 <script type="text/ecmascript-6">
   import wepy from '@wepy/core';
   import store from '../../../store';
-  import {mapState, mapActions} from '@wepy/redux';
   import Storage from '../../../mixins/storage';
+  import {mapState, mapActions} from '@wepy/redux';
   import * as controller from './controller';
 
   wepy.page({
@@ -60,6 +60,7 @@
             res = res || {};
             const {success, data} = res.payload;
             if (success) {
+              this.selectHistoryReplace(data);
               this.ajaxSelectLocation(data);
             }
             console.log(res);

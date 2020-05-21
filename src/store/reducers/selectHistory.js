@@ -43,9 +43,12 @@ const actions = {
     let oldData = state.data || {};
     let oldRows = oldData.rows || [];
     let newData = action.data || {};
+    let format = 'yyyy-mm-dd hh:mm:ss';
+    let browseTime = utils.dateFormat(new Date(), format);
+    let tempData = {...newData, browseTime};
     let rows = oldRows.map((item) => {
-      if (item.id === newData.id) {
-        return newData;
+      if (item.id === tempData.id) {
+        return tempData;
       }
       return item;
     });

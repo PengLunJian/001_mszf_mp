@@ -8,7 +8,7 @@ export const STATES = {
 };
 
 export const ACTIONS = {
-  selectHistoryReplace: params => actions.selectHistoryReplace(params),
   ajaxSelectDetail: params => actions.ajaxRequestSelectDetail(params),
-  ajaxSelectLocation: params => actions.ajaxRequestSelectLocation(params)
+  ajaxSelectLocation: params => actions.ajaxRequestSelectLocation(params),
+  selectHistoryReplace: params => actions.selectHistoryReplace(params)
 };

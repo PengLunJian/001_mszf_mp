@@ -2,11 +2,11 @@
   <div class="container">
     <div class="content">
       <div class="header">
-        <top-bar title="房源详情"></top-bar>
+        <top-bar title="房源详情"/>
       </div>
       <div class="body">
-        <loading :isLoading="isLoading"></loading>
-        <error :isFailure="isFailure" @refresh="onRefresh"></error>
+        <loading :isLoading="isLoading"/>
+        <error :isFailure="isFailure" @refresh="onRefresh"/>
         <div class="context fade" v-if="isSuccess&&isData">
           <scroll-view
             class="scroll-view"
@@ -33,7 +33,6 @@
   import Storage from '../../../mixins/storage';
   import {mapState, mapActions} from '@wepy/redux';
   import * as controller from './controller';
-  import * as utils from '../../../utils';
 
   wepy.page({
     store,
@@ -61,9 +60,7 @@
             res = res || {};
             const {success, data} = res.payload;
             if (success) {
-              const browseTime = utils.dateFormat(new Date(), 'yyyy-mm-dd hh:mm:ss');
-              const newData = {...data, browseTime};
-              this.selectHistoryReplace(newData);
+              this.selectHistoryReplace(data);
               this.ajaxSelectLocation(data);
             }
             console.log(res);

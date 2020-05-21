@@ -18,8 +18,8 @@
         </div>
       </div>
       <div class="body">
-        <loading :isLoading="isLoading"></loading>
-        <error :isFailure="isFailure" @refresh="onRefresh"></error>
+        <loading :isLoading="isLoading"/>
+        <error :isFailure="isFailure" @refresh="onRefresh"/>
         <div class="context fade" v-if="isSuccess">
           <scroll-view class="scroll-view" scroll-y="{{true}}">
             <div class="scroll-content">

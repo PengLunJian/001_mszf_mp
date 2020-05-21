@@ -45,6 +45,9 @@
   @height: unit(60, rpx);
 
   .empty {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     text-align: center;
@@ -70,7 +73,6 @@
       height: 100%;
       display: inline-block;
       vertical-align: middle;
-      min-height: unit(600, rpx);
     }
   }
 </style>

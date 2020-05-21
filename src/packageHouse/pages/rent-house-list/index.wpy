@@ -2,7 +2,7 @@
   <div class="container">
     <div class="content">
       <div class="header">
-        <top-bar title="房源列表"></top-bar>
+        <top-bar title="房源列表"/>
         <div class="tab-bar">
           <div v-for="(item,index) in tab.items"
                class="tab-item"
@@ -15,9 +15,9 @@
         </div>
       </div>
       <div class="body">
-        <loading :isLoading="isLoading&&!isData.rows.length"></loading>
-        <error :isFailure="isFailure&&!isData.rows.length" @refresh="onRefresh"></error>
-        <empty :isSuccess="isSuccess&&!isData.rows.length"></empty>
+        <loading :isLoading="isLoading&&!isData.rows.length"/>
+        <error :isFailure="isFailure&&!isData.rows.length" @refresh="onRefresh"/>
+        <empty :isSuccess="isSuccess&&!isData.rows.length"/>
         <div class="context fade" v-if="isData.rows.length">
           <scroll-view class="scroll-view"
                        scroll-y="{{iSwitch}}"

@@ -6,10 +6,8 @@
       </div>
       <div class="module-body">
         <div class="module-context">
-          <empty :isSuccess="!items.length"></empty>
-          <block v-for="(item,index) in items" :key="index">
-            <house-item :item="item"></house-item>
-          </block>
+          <empty :isSuccess="!items.length"/>
+          <house-item v-for="(item,index) in items" :item="item" :key="index"/>
         </div>
       </div>
       <div class="module-footer"></div>
@@ -60,6 +58,7 @@
       }
       .module-body {
         .module-context {
+          min-height: unit(600, rpx);
         }
       }
       .module-footer {
