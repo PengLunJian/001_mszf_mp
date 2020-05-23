@@ -39,19 +39,28 @@ const actions = {
   },
   [actionTypes.SELECT_FOLLOW_REPLACE](state, action) {
     let oldData = state.data || {};
-    let rows = oldData.rows || [];
+    let oldRows = oldData.rows || [];
     let newData = action.data || {};
+    let format = 'yyyy-mm-dd hh:mm:ss';
+    let followTime = utils.dateFormat(new Date(), format);
+    let tempData = {...newData, followTime};
+    let rows = oldRows.map((item) => {
+      if (item.id === tempData.id) {
+        return tempData;
+      }
+      return item;
+    });
     let {isFollow} = newData;
     if (isFollow) {
-      rows.unshift(newData);
+      rows.unshift(tempData);
     } else {
       rows = rows.filter((item) => {
         return item.id !== newData.id;
       });
     }
     rows.sort((a, b) => {
-      const offsetTime1 = new Date(a.createTime.replace(/-/g, '/')).getTime();
-      const offsetTime2 = new Date(b.createTime.replace(/-/g, '/')).getTime();
+      const offsetTime1 = new Date(a.followTime.replace(/-/g, '/')).getTime();
+      const offsetTime2 = new Date(b.followTime.replace(/-/g, '/')).getTime();
       return offsetTime2 - offsetTime1;
     });
     const data = {...oldData, rows};
