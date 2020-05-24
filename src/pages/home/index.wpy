@@ -24,7 +24,7 @@
           <scroll-view class="scroll-view" scroll-y="{{true}}">
             <div class="scroll-content">
               <banner/>
-              <custom-navigator/>
+              <navigation/>
               <hot-house title="租房推荐" :items="isData.rentRows"/>
               <hot-house title="二手房推荐" :items="isData.secondRows"/>
               <hot-house title="新房推荐" :items="isData.newRows"/>
@@ -67,7 +67,7 @@
         this.navigateTo($routes.ADDRESS.path);
       },
       onHandleSearch() {
-        this.navigateTo($routes.SEARCH.path);
+        this.navigateTo($routes.WAITING.path);
       },
       exeAjaxSelectAreas() {
         const {id} = this.city;
@@ -215,7 +215,7 @@
   'banner': '../../components/banner/banner',
   'loading': '../../components/loading/loading',
   'hot-house': '../../components/hot-house/hot-house',
-  'custom-navigator': '../../components/custom-navigator/custom-navigator'
+  'navigation': '../../components/navigation/navigation'
   }
   }
 </config>

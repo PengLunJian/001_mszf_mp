@@ -2,7 +2,7 @@
   <div class="container">
     <div class="content">
       <div class="header">
-        <top-bar title="用户登录"></top-bar>
+        <top-bar title="用户登录"/>
       </div>
       <div class="body">
         <div class="context">
@@ -62,24 +62,26 @@
     methods: {
       ...mapActions(controller.ACTIONS),
       onHandleGrantLogin(e) {
-        const {errMsg} = e.$wx.detail;
-        if (errMsg === 'getPhoneNumber:ok') {
-          const {iv, encryptedData} = e.$wx.detail;
-          this.iv = iv;
-          this.encryptedData = encryptedData;
-          this.onHandleWechatCode()
-            .then((res) => {
-              this.exeAjaxSelectPhone();
-              console.log(res);
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        } else {
-          console.log(false);
-        }
+        this.onHandleSelectCode()
+          .then((res) => {
+            res = res || {};
+            const {code} = res;
+            if (code) {
+              const {errMsg} = e.$wx.detail;
+              if (errMsg === 'getPhoneNumber:ok') {
+                const {iv, encryptedData} = e.$wx.detail;
+                this.iv = iv;
+                this.encryptedData = encryptedData;
+                this.exeAjaxSelectPhone();
+              }
+            }
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       },
-      onHandleWechatCode() {
+      onHandleSelectCode() {
         return new Promise((resolve, reject) => {
           wx.login({
             success: (res) => {
@@ -96,27 +98,6 @@
       },
       onHandlePhoneLogin() {
         this.navigateTo($routes.WAITING.path);
-      },
-      exeAjaxSelectLogin() {
-        const {code} = this;
-        this.ajaxSelectLogin({code})
-          .then((res) => {
-            res = res || {};
-            const {success, data} = res.payload;
-            if (success) {
-              const {id, sessionKey} = data;
-              this.id = id;
-              this.sessionKey = sessionKey;
-              this.exeAjaxSelectPhone();
-            } else {
-              this.showToast('登录失败，请重试');
-            }
-            console.log(res);
-          })
-          .catch((err) => {
-            this.showToast('登录失败，请重试');
-            console.log(err);
-          });
       },
       exeAjaxSelectPhone() {
         const params = this.getParams();

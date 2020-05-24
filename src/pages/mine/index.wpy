@@ -67,14 +67,15 @@
   import wepy from '@wepy/core';
   import store from '../../store';
   import {mapState} from '@wepy/redux';
+  import Route from '../../mixins/route';
+  import * as controller from './controller';
   import * as $routes from '../../router';
   import * as $config from '../../config';
-  import * as controller from './controller';
 
   wepy.page({
     store,
 
-    mixins: [],
+    mixins: [Route],
 
     data: {
       url: $config.DEFAULT_MINE,
@@ -91,7 +92,7 @@
         },
         {
           name: $routes.RELEASE.name,
-          path: $routes.RELEASE.path,
+          path: $routes.WAITING.path,
           icon: 'icon-release'
         },
         {
@@ -113,22 +114,16 @@
 
     methods: {
       onHandleLogin() {
-        wx.navigateTo({
-          url: $routes.LOGIN.path
-        });
+        this.navigateTo($routes.LOGIN.path);
       },
       onHandleClick(item) {
         if (item.name !== '意见反馈') {
           if (item.name === '我的收藏' || item.name === '历史浏览') {
             const {isUser} = this;
             const path = isUser ? item.path : $routes.LOGIN.path;
-            wx.navigateTo({
-              url: path
-            });
+            this.navigateTo(path);
           } else {
-            wx.navigateTo({
-              url: item.path
-            });
+            this.navigateTo(item.path);
           }
         }
       }

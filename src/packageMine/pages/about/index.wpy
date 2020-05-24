@@ -2,7 +2,7 @@
   <div class="container">
     <div class="content">
       <div class="header">
-        <top-bar title="关于我们"></top-bar>
+        <top-bar title="关于我们"/>
       </div>
       <div class="body">
         <div class="context fade">

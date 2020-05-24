@@ -2,7 +2,7 @@
   <div class="container">
     <div class="content">
       <div class="header">
-        <top-bar title="历史浏览"></top-bar>
+        <top-bar title="历史浏览"/>
       </div>
       <div class="body">
         <loading :isLoading="isLoading&&!isData.rows.length"></loading>

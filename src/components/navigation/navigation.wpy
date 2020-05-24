@@ -36,12 +36,12 @@
         {
           text: '房贷计算',
           icon: 'icon-nav04',
-          path: $routes.CALCULATOR.path
+          path: $routes.WAITING.path
         },
         {
           text: '房源发布',
           icon: 'icon-nav05',
-          path: $routes.RELEASE.path
+          path: $routes.WAITING.path
         }
       ]
     },
