@@ -1,6 +1,6 @@
 const apis = {
   baseUrl: 'http://118.190.202.38:8181/api',
-  fileUrl: 'http://47.103.197.178:8080',
+  fileUrl: 'https://mszfzjd.cn',
   method: 'POST',
   timeout: 5000,
   dataType: 'json',

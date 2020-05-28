@@ -42,10 +42,9 @@
   @import "../../assets/less/common";
 
   .item {
-    margin-right: unit(30, rpx);
     .item-img {
-      width: unit(250, rpx);
-      height: unit(250, rpx);
+      width: unit(210, rpx);
+      height: unit(210, rpx);
       border: 0.5px solid @borderColor1;
     }
     .item-info {

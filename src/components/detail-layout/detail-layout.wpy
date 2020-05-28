@@ -7,9 +7,7 @@
       <div class="module-body">
         <div class="module-context">
           <div class="module-layout">
-            <scroll-view
-              class="scroll-view"
-              scroll-x="{{true}}">
+            <scroll-view class="scroll-view" scroll-x="{{true}}">
               <div class="module-row row">
                 <div class="module-col col-4" v-for="(item,index) in isData.mainApart" :key="index">
                   <layout-item :item="item"/>
@@ -64,12 +62,17 @@
       .module-body {
         .module-context {
           .module-layout {
+            padding: 0 unit(30, rpx);
             .scroll-view {
               .module-row {
-                padding: unit(15, rpx);
+                padding: unit(15, rpx) 0;
                 flex-wrap: nowrap;
                 .module-col {
-                  padding: unit(15, rpx);
+                  padding: unit(15, rpx) 0;
+                  margin-right: unit(30, rpx);
+                  &:last-child {
+                    margin: 0;
+                  }
                 }
               }
             }

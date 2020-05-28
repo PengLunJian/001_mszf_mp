@@ -98,6 +98,8 @@
           const {rows, totalCount} = this.isData;
           if (rows.length < totalCount) {
             this.exeAjaxSelectFollow();
+          } else {
+            this.timer = null;
           }
         }, 0);
       },
