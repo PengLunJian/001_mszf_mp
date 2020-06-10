@@ -37,6 +37,11 @@
                         <div class="item-text">我要分享</div>
                         <div class="item-next iconfont icon-next"></div>
                       </button>
+                      <button class="module-item btn" hover-class="none">
+                        <div class="item-icon iconfont icon-version"></div>
+                        <div class="item-text">系统更新</div>
+                        <div class="item-next iconfont icon-next"></div>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -63,7 +68,10 @@
           </div>
           <div class="modal-body">
             <img class="code" src="../../images/code@2x.png" mode="aspectFit"/>
-            <div class="large">长按识别小程序</div>
+            <div class="large">
+              <div class="icon iconfont icon-scan"></div>
+              <div class="text">微信扫一扫</div>
+            </div>
             <div class="small">优质好房 尽在码上找房</div>
           </div>
           <div class="modal-footer">
@@ -80,13 +88,13 @@
   import wepy from '@wepy/core';
   import store from '../../../store';
   import QQMapWX from 'wx-qqmap-jssdk';
-  import * as utils from '../../../utils';
+  import Toast from '../../../mixins/toast';
   import * as $config from '../../../config';
 
   wepy.page({
     store,
 
-    mixins: [],
+    mixins: [Toast],
 
     data: {
       isShow: false,
@@ -169,9 +177,64 @@
       onHandleCancel() {
         this.onHandleHideModal();
       },
+      onHandleExeSaveImage() {
+        wx.getSetting({
+          success: (res) => {
+            res = res || {};
+            const {authSetting} = res;
+            const scope = 'scope.writePhotosAlbum';
+            const value = authSetting[scope];
+            if (value === undefined) {
+              wx.authorize({
+                scope,
+                success: (res) => {
+                  res = res || {};
+                  this.onHandleSaveImage();
+                  console.log(res);
+                }
+              });
+            } else if (value === false) {
+              wx.openSetting({
+                success: (res) => {
+                  res = res || {};
+                  console.log(res);
+                }
+              });
+            } else {
+              this.onHandleSaveImage();
+            }
+          }
+        });
+      },
+      onHandleSaveImage() {
+        setTimeout(() => {
+          wx.downloadFile({
+            url: $config.DEFAULT_SHARE,
+            success: (res) => {
+              res = res || {};
+              const {tempFilePath} = res;
+              wx.saveImageToPhotosAlbum({
+                filePath: tempFilePath,
+                success: (res) => {
+                  this.showToast('图片已保存，快去分享给好友吧。');
+                  console.log(res);
+                },
+                fail: (err) => {
+                  this.showToast('图片保存失败！');
+                  console.log(err);
+                }
+              });
+            },
+            fail: (err) => {
+              this.showToast('图片下载失败！');
+              console.log(err);
+            }
+          });
+        }, 300);
+      },
       onHandleConfirm() {
-        utils.handleSaveImage();
         this.onHandleHideModal();
+        this.onHandleExeSaveImage();
       }
     },
 
@@ -250,6 +313,7 @@
                     &:nth-child(1) {
                       .item-icon {
                         background-image: -webkit-linear-gradient(left, #00FF00, #12B347);
+                        background-image: -webkit-linear-gradient(left, #00d99c, #86FFD8);
                       }
                     }
                     &:nth-child(2) {
@@ -265,6 +329,11 @@
                     &:nth-child(4) {
                       .item-icon {
                         background-image: -webkit-linear-gradient(left, #FFFF00, #FFB421);
+                      }
+                    }
+                    &:nth-child(5) {
+                      .item-icon {
+                        background-image: -webkit-linear-gradient(left, #ff714f, #ffb698);
                       }
                     }
                   }
@@ -355,10 +424,18 @@
               letter-spacing: 0.5px;
               text-align: center;
               &.large {
-                font-size: @fontSize26;
                 color: @fontColor2;
+                .icon, .text {
+                  display: inline-block;
+                  vertical-align: middle;
+                  font-size: @fontSize26;
+                  &.icon {
+                    margin-right: unit(4, rpx);
+                  }
+                }
               }
               &.small {
+                margin-top: unit(4, rpx);
                 font-size: @fontSize24;
                 color: @fontColor3;
               }

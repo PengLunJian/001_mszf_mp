@@ -13,39 +13,15 @@
 
 <script type="text/ecmascript-6">
   import wepy from '@wepy/core';
-  import * as $routes from '../../router';
 
   wepy.component({
-    data: {
-      items: [
-        {
-          text: '租房',
-          icon: 'icon-nav01',
-          path: $routes.RENT_HOUSE_LIST.path
-        },
-        {
-          text: '二手房',
-          icon: 'icon-nav02',
-          path: $routes.SECOND_HOUSE_LIST.path
-        },
-        {
-          text: '新房',
-          icon: 'icon-nav03',
-          path: $routes.NEW_HOUSE_LIST.path
-        },
-        {
-          text: '房贷计算',
-          icon: 'icon-nav04',
-          path: $routes.WAITING.path
-        },
-        {
-          text: '房源发布',
-          icon: 'icon-nav05',
-          path: $routes.WAITING.path
-        }
-      ]
+    data: {},
+    props: {
+      items: {
+        type: Object,
+        default: []
+      }
     },
-    events: {},
     methods: {},
     created() {
     }

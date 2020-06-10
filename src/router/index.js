@@ -46,6 +46,10 @@ export const ABOUT = {
   name: '关于我们',
   path: '/packageMine/pages/about/index'
 };
+export const JOIN = {
+  name: '我要入驻',
+  path: '/packageMine/pages/join/index'
+};
 export const RENT_HOUSE_LIST = {
   name: '租房列表',
   path: '/packageHouse/pages/rent-house-list/index'

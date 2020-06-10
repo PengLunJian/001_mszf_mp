@@ -192,53 +192,6 @@ export const dateFormat = (date, format) => {
 };
 /**
  *
- */
-export const handleSaveImage = () => {
-  wx.getSetting({
-    success(res) {
-      const {authSetting} = res || {};
-      if (authSetting['scope.writePhotosAlbum'] === false) {
-        wx.openSetting({
-          success(res) {
-            console.log(res);
-          }
-        });
-      } else {
-        saveImage();
-      }
-    }
-  });
-};
-/**
- *
- */
-export const saveImage = () => {
-  setTimeout(() => {
-    wx.downloadFile({
-      url: $config.DEFAULT_SHARE,
-      success(res) {
-        const {tempFilePath} = res || {};
-        wx.saveImageToPhotosAlbum({
-          filePath: tempFilePath,
-          success() {
-            wx.showToast({
-              title: '图片已保存，快去分享给好友吧。',
-              icon: 'none'
-            });
-          },
-          fail(err) {
-            console.log(err);
-          }
-        });
-      },
-      fail(err) {
-        console.log(err);
-      }
-    });
-  }, 300);
-};
-/**
- *
  * @param res
  */
 export const areaFormat = (res) => {

@@ -24,7 +24,7 @@
           <scroll-view class="scroll-view" scroll-y="{{true}}">
             <div class="scroll-content">
               <banner/>
-              <navigation/>
+              <navigation :items="items"/>
               <hot-house title="租房推荐" :items="isData.rentRows"/>
               <hot-house title="二手房推荐" :items="isData.secondRows"/>
               <hot-house title="新房推荐" :items="isData.newRows"/>
@@ -54,7 +54,34 @@
       city: {
         id: '',
         fullname: ''
-      }
+      },
+      items: [
+        {
+          text: '租房',
+          icon: 'icon-nav01',
+          path: $routes.RENT_HOUSE_LIST.path
+        },
+        {
+          text: '二手房',
+          icon: 'icon-nav02',
+          path: $routes.SECOND_HOUSE_LIST.path
+        },
+        {
+          text: '新房',
+          icon: 'icon-nav03',
+          path: $routes.NEW_HOUSE_LIST.path
+        },
+        {
+          text: '房贷计算',
+          icon: 'icon-nav04',
+          path: $routes.WAITING.path
+        },
+        {
+          text: '房源发布',
+          icon: 'icon-nav05',
+          path: $routes.WAITING.path
+        }
+      ]
     },
 
     computed: {
