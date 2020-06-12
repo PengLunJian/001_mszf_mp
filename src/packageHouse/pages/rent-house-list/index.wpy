@@ -18,7 +18,7 @@
         <loading :isLoading="isLoading&&!isData.rows.length"/>
         <error :isFailure="isFailure&&!isData.rows.length" @refresh="onRefresh"/>
         <empty :isSuccess="isSuccess&&!isData.rows.length"/>
-        <div class="context fade" v-if="isData.rows.length">
+        <div class="context tab fade" v-if="isData.rows.length">
           <scroll-view class="scroll-view"
                        scroll-y="{{iSwitch}}"
                        @scrolltolower="onHandleScrollToLower">
@@ -30,7 +30,7 @@
         </div>
       </div>
       <div class="footer"></div>
-      <div class="modal" id="address" :class="{'hide':!tab.items[0].isShow}">
+      <div class="modal tab" id="address" :class="{'hide':!tab.items[0].isShow}">
         <div class="modal-bg" @tap="onHandleCloseModal(0)"></div>
         <div class="modal-content">
           <div class="modal-header"></div>
@@ -57,7 +57,7 @@
           </div>
         </div>
       </div>
-      <div class="modal" id="filter" :class="{'hide':!tab.items[1].isShow}">
+      <div class="modal tab" id="filter" :class="{'hide':!tab.items[1].isShow}">
         <div class="modal-bg" @tap="onHandleCloseModal(1)"></div>
         <div class="modal-content">
           <div class="modal-header"></div>
@@ -173,7 +173,7 @@
           </div>
         </div>
       </div>
-      <div class="modal" id="sort" :class="{'hide':!tab.items[2].isShow}">
+      <div class="modal tab" id="sort" :class="{'hide':!tab.items[2].isShow}">
         <div class="modal-bg" @tap="onHandleCloseModal(2)"></div>
         <div class="modal-content">
           <div class="modal-header"></div>
@@ -538,6 +538,7 @@
 </script>
 
 <style scoped lang="less">
+  @import "../../../assets/less/@media";
   @import "../../../assets/less/variable";
 
   .container {
@@ -554,7 +555,7 @@
           left: 0;
           z-index: 1000;
           background-color: @white;
-          box-shadow: 0 0 15px @boxShadow1;
+          box-shadow: 0 0 15px @boxShadow05;
           font-size: @fontSize28;
           text-align: center;
           color: @fontColor1;
@@ -634,7 +635,7 @@
           padding-top: 105px;
           background-color: @white;
           transition: all 450ms ease-out;
-          box-shadow: 0 0 15px @boxShadow2;
+          box-shadow: 0 0 15px @boxShadow15;
           .modal-header {
           }
           .modal-body {
@@ -810,94 +811,6 @@
             }
           }
         }
-      }
-    }
-  }
-
-  /* iPhone X, iPhone XS */
-  @media only screen and (device-width: 375px)and (max-device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
-    .tab-bar {
-      top: 89px !important;
-    }
-
-    .context {
-      padding-top: 129px !important;
-    }
-
-    .modal-content {
-      height: unit(900, rpx) !important;
-      padding-top: 129px !important;
-    }
-
-    #sort {
-      .modal-content {
-        height: 379px !important;
-      }
-    }
-  }
-
-  /* iPhone XR */
-  @media only screen and (device-width: 414px)and (max-device-height: 896px) and (-webkit-device-pixel-ratio: 2) {
-    .tab-bar {
-      top: 89px !important;
-    }
-
-    .context {
-      padding-top: 129px !important;
-    }
-
-    .modal-content {
-      height: unit(900, rpx) !important;
-      padding-top: 129px !important;
-    }
-
-    #sort {
-      .modal-content {
-        height: 379px !important;
-      }
-    }
-  }
-
-  /* iPhone XS Max */
-  @media only screen and (device-width: 414px)and (max-device-height: 896px) and (-webkit-device-pixel-ratio: 3) {
-    .tab-bar {
-      top: 89px !important;
-    }
-
-    .context {
-      padding-top: 129px !important;
-    }
-
-    .modal-content {
-      height: unit(900, rpx) !important;
-      padding-top: 129px !important;
-    }
-
-    #sort {
-      .modal-content {
-        height: 379px !important;
-      }
-    }
-  }
-
-  /* iPhone 6/7/8 Plus */
-  @media only screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) {
-    .tab-bar {
-      top: 65px !important;
-    }
-
-    .context {
-      padding-top: 105px !important;
-    }
-
-    .modal-content {
-      height: unit(850, rpx) !important;
-      padding-top: 105px !important;
-    }
-
-    #sort {
-      .modal-content {
-        height: 355px !important;
       }
     }
   }

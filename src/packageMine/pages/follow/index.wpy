@@ -15,7 +15,7 @@
         <loading :isLoading="isLoading&&!isData.rows.length"></loading>
         <error :isFailure="isFailure&&!isData.rows.length" @refresh="onRefresh"></error>
         <empty :isSuccess="isSuccess&&!isData.rows.length"></empty>
-        <div class="context fade" v-if="isData.rows.length">
+        <div class="context tab fade" v-if="isData.rows.length">
           <scroll-view class="scroll-view"
                        scroll-y="{{true}}"
                        @scrolltolower="onHandleScrollToLower">
@@ -128,6 +128,7 @@
 </script>
 
 <style scoped lang="less">
+  @import "../../../assets/less/@media";
   @import "../../../assets/less/variable";
 
   .container {
@@ -144,17 +145,17 @@
           left: 0;
           z-index: 1000;
           background-color: @white;
-          box-shadow: 0 0 15px @boxShadow1;
+          box-shadow: 0 0 15px @boxShadow05;
           font-size: @fontSize28;
           text-align: center;
           color: @fontColor2;
           .tab-item {
             width: 33.333%;
             position: relative;
-            padding: unit(20, rpx) 0;
+            padding: 10px 0;
             .tab-text {
-              height: unit(40, rpx);
-              line-height: unit(40, rpx);
+              height: 20px;
+              line-height: 20px;
               transition: all 300ms ease;
               border-right: 0.5px solid @borderColor1;
             }
@@ -192,7 +193,7 @@
         position: relative;
         .context {
           height: 100%;
-          padding-top: unit(210, rpx);
+          padding-top: 105px;
           .scroll-view {
             height: 100%;
           }

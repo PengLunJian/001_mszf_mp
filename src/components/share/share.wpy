@@ -1,0 +1,294 @@
+<template>
+  <div class="share{{isShow?' enter':''}}{{isHide?' leave':''}}">
+    <div class="share-mask" @tap="onHandleHideshare"></div>
+    <div class="share-content">
+      <div class="share-header">
+        <img :src="imgLogo" mode="aspectFit"/>
+      </div>
+      <div class="share-body">
+        <img class="code" :src="imgCode" mode="aspectFit"/>
+        <div class="large">
+          <div class="icon iconfont icon-scan"></div>
+          <div class="text">微信扫一扫</div>
+        </div>
+        <div class="small">优质好房 尽在码上找房</div>
+      </div>
+      <div class="share-footer">
+        <div class="btn btn-cancel" @tap="onHandleCancel">取消</div>
+        <div class="btn btn-confirm" @tap="onHandleConfirm">保存</div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script type="text/ecmascript-6">
+  import wepy from '@wepy/core';
+  import store from '../../store';
+  import Toast from '../../mixins/toast';
+  import * as $config from '../../config';
+
+  wepy.component({
+    store,
+    mixins: [Toast],
+    data: {},
+    props: {
+      isShow: {
+        type: Boolean,
+        default: false
+      },
+      isHide: {
+        type: Boolean,
+        default: false
+      },
+      imgLogo: {
+        type: String,
+        default: ''
+      },
+      imgCode: {
+        type: String,
+        default: ''
+      }
+    },
+    methods: {
+      onHandleHideShare() {
+        this.isShow = false;
+        this.isHide = true;
+        this.$parent.isShow = false;
+        this.$parent.isHide = true;
+      },
+      onHandleSaveShare() {
+        wx.getSetting({
+          success: (res) => {
+            res = res || {};
+            const {authSetting} = res;
+            const scope = 'scope.writePhotosAlbum';
+            const value = authSetting[scope];
+            if (value === undefined) {
+              wx.authorize({
+                scope,
+                success: (res) => {
+                  res = res || {};
+                  this.onHandleSaveImage();
+                  console.log(res);
+                }
+              });
+            } else if (value === false) {
+              wx.openSetting({
+                success: (res) => {
+                  res = res || {};
+                  console.log(res);
+                }
+              });
+            } else {
+              this.onHandleSaveImage();
+            }
+          }
+        });
+      },
+      onHandleSaveImage() {
+        setTimeout(() => {
+          wx.downloadFile({
+            url: $config.DEFAULT_SHARE,
+            success: (res) => {
+              res = res || {};
+              const {tempFilePath} = res;
+              wx.saveImageToPhotosAlbum({
+                filePath: tempFilePath,
+                success: (res) => {
+                  this.showToast('图片已保存，快去分享给好友吧。');
+                  console.log(res);
+                },
+                fail: (err) => {
+                  this.showToast('图片保存失败');
+                  console.log(err);
+                }
+              });
+            },
+            fail: (err) => {
+              this.showToast('图片下载失败');
+              console.log(err);
+            }
+          });
+        }, 300);
+      },
+      onHandleCancel() {
+        this.onHandleHideShare();
+      },
+      onHandleConfirm() {
+        this.onHandleHideShare();
+        this.onHandleSaveShare();
+      }
+    },
+    created() {
+    }
+  });
+</script>
+
+<style scoped lang="less">
+  @import "../../assets/less/common";
+  @import "../../assets/less/variable";
+
+  @height: unit(100, rpx);
+
+  .share {
+    .share-mask {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1010;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      visibility: hidden;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    .share-content {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      z-index: 1011;
+      opacity: 0;
+      overflow: hidden;
+      visibility: hidden;
+      width: unit(560, rpx);
+      padding-top: unit(170, rpx);
+      border-radius: unit(40, rpx);
+      box-shadow: 0 0 15px @boxShadow05;
+      transform: translate3d(-50%, -50%, 0) scale(1.0);
+      background-color: #ECEAE9;
+      .share-header {
+        position: absolute;
+        top: unit(70, rpx);
+        left: 0;
+        width: 100%;
+        background-color: @theme2;
+        image {
+          width: unit(200, rpx);
+          height: unit(60, rpx);
+          margin: unit(20, rpx) auto;
+        }
+      }
+      .share-body {
+        padding: unit(60, rpx) 0 unit(70, rpx);
+        .code {
+          width: unit(260, rpx);
+          height: unit(260, rpx);
+          margin: 0 auto unit(60, rpx);
+        }
+        .large, .small {
+          height: unit(40, rpx);
+          line-height: unit(40, rpx);
+          letter-spacing: 0.5px;
+          text-align: center;
+          &.large {
+            color: @fontColor2;
+            .icon, .text {
+              display: inline-block;
+              vertical-align: middle;
+              font-size: @fontSize26;
+              &.icon {
+                margin-right: unit(4, rpx);
+              }
+            }
+          }
+          &.small {
+            margin-top: unit(4, rpx);
+            font-size: @fontSize24;
+            color: @fontColor3;
+          }
+        }
+      }
+      .share-footer {
+        display: flex;
+        height: @height;
+        line-height: @height;
+        border-top: 0.5px solid @borderColor3;
+        font-size: @fontSize32;
+        letter-spacing: 1px;
+        text-align: center;
+        .btn-cancel {
+          width: 50%;
+          color: @fontColor2;
+        }
+        .btn-confirm {
+          width: 50%;
+          border-left: 0.5px solid @borderColor3;
+          color: @fontColor2;
+        }
+      }
+    }
+    &.enter {
+      .share-mask {
+        animation: share-mask-enter 300ms ease-out forwards;
+      }
+      .share-content {
+        animation: share-content-enter 300ms ease-out forwards;
+      }
+    }
+    &.leave {
+      .share-mask {
+        animation: share-mask-leave 300ms ease-out forwards;
+      }
+      .share-content {
+        animation: share-content-leave 300ms ease-out forwards;
+      }
+    }
+    @keyframes share-mask-enter {
+      0% {
+        opacity: 0;
+        visibility: hidden;
+      }
+      100% {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+
+    @keyframes share-content-enter {
+      0% {
+        opacity: 0;
+        visibility: hidden;
+        transform: translate3d(-50%, -50%, 0) scale(0.5);
+      }
+      50% {
+        opacity: 1;
+        visibility: visible;
+        transform: translate3d(-50%, -50%, 0) scale(1.2);
+      }
+      100% {
+        opacity: 1;
+        visibility: visible;
+        transform: translate3d(-50%, -50%, 0) scale(1);
+      }
+    }
+
+    @keyframes share-mask-leave {
+      0% {
+        opacity: 1;
+        visibility: visible;
+      }
+      100% {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    @keyframes share-content-leave {
+      0% {
+        opacity: 1;
+        visibility: visible;
+        transform: translate3d(-50%, -50%, 0) scale(1.0);
+      }
+      50% {
+        opacity: 1;
+        visibility: visible;
+        transform: translate3d(-50%, -50%, 0) scale(0.7);
+      }
+      100% {
+        opacity: 0;
+        visibility: hidden;
+        transform: translate3d(-50%, -50%, 0) scale(1.2);
+      }
+    }
+  }
+</style>

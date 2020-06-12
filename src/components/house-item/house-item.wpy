@@ -3,7 +3,7 @@
     <div class="item-row row">
       <div class="item-col col-3">
         <div class="item-img">
-          <lazy-image src="{{item.picUrl[0]}}" width="50%" mode="aspectFill"/>
+          <lazy-image src="{{item.picUrl[0]}}" width="60%" mode="aspectFill"/>
         </div>
       </div>
       <div class="item-col col-9">
@@ -40,7 +40,7 @@
     <div class="item-row row">
       <div class="item-col col-3">
         <div class="item-img">
-          <lazy-image src="{{item.picUrl[0]}}" width="50%" mode="aspectFill"/>
+          <lazy-image src="{{item.picUrl[0]}}" width="60%" mode="aspectFill"/>
         </div>
       </div>
       <div class="item-col col-9">
@@ -75,7 +75,7 @@
     <div class="item-row row">
       <div class="item-col col-3">
         <div class="item-img">
-          <lazy-image src="{{item.picUrl[0]}}" width="50%" mode="aspectFill"/>
+          <lazy-image src="{{item.picUrl[0]}}" width="60%" mode="aspectFill"/>
         </div>
       </div>
       <div class="item-col col-9">

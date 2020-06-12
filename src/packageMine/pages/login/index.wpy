@@ -175,7 +175,7 @@
                 .btn {
                   overflow: hidden;
                   margin-bottom: unit(40, rpx);
-                  border-radius: @borderRadius1;
+                  border-radius: @borderRadius10;
                   text-align: center;
                   color: @white;
                   font-size: 0;

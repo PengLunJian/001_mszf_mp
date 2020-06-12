@@ -32,6 +32,7 @@
 </script>
 
 <style scoped lang="less">
+  @import "../../../assets/less/@media";
   @import "../../../assets/less/variable";
 
   .container {

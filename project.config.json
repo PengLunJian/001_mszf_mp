@@ -10,6 +10,8 @@
 		"coverView": true,
 		"nodeModules": true,
 		"autoAudits": false,
+		"showShadowRootInWxmlPanel": false,
+		"scopeDataCheck": false,
 		"uglifyFileName": true,
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
@@ -19,9 +21,7 @@
 			"disablePlugins": [],
 			"outputPath": ""
 		},
-		"bundle": false,
-		"showShadowRootInWxmlPanel": false,
-		"scopeDataCheck": false
+		"bundle": true
 	},
 	"compileType": "miniprogram",
 	"appid": "wx1a1c918eca37fa97",
@@ -106,6 +106,13 @@
 					"id": -1,
 					"name": "pages/index/index",
 					"pathName": "pages/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 8,
+					"name": "模拟更新",
+					"pathName": "packageMine/pages/about/index",
 					"scene": null
 				}
 			]

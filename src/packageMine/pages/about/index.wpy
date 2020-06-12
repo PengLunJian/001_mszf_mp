@@ -6,48 +6,54 @@
       </div>
       <div class="body">
         <div class="context fade">
-          <div class="module">
-            <div class="module-content">
-              <div class="module-body">
-                <div class="module-row row">
-                  <div class="module-col col-12">
-                    <div class="module-image">
-                      <lazy-image src="{{url}}" width="30%"/>
-                    </div>
-                  </div>
-                  <div class="module-col col-12">
-                    <div class="module-items">
-                      <button class="module-item btn" hover-class="none" @tap="onHandlePhone">
-                        <div class="item-icon iconfont icon-phone"></div>
-                        <div class="item-text">联系电话</div>
-                        <div class="item-next iconfont icon-next"></div>
-                      </button>
-                      <button class="module-item btn" hover-class="none" open-type="contact">
-                        <div class="item-icon iconfont icon-service"></div>
-                        <div class="item-text">在线客服</div>
-                        <div class="item-next iconfont icon-next"></div>
-                      </button>
-                      <button class="module-item btn" hover-class="none" @tap="onHandleLocation">
-                        <div class="item-icon iconfont icon-address"></div>
-                        <div class="item-text">地址导航</div>
-                        <div class="item-next iconfont icon-next"></div>
-                      </button>
-                      <button class="module-item btn" hover-class="none" @tap="onHandleShowModal">
-                        <div class="item-icon iconfont icon-share"></div>
-                        <div class="item-text">我要分享</div>
-                        <div class="item-next iconfont icon-next"></div>
-                      </button>
-                      <button class="module-item btn" hover-class="none">
-                        <div class="item-icon iconfont icon-version"></div>
-                        <div class="item-text">系统更新</div>
-                        <div class="item-next iconfont icon-next"></div>
-                      </button>
+          <scroll-view
+            class="scroll-view"
+            scroll-y="{{isScroll}}">
+            <div class="scroll-content">
+              <div class="module">
+                <div class="module-content">
+                  <div class="module-body">
+                    <div class="module-row row">
+                      <div class="module-col col-12">
+                        <div class="module-image">
+                          <lazy-image src="{{url}}" width="30%"/>
+                        </div>
+                      </div>
+                      <div class="module-col col-12">
+                        <div class="module-items">
+                          <button class="module-item btn" hover-class="none" @tap="onHandlePhone">
+                            <div class="item-icon iconfont icon-phone"></div>
+                            <div class="item-text">联系电话</div>
+                            <div class="item-next iconfont icon-next"></div>
+                          </button>
+                          <button class="module-item btn" hover-class="none" open-type="contact">
+                            <div class="item-icon iconfont icon-msg"></div>
+                            <div class="item-text">在线客服</div>
+                            <div class="item-next iconfont icon-next"></div>
+                          </button>
+                          <button class="module-item btn" hover-class="none" @tap="onHandleLocation">
+                            <div class="item-icon iconfont icon-address"></div>
+                            <div class="item-text">地址导航</div>
+                            <div class="item-next iconfont icon-next"></div>
+                          </button>
+                          <button class="module-item btn" hover-class="none" @tap="onHandleShowShare">
+                            <div class="item-icon iconfont icon-share"></div>
+                            <div class="item-text">我要分享</div>
+                            <div class="item-next iconfont icon-next"></div>
+                          </button>
+                          <button class="module-item btn" hover-class="none" @tap="onHandleShowModal">
+                            <div class="item-icon iconfont icon-setting{{hasUpdate?' stage':''}}"></div>
+                            <div class="item-text">系统更新</div>
+                            <div class="item-next iconfont icon-next"></div>
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </scroll-view>
         </div>
       </div>
       <div class="footer">
@@ -60,26 +66,17 @@
           </div>
         </div>
       </div>
-      <div class="modal{{isShow?' enter':''}}{{isHide?' leave':''}}">
-        <div class="modal-bg" @tap="onHandleHideModal"></div>
-        <div class="modal-content">
-          <div class="modal-header">
-            <img src="../../images/logo@2x.png" mode="aspectFit"/>
-          </div>
-          <div class="modal-body">
-            <img class="code" src="../../images/code@2x.png" mode="aspectFit"/>
-            <div class="large">
-              <div class="icon iconfont icon-scan"></div>
-              <div class="text">微信扫一扫</div>
-            </div>
-            <div class="small">优质好房 尽在码上找房</div>
-          </div>
-          <div class="modal-footer">
-            <div class="btn btn-cancel" @tap="onHandleCancel">取消</div>
-            <div class="btn btn-confirm" @tap="onHandleConfirm">保存</div>
-          </div>
-        </div>
-      </div>
+      <share :isShow="isShow"
+             :isHide="isHide"
+             :imgCode="imgCode"
+             :imgLogo="imgLogo"/>
+      <modal :isEnter="isEnter"
+             :isLeave="isLeave"
+             :title="title"
+             :context="context"
+             :cancelText="cancelText"
+             :confirmText="confirmText"
+             @onConfirm="onHandleConfirm"/>
     </div>
   </div>
 </template>
@@ -99,6 +96,17 @@
     data: {
       isShow: false,
       isHide: false,
+      imgCode: '../../packageMine/images/code@2x.png',
+      imgLogo: '../../packageMine/images/logo@2x.png',
+      isEnter: false,
+      isLeave: false,
+      isScroll: true,
+      title: '',
+      context: '',
+      cancelText: '取消',
+      confirmText: '确认',
+      hasUpdate: false,
+      updateManager: null,
       url: $config.DEFAULT_ABOUT,
       company: {
         latitude: 0,
@@ -166,87 +174,51 @@
           }
         });
       },
-      onHandleShowModal() {
+      onHandleShowShare() {
         this.isHide = false;
         this.isShow = true;
       },
-      onHandleHideModal() {
-        this.isShow = false;
-        this.isHide = true;
+      onHandleShowModal() {
+        this.isEnter = true;
+        this.isLeave = false;
+        this.isScroll = false;
       },
-      onHandleCancel() {
-        this.onHandleHideModal();
-      },
-      onHandleExeSaveImage() {
-        wx.getSetting({
-          success: (res) => {
-            res = res || {};
-            const {authSetting} = res;
-            const scope = 'scope.writePhotosAlbum';
-            const value = authSetting[scope];
-            if (value === undefined) {
-              wx.authorize({
-                scope,
-                success: (res) => {
-                  res = res || {};
-                  this.onHandleSaveImage();
-                  console.log(res);
-                }
-              });
-            } else if (value === false) {
-              wx.openSetting({
-                success: (res) => {
-                  res = res || {};
-                  console.log(res);
-                }
-              });
-            } else {
-              this.onHandleSaveImage();
-            }
-          }
+      onHandleCheckVersion() {
+        const updateManager = wx.getUpdateManager();
+        this.updateManager = updateManager;
+        updateManager.onCheckForUpdate((res) => {
+          res = res || {};
+          const {hasUpdate} = res;
+          this.hasUpdate = hasUpdate;
+          this.title = hasUpdate ? '系统发现新版本' : '系统暂无更新版本';
+          this.context = hasUpdate ? '系统更新后可体验更多服务' : '当前系统已是最新版本，无需更新';
+          this.cancelText = hasUpdate ? '下次再说' : '取消';
+          this.confirmText = hasUpdate ? '立即更新' : '确认';
         });
       },
-      onHandleSaveImage() {
-        setTimeout(() => {
-          wx.downloadFile({
-            url: $config.DEFAULT_SHARE,
-            success: (res) => {
-              res = res || {};
-              const {tempFilePath} = res;
-              wx.saveImageToPhotosAlbum({
-                filePath: tempFilePath,
-                success: (res) => {
-                  this.showToast('图片已保存，快去分享给好友吧。');
-                  console.log(res);
-                },
-                fail: (err) => {
-                  this.showToast('图片保存失败！');
-                  console.log(err);
-                }
-              });
-            },
-            fail: (err) => {
-              this.showToast('图片下载失败！');
-              console.log(err);
-            }
-          });
-        }, 300);
-      },
       onHandleConfirm() {
-        this.onHandleHideModal();
-        this.onHandleExeSaveImage();
+        const {hasUpdate, updateManager} = this;
+        if (hasUpdate) {
+          updateManager.onUpdateReady(() => {
+            updateManager.applyUpdate();
+          });
+          updateManager.onUpdateFailed(() => {
+            this.showToast('请您删除小程序，重新搜索打开');
+          });
+        }
       }
     },
 
     onLoad() {
       this.onHandlePosition();
+      this.onHandleCheckVersion();
     }
   });
 </script>
 
 <style scoped lang="less">
-  @import "../../../assets/less/variable";
   @import "../../../assets/less/@media";
+  @import "../../../assets/less/variable";
 
   @height: unit(100, rpx);
 
@@ -262,78 +234,95 @@
         .context {
           height: 100%;
           padding-top: 65px;
-          .module {
-            margin: 0;
-            background-color: transparent;
-            .module-row {
-              padding: unit(15, rpx);
-              .module-col {
-                padding: unit(15, rpx);
-                .module-image {
-                  overflow: hidden;
-                  position: relative;
-                  height: unit(300, rpx);
-                  border-radius: @borderRadius2;
-                  image {
-                    border-radius: @borderRadius2;
-                  }
-                }
-                .module-items {
-                  overflow: hidden;
-                  background-color: @white;
-                  border-radius: @borderRadius2;
-                  .module-item {
-                    display: flex;
-                    height: unit(110, rpx);
-                    line-height: unit(110, rpx);
-                    border-bottom: 0.5px solid @borderColor2;
-                    text-align: center;
-                    .item-icon {
-                      width: unit(110, rpx);
-                      -webkit-text-fill-color: transparent;
-                      -webkit-background-clip: text;
-                      font-size: @fontSize46;
+          .scroll-view {
+            height: 100%;
+            .scroll-content {
+              .module {
+                margin: 0;
+                background-color: transparent;
+                .module-row {
+                  padding: unit(15, rpx);
+                  .module-col {
+                    padding: unit(15, rpx);
+                    .module-image {
+                      overflow: hidden;
+                      position: relative;
+                      height: unit(300, rpx);
+                      will-change: transform;
+                      border-radius: @borderRadius20;
                     }
-                    .item-text {
-                      height: 100%;
-                      font-size: unit(32, rpx);
-                      text-align: left;
-                    }
-                    .item-next {
-                      position: absolute;
-                      top: 0;
-                      right: 0;
-                      width: unit(110, rpx);
-                      height: unit(110, rpx);
-                      color: @iconNext;
-                    }
-                    &:last-child {
-                      border: none;
-                    }
-                    &:nth-child(1) {
-                      .item-icon {
-                        background-image: -webkit-linear-gradient(left, #00FF00, #12B347);
-                        background-image: -webkit-linear-gradient(left, #00d99c, #86FFD8);
-                      }
-                    }
-                    &:nth-child(2) {
-                      .item-icon {
-                        background-image: -webkit-linear-gradient(left, #FF8F8F, #DE7979);
-                      }
-                    }
-                    &:nth-child(3) {
-                      .item-icon {
-                        background-image: -webkit-linear-gradient(left, #060BFF, #17F2FF);
-                      }
-                    }
-                    &:nth-child(4) {
-                      .item-icon {
-                        background-image: -webkit-linear-gradient(left, #FFFF00, #FFB421);
-                      }
-                    }
-                    &:nth-child(5) {
-                      .item-icon {
-                        background-image: -webkit-linear-gradient(left, #ff714f, #ffb698);
+                    .module-items {
+                      overflow: hidden;
+                      background-color: @white;
+                      border-radius: @borderRadius20;
+                      .module-item {
+                        display: flex;
+                        height: unit(110, rpx);
+                        line-height: unit(110, rpx);
+                        border-bottom: 0.5px solid @borderColor2;
+                        text-align: center;
+                        .item-icon {
+                          width: unit(110, rpx);
+                          position: relative;
+                          -webkit-text-fill-color: transparent;
+                          -webkit-background-clip: text;
+                          font-size: @fontSize46;
+                          &.stage {
+                            &:after {
+                              content: '';
+                              display: block;
+                              position: absolute;
+                              top: unit(26, rpx);
+                              right: unit(26, rpx);
+                              z-index: 1;
+                              width: unit(16, rpx);
+                              height: unit(16, rpx);
+                              border-radius: @borderRadius100;
+                              background-color: #fa5151;
+                            }
+                          }
+                        }
+                        .item-text {
+                          height: 100%;
+                          font-size: unit(32, rpx);
+                          text-align: left;
+                        }
+                        .item-next {
+                          position: absolute;
+                          top: 0;
+                          right: 0;
+                          width: unit(110, rpx);
+                          height: unit(110, rpx);
+                          color: @iconNext;
+                        }
+                        &:last-child {
+                          border: none;
+                        }
+                        &:nth-child(1) {
+                          .item-icon {
+                            background-image: -webkit-linear-gradient(left, #42ff55, #12c14a);
+                          }
+                        }
+                        &:nth-child(2) {
+                          .item-icon {
+                            background-image: -webkit-linear-gradient(left, #ffb698, #ff714f);
+                          }
+                        }
+                        &:nth-child(3) {
+                          .item-icon {
+                            background-image: -webkit-linear-gradient(left, #68e2ac, #00c084);
+                          }
+                        }
+                        &:nth-child(4) {
+                          .item-icon {
+                            background-image: -webkit-linear-gradient(left, #FFFF00, #FFB421);
+                          }
+                        }
+                        &:nth-child(5) {
+                          .item-icon {
+                            background-image: -webkit-linear-gradient(left, #17F2FF, #060BFF);
+                          }
+                        }
                       }
                     }
                   }
@@ -373,168 +362,6 @@
           }
         }
       }
-      .modal {
-        .modal-bg {
-          position: fixed;
-          top: 0;
-          left: 0;
-          z-index: 1010;
-          width: 100%;
-          height: 100%;
-          opacity: 0;
-          visibility: hidden;
-          background-color: rgba(0, 0, 0, 0.5);
-        }
-        .modal-content {
-          position: fixed;
-          top: 50%;
-          left: 50%;
-          z-index: 1011;
-          opacity: 0;
-          overflow: hidden;
-          visibility: hidden;
-          width: unit(560, rpx);
-          padding-top: unit(170, rpx);
-          border-radius: unit(40, rpx);
-          box-shadow: 0 0 15px @boxShadow1;
-          transform: translate3d(-50%, -50%, 0) scale(1.0);
-          background-color: #ECEAE9;
-          .modal-header {
-            position: absolute;
-            top: unit(70, rpx);
-            left: 0;
-            width: 100%;
-            background-color: @theme2;
-            image {
-              width: unit(200, rpx);
-              height: unit(60, rpx);
-              margin: unit(20, rpx) auto;
-            }
-          }
-          .modal-body {
-            padding: unit(60, rpx) 0 unit(70, rpx);
-            .code {
-              width: unit(260, rpx);
-              height: unit(260, rpx);
-              margin: 0 auto unit(60, rpx);
-            }
-            .large, .small {
-              height: unit(40, rpx);
-              line-height: unit(40, rpx);
-              letter-spacing: 0.5px;
-              text-align: center;
-              &.large {
-                color: @fontColor2;
-                .icon, .text {
-                  display: inline-block;
-                  vertical-align: middle;
-                  font-size: @fontSize26;
-                  &.icon {
-                    margin-right: unit(4, rpx);
-                  }
-                }
-              }
-              &.small {
-                margin-top: unit(4, rpx);
-                font-size: @fontSize24;
-                color: @fontColor3;
-              }
-            }
-          }
-          .modal-footer {
-            display: flex;
-            height: @height;
-            line-height: @height;
-            border-top: 0.5px solid @borderColor3;
-            font-size: @fontSize32;
-            letter-spacing: 1px;
-            text-align: center;
-            .btn-cancel {
-              width: 50%;
-              color: @fontColor2;
-            }
-            .btn-confirm {
-              width: 50%;
-              border-left: 0.5px solid @borderColor3;
-              color: @fontColor2;
-            }
-          }
-        }
-        &.enter {
-          .modal-bg {
-            animation: modal-bg-enter 300ms ease-out forwards;
-          }
-          .modal-content {
-            animation: modal-content-enter 300ms ease-out forwards;
-          }
-        }
-        &.leave {
-          .modal-bg {
-            animation: modal-bg-leave 300ms ease-out forwards;
-          }
-          .modal-content {
-            animation: modal-content-leave 300ms ease-out forwards;
-          }
-        }
-      }
-    }
-  }
-
-  @keyframes modal-bg-enter {
-    0% {
-      opacity: 0;
-      visibility: hidden;
-    }
-    100% {
-      opacity: 1;
-      visibility: visible;
-    }
-  }
-
-  @keyframes modal-content-enter {
-    0% {
-      opacity: 0;
-      visibility: hidden;
-      transform: translate3d(-50%, -50%, 0) scale(0.5);
-    }
-    50% {
-      opacity: 1;
-      visibility: visible;
-      transform: translate3d(-50%, -50%, 0) scale(1.2);
-    }
-    100% {
-      opacity: 1;
-      visibility: visible;
-      transform: translate3d(-50%, -50%, 0) scale(1);
-    }
-  }
-
-  @keyframes modal-bg-leave {
-    0% {
-      opacity: 1;
-      visibility: visible;
-    }
-    100% {
-      opacity: 0;
-      visibility: hidden;
-    }
-  }
-
-  @keyframes modal-content-leave {
-    0% {
-      opacity: 1;
-      visibility: visible;
-      transform: translate3d(-50%, -50%, 0) scale(1.0);
-    }
-    50% {
-      opacity: 1;
-      visibility: visible;
-      transform: translate3d(-50%, -50%, 0) scale(0.7);
-    }
-    100% {
-      opacity: 0;
-      visibility: hidden;
-      transform: translate3d(-50%, -50%, 0) scale(1.2);
     }
   }
 </style>
@@ -544,6 +371,8 @@
   disableScroll:true,
   navigationStyle:'custom',
   usingComponents: {
+  'modal': '../../../components/modal/modal',
+  'share': '../../../components/share/share',
   'top-bar': '../../../components/top-bar/top-bar',
   'lazy-image': '../../../components/lazy-image/lazy-image'
   }

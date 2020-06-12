@@ -1,6 +1,6 @@
 <template>
-  <div class="top-bar">
-    <div class="top-inner">
+  <div class="top-bar" :style="{'color':color,'backgroundColor':backgroundColor}">
+    <div class="top-row row">
       <div class="top-icon iconfont icon-back" v-if="isIcon" @tap="onHandleBack"></div>
       <div class="top-icon iconfont icon-home" v-if="isIcon" @tap="onHandleHome"></div>
       <div class="top-title">{{title}}</div>
@@ -10,9 +10,11 @@
 
 <script type="text/ecmascript-6">
   import wepy from '@wepy/core';
+  import Route from '../../mixins/route';
   import * as $routes from '../../router';
 
   wepy.component({
+    mixins: [Route],
     data: {},
     props: {
       title: {
@@ -22,19 +24,22 @@
       isIcon: {
         type: Boolean,
         default: true
+      },
+      color: {
+        type: String,
+        default: '#000000'
+      },
+      backgroundColor: {
+        type: String,
+        default: '#FFFFFF'
       }
     },
-    events: {},
     methods: {
       onHandleBack() {
-        wx.navigateBack({
-          delta: 1
-        });
+        this.navigateBack(1);
       },
       onHandleHome() {
-        wx.reLaunch({
-          url: $routes.HOME.path
-        });
+        this.reLaunch($routes.HOME.path);
       }
     },
     created() {
@@ -43,9 +48,9 @@
 </script>
 
 <style scoped lang="less">
-  @import "../../assets/less/variable";
-  @import "../../assets/less/iconfont";
+  @import "../../assets/less/common";
   @import "../../assets/less/@media";
+  @import "../../assets/less/variable";
 
   .top-bar {
     width: 100%;
@@ -54,9 +59,9 @@
     left: 0;
     z-index: 1010;
     background-color: @white;
-    padding-bottom: 5px;
     padding-top: 20px;
-    .top-inner {
+    padding-bottom: 5px;
+    .top-row {
       position: relative;
       height: @topBarHeight;
       line-height: @topBarHeight;
@@ -64,18 +69,16 @@
       .top-icon {
         width: unit(90, rpx);
         height: @topBarHeight;
-        position: relative;
-        z-index: 1;
-        float: left;
         font-size: unit(40, rpx);
       }
       .top-title {
         position: absolute;
         top: 0;
         left: 0;
+        z-index: -1;
         width: 100%;
         height: 100%;
-        font-size: unit(32, rpx);
+        font-size: @fontSize32;
         font-weight: bold;
       }
     }

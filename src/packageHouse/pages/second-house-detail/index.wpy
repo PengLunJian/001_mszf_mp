@@ -11,7 +11,7 @@
           <scroll-view
             class="scroll-view"
             scroll-y="{{true}}">
-            <div class="scroll-inner">
+            <div class="scroll-content">
               <detail-banner :isData="isData"/>
               <detail-base :isData="isData"/>
               <detail-agent :isData="isData"/>
@@ -78,8 +78,8 @@
 </script>
 
 <style scoped lang="less">
-  @import "../../../assets/less/variable";
   @import "../../../assets/less/@media";
+  @import "../../../assets/less/variable";
 
   .container {
     min-height: 100vh;
@@ -96,7 +96,7 @@
           padding-bottom: unit(110, rpx);
           .scroll-view {
             height: 100%;
-            .scroll-inner {
+            .scroll-content {
               padding-bottom: unit(20, rpx);
             }
           }

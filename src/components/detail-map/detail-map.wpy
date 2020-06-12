@@ -100,7 +100,7 @@
                       line-height: unit(90, rpx);
                       padding: 0 unit(30, rpx);
                       background-color: @white;
-                      border-radius: @borderRadius1;
+                      border-radius: @borderRadius10;
                       box-shadow: 0 0 15px rgba(0, 0, 0, .05);
                       letter-spacing: 0.5px;
                       font-size: @fontSize28;
@@ -125,7 +125,7 @@
                       left: 50%;
                       bottom: unit(-40, rpx);
                       transform: translateX(-50%);
-                      border-radius: @borderRadius3;
+                      border-radius: @borderRadius30;
                       border: 1px solid rgba(255, 153, 0, 1);
                       background-color: rgba(255, 153, 0, 0.5);
                     }

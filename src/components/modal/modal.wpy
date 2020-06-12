@@ -1,0 +1,222 @@
+<template>
+  <div class="modal{{isEnter?' enter':''}}{{isLeave?' leave':''}}">
+    <div class="modal-mask" @tap="onHandleHideModal"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">{{title}}</div>
+      </div>
+      <div class="modal-body">
+        <div class="modal-context">{{context}}</div>
+      </div>
+      <div class="modal-footer">
+        <div class="modal-btns row">
+          <div class="btn btn-cancel col-6" @tap="onHandleCancel">{{cancelText}}</div>
+          <div class="btn btn-confirm col-6" @tap="onHandleConfirm">{{confirmText}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script type="text/ecmascript-6">
+  import wepy from '@wepy/core';
+
+  wepy.component({
+    data: {},
+    props: {
+      isEnter: {
+        type: Boolean,
+        default: false
+      },
+      isLeave: {
+        type: Boolean,
+        default: false
+      },
+      title: {
+        type: String,
+        default: ''
+      },
+      context: {
+        type: String,
+        default: ''
+      },
+      confirmText: {
+        type: String,
+        default: '确认'
+      },
+      cancelText: {
+        type: String,
+        default: '取消'
+      }
+    },
+    methods: {
+      onHandleHideModal() {
+        this.isEnter = false;
+        this.isLeave = true;
+        this.$parent.isEnter = false;
+        this.$parent.isLeave = true;
+        this.$parent.isScroll = true;
+      },
+      onHandleCancel() {
+        this.onHandleHideModal();
+      },
+      onHandleConfirm() {
+        this.$emit('onConfirm');
+        this.onHandleHideModal();
+      }
+    },
+    created() {
+    }
+  });
+</script>
+
+<style scoped lang="less">
+  @import "../../assets/less/common";
+  @import "../../assets/less/variable";
+
+  .modal {
+    .modal-mask {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1010;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      visibility: hidden;
+      background-color: @mask;
+      transition: all 300ms ease-out;
+    }
+    .modal-content {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      opacity: 0;
+      z-index: 1011;
+      overflow: hidden;
+      visibility: hidden;
+      width: unit(560, rpx);
+      height: unit(300, rpx);
+      margin-top: unit(-150, rpx);
+      margin-left: unit(-280, rpx);
+      border-radius: @borderRadius30;
+      box-shadow: 0 0 15px @boxShadow15;
+      background-color: @white;
+      letter-spacing: 0.5px;
+      text-align: center;
+      color: @fontColor1;
+      .modal-header {
+        padding: unit(50, rpx) unit(30, rpx) 0;
+        .modal-title {
+          height: unit(40, rpx);
+          line-height: unit(40, rpx);
+          font-size: @fontSize34;
+          font-weight: 500;
+        }
+      }
+      .modal-body {
+        padding: unit(20, rpx) unit(30, rpx) unit(50, rpx);
+        font-size: 0;
+        .modal-context {
+          display: inline-block;
+          vertical-align: middle;
+          line-height: unit(40, rpx);
+          font-size: @fontSize28;
+        }
+        &:before {
+          content: '';
+          height: 100%;
+          display: inline-block;
+          vertical-align: middle;
+        }
+      }
+      .modal-footer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        .modal-btns {
+          border-top: 0.5px solid @borderColor3;
+          font-size: @fontSize34;
+          letter-spacing: 1px;
+          font-weight: 500;
+          .btn {
+            height: unit(100, rpx);
+            line-height: unit(100, rpx);
+            border-right: 0.5px solid @borderColor3;
+            &.btn-confirm {
+              color: @btnDelete;
+            }
+            &:last-child {
+              border: none;
+            }
+          }
+        }
+      }
+    }
+    &.enter {
+      .modal-mask {
+        animation: modal-mask-enter 300ms ease forwards;
+      }
+      .modal-content {
+        animation: modal-content-enter 300ms ease forwards;
+      }
+    }
+    &.leave {
+      .modal-mask {
+        animation: modal-mask-leave 300ms ease forwards;
+      }
+      .modal-content {
+        animation: modal-content-leave 300ms ease forwards;
+      }
+    }
+  }
+
+  @keyframes modal-mask-enter {
+    0% {
+      opacity: 0;
+      visibility: hidden;
+    }
+    100% {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  @keyframes modal-mask-leave {
+    0% {
+      opacity: 1;
+      visibility: visible;
+    }
+    100% {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  @keyframes modal-content-enter {
+    0% {
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(1.3);
+    }
+    100% {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1.0);
+    }
+  }
+
+  @keyframes modal-content-leave {
+    0% {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1.0);
+    }
+    100% {
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(0.7);
+    }
+  }
+</style>
