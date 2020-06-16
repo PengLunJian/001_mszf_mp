@@ -31,52 +31,29 @@
         </div>
       </div>
       <div class="footer"></div>
-      <div class="modal tab" id="price" :class="{'hide':!tab.items[0].isShow}">
+      <div class="modal tab" id="address" :class="{'hide':!tab.items[0].isShow}">
         <div class="modal-bg" @tap="onHandleCloseModal(0)"></div>
         <div class="modal-content">
           <div class="modal-header"></div>
           <div class="modal-body">
-            <scroll-view class="scroll-view" scroll-y="{{true}}">
-              <div class="modal-group">
-                <div class="modal-block">
-                  <div class="modal-row row">
-                    <div v-for="(item,index) in btnPrice.items"
-                         class="modal-col col-3"
-                         :class="{'active':index===btnPrice.activeIndex}">
-                      <div class="btn-item btn-price" @tap="onHandlePriceFilter(index)">{{item}}</div>
-                    </div>
-                  </div>
-                  <div class="modal-split"></div>
-                </div>
+            <div class="modal-addr">
+              <div class="modal-city">
+                <div class="modal-city-item">{{isCity.fullname}}</div>
               </div>
-              <div class="modal-group">
-                <div class="modal-block">
-                  <div class="modal-padding">
-                    <div class="modal-row row">
-                      <div class="min-label col-6">{{minPrice}}</div>
-                      <div class="max-label col-6">{{maxPrice}}</div>
-                    </div>
-                    <div class="modal-slider">
-                      <wux-slider
-                        min="0"
-                        step="10"
-                        max="1000"
-                        tipFormatter=""
-                        controlled="{{true}}"
-                        value="{{ sliderPriceValue }}"
-                        trackStyle="{{trackStylePrice}}"
-                        handleStyle="{{handleStylePrice}}"
-                        @change="onHandleSliderChangePrice"></wux-slider>
-                    </div>
+              <div class="modal-area">
+                <scroll-view class="scroll-view" scroll-y="{{true}}">
+                  <div class="modal-area-item" v-for="(item,index) in btnArea.items"
+                       :class="{'active':index===btnArea.activeIndex}"
+                       @tap="onHandleChooseArea(index)">{{item.fullname}}
                   </div>
-                </div>
+                </scroll-view>
               </div>
-            </scroll-view>
+            </div>
           </div>
           <div class="modal-footer">
             <div class="modal-button">
-              <div class="btn btn-clear" @tap="onHandleClearModal1">清空</div>
-              <div class="btn btn-confirm">确定</div>
+              <div class="btn btn-clear" @tap="onHandleClearModal1">重置</div>
+              <div class="btn btn-confirm" @tap="onHandleConfirmArea">确定</div>
             </div>
           </div>
         </div>
@@ -89,25 +66,12 @@
             <scroll-view class="scroll-view" scroll-y="{{true}}">
               <div class="modal-group">
                 <div class="modal-block">
-                  <div class="modal-label">方式</div>
-                  <div class="modal-row row">
-                    <div class="modal-col col-3"
-                         v-for="(item,index) in btnMethod.items"
-                         :class="{'active':index===btnMethod.activeIndex}">
-                      <div class="btn-item btn-method" @tap="onHandleMethodFilter(index)">{{item}}</div>
-                    </div>
-                  </div>
-                  <div class="modal-split"></div>
-                </div>
-              </div>
-              <div class="modal-group">
-                <div class="modal-block">
                   <div class="modal-label">户型</div>
                   <div class="modal-row row">
                     <div class="modal-col col-3"
                          v-for="(item,index) in btnLayout.items"
                          :class="{'active':index===btnLayout.activeIndex}">
-                      <div class="btn-item btn-layout" @tap="onHandleLayoutFilter(index)">{{item}}</div>
+                      <div class="btn-item btn-layout" @tap="onHandleLayoutFilter(index)">{{item.label}}</div>
                     </div>
                   </div>
                   <div class="modal-split"></div>
@@ -128,22 +92,87 @@
               </div>
               <div class="modal-group">
                 <div class="modal-block">
-                  <div class="modal-padding">
-                    <div class="modal-row row">
-                      <div class="min-label col-6">{{minArea}}</div>
-                      <div class="max-label col-6">{{maxArea}}</div>
+                  <div class="modal-label">朝向</div>
+                  <div class="modal-row row">
+                    <div class="modal-col col-3"
+                         v-for="(item,index) in btnDirection.items"
+                         :class="{'active':index===btnDirection.activeIndex}">
+                      <div class="btn-item btn-direction" @tap="onHandleDirectionFilter(index)">{{item.label}}</div>
                     </div>
-                    <div class="modal-slider">
+                  </div>
+                  <div class="modal-split"></div>
+                </div>
+              </div>
+              <div class="modal-group">
+                <div class="modal-block">
+                  <div class="modal-label">楼层</div>
+                  <div class="modal-row row">
+                    <div class="modal-col col-3"
+                         v-for="(item,index) in btnFloor.items"
+                         :class="{'active':index===btnFloor.activeIndex}">
+                      <div class="btn-item btn-floor" @tap="onHandleFloorFilter(index)">{{item.label}}</div>
+                    </div>
+                  </div>
+                  <div class="modal-split"></div>
+                </div>
+              </div>
+              <div class="modal-group">
+                <div class="modal-block">
+                  <div class="modal-label">价格</div>
+                  <div class="modal-row row">
+                    <div v-for="(item,index) in btnTotalPrice.items"
+                         class="modal-col col-3"
+                         :class="{'active':index===btnTotalPrice.activeIndex}">
+                      <div class="btn-item btn-price" @tap="onHandlePriceFilter(index)">{{item.label}}</div>
+                    </div>
+                  </div>
+                  <div class="modal-slider">
+                    <div class="modal-row row">
+                      <div class="min-label col-6">{{minTotalPrice}}</div>
+                      <div class="max-label col-6">{{maxTotalPrice}}</div>
+                    </div>
+                    <div class="modal-slider-bar">
                       <wux-slider
                         min="0"
-                        step="1"
-                        max="300"
+                        step="10"
+                        max="1000"
                         tipFormatter=""
                         controlled="{{true}}"
-                        value="{{ sliderAreaValue }}"
-                        trackStyle="{{trackStyleArea}}"
-                        handleStyle="{{handleStyleArea}}"
-                        @change="onHandleSliderChangeArea"></wux-slider>
+                        value="{{ sliderPriceValue }}"
+                        trackStyle="{{trackStylePrice}}"
+                        handleStyle="{{handleStylePrice}}"
+                        @change="onHandleSliderChangePrice"></wux-slider>
+                    </div>
+                    <div class="modal-split"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-group">
+                <div class="modal-block">
+                  <div class="modal-label">面积</div>
+                  <div class="modal-row row">
+                    <div v-for="(item,index) in btnSize.items"
+                         class="modal-col col-3"
+                         :class="{'active':index===btnSize.activeIndex}">
+                      <div class="btn-item btn-size" @tap="onHandleSizeFilter(index)">{{item.label}}</div>
+                    </div>
+                  </div>
+                  <div class="modal-slider">
+                    <div class="modal-row row">
+                      <div class="min-label col-6">{{minSize}}</div>
+                      <div class="max-label col-6">{{maxSize}}</div>
+                    </div>
+                    <div class="modal-slider-bar">
+                      <wux-slider
+                        min="0"
+                        step="5"
+                        max="500"
+                        tipFormatter=""
+                        controlled="{{true}}"
+                        value="{{ sliderSizeValue }}"
+                        trackStyle="{{trackStyleSize}}"
+                        handleStyle="{{handleStyleSize}}"
+                        @change="onHandleSliderChangeSize"></wux-slider>
                     </div>
                   </div>
                 </div>
@@ -152,8 +181,8 @@
           </div>
           <div class="modal-footer">
             <div class="modal-button">
-              <div class="btn btn-clear" @tap="onHandleClearModal2">清空</div>
-              <div class="btn btn-confirm">确定</div>
+              <div class="btn btn-clear" @tap="onHandleClearModal2">重置</div>
+              <div class="btn btn-confirm" @tap="onHandleConfirmFilter">确定</div>
             </div>
           </div>
         </div>
@@ -167,7 +196,7 @@
               <div class="btn btn-sort"
                    v-for="(item,index) in btnSort.items"
                    :class="{'active':index===btnSort.activeIndex}"
-                   @tap="onHandleSortFilter(index)">{{item}}
+                   @tap="onHandleSortFilter(index)">{{item.label}}
               </div>
             </div>
           </div>
@@ -198,7 +227,7 @@
         items: [
           {
             index: 0,
-            label: '价格',
+            label: '区域',
             isShow: false
           },
           {
@@ -213,38 +242,195 @@
           }
         ]
       },
-      btnPrice: {
+      btnArea: {},
+      btnSize: {
         activeIndex: -1,
         items: [
-          '100万以下',
-          '100-200万',
-          '200-300万',
-          '300-400万',
-          '400-500万',
-          '500-600万',
-          '600-700万',
-          '700-800万',
-          '800-900万',
-          '900万以上'
-        ]
+          {
+            label: '50m²以下',
+            value: {
+              minArea: 0,
+              maxArea: 50
+            }
+          },
+          {
+            label: '50-70m²',
+            value: {
+              minArea: 50,
+              maxArea: 70
+            }
+          },
+          {
+            label: '70-90m²',
+            value: {
+              minArea: 70,
+              maxArea: 90
+            }
+          },
+          {
+            label: '90-110m²',
+            value: {
+              minArea: 90,
+              maxArea: 110
+            }
+          },
+          {
+            label: '110-130m²',
+            value: {
+              minArea: 110,
+              maxArea: 130
+            }
+          },
+          {
+            label: '130-150m²',
+            value: {
+              minArea: 130,
+              maxArea: 150
+            }
+          },
+          {
+            label: '150-200m²',
+            value: {
+              minArea: 150,
+              maxArea: 200
+            }
+          },
+          {
+            label: '200-300m²',
+            value: {
+              minArea: 200,
+              maxArea: 300
+            }
+          },
+          {
+            label: '300-500m²',
+            value: {
+              minArea: 300,
+              maxArea: 500
+            }
+          },
+          {
+            label: '500m²以上',
+            value: {
+              minArea: 500,
+              maxArea: 100000000
+            }
+          }
+        ],
+        value: []
       },
-      btnMethod: {
+      btnTotalPrice: {
         activeIndex: -1,
         items: [
-          '整租',
-          '合租'
-        ]
+          {
+            label: '100万以下',
+            value: {
+              minTotalPrice: 0,
+              maxTotalPrice: 100
+            }
+          },
+          {
+            label: '100-200万',
+            value: {
+              minTotalPrice: 100,
+              maxTotalPrice: 200
+            }
+          },
+          {
+            label: '200-300万',
+            value: {
+              minTotalPrice: 200,
+              maxTotalPrice: 300
+            }
+          },
+          {
+            label: '300-400万',
+            value: {
+              minTotalPrice: 300,
+              maxTotalPrice: 400
+            }
+          },
+          {
+            label: '400-500万',
+            value: {
+              minTotalPrice: 400,
+              maxTotalPrice: 500
+            }
+          },
+          {
+            label: '500-600万',
+            value: {
+              minTotalPrice: 500,
+              maxTotalPrice: 600
+            }
+          },
+          {
+            label: '600-700万',
+            value: {
+              minTotalPrice: 600,
+              maxTotalPrice: 700
+            }
+          },
+          {
+            label: '700-800万',
+            value: {
+              minTotalPrice: 700,
+              maxTotalPrice: 800
+            }
+          },
+          {
+            label: '800-900万',
+            value: {
+              minTotalPrice: 800,
+              maxTotalPrice: 900
+            }
+          },
+          {
+            label: '900-1000万',
+            value: {
+              minTotalPrice: 900,
+              maxTotalPrice: 1000
+            }
+          },
+          {
+            label: '1000万以上',
+            value: {
+              minTotalPrice: 1000,
+              maxTotalPrice: 100000000
+            }
+          }
+        ],
+        value: []
       },
       btnLayout: {
         activeIndex: -1,
         items: [
-          '一室',
-          '二室',
-          '三室',
-          '四室',
-          '五室',
-          '五室以上'
-        ]
+          {
+            label: '一室',
+            value: '1室'
+          },
+          {
+            label: '二室',
+            value: '2室'
+          },
+          {
+            label: '三室',
+            value: '3室'
+          },
+          {
+            label: '四室',
+            value: '4室'
+          },
+          {
+            label: '五室',
+            value: '5室'
+          },
+          {
+            label: '五室以上',
+            value: '5室+'
+          }
+        ],
+        value: ''
       },
       btnStyle: {
         activeIndex: -1,
@@ -255,20 +441,101 @@
           '精装',
           '豪装',
           '其他'
-        ]
+        ],
+        value: ''
+      },
+      btnDirection: {
+        activeIndex: -1,
+        items: [
+          {
+            label: '朝东',
+            value: '朝东'
+          },
+          {
+            label: '朝南',
+            value: '朝南'
+          },
+          {
+            label: '朝北',
+            value: '朝北'
+          },
+          {
+            label: '朝西',
+            value: '朝西'
+          },
+          {
+            label: '南北',
+            value: '南北'
+          }
+        ],
+        value: ''
+      },
+      btnFloor: {
+        activeIndex: -1,
+        items: [
+          {
+            label: '底层',
+            value: '底层'
+          },
+          {
+            label: '低楼层',
+            value: '低楼层'
+          },
+          {
+            label: '中楼层',
+            value: '中楼层'
+          },
+          {
+            label: '高楼层',
+            value: '高楼层'
+          },
+          {
+            label: '顶层',
+            value: '顶层'
+          }
+        ],
+        value: ''
       },
       btnSort: {
         activeIndex: -1,
         items: [
-          '综合排序',
-          '价格从低到高',
-          '价格从高到底',
-          '面积从小到大',
-          '面积从大到小'
-        ]
+          {
+            label: '综合排序',
+            value: null
+          },
+          {
+            label: '总价从低到高',
+            value: {
+              sortKey: 'totalPrice',
+              sortValue: 'asc'
+            }
+          },
+          {
+            label: '总价从高到底',
+            value: {
+              sortKey: 'totalPrice',
+              sortValue: 'desc'
+            }
+          },
+          {
+            label: '面积从小到大',
+            value: {
+              sortKey: 'floorArea',
+              sortValue: 'asc'
+            }
+          },
+          {
+            label: '面积从大到小',
+            value: {
+              sortKey: 'floorArea',
+              sortValue: 'desc'
+            }
+          }
+        ],
+        value: null
       },
-      minPrice: '价格',
-      maxPrice: '不限',
+      minTotalPrice: '价格',
+      maxTotalPrice: '不限',
       sliderPriceValue: [0, 1000],
       trackStylePrice: [
         'background: -webkit-linear-gradient(left, #FFCC00, #FF9900);'
@@ -277,13 +544,13 @@
         'transform:translate3d(-50%,-50%,0) scale(1.0);box-shadow:0 0 15px rgba(0,0,0,.15)',
         'transform:translate3d(-50%,-50%,0) scale(1.0);box-shadow:0 0 15px rgba(0,0,0,.15)'
       ],
-      minArea: '面积',
-      maxArea: '不限',
-      sliderAreaValue: [0, 300],
-      trackStyleArea: [
+      minSize: '面积',
+      maxSize: '不限',
+      sliderSizeValue: [0, 500],
+      trackStyleSize: [
         'background: -webkit-linear-gradient(left, #FFCC00, #FF9900);'
       ],
-      handleStyleArea: [
+      handleStyleSize: [
         'transform:translate3d(-50%,-50%,0) scale(1.0);box-shadow:0 0 15px rgba(0,0,0,.15)',
         'transform:translate3d(-50%,-50%,0) scale(1.0);box-shadow:0 0 15px rgba(0,0,0,.15)'
       ]
@@ -313,104 +580,158 @@
       onHandleCloseModal(index) {
         this.iSwitch = true;
         this.tab.items[index].isShow = false;
-        this.activeIndex = -1;
+        this.tab.activeIndex = -1;
       },
       onHandleSliderChangePrice(e) {
         let maxLabel = '';
         const value = e.$wx.detail.value;
-        const minPrice = value[0];
-        const maxPrice = value[1];
-        if (!minPrice) {
-          if (maxPrice >= 1000) {
+        const minTotalPrice = value[0];
+        const maxTotalPrice = value[1];
+        if (!minTotalPrice) {
+          if (maxTotalPrice >= 1000) {
             maxLabel = '不限';
+            this.btnTotalPrice.value = [];
           } else {
-            maxLabel = maxPrice + '万以下';
+            maxLabel = maxTotalPrice + '万元以下';
+            this.btnTotalPrice.value = [{minTotalPrice: 0, maxTotalPrice}];
           }
         } else {
-          if (maxPrice >= 1000) {
-            maxLabel = minPrice + '万以上';
+          if (maxTotalPrice >= 1000) {
+            maxLabel = minTotalPrice + '万元以上';
+            this.btnTotalPrice.value = [{minTotalPrice, maxTotalPrice: 100000000}];
           } else {
-            maxLabel = minPrice + '-' + maxPrice + '万';
+            maxLabel = minTotalPrice + '-' + maxTotalPrice + '元';
+            this.btnTotalPrice.value = [{minTotalPrice, maxTotalPrice}];
           }
         }
         this.sliderPriceValue = value;
-        this.maxPrice = maxLabel;
-        this.btnPrice.activeIndex = -1;
+        this.btnTotalPrice.activeIndex = -1;
+        this.maxTotalPrice = maxLabel;
       },
-      onHandleSliderChangeArea(e) {
+      onHandleSliderChangeSize(e) {
         let maxLabel = '';
         const value = e.$wx.detail.value;
-        const minArea = value[0];
-        const maxArea = value[1];
-        if (!minArea) {
-          if (maxArea >= 300) {
+        const minSize = value[0];
+        const maxSize = value[1];
+        if (!minSize) {
+          if (maxSize >= 500) {
             maxLabel = '不限';
+            this.btnSize.value = [];
           } else {
-            maxLabel = maxArea + 'm²';
+            maxLabel = maxSize + 'm²以下';
+            this.btnSize.value = [{minArea: 0, maxArea: maxSize}];
           }
         } else {
-          if (maxArea >= 300) {
-            maxLabel = minArea + 'm²以上';
+          if (maxSize >= 500) {
+            maxLabel = minSize + 'm²以上';
+            this.btnSize.value = [{minArea: minSize, maxArea: 100000000}];
           } else {
-            maxLabel = minArea + '-' + maxArea + 'm²';
+            maxLabel = minSize + '-' + maxSize + 'm²';
+            this.btnSize.value = [{minArea: minSize, maxArea: maxSize}];
           }
         }
-        this.sliderAreaValue = value;
-        this.maxArea = maxLabel;
+        this.sliderSizeValue = value;
+        this.btnSize.activeIndex = -1;
+        this.maxSize = maxLabel;
       },
       onHandlePriceFilter(index) {
-        const btnIndex = this.btnPrice.activeIndex;
-        if (btnIndex === index) {
-          this.btnPrice.activeIndex = -1;
+        const {activeIndex, items} = this.btnTotalPrice;
+        if (activeIndex === index) {
+          this.btnTotalPrice.activeIndex = -1;
+          this.btnTotalPrice.value = [];
         } else {
-          this.btnPrice.activeIndex = index;
+          this.btnTotalPrice.activeIndex = index;
+          this.btnTotalPrice.value = [items[index]['value']];
         }
-        this.maxPrice = '不限';
+        this.maxTotalPrice = '不限';
         this.sliderPriceValue = [0, 1000];
       },
-      onHandleMethodFilter(index) {
-        const btnIndex = this.btnMethod.activeIndex;
-        if (btnIndex === index) {
-          this.btnMethod.activeIndex = -1;
+      onHandleSizeFilter(index) {
+        const {activeIndex, items} = this.btnSize;
+        if (activeIndex === index) {
+          this.btnSize.activeIndex = -1;
+          this.btnSize.value = [];
         } else {
-          this.btnMethod.activeIndex = index;
+          this.btnSize.activeIndex = index;
+          this.btnSize.value = [items[index]['value']];
         }
+        this.maxSize = '不限';
+        this.sliderSizeValue = [0, 500];
       },
       onHandleLayoutFilter(index) {
-        const btnIndex = this.btnLayout.activeIndex;
-        if (btnIndex === index) {
+        const {activeIndex, items} = this.btnLayout;
+        if (activeIndex === index) {
           this.btnLayout.activeIndex = -1;
+          this.btnLayout.value = '';
         } else {
           this.btnLayout.activeIndex = index;
+          this.btnLayout.value = items[index]['value'];
         }
       },
       onHandleStyleFilter(index) {
-        const btnIndex = this.btnStyle.activeIndex;
-        if (btnIndex === index) {
+        const {activeIndex, items} = this.btnStyle;
+        if (activeIndex === index) {
           this.btnStyle.activeIndex = -1;
+          this.btnStyle.value = '';
         } else {
           this.btnStyle.activeIndex = index;
+          this.btnStyle.value = items[index];
+        }
+      },
+      onHandleDirectionFilter(index) {
+        const {activeIndex, items} = this.btnDirection;
+        if (activeIndex === index) {
+          this.btnDirection.activeIndex = -1;
+          this.btnDirection.value = '';
+        } else {
+          this.btnDirection.activeIndex = index;
+          this.btnDirection.value = items[index]['value'];
+        }
+      },
+      onHandleFloorFilter(index) {
+        const {activeIndex, items} = this.btnFloor;
+        if (activeIndex === index) {
+          this.btnFloor.activeIndex = -1;
+          this.btnFloor.value = '';
+        } else {
+          this.btnFloor.activeIndex = index;
+          this.btnFloor.value = items[index]['value'];
         }
       },
       onHandleSortFilter(index) {
-        const btnIndex = this.btnSort.activeIndex;
-        if (btnIndex === index) {
+        const {activeIndex, items} = this.btnSort;
+        if (activeIndex === index) {
           this.btnSort.activeIndex = -1;
+          this.btnSort.value = null;
         } else {
           this.btnSort.activeIndex = index;
+          this.btnSort.value = items[index]['value'];
         }
+        this.onHandleCloseModal(2);
+        this.pageIndex = 1;
+        this.removeHouseReplace();
+        this.exeAjaxSelectHouse();
       },
       onHandleClearModal1() {
-        this.maxPrice = '不限';
-        this.btnPrice.activeIndex = -1;
-        this.sliderPriceValue = [0, 1000];
+        this.btnArea.activeIndex = 0;
       },
       onHandleClearModal2() {
-        this.maxArea = '不限';
-        this.btnMethod.activeIndex = -1;
         this.btnLayout.activeIndex = -1;
+        this.btnLayout.value = '';
         this.btnStyle.activeIndex = -1;
-        this.sliderAreaValue = [0, 300];
+        this.btnStyle.value = '';
+        this.btnDirection.activeIndex = -1;
+        this.btnDirection.value = '';
+        this.btnFloor.activeIndex = -1;
+        this.btnFloor.value = '';
+        this.maxSize = '不限';
+        this.btnSize.activeIndex = -1;
+        this.btnSize.value = [];
+        this.sliderSizeValue = [0, 500];
+        this.maxTotalPrice = '不限';
+        this.btnTotalPrice.activeIndex = -1;
+        this.btnTotalPrice.value = [];
+        this.sliderPriceValue = [0, 1000];
       },
       onHandleScrollToLower() {
         if (this.timer) return;
@@ -419,7 +740,28 @@
           if (rows.length < totalCount) {
             this.exeAjaxSelectHouse();
           }
-        }, 500);
+        }, 0);
+      },
+      onHandleChooseArea(index) {
+        this.btnArea.activeIndex = index;
+      },
+      onHandleConfirmArea() {
+        this.onHandleCloseModal(0);
+        this.pageIndex = 1;
+        this.removeHouseReplace();
+        this.exeAjaxSelectHouse();
+      },
+      onHandleConfirmFilter() {
+        this.onHandleCloseModal(1);
+        this.pageIndex = 1;
+        this.removeHouseReplace();
+        this.exeAjaxSelectHouse();
+      },
+      onHandleRenderAreas() {
+        this.btnArea = {
+          activeIndex: 0,
+          items: this.isArea
+        };
       },
       exeAjaxSelectHouse() {
         const data = this.isData || {};
@@ -432,7 +774,7 @@
               this.pageIndex++;
             } else {
               if (rows.length) {
-                this.showToast('请求失败');
+                this.showToast('加载失败，请重试');
               }
             }
             this.timer = null;
@@ -440,19 +782,83 @@
           })
           .catch((err) => {
             if (rows.length) {
-              this.showToast('请求失败');
+              this.showToast('加载失败，请重试');
             }
             this.timer = null;
             console.log(err);
           });
       },
       getParams() {
-        const {pageIndex, pageSize} = this;
-        const params = {
+        const type = 2;
+        const {pageIndex, pageSize, isCity, btnArea} = this;
+        const city = isCity.fullname;
+        const {activeIndex, items} = btnArea;
+        const {fullname} = items[activeIndex];
+        const area = fullname === '不限'
+          ? '' : (fullname === '广德市' ? '广德县' : fullname);
+        let params = {
+          type,
+          city,
+          area,
           pageSize,
-          pageIndex,
-          type: 2
+          pageIndex
         };
+
+        const renovation = this.btnStyle.value;
+        if (renovation) {
+          params = {
+            ...params,
+            renovation
+          };
+        }
+
+        const apart = this.btnLayout.value;
+        if (apart) {
+          params = {
+            ...params,
+            apart
+          };
+        }
+
+        const direction = this.btnDirection.value;
+        if (direction) {
+          params = {
+            ...params,
+            direction
+          };
+        }
+
+        const floors = this.btnFloor.value;
+        if (floors) {
+          params = {
+            ...params,
+            floors
+          };
+        }
+
+        const totalPriceScopes = this.btnTotalPrice.value;
+        if (totalPriceScopes.length) {
+          params = {
+            ...params,
+            totalPriceScopes
+          };
+        }
+
+        const areaScopes = this.btnSize.value;
+        if (areaScopes.length) {
+          params = {
+            ...params,
+            areaScopes
+          };
+        }
+
+        const sort = this.btnSort.value;
+        if (sort) {
+          params = {
+            ...params,
+            ...sort
+          };
+        }
         return params;
       },
       onRefresh() {
@@ -462,6 +868,7 @@
 
     onLoad() {
       this.removeHouseReplace();
+      this.onHandleRenderAreas();
       this.exeAjaxSelectHouse();
     }
   });
@@ -618,11 +1025,7 @@
                   color: @fontColor3;
                 }
                 &.active {
-                  .btn-size,
-                  .btn-price,
-                  .btn-method,
-                  .btn-layout,
-                  .btn-style {
+                  .btn-item {
                     background: -webkit-linear-gradient(left, @theme1, @theme2);
                     color: @white;
                   }
@@ -670,8 +1073,8 @@
             }
             .modal-sort {
               .btn-sort {
-                height: 50px;
-                line-height: 50px;
+                height: unit(100, rpx);
+                line-height: unit(100, rpx);
                 border-bottom: 0.5px solid @borderColor1;
                 font-size: @fontSize28;
                 text-align: center;
@@ -723,7 +1126,7 @@
         }
         &#sort {
           .modal-content {
-            height: 355px;
+            height: calc(105px + 5 * unit(100, rpx));
           }
         }
         &.hide {

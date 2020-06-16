@@ -6,7 +6,7 @@
           <div class="top-row row">
             <div class="top-col col-3" @tap="onHandleAddress">
               <div class="top-icon iconfont icon-location"></div>
-              <div class="top-text">{{isCity.fullname}}</div>
+              <div class="top-text">{{isCity.fullname||'宣城市'}}</div>
             </div>
             <div class="top-col col-9">
               <div class="btn btn-search" @tap="onHandleSearch">

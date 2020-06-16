@@ -1,3 +1,34 @@
+/* Android DPR3 */
+@media only screen and (-webkit-device-pixel-ratio: 3) {
+  .top-bar {
+    padding-top: 24px !important;
+  }
+
+  .tab-bar {
+    top: 69px !important;
+  }
+
+  .context {
+    padding-top: 69px !important;
+    &.tab {
+      padding-top: 109px !important;
+    }
+  }
+
+  .modal {
+    &.tab {
+      .modal-content {
+        padding-top: 109px !important;
+      }
+      &#sort {
+        .modal-content {
+          height: calc(109px + 5 * unit(100,rpx)) !important;
+        }
+      }
+    }
+  }
+}
+
 /* iPhone X, iPhone XS */
 @media only screen and (device-width: 375px)and (max-device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
   .top-bar {
@@ -15,10 +46,15 @@
     }
   }
 
-  .modal{
+  .modal {
     &.tab {
       .modal-content {
         padding-top: 129px !important;
+      }
+      &#sort {
+        .modal-content {
+          height: calc(129px + 5 * unit(100,rpx)) !important;
+        }
       }
     }
   }
@@ -41,10 +77,15 @@
     }
   }
 
-  .modal{
+  .modal {
     &.tab {
       .modal-content {
         padding-top: 129px !important;
+      }
+      &#sort {
+        .modal-content {
+          height: calc(129px + 5 * unit(100,rpx)) !important;
+        }
       }
     }
   }
@@ -67,10 +108,15 @@
     }
   }
 
-  .modal{
+  .modal {
     &.tab {
       .modal-content {
         padding-top: 129px !important;
+      }
+      &#sort {
+        .modal-content {
+          height: calc(129px + 5 * unit(100,rpx)) !important;
+        }
       }
     }
   }
@@ -93,35 +139,15 @@
     }
   }
 
-  .modal{
+  .modal {
     &.tab {
       .modal-content {
         padding-top: 105px !important;
       }
-    }
-  }
-}
-
-@media only screen and (device-width: 360px) and (max-device-height: 780px) and (-webkit-device-pixel-ratio: 3) {
-  .top-bar {
-    padding-top: 28px !important;
-  }
-
-  .tab-bar {
-    top: 73px !important;
-  }
-
-  .context {
-    padding-top: 73px !important;
-    &.tab {
-      padding-top: 113px !important;
-    }
-  }
-
-  .modal{
-    &.tab {
-      .modal-content {
-        padding-top: 113px !important;
+      &#sort {
+        .modal-content {
+          height: calc(105px + 5 * unit(100,rpx)) !important;
+        }
       }
     }
   }

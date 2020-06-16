@@ -70,7 +70,7 @@
                     <div class="modal-col col-3"
                          v-for="(item,index) in btnMethod.items"
                          :class="{'active':index===btnMethod.activeIndex}">
-                      <div class="btn-item btn-method" @tap="onHandleMethodFilter(index)">{{item}}</div>
+                      <div class="btn-item btn-method" @tap="onHandleMethodFilter(index)">{{item.label}}</div>
                     </div>
                   </div>
                   <div class="modal-split"></div>
@@ -96,7 +96,33 @@
                     <div class="modal-col col-3"
                          v-for="(item,index) in btnStyle.items"
                          :class="{'active':index===btnStyle.activeIndex}">
-                      <div class="btn-item btn-style" @tap="onHandleStyleFilter(index)">{{item}}</div>
+                      <div class="btn-item btn-style" @tap="onHandleStyleFilter(index)">{{item.label}}</div>
+                    </div>
+                  </div>
+                  <div class="modal-split"></div>
+                </div>
+              </div>
+              <div class="modal-group">
+                <div class="modal-block">
+                  <div class="modal-label">朝向</div>
+                  <div class="modal-row row">
+                    <div class="modal-col col-3"
+                         v-for="(item,index) in btnDirection.items"
+                         :class="{'active':index===btnDirection.activeIndex}">
+                      <div class="btn-item btn-direction" @tap="onHandleDirectionFilter(index)">{{item.label}}</div>
+                    </div>
+                  </div>
+                  <div class="modal-split"></div>
+                </div>
+              </div>
+              <div class="modal-group">
+                <div class="modal-block">
+                  <div class="modal-label">楼层</div>
+                  <div class="modal-row row">
+                    <div class="modal-col col-3"
+                         v-for="(item,index) in btnFloor.items"
+                         :class="{'active':index===btnFloor.activeIndex}">
+                      <div class="btn-item btn-floor" @tap="onHandleFloorFilter(index)">{{item.label}}</div>
                     </div>
                   </div>
                   <div class="modal-split"></div>
@@ -229,6 +255,82 @@
         ]
       },
       btnArea: {},
+      btnSize: {
+        activeIndex: -1,
+        items: [
+          {
+            label: '50m²以下',
+            value: {
+              minArea: 0,
+              maxArea: 50
+            }
+          },
+          {
+            label: '50-70m²',
+            value: {
+              minArea: 50,
+              maxArea: 70
+            }
+          },
+          {
+            label: '70-90m²',
+            value: {
+              minArea: 70,
+              maxArea: 90
+            }
+          },
+          {
+            label: '90-110m²',
+            value: {
+              minArea: 90,
+              maxArea: 110
+            }
+          },
+          {
+            label: '110-130m²',
+            value: {
+              minArea: 110,
+              maxArea: 130
+            }
+          },
+          {
+            label: '130-150m²',
+            value: {
+              minArea: 130,
+              maxArea: 150
+            }
+          },
+          {
+            label: '150-200m²',
+            value: {
+              minArea: 150,
+              maxArea: 200
+            }
+          },
+          {
+            label: '200-300m²',
+            value: {
+              minArea: 200,
+              maxArea: 300
+            }
+          },
+          {
+            label: '300-500m²',
+            value: {
+              minArea: 300,
+              maxArea: 500
+            }
+          },
+          {
+            label: '500m²以上',
+            value: {
+              minArea: 500,
+              maxArea: 100000000
+            }
+          }
+        ],
+        value: []
+      },
       btnPrice: {
         activeIndex: -1,
         items: [
@@ -312,88 +414,21 @@
         ],
         value: []
       },
-      btnSize: {
-        activeIndex: -1,
-        items: [
-          {
-            label: '50m²以下',
-            value: {
-              minArea: 0,
-              maxArea: 50
-            }
-          },
-          {
-            label: '50-70m²',
-            value: {
-              minArea: 50,
-              maxArea: 70
-            }
-          },
-          {
-            label: '70-90m²',
-            value: {
-              minArea: 70,
-              maxArea: 90
-            }
-          },
-          {
-            label: '90-110m²',
-            value: {
-              minArea: 90,
-              maxArea: 110
-            }
-          },
-          {
-            label: '110-130m²',
-            value: {
-              minArea: 110,
-              maxArea: 130
-            }
-          },
-          {
-            label: '130-150m²',
-            value: {
-              minArea: 130,
-              maxArea: 150
-            }
-          },
-          {
-            label: '150-200m²',
-            value: {
-              minArea: 150,
-              maxArea: 200
-            }
-          },
-          {
-            label: '200-300m²',
-            value: {
-              minArea: 200,
-              maxArea: 300
-            }
-          },
-          {
-            label: '300-500m²',
-            value: {
-              minArea: 300,
-              maxArea: 500
-            }
-          },
-          {
-            label: '500m²以上',
-            value: {
-              minArea: 500,
-              maxArea: 100000000
-            }
-          }
-        ],
-        value: []
-      },
       btnMethod: {
         activeIndex: -1,
         items: [
-          '整租',
-          '合租',
-          '转租'
+          {
+            label: '整租',
+            value: '整租'
+          },
+          {
+            label: '合租',
+            value: '合租'
+          },
+          {
+            label: '转租',
+            value: '转租'
+          }
         ],
         value: ''
       },
@@ -430,12 +465,82 @@
       btnStyle: {
         activeIndex: -1,
         items: [
-          '毛坯',
-          '简装',
-          '中装',
-          '精装',
-          '豪装',
-          '其他'
+          {
+            label: '毛坯',
+            value: '毛坯'
+          },
+          {
+            label: '简装',
+            value: '简装'
+          },
+          {
+            label: '中装',
+            value: '中装'
+          },
+          {
+            label: '精装',
+            value: '精装'
+          },
+          {
+            label: '豪装',
+            value: '豪装'
+          },
+          {
+            label: '其他',
+            value: '其他'
+          }
+        ],
+        value: ''
+      },
+      btnDirection: {
+        activeIndex: -1,
+        items: [
+          {
+            label: '朝东',
+            value: '朝东'
+          },
+          {
+            label: '朝南',
+            value: '朝南'
+          },
+          {
+            label: '朝北',
+            value: '朝北'
+          },
+          {
+            label: '朝西',
+            value: '朝西'
+          },
+          {
+            label: '南北',
+            value: '南北'
+          }
+        ],
+        value: ''
+      },
+      btnFloor: {
+        activeIndex: -1,
+        items: [
+          {
+            label: '底层',
+            value: '底层'
+          },
+          {
+            label: '低楼层',
+            value: '低楼层'
+          },
+          {
+            label: '中楼层',
+            value: '中楼层'
+          },
+          {
+            label: '高楼层',
+            value: '高楼层'
+          },
+          {
+            label: '顶层',
+            value: '顶层'
+          }
         ],
         value: ''
       },
@@ -608,7 +713,7 @@
           this.btnMethod.value = '';
         } else {
           this.btnMethod.activeIndex = index;
-          this.btnMethod.value = items[index];
+          this.btnMethod.value = items[index]['value'];
         }
       },
       onHandleLayoutFilter(index) {
@@ -628,7 +733,27 @@
           this.btnStyle.value = '';
         } else {
           this.btnStyle.activeIndex = index;
-          this.btnStyle.value = items[index];
+          this.btnStyle.value = items[index]['value'];
+        }
+      },
+      onHandleDirectionFilter(index) {
+        const {activeIndex, items} = this.btnDirection;
+        if (activeIndex === index) {
+          this.btnDirection.activeIndex = -1;
+          this.btnDirection.value = '';
+        } else {
+          this.btnDirection.activeIndex = index;
+          this.btnDirection.value = items[index]['value'];
+        }
+      },
+      onHandleFloorFilter(index) {
+        const {activeIndex, items} = this.btnFloor;
+        if (activeIndex === index) {
+          this.btnFloor.activeIndex = -1;
+          this.btnFloor.value = '';
+        } else {
+          this.btnFloor.activeIndex = index;
+          this.btnFloor.value = items[index]['value'];
         }
       },
       onHandleSortFilter(index) {
@@ -641,7 +766,7 @@
           this.btnSort.value = items[index]['value'];
         }
         this.onHandleCloseModal(2);
-        this.resetParams();
+        this.pageIndex = 1;
         this.removeHouseReplace();
         this.exeAjaxSelectHouse();
       },
@@ -655,6 +780,10 @@
         this.btnLayout.value = '';
         this.btnStyle.activeIndex = -1;
         this.btnStyle.value = '';
+        this.btnDirection.activeIndex = -1;
+        this.btnDirection.value = '';
+        this.btnFloor.activeIndex = -1;
+        this.btnFloor.value = '';
         this.maxSize = '不限';
         this.btnSize.activeIndex = -1;
         this.btnSize.value = [];
@@ -678,15 +807,21 @@
       },
       onHandleConfirmArea() {
         this.onHandleCloseModal(0);
-        this.resetParams();
+        this.pageIndex = 1;
         this.removeHouseReplace();
         this.exeAjaxSelectHouse();
       },
       onHandleConfirmFilter() {
         this.onHandleCloseModal(1);
-        this.resetParams();
+        this.pageIndex = 1;
         this.removeHouseReplace();
         this.exeAjaxSelectHouse();
+      },
+      onHandleRenderAreas() {
+        this.btnArea = {
+          activeIndex: 0,
+          items: this.isArea
+        };
       },
       exeAjaxSelectHouse() {
         const data = this.isData || {};
@@ -713,15 +848,11 @@
             console.log(err);
           });
       },
-      resetParams() {
-        this.pageSize = 10;
-        this.pageIndex = 1;
-      },
       getParams() {
         const type = 3;
-        const city = this.isCity.fullname;
-        const {pageIndex, pageSize} = this;
-        const {activeIndex, items} = this.btnArea;
+        const {pageIndex, pageSize, isCity, btnArea} = this;
+        const city = isCity.fullname;
+        const {activeIndex, items} = btnArea;
         const {fullname} = items[activeIndex];
         const area = fullname === '不限'
           ? '' : (fullname === '广德市' ? '广德县' : fullname);
@@ -753,6 +884,22 @@
           params = {
             ...params,
             apart
+          };
+        }
+
+        const direction = this.btnDirection.value;
+        if (direction) {
+          params = {
+            ...params,
+            direction
+          };
+        }
+
+        const floors = this.btnFloor.value;
+        if (floors) {
+          params = {
+            ...params,
+            floors
           };
         }
 
@@ -788,10 +935,7 @@
 
     onLoad() {
       this.removeHouseReplace();
-      this.btnArea = {
-        activeIndex: 0,
-        items: this.isArea
-      };
+      this.onHandleRenderAreas();
       this.exeAjaxSelectHouse();
     }
   });
@@ -948,11 +1092,7 @@
                   color: @fontColor3;
                 }
                 &.active {
-                  .btn-size,
-                  .btn-price,
-                  .btn-method,
-                  .btn-layout,
-                  .btn-style {
+                  .btn-item {
                     background: -webkit-linear-gradient(left, @theme1, @theme2);
                     color: @white;
                   }
@@ -1000,8 +1140,8 @@
             }
             .modal-sort {
               .btn-sort {
-                height: 50px;
-                line-height: 50px;
+                height: unit(100, rpx);
+                line-height: unit(100, rpx);
                 border-bottom: 0.5px solid @borderColor1;
                 font-size: @fontSize28;
                 text-align: center;
@@ -1053,7 +1193,7 @@
         }
         &#sort {
           .modal-content {
-            height: 355px;
+            height: calc(105px + 5 * unit(100, rpx));
           }
         }
         &.hide {
