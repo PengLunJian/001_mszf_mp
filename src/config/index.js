@@ -1,9 +1,13 @@
 import apis from '../apis';
 
 export const DEFAULT_MINE = apis.fileUrl + '/image/0f3513e4-7f72-4236-90be-c6d35042adb9.jpg';
+export const DEFAULT_LOGO = apis.fileUrl + '/image/d3ae4add-c1bf-40fe-9792-02559de6a5c9.png';
+export const DEFAULT_SIGN = apis.fileUrl + '/image/9517ca6e-e85a-4acf-b1ab-d58af050af4d.png';
+export const DEFAULT_USER = apis.fileUrl + '/image/1a9ae696-53df-4950-8021-890b03a8f0fe.png';
+export const DEFAULT_CODE = apis.fileUrl + '/image/c8f13b05-fc91-47c8-82aa-ed9d418062f7.jpg';
 export const DEFAULT_HOUSE = apis.fileUrl + '/image/d7adf25d-8e9a-478a-af04-b1e25be2aae3.jpg';
 export const DEFAULT_AGENT = apis.fileUrl + '/house/v1/file/static/userfile/202003/16/1239418041721929728.png';
-export const DEFAULT_SHARE = apis.fileUrl + '/house/v1/file/static/userfile/202002/09/1226431602998263808.png';
+export const DEFAULT_SHARE = apis.fileUrl + '/image/bf25a684-c474-4238-aa29-b96a975afea7.jpg';
 export const DEFAULT_ABOUT = apis.fileUrl + '/image/415dbe7a-82fe-4ee8-a505-b701814af516.jpg';
 export const DEFAULT_CONFIG = [
   {

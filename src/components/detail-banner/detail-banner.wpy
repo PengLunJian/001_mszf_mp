@@ -93,7 +93,7 @@
             if (success) {
               const {isData} = this;
               const data = {...isData, isFollow};
-              this.showToast(msg + '收藏成功');
+              this.showToast(msg + '收藏');
               this.selectDetailReplace(data);
               this.selectFollowReplace(data);
             } else {

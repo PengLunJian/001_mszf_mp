@@ -12,11 +12,11 @@
                 <div class="module-context">
                   <div class="module-user">
                     <div class="user-bg">
-                      <lazy-image src="{{url}}" width="30%"/>
+                      <lazy-image src="{{mineUrl}}" width="30%"/>
                     </div>
                     <div class="user-item" v-if="isUser">
                       <div class="item-img">
-                        <lazy-image src="../../assets/images/user.png"/>
+                        <lazy-image src="{{userUrl}}"/>
                       </div>
                       <div class="item-info">
                         <div class="item-name">{{isUser.hidePhone}}</div>
@@ -24,7 +24,7 @@
                     </div>
                     <div class="user-item" v-if="!isUser" @tap="onHandleLogin">
                       <div class="item-img">
-                        <lazy-image src="../../assets/images/user.png"/>
+                        <lazy-image src="{{userUrl}}"/>
                       </div>
                       <div class="item-info">
                         <div class="item-name">登录/注册</div>
@@ -78,7 +78,8 @@
     mixins: [Route],
 
     data: {
-      url: $config.DEFAULT_MINE,
+      mineUrl: $config.DEFAULT_MINE,
+      userUrl: $config.DEFAULT_USER,
       items: [
         {
           name: $routes.FOLLOW.name,

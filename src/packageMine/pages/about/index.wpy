@@ -57,19 +57,9 @@
         </div>
       </div>
       <div class="footer">
-        <div class="footer-row row">
-          <div class="footer-col col-6">
-            <div class="footer-text">技术支持</div>
-          </div>
-          <div class="footer-col col-6">
-            <img class="footer-logo" src="../../images/company@2x.png" mode="aspectFit"/>
-          </div>
-        </div>
+        <div class="version">Version{{version}}</div>
       </div>
-      <share :isShow="isShow"
-             :isHide="isHide"
-             :imgCode="imgCode"
-             :imgLogo="imgLogo"/>
+      <share :isShow="isShow" :isHide="isHide"/>
       <modal :isEnter="isEnter"
              :isLeave="isLeave"
              :title="title"
@@ -96,13 +86,12 @@
     data: {
       isShow: false,
       isHide: false,
-      imgCode: '../../packageMine/images/code@2x.png',
-      imgLogo: '../../packageMine/images/logo@2x.png',
       isEnter: false,
       isLeave: false,
       isScroll: true,
       title: '',
       context: '',
+      version: '',
       cancelText: '取消',
       confirmText: '确认',
       hasUpdate: false,
@@ -175,8 +164,9 @@
         });
       },
       onHandleShowShare() {
-        this.isHide = false;
         this.isShow = true;
+        this.isHide = false;
+        this.isScroll = false;
       },
       onHandleShowModal() {
         this.isEnter = true;
@@ -210,6 +200,9 @@
     },
 
     onLoad() {
+      const {globalData} = this.$app.$options;
+      const {version} = globalData;
+      this.version = version;
       this.onHandlePosition();
       this.onHandleCheckVersion();
     }
@@ -333,33 +326,18 @@
         }
       }
       .footer {
-        .footer-row {
+        .version {
           position: fixed;
           left: 0;
-          bottom: unit(50, rpx);
+          bottom: 0;
           z-index: 1000;
           width: 100%;
-          .footer-col {
-            padding: 0 unit(20, rpx);
-            &:first-child {
-              border-right: 0.5px solid @borderColor1;
-            }
-            .footer-text {
-              height: unit(30, rpx);
-              line-height: unit(30, rpx);
-              font-size: @fontSize26;
-              color: @fontColor4;
-              text-align: right;
-            }
-            .footer-logo {
-              width: unit(115, rpx);
-              height: unit(30, rpx);
-              image {
-                width: 100%;
-                height: 100%;
-              }
-            }
-          }
+          height: unit(80, rpx);
+          line-height: unit(80, rpx);
+          font-size: @fontSize28;
+          text-align: center;
+          font-weight: bold;
+          color: @fontColor1;
         }
       }
     }

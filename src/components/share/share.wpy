@@ -1,12 +1,16 @@
 <template>
   <div class="share{{isShow?' enter':''}}{{isHide?' leave':''}}">
-    <div class="share-mask" @tap="onHandleHideshare"></div>
+    <div class="share-mask" @tap="onHandleHideShare"></div>
     <div class="share-content">
       <div class="share-header">
-        <img :src="imgLogo" mode="aspectFit"/>
+        <div class="share-image">
+          <lazy-image src="{{logoUrl}}" width="60%" mode="aspectFit"/>
+        </div>
       </div>
       <div class="share-body">
-        <img class="code" :src="imgCode" mode="aspectFit"/>
+        <div class="share-image">
+          <lazy-image src="{{codeUrl}}" width="60%" mode="aspectFit"/>
+        </div>
         <div class="large">
           <div class="icon iconfont icon-scan"></div>
           <div class="text">微信扫一扫</div>
@@ -30,7 +34,10 @@
   wepy.component({
     store,
     mixins: [Toast],
-    data: {},
+    data: {
+      logoUrl: $config.DEFAULT_LOGO,
+      codeUrl: $config.DEFAULT_CODE
+    },
     props: {
       isShow: {
         type: Boolean,
@@ -39,14 +46,6 @@
       isHide: {
         type: Boolean,
         default: false
-      },
-      imgLogo: {
-        type: String,
-        default: ''
-      },
-      imgCode: {
-        type: String,
-        default: ''
       }
     },
     methods: {
@@ -55,6 +54,7 @@
         this.isHide = true;
         this.$parent.isShow = false;
         this.$parent.isHide = true;
+        this.$parent.isScroll = true;
       },
       onHandleSaveShare() {
         wx.getSetting({
@@ -99,13 +99,13 @@
                   console.log(res);
                 },
                 fail: (err) => {
-                  this.showToast('图片保存失败');
+                  this.showToast('图片保存失败，请重试！');
                   console.log(err);
                 }
               });
             },
             fail: (err) => {
-              this.showToast('图片下载失败');
+              this.showToast('图片下载失败，请重试！');
               console.log(err);
             }
           });
@@ -155,27 +155,28 @@
       border-radius: unit(40, rpx);
       box-shadow: 0 0 15px @boxShadow05;
       transform: translate3d(-50%, -50%, 0) scale(1.0);
-      background-color: #ECEAE9;
+      background-color: @white;
       .share-header {
         position: absolute;
         top: unit(70, rpx);
         left: 0;
         width: 100%;
         background-color: @theme2;
-        image {
+        .share-image {
           width: unit(200, rpx);
-          height: unit(60, rpx);
-          margin: unit(20, rpx) auto;
+          height: unit(100, rpx);
+          margin: 0 auto;
         }
       }
       .share-body {
         padding: unit(60, rpx) 0 unit(70, rpx);
-        .code {
+        .share-image {
           width: unit(260, rpx);
           height: unit(260, rpx);
           margin: 0 auto unit(60, rpx);
         }
-        .large, .small {
+        .large,
+        .small {
           height: unit(40, rpx);
           line-height: unit(40, rpx);
           letter-spacing: 0.5px;
@@ -292,3 +293,11 @@
     }
   }
 </style>
+
+<config>
+  {
+  usingComponents: {
+  'lazy-image': '../lazy-image/lazy-image'
+  }
+  }
+</config>

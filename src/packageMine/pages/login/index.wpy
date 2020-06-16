@@ -9,7 +9,9 @@
           <div class="login-container">
             <div class="login-content">
               <div class="login-header">
-                <img src="../../../assets/images/logo@2x.png" mode="aspectFit"/>
+                <div class="login-image">
+                  <lazy-image src="{{logoUrl}}" width="60%" mode="aspectFit"/>
+                </div>
               </div>
               <div class="login-body">
                 <button class="btn btn-wechat" hover-class="none" open-type="getPhoneNumber"
@@ -40,6 +42,7 @@
   import Storage from '../../../mixins/storage';
   import {mapState, mapActions} from '@wepy/redux';
   import * as $routes from '../../../router';
+  import * as $config from '../../../config';
   import * as controller from './controller';
 
   wepy.page({
@@ -52,7 +55,8 @@
       id: '',
       iv: '',
       sessionKey: '',
-      encryptedData: ''
+      encryptedData: '',
+      logoUrl: $config.DEFAULT_SIGN
     },
 
     computed: {
@@ -164,7 +168,7 @@
               padding: unit(60, rpx);
               .login-header {
                 margin-bottom: unit(80, rpx);
-                image {
+                .login-image {
                   width: unit(250, rpx);
                   height: unit(80, rpx);
                   margin: 0 auto;
@@ -233,6 +237,7 @@
   navigationStyle:'custom',
   usingComponents: {
   'top-bar': '../../../components/top-bar/top-bar',
+  'lazy-image': '../../../components/lazy-image/lazy-image'
   }
   }
 </config>

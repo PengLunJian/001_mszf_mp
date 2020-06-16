@@ -1,7 +1,7 @@
 {
 	"description": "This is a property management applet",
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"enhance": false,
 		"postcss": true,
@@ -111,8 +111,16 @@
 				},
 				{
 					"id": 8,
-					"name": "模拟更新",
-					"pathName": "packageMine/pages/about/index",
+					"name": "模拟编译",
+					"pathName": "pages/home/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "packageHouse/pages/rent-house-list/index",
+					"pathName": "packageHouse/pages/rent-house-list/index",
+					"query": "",
 					"scene": null
 				}
 			]

@@ -8,22 +8,22 @@
         <div class="module-context">
           <div class="module-map">
             <div class="map-content">
-              <map class="map-canvas"
-                   latitude="{{isData.lat}}"
-                   longitude="{{isData.lng}}"
-                   enable-zoom="{{enableZoom}}"
-                   enable-scroll="{{enableScroll}}"
-                   @tap="onHandleClickMap">
-              </map>
-              <view class="map-marker">
-                <view class="marker-container">
-                  <view class="marker-content">
-                    <view class="marker-text">{{isData.houseName}}</view>
-                    <view class="marker-icon"></view>
-                    <view class="marker-circle"></view>
-                  </view>
-                </view>
-              </view>
+              <div class="map-canvas">
+                <map class="map"
+                     latitude="{{isData.lat}}"
+                     longitude="{{isData.lng}}"
+                     enable-zoom="{{enableZoom}}"
+                     enable-scroll="{{enableScroll}}"
+                     @tap="onHandleClickMap">
+                </map>
+              </div>
+              <div class="map-marker">
+                <div class="marker">
+                  <div class="marker-icon"></div>
+                  <div class="marker-text">{{isData.houseName}}</div>
+                  <div class="marker-circle"></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -81,54 +81,63 @@
             padding: unit(30, rpx);
             .map-content {
               position: relative;
+              height: unit(400, rpx);
               .map-canvas {
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 1;
                 width: 100%;
-                height: unit(400, rpx);
+                height: 100%;
+                .map {
+                  width: 100%;
+                  height: 100%;
+                }
               }
               .map-marker {
                 position: absolute;
                 top: calc(50% - unit(40, rpx));
                 left: 50%;
+                z-index: 2;
                 transform: translate3d(-50%, -50%, 0);
-                .marker-container {
-                  .marker-content {
+                .marker {
+                  position: relative;
+                  .marker-icon {
+                    width: 0;
+                    height: 0;
+                    position: absolute;
+                    left: 50%;
+                    bottom: unit(-20, rpx);
+                    z-index: 3;
+                    transform: translateX(-50%);
+                    border-top: unit(20, rpx) solid @white;
+                    border-left: unit(20, rpx) solid transparent;
+                    border-right: unit(20, rpx) solid transparent;
+                  }
+                  .marker-text {
                     position: relative;
-                    .marker-text {
-                      position: relative;
-                      z-index: 2;
-                      height: unit(90, rpx);
-                      line-height: unit(90, rpx);
-                      padding: 0 unit(30, rpx);
-                      background-color: @white;
-                      border-radius: @borderRadius10;
-                      box-shadow: 0 0 15px rgba(0, 0, 0, .05);
-                      letter-spacing: 0.5px;
-                      font-size: @fontSize28;
-                      color: @fontColor1;
-                    }
-                    .marker-icon {
-                      width: 0;
-                      height: 0;
-                      position: absolute;
-                      left: 50%;
-                      bottom: unit(-20, rpx);
-                      z-index: 2;
-                      transform: translateX(-50%);
-                      border-top: unit(20, rpx) solid @white;
-                      border-left: unit(20, rpx) solid transparent;
-                      border-right: unit(20, rpx) solid transparent;
-                    }
-                    .marker-circle {
-                      width: unit(40, rpx);
-                      height: unit(40, rpx);
-                      position: absolute;
-                      left: 50%;
-                      bottom: unit(-40, rpx);
-                      transform: translateX(-50%);
-                      border-radius: @borderRadius30;
-                      border: 1px solid rgba(255, 153, 0, 1);
-                      background-color: rgba(255, 153, 0, 0.5);
-                    }
+                    z-index: 2;
+                    height: unit(90, rpx);
+                    line-height: unit(90, rpx);
+                    padding: 0 unit(30, rpx);
+                    background-color: @white;
+                    border-radius: @borderRadius10;
+                    box-shadow: 0 0 15px @boxShadow05;
+                    letter-spacing: 0.5px;
+                    font-size: @fontSize28;
+                    color: @fontColor1;
+                  }
+                  .marker-circle {
+                    width: unit(40, rpx);
+                    height: unit(40, rpx);
+                    position: absolute;
+                    left: 50%;
+                    bottom: unit(-40, rpx);
+                    z-index: 1;
+                    transform: translateX(-50%);
+                    border-radius: @borderRadius30;
+                    border: 1px solid rgba(255, 153, 0, 1);
+                    background-color: rgba(255, 153, 0, 0.5);
                   }
                 }
               }
