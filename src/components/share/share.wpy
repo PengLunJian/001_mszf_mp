@@ -4,12 +4,12 @@
     <div class="share-content">
       <div class="share-header">
         <div class="share-image">
-          <lazy-image src="{{logoUrl}}" width="60%" mode="aspectFit"/>
+          <img class="image" src="{{logoUrl}}" mode="aspectFit"/>
         </div>
       </div>
       <div class="share-body">
         <div class="share-image">
-          <lazy-image src="{{codeUrl}}" width="60%" mode="aspectFit"/>
+          <img class="image" src="{{codeUrl}}" mode="aspectFit"/>
         </div>
         <div class="large">
           <div class="icon iconfont icon-scan"></div>
@@ -166,6 +166,10 @@
           width: unit(200, rpx);
           height: unit(100, rpx);
           margin: 0 auto;
+          .image{
+            width:100%;
+            height:100%;
+          }
         }
       }
       .share-body {
@@ -174,6 +178,10 @@
           width: unit(260, rpx);
           height: unit(260, rpx);
           margin: 0 auto unit(60, rpx);
+          .image{
+            width:100%;
+            height:100%;
+          }
         }
         .large,
         .small {
@@ -234,70 +242,63 @@
         animation: share-content-leave 300ms ease-out forwards;
       }
     }
-    @keyframes share-mask-enter {
-      0% {
-        opacity: 0;
-        visibility: hidden;
-      }
-      100% {
-        opacity: 1;
-        visibility: visible;
-      }
-    }
+  }
 
-    @keyframes share-content-enter {
-      0% {
-        opacity: 0;
-        visibility: hidden;
-        transform: translate3d(-50%, -50%, 0) scale(0.5);
-      }
-      50% {
-        opacity: 1;
-        visibility: visible;
-        transform: translate3d(-50%, -50%, 0) scale(1.2);
-      }
-      100% {
-        opacity: 1;
-        visibility: visible;
-        transform: translate3d(-50%, -50%, 0) scale(1);
-      }
+  @keyframes share-mask-enter {
+    0% {
+      opacity: 0;
+      visibility: hidden;
     }
-
-    @keyframes share-mask-leave {
-      0% {
-        opacity: 1;
-        visibility: visible;
-      }
-      100% {
-        opacity: 0;
-        visibility: hidden;
-      }
+    100% {
+      opacity: 1;
+      visibility: visible;
     }
+  }
 
-    @keyframes share-content-leave {
-      0% {
-        opacity: 1;
-        visibility: visible;
-        transform: translate3d(-50%, -50%, 0) scale(1.0);
-      }
-      50% {
-        opacity: 1;
-        visibility: visible;
-        transform: translate3d(-50%, -50%, 0) scale(0.7);
-      }
-      100% {
-        opacity: 0;
-        visibility: hidden;
-        transform: translate3d(-50%, -50%, 0) scale(1.2);
-      }
+  @keyframes share-content-enter {
+    0% {
+      opacity: 0;
+      visibility: hidden;
+      transform: translate3d(-50%, -50%, 0) scale(0.5);
+    }
+    50% {
+      opacity: 1;
+      visibility: visible;
+      transform: translate3d(-50%, -50%, 0) scale(1.2);
+    }
+    100% {
+      opacity: 1;
+      visibility: visible;
+      transform: translate3d(-50%, -50%, 0) scale(1);
+    }
+  }
+
+  @keyframes share-mask-leave {
+    0% {
+      opacity: 1;
+      visibility: visible;
+    }
+    100% {
+      opacity: 0;
+      visibility: hidden !important;
+    }
+  }
+
+  @keyframes share-content-leave {
+    0% {
+      opacity: 1;
+      visibility: visible;
+      transform: translate3d(-50%, -50%, 0) scale(1.0);
+    }
+    50% {
+      opacity: 1;
+      visibility: visible;
+      transform: translate3d(-50%, -50%, 0) scale(0.7);
+    }
+    100% {
+      opacity: 0;
+      visibility: hidden;
+      transform: translate3d(-50%, -50%, 0) scale(1.2);
     }
   }
 </style>
-
-<config>
-  {
-  usingComponents: {
-  'lazy-image': '../lazy-image/lazy-image'
-  }
-  }
-</config>
