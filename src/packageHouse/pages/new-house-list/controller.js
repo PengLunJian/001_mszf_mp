@@ -5,7 +5,8 @@ export const STATES = {
   isSuccess: state => state.SELECT_HOUSE_REDUCER.isSuccess,
   isFailure: state => state.SELECT_HOUSE_REDUCER.isFailure,
   isData: state => state.SELECT_HOUSE_REDUCER.data,
-  isCity: state => state.SELECT_CITYS_REDUCER.data
+  isCity: state => state.UPDATE_CITYS_REDUCER.data,
+  isArea: state => state.SELECT_AREAS_REDUCER.data
 };
 
 export const ACTIONS = {

@@ -32,7 +32,7 @@
       </div>
       <div class="footer"></div>
       <div class="modal tab" id="address" :class="{'hide':!tab.items[0].isShow}">
-        <div class="modal-bg" @tap="onHandleCloseModal(0)"></div>
+        <div class="modal-bg" @tap="onHandleCloseModal"></div>
         <div class="modal-content">
           <div class="modal-header"></div>
           <div class="modal-body">
@@ -52,14 +52,14 @@
           </div>
           <div class="modal-footer">
             <div class="modal-button">
-              <div class="btn btn-clear" @tap="onHandleClearModal1">重置</div>
+              <div class="btn btn-clear" @tap="onHandleClearArea">重置</div>
               <div class="btn btn-confirm" @tap="onHandleConfirmArea">确定</div>
             </div>
           </div>
         </div>
       </div>
       <div class="modal tab" id="filter" :class="{'hide':!tab.items[1].isShow}">
-        <div class="modal-bg" @tap="onHandleCloseModal(1)"></div>
+        <div class="modal-bg" @tap="onHandleCloseModal"></div>
         <div class="modal-content">
           <div class="modal-header"></div>
           <div class="modal-body">
@@ -181,14 +181,14 @@
           </div>
           <div class="modal-footer">
             <div class="modal-button">
-              <div class="btn btn-clear" @tap="onHandleClearModal2">重置</div>
+              <div class="btn btn-clear" @tap="onHandleClearFilter">重置</div>
               <div class="btn btn-confirm" @tap="onHandleConfirmFilter">确定</div>
             </div>
           </div>
         </div>
       </div>
       <div class="modal tab" id="sort" :class="{'hide':!tab.items[2].isShow}">
-        <div class="modal-bg" @tap="onHandleCloseModal(2)"></div>
+        <div class="modal-bg" @tap="onHandleCloseModal"></div>
         <div class="modal-content">
           <div class="modal-header"></div>
           <div class="modal-body">
@@ -577,9 +577,13 @@
           }
         });
       },
-      onHandleCloseModal(index) {
+      onHandleCloseModal() {
         this.iSwitch = true;
-        this.tab.items[index].isShow = false;
+        this.tab.items.map((item) => {
+          if (item.isShow) {
+            item.isShow = false;
+          }
+        });
         this.tab.activeIndex = -1;
       },
       onHandleSliderChangePrice(e) {
@@ -707,15 +711,15 @@
           this.btnSort.activeIndex = index;
           this.btnSort.value = items[index]['value'];
         }
-        this.onHandleCloseModal(2);
+        this.onHandleCloseModal();
         this.pageIndex = 1;
         this.removeHouseReplace();
         this.exeAjaxSelectHouse();
       },
-      onHandleClearModal1() {
+      onHandleClearArea() {
         this.btnArea.activeIndex = 0;
       },
-      onHandleClearModal2() {
+      onHandleClearFilter() {
         this.btnLayout.activeIndex = -1;
         this.btnLayout.value = '';
         this.btnStyle.activeIndex = -1;
@@ -746,13 +750,13 @@
         this.btnArea.activeIndex = index;
       },
       onHandleConfirmArea() {
-        this.onHandleCloseModal(0);
+        this.onHandleCloseModal();
         this.pageIndex = 1;
         this.removeHouseReplace();
         this.exeAjaxSelectHouse();
       },
       onHandleConfirmFilter() {
-        this.onHandleCloseModal(1);
+        this.onHandleCloseModal();
         this.pageIndex = 1;
         this.removeHouseReplace();
         this.exeAjaxSelectHouse();

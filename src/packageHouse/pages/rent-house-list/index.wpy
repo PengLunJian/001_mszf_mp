@@ -31,7 +31,7 @@
       </div>
       <div class="footer"></div>
       <div class="modal tab" id="address" :class="{'hide':!tab.items[0].isShow}">
-        <div class="modal-bg" @tap="onHandleCloseModal(0)"></div>
+        <div class="modal-bg" @tap="onHandleCloseModal"></div>
         <div class="modal-content">
           <div class="modal-header"></div>
           <div class="modal-body">
@@ -51,14 +51,14 @@
           </div>
           <div class="modal-footer">
             <div class="modal-button">
-              <div class="btn btn-clear" @tap="onHandleClearModal1">重置</div>
+              <div class="btn btn-clear" @tap="onHandleClearArea">重置</div>
               <div class="btn btn-confirm" @tap="onHandleConfirmArea">确定</div>
             </div>
           </div>
         </div>
       </div>
       <div class="modal tab" id="filter" :class="{'hide':!tab.items[1].isShow}">
-        <div class="modal-bg" @tap="onHandleCloseModal(1)"></div>
+        <div class="modal-bg" @tap="onHandleCloseModal"></div>
         <div class="modal-content">
           <div class="modal-header"></div>
           <div class="modal-body">
@@ -177,7 +177,7 @@
                     <div class="modal-slider-bar">
                       <wux-slider
                         min="0"
-                        step="1"
+                        step="5"
                         max="500"
                         tipFormatter=""
                         controlled="{{true}}"
@@ -193,14 +193,14 @@
           </div>
           <div class="modal-footer">
             <div class="modal-button">
-              <div class="btn btn-clear" @tap="onHandleClearModal2">重置</div>
+              <div class="btn btn-clear" @tap="onHandleClearFilter">重置</div>
               <div class="btn btn-confirm" @tap="onHandleConfirmFilter">确定</div>
             </div>
           </div>
         </div>
       </div>
       <div class="modal tab" id="sort" :class="{'hide':!tab.items[2].isShow}">
-        <div class="modal-bg" @tap="onHandleCloseModal(2)"></div>
+        <div class="modal-bg" @tap="onHandleCloseModal"></div>
         <div class="modal-content">
           <div class="modal-header"></div>
           <div class="modal-body">
@@ -342,70 +342,70 @@
             }
           },
           {
-            label: '1k-2k',
+            label: '1千-2千',
             value: {
               minPrice: 1000,
               maxPrice: 2000
             }
           },
           {
-            label: '2k-3k',
+            label: '2千-3千',
             value: {
               minPrice: 2000,
               maxPrice: 3000
             }
           },
           {
-            label: '3k-4k',
+            label: '3千-4千',
             value: {
               minPrice: 3000,
               maxPrice: 4000
             }
           },
           {
-            label: '4k-5k',
+            label: '4千-5千',
             value: {
               minPrice: 4000,
               maxPrice: 5000
             }
           },
           {
-            label: '5k-6k',
+            label: '5千-6千',
             value: {
               minPrice: 5000,
               maxPrice: 6000
             }
           },
           {
-            label: '6k-7k',
+            label: '6千-7千',
             value: {
               minPrice: 6000,
               maxPrice: 7000
             }
           },
           {
-            label: '7k-8k',
+            label: '7千-8千',
             value: {
               minPrice: 7000,
               maxPrice: 8000
             }
           },
           {
-            label: '8k-9k',
+            label: '8千-9千',
             value: {
               minPrice: 8000,
               maxPrice: 9000
             }
           },
           {
-            label: '9k-10k',
+            label: '9千-1万',
             value: {
               minPrice: 9000,
               maxPrice: 10000
             }
           },
           {
-            label: '10k以上',
+            label: '1万以上',
             value: {
               minPrice: 10000,
               maxPrice: 100000000
@@ -625,9 +625,13 @@
           }
         });
       },
-      onHandleCloseModal(index) {
+      onHandleCloseModal() {
         this.iSwitch = true;
-        this.tab.items[index].isShow = false;
+        this.tab.items.map((item) => {
+          if (item.isShow) {
+            item.isShow = false;
+          }
+        });
         this.tab.activeIndex = -1;
       },
       onHandleSliderChangePrice(e) {
@@ -765,15 +769,15 @@
           this.btnSort.activeIndex = index;
           this.btnSort.value = items[index]['value'];
         }
-        this.onHandleCloseModal(2);
+        this.onHandleCloseModal();
         this.pageIndex = 1;
         this.removeHouseReplace();
         this.exeAjaxSelectHouse();
       },
-      onHandleClearModal1() {
+      onHandleClearArea() {
         this.btnArea.activeIndex = 0;
       },
-      onHandleClearModal2() {
+      onHandleClearFilter() {
         this.btnMethod.activeIndex = -1;
         this.btnMethod.value = '';
         this.btnLayout.activeIndex = -1;
@@ -806,13 +810,13 @@
         this.btnArea.activeIndex = index;
       },
       onHandleConfirmArea() {
-        this.onHandleCloseModal(0);
+        this.onHandleCloseModal();
         this.pageIndex = 1;
         this.removeHouseReplace();
         this.exeAjaxSelectHouse();
       },
       onHandleConfirmFilter() {
-        this.onHandleCloseModal(1);
+        this.onHandleCloseModal();
         this.pageIndex = 1;
         this.removeHouseReplace();
         this.exeAjaxSelectHouse();
