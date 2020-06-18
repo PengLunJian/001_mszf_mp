@@ -20,7 +20,7 @@
                   <div class="module-citys">
                     <div class="module-row row">
                       <div class="module-col col-3" v-for="(city,index) in item.items" :key="index">
-                        <div class="module-item" @tap="onHandleUpdateCitys(city)">{{city.fullname}}</div>
+                        <div class="module-item" @tap="onHandleSelectCity(city)">{{city.fullname}}</div>
                       </div>
                     </div>
                   </div>
@@ -39,6 +39,7 @@
 <script type="text/ecmascript-6">
   import wepy from '@wepy/core';
   import store from '../../../store';
+  import Toast from '../../../mixins/toast';
   import Route from '../../../mixins/route';
   import {mapState, mapActions} from '@wepy/redux';
   import * as controller from './controller';
@@ -46,7 +47,7 @@
   wepy.page({
     store,
 
-    mixins: [Route],
+    mixins: [Toast, Route],
 
     data: {},
 
@@ -56,14 +57,39 @@
 
     methods: {
       ...mapActions(controller.ACTIONS),
-      onHandleUpdateCitys(item) {
-        this.updateCitysReplace(item);
+      onHandleSelectCity(item) {
+        if (item.id !== this.isCity.id) {
+          this.updateCitysReplace(item);
+          this.exeAjaxSelectAreas();
+          this.exeAjaxSelectHotHouse();
+        }
         this.navigateBack(1);
+      },
+      exeAjaxSelectAreas() {
+        const {id} = this.isCity;
+        this.ajaxSelectAreas(id)
+          .then((res) => {
+            res = res || {};
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       },
       exeAjaxSelectCitys() {
         this.ajaxSelectCitys()
           .then((res) => {
             res = res || {};
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
+      exeAjaxSelectHotHouse() {
+        const {fullname} = this.isCity;
+        this.ajaxSelectHotHouse(fullname)
+          .then((res) => {
             console.log(res);
           })
           .catch((err) => {

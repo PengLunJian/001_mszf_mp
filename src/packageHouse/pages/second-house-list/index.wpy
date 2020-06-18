@@ -21,7 +21,7 @@
         <div class="context tab fade" v-if="isData.rows.length">
           <scroll-view
             class="scroll-view"
-            scroll-y="{{iSwitch}}"
+            scroll-y="{{isScroll}}"
             @scrolltolower="onHandleScrollToLower">
             <div class="items">
               <house-item v-for="(item,index) in isData.rows" :item="item" :key="index"/>
@@ -84,7 +84,7 @@
                     <div class="modal-col col-3"
                          v-for="(item,index) in btnStyle.items"
                          :class="{'active':index===btnStyle.activeIndex}">
-                      <div class="btn-item btn-style" @tap="onHandleStyleFilter(index)">{{item}}</div>
+                      <div class="btn-item btn-style" @tap="onHandleStyleFilter(index)">{{item.label}}</div>
                     </div>
                   </div>
                   <div class="modal-split"></div>
@@ -221,7 +221,7 @@
       timer: null,
       pageIndex: 1,
       pageSize: 10,
-      iSwitch: true,
+      isScroll: true,
       tab: {
         activeIndex: -1,
         items: [
@@ -435,12 +435,26 @@
       btnStyle: {
         activeIndex: -1,
         items: [
-          '毛坯',
-          '简装',
-          '中装',
-          '精装',
-          '豪装',
-          '其他'
+          {
+            label: '毛坯',
+            value: '毛坯'
+          },
+          {
+            label: '简装',
+            value: '简装'
+          },
+          {
+            label: '精装',
+            value: '精装'
+          },
+          {
+            label: '豪装',
+            value: '豪装'
+          },
+          {
+            label: '其他',
+            value: '其他'
+          }
         ],
         value: ''
       },
@@ -568,17 +582,17 @@
             if (this.tab.items[index].isShow) {
               this.tab.items[index].isShow = false;
               this.tab.activeIndex = -1;
-              this.iSwitch = true;
+              this.isScroll = true;
             } else {
               this.tab.items[index].isShow = true;
               this.tab.activeIndex = index;
-              this.iSwitch = false;
+              this.isScroll = false;
             }
           }
         });
       },
       onHandleCloseModal() {
-        this.iSwitch = true;
+        this.isScroll = true;
         this.tab.items.map((item) => {
           if (item.isShow) {
             item.isShow = false;
@@ -679,7 +693,7 @@
           this.btnStyle.value = '';
         } else {
           this.btnStyle.activeIndex = index;
-          this.btnStyle.value = items[index];
+          this.btnStyle.value = items[index]['value'];
         }
       },
       onHandleDirectionFilter(index) {
@@ -1030,8 +1044,8 @@
                 }
                 &.active {
                   .btn-item {
-                    background: -webkit-linear-gradient(left, @theme1, @theme2);
-                    color: @white;
+                    background-color: @tagColor;
+                    color: @theme2;
                   }
                 }
               }

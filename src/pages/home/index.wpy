@@ -97,7 +97,7 @@
         this.navigateTo($routes.WAITING.path);
       },
       exeAjaxSelectAreas() {
-        const {id} = this.city;
+        const {id} = this.isCity;
         this.ajaxSelectAreas(id)
           .then((res) => {
             console.log(res);
@@ -107,7 +107,7 @@
           });
       },
       exeAjaxSelectHotHouse() {
-        const {fullname} = this.city;
+        const {fullname} = this.isCity;
         this.ajaxSelectHotHouse(fullname)
           .then((res) => {
             console.log(res);
@@ -121,17 +121,9 @@
       }
     },
 
-    onShow() {
-      const {city, isCity} = this;
-      if (city.id !== isCity.id) {
-        this.city = isCity;
-        this.exeAjaxSelectAreas();
-        this.exeAjaxSelectHotHouse();
-      }
-    },
+    onShow() {},
 
     onLoad() {
-      this.city = this.isCity;
       this.exeAjaxSelectAreas();
       this.exeAjaxSelectHotHouse();
     }

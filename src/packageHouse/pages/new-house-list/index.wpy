@@ -21,7 +21,7 @@
         <div class="context tab fade" v-if="isData.rows.length">
           <scroll-view
             class="scroll-view"
-            scroll-y="{{iSwitch}}"
+            scroll-y="{{isScroll}}"
             @scrolltolower="onHandleScrollToLower">
             <div class="items">
               <house-item v-for="(item,index) in isData.rows" :item="item" :key="index"/>
@@ -195,7 +195,7 @@
       timer: null,
       pageIndex: 1,
       pageSize: 10,
-      iSwitch: true,
+      isScroll: true,
       tab: {
         activeIndex: -1,
         items: [
@@ -496,17 +496,17 @@
             if (this.tab.items[index].isShow) {
               this.tab.items[index].isShow = false;
               this.tab.activeIndex = -1;
-              this.iSwitch = true;
+              this.isScroll = true;
             } else {
               this.tab.items[index].isShow = true;
               this.tab.activeIndex = index;
-              this.iSwitch = false;
+              this.isScroll = false;
             }
           }
         });
       },
       onHandleCloseModal() {
-        this.iSwitch = true;
+        this.isScroll = true;
         this.tab.items.map((item) => {
           if (item.isShow) {
             item.isShow = false;
@@ -917,8 +917,8 @@
                 }
                 &.active {
                   .btn-item {
-                    background: -webkit-linear-gradient(left, @theme1, @theme2);
-                    color: @white;
+                    background-color: @tagColor;
+                    color: @theme2;
                   }
                 }
               }

@@ -27,7 +27,7 @@
             <div class="item-state state1" v-if="item.state==='在售'">{{item.state}}</div>
             <div class="item-state state2" v-if="item.state==='待售'">{{item.state}}</div>
             <div class="item-state state3" v-if="item.state==='售罄'">{{item.state}}</div>
-            <div class="item-tag type1" v-for="(value,index) in item.tags" :key="index">{{value}}</div>
+            <div class="item-tag" v-for="(value,index) in item.tags" :key="index">{{value}}</div>
           </div>
           <div class="item-row row" v-if="isType">
             <div class="item-type type1">新房</div>
@@ -62,7 +62,7 @@
             <div class="item-normal">{{item.floorArea||noData}}m²</div>
           </div>
           <div class="item-row row">
-            <div class="item-tag type2" v-for="(value,index) in item.tags" :key="index">{{value}}</div>
+            <div class="item-tag" v-for="(value,index) in item.tags" :key="index">{{value}}</div>
           </div>
           <div class="item-row row" v-if="isType">
             <div class="item-type type2">二手房</div>
@@ -98,7 +98,7 @@
             <div class="item-normal">{{item.floorArea||noData}}m²</div>
           </div>
           <div class="item-row row">
-            <div class="item-tag type3" v-for="(value,index) in item.tags" :key="index">{{value}}</div>
+            <div class="item-tag" v-for="(value,index) in item.tags" :key="index">{{value}}</div>
           </div>
           <div class="item-row row" v-if="isType">
             <div class="item-type type3">租房</div>
@@ -246,25 +246,13 @@
               }
             }
             .item-tag {
+              background-color: @tagColor;
               line-height: unit(40, rpx);
               margin-right: unit(10, rpx);
               margin-top: unit(10, rpx);
               padding: 0 unit(10, rpx);
-              font-size: @fontSize24;
-              &.type1 {
-                background-color: @stateColor;
-                color: @fontColor3;
-              }
-              &.type2 {
-                line-height: unit(38, rpx);
-                border: 1px solid @theme2;
-                color: @theme2;
-              }
-              &.type3 {
-                line-height: unit(38, rpx);
-                border: 1px solid @theme2;
-                color: @theme2;
-              }
+              font-size: @fontSize22;
+              color: @theme2;
               &:last-child {
                 margin-right: 0;
               }
@@ -282,13 +270,13 @@
               text-align: center;
               font-weight: bold;
               color: @white;
-              &.type1{
+              &.type1 {
                 background-color: @typeColor1;
               }
-              &.type2{
+              &.type2 {
                 background-color: @typeColor2;
               }
-              &.type3{
+              &.type3 {
                 background-color: @typeColor3;
               }
             }
