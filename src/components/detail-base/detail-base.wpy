@@ -5,14 +5,6 @@
         <div class="module-context">
           <div class="module-base" v-if="isData.type===1">
             <div class="module-row row">
-              <div class="module-col tags col-12">
-                <div class="item-state state1" v-if="isData.state==='在售'">{{isData.state}}</div>
-                <div class="item-state state2" v-if="isData.state==='待售'">{{isData.state}}</div>
-                <div class="item-state state3" v-if="isData.state==='售罄'">{{isData.state}}</div>
-                <div class="item-tag" v-for="(item,index) in isData.tags" :key="index">{{item}}</div>
-              </div>
-            </div>
-            <div class="module-row row">
               <div class="module-col col-12">
                 <div class="title">{{isData.title||noData}}</div>
               </div>

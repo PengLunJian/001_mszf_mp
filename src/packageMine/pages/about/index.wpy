@@ -303,7 +303,7 @@
                         }
                         &:nth-child(3) {
                           .item-icon {
-                            background-image: -webkit-linear-gradient(left, #68e2ac, #00c084);
+                            background-image: -webkit-linear-gradient(left, #060BFF, #17F2FF);
                           }
                         }
                         &:nth-child(4) {
@@ -313,7 +313,7 @@
                         }
                         &:nth-child(5) {
                           .item-icon {
-                            background-image: -webkit-linear-gradient(left, #17F2FF, #060BFF);
+                            background-image: -webkit-linear-gradient(left, #11aeff, #1a5eff);
                           }
                         }
                       }

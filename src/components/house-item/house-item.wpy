@@ -12,22 +12,18 @@
             <div class="item-title ellipsis">{{item.title||noData}}</div>
           </div>
           <div class="item-row row">
-            <div class="item-address ellipsis">
-              <span class="item-normal area">{{item.area||noData}}</span>
-              <span class="item-normal split"></span>
-              <span class="item-normal address">{{item.address||noData}}</span>
-            </div>
-          </div>
-          <div class="item-row row">
-            <div class="item-normal price">{{item.price||0}}</div>
-            <div class="item-normal unit">元/m²</div>
-            <div class="item-normal">建面{{item.minfloorArea||0}}-{{item.maxfloorArea||0}}m²</div>
+            <div class="item-normal">{{item.apart||noData}}室/</div>
+            <div class="item-normal">建面{{item.minfloorArea||0}}-{{item.maxfloorArea||0}}m²/</div>
+            <div class="item-normal">{{item.houseName||noData}}</div>
           </div>
           <div class="item-row row">
             <div class="item-state state1" v-if="item.state==='在售'">{{item.state}}</div>
             <div class="item-state state2" v-if="item.state==='待售'">{{item.state}}</div>
             <div class="item-state state3" v-if="item.state==='售罄'">{{item.state}}</div>
             <div class="item-tag" v-for="(value,index) in item.tags" :key="index">{{value}}</div>
+          </div>
+          <div class="item-row row">
+            <div class="item-normal price">{{item.price||0}}<span class="unit">元/m²</span></div>
           </div>
           <div class="item-row row" v-if="isType">
             <div class="item-type type1">新房</div>
@@ -49,20 +45,19 @@
             <div class="item-title ellipsis">{{item.title||noData}}</div>
           </div>
           <div class="item-row row">
-            <div class="item-address ellipsis">
-              <span class="item-normal area">{{item.area||noData}}</span>
-              <span class="item-normal split"></span>
-              <span class="item-normal address">{{item.address||noData}}</span>
-            </div>
-          </div>
-          <div class="item-row row">
-            <div class="item-normal price">{{item.totalPrice||0}}</div>
-            <div class="item-normal unit">万元</div>
-            <div class="item-normal">{{item.apart||noData}}</div>
-            <div class="item-normal">{{item.floorArea||noData}}m²</div>
+            <div class="item-normal">{{item.apart||noData}}/</div>
+            <div class="item-normal">{{item.floorArea||noData}}m²/</div>
+            <div class="item-normal">{{item.direction||noData}}/</div>
+            <div class="item-normal">{{item.houseName||noData}}</div>
           </div>
           <div class="item-row row">
             <div class="item-tag" v-for="(value,index) in item.tags" :key="index">{{value}}</div>
+          </div>
+          <div class="item-row row">
+            <div class="item-normal price">
+              {{item.totalPrice||0}}<span class="unit">万元</span>
+              <span class="unit-price">{{item.price||0}}元/m²</span>
+            </div>
           </div>
           <div class="item-row row" v-if="isType">
             <div class="item-type type2">二手房</div>
@@ -84,21 +79,16 @@
             <div class="item-title ellipsis">{{item.title||noData}}</div>
           </div>
           <div class="item-row row">
-            <div class="item-address ellipsis">
-              <span class="item-normal area">{{item.area||noData}}</span>
-              <span class="item-normal split"></span>
-              <span class="item-normal address">{{item.address||noData}}</span>
-            </div>
-          </div>
-          <div class="item-row row">
-            <div class="item-normal price">{{item.price||0}}</div>
-            <div class="item-normal unit">元/月</div>
-            <div class="item-normal">{{item.apart||noData}}</div>
-            <div class="item-normal">{{item.leaseWay||noData}}</div>
-            <div class="item-normal">{{item.floorArea||noData}}m²</div>
+            <div class="item-normal">{{item.apart||noData}}/</div>
+            <div class="item-normal">{{item.floorArea||noData}}m²/</div>
+            <div class="item-normal">{{item.leaseWay||noData}}/</div>
+            <div class="item-normal">{{item.houseName||noData}}</div>
           </div>
           <div class="item-row row">
             <div class="item-tag" v-for="(value,index) in item.tags" :key="index">{{value}}</div>
+          </div>
+          <div class="item-row row">
+            <div class="item-normal price">{{item.price||0}}<span class="unit">元/月</span></div>
           </div>
           <div class="item-row row" v-if="isType">
             <div class="item-type type3">租房</div>
@@ -177,50 +167,35 @@
         .item-info {
           padding-left: unit(20, rpx);
           .item-row {
+            height: unit(40, rpx);
+            overflow: hidden;
             font-size: 0;
             .item-title {
-              height: unit(42, rpx);
-              line-height: unit(42, rpx);
+              height: unit(36, rpx);
+              line-height: unit(36, rpx);
               font-size: @fontSize32;
               color: @fontColor1;
               font-weight: bold;
             }
-            .item-address {
-              height: unit(32, rpx);
-            }
             .item-normal {
               height: unit(40, rpx);
               line-height: unit(40, rpx);
-              margin-right: unit(10, rpx);
               font-size: @fontSize24;
               color: @fontColor3;
-              &.area,
-              &.address,
-              &.split {
-                margin: 0;
-                height: unit(32, rpx);
-                line-height: unit(32, rpx);
-                color: @fontColor2;
-              }
-              &.split {
-                padding: 0 unit(10, rpx);
-                font-size: 0;
-                &:before {
-                  content: '';
-                  height: unit(20, rpx);
-                  display: inline-block;
-                  border-left: 1px solid @borderColor1;
-                }
-              }
               &.price {
-                margin: 0;
-                font-size: @fontSize36;
+                font-size: @fontSize40;
                 color: @priceColor;
                 font-weight: bold;
-              }
-              &.unit {
-                font-size: @fontSize24;
-                color: @priceColor;
+                .unit {
+                  font-size: @fontSize24;
+                  font-weight: normal;
+                }
+                .unit-price {
+                  margin-left: unit(10, rpx);
+                  font-size: @fontSize24;
+                  font-weight: normal;
+                  color: @fontColor3;
+                }
               }
               &:last-child {
                 margin: 0;
@@ -230,7 +205,6 @@
               height: unit(40, rpx);
               line-height: unit(40, rpx);
               margin-right: unit(10, rpx);
-              margin-top: unit(10, rpx);
               padding: 0 unit(10, rpx);
               background-color: @stateColor;
               font-size: @fontSize24;
@@ -249,9 +223,8 @@
               background-color: @tagColor;
               line-height: unit(40, rpx);
               margin-right: unit(10, rpx);
-              margin-top: unit(10, rpx);
               padding: 0 unit(10, rpx);
-              font-size: @fontSize22;
+              font-size: @fontSize24;
               color: @theme2;
               &:last-child {
                 margin-right: 0;
@@ -280,8 +253,12 @@
                 background-color: @typeColor3;
               }
             }
+            &:first-child{
+              height: unit(36, rpx);
+            }
             &:nth-child(1),
-            &:nth-child(2) {
+            &:nth-child(2),
+            &:nth-child(3) {
               margin-bottom: unit(8, rpx);
             }
           }

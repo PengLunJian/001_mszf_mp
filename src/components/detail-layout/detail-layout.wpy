@@ -1,5 +1,5 @@
 <template>
-  <div class="module">
+  <div class="module" v-if="isData.mainApart.length">
     <div class="module-content">
       <div class="module-header">
         <div class="module-title">主力户型</div>
