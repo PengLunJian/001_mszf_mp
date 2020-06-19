@@ -12,15 +12,19 @@
             <div class="item-title ellipsis">{{item.title||noData}}</div>
           </div>
           <div class="item-row row">
-            <div class="item-normal">{{item.apart||noData}}室/</div>
-            <div class="item-normal">建面{{item.minfloorArea||0}}-{{item.maxfloorArea||0}}m²/</div>
+            <div class="item-normal">{{item.apart||noData}}室</div>
+            <div class="item-normal split">/</div>
+            <div class="item-normal">建面{{item.minfloorArea||0}}-{{item.maxfloorArea||0}}m²</div>
+            <div class="item-normal split">/</div>
             <div class="item-normal">{{item.houseName||noData}}</div>
           </div>
           <div class="item-row row">
-            <div class="item-state state1" v-if="item.state==='在售'">{{item.state}}</div>
-            <div class="item-state state2" v-if="item.state==='待售'">{{item.state}}</div>
-            <div class="item-state state3" v-if="item.state==='售罄'">{{item.state}}</div>
-            <div class="item-tag" v-for="(value,index) in item.tags" :key="index">{{value}}</div>
+            <div class="item-tags row">
+              <div class="item-tag state1" v-if="item.state==='在售'">{{item.state}}</div>
+              <div class="item-tag state2" v-if="item.state==='待售'">{{item.state}}</div>
+              <div class="item-tag state3" v-if="item.state==='售罄'">{{item.state}}</div>
+              <div class="item-tag" v-for="(value,index) in item.tags" :key="index">{{value}}</div>
+            </div>
           </div>
           <div class="item-row row">
             <div class="item-normal price">{{item.price||0}}<span class="unit">元/m²</span></div>
@@ -45,13 +49,18 @@
             <div class="item-title ellipsis">{{item.title||noData}}</div>
           </div>
           <div class="item-row row">
-            <div class="item-normal">{{item.apart||noData}}/</div>
-            <div class="item-normal">{{item.floorArea||noData}}m²/</div>
-            <div class="item-normal">{{item.direction||noData}}/</div>
+            <div class="item-normal">{{item.apart||noData}}</div>
+            <div class="item-normal split">/</div>
+            <div class="item-normal">{{item.floorArea||noData}}m²</div>
+            <div class="item-normal split">/</div>
+            <div class="item-normal">{{item.direction||noData}}</div>
+            <div class="item-normal split">/</div>
             <div class="item-normal">{{item.houseName||noData}}</div>
           </div>
           <div class="item-row row">
-            <div class="item-tag" v-for="(value,index) in item.tags" :key="index">{{value}}</div>
+            <div class="item-tags row">
+              <div class="item-tag" v-for="(value,index) in item.tags" :key="index">{{value}}</div>
+            </div>
           </div>
           <div class="item-row row">
             <div class="item-normal price">
@@ -79,13 +88,18 @@
             <div class="item-title ellipsis">{{item.title||noData}}</div>
           </div>
           <div class="item-row row">
-            <div class="item-normal">{{item.apart||noData}}/</div>
-            <div class="item-normal">{{item.floorArea||noData}}m²/</div>
-            <div class="item-normal">{{item.leaseWay||noData}}/</div>
+            <div class="item-normal">{{item.apart||noData}}</div>
+            <div class="item-normal split">/</div>
+            <div class="item-normal">{{item.floorArea||noData}}m²</div>
+            <div class="item-normal split">/</div>
+            <div class="item-normal">{{item.leaseWay||noData}}</div>
+            <div class="item-normal split">/</div>
             <div class="item-normal">{{item.houseName||noData}}</div>
           </div>
           <div class="item-row row">
-            <div class="item-tag" v-for="(value,index) in item.tags" :key="index">{{value}}</div>
+            <div class="item-tags row">
+              <div class="item-tag" v-for="(value,index) in item.tags" :key="index">{{value}}</div>
+            </div>
           </div>
           <div class="item-row row">
             <div class="item-normal price">{{item.price||0}}<span class="unit">元/月</span></div>
@@ -102,15 +116,15 @@
 <script type="text/ecmascript-6">
   import wepy from '@wepy/core';
   import store from '../../store';
-  import apis from '../../apis';
+  import Route from '../../mixins/route';
   import * as $routes from '../../router';
   import * as $config from '../../config';
 
   wepy.component({
     store,
+    mixins: [Route],
     data: {
       noData: '暂无数据',
-      fileUrl: apis.fileUrl,
       url: $config.DEFAULT_HOUSE
     },
     props: {
@@ -123,7 +137,6 @@
         default: false
       }
     },
-    computed: {},
     methods: {
       onHandleDetail() {
         const {id, type} = this.item;
@@ -133,9 +146,7 @@
           $routes.RENT_HOUSE_DETAIL.path
         ];
         const url = urls[type - 1] + '?id=' + id;
-        wx.navigateTo({
-          url
-        });
+        this.navigateTo(url);
       }
     },
     created() {
@@ -167,8 +178,6 @@
         .item-info {
           padding-left: unit(20, rpx);
           .item-row {
-            height: unit(40, rpx);
-            overflow: hidden;
             font-size: 0;
             .item-title {
               height: unit(36, rpx);
@@ -182,6 +191,9 @@
               line-height: unit(40, rpx);
               font-size: @fontSize24;
               color: @fontColor3;
+              &.split {
+                margin: 0 unit(4, rpx);
+              }
               &.price {
                 font-size: @fontSize40;
                 color: @priceColor;
@@ -201,33 +213,31 @@
                 margin: 0;
               }
             }
-            .item-state {
+            .item-tags {
               height: unit(40, rpx);
-              line-height: unit(40, rpx);
-              margin-right: unit(10, rpx);
-              padding: 0 unit(10, rpx);
-              background-color: @stateColor;
-              font-size: @fontSize24;
-              color: @white;
-              &.state1 {
-                background-color: @stateColor1;
-              }
-              &.state2 {
-                background-color: @stateColor2;
-              }
-              &.state3 {
-                background-color: @stateColor3;
-              }
-            }
-            .item-tag {
-              background-color: @tagColor;
-              line-height: unit(40, rpx);
-              margin-right: unit(10, rpx);
-              padding: 0 unit(10, rpx);
-              font-size: @fontSize24;
-              color: @theme2;
-              &:last-child {
-                margin-right: 0;
+              overflow: hidden;
+              .item-tag {
+                background-color: @tagColor;
+                line-height: unit(40, rpx);
+                margin-right: unit(10, rpx);
+                padding: 0 unit(10, rpx);
+                font-size: @fontSize24;
+                color: @theme2;
+                &:last-child {
+                  margin-right: 0;
+                }
+                &.state1 {
+                  background-color: @stateColor1;
+                  color: @white;
+                }
+                &.state2 {
+                  background-color: @stateColor2;
+                  color: @white;
+                }
+                &.state3 {
+                  background-color: @stateColor3;
+                  color: @white;
+                }
               }
             }
             .item-type {
@@ -253,7 +263,7 @@
                 background-color: @typeColor3;
               }
             }
-            &:first-child{
+            &:first-child {
               height: unit(36, rpx);
             }
             &:nth-child(1),
