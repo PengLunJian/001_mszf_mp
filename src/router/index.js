@@ -2,9 +2,9 @@ export const HOME = {
   name: '首页',
   path: '/pages/home/index'
 };
-export const NEWS = {
+export const LIST = {
   name: '消息',
-  path: '/pages/news/index'
+  path: '/pages/list/index'
 };
 export const MINE = {
   name: '我的',
@@ -47,7 +47,7 @@ export const ABOUT = {
   path: '/packageMine/pages/about/index'
 };
 export const JOIN = {
-  name: '我要入驻',
+  name: '加入我们',
   path: '/packageMine/pages/join/index'
 };
 export const RENT_HOUSE_LIST = {

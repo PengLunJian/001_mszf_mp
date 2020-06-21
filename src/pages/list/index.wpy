@@ -2,7 +2,7 @@
   <div class="container">
     <div class="content fade">
       <div class="header">
-        <top-bar title="消息列表" isIcon="{{false}}"></top-bar>
+        <top-bar title="消息列表" isIcon="{{false}}"/>
       </div>
       <div class="body">
         <div class="context">

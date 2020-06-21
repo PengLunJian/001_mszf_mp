@@ -111,7 +111,7 @@
 				},
 				{
 					"id": 8,
-					"name": "模拟编译",
+					"name": "模拟更新",
 					"pathName": "pages/home/index",
 					"query": "",
 					"scene": null

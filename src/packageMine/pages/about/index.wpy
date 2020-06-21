@@ -41,11 +41,6 @@
                             <div class="item-text">我要分享</div>
                             <div class="item-next iconfont icon-next"></div>
                           </button>
-                          <button class="module-item btn" hover-class="none" @tap="onHandleShowModal">
-                            <div class="item-icon iconfont icon-setting{{hasUpdate?' stage':''}}"></div>
-                            <div class="item-text">系统更新</div>
-                            <div class="item-next iconfont icon-next"></div>
-                          </button>
                         </div>
                       </div>
                     </div>
@@ -57,15 +52,15 @@
         </div>
       </div>
       <div class="footer">
-        <div class="version">Version{{version}}</div>
+        <div class="version">Version{{getVersion}}</div>
       </div>
       <share :isShow="isShow" :isHide="isHide"/>
       <modal :isEnter="isEnter"
              :isLeave="isLeave"
-             :title="title"
-             :context="context"
-             :cancelText="cancelText"
-             :confirmText="confirmText"
+             title="系统发现新版本"
+             context="系统更新即可体验更多服务"
+             cancelText="下次再说"
+             confirmText="立即更新"
              @onConfirm="onHandleConfirm"/>
     </div>
   </div>
@@ -89,11 +84,6 @@
       isEnter: false,
       isLeave: false,
       isScroll: true,
-      title: '',
-      context: '',
-      version: '',
-      cancelText: '取消',
-      confirmText: '确认',
       hasUpdate: false,
       updateManager: null,
       url: $config.DEFAULT_ABOUT,
@@ -101,12 +91,18 @@
         latitude: 0,
         longitude: 0,
         name: '广德市码上找房',
-        phoneNumber: '18130278679',
-        address: '安徽省宣城市广德市金鑫世贸广场北区块B栋五楼505-506'
+        phoneNumber: '13731887133',
+        address: '安徽省宣城市广德市桃州镇金鑫世贸广场北区商业B5楼505、506号'
       }
     },
 
-    computed: {},
+    computed: {
+      getVersion() {
+        const {globalData} = this.$app.$options;
+        const {version} = globalData;
+        return version;
+      }
+    },
 
     methods: {
       onHandlePhone() {
@@ -180,10 +176,11 @@
           res = res || {};
           const {hasUpdate} = res;
           this.hasUpdate = hasUpdate;
-          this.title = hasUpdate ? '系统发现新版本' : '系统暂无更新版本';
-          this.context = hasUpdate ? '系统更新后可体验更多服务' : '当前系统已是最新版本，无需更新';
-          this.cancelText = hasUpdate ? '下次再说' : '取消';
-          this.confirmText = hasUpdate ? '立即更新' : '确认';
+          if (hasUpdate) {
+            setTimeout(() => {
+              this.onHandleShowModal();
+            }, 1000);
+          }
         });
       },
       onHandleConfirm() {
@@ -200,9 +197,6 @@
     },
 
     onLoad() {
-      const {globalData} = this.$app.$options;
-      const {version} = globalData;
-      this.version = version;
       this.onHandlePosition();
       this.onHandleCheckVersion();
     }
@@ -260,20 +254,6 @@
                           -webkit-text-fill-color: transparent;
                           -webkit-background-clip: text;
                           font-size: @fontSize46;
-                          &.stage {
-                            &:after {
-                              content: '';
-                              display: block;
-                              position: absolute;
-                              top: unit(26, rpx);
-                              right: unit(26, rpx);
-                              z-index: 1;
-                              width: unit(16, rpx);
-                              height: unit(16, rpx);
-                              border-radius: @borderRadius100;
-                              background-color: #fa5151;
-                            }
-                          }
                         }
                         .item-text {
                           height: 100%;
@@ -309,11 +289,6 @@
                         &:nth-child(4) {
                           .item-icon {
                             background-image: -webkit-linear-gradient(left, #FFFF00, #FFB421);
-                          }
-                        }
-                        &:nth-child(5) {
-                          .item-icon {
-                            background-image: -webkit-linear-gradient(left, #11aeff, #1a5eff);
                           }
                         }
                       }

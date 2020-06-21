@@ -65,7 +65,7 @@
           <div class="item-row row">
             <div class="item-normal price">
               {{item.totalPrice||0}}<span class="unit">万元</span>
-              <span class="unit-price">{{item.price||0}}元/m²</span>
+              <span class="small-price">{{item.price||0}}元/m²</span>
             </div>
           </div>
           <div class="item-row row" v-if="isType">
@@ -137,6 +137,7 @@
         default: false
       }
     },
+    computed: {},
     methods: {
       onHandleDetail() {
         const {id, type} = this.item;
@@ -202,7 +203,7 @@
                   font-size: @fontSize24;
                   font-weight: normal;
                 }
-                .unit-price {
+                .small-price {
                   margin-left: unit(10, rpx);
                   font-size: @fontSize24;
                   font-weight: normal;

@@ -121,7 +121,8 @@
       }
     },
 
-    onShow() {},
+    onShow() {
+    },
 
     onLoad() {
       this.exeAjaxSelectAreas();

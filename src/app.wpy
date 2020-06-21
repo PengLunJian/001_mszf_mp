@@ -13,7 +13,7 @@
 
   wepy.app({
     globalData: {
-      version: '1.0.5'
+      version: '1.0.6'
     },
 
     mixins: [Storage],
@@ -31,7 +31,7 @@
   {
   pages: [
   'pages/home/index',
-  'pages/news/index',
+  'pages/list/index',
   'pages/mine/index'
   ],
   subpackages: [
@@ -83,7 +83,7 @@
   text:'首页'
   },
   {
-  pagePath:'pages/news/index',
+  pagePath:'pages/list/index',
   iconPath:'/assets/images/tab-item02.png',
   selectedIconPath:'./assets/images/tab-item02-active.png',
   text:'消息'
