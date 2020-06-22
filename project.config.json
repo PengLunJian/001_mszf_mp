@@ -122,6 +122,13 @@
 					"pathName": "packageHouse/pages/rent-house-list/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "packageMine/pages/setting/index",
+					"pathName": "packageMine/pages/setting/index",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

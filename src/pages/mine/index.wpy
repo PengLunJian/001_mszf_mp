@@ -41,7 +41,7 @@
                   <div class="module-items">
                     <button v-for="(item,index) in items" class="module-item btn"
                             hover-class="none" :key="index"
-                            @tap="onHandleClick(item)"
+                            @tap="onHandleRoute(item)"
                             open-type="{{item.name==='意见反馈'?'feedback':''}}">
                       <div class="item-icon iconfont {{item.icon}}"></div>
                       <div class="item-text">{{item.name}}</div>
@@ -65,6 +65,7 @@
   import store from '../../store';
   import {mapState} from '@wepy/redux';
   import Route from '../../mixins/route';
+  import Storage from '../../mixins/storage';
   import * as controller from './controller';
   import * as $routes from '../../router';
   import * as $config from '../../config';
@@ -72,7 +73,7 @@
   wepy.page({
     store,
 
-    mixins: [Route],
+    mixins: [Route, Storage],
 
     data: {
       mineUrl: $config.DEFAULT_MINE,
@@ -90,7 +91,7 @@
         },
         {
           name: $routes.RELEASE.name,
-          path: $routes.WAITING.path,
+          path: $routes.RELEASE.path,
           icon: 'icon-release'
         },
         {
@@ -99,9 +100,9 @@
           icon: 'icon-suggest'
         },
         {
-          name: $routes.ABOUT.name,
-          path: $routes.ABOUT.path,
-          icon: 'icon-info'
+          name: $routes.SETTING.name,
+          path: $routes.SETTING.path,
+          icon: 'icon-setting'
         }
       ]
     },
@@ -114,15 +115,16 @@
       onHandleLogin() {
         this.navigateTo($routes.LOGIN.path);
       },
-      onHandleClick(item) {
-        if (item.name !== '意见反馈') {
-          if (item.name === '我的收藏' || item.name === '历史浏览') {
-            const {isUser} = this;
-            const path = isUser ? item.path : $routes.LOGIN.path;
-            this.navigateTo(path);
-          } else {
-            this.navigateTo(item.path);
+      onHandleRoute(item) {
+        let {name, path} = item;
+        if (name !== '意见反馈') {
+          if (name === '我的收藏' ||
+            name === '历史浏览' ||
+            name === '房源发布') {
+            const user = this.getItem('user');
+            path = user ? path : $routes.LOGIN.path;
           }
+          this.navigateTo(path);
         }
       }
     },
@@ -166,6 +168,7 @@
               .module-body {
                 .module-context {
                   .module-user {
+                    position: relative;
                     background-color: #FFAA00;
                     .user-item {
                       height: unit(250, rpx);
@@ -203,6 +206,18 @@
                         display: inline-block;
                         vertical-align: middle;
                       }
+                    }
+                    .btn-setting {
+                      width: unit(80, rpx);
+                      height: unit(80, rpx);
+                      line-height: unit(80, rpx);
+                      position: absolute;
+                      right: unit(15, rpx);
+                      bottom: unit(15, rpx);
+                      z-index: 1;
+                      font-size: @fontSize46;
+                      text-align: center;
+                      color: @white;
                     }
                   }
                   .module-items {

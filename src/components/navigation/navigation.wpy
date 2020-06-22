@@ -1,28 +1,42 @@
 <template>
-  <div class="nav row">
-    <navigator v-for="(item,index) in items"
-               class="nav-item"
-               hover-class="none"
-               :url="item.path"
-               :key="index">
-      <div class="nav-icon iconfont {{item.icon}}"></div>
-      <div class="nav-text">{{item.text}}</div>
-    </navigator>
+  <div class="navigator">
+    <div class="nav-row row">
+      <div class="nav-col col-3" v-for="(item,index) in items" :key="index">
+        <div class="nav-item" @tap="onHandleRoute(item)">
+          <div class="nav-icon iconfont {{item.icon}}"></div>
+          <div class="nav-text">{{item.text}}</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 
 <script type="text/ecmascript-6">
   import wepy from '@wepy/core';
+  import Route from '../../mixins/route';
+  import Storage from '../../mixins/storage';
+  import * as $routes from '../../router';
 
   wepy.component({
     data: {},
+    mixins: [Route, Storage],
     props: {
       items: {
         type: Object,
         default: []
       }
     },
-    methods: {},
+    methods: {
+      onHandleRoute(item) {
+        let {text, path} = item;
+        if (text === '房源发布') {
+          const user = this.getItem('user');
+          path = user ? path : $routes.LOGIN.path;
+        }
+        this.navigateTo(path);
+      }
+    },
     created() {
     }
   });
@@ -32,50 +46,54 @@
   @import "../../assets/less/variable";
   @import "../../assets/less/common";
 
-  .nav {
-    padding: unit(30, rpx) 0;
-    background-color: @white;
-    .nav-item {
-      width: 20%;
-      text-align: center;
-      .nav-icon {
-        width: unit(90, rpx);
-        height: unit(90, rpx);
-        line-height: unit(90, rpx);
-        margin: 0 auto unit(20, rpx);
-        border-radius: 100%;
-        font-size: @fontSize50;
-        color: @white;
-      }
-      .nav-text {
-        height: unit(40, rpx);
-        line-height: unit(40, rpx);
-        font-size: @fontSize26;
-        color: @fontColor1;
-      }
-      &:nth-child(1) {
-        .nav-icon {
-          background: -webkit-linear-gradient(-45deg, #ffd800, #ffa200);
+  .navigator {
+    .nav-row {
+      padding: unit(30, rpx) 0;
+      background-color: @white;
+      .nav-col {
+        width: 20%;
+        .nav-item {
+          text-align: center;
+          .nav-icon {
+            width: unit(90, rpx);
+            height: unit(90, rpx);
+            line-height: unit(90, rpx);
+            margin: 0 auto unit(20, rpx);
+            border-radius: 100%;
+            font-size: @fontSize50;
+            color: @white;
+          }
+          .nav-text {
+            height: unit(40, rpx);
+            line-height: unit(40, rpx);
+            font-size: @fontSize26;
+            color: @fontColor1;
+          }
         }
-      }
-      &:nth-child(2) {
-        .nav-icon {
-          background: -webkit-linear-gradient(-45deg, #8bffdd, #00c289);
+        &:nth-child(1) {
+          .nav-icon {
+            background: -webkit-linear-gradient(-45deg, #ffd800, #ffa200);
+          }
         }
-      }
-      &:nth-child(3) {
-        .nav-icon {
-          background: -webkit-linear-gradient(-45deg, #00ccff, #0078ff);
+        &:nth-child(2) {
+          .nav-icon {
+            background: -webkit-linear-gradient(-45deg, #8bffdd, #00c289);
+          }
         }
-      }
-      &:nth-child(4) {
-        .nav-icon {
-          background: -webkit-linear-gradient(-45deg, #fff9b3, #ffcb3e);
+        &:nth-child(3) {
+          .nav-icon {
+            background: -webkit-linear-gradient(-45deg, #00ccff, #0078ff);
+          }
         }
-      }
-      &:nth-child(5) {
-        .nav-icon {
-          background: -webkit-linear-gradient(-45deg, #ffb49a, #ff4800);
+        &:nth-child(4) {
+          .nav-icon {
+            background: -webkit-linear-gradient(-45deg, #fff9b3, #ffcb3e);
+          }
+        }
+        &:nth-child(5) {
+          .nav-icon {
+            background: -webkit-linear-gradient(-45deg, #ffb49a, #ff4800);
+          }
         }
       }
     }

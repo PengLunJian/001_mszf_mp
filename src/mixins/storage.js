@@ -25,6 +25,25 @@ export default {
       } catch (e) {
         console.log(e);
       }
+    },
+    clearStorage() {
+      try {
+        wx.clearStorageSync();
+      } catch (e) {
+        console.log(e);
+        // Do something when catch error
+      }
+    },
+    getStorageInfoSync() {
+      let result = 0;
+      try {
+        const res = wx.getStorageInfoSync();
+        const {currentSize} = res;
+        result = currentSize;
+      } catch (e) {
+        console.log(e);
+      }
+      return result;
     }
   },
   created() {

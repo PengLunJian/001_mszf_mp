@@ -36,11 +36,15 @@ export const HISTORY = {
 };
 export const RELEASE = {
   name: '房源发布',
-  path: '/packageMine/pages/release/index'
+  path: '/packageOther/pages/waiting/index'
 };
 export const SUGGEST = {
   name: '意见反馈',
   path: '/packageMine/pages/suggest/index'
+};
+export const SETTING = {
+  name: '系统设置',
+  path: '/packageMine/pages/setting/index'
 };
 export const ABOUT = {
   name: '关于我们',

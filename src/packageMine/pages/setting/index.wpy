@@ -1,0 +1,271 @@
+<template>
+  <div class="container">
+    <div class="content">
+      <div class="header">
+        <top-bar title="系统设置"/>
+      </div>
+      <div class="body">
+        <div class="context fade">
+          <div class="module">
+            <div class="module-content">
+              <div class="module-body">
+                <div class="module-context">
+                  <div class="module-items">
+                    <div class="module-item btn" @tap="onHandleRouteAbout">
+                      <div class="module-row row">
+                        <div class="module-col col-5">
+                          <span class="item-name">关于我们</span>
+                        </div>
+                        <div class="module-col col-7">
+                          <span class="item-next iconfont icon-next"></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="module-item btn" @tap="onHandleClearStorage">
+                      <div class="module-row row">
+                        <div class="module-col col-5">
+                          <span class="item-name">清理缓存</span>
+                        </div>
+                        <div class="module-col col-7">
+                          <span class="item-next iconfont icon-next"></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="module-item btn" @tap="onHandleUpdateVersion">
+                      <div class="module-row row">
+                        <div class="module-col col-5">
+                          <span class="item-name {{hasUpdate?' stage':''}}">系统更新</span>
+                        </div>
+                        <div class="module-col col-7">
+                          <span class="item-text">版本{{getVersion}}</span>
+                          <span class="item-next iconfont icon-next"></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="module-footer"></div>
+            </div>
+          </div>
+          <div class="module" v-if="isUser">
+            <div class="module-content">
+              <div class="module-body">
+                <div class="module-context">
+                  <div class="module-items">
+                    <div class="module-item exit btn" @tap="onHandleSystemExit">退出登录</div>
+                  </div>
+                </div>
+              </div>
+              <div class="module-footer"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer"></div>
+      <modal :isEnter="isEnter"
+             :isLeave="isLeave"
+             title="系统发现新版本"
+             context="系统更新即可体验更多服务"
+             cancelText="下次再说"
+             confirmText="立即更新"
+             @onConfirm="onHandleConfirm"/>
+    </div>
+  </div>
+</template>
+
+<script type="text/ecmascript-6">
+  import wepy from '@wepy/core';
+  import store from '../../../store';
+  import Toast from '../../../mixins/toast';
+  import Route from '../../../mixins/route';
+  import {mapState, mapActions} from '@wepy/redux';
+  import Storage from '../../../mixins/storage';
+  import * as controller from './controller';
+  import * as $routes from '../../../router';
+
+  wepy.page({
+    store,
+
+    mixins: [Toast, Route, Storage],
+
+    data: {
+      isEnter: false,
+      isLeave: false,
+      isScroll: true,
+      hasUpdate: false,
+      updateManager: null
+    },
+
+    computed: {
+      ...mapState(controller.STATES),
+      getVersion() {
+        const {globalData} = this.$app.$options;
+        const {version} = globalData;
+        return version;
+      }
+    },
+
+    methods: {
+      ...mapActions(controller.ACTIONS),
+      onHandleClearStorage() {
+        this.clearStorage();
+        this.showToast('清理完毕');
+      },
+      onHandleUpdateVersion() {
+        const {hasUpdate} = this;
+        if (hasUpdate) {
+          this.onHandleShowModal();
+        } else {
+          this.showToast('当前系统已是最新版本，无需更新。');
+        }
+      },
+      onHandleRouteAbout() {
+        this.navigateTo($routes.ABOUT.path);
+      },
+      onHandleSystemExit() {
+        this.removeItem('user');
+        this.selectPhoneReplace(null);
+        setTimeout(() => {
+          this.navigateBack(1);
+        }, 500);
+      },
+      onHandleShowModal() {
+        this.isEnter = true;
+        this.isLeave = false;
+        this.isScroll = false;
+      },
+      onHandleCheckVersion() {
+        const updateManager = wx.getUpdateManager();
+        this.updateManager = updateManager;
+        updateManager.onCheckForUpdate((res) => {
+          res = res || {};
+          const {hasUpdate} = res;
+          this.hasUpdate = hasUpdate;
+        });
+      },
+      onHandleConfirm() {
+        const {hasUpdate, updateManager} = this;
+        if (hasUpdate) {
+          updateManager.onUpdateReady(() => {
+            updateManager.applyUpdate();
+          });
+          updateManager.onUpdateFailed(() => {
+            this.showToast('请您删除小程序，重新搜索打开');
+          });
+        }
+      }
+    },
+
+    onLoad() {
+      this.onHandleCheckVersion();
+    }
+  });
+</script>
+
+<style scoped lang="less">
+  @import "../../../assets/less/@media";
+  @import "../../../assets/less/variable";
+
+  .container {
+    .content {
+      .header {
+      }
+      .body {
+        height: 100%;
+        position: relative;
+        .context {
+          height: 100%;
+          padding-top: 65px;
+          .module {
+            .module-content {
+              .module-header {
+                padding: unit(30, rpx) unit(30, rpx) 0;
+                .module-title {
+                  height: unit(32, rpx);
+                  line-height: unit(32, rpx);
+                  padding-left: unit(20, rpx);
+                  border-left: 4px solid @theme2;
+                  font-size: @fontSize32;
+                  letter-spacing: 0.5px;
+                  font-weight: bold;
+                  color: @fontColor1;
+                }
+              }
+              .module-body {
+                .module-context {
+                  .module-items {
+                    .module-item {
+                      height: unit(110, rpx);
+                      line-height: unit(110, rpx);
+                      padding-left: unit(30, rpx);
+                      .module-row {
+                        padding-right: unit(30, rpx);
+                        border-bottom: 0.5px solid @borderColor1;
+                        .module-col {
+                          .item-name {
+                            width: 100%;
+                            height: 100%;
+                            font-size: @fontSize32;
+                            &.stage {
+                              &:after {
+                                content: '';
+                                display: inline-block;
+                                width: unit(16, rpx);
+                                height: unit(16, rpx);
+                                margin-left: unit(30, rpx);
+                                background-color: @btnStage;
+                                border-radius: @borderRadius100;
+                              }
+                            }
+                          }
+                          .item-text {
+                            padding-right: unit(30, rpx);
+                            font-size: @fontSize32;
+                            color: @fontColor3;
+                          }
+                          .item-next {
+                            color: @iconNext;
+                          }
+                          &.col-7 {
+                            text-align: right;
+                          }
+                        }
+                      }
+                      &.exit {
+                        padding: 0;
+                        font-size: unit(32, rpx);
+                        text-align: center;
+                      }
+                      &:last-child {
+                        .module-row {
+                          border: none;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              .module-footer {
+
+              }
+            }
+          }
+        }
+      }
+      .footer {
+      }
+    }
+  }
+</style>
+
+<config>
+  {
+  disableScroll:true,
+  navigationStyle:'custom',
+  usingComponents: {
+  'modal': '../../../components/modal/modal',
+  'top-bar': '../../../components/top-bar/top-bar',
+  }
+  }
+</config>
