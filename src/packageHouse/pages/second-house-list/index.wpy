@@ -514,7 +514,7 @@
         activeIndex: -1,
         items: [
           {
-            label: '综合排序',
+            label: '默认排序',
             value: null
           },
           {

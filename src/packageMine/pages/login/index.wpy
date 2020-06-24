@@ -41,9 +41,9 @@
   import Route from '../../../mixins/route';
   import Storage from '../../../mixins/storage';
   import {mapState, mapActions} from '@wepy/redux';
+  import * as controller from './controller';
   import * as $routes from '../../../router';
   import * as $config from '../../../config';
-  import * as controller from './controller';
 
   wepy.page({
     store,
