@@ -23,7 +23,7 @@ const apis = {
     }
   },
   selectHotHouse: {
-    url: '/house/select',
+    url: '/index/select',
     params: {
       pageSize: 5,
       pageIndex: 1

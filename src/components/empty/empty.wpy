@@ -20,7 +20,6 @@
         default: false
       }
     },
-    events: {},
     watch: {
       isSuccess() {
         if (this.isSuccess) {

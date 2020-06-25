@@ -13,10 +13,10 @@ const actions = {
     };
   },
   [actionTypes.SELECT_HOTHOUSE_SUCCESS](state, action) {
-    const {resNew, resSecond, resRent} = action.data;
-    const resNewData = resNew.data || {};
-    const resSecondData = resSecond.data || {};
-    const resRentData = resRent.data || {};
+    const resData = action.data || [];
+    const resNewData = resData[1] || {};
+    const resSecondData = resData[2] || {};
+    const resRentData = resData[0] || {};
     const resNewRows = resNewData.rows || [];
     const newRows = resNewRows.map((item) => {
       return utils.dataFormat(item);

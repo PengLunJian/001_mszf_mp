@@ -20,7 +20,6 @@
         default: false
       }
     },
-    events: {},
     watch: {
       isFailure() {
         if (this.isFailure) {

@@ -817,11 +817,15 @@
         let params = {
           type,
           city,
-          area,
           pageSize,
           pageIndex
         };
-
+        if (area && area !== '不限') {
+          params = {
+            ...params,
+            area
+          };
+        }
         const renovation = this.btnStyle.value;
         if (renovation) {
           params = {

@@ -52,10 +52,8 @@
     mixins: [Route, Storage],
 
     data: {
-      city: {
-        id: '',
-        fullname: ''
-      },
+      pageIndex: 1,
+      pageSize: 5,
       items: [
         {
           text: '租房',
@@ -108,8 +106,8 @@
           });
       },
       exeAjaxSelectHotHouse() {
-        const {fullname} = this.isCity;
-        this.ajaxSelectHotHouse(fullname)
+        const params = this.getParams();
+        this.ajaxSelectHotHouse(params)
           .then((res) => {
             console.log(res);
           })
@@ -119,6 +117,16 @@
       },
       onRefresh() {
         this.exeAjaxSelectHotHouse();
+      },
+      getParams() {
+        const {pageIndex, pageSize, isCity} = this;
+        const {fullname} = isCity;
+        const params = {
+          pageIndex,
+          pageSize,
+          city: fullname
+        };
+        return params;
       }
     },
 

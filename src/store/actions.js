@@ -292,39 +292,21 @@ export const removeHistoryReplace = createAction(
     commit(actionTypes.REMOVE_HISTORY_REPLACE);
   });
 
-const ajaxRequestHotHouse = (type, cityName) => {
-  const params = {
-    type,
-    pageSize: 5,
-    pageIndex: 1,
-    city: cityName
-  };
-  return axios.post(apis.selectHotHouse, params)
-    .then((res) => {
-      res = res || {};
-      return res;
-    });
-};
-
 export const ajaxRequestSelectHotHouse = createAction(
-  'selectHotHouse', (cityName) => {
+  'selectHotHouse', (params) => {
     commit(actionTypes.SELECT_HOTHOUSE_REQUEST);
     return new Promise((resolve, reject) => {
-      axios.all([
-        ajaxRequestHotHouse(1, cityName),
-        ajaxRequestHotHouse(2, cityName),
-        ajaxRequestHotHouse(3, cityName)
-      ])
-        .then(axios.spread((resNew, resSecond, resRent) => {
-          const newData = {resNew, resSecond, resRent};
-          const success = resNew.success && resSecond.success && resRent.success;
+      axios.post(apis.selectHotHouse, params)
+        .then((res) => {
+          res = res || {};
+          const {data, success} = res;
           if (success) {
-            commit(actionTypes.SELECT_HOTHOUSE_SUCCESS, newData);
+            commit(actionTypes.SELECT_HOTHOUSE_SUCCESS, data);
           } else {
             commit(actionTypes.SELECT_HOTHOUSE_FAILURE);
           }
-          resolve(newData);
-        }))
+          resolve(res);
+        })
         .catch((err) => {
           commit(actionTypes.SELECT_HOTHOUSE_FAILURE);
           reject(err);

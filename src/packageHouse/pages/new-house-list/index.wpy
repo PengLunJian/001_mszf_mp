@@ -707,10 +707,15 @@
         let params = {
           type,
           city,
-          area,
           pageSize,
           pageIndex
         };
+        if (area && area !== '不限') {
+          params = {
+            ...params,
+            area
+          };
+        }
         const state = this.btnState.value;
         if (state) {
           params = {
