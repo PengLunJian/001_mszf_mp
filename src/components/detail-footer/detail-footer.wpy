@@ -1,12 +1,18 @@
 <template>
   <div class="fixed-bar row">
     <div class="fixed-col col-4">
-      <div class="agent-img">
-        <lazy-image src="{{isData.agent[0].picUrl}}"/>
-      </div>
-      <div class="agent-info">
-        <div class="agent-name">{{isData.agent[0].agentName||noData}}</div>
-        <div class="agent-desc">{{isData.business.busName||noData}}</div>
+      <div class="fixed-agent row">
+        <div class="agent-col col-5">
+          <div class="agent-img">
+            <lazy-image src="{{isData.agent[0].picUrl}}"/>
+          </div>
+        </div>
+        <div class="agent-col col-7">
+          <div class="agent-info">
+            <div class="agent-name ellipsis">{{isData.agent[0].agentName||noData}}</div>
+            <div class="agent-desc ellipsis">{{isData.business.busName||noData}}</div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="fixed-col col-8">
@@ -78,46 +84,44 @@
     z-index: 1000;
     background-color: @white;
     box-shadow: 0 0 15px @boxShadow05;
-    .col-4 {
+    > .col-4 {
       width: 36%;
       height: unit(110, rpx);
       line-height: unit(110, rpx);
-      padding-left: unit(30, rpx);
-      text-align: left;
-      font-size: 0;
-      .agent-img {
-        overflow: hidden;
-        width: unit(70, rpx);
-        height: unit(70, rpx);
-        display: inline-block;
-        vertical-align: middle;
-        border-radius: @borderRadius100;
-        image {
+      .agent-col {
+        &.col-5 {
+          text-align: center;
+        }
+        .agent-img {
+          width: unit(70, rpx);
+          height: unit(70, rpx);
+          overflow: hidden;
+          display: inline-block;
+          vertical-align: middle;
+          will-change: transform;
           border-radius: @borderRadius100;
         }
-      }
-      .agent-info {
-        display: inline-block;
-        vertical-align: middle;
-        margin-left: unit(15, rpx);
-        letter-spacing: 0.5px;
-        font-size: 0;
-        .agent-name {
-          height: unit(40, rpx);
-          line-height: unit(40, rpx);
-          font-size: @fontSize28;
-          font-weight: bold;
-          color: @fontColor1;
-        }
-        .agent-desc {
-          height: unit(30, rpx);
-          line-height: unit(30, rpx);
-          font-size: @fontSize24;
-          color: @fontColor3;
+        .agent-info {
+          width: 100%;
+          display: inline-block;
+          vertical-align: middle;
+          .agent-name {
+            height: unit(40, rpx);
+            line-height: unit(40, rpx);
+            font-size: @fontSize28;
+            font-weight: bold;
+            color: @fontColor1;
+          }
+          .agent-desc {
+            height: unit(30, rpx);
+            line-height: unit(30, rpx);
+            font-size: @fontSize24;
+            color: @fontColor3;
+          }
         }
       }
     }
-    .col-8 {
+    > .col-8 {
       width: 64%;
       display: flex;
       font-size: 0;

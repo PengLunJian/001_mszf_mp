@@ -209,8 +209,8 @@
                               &:after {
                                 content: '';
                                 display: inline-block;
-                                width: unit(16, rpx);
-                                height: unit(16, rpx);
+                                width: unit(20, rpx);
+                                height: unit(20, rpx);
                                 margin-left: unit(30, rpx);
                                 background-color: @btnStage;
                                 border-radius: @borderRadius100;

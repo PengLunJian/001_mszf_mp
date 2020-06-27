@@ -574,6 +574,13 @@
               sortKey: 'floorArea',
               sortValue: 'desc'
             }
+          },
+          {
+            label: '最新发布时间',
+            value: {
+              sortKey: 'createTime',
+              sortValue: 'desc'
+            }
           }
         ],
         value: null
@@ -1198,7 +1205,7 @@
         }
         &#sort {
           .modal-content {
-            height: calc(105px + 5 * unit(100, rpx));
+            height: calc(105px + 6 * unit(100, rpx));
           }
         }
         &.hide {
@@ -1212,7 +1219,7 @@
           }
           &#sort {
             .modal-content {
-              transform: translateY(-355px);
+              transform: translateY(unit(-810, rpx));
             }
           }
         }

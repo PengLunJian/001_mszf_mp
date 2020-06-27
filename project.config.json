@@ -1,7 +1,7 @@
 {
 	"description": "This is a property management applet",
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"enhance": false,
 		"postcss": true,
@@ -29,7 +29,7 @@
 	"miniprogramRoot": "weapp/",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
-	"libVersion": "2.11.0",
+	"libVersion": "2.11.2",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -103,16 +103,9 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "pages/index/index",
-					"pathName": "pages/index/index",
-					"query": "",
-					"scene": null
-				},
-				{
 					"id": 8,
-					"name": "模拟更新",
-					"pathName": "pages/home/index",
+					"name": "pages/mine/index",
+					"pathName": "pages/mine/index",
 					"query": "",
 					"scene": null
 				},

@@ -12,11 +12,13 @@
             <div class="item-title ellipsis">{{item.title||noData}}</div>
           </div>
           <div class="item-row row">
-            <div class="item-normal">{{item.apart||noData}}室</div>
-            <div class="item-normal split">/</div>
-            <div class="item-normal">建面{{item.minfloorArea||0}}-{{item.maxfloorArea||0}}m²</div>
-            <div class="item-normal split">/</div>
-            <div class="item-normal">{{item.houseName||noData}}</div>
+            <div class="item-col ellipsis">
+              <span class="item-normal">{{item.apart||noData}}室</span>
+              <span class="item-normal split">/</span>
+              <span class="item-normal">建面{{item.minfloorArea||0}}-{{item.maxfloorArea||0}}m²</span>
+              <span class="item-normal split">/</span>
+              <span class="item-normal">{{item.houseName||noData}}</span>
+            </div>
           </div>
           <div class="item-row row">
             <div class="item-tags row">
@@ -49,16 +51,22 @@
             <div class="item-title ellipsis">{{item.title||noData}}</div>
           </div>
           <div class="item-row row">
-            <div class="item-normal">{{item.apart||noData}}</div>
-            <div class="item-normal split">/</div>
-            <div class="item-normal">{{item.floorArea||noData}}m²</div>
-            <div class="item-normal split">/</div>
-            <div class="item-normal">{{item.direction||noData}}</div>
-            <div class="item-normal split">/</div>
-            <div class="item-normal">{{item.houseName||noData}}</div>
+            <div class="item-col ellipsis">
+              <span class="item-normal">{{item.apart||noData}}</span>
+              <span class="item-normal split">/</span>
+              <span class="item-normal">{{item.floorArea||noData}}m²</span>
+              <span class="item-normal split">/</span>
+              <span class="item-normal">{{item.direction||noData}}</span>
+              <span class="item-normal split">/</span>
+              <span class="item-normal">{{item.houseName||noData}}</span>
+            </div>
           </div>
           <div class="item-row row">
             <div class="item-tags row">
+              <div class="item-tag recommend" v-if="item.isRecommend">
+                <div class="item-icon iconfont icon-recommend"></div>
+                <div class="item-text">店长推荐</div>
+              </div>
               <div class="item-tag" v-for="(value,index) in item.tags" :key="index">{{value}}</div>
             </div>
           </div>
@@ -88,16 +96,22 @@
             <div class="item-title ellipsis">{{item.title||noData}}</div>
           </div>
           <div class="item-row row">
-            <div class="item-normal">{{item.apart||noData}}</div>
-            <div class="item-normal split">/</div>
-            <div class="item-normal">{{item.floorArea||noData}}m²</div>
-            <div class="item-normal split">/</div>
-            <div class="item-normal">{{item.leaseWay||noData}}</div>
-            <div class="item-normal split">/</div>
-            <div class="item-normal">{{item.houseName||noData}}</div>
+            <div class="item-col ellipsis">
+              <span class="item-normal">{{item.apart||noData}}</span>
+              <span class="item-normal split">/</span>
+              <span class="item-normal">{{item.floorArea||noData}}m²</span>
+              <span class="item-normal split">/</span>
+              <span class="item-normal">{{item.leaseWay||noData}}</span>
+              <span class="item-normal split">/</span>
+              <span class="item-normal">{{item.houseName||noData}}</span>
+            </div>
           </div>
           <div class="item-row row">
             <div class="item-tags row">
+              <div class="item-tag recommend" v-if="item.isRecommend">
+                <div class="item-icon iconfont icon-recommend"></div>
+                <div class="item-text">店长推荐</div>
+              </div>
               <div class="item-tag" v-for="(value,index) in item.tags" :key="index">{{value}}</div>
             </div>
           </div>
@@ -179,7 +193,7 @@
         .item-info {
           padding-left: unit(20, rpx);
           .item-row {
-            font-size: 0;
+            flex-wrap: nowrap;
             .item-title {
               height: unit(36, rpx);
               line-height: unit(36, rpx);
@@ -210,6 +224,9 @@
                   color: @fontColor3;
                 }
               }
+              &.name {
+                width: 35%;
+              }
               &:last-child {
                 margin: 0;
               }
@@ -217,6 +234,16 @@
             .item-tags {
               height: unit(40, rpx);
               overflow: hidden;
+              .item-recommend {
+                position: absolute;
+                top: unit(15, rpx);
+                left: unit(15, rpx);
+                height: unit(40, rpx);
+                line-height: unit(40, rpx);
+                padding: unit(30, rpx);
+                background-color: @btnStage;
+                color: @white;
+              }
               .item-tag {
                 background-color: @tagColor;
                 line-height: unit(40, rpx);
@@ -226,6 +253,33 @@
                 color: @theme2;
                 &:last-child {
                   margin-right: 0;
+                }
+                &.recommend {
+                  padding: 0;
+                  display: flex;
+                  position: relative;
+                  background-color: transparent;
+                  .item-icon {
+                    width: unit(40, rpx);
+                    background-color: @isRecommend;
+                    font-size: @fontSize24;
+                    text-align: center;
+                    color: @white;
+                  }
+                  .item-text {
+                    padding: 0 unit(8, rpx);
+                    font-size: @fontSize20;
+                    color: @isRecommend;
+                  }
+                  &:after {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    border: 1px solid @isRecommend;
+                  }
                 }
                 &.state1 {
                   background-color: @stateColor1;
