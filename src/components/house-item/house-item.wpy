@@ -2,9 +2,6 @@
   <div class="item" v-if="item.type===1" @tap="onHandleDetail">
     <div class="item-row row">
       <div class="item-col col-3">
-        <div class="item-state state1" v-if="item.state==='在售'">{{item.state}}</div>
-        <div class="item-state state2" v-if="item.state==='待售'">{{item.state}}</div>
-        <div class="item-state state3" v-if="item.state==='售罄'">{{item.state}}</div>
         <div class="item-img">
           <lazy-image src="{{item.picUrl[0]}}" width="60%" mode="aspectFill"/>
         </div>
@@ -176,30 +173,8 @@
       border-bottom: 0.5px solid @borderColor2;
       > .col-3 {
         width: 32%;
-        position: relative;
         .item-img {
           height: unit(180, rpx);
-        }
-        .item-state {
-          position: absolute;
-          top: unit(10, rpx);
-          left: unit(10, rpx);
-          z-index: 10;
-          line-height: unit(40, rpx);
-          padding: 0 unit(10, rpx);
-          font-size: @fontSize24;
-          &.state1 {
-            background-color: @stateColor1;
-            color: @white;
-          }
-          &.state2 {
-            background-color: @stateColor2;
-            color: @white;
-          }
-          &.state3 {
-            background-color: @stateColor3;
-            color: @white;
-          }
         }
       }
       > .col-9 {
