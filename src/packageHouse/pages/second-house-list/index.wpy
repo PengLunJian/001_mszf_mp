@@ -221,6 +221,7 @@
       timer: null,
       pageIndex: 1,
       pageSize: 10,
+      houseName: '',
       isScroll: true,
       tab: {
         activeIndex: -1,
@@ -827,6 +828,13 @@
           pageSize,
           pageIndex
         };
+        const {houseName} = this;
+        if (houseName) {
+          params = {
+            ...params,
+            houseName
+          };
+        }
         if (area && area !== '不限') {
           params = {
             ...params,
@@ -840,7 +848,6 @@
             renovation
           };
         }
-
         const apart = this.btnLayout.value;
         if (apart) {
           params = {
@@ -848,7 +855,6 @@
             apart
           };
         }
-
         const direction = this.btnDirection.value;
         if (direction) {
           params = {
@@ -856,7 +862,6 @@
             direction
           };
         }
-
         const floors = this.btnFloor.value;
         if (floors) {
           params = {
@@ -864,7 +869,6 @@
             floors
           };
         }
-
         const totalPriceScopes = this.btnTotalPrice.value;
         if (totalPriceScopes.length) {
           params = {
@@ -872,7 +876,6 @@
             totalPriceScopes
           };
         }
-
         const areaScopes = this.btnSize.value;
         if (areaScopes.length) {
           params = {
@@ -880,7 +883,6 @@
             areaScopes
           };
         }
-
         const sort = this.btnSort.value;
         if (sort) {
           params = {
@@ -895,7 +897,9 @@
       }
     },
 
-    onLoad() {
+    onLoad(options) {
+      const {houseName} = options;
+      this.houseName = houseName;
       this.removeHouseReplace();
       this.onHandleRenderAreas();
       this.exeAjaxSelectHouse();

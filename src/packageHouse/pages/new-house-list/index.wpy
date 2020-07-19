@@ -195,6 +195,7 @@
       timer: null,
       pageIndex: 1,
       pageSize: 10,
+      houseName: '',
       isScroll: true,
       tab: {
         activeIndex: -1,
@@ -717,6 +718,14 @@
           pageSize,
           pageIndex
         };
+
+        const {houseName} = this;
+        if (houseName) {
+          params = {
+            ...params,
+            houseName
+          };
+        }
         if (area && area !== '不限') {
           params = {
             ...params,
@@ -769,7 +778,9 @@
       }
     },
 
-    onLoad() {
+    onLoad(options) {
+      const {houseName} = options;
+      this.houseName = houseName;
       this.removeHouseReplace();
       this.onHandleRenderAreas();
       this.exeAjaxSelectHouse();

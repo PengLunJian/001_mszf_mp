@@ -63,11 +63,11 @@ export const RENT_HOUSE_DETAIL = {
   path: '/packageHouse/pages/rent-house-detail/index'
 };
 export const SECOND_HOUSE_LIST = {
-  name: '二手房列表',
+  name: '售房列表',
   path: '/packageHouse/pages/second-house-list/index'
 };
 export const SECOND_HOUSE_DETAIL = {
-  name: '二手房详情',
+  name: '售房详情',
   path: '/packageHouse/pages/second-house-detail/index'
 };
 export const NEW_HOUSE_LIST = {

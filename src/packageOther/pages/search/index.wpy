@@ -2,10 +2,70 @@
   <div class="container">
     <div class="content">
       <div class="header">
-        <top-bar title="房源搜索"></top-bar>
+        <top-bar title="房源搜索"/>
       </div>
       <div class="body">
-        <wait></wait>
+        <div class="context fade">
+          <div class="module">
+            <div class="module-content">
+              <div class="module-header"></div>
+              <div class="module-body">
+                <div class="module-row row">
+                  <div class="module-col col-12">
+                    <div class="column-row row">
+                      <div class="column-col col-3">
+                        <div class="column-btn btn-selector{{active?' active':''}}" @tap="onHandleSelector">
+                          <div class="btn-trigger">
+                            <div class="btn-text">{{selector.checked.label}}</div>
+                            <div class="btn-icon"></div>
+                          </div>
+                          <div class="btn-select">
+                            <div class="btn-options">
+                              <div class="btn btn-option" v-for="(item,index) in selector.options" :key="index"
+                                   @tap.stop="onHandleChange(index)">{{item.label}}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="column-col col-6">
+                        <input class="column-input" v-model="houseName" type="text"
+                               placeholder="请输入小区名/商圈"/>
+                      </div>
+                      <div class="column-col col-3">
+                        <div class="column-btn btn-confirm" @tap="onHandleConfirm">确认</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="module-footer"></div>
+            </div>
+          </div>
+          <div class="module" v-if="items.length">
+            <div class="module-content">
+              <div class="module-header">
+                <div class="module-row row">
+                  <div class="module-col col-6">
+                    <div class="module-title">历史搜索</div>
+                  </div>
+                  <div class="module-col col-6">
+                    <div class="module-clear iconfont icon-delete" @tap="onHandleDelete"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="module-body">
+                <div class="module-row row">
+                  <div class="module-col col-3" v-for="(item,index) in items" :key="index"
+                       @tap="onHandleSelect(index)">
+                    <div class="module-item">{{item}}</div>
+                  </div>
+                </div>
+              </div>
+              <div class="module-footer"></div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="footer"></div>
     </div>
@@ -14,20 +74,83 @@
 
 <script type="text/ecmascript-6">
   import wepy from '@wepy/core';
-  import store from '../../../store/index';
+  import store from '../../../store';
+  import Route from '../../../mixins/route';
+  import Storage from '../../../mixins/storage';
+  import * as $routes from '../../../router';
 
   wepy.page({
     store,
 
-    mixins: [],
+    mixins: [Route, Storage],
 
-    data: {},
+    data: {
+      active: false,
+      houseName: '',
+      selector: {
+        checked: {
+          label: '新房',
+          value: 1,
+          path: $routes.NEW_HOUSE_LIST.path
+        },
+        options: [
+          {
+            label: '新房',
+            value: 1,
+            path: $routes.NEW_HOUSE_LIST.path
+          },
+          {
+            label: '售房',
+            value: 2,
+            path: $routes.SECOND_HOUSE_LIST.path
+          },
+          {
+            label: '租房',
+            value: 3,
+            path: $routes.RENT_HOUSE_LIST.path
+          }
+        ]
+      },
+      items: []
+    },
 
     computed: {},
 
-    methods: {},
+    methods: {
+      onHandleSelector() {
+        const {active} = this;
+        this.active = !active;
+      },
+      onHandleChange(index) {
+        this.active = false;
+        const {options} = this.selector;
+        this.selector.checked = options[index];
+      },
+      onHandleSelect(index) {
+        const {items} = this;
+        this.houseName = items[index];
+      },
+      onHandleDelete() {
+        this.items = [];
+        this.removeItem('items');
+      },
+      onHandleConfirm() {
+        const {selector, houseName} = this;
+        const {path} = selector.checked;
+        const url = path + '?houseName=' + houseName;
+        const items = this.getItem('items') || [];
+        if (houseName && items.indexOf(houseName) === -1) {
+          items.unshift(houseName);
+          this.setItem('items', items);
+          this.items = items;
+        }
+        this.redirectTo(url);
+      }
+    },
 
     created() {
+      const items = this.getItem('items');
+      this.items = items;
     }
   });
 </script>
@@ -36,6 +159,8 @@
   @import "../../../assets/less/@media";
   @import "../../../assets/less/variable";
 
+  @height: unit(80, rpx);
+
   .container {
     .content {
       height: 100vh;
@@ -43,6 +168,164 @@
       }
       .body {
         height: 100%;
+        .context {
+          height: 100%;
+          padding-top: 65px;
+          .module {
+            margin: 0;
+            .module-content {
+              .module-header {
+                .module-row {
+                  padding: unit(15, rpx);
+                  .module-col {
+                    padding: unit(15, rpx);
+                    line-height: unit(40, rpx);
+                    .module-title {
+                      font-size: @fontSize28;
+                      color: @fontColor1;
+                      font-weight: bold;
+                    }
+                    .module-clear {
+                      font-size: @fontSize36;
+                      text-align: center;
+                      float: right;
+                    }
+                  }
+                }
+              }
+              .module-body {
+                .module-row {
+                  padding: unit(15, rpx);
+                  .module-col {
+                    padding: unit(15, rpx);
+                    .column-row {
+                      background-color: #F5F5F5;
+                      border-radius: @height;
+                      font-size: @fontSize26;
+                      .column-col {
+                        &.col-3 {
+                          width: 20%;
+                        }
+                        &.col-6 {
+                          width: 60%;
+                        }
+                        .column-input {
+                          height: @height;
+                          padding-left: unit(20, rpx);
+                        }
+                        .column-btn {
+                          height: @height;
+                          line-height: @height;
+                          text-align: center;
+                          &.btn-selector {
+                            position: relative;
+                            font-size: 0;
+                            .btn-trigger {
+                              width: 100%;
+                              height: unit(36, rpx);
+                              line-height: unit(36, rpx);
+                              display: inline-block;
+                              border-right: 0.5px solid @borderColor1;
+                              .btn-text {
+                                display: inline-block;
+                                vertical-align: middle;
+                                margin-right: unit(10, rpx);
+                                font-size: @fontSize26;
+                              }
+                              .btn-icon {
+                                display: inline-block;
+                                vertical-align: middle;
+                                transition: all 300ms ease-out;
+                                border-top: unit(16, rpx) solid @fontColor1;
+                                border-left: unit(10, rpx) solid @transparent;
+                                border-right: unit(10, rpx) solid @transparent;
+                              }
+                            }
+                            .btn-select {
+                              position: absolute;
+                              top: unit(100, rpx);
+                              left: 0;
+                              z-index: 1;
+                              opacity: 0;
+                              visibility: hidden;
+                              transition: all 300ms ease-out;
+                              box-shadow: 0 0 15px @boxShadow05;
+                              border-radius: @borderRadius15;
+                              font-size: @fontSize26;
+                              text-align: center;
+                              color: @fontColor1;
+                              .btn-options {
+                                z-index: 10;
+                                overflow: hidden;
+                                position: relative;
+                                padding: unit(15, rpx) 0;
+                                border-radius: @borderRadius15;
+                                background-color: @white;
+                                .btn-option {
+                                  width: unit(200, rpx);
+                                  height: unit(80, rpx);
+                                  line-height: unit(80, rpx);
+                                }
+                              }
+                              &:after {
+                                content: '';
+                                position: absolute;
+                                left: 30%;
+                                top: unit(-15, rpx);
+                                z-index: 1;
+                                width: unit(30, rpx);
+                                height: unit(30, rpx);
+                                transform: rotate(45deg);
+                                margin-left: unit(-10, rpx);
+                                box-shadow: 0 0 15px @boxShadow05;
+                                background-color: @white;
+                              }
+                            }
+                            &.active {
+                              .btn-trigger {
+                                .btn-icon {
+                                  transform: rotate(180deg);
+                                }
+                              }
+                              .btn-select {
+                                opacity: 1;
+                                visibility: visible;
+                                transform: translateY(unit(10, rpx));
+                              }
+                            }
+                          }
+                          &.btn-confirm {
+                            border-top-right-radius: @height;
+                            border-bottom-right-radius: @height;
+                            background-color: @theme2;
+                            letter-spacing: 1px;
+                            color: @white;
+                          }
+                        }
+                      }
+                    }
+                    &.col-3 {
+                      width: auto;
+                      .module-item {
+                        overflow: hidden;
+                        height: unit(60, rpx);
+                        padding: 0 unit(30, rpx);
+                        line-height: unit(60, rpx);
+                        border-radius: unit(60, rpx);
+                        background-color: @bgColor;
+                        font-size: @fontSize24;
+                        text-align: center;
+                        color: @fontColor3;
+                      }
+                    }
+                  }
+                }
+              }
+              .module-footer {
+              }
+            }
+          }
+        }
       }
       .footer {
       }

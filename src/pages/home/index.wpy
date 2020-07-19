@@ -93,7 +93,7 @@
         this.navigateTo($routes.ADDRESS.path);
       },
       onHandleSearch() {
-        this.navigateTo($routes.WAITING.path);
+        this.navigateTo($routes.SEARCH.path);
       },
       exeAjaxSelectAreas() {
         const {id} = this.isCity;

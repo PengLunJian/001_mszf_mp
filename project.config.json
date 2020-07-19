@@ -122,6 +122,12 @@
 					"pathName": "packageMine/pages/setting/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "packageOther/pages/search/index",
+					"pathName": "packageOther/pages/search/index",
+					"scene": null
 				}
 			]
 		}
