@@ -1,5 +1,5 @@
 {
-  "name": "001_mszf_app",
+  "name": "001_mszf_mp",
   "version": "0.0.2",
   "description": "This is a property management applet",
   "main": "weapp/app.js",
